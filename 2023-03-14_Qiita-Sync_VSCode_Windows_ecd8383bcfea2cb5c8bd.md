@@ -12,6 +12,7 @@ https://qiita.com/ryokat3/items/d054b95f68810f70b136
 
 を利用したときに躓いたポイントの対処方法をかいた体験記です。
 Github actions を利用する流れはほぼ上記の記事のとおりです。
+（この記事の Github actions 操作の６割ぐらいは元記事のコピペです。）
 
 # Github でのリポジトリを作成
 
