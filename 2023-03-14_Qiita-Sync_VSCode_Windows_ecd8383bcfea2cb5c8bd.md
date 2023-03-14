@@ -177,6 +177,8 @@ GitHub repository を開く
 記事のヘッダの id は記事と紐づいているので変更しない。
 title と tags は自由に変更できる。
 
+例
+
 ```既存の記事
 <!--
 title:   VSCode 拡張機能 ChatGPT を使用するための下準備。モデル選択や日本語化等（Windows版）
@@ -203,10 +205,13 @@ github 上へ PUSH すると Github actions でエラーになった
 ファイル名は[新規の記事].md として
 ※ファイル名はかぶらなければ自由
 
+例
+
 ```新規の記事.md
 <!--
-title: qiita-sync 新規の記事のテスト
-tags:  qiita-sync vscode windows
+title:   Qiita syncの記事作成テスト
+tags:    ChatGPT,VSCode,setting.json,拡張機能
+private: false
 -->
 
 ```
@@ -224,6 +229,20 @@ github 上に反映されているので
 Qiita 上に反映されているのが確認できた。
 
 ## Qiita 上で記事を削除した場合
+
+github 上で紐づいた Qiita 記事の md ファイルも削除する必要があります。
+
+<!--
+title:   Qiita syncの記事作成テスト
+tags:    ChatGPT,VSCode,setting.json,拡張機能
+id:      aa*************4b1
+private: false
+-->
+
+ファイルを残したままだと id がまだ生きているので更新されたと勘違いされ再び Qiita 上で閲覧できてしまいます。
+ヘッダ部分の id だけを削除した場合は、次回更新時に、違う新しい記事として認識されアップロードされてしまいます。
+
+なので Qiita 上で削除する場合は、github 上の紐づいたファイルを探しておいて、Qiita 上で削除したと同時に github 上とローカル上のファイルを削除する必要があります。
 
 ## 後記
 
