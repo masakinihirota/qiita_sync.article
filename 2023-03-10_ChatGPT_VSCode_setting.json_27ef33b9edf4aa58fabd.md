@@ -7,7 +7,6 @@ private: false
 
 # 結論から
 
-github actions
 ChatGPT のアカウントを取得後
 VSCode を立ち上げ ChatGPT の **「拡張機能 ChatGPT」** をインストールします。
 この拡張機能の機能は**VSCode の右クリックメニューから ChatGPT を動かします。**
