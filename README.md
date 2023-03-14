@@ -1,5 +1,3 @@
-test
-
 # Qiita-Sync Template
 
 Template repository to synchronize markdown files with [Qiita](https://qiita.com/) site.
