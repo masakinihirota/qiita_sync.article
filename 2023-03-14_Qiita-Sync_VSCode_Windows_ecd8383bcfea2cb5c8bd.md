@@ -180,7 +180,7 @@ title と tags は自由に変更できる。
 
 例
 
-```既存の記事
+```既存の記事 (idが割り振られている)
 <!--
 title:   VSCode 拡張機能 ChatGPT を使用するための下準備。モデル選択や日本語化等（Windows版）
 tags:    ChatGPT,VSCode,setting.json,拡張機能
@@ -209,7 +209,7 @@ github 上へ PUSH すると Github actions でエラーになる。
 
 例
 
-```新規の記事.md
+```新規の記事.md (idは記入しない)
 <!--
 title:   Qiita syncの記事作成テスト
 tags:    ChatGPT,VSCode,setting.json,拡張機能
@@ -219,6 +219,9 @@ private: false
 ```
 
 というヘッドを付けて commit＆PUSH すれば、Qiita 上に記事が反映される
+id は Qiita 上で管理する Qiita が割り振る記事の識別用の id は
+ユーザー側が指定できない。
+なので id の行は最初は空にしておく。
 
 ## Qiita 上で記事を書いてローカル上で同期する
 
@@ -234,12 +237,15 @@ Qiita 上に反映されているのが確認できた。
 
 github 上で紐づいた Qiita 記事の md ファイルも削除する必要があります。
 
+```
 <!--
 title:   Qiita syncの記事作成テスト
 tags:    ChatGPT,VSCode,setting.json,拡張機能
 id:      aa*************4b1
 private: false
 -->
+
+```
 
 Qiita 上では削除になっている id が github でまだ使用されたままだと Qiita 側が拒否され Qiita Sync Check でリジェクトされます。
 なので Qiita 上で削除した記事はローカル側のファイルも消して
