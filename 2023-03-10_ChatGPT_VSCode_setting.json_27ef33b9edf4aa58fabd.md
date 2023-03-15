@@ -259,14 +259,14 @@ ChatGPT のモデルには無料のモデルと有料のモデルがあります
 Microsoft アカウント （Bing を使用するるために登録に必要）
 Bing は無料 （最新の調べ物をする時は調査した URL を表示してくれる Bing の方が信頼できます。）
 
-### Chrom 拡張機能
+### Chrome 拡張機能
 
 **Bing Chat for All Browsers**
-Chrom ブラウザでも Bing が使えるようになる Chrom の拡張機能。
+Chrome ブラウザでも Bing が使えるようになる Chrome の拡張機能。
 
 https://chrome.google.com/webstore/detail/bing-chat-for-all-browser/jofbglonpbndadajbafmmaklbfbkggpo
 
-※ Microsoft アカウントが必要 Bing が Chrom でも使えるようになります。
+※ Microsoft アカウントが必要 Bing が Chrome でも使えるようになります。
 
 ## 拡張機能 ChatGPT の設定
 
