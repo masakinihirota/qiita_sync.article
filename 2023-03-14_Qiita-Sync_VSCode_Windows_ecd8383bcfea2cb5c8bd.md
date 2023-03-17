@@ -195,6 +195,14 @@ private: false
 
 ## ローカル側から記事を書く
 
+### 現在の結論
+
+Qiita 上で空の記事を書いてから
+シンクロして
+ローカルに PULL してきたほうが早いかも。
+
+## 試してみる
+
 ローカルでのファイルの作成方法は不明
 なのでローカルで記事を書いて Qiita にアップロードする方法がわからない。
 
@@ -221,10 +229,7 @@ private: false
 
 作法を知らないと作成方法はわからない。
 
-
 2023-03-14_Qiita-Sync_VSCode_Windows_ecd8383bcfea2cb5c8bd.md
-
-
 
 普通に md ファイルを作って、VScode 上で記事を書いて
 github 上へ PUSH すると Github actions でエラーになる。
