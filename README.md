@@ -1,3 +1,16 @@
+# 新規に投稿するときのテンプレート
+
+```ファイル名.md
+<!--
+title:   ＜タイトル＞
+tags:    ＜タグ＞
+private: false
+-->
+＜記事本文＞
+
+
+```
+
 # Qiita-Sync Template
 
 Template repository to synchronize markdown files with [Qiita](https://qiita.com/) site.
@@ -7,7 +20,7 @@ Create your own repository based on this template and push your markdown files, 
 ## Preparation
 
 1. Click "Use this template" button at top-right corner of this page, and create your GitHub repository.
-2. Generate "Qiita Acccess Token" of at your Qiita site, and copy the generated Qiita Access Token.
+2. Generate "Qiita Access Token" of at your Qiita site, and copy the generated Qiita Access Token.
 3. Open "Settings" >> "Secrets" >> "Actions" >> "New repository secret" at your GitHub repository.
 4. Input `QIITA_ACCESS_TOKEN` to "Name", and paste the generated Qiita Access Token to "Value", and click "Add secret"
 5. Open "Actions" >> "Qiita Sync" >> "Run workflow" pulldown menu, and click "Run workflow" button
