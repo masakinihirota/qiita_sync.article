@@ -195,7 +195,36 @@ private: false
 
 ## ローカル側から記事を書く
 
+ローカルでのファイルの作成方法は不明
+なのでローカルで記事を書いて Qiita にアップロードする方法がわからない。
+
+実験として
+ファイル名.md で記事を下記
+
+ファイルの中身は
+
+```
+<!--
+title: ChatGPT AIペアプロでのTips
+tags: ChatGPT
+private: false
+-->
+
+この記事は qiita-sync を利用して書いています。
+＜以下略＞
+
+```
+
+と作って Actions から Qiita Sync で Run workflow を実行してみたが Qiita 上にはアップロードされなかった。
+
+ファイル名の付け方にやり方があるのかどうかはわからない。
+
 作法を知らないと作成方法はわからない。
+
+
+2023-03-14_Qiita-Sync_VSCode_Windows_ecd8383bcfea2cb5c8bd.md
+
+
 
 普通に md ファイルを作って、VScode 上で記事を書いて
 github 上へ PUSH すると Github actions でエラーになる。
