@@ -1,5 +1,14 @@
 ![Qiita Sync](https://github.com/masakinihirota/qiita_sync.article/actions/workflows/qiita_sync_check.yml/badge.svg)
 
+※重要メモ
+Web での Qiita 上で編集した時は下記手順を実行する。
+
+- 自分の記事が保存してある `GitHub repository` を開く
+- 画面上側にあるタブの"Actions"から"Qiita Sync" を開く
+- "Run workflow" をクリックするを実行する。
+
+---
+
 # 新規に投稿するときのテンプレート
 
 ```ファイル名.md

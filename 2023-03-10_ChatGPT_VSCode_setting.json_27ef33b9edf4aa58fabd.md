@@ -1,9 +1,117 @@
 <!--
-title:   VSCode 拡張機能 ChatGPT を使用するための下準備。モデル選択や日本語化等（Windows版）
+title:   VSCode 拡張機能 ChatGPT を使用するための下準備。モデル選択や日本語化等（Windows版）／後継 拡張機能 ChatGPT - Genie AI (gpt-4対応)
 tags:    ChatGPT,VSCode,setting.json,拡張機能
 id:      27ef33b9edf4aa58fabd
 private: false
 -->
+
+# 代替ツール 追記 2023 年 3 月 21 日
+
+https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
+機能はほぼ同じです。
+
+- `API Key`の保存方法が変わりました。
+- モデルに名前を付けられるようになりました。
+- アドホックメニュー その場で右クリックのコマンドの編集が可能になりました。
+  （設定でアドホックメニューを有効化した場合）
+- 対応モデルか増えました。
+  > GPT-4 有料版
+  > GPT-4-03-14 スナップショットモデル 有料版
+  > GPT-4-32K 有料版
+  > GPT-4-32K-03-14 スナップショットモデル 有料版
+  > gpt-3.5-turbo 有料版
+  > gpt-3.5-turbo-0301 スナップショットモデル 有料版
+  > text-davinci-003 text-davinci-003 有料版
+  > text-curie-001 text-curie-001 有料版
+  > text-babbage-001 有料版
+  > text-ada-001 text-ada-001 有料版
+  > code-davinci-002 code-davinci-002 限定ベータ期間中は無料
+  > code-cushman-001 限定ベータ期間中は無料
+  > GPT-4 は、OpenAI が開発した次世代の大規模言語モデルのことを指します。
+  > コンテキストサイズが 8k のバージョンと 32k のバージョンの 2 つが用意されました。
+
+## 価格
+
+追加されたモデルの価格は
+
+- GPT-4-8k バージョン 1000 トークンにつき約 3 円（$0.03）
+  （8k は約 8000 単語で約 24 円に相当、約 40 ページ〜64 ページの本の分量）
+- GPT-4-32k バージョン 1000 トークンにつき約 6 円（$0.06）
+  （32k は約 32000 単語で約 192 円に相当、約 160〜256 ページの本の分量）
+  コンテキストサイズが大きくなると、より長い文脈を理解することができるようになります。
+  ただし、コンテキストサイズが大きくなると、計算量が増えるため、処理速度が遅くなる可能性があります。
+  ※使い方はほぼ同じですが `API Key` の 保存方法が変わっています（以前の拡張機能が削除されたのはこの`API Key`保存方法が原因かもしれませんね。）
+  ※`API Key`保存方法
+  `API Key` の 保存方法は **VSCode の左サイドバーからこの拡張機能アイコン** を開きます。
+  そして`Temperature:`の下に入力欄がありますのでなにか適当な質問します。
+  例
+  `TypeScriptでFizzBuzz問題を書いてください。`
+  そして`Askボタン`を押します。
+  そうすると右下に`API Key`を要求されますので入力します。
+  この`API Key`は削除しない限り 2 回目からは要求されません。
+  そして質問の回答がファイルに出力されます。
+  ※`API Key`削除方法
+  `Ctrl + Shift + P` でコマンドパレットを開きます。
+  `Genie: Clear API Key`を入力します。
+  コマンドが現れるので選択するとキーが削除されます。
+  もう一度 FizzBuzz 問題を解かせようとすると`API Key`を要求してきますので削除されたのがわかります。
+
+## VSCode での設定
+
+```VSCode setting.json
+  "genieai.openai.model": "gpt-4",
+  // "genieai.openai.model": "code-davinci-002",
+  "genieai.promptPrefix.addTests": "次のコードに対するテストを実装してください",
+  "genieai.promptPrefix.findProblems": "次のコードの問題点を見つけてください",
+  "genieai.promptPrefix.optimize": "次のコードを最適化してください",
+  "genieai.promptPrefix.explain": "次のコードを説明してください",
+  "genieai.promptPrefix.addComments": "次のコードにコメントを追加してください",
+  "genieai.promptPrefix.completeCode": "次のコードを完成させてください",
+  "genieai.response.showNotification": true,
+  "genieai.personalizedName": "ask",
+```
+
+この通り`gpt-4`にも対応しています。
+参考
+https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=false#review-details
+この拡張機能を作った作者が代替ツールを提案していました。
+追記終了 2023 年 3 月 21 日
+
+# 拡張機能そのものがマーケットプレイスから削除される
+
+※ 2023 年 3 月 19 日
+https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt
+
+## 要約
+
+- ChatGPT 拡張機能が規約違反で使用されていることが判明し、私たちは残念ながらプロジェクトを終了することにしました。
+- vs-code マーケットプレイスには以前のバージョンを削除する機能がないため、製品を完全に削除することができないのが残念です。
+- ChatGPT 拡張機能が公式製品であると誤解されることがありましたが、実際にはオープンソースプロジェクトであり、私たちはこのプロジェクトを商業化することよりもオープンソース化することを目指していました。
+- ChatGPT 拡張機能のソースコードはリポジトリに残され、学習や改善に役立てることができます。
+  私たちがこの決断を下すことになったことを心よりお詫び申し上げます。多くの方々に愛されていたこのプロジェクトに未来を託していただいた方々にも深くお詫び申し上げます。
+  代わりに、同様の目的を持つ素晴らしいプロジェクトが vs-code マーケットプレイスにたくさんありますので、ぜひお試しください。私たちはこの拡張機能を今後公開する予定はありませんが、ソースコードは自由にご利用いただけます。
+
+# vsix ファイルからインストールして動作を確認する方法
+
+https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=false#version-history
+上記リンクから、Version History から **Version 3.9.7（最新版より一つ前）** を Download
+次に
+VSCode から
+VSCode の左サイドーバーの「拡張機能」を選択
+左サイドーバー「拡張機能」の右上にある
+三点リーダーアイコンを選択
+ドロップダウンメニューが出てくる
+その最下部の**vsix からのインストール**を選択。
+ダウンロードしていたファイルを選択。
+`gencay.vscode-chatgpt-3.9.7.vsix`
+（実質最終バージョン）
+インストールボタンを押す。
+動作してなかったら VSCode を再起動する。
+（更新をうながすボタンは無視すること）
+**※この拡張機能を使用することは、セキュリティリスクがあるためお勧めできません。情報セキュリティには常に注意が必要であり、信頼できるソースからのみソフトウェアや拡張機能をインストールすることをお勧めします。代替の拡張機能を探してお使いください。**
+
+# 以下本文 2023 年 3 月 19 日以前
+
 # 結論から
 
 追記 2023 年 3 月 16 日
@@ -37,8 +145,11 @@ https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt
   // ※秘密 API Key
   "chatgpt.gpt3.apiKey": "＜API Key＞",
   // チャットボットが返答を生成するときに、どれだけ多様で創造的な言葉を使うかを決めるものです。Temperatureは、0から1までの数値で表されます。「0」は予測しやすい言葉を使うことを意味し、「1」は予測しにくい言葉を使うことを意味します。
-  // ※重要 プログラミングコードなら0～0.2が良いとされています。
-  "chatgpt.gpt3.temperature": 0.2,
+    // ※重要 プログラミングコードなら0～0.5～0.9が良いとされています。
+  "chatgpt.gpt3.temperature": 0.7
+  // 厳密 0
+  // バランス 0.5
+  // 独創:0.9
 
   // ログイン
   // EdgeブラウザのPath
