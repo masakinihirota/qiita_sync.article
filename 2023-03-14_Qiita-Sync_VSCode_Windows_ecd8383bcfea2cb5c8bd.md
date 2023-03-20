@@ -4,6 +4,13 @@ tags:    Qiita-Sync,VSCode,Windows,拡張機能
 id:      ecd8383bcfea2cb5c8bd
 private: false
 -->
+※注意項目
+WebでのQiita上で編集した時は下記手順を実行する。
+* GitHub repository を開く
+* "Actions"、"Qiita Sync" を開く
+* "Run workflow" をクリックするを実行する。
+
+---
 
 この記事は
 
