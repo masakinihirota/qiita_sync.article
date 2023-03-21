@@ -33,6 +33,7 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   > code-cushman-001 限定ベータ期間中は無料
 
 ※GPT-4 は、OpenAI が開発した次世代の大規模言語モデルのことを指します。コンテキストサイズが 8k のバージョンと 32k のバージョンがあります。。
+※コンテキストサイズが大きくなると、より長い文脈を理解することができるようになります。ただし、コンテキストサイズが大きくなると、計算量が増えるため、処理速度が遅くなる可能性があります。
 
 ## モデルの価格
 
@@ -43,9 +44,6 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 - GPT-4-32k バージョン 1000 トークンにつき約 6 円（$0.06）
   （32k は約 32000 単語で約 192 円に相当、約 160〜256 ページの本の分量）
 
-  ※コンテキストサイズが大きくなると、より長い文脈を理解することができるようになります。
-  ただし、コンテキストサイズが大きくなると、計算量が増えるため、処理速度が遅くなる可能性があります。
-
 ## API Key 保存方法
 
 `API Key` の 保存方法は **VSCode の左サイドバーからこの拡張機能アイコン** を開きます。
@@ -53,11 +51,11 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
 例
 `TypeScriptでFizzBuzz問題を書いてください。`
-`Askボタン`を押します。
-そうすると右下に`API Key`を要求されますので入力します。
-
-この`API Key`は削除しない限り 2 回目からは要求されません。
+質問を入力後`Askボタン`を押します。
+そうすると右下に`API Key`が要求されますので入力します。
 そして質問の回答がファイルに出力されます。
+
+※この`API Key`は削除しない限り 2 回目からは要求されません。
 
 ## API Key 削除方法
 
