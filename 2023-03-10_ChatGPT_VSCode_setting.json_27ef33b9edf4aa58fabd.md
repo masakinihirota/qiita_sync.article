@@ -11,8 +11,9 @@ ChatGPT - Genie AI
 
 https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
-機能はほぼ同じです。
+## 概要
 
+- 機能はほぼ同じです。
 - `API Key`の保存方法が変わりました。
 - モデルに名前を付けられるようになりました。
 - アドホックメニュー その場で右クリックのコマンドの編集が可能になりました。
@@ -30,10 +31,10 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   > text-ada-001 text-ada-001 有料版
   > code-davinci-002 code-davinci-002 限定ベータ期間中は無料
   > code-cushman-001 限定ベータ期間中は無料
-  > GPT-4 は、OpenAI が開発した次世代の大規模言語モデルのことを指します。
-  > コンテキストサイズが 8k のバージョンと 32k のバージョンの 2 つが用意されました。
 
-## 価格
+※GPT-4 は、OpenAI が開発した次世代の大規模言語モデルのことを指します。コンテキストサイズが 8k のバージョンと 32k のバージョンがあります。。
+
+## モデルの価格
 
 追加されたモデルの価格は
 
@@ -41,23 +42,29 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   （8k は約 8000 単語で約 24 円に相当、約 40 ページ〜64 ページの本の分量）
 - GPT-4-32k バージョン 1000 トークンにつき約 6 円（$0.06）
   （32k は約 32000 単語で約 192 円に相当、約 160〜256 ページの本の分量）
-  コンテキストサイズが大きくなると、より長い文脈を理解することができるようになります。
+
+  ※コンテキストサイズが大きくなると、より長い文脈を理解することができるようになります。
   ただし、コンテキストサイズが大きくなると、計算量が増えるため、処理速度が遅くなる可能性があります。
-  ※使い方はほぼ同じですが `API Key` の 保存方法が変わっています（以前の拡張機能が削除されたのはこの`API Key`保存方法が原因かもしれませんね。）
-  ※`API Key`保存方法
-  `API Key` の 保存方法は **VSCode の左サイドバーからこの拡張機能アイコン** を開きます。
-  そして`Temperature:`の下に入力欄がありますのでなにか適当な質問します。
-  例
-  `TypeScriptでFizzBuzz問題を書いてください。`
-  そして`Askボタン`を押します。
-  そうすると右下に`API Key`を要求されますので入力します。
-  この`API Key`は削除しない限り 2 回目からは要求されません。
-  そして質問の回答がファイルに出力されます。
-  ※`API Key`削除方法
-  `Ctrl + Shift + P` でコマンドパレットを開きます。
-  `Genie: Clear API Key`を入力します。
-  コマンドが現れるので選択するとキーが削除されます。
-  もう一度 FizzBuzz 問題を解かせようとすると`API Key`を要求してきますので削除されたのがわかります。
+
+## API Key 保存方法
+
+`API Key` の 保存方法は **VSCode の左サイドバーからこの拡張機能アイコン** を開きます。
+`Temperature:`の下に入力欄がありますのでなにか適当な質問します。
+
+例
+`TypeScriptでFizzBuzz問題を書いてください。`
+`Askボタン`を押します。
+そうすると右下に`API Key`を要求されますので入力します。
+
+この`API Key`は削除しない限り 2 回目からは要求されません。
+そして質問の回答がファイルに出力されます。
+
+## API Key 削除方法
+
+`Ctrl + Shift + P` でコマンドパレットを開きます。
+`Genie: Clear API Key`を入力します。
+コマンドが現れるので選択するとキーが削除されます。
+もう一度 FizzBuzz 問題を解かせようとすると`API Key`を要求してきますので削除されたのがわかります。
 
 ## VSCode での設定
 
@@ -74,15 +81,20 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   "genieai.personalizedName": "ask",
 ```
 
-この通り`gpt-4`にも対応しています。
+この通り`gpt-4`（有料）にも対応しています。
+
 参考
+
 https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=false#review-details
-この拡張機能を作った作者が代替ツールを提案していました。
+
+削除された拡張機能を作った作者がこの代替ツールを提案していました。
+
 追記終了 2023 年 3 月 21 日
 
 # 拡張機能そのものがマーケットプレイスから削除される
 
 ※ 2023 年 3 月 19 日
+
 https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt
 
 ## 要約
