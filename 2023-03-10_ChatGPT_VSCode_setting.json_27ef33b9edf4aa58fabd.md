@@ -7,7 +7,10 @@ private: false
 
 # 代替ツール 追記 2023 年 3 月 21 日
 
+ChatGPT - Genie AI
+
 https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
+
 機能はほぼ同じです。
 
 - `API Key`の保存方法が変わりました。
