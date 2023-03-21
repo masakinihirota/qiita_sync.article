@@ -1,11 +1,16 @@
 <!--
-title:   VSCode 拡張機能 ChatGPT を使用するための下準備。モデル選択や日本語化等（Windows版）／後継 拡張機能 ChatGPT - Genie AI (gpt-4対応)
+title:   VSCode 拡張機能 ChatGPT - Genie AI を使用するための下準備。モデル選択や日本語化等（Windows版 gpt-4対応)
 tags:    ChatGPT,VSCode,setting.json,拡張機能
 id:      27ef33b9edf4aa58fabd
 private: false
 -->
 
-# 代替ツール 追記 2023 年 3 月 21 日
+VSCode 上で ChatGPT を便利に使うためのツールの下準備をします。
+これは過去に削除された拡張機能の代替ツールであり、その削除された拡張機能の機能をほぼ全部受け継いでいます。
+
+**※機能の詳細は削除された拡張機能の説明部分を読んで下さい。**
+
+Chrome で ChatGPT を便利に使うためのツールも紹介しています。
 
 ## ChatGPT - Genie AI
 
@@ -13,16 +18,16 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
 ## 概要
 
-- 機能はほぼ同じです。
+- 以前の拡張機能と機能はほぼ同じです。
 - `API Key`の保存方法が変わりました。
 - モデルに名前を付けられるようになりました。
 - アドホックメニュー その場で右クリックのコマンドの編集が可能になりました。
   （設定でアドホックメニューを有効化した場合）
 - 対応モデルか増えました。
-  > GPT-4 有料版
-  > GPT-4-03-14 スナップショットモデル 有料版
-  > GPT-4-32K 有料版
-  > GPT-4-32K-03-14 スナップショットモデル 有料版
+  > GPT-4 有料版 (追加)
+  > GPT-4-03-14 スナップショットモデル 有料版 (追加)
+  > GPT-4-32K 有料版 (追加)
+  > GPT-4-32K-03-14 スナップショットモデル 有料版 (追加)
   > gpt-3.5-turbo 有料版
   > gpt-3.5-turbo-0301 スナップショットモデル 有料版
   > text-davinci-003 text-davinci-003 有料版
@@ -67,8 +72,8 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 ## VSCode での設定
 
 ```VSCode setting.json
-  "genieai.openai.model": "gpt-4",
-  // "genieai.openai.model": "code-davinci-002",
+  // "genieai.openai.model": "gpt-4",
+  "genieai.openai.model": "code-davinci-002",
   "genieai.promptPrefix.addTests": "次のコードに対するテストを実装してください",
   "genieai.promptPrefix.findProblems": "次のコードの問題点を見つけてください",
   "genieai.promptPrefix.optimize": "次のコードを最適化してください",
@@ -81,19 +86,32 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
 この通り`gpt-4`（有料）にも対応しています。
 
-参考
+# 参考
 
 https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=false#review-details
 
-削除された拡張機能を作った作者がこの代替ツールを提案していました。
+この拡張機能は下記の方にある削除された拡張機能を作った作者がこの代替ツールを提案しています。
 
-追記終了 2023 年 3 月 21 日
+---
 
-## Superpower ChatGPT
+# Superpower ChatGPT
 
 Chrome ブラウザでの拡張機能
 
 https://chrome.google.com/webstore/detail/superpower-chatgpt/amhmeenmapldpjdedekalnfifgnpfnkc
+
+この拡張機能は
+Chrome ブラウザ上で ChatGPT を便利に使う拡張機能です。
+markdown、JSON、text 形式で保存できます。
+テンプレートを使えます。
+書き直し、わかりやすく書き換え、説明、要約等。
+履歴の選択削除
+文字数のカウント
+その他
+
+---
+
+# 以下 2023 年 3 月 22 日以前の古い情報
 
 # 拡張機能そのものがマーケットプレイスから削除される
 
@@ -128,8 +146,6 @@ VSCode の左サイドーバーの「拡張機能」を選択
 動作してなかったら VSCode を再起動する。
 （更新をうながすボタンは無視すること）
 **※この拡張機能を使用することは、セキュリティリスクがあるためお勧めできません。情報セキュリティには常に注意が必要であり、信頼できるソースからのみソフトウェアや拡張機能をインストールすることをお勧めします。代替の拡張機能を探してお使いください。**
-
-# 以下本文 2023 年 3 月 19 日以前
 
 # 結論から
 
