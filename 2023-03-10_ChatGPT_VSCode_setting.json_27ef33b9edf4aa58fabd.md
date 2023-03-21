@@ -7,9 +7,15 @@ private: false
 
 # 代替ツール 追記 2023 年 3 月 21 日
 
-ChatGPT - Genie AI
+## ChatGPT - Genie AI
 
 https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
+
+## Superpower ChatGPT
+
+Chrome ブラウザでの拡張機能
+
+https://chrome.google.com/webstore/detail/superpower-chatgpt/amhmeenmapldpjdedekalnfifgnpfnkc
 
 ## 概要
 
