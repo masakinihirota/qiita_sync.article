@@ -11,12 +11,6 @@ private: false
 
 https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
-## Superpower ChatGPT
-
-Chrome ブラウザでの拡張機能
-
-https://chrome.google.com/webstore/detail/superpower-chatgpt/amhmeenmapldpjdedekalnfifgnpfnkc
-
 ## 概要
 
 - 機能はほぼ同じです。
@@ -94,6 +88,12 @@ https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=fa
 削除された拡張機能を作った作者がこの代替ツールを提案していました。
 
 追記終了 2023 年 3 月 21 日
+
+## Superpower ChatGPT
+
+Chrome ブラウザでの拡張機能
+
+https://chrome.google.com/webstore/detail/superpower-chatgpt/amhmeenmapldpjdedekalnfifgnpfnkc
 
 # 拡張機能そのものがマーケットプレイスから削除される
 
