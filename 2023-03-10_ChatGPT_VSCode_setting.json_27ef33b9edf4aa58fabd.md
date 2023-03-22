@@ -29,6 +29,8 @@ VSCode 上で ChatGPT を便利に使うためのツールの下準備をしま�
 
 **※機能の詳細はこれ以前に削除された拡張機能の説明部分を読んで下さい。**
 
+※カスタムプロンプト１には翻訳機能を追加設定しています。
+
 ## ChatGPT - Genie AI
 
 https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
