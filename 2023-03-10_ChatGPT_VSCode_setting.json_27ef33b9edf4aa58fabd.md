@@ -951,6 +951,9 @@ https://chrome.google.com/webstore/detail/save-chatgpt/iccmddoieihalmghkeocgmlpi
 月額 10 ドル、年額 100 ドル
 ※これを使うのが一番いいかも
 
+［速報］「GitHub Copilot X」発表、ChatGPT-4 ベースで大幅強化。AI にバグの調査依頼と修正案を指示、ドキュメントを学習し回答も － Publickey
+https://www.publickey1.jp/blog/23/github_copilot_xchatgpt-4ai.html
+
 ## 関数をまるごとコピペする
 
 その関数のドキュメントを自動生成してくれる。
