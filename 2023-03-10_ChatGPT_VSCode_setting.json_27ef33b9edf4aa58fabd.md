@@ -965,3 +965,22 @@ JDoc 形式でと指定すると、希望通り出力してくれる。
 ## 英語で聞く
 
 日本語を DeepL で英語に翻訳して、結果を日本語に翻訳する。
+
+# 参考 7
+
+文章を翻訳させてみる
+
+例文
+Docs that feel tailored for you. Spend less time searching and more time learning, by getting personalized answers that are grounded in maintainer-written documentation, with inline citations. Load content → Ask question → Profit.
+
+## code-davinci-002 で翻訳
+
+かかった時間 1 分ぐらい
+
+1. 翻訳したもの: 適切に設計されたドキュメントです。検索の時間を減らし、著者によって書かれた文章内に記述された引用と個別の回答の説明に基づいた学習の時間を増やしてください。コンテンツのロード → 質問の件名の間違い → 利益。
+
+## gpt-3.5-turbo で翻訳
+
+かかった時間 3 ～ 5 秒
+
+次のコードはプレーンテキストのプログラミング言語で書かれています：あなたに合わせた文書。メンテナーが書いたドキュメントに基づいた、インライン引用を含むパーソナライズされた回答を取得することにより、検索にかける時間を短縮し、学習に費やす時間を増やします。コンテンツを読み込む → 質問する → 利益を得る。
