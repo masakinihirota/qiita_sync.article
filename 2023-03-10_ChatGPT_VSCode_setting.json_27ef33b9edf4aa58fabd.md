@@ -40,6 +40,9 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 ※GPT-4 は、OpenAI が開発した次世代の大規模言語モデルのことを指します。コンテキストサイズが 8k のバージョンと 32k のバージョンがあります。。
 ※コンテキストサイズが大きくなると、より長い文脈を理解することができるようになります。ただし、コンテキストサイズが大きくなると、計算量が増えるため、処理速度が遅くなる可能性があります。
 
+※ アドホックメニューは自由に編集できます。
+使用例としては"次の文章を翻訳してください"
+
 ## モデルの価格
 
 追加されたモデルの価格は
@@ -71,20 +74,37 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
 ## VSCode での設定
 
+設定例
+
 ```VSCode setting.json
+
+  // ChatGPT - Genie AI
+  // AI の名前をつけます。
+  "genieai.personalizedName": "＜AIの名前＞",
+  // 使用するモデルです。
+  // ※ 重要 このモデル選択で有料か無料かが決まります。
   // "genieai.openai.model": "gpt-4",
   "genieai.openai.model": "code-davinci-002",
+  // チャットボットが返答を生成するときに、どれだけ多様で創造的な言葉を使うかを決めるものです。Temperatureは、0から1までの間の数値で表されます。
+  // ※重要 プログラミングコードなら0.5-0.7が良いとされています。
+  "genieai.openai.temperature": 0.5,
+  // 右クリックメニューの日本語化
   "genieai.promptPrefix.addTests": "次のコードに対するテストを実装してください",
   "genieai.promptPrefix.findProblems": "次のコードの問題点を見つけてください",
   "genieai.promptPrefix.optimize": "次のコードを最適化してください",
   "genieai.promptPrefix.explain": "次のコードを説明してください",
   "genieai.promptPrefix.addComments": "次のコードにコメントを追加してください",
   "genieai.promptPrefix.completeCode": "次のコードを完成させてください",
+  // ユーザーによるカスタム設定 右クリックメニューが増える
+  "genieai.promptPrefix.customPrompt1": "次の文章を翻訳してください",
+  "genieai.promptPrefix.customPrompt1-enabled": true,
   "genieai.response.showNotification": true,
-  "genieai.personalizedName": "ask",
+  "genieai.promptPrefix.adhoc-enabled": false,
+
 ```
 
-この通り`gpt-4`（有料）にも対応しています。
+※この通り`gpt-4`（有料）にも対応しています。
+※アドホックメニューはデフォルトでは無効です。
 
 # 参考
 
