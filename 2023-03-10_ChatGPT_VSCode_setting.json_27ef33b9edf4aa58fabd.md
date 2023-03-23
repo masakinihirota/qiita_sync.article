@@ -135,6 +135,8 @@ https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=fa
 
 # Superpower ChatGPT
 
+この拡張機能は、現在 不具合でブラウザ上で ChatGPT を操作しようとするとうまく動作しません。（現在:2023 年 3 月 23 日）
+
 Chrome ブラウザでの拡張機能
 
 https://chrome.google.com/webstore/detail/superpower-chatgpt/amhmeenmapldpjdedekalnfifgnpfnkc
