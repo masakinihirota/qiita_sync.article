@@ -15,7 +15,7 @@ VSCode 上で ChatGPT を便利に使うためのツールの下準備をしま�
 
 ### 右クリックメニュー
 
-- コメントからコードを生成する （Codex 系モデルのみ使用可能です。）
+- コメントからコードを生成する （Code-xxx 系モデルのみ使用可能です。）
 - 選択した範囲からお手本を作る
 - テストコードを作る
 - バグを発見する
@@ -49,11 +49,11 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   > GPT-4-32K-03-14 スナップショットモデル 有料版 (追加)
   > gpt-3.5-turbo 有料版
   > gpt-3.5-turbo-0301 スナップショットモデル 有料版
-  > text-davinci-003 text-davinci-003 有料版
-  > text-curie-001 text-curie-001 有料版
+  > text-davinci-003 有料版
+  > text-curie-001 有料版
   > text-babbage-001 有料版
-  > text-ada-001 text-ada-001 有料版
-  > code-davinci-002 code-davinci-002 限定ベータ期間中は無料
+  > text-ada-001 有料版
+  > code-davinci-002 限定ベータ期間中は無料
   > code-cushman-001 限定ベータ期間中は無料
 
 ※GPT-4 は、OpenAI が開発した次世代の大規模言語モデルのことを指します。コンテキストサイズが 8k のバージョンと 32k のバージョンがあります。。
