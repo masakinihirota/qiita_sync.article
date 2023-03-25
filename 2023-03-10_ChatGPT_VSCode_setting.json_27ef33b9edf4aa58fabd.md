@@ -133,10 +133,52 @@ https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt&ssr=fa
 
 ---
 
-# Superpower ChatGPT
+# その他のAI（ChatGPT系）便利ツール
+
+## Bing
+
+https://www.bing.com/?cc=jp
+
+マイクロソフト社が提供する検索エンジン
+検索結果はソース付きで回答してくれる。
+
+GPT-4モデルを積んでいる（らしい）。
+
+ChatGPTの様に使うには検索単語を入力後にチャットタブに移動する。
+
+ChatGPTより出力の幅が狭い。
+会話に特化しているとも言える。
+
+
+## Phind
+
+Phind: AI search engine
+
+https://www.phind.com/
+
+Bingに似ている検索エンジン。
+開発者向けに特化している。
+プログラマーの強い味方
+日本語検索もok
+
+Bingより早い、しかし知名度は極小なぜ？こんなに便利なのに？
+
+
+## Perplexity
+
+https://www.perplexity.ai/
+
+Bingのようなソース付き検索エンジン
+
+積んでいるモデルは不明
+
+日本語で入力すると日本語で返ってくる時もある。
+
+## Superpower ChatGPT
 
 追記
-この拡張機能は、不具合でブラウザ上で ChatGPT を操作しようとするとうまく動作しません。（現在:2023 年 3 月 23 日）
+現在、この拡張機能を使うと不具合が出てしまうのでOFFにしています。
+（現在:2023 年 3 月 23 日）
 
 Chrome ブラウザでの拡張機能
 
