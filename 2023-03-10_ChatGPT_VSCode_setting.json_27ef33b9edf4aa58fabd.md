@@ -50,6 +50,8 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   > gpt-3.5-turbo 有料版
   > gpt-3.5-turbo-0301 スナップショットモデル 有料版
   > text-davinci-003 有料版
+
+- 無効になったモデル
   > text-curie-001 有料版
   > text-babbage-001 有料版
   > text-ada-001 有料版
