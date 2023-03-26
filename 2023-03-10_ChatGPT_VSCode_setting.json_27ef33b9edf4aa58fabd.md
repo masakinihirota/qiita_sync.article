@@ -51,7 +51,7 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   > gpt-3.5-turbo-0301 スナップショットモデル 有料版
   > text-davinci-003 有料版
 
-- 無効になったモデル
+- 無効になったモデル（正確には、モデル設定しても存在しませんと404が返ってくるようになったモデル）
   > text-curie-001 有料版
   > text-babbage-001 有料版
   > text-ada-001 有料版
@@ -63,6 +63,7 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
 
 ※ アドホックメニューは自由に編集できます。
 使用例としては"次の文章を翻訳してください"等と設定して使います。
+
 
 ## モデルの価格
 
