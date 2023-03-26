@@ -102,8 +102,10 @@ https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode
   "genieai.personalizedName": "＜AIの名前＞",
   // 使用するモデルです。
   // ※ 重要 このモデル選択で有料か無料かが決まります。
+  // デフォルトはGPT-3.5が使用されます。（モデルを指定しないとデフォルト値）
+  // "genieai.openai.model": "gpt-3.5-turbo"
   // "genieai.openai.model": "gpt-4",
-  "genieai.openai.model": "code-davinci-002",
+  // "genieai.openai.model": "code-davinci-002",
   // チャットボットが返答を生成するときに、どれだけ多様で創造的な言葉を使うかを決めるものです。Temperatureは、0から1までの間の数値で表されます。
   // ※重要 プログラミングコードなら0.5～0.7が良いとされています。
   "genieai.openai.temperature": 0.5,
