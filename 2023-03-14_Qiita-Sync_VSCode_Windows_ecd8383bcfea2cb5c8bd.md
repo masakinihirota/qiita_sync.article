@@ -215,11 +215,16 @@ private: false
 title: VNS
 tags:  VNS,Qiita-Sync
 -->
+テスト
 
 ```
 
 というファイルを作り。
+※IDは書いてはいけない。
 ※ファイル名は自由にできる、フォルダ下でもok。
+※本文が書いてないとエラーになる。
+※tags
+
 
 * コミット後にGithubへ **PUSH** する。
 
