@@ -226,6 +226,7 @@ tags:  VNS,Qiita-Sync
 ※tagsに空白があるとエラーになる。
 `github copilot` 空白があるのでエラー。
 `githubcopilot` 空白を消す。
+`github_copilot` アンダーバーを足す。
 
 
 * コミット後にGithubへ **PUSH** する。
@@ -289,6 +290,8 @@ VScode のローカル側に削除した id を使った記事の md ファイ�
 
 ## VSCode 上で記事を削除した場合
 不明
+Qiita側の記事は削除されない。
+
 
 # フォルダを利用して記事を管理
 
