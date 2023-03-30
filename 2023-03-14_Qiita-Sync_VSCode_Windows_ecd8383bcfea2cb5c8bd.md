@@ -302,8 +302,28 @@ Qiita 上にもきっちりと反映されていたので。
 
 フォルダを作成して記事を管理しても大丈夫のようです。
 
+# トラブル
+## Qiita Sync Checkのエラーが連続する
+
+* 原因 Qiita上で編集してしまった。
+
+* 対処方法
+GitHub repository を開く
+"Actions"、"Qiita Sync" を開く
+"Run workflow" をクリックする。
+
 
 ## ゴースト（どうしても消えないエラー）
+
+* 原因 Qiitaのウェブ上で削除した記事がGithub上に残っていた。
+
+* 対処方法
+消した記事を探し、Github上から削除する。
+そして、ローカルにPULLする。Githubとローカルで同期が取れたら
+"Actions"、"Qiita Sync" を開く
+"Run workflow" をクリックする。
+
+### 調査したときの記録（ゴーストの原因）
 Qiita Sync Checkでエラーが連続する時、
 Qiita上で記事を消したが、GitHub上には記事が残っていて
 それがPULLしてローカルまで持ってきてしまって
