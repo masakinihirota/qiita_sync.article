@@ -4,8 +4,51 @@ tags:    ESLint,Import,Next.js
 id:      fae505a58892b00550a7
 private: false
 -->
-# 効果
-二度とimport文の箇所を触る必要がなくなります。
+
+# 簡易版（まとめ）
+
+
+
+## インストール
+Next.jsのインストール
+npx create-next-app
+
+## .eslintrc.json
+
+```.eslintrc.json
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": "next/core-web-vitals",
+  "plugins": ["import", "unused-imports"], // eslint-plugin- 接頭辞は省略
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        // それぞれのgroupsとの間は1行分空ける。
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        // 大文字小文字関係なくアルファベット順にする。
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "pathGroups": [
+          { "pattern": "src/types/**", "group": "internal", "position": "before" },
+          { "pattern": "src/repositories/**", "group": "internal", "position": "before" }
+        ]
+      }
+    ]
+  }
+}
+
+```
+
+成功しているならば、import文の自動挿入と自動削除が成功します。
+
+終了
 
 # 完成リポジトリ
 
