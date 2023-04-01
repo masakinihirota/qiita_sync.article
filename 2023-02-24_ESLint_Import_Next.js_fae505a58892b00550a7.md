@@ -10,19 +10,36 @@ private: false
 
 
 ## インストール
+
 Next.jsのインストール
-npx create-next-app
+`npx create-next-app`
+
+プラグインのインストール
+
+`npm install --save-dev eslint-plugin-import eslint-plugin-unused-imports`
+
 
 ## .eslintrc.json
 
-```.eslintrc.json
+`.eslintrc.json`に設定を書いていきます。
+
+```元の.eslintrc.json
+{
+  "extends": "next/core-web-vitals"
+}
+
+```
+
+これを
+
+```設定が完了した.eslintrc.json
 {
   "env": {
     "node": true,
     "es6": true
   },
   "extends": "next/core-web-vitals",
-  "plugins": ["import", "unused-imports"], // eslint-plugin- 接頭辞は省略
+  "plugins": ["import", "unused-imports"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "warn",
