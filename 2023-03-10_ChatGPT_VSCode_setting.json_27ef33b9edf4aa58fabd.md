@@ -197,12 +197,6 @@ Bingのようなソース付き検索エンジン
 
 ## Superpower ChatGPT
 
-追記
-現在、この拡張機能を使うと不具合が出てしまうのでOFFにしています。
-（現在:2023 年 3 月 23 日）
-
-回答をファイルに保存したい時はこれが一番便利だったのでその時だけ有効にしています。
-
 Chrome ブラウザでの拡張機能
 
 https://chrome.google.com/webstore/detail/superpower-chatgpt/amhmeenmapldpjdedekalnfifgnpfnkc
