@@ -1,13 +1,41 @@
 <!--
-title:   degitとは （GitHubリポジトリの中の一部だけを簡単にダウンロードするツール）
-tags:    Bitbucket,Git,GitHub,GitLab,degit
+title:   tiged、degitとは （GitHubリポジトリの中の一部だけを簡単にダウンロードするツール）
+tags:    tiged,Git,GitHub,GitLab,degit
 id:      418eec4422fd06690924
 private: false
 -->
-# リポジトリの中の一部をダウンロードしたい。
+# 出来ること
+大型リポジトリの中の一部をダウンロードしたい。
+
+# 使用ツール
+**tiged** degitの後継ツールです。
+**degit** 2021年から開発が止まっています。
+
+GitHub - tiged/tiged: Community driven fork of degit
+
+https://github.com/tiged/tiged
+
+GitHub - Rich-Harris/degit: Straightforward project scaffolding
+
+https://github.com/Rich-Harris/degit
+
+# ここより下は過去（degit時代の）記事です。
+ここより下は **degit** を **tiged** に置き換えてもほぼ同じように使えます。
+**tiged** は **degit** をforkしたものです。
 
 ## 必要環境
 [Node.js](https://nodejs.org/ja/) 8以上
+
+
+# トラブル
+エラー
+`! zlib: unexpected end of file`
+解決方法
+home/.degit/ にあるフォルダを削除する。
+
+キャッシュ異常で、ダウンロード途中のファイルが中途半端に残っているせい。
+大きなファイルをダウンロード途中に中断した場合、キャッシュに残ってしまうからです。
+
 
 
 ### 使用例
