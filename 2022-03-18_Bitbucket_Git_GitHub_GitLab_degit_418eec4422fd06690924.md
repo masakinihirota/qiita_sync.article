@@ -31,7 +31,7 @@ https://github.com/Rich-Harris/degit
 エラー
 `! zlib: unexpected end of file`
 解決方法
-home/.degit/ にあるフォルダを削除する。
+{home}/.degit/ にあるフォルダを削除する。
 
 キャッシュ異常で、ダウンロード途中のファイルが中途半端に残っているせい。
 大きなファイルをダウンロード途中に中断した場合、キャッシュに残ってしまうからです。
