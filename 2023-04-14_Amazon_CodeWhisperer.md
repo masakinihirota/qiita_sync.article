@@ -1,8 +1,10 @@
 <!--
-title:先月100ドル払って使用し始めたGit Copilotと同等の機能を持つAmazon_CodeWhispererが無料で使える？？
-tags:Amazon_CodeWhisperer,Copilot
+title:   先月100ドル払って使用し始めたGit Copilotと同等の機能を持つAmazon_CodeWhispererが無料で使える？？
+tags:    Amazon_CodeWhisperer,copilot
+id:      52d3fad3aea8300d391f
 private: false
 -->
+
 
 そんなバナナ！
 以下真面目に・・・
@@ -143,6 +145,5 @@ Amazon_CodeWhispererはAWS Toolkit内の機能の一部です。
 * **Amazon CodeWhisperer**
 * Amazon CodeCatalyst
 * クラウドフォーメーション
-
 
 
