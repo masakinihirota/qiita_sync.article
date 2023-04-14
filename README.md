@@ -1,6 +1,9 @@
 
 ![Qiita Sync](https://github.com/masakinihirota/qiita_sync.article/actions/workflows/qiita_sync_check.yml/badge.svg)
 
+Markdown記法 チートシート - Qiita
+https://qiita.com/Qiita/items/c686397e4a0f4f11683d
+
 ※重要メモ
 Web での Qiita 上で編集した時は下記手順を実行する。
 
