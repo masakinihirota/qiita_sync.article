@@ -4,12 +4,18 @@ tags:    Amazon,CodeWhisperer,copilot
 id:      52d3fad3aea8300d391f
 private: false
 -->
-**Amazon CodeWhisperer** はAWSのVSCode拡張機能 **AWS Toolkit**の一部です。
-Github Copilotと似たような機能を持っています。
+
+# Github Copilot と Amazon CodeWhisperer の比較
+
+現時点では Github Copilot の方が使いやすい。
+
 
 # Amazon CodeWhispererとは？
 
 AIによるコーディング支援ツールであり個人利用なら無料で利用できます、プログラマが書き始めたコードの続きやコメントの内容からコードを提案してくれます。CodeWhispererはオープンソースリポジトリ、Amazon内部リポジトリ、APIドキュメント、フォーラムなどから収集した数十億行のコードを基にした機械学習から、プログラマが書き始めたコードの続きや、コメントの内容からコードを提案してくれるため、プログラマの生産性向上が期待できます。
+
+**Amazon CodeWhisperer** はAWSのVSCode拡張機能 **AWS Toolkit**の一部です。
+Github Copilotと似たような機能を持っています。
 
 # 必要な物
 VSCode
