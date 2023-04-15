@@ -9,6 +9,9 @@ private: false
 
 現時点では Github Copilot の方が使いやすい。
 
+単純な機能だと同じくらいだが、
+Github Copilot は、コマンドパレットがあるので、その分便利さでまさる。
+それにGithub Copilotは、そのページ全体の情報から判断をしてくれるし、コードの補完だけでなくコメントの補完もしてくれる。
 
 # Amazon CodeWhispererとは？
 
