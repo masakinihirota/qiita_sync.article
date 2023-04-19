@@ -5,6 +5,13 @@ id:      52d3fad3aea8300d391f
 private: false
 -->
 
+# 現在の AIを一言で説明すると・・・
+
+フミコ・フミオさんはTwitterを使っています: 「ほぼ全員がご高齢者の会社上層部からの「対話型AI とは何かその功罪について簡潔に分かりやすく出来たら一言で説明しろ」という難題にヤケクソで「ドラえもんです」と答えたら「便利だけど取扱注意ということだな」とほぼ正解な認識をしてくれたので藤子・F・不二雄先生は偉大すぎる。」 / Twitter
+
+https://twitter.com/Delete_All/status/1648519994580533255
+
+
 # Github Copilot と Amazon CodeWhisperer の比較
 
 現時点では Github Copilot の方が使いやすい。
