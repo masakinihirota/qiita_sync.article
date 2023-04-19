@@ -21,7 +21,30 @@ https://qiita.com/ryokat3/items/d054b95f68810f70b136
 Github actions を利用する流れはほぼ上記の記事のとおりです。
 （この記事の Github actions 操作の６割ぐらいは元記事のコピペです。）
 
-# Github でのリポジトリを作成
+
+# テンプレート
+
+```***.md
+<!--
+title:
+tags:
+id:
+private: false
+-->
+
+```
+
+## Tips 下書き
+**markdownファイル** で書く。（＋テンプレートを消しておく。）
+
+もしくは、
+下書きは **textファイル** で作成する。（＋テンプレートを最上部に書き込む。）
+**textファイル**で作成することで、監視対象ファイルにならない。
+アップロードしたいときは、拡張子を **textファイル** から **markdownファイル** に変更する。
+
+
+# 体験記
+## Github でのリポジトリを作成
 
 ryokat3/qiita-sync-template: Template Repository for Qiita-Sync
 https://github.com/ryokat3/qiita-sync-template
@@ -44,7 +67,7 @@ Create repository from template
 masakinihirota/qiita_sync.article
 https://github.com/masakinihirota/qiita_sync.article
 
-# Qiita Access Token の生成
+## Qiita Access Token の生成
 
 Qiita
 https://qiita.com/settings/applications
@@ -67,7 +90,7 @@ write_qiita
 
 c5＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊28a
 
-# Qiita Access Token の登録
+## Qiita Access Token の登録
 
 先ほど作成した「qiita_sync.article」のリポジトリで
 
@@ -97,11 +120,11 @@ c5＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 Add secret
 を押して登録する。
 
-# 既存の Qiita 記事の同期
+## 既存の Qiita 記事の同期
 
 手動で Qiita と GitHub を同期させます。
 
-## Github Actions の読み書きの許可
+### Github Actions の読み書きの許可
 
 リポジトリ名の下側の、バーにある Settings から
 左サイドバーに
@@ -133,7 +156,7 @@ Error: Process completed with exit code 128.
 と log に報告があがる。
 認証を許可しておけば、このエラーを解消してくれる。
 
-## アクションの登録
+### アクションの登録
 
 qiita_sync.article リポジトリの Actions を選択。
 （Code の右側、Settings の左側の間に挟まれている Actions ）
@@ -153,18 +176,18 @@ Run workflow
 
 数分後、Qiita からダウンロードされた記事が GitHub リポジトリに追加されます。ファイル名は 最初に記事を作成した日付 + タグ + 記事の ID + .md になります。
 
-## Qiita 記事のダウンロード
+### Qiita 記事のダウンロード
 
 git clone git@github.com:<Your-ID>/<Your-Repository>.git で Qiita 記事をローカルのデバイスにダウンロードします。次の変更を加えます。
 
 実際に使用したコマンド
 git clone git@github.com:masakinihirota/qiita-sync.git
 
-## VScode 上で Qiita の記事を編集
+### VScode 上で Qiita の記事を編集
 
 このコマンドでローカルの VScode 上で編集できるようになり、編集したものをコミットし、github へ PUSH すると Qiita にも数分後には反映されているのがわかりました。
 
-## 同期
+### 同期
 
 準備完了以降は、記事を書いて、git で push するだけです。あとは自動的に同期が始まるので、通常手動で同期を行うことはありません。
 
@@ -176,11 +199,11 @@ GitHub repository を開く
 "Actions"、"Qiita Sync" を開く
 "Run workflow" をクリックする
 
-# 記事の執筆
+## 記事の執筆
 
 注意点
 
-## 既存の記事
+### 既存の記事
 
 記事のヘッダの id は記事と紐づいているので変更しない。
 title と tags は自由に変更できる。
@@ -198,9 +221,9 @@ private: false
 
 ```
 
-# ローカル側からの新規の記事の作成
+## ローカル側からの新規の記事の作成
 
-## ローカル側から記事を書く
+### ローカル側から記事を書く
 
 新しいプロジェクトのためのQiita記事を新たに作る。
 
@@ -208,7 +231,7 @@ private: false
 
 
 
-### 新規に記事を書く
+#### 新規に記事を書く
 
 ```vns.md
 <!--
@@ -244,7 +267,7 @@ VScode上からPULLすると。
 
 以上が、ローカルで作った記事をQiitaにアップロードして、それがローカルに反映されるまでの手順です。
 
-#### 出来た記事
+##### 出来た記事
 
 VNS - Qiita
 
@@ -252,7 +275,7 @@ https://qiita.com/masakinihirota/items/b191c5c1e94a0c449fea
 
 ※次のプロジェクトのための記事、現在はほぼ中身なし。2023年3月24日
 
-## Qiita 上で記事を書いてローカル上で同期する
+### Qiita 上で記事を書いてローカル上で同期する
 
 Qiita 上で中身が空の記事を書いてから
 数分後
@@ -262,7 +285,7 @@ github 上に反映されているので
 それを編集してから PUSH すると
 Qiita 上に反映されているのが確認できました。
 
-## Qiita 上で記事を削除した場合
+### Qiita 上で記事を削除した場合
 
 github 上で紐づいた Qiita 記事の md ファイルも削除する必要があります。
 
@@ -287,12 +310,12 @@ VScode のローカル側に削除した id を使った記事の md ファイ�
 
 なので Qiita 上で削除する場合は、github 上の紐づいたファイルを探しておいて、Qiita 上で削除したと同時に github 上とローカル上のファイルを削除する必要があります。
 
-## VSCode 上で記事を削除した場合
+### VSCode 上で記事を削除した場合
 不明
 Qiita側の記事は削除されない。
 
 
-# フォルダを利用して記事を管理
+## フォルダを利用して記事を管理
 
 フォルダを 2020 年以前の記事でまとめて
 before2020、2021、2022、2023 と分けてみた。
@@ -302,8 +325,8 @@ Qiita 上にもきっちりと反映されていたので。
 
 フォルダを作成して記事を管理しても大丈夫のようです。
 
-# トラブル
-## Qiita Sync Checkのエラーが連続する
+## トラブル
+### Qiita Sync Checkのエラーが連続する
 
 * 原因 Qiita上で編集してしまった。
 
@@ -313,7 +336,7 @@ GitHub repository を開く
 "Run workflow" をクリックする。
 
 
-## ゴースト（どうしても消えないエラー）
+### ゴースト（どうしても消えないエラー）
 
 * 原因 Qiitaのウェブ上で削除した記事がGithub上に残っていた。
 
@@ -323,7 +346,7 @@ GitHub repository を開く
 "Actions"、"Qiita Sync" を開く
 "Run workflow" をクリックする。
 
-### 調査したときの記録（ゴーストの原因）
+#### 調査したときの記録（ゴーストの原因）
 Qiita Sync Checkでエラーが連続する時、
 Qiita上で記事を消したが、GitHub上には記事が残っていて
 それがPULLしてローカルまで持ってきてしまって
@@ -341,7 +364,7 @@ Qiita上で記事を消したが、GitHub上には記事が残っていて
 
 
 
-## 後記
+### 後記
 
 VSCode の拡張機能から Qiita の記事を投稿できるのかやってみた。 - Qiita
 https://qiita.com/masakinihirota/items/eb7927aff8356c55e147
@@ -361,7 +384,7 @@ https://qiita.com/ryokat3/items/d054b95f68810f70b136
 この記事は上記の記事の体験記です、初めて Github actions を利用するときに出た
 エラーを対処した場合の対応もあり、記事にしました。
 
-## 初めて Github actions を利用する前にこの設定する必要がある
+## 初めて Github actions を利用する前に設定をする必要がある
 
 python - Permission denied to github-actions[bot] - Stack Overflow
 https://stackoverflow.com/questions/72851548/permission-denied-to-github-actionsbot
