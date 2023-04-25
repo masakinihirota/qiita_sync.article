@@ -167,7 +167,7 @@ https://aws.amazon.com/jp/codewhisperer/
 * IDE からの AWS のトラブルシューティング
 * CloudWatch ログ
 * ECS
-* **Amazon CodeWhisperer**
+* **Amazon CodeWhisperer** ＜＜ ココ
 * Amazon CodeCatalyst
 * クラウドフォーメーション
 
