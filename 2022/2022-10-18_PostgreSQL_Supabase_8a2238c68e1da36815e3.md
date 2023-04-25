@@ -5,7 +5,7 @@ id:      8a2238c68e1da36815e3
 private: false
 -->
 ※現在この記事は少し古くなっています、下記の記事をご覧ください。
-[Supabase CLI のコマンド (v1.28.3)](https://qiita.com/masakinihirota/items/685f70770d8224ba2fa5#comment-96ad1f43ba2932b8733b) 2023年1月10日
+[Supabase CLI のコマンド (v1.28.3)](https://qiita.com/masakinihirota/items/685f70770d8224ba2fa5) 2023年1月10日
 
 
 # よく使うコマンド群
