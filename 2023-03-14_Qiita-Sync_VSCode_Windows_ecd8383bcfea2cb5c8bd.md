@@ -12,6 +12,14 @@ WebでのQiita上で編集した時は下記手順を実行する。
 
 ---
 
+# まとめ
+Q: VSCodeからQiitaへアップする記事を書くにはどうすればいいのか？
+A: 新規記事をVSCodeで書く場合は、テンプレートを使い記事を書きます。
+それをGithubにPUSHしたあと Workflowが自動実行してQiitaに反映されます。
+その後（Workflowが終わった）、数分待ってから手動でVSCodeへPULLすること。
+
+
+# この記事に関して
 この記事は
 
 GitHub 連携で Qiita 記事を素敵な執筆環境で！ - Qiita
@@ -244,11 +252,12 @@ tags:  VNS,Qiita-Sync
 
 というファイルを作り。
 ※IDは書いてはいけない。
-※ファイル名は自由にできる、フォルダ下でもok。
+※ファイル名は自由にできる。
+※記事を新しいフォルダ下に配置、移動してもok。
 ※本文が書いてないとエラーになる。
 ※tagsに空白があるとエラーになる。
-例えば`github copilot` 空白があるのでエラー。
-これに対して`githubcopilot` 空白を消す、`github_copilot` アンダーバーを足す、として対処する。
+例えば`github copilot` ＜＜＜単語と単語の間に空白があるのでエラー。
+これに対して`githubcopilot` 空白を消す、`github_copilot` アンダーバーを足す・・等と対処する。
 
 
 * コミット後にGithubへ **PUSH** する。
