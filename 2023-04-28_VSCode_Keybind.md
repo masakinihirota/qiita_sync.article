@@ -42,6 +42,12 @@ private: false
 ```keybindings.json
 [
   {
+    // ユーザー設定を開く
+    // key: ctrl+shift+, (カンマ)
+    "key": "ctrl+shift+oem_comma",
+    "command": "workbench.action.openApplicationSettingsJson"
+  },
+  {
     // エディタ内で最後に編集した場所に移動
     "key": "ctrl+n",
     "command": "workbench.action.navigateToLastEditLocation"
@@ -63,12 +69,12 @@ private: false
     "command": "-workbench.action.toggleSidebarVisibility"
   },
   {
-    // コードランナーでの実行
+    // 拡張機能: コードランナーでの実行
     "key": "ctrl+1",
     "command": "code-runner.run"
   },
   {
-    // コードランナーでの実行を無効化
+    // 拡張機能: コードランナーでの実行を無効化
     "key": "ctrl+alt+n",
     "command": "-code-runner.run"
   },
