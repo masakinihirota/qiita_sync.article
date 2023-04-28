@@ -29,13 +29,11 @@ private: false
 | ctrl+shift+i | カッコ間の移動 |
 | ctrl+shift+n | 新しいファイルを開く |
 | ctrl+shift+alt+n | 新しいウィンドウを開く |
-| ctrl+shift+alt+u | 動かず トップ行に移動 |
 | ctrl+shift+alt+f | 複数ページの置換 |
 | shift+f1 | 選択範囲をソート 昇順 |
 | shift+f2 | 選択範囲をソート 降順 |
 | ctrl+tab | 右のタブファイルへ移動 |
 | ctrl+shift+tab | 左のタブファイルへ移動 |
-| ctrl+shift+l | 行番号のトグル |
 
 ※ 自分で設定しているキーバインドは、`keybindings.json`に記述しています。
 
@@ -139,12 +137,6 @@ private: false
     "command": "workbench.action.newWindow"
   },
   {
-    // 動かず トップ行に移動
-    "key": "ctrl+shift+alt+u",
-    "command": "workbench.action.terminal.scrollToTop",
-    "when": "terminalFocus && !terminalAltBufferActive"
-  },
-  {
     // 置換
     "key": "ctrl+shift+f",
     "command": "-workbench.action.terminal.searchWorkspace",
@@ -192,22 +184,23 @@ private: false
   {
     // パンくずリストの表示 その場所へジャンプする
     // デフォルト設定
+    // "key": "ctrl+shift+."
     "key": "ctrl+shift+oem_period",
     "command": "breadcrumbs.toggleToOn",
     "when": "!config.breadcrumbs.enabled"
   },
   {
-    // ファイルのコピー
+    // 拡張機能:ファイルのコピー
     "key": "alt+z",
     "command": "fileutils.duplicateFile"
   },
   {
-    // ターミナルの最大化トグル
+    // ターミナルの最大化 トグル
     "key": "ctrl+shift+alt+z",
     "command": "workbench.action.toggleMaximizedPanel"
   },
   {
-    // サーバーの起動
+    // 拡張機能: サーバーの起動
     "key": "alt+o",
     "command": "extension.liveServer.goOnline",
     "when": "editorTextFocus"
