@@ -1,8 +1,10 @@
 <!--
-title:VSCode キーボードショートカットキー設定+AutoHotkey+HHKB Vim操作 (Windows)
-tags: VSCode,Vim,AutoHotkey,HHKB
+title:   VSCode キーボードショートカットキー設定+AutoHotkey+HHKB Vim操作 (Windows)
+tags:    AutoHotkey,HHKB,VSCode,Vim
+id:      289fb1b34f0ec31ddf4c
 private: false
 -->
+
 
 ※個人メモ (秘伝のタレみたいになっている)
 
