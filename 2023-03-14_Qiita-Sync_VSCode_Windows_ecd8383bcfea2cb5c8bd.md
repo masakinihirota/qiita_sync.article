@@ -10,6 +10,8 @@ WebでのQiita上で編集した時は下記手順を実行する。
 * "Actions"、"Qiita Sync" を開く
 * "Run workflow" をクリックするを実行する。
 
+Qiita上で更新をGitHubに反映させた後、ローカル側でのPULLも忘れずに行いましょう。
+
 ---
 
 # まとめ
