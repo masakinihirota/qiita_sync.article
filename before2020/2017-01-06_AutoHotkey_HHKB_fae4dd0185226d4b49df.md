@@ -59,7 +59,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;|| WinActive("")		;コメント
 
 ;＝基本HHKB
-#If WinActive("ahk_class Notepad") 		;メモ帳
+# If WinActive("ahk_class Notepad") 		;メモ帳
 || WinActive("ahk_class Chrome_WidgetWin_1")	;Chrome
 || WinActive("ahk_class Hidemaru32Class")	;秀丸
 || WinActive("ahk_class XLMAIN")		;エクセル
@@ -77,11 +77,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ^l::Send, {Right}
 ^u::Send, {Home} ;行頭へ
 ^o::Send, {End} ;行末へ
-#IfWinActive
+# IfWinActive
 
-#If WinActive("ahk_class Chrome_WidgetWin_1")	;Chrome
+# If WinActive("ahk_class Chrome_WidgetWin_1")	;Chrome
 ,::Send, ^+{Space}
-#IfWinActive
+# IfWinActive
 
 ;＝言語関係
 ;LWinキーをWindowsキーから半角/全角キーに変える

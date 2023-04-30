@@ -4,19 +4,19 @@ tags:    GitHub,SSH,ssh公開鍵認証,windows7
 id:      71224e3caefe776a716a
 private: false
 -->
-#環境
+# 環境
 Windows7 64bit
 
-#現状
+# 現状
 Windows7を新たに再インストールしてからGitHubにアクセスしようとするとするけど、GitHubのために色々書いた設定は綺麗サッパリ忘れており、sshキーの公開鍵も秘密鍵も今は無い。
 
-#これからすること。
+# これからすること。
 Githubに公開鍵と秘密鍵を新たに設定し直します。
 
-##作業開始
+## 作業開始
 私の場合はもう古い公開鍵も秘密鍵も無いのでGithubに登録しておいた公開鍵を消しておきます。
 
-##Github側の作業
+## Github側の作業
 GitHubの公開鍵登録場所にアクセス
 SSH and GPG keys
 https://github.com/settings/keys
@@ -25,7 +25,7 @@ https://github.com/settings/keys
 「I understand, please delete this SSH key」
 と出るので押し消しちゃいます。
 
-##Windows側の作業
+## Windows側の作業
 まずはgitをインストールします。
 Git for Windows
 https://git-for-windows.github.io/
@@ -34,7 +34,7 @@ https://git-for-windows.github.io/
 インストールが完了すると、これでssh-keygenコマンドが使えるようになります。
 ※ssh-keygenコマンドは公開鍵暗号方式のファイルを作るコマンドです。
 
-##公開鍵暗号方式の鍵を作る。
+## 公開鍵暗号方式の鍵を作る。
 Windowsのスタートボタンから「プログラムとファイルの検索」窓を開いて「git」
 候補に「Git Bash」が表示されるのでそれを起動します。
 
@@ -50,7 +50,7 @@ Windowsのスタートボタンから「プログラムとファイルの検索�
 私は最初からやり直しなので全部消しました。
 （別の場所に移すかなどしてバックアップをとっておくと良いかも）
 
-##キー生成
+## キー生成
 ssh-keygen -t rsa -C "自分のメール"
 例：
 ``ssh-keygen -t rsa -C "masakinihirota@gmail.com"``
@@ -71,13 +71,13 @@ id_rsa		#秘密鍵
 誰にも渡してはいけません、見せてもいけません。ネット上で公開してもいけません。
 詳しくは「公開鍵暗号」でググってください。
 
-#Githubへ公開鍵を登録
+# Githubへ公開鍵を登録
 次にこの公開鍵を登録します
 SSH and GPG keys
 https://github.com/settings/keys
 この場所で公開鍵を登録します。
 
-##登録方法
+## 登録方法
 SSH keysの 「New SSH Key」ボタンを押します。
 
 Titleを付けます。
@@ -117,7 +117,7 @@ Hi masakinihirota! You've successfully authenticated, but GitHub does not provid
 と返信が来ます。
 「接続に成功したよ、だけどシェルでのアクセスサービスは提供してないよ。」
 
-##確認作業
+## 確認作業
 成功したかどうか見るため適当なリポジトリをGithubからクローンしてみます。
 
 適当な場所にディレクトリを作る

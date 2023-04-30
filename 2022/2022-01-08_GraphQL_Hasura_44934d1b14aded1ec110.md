@@ -4,8 +4,8 @@ tags:    GraphQL,Hasura
 id:      44934d1b14aded1ec110
 private: false
 -->
-#追記 2022年1月9日
-##docker compose restartではだめ down＆upで
+# 追記 2022年1月9日
+## docker compose restartではだめ down＆upで
 
 docker-compose.ymlの設定の変更をしたときには。
 
@@ -57,7 +57,7 @@ http://localhost:9695/console
 は使える。
 
 
-##docker-compose.ymlでのDBの設定値は２つに別れたけど同じ値でもok
+## docker-compose.ymlでのDBの設定値は２つに別れたけど同じ値でもok
 
 HASURA_GRAPHQL_METADATA_DATABASE_URL
 PG_DATABASE_URL
@@ -69,7 +69,7 @@ PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
 どちらも同じ値でも起動を確認しました
 
 
-##docker-compose.ymlのrestart: always
+## docker-compose.ymlのrestart: always
 
 postgres
 restart: alwaysを消すとhasura consoleが動かない
@@ -82,7 +82,7 @@ restart: alwaysを消しても挙動は同じ
 
 # 記事 2022年1月8日
 
-##Docker 起動時docker compose up した時マイグレーションファイルなどが見当たらない・・・どこにあるの？？
+## Docker 起動時docker compose up した時マイグレーションファイルなどが見当たらない・・・どこにあるの？？
 
 docker-compose.yml
 があるディレクトリで
@@ -184,7 +184,7 @@ PG_DATABASE_URL
 Hasura CLI Configuration Reference | Hasura GraphQL Docs
 https://hasura.io/docs/latest/graphql/core/hasura-cli/config-reference.html
 
-##console
+## console
 つまり操作する場所がたくさん出てきます
 軽く２つに分けると
 ブラウザのGUI
@@ -192,7 +192,7 @@ https://hasura.io/docs/latest/graphql/core/hasura-cli/config-reference.html
 VScodeのCUI
 の２種類
 
-###種類
+### 種類
 ブラウザのGUI
 Hasura console	Hasuraそのもののを操作する場所（２種類ある）
 Hasura Cloud console	HasuraCloudプロジェクト全体の管理する場所
@@ -200,7 +200,7 @@ Hasura Cloud console	HasuraCloudプロジェクト全体の管理する場所
 VScodeのCUI
 VScode console	CUIでHasuraを操作する場所
 
-###Hasura Cloud consoleとHasura consoleの違い
+### Hasura Cloud consoleとHasura consoleの違い
 
 Hasura Cloud consoleは
 Hasura Cloud全体をプロジェクト単位で見る
@@ -212,7 +212,7 @@ HasuraもしくはHasura Cloudの１プロジェクト
 http://localhost:8080/
 http://localhost:9695/
 
-##CUIのconsole
+## CUIのconsole
 docer compose up（ローカルでDockerをつかってHasuraを利用した時）
 docker composeで立ち上げた時に自動で起動されるconsoleは
 http://localhost:8080/
@@ -264,7 +264,7 @@ http://localhost:8080/の変更分は反映されません。
 このマイグレーションファイルを適用させると
 http://localhost:8080/で変更した分は反映されないことになります。
 
-##Hasuraにはエンドポイントがたくさんあるけど・・・どれがどれ？
+## Hasuraにはエンドポイントがたくさんあるけど・・・どれがどれ？
 
 Hasuraではエンドポイントがデータの出入り口なので
 種類によって色々ある。
@@ -291,7 +291,7 @@ GraphQL Endpointは
 http://localhost:8080/v1/graphql
 https://*****.hasura.app/v1/graphql
 
-##Hasuraを利用したアプリのローカル開発でのディレクトリ構造は？
+## Hasuraを利用したアプリのローカル開発でのディレクトリ構造は？
 
 front
 	（Next.jsアプリ）
@@ -299,7 +299,7 @@ hasura
 	（マイグレーションファイル等）
 docker-compose.yml
 
-##Dockerを使いローカルで開発したHasuraのを、Hasura Cloudで使う方法は？
+## Dockerを使いローカルで開発したHasuraのを、Hasura Cloudで使う方法は？
 
 ローカルではDockerを利用した
 Hasuraコンテナで動かしていた

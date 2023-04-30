@@ -5,12 +5,12 @@ id:      ad91ddee048efa8a8138
 private: false
 -->
 日本ではReactとVueが競い合っているように思えますが、実際はどうなのかを調べてみました。
-##[npm trends](https://www.npmtrends.com/)
+## [npm trends](https://www.npmtrends.com/)
 [npm trends](https://www.npmtrends.com/)という場所がありまして、そこではnpmパッケージのダウンロード数をグラフに表示してくれます。
 
 使い方は簡単、パッケージ名を一つづつ入力していくだけです。
 
-###調査結果
+### 調査結果
 [react vs @angular/core vs vue vs jquery vs typescript | npm trends](https://www.npmtrends.com/react-vs-@angular/core-vs-vue-vs-jquery-vs-typescript)
 
 
@@ -19,10 +19,10 @@ reactとvueと@angular/coreとjqueryとtypescriptの図
 
 Reactの圧勝ですね。Vueは日本だと記事を色々見かけて人気なのはなぜなのでしょうか？
 
-##[The State of JavaScript 2019](https://2019.stateofjs.com/)
+## [The State of JavaScript 2019](https://2019.stateofjs.com/)
 ついでにこちらでも調べてみます。
 [The State of JavaScript 2019](https://2019.stateofjs.com/)でフレームワークを見てみます。
-###[Front End Frameworksカテゴリ](https://2019.stateofjs.com/front-end-frameworks/)
+### [Front End Frameworksカテゴリ](https://2019.stateofjs.com/front-end-frameworks/)
 React
 https://2019.stateofjs.com/front-end-frameworks/
 Vue

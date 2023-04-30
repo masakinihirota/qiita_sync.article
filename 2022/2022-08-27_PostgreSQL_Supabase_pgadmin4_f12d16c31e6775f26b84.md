@@ -224,9 +224,6 @@ diffコマンドは
 マイグレーションやシードファイルに沿ってテーブルを元に直してくれる
 `supabase db reset`
 
-##
-
-
 ## supabase コマンド reset stop
 
 リセットする手段として
@@ -636,7 +633,7 @@ nameは文字列を指定する。
 
 
 
-#GraphQL API
+# GraphQL API
 ## スキーマ再構築
 
 API | Supabase

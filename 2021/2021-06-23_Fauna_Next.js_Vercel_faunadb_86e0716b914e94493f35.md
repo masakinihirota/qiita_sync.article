@@ -164,7 +164,7 @@ Vercelで設定した環境変数をNext.jsで使用する - Qiita
 https://qiita.com/Slowhand0309/items/f954237520d343fa9e4c
 
 ---
-##他の方法
+## 他の方法
 `vercel env pull`を実行すると、
 `.env`ファイルがローカル上に作成されます。
 これはvercel上で設定した環境変数をダウンロードしています。

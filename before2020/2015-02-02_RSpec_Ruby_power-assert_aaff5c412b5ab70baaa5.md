@@ -9,22 +9,22 @@ private: false
 [Ruby - 写経 PowerAssert (Rspec3) テストをリファクタリング - Qiita](http://qiita.com/masakinihirota/items/917fa94a79d5e94aee9f)
 [Ruby - 実践 ０からPowerAssertでテストを作ってみる。（RSpec3） - Qiita](http://qiita.com/masakinihirota/items/34035ebb63e1aaa94aae)
 
-#公開場所
+# 公開場所
 [github : masakinihirota/powerTdce](https://github.com/masakinihirota/powerTdce)
 
 [０からRubyでRSpecをPowerAssertでやる - Qiita](http://qiita.com/masakinihirota/items/aaff5c412b5ab70baaa5)
 
 
-#写経
+# 写経
 PowerAssertを使って写経してみました。
 [Ruby - 写経 PowerAssert (Rspec3) - Qiita](http://qiita.com/masakinihirota/items/917fa94a79d5e94aee9f)
 
 クラスを一つ作り、そのテストをどんどんリファクタリングして完成させていきます。
 
-#初めに
+# 初めに
 デフォルトではすんなり動かず色々はまったので書いてみました。
 
-#環境
+# 環境
 Ubuntu14.04
 ruby 2.2.0
 rbenv 0.4.0
@@ -33,7 +33,7 @@ bundle 1.7.12
 power_assert 0.2.2
 rspec-power_assert 0.2.0
 
-#bundle
+# bundle
 
 bundleインストール
 ``gem install bundler``
@@ -52,7 +52,7 @@ group :test, :development do
     gem 'guard-rspec'
     gem 'rspec-power_assert'
 
-#デバック用のgem
+# デバック用のgem
     gem 'pry-byebug'
     gem 'tapp'
     gem 'awesome_print'
@@ -65,7 +65,7 @@ end
 ``bundle``
 gem等インストールされる
 
-#rspec
+# rspec
 
 rspecの初期化
 
@@ -80,7 +80,7 @@ rspecの初期化
 
 ```
 
-#テストのテスト
+# テストのテスト
 
 test_spec.rb
 テスト動作確認のためのテストだけのファイル（参考リンクからコピペ）
@@ -159,10 +159,10 @@ end
 ``test_spec.rb``
 はもう削除してもok
 
-#プログラムとテストを書く
+# プログラムとテストを書く
 プログラムとそれをテストするファイルの作成
 
-###プログラム側
+### プログラム側
 `lib`ディレクトリを作成し、その中にhello.rbを入れる。
 
 ```ruby:lib/hello.rb
@@ -175,7 +175,7 @@ end
 
 ```
 
-###テスト側
+### テスト側
 テストするrspecファイル
 
 `spec`ディレクトリの中にhello_spec.rbを入れる。
@@ -189,7 +189,7 @@ end
 
 ```
 
-###監視ディレクトリの追加
+### 監視ディレクトリの追加
 デフォルトではlibディレクトリを監視してくれないので設定の追加。
 
 ``spec/spec_helper.rb``
@@ -206,7 +206,7 @@ Dir[File.join(File.dirname(__FILE__), "../lib/**/*.rb")].each { |f| require f }
 最近、rubyプログラムはgemを作ることが前提のようでプログラムはlibに入れているようだ、みんなが決めたレールに乗っておく。
 
 
-###テスト実行
+### テスト実行
 
 `rspec`
 
@@ -224,14 +224,14 @@ hello?をhelloに
 
 （面倒だが、通らないテストに戻しておく。）
 
-#guard
+# guard
 
 guardを使ってテストを自動化する
 
-###guardの初期化
+### guardの初期化
 `guard init`
 
-###guardの設定確認
+### guardの設定確認
 `guard list`
 でRspecの設定にチェックが入っていることを確認する。
 
@@ -244,7 +244,7 @@ guardを使ってテストを自動化する
 
 ShellはGuardのプラグインの一種（今回関係なし）
 
-###Guardfile（設定の追加）
+### Guardfile（設定の追加）
 
 Guardfileが作られたが問題があって、
 rspecファイルは監視するが、
@@ -269,7 +269,7 @@ ruby設定の場所に追加する。
 
 
 
-#オマケ
+# オマケ
 
 rspecタイプのテストをpower_assertタイプのテストに書き換え。
 
@@ -289,7 +289,7 @@ end
 
 ![powerassertHello.png](https://qiita-image-store.s3.amazonaws.com/0/44761/095511c9-27ad-c0ba-0106-f0e89e39c340.png)
 
-#確認
+# 確認
 成功したテストの中身も表示させる便利コマンド
 
 Documentation出力
@@ -302,7 +302,7 @@ Profiling
 ``rspec --profile spec/``
 
 
-#ハマったところ
+# ハマったところ
 
 rspecタイプのテスト形式で書いていたので、希望通りのpower_assertタイプのテスト結果が表示されなかった。
 最初はGuardとかがpower_assertタイプをrspecタイプに変換しないで直接実行されたのか？とまたパス設定ミス？などと悩んだ。
@@ -349,7 +349,7 @@ test_spec.rb
 と書いていて
 requireされないパスが通っていないと悩み続けた。
 
-#参考リンク
+# 参考リンク
 
 [joker1007/rspec-power_assert spec](https://github.com/joker1007/rspec-power_assert)
 

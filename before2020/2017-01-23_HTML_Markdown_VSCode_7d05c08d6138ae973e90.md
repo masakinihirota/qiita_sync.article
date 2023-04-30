@@ -4,11 +4,11 @@ tags:    HTML,Markdown,VSCode
 id:      7d05c08d6138ae973e90
 private: false
 -->
-#markdownをhtmlに変換したい。
+# markdownをhtmlに変換したい。
 調べてみるとpandocとか外部アプリ？が必要だったりと色々面倒なのですが
 これは拡張機能を一つ入れるだけで手軽に出来ます。
 
-#インストール拡張機能「markdown-pdf」
+# インストール拡張機能「markdown-pdf」
 [vscode-markdown-pdf/README.ja.md at master · yzane/vscode-markdown-pdf](https://github.com/yzane/vscode-markdown-pdf/blob/master/README.ja.md)
 
 本来PDFに変換するものですが
@@ -17,12 +17,12 @@ HTMLにも変換できます。
 変換できる全フォーマット
 （PDF、html、png、jpeg）
 
-#インストール方法
+# インストール方法
 Ctrl+p もしくは F1キーから
 「pdf」で検索
 「Markdown PDF」をインストールします。
 
-#設定を書き込む
+# 設定を書き込む
 ファイル＞基本設定＞ユーザー設定
 
 `settings.json

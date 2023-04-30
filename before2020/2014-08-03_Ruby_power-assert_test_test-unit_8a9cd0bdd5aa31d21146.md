@@ -58,7 +58,7 @@ class TC_Foo < Test::Unit::TestCase
     assert_equal("bar", @obj.bar)
   end
 
-#追加部分
+# 追加部分
   def test_foo
     assert do
       ("foo" == @obj.bar)

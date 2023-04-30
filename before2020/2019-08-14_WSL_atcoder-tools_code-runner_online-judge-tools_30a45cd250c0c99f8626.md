@@ -9,7 +9,7 @@ atcoder-toolsはサンプルコードの取得や課題の提出などを支援�
 しかしWindows10上からは利用できないそうです、そこでWSL(Windows Subsystem for Linux)上からこのツールを使います。
 （WSLはVSCodeからでも簡単に利用できるようになりました。）
 
-#目的
+# 目的
 ターミナルから
 `abc コンテストid`とするとAtCoderABCのコンテスト6問（A～F問）が入力付きで取得できる。
 
@@ -27,7 +27,7 @@ VScode
 zsh
 c++11以降
 
-###作業ディレクトリ
+### 作業ディレクトリ
 
 Windows10から見ると
 Dドライブ直下
@@ -37,7 +37,7 @@ WSLから見ると
 `/mnt/d/2019/pg`
 
 
-###便利なtool群
+### 便利なtool群
 作成したプログラムのVSCodeエクステンション
 code-runner
 https://github.com/formulahendry/vscode-code-runner
@@ -52,7 +52,7 @@ https://github.com/kyuridenamida/atcoder-tools
 AtCoder Tools Documentation
 https://kyuridenamida.github.io/atcoder-tools/#/
 
-###WSLのC++環境
+### WSLのC++環境
 WSLインストール後
 `sudo apt update`
 `sudo apt upgrade`
@@ -75,7 +75,7 @@ VSCodeのエクステンションのインストール
 - Bracket Pair Colorizer
 - Settings Sync
 
-#code-runner
+# code-runner
 
 ### Code-RunnerをWSLで実行できるようにする
 settings.jsonに追加
@@ -113,9 +113,9 @@ zshを利用します。
 ```.zshrc
 export LANG=ja_JP.UTF-8
 
-#HOMEのpath
+# HOMEのpath
 export PATH=/mnt/d/2019/pg:$PATH
-#シェルファイルの収納場所
+# シェルファイルの収納場所
 export PATH=/mnt/d/2019/pg/sh:$PATH
 
 plugins=(… zsh-completions)
@@ -155,16 +155,16 @@ colors
 # PROMPT変数内で変数参照
 setopt prompt_subst
 
-#gitの色
-#通常
+# gitの色
+# 通常
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
-#formats 設定項目で %c,%u が使用可
+# formats 設定項目で %c,%u が使用可
 zstyle ':vcs_info:git:*' check-for-changes true
-#commit されていないファイルがある
+# commit されていないファイルがある
 zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
-#add されていないファイルがある
+# add されていないファイルがある
 zstyle ':vcs_info:git:*' unstagedstr "%F{blue}+"
-#rebase 途中,merge コンフリクト等 formats 外の表示
+# rebase 途中,merge コンフリクト等 formats 外の表示
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 # %b ブランチ情報
@@ -247,7 +247,7 @@ setopt correct
 DIRSTACKSIZE=100
 setopt auto_pushd
 
-#エイリアス
+# エイリアス
 alias abc='atcodertools_gen.sh'
 alias sub='atcodertools_submit.sh'
 alias tes='atcodertools_test.sh'
@@ -263,7 +263,7 @@ alias tes='atcodertools_test.sh'
 `abc 137`
 
 
-#atcoder-tools
+# atcoder-tools
 入力を自動生成
 kyuridenamida/atcoder-tools: Convenient modules & tools for AtCoder users, written in Python 3.5
 https://github.com/kyuridenamida/atcoder-tools
@@ -283,7 +283,7 @@ https://atcoder.jp/contests/abc120/tasks/abc120_d
 を訪れるだけでいい。
 （対応言語 C++ Java Rust	Python3）
 
-###HOMEのアクセスしづらい問題
+### HOMEのアクセスしづらい問題
 WSLのHOMEはCドライブの奥深いところにあるので
 普段使用していたり、アクセスしやすい場所に変更します。
 
@@ -302,7 +302,7 @@ sudo vim /etc/passwd
 
 `pwd`コマンドでHOMEが変更されたかどうか確認します。
 
-##atcoder-tools使用方法
+## atcoder-tools使用方法
 
 `atcoder-tools gen コンテストid`
 
@@ -315,15 +315,15 @@ atcoderのABCコンテスト137回
 configファイルを利用した例
 `sudo atcoder-tools gen ABC137 --config /mnt/d/2019/pg/atcodertools.toml`
 
-###atcodertoolsの設定ファイル
+### atcodertoolsの設定ファイル
 `atcodertools.toml`
 
-######tomlとは
+###### tomlとは
 設定ファイル記述言語 TOML - Qiita
 https://qiita.com/b4b4r07/items/77c327742fc2256d6cbe
 GitHub の中の人が提案した、設定ファイルを記述するための小さな言語です。
 
-###自動生成機能がついたテンプレートファイル
+### 自動生成機能がついたテンプレートファイル
 `my_template.cpp`
 
 ※優先順位
@@ -355,10 +355,10 @@ exec_on_contest_dir='touch CMakeLists.txt'
 ```
 ※この設定とかよくわかりません。
 
-###atcodertoolsの基本テンプレートファイル
+### atcodertoolsの基本テンプレートファイル
 
 ```my_template.cpp
-#include <bits/stdc++.h>
+# include <bits/stdc++.h>
 using namespace std;
 
 // 総数を1000000007（素数）で割った余り
@@ -367,33 +367,33 @@ const long long mod = 1e9 + 7;
 using ll = long long;
 using pii  = pair<int, int>;
 using pll = pair<ll, ll>;
-#define ull unsigned long long
-#define ld long double
-#define vi vector<int>
-#define vll vector<ll>
-#define vc vector<char>
-#define vs vector<string>
-#define vpii vector<pii>
-#define vpll vector<pll>
+# define ull unsigned long long
+# define ld long double
+# define vi vector<int>
+# define vll vector<ll>
+# define vc vector<char>
+# define vs vector<string>
+# define vpii vector<pii>
+# define vpll vector<pll>
 
-#define rep(i, n) for (int i = 0, i##_len = (n); i < i##_len; i++)
-#define rep1(i, n) for (int i = 1, i##_len = (n); i <= i##_len; i++)
-#define repr(i, n) for (int i = ((int)(n)-1); i >= 0; i--)
-#define rep1r(i, n) for (int i = ((int)(n)); i >= 1; i--)
+# define rep(i, n) for (int i = 0, i##_len = (n); i < i##_len; i++)
+# define rep1(i, n) for (int i = 1, i##_len = (n); i <= i##_len; i++)
+# define repr(i, n) for (int i = ((int)(n)-1); i >= 0; i--)
+# define rep1r(i, n) for (int i = ((int)(n)); i >= 1; i--)
 
-#define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+# define sz(x) ((int)(x).size())
+# define all(x) (x).begin(), (x).end()
+# define rall(x) (x).rbegin(), (x).rend()
 
-#define SORT(v, n) sort(v, v + n);
-#define VSORT(v) sort(v.begin(), v.end());
-#define RSORT(x) sort(rall(x));
-#define pb push_back
-#define mp make_pair
+# define SORT(v, n) sort(v, v + n);
+# define VSORT(v) sort(v.begin(), v.end());
+# define RSORT(x) sort(rall(x));
+# define pb push_back
+# define mp make_pair
 
-#define INF (1e9)
-#define PI (acos(-1))
-#define EPS (1e-7)
+# define INF (1e9)
+# define PI (acos(-1))
+# define EPS (1e-7)
 
 ull gcd(ull a, ull b) { return b ? gcd(b, a % b) : a; }
 ull lcm(ull a, ull b) { return a / gcd(a, b) * b; }
@@ -462,7 +462,7 @@ Run Codeに ctrl+1 （cppの実行ファイルを実行する。）
 Run Custom Commandに ctrl+2 （atcoder-tools testを実行する。）
 
 
-###シェルファイルを作る
+### シェルファイルを作る
 シェルファイルの収納場所
 /mnt/d/2019/pg/sh
 
@@ -498,7 +498,7 @@ atcoder-tools submit -u --code ./main${execfile}.cpp --exec ./main${execfile}.ou
 /mnt/d/2019/pg/ABC/
 このpathはABCコンテストのソース等を入れるディレクトリpath
 
-###シェルの実行
+### シェルの実行
 abc [コンテスト開催番号]
 
 例 atcoder ABCコンテスト135回の場合
@@ -531,7 +531,7 @@ https://qiita.com/masakinihirota/items/396e0398472833f25895
 ※WSLでは"text": で変換される変数のpathがエスケープシーケンスとなってしまいcdコマンド等が効きません。
 ですのでCode Runnerで実行ファイルのあるディレクトリに移動してからこのショートカットを使用します。
 
-#コンパイルエラー（既知の問題）
+# コンパイルエラー（既知の問題）
 提出時の画面に表示されるコンパイルエラー
 
 `
@@ -546,7 +546,7 @@ atcoder-toolsで取得した自動入力付きのソースファイルで提出�
 実務では見過ごせないコンパイルエラーですが、競技プログラミングでは特に気にする必要はありません。
 気になる人は`scan`の部分を`cin>>`に変更しましょう。
 
-###その他
+### その他
 `atcoder-tools test`
  カレント・ディレクトリ上に実行ファイルと入出力(in_*.txt, out_*.txt)がある状態で実行するとローカルテストを行います。
 
@@ -569,7 +569,7 @@ default_template.cpp
 default_template.cpp ＝＞ my_template.cpp
 
 
-#参考URL&この後やること
+# 参考URL&この後やること
 C#+VS Code でAtCoder やってみる(準備編) - Qiita
 https://qiita.com/wishangel@github/items/c79356357c8d20323d5d
 

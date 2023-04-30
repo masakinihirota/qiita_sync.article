@@ -6,7 +6,7 @@ private: false
 -->
 [ドットインストール](http://dotinstall.com/)で ~~遊んで~~ 勉強している時にエラーが出てきたので対処した話。
 
-#環境
+# 環境
 Windows7 64bit
 ブラウザ Chrome
 javascript node v0.10.35
@@ -23,7 +23,7 @@ Underscore.js v1.4.4
 function (n){return a.call(this,n,h)}
 と表示される。
 
-#解決
+# 解決
 Stack Overflowにありました。
 
 [javascript - underscore template error: function (n){return a.call(this,n,h)} - Stack Overflow]

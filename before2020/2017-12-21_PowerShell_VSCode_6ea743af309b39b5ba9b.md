@@ -234,8 +234,8 @@ Get-Alias のエイリアスは `gal`です。
 あれから＊年、現在の肥大化した姿（2020/12/15）
 
 ```Microsoft.PowerShell_profile.ps1
-#PowerShellのショートカット
-#VSCodeで使う場合は変更後VSCodeの再起動必須。
+# PowerShellのショートカット
+# VSCodeで使う場合は変更後VSCodeの再起動必須。
 
 Import-Module 'C:\tools\poshgit\dahlbyk-posh-git-9bda399\src\posh-git.psd1'
 
@@ -287,7 +287,7 @@ Set-Alias excel "C:\Program Files (x86)\Microsoft Office\Office10\Excel.exe"
 # git系
 Set-Alias g git
 
-#unix系のgrepとは挙動が違う
+# unix系のgrepとは挙動が違う
 Set-Alias grep Select-String
 
 
@@ -323,7 +323,7 @@ function gcm($message)
     git commit -m $message
 }
 
-#ローカル専用
+# ローカル専用
 function GGG
 {
     git checkout main | git merge - | git branch
@@ -333,7 +333,7 @@ function GGG
 
 
 
-#ブランチ名を書き換える
+# ブランチ名を書き換える
 function brm
 {
     git branch -m  $args | git branch
@@ -424,14 +424,14 @@ New-Alias -Name st -Value Get-GitStatus -Force -Option AllScope
 # 全部をaddするなら aa .
 # -uのオプションもok
 # git add -u (git add --update)
-#バージョン管理されていて、変更があったすべてのファイルがaddされる
-#バージョン管理されていないファイルはaddされない
+# バージョン管理されていて、変更があったすべてのファイルがaddされる
+# バージョン管理されていないファイルはaddされない
 
 function Get-GitAdd { & git add --all $args }
 New-Alias -Name aa -Value Get-GitAdd -Force -Option AllScope
 
 
-#変更を見てからコミットメセージを編集＆コミット
+# 変更を見てからコミットメセージを編集＆コミット
 function Get-GitCommit { & git add --all | git commit -ev $args }
 New-Alias -Name cm -Value Get-GitCommit -Force -Option AllScope
 
@@ -441,7 +441,7 @@ New-Alias -Name cm -Value Get-GitCommit -Force -Option AllScope
 # コマンドがかぶる時ビルトインのコマンドを消去
 ##### remove-item alias:gc -force
 
-#変更を見てからコミットメセージを編集＆コミット
+# 変更を見てからコミットメセージを編集＆コミット
 function Get-GitCommit { & git commit -ev $args }
 New-Alias -Name gm -Value Get-GitCommit -Force -Option AllScope
 
@@ -456,17 +456,17 @@ New-Alias -Name br -Value Get-GitBranch -Force -Option AllScope
 
 
 
-#function Get-GitPush { & git Push $args }
-#New-Alias -Name gps -Value Get-GitPush -Force -Option AllScope
+# function Get-GitPush { & git Push $args }
+# New-Alias -Name gps -Value Get-GitPush -Force -Option AllScope
 
-#function Get-GitPull { & git pull $args }
-#New-Alias -Name gpl -Value Get-GitPull -Force -Option AllScope
+# function Get-GitPull { & git pull $args }
+# New-Alias -Name gpl -Value Get-GitPull -Force -Option AllScope
 
-#function Get-GitFetch { & git fetch $args }
-#New-Alias -Name f -Value Get-GitFetch -Force -Option AllScope
+# function Get-GitFetch { & git fetch $args }
+# New-Alias -Name f -Value Get-GitFetch -Force -Option AllScope
 
-#function Get-GitRemote { & git remote -v $args }
-#New-Alias -Name r -Value Get-GitRemote -Force -Option AllScope
+# function Get-GitRemote { & git remote -v $args }
+# New-Alias -Name r -Value Get-GitRemote -Force -Option AllScope
 
 
 ```

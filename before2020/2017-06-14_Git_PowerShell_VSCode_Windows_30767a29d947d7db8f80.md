@@ -115,18 +115,18 @@ Dockerなら
 Set-Alias ll Get-ChildItem
 Set-Alias lll Get-ChildItem
 
-#git系
+# git系
 Set-Alias g git
 
 # docker系
 Set-Alias do docker
 
-#function Get-Docker { & docker $args }
-#New-Alias -Name do -Value Get-Docker -Force -Option AllScope
+# function Get-Docker { & docker $args }
+# New-Alias -Name do -Value Get-Docker -Force -Option AllScope
 
 
 
-#unix系のgrepとは挙動が違う
+# unix系のgrepとは挙動が違う
 Set-Alias grep Select-String
 
 # 予測 IntelliSense を有効にする
@@ -155,23 +155,23 @@ $GitPromptSettings.DefaultPromptPath.ForegroundColor = 0x9ACD32
 # コマンド入力欄の前に現在の時刻を表示する。
 $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n$([DateTime]::now.ToString("MM-dd HH:mm:ss "))'
 
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Black
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Black
 $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Blue
 # $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Cyan
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkBlue
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkBlue
 # mainの色と同じ
 # $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkCyan
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkGray
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkGray
 $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkGreen
 # $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkMagenta
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkRed
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkYellow
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Gray
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkRed
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::DarkYellow
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Gray
 # $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Green
 # $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Magenta
 # $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Red
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::White
-#無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Yellow
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::White
+# 無し $GitPromptSettings.DefaultPromptBeforeSuffix.ForegroundColor = [ConsoleColor]::Yellow
 
 # ヒストリーをカウントし表示
 # $GitPromptSettings.DefaultPromptSuffix = '$((Get-History -Count 1).id + 1)$(" >" * ($nestedPromptLevel + 1)) '
@@ -202,7 +202,7 @@ $global:GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n$(PromptWriteError
 Set-PSReadlineOption -BellStyle None
 
 
-#複数wordで空白を含むコマンドの場合fuctionを使う。
+# 複数wordで空白を含むコマンドの場合fuctionを使う。
 function s
 {
     npm run start
@@ -239,7 +239,7 @@ function gc
 }
 
 
-#ローカル専用
+# ローカル専用
 function GGG
 {
     git checkout main | git merge - | git branch
@@ -249,7 +249,7 @@ function GGG
 
 
 
-#ブランチ名を書き換える
+# ブランチ名を書き換える
 function brm
 {
     git branch -m  $args | git branch
@@ -354,14 +354,14 @@ New-Alias -Name stb -Value Get-GitStatus -Force -Option AllScope
 # 全部をaddするなら aa .
 # -uのオプションもok
 # git add -u (git add --update)
-#バージョン管理されていて、変更があったすべてのファイルがaddされる
-#バージョン管理されていないファイルはaddされない
+# バージョン管理されていて、変更があったすべてのファイルがaddされる
+# バージョン管理されていないファイルはaddされない
 
 function Get-GitAdd { & git add --all $args }
 New-Alias -Name aa -Value Get-GitAdd -Force -Option AllScope
 
 
-#変更を見てからコミットメセージを編集＆コミット
+# 変更を見てからコミットメセージを編集＆コミット
 function Get-GitCommit { & git add --all | git commit -ev $args }
 New-Alias -Name cm -Value Get-GitCommit -Force -Option AllScope
 
@@ -371,7 +371,7 @@ New-Alias -Name cm -Value Get-GitCommit -Force -Option AllScope
 # コマンドがかぶる時ビルトインのコマンドを消去
 ##### remove-item alias:gc -force
 
-#変更を見てからコミットメセージを編集＆コミット
+# 変更を見てからコミットメセージを編集＆コミット
 function Get-GitCommit { & git commit -ev $args }
 New-Alias -Name gm -Value Get-GitCommit -Force -Option AllScope
 
@@ -386,30 +386,30 @@ New-Alias -Name br -Value Get-GitBranch -Force -Option AllScope
 
 
 
-#function Get-GitPush { & git Push $args }
-#New-Alias -Name gps -Value Get-GitPush -Force -Option AllScope
+# function Get-GitPush { & git Push $args }
+# New-Alias -Name gps -Value Get-GitPush -Force -Option AllScope
 
-#function Get-GitPull { & git pull $args }
-#New-Alias -Name gpl -Value Get-GitPull -Force -Option AllScope
+# function Get-GitPull { & git pull $args }
+# New-Alias -Name gpl -Value Get-GitPull -Force -Option AllScope
 
-#function Get-GitFetch { & git fetch $args }
-#New-Alias -Name f -Value Get-GitFetch -Force -Option AllScope
+# function Get-GitFetch { & git fetch $args }
+# New-Alias -Name f -Value Get-GitFetch -Force -Option AllScope
 
-#function Get-GitRemote { & git remote -v $args }
-#New-Alias -Name r -Value Get-GitRemote -Force -Option AllScope
+# function Get-GitRemote { & git remote -v $args }
+# New-Alias -Name r -Value Get-GitRemote -Force -Option AllScope
 
 
-#######################################################
-#実験
+####################################################### 
+# 実験
 
-#プロンプトの前後に文章を入れる
-#function prompt {
+# プロンプトの前後に文章を入れる
+# function prompt {
 #    # Your non-prompt logic here
 #    $prompt = Write-Prompt "Text before posh-git prompt " -ForegroundColor ([ConsoleColor]::Green)
 #    $prompt += & $GitPromptScriptBlock
 #    $prompt += Write-Prompt "Text after posh-git prompt" -ForegroundColor ([ConsoleColor]::Magenta)
 #    if ($prompt) { "$prompt " } else { " " }
-#}
+# }
 
 
 

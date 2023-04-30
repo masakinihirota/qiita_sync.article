@@ -4,28 +4,28 @@ tags:    Ruby,power-assert,rspec3,リファクタリング
 id:      917fa94a79d5e94aee9f
 private: false
 -->
-#追加 2015年2月5日
+# 追加 2015年2月5日
 [０からRubyでRSpecをPowerAssertでやる - Qiita](http://qiita.com/masakinihirota/items/aaff5c412b5ab70baaa5)
 [Ruby - 実践 ０からPowerAssertでテストを作ってみる。（RSpec3） - Qiita](http://qiita.com/masakinihirota/items/34035ebb63e1aaa94aae)
 続きを書きました。
 
-#PowerAssertを使いテストを写経する。
+# PowerAssertを使いテストを写経する。
 RubyでRspecのPowerAssertをインストールしたので使ってみます。
 
 
 最初は基本的な動作確認をした後、クラスを一つ作り、そのテストをどんどんリファクタリングして完成させていきます。
 
-###クリアできなかった問題
+### クリアできなかった問題
 Rspec機能の一部である `subject` をPowerAssertでどうやって実現すればいいのかわからず、パス。
 
-#参考リンク
+# 参考リンク
 写経に使ったページ
 [Ruby - 使えるRSpec入門・その1「RSpecの基本的な構文や便利な機能を理解する」 - Qiita](http://qiita.com/jnchito/items/42193d066bd61c740612)
 
-#最初に
+# 最初に
 基本的な動作確認、まずRspecタイプのテストを動かし、次にpower_assertタイプのテストの動作確認をする。
 
-#ファイルの説明
+# ファイルの説明
  1. テスト.rb テストの動作確認用のテストファイル
  1. 写経.rb 其の1 最初に使ったクラス。
  1. 写経.rb 其の2 写経の途中でchild?メソッドを追加したクラス
@@ -33,17 +33,17 @@ Rspec機能の一部である `subject` をPowerAssertでどうやって実現�
  1. 写経_spec.rb 写経.rb のテストファイル
 
 
-###テスト.rb
+### テスト.rb
 
 ```ruby:テスト.rb
-#rspec type
+# rspec type
 describe '四則演算' do
   it '1 + 1 は 2 になること' do
     expect(1 + 1).to eq 2
   end
 end
 
-#power_assert type
+# power_assert type
 describe '四則演算' do
   it '1 + 1 は 2 になること' do
     is_asserted_by { 1 + 1 == 2 }
@@ -64,7 +64,7 @@ end
 
 
 
-#基本
+# 基本
 describe 'test' do
   it '1 + 1 'do
     is_asserted_by { 1 + 1 == 2 }
@@ -81,7 +81,7 @@ describe 'test' do
   end
 end
 
-#ネストした describe
+# ネストした describe
 describe ' ' do
   describe ' ' do
     it ' ' do
@@ -189,7 +189,7 @@ describe User do
   end
 end
 
-#before で共通の前準備をする
+# before で共通の前準備をする
 describe User do
   describe '#greet' do
     before do
@@ -210,7 +210,7 @@ describe User do
   end
 end
 
-#ネストした describe や context の中で before を使う
+# ネストした describe や context の中で before を使う
 describe User do
   describe '#greet' do
     before do
@@ -237,7 +237,7 @@ describe User do
   end
 end
 
-#インスタンス変数のかわりに let を使う
+# インスタンス変数のかわりに let を使う
 describe User do
   describe '#greet' do
     let(:params){ { name: 'tarou'} }
@@ -262,7 +262,7 @@ describe User do
   end
 end
 
-#user を let にする
+# user を let にする
 describe User do
   describe '#greet' do
     let(:user) { User.new(params) }
@@ -286,7 +286,7 @@ describe User do
   end
 end
 
-#let のメリットを活かして age も let で置き換える
+# let のメリットを活かして age も let で置き換える
 describe User do
   describe '#greet' do
     let(:user) { User.new(params) }
@@ -306,7 +306,7 @@ describe User do
   end
 end
 
-#subject を使ってテスト対象のオブジェクトを1箇所にまとめる
+# subject を使ってテスト対象のオブジェクトを1箇所にまとめる
 # describe User do
 #   describe '#greet' do
 #     let(:user) { User.new(params) }
@@ -327,7 +327,7 @@ end
 #   end
 # end
 
-#it に渡す文字列（'ひらがなで答えること' など）を省略
+# it に渡す文字列（'ひらがなで答えること' など）を省略
 describe User do
   describe '#greet' do
     let(:user) { User.new(params) }
@@ -343,7 +343,7 @@ describe User do
   end
 end
 
-#リファクタリングしてテストコードの完成！
+# リファクタリングしてテストコードの完成！
 describe User do
   describe '#greet' do
     let(:user) { User.new(name: 'tarou', age: age) }
@@ -384,7 +384,7 @@ describe User do
 end
 
 
-#example を再利用
+# example を再利用
 describe User do
   describe '#greet' do
     let(:user) { User.new(name: 'tarou', age: age) }
@@ -444,7 +444,7 @@ describe User do
   end
 end
 
-#context を再利用
+# context を再利用
 describe User do
     let(:user) { User.new(name: 'tarou', age: age) }
     shared_context '12 ' do
@@ -512,7 +512,7 @@ end
 
 ```
 
-#ハマったところ
+# ハマったところ
 subjectのpower_assertでの使い方。
 
 説明文をキーにして引っ張っている所
@@ -521,5 +521,5 @@ include_context '12 '
 
 
 
-#最終的な実行結果
+# 最終的な実行結果
 ![syakyou002.png](https://qiita-image-store.s3.amazonaws.com/0/44761/e764ce97-87da-3da7-70bd-be041963ab03.png)

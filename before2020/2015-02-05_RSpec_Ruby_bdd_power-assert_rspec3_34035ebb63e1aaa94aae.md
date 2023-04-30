@@ -4,7 +4,7 @@ tags:    RSpec,Ruby,bdd,power-assert,rspec3
 id:      34035ebb63e1aaa94aae
 private: false
 -->
-#実践 ０からPowerAssertでテストを作ってみる。（RSpec3）
+# 実践 ０からPowerAssertでテストを作ってみる。（RSpec3）
 
 これは
 [Ruby - 写経 PowerAssert (Rspec3) テストをリファクタリング - Qiita](http://qiita.com/masakinihirota/items/917fa94a79d5e94aee9f)
@@ -25,7 +25,7 @@ extensions.txt
 
 将来的には、URLからスクレイピングしてファイル名毎にHTMLファイルを保存するメソッドの一部。
 
-#テストを書く
+# テストを書く
 
 ## 0 最初に小さな動作確認をしたrubyファイルで色々見る。
 

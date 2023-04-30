@@ -25,15 +25,15 @@ JavaScriptは基本的にセキュリティ上の理由から他のアプリへ�
 調べた中で一番手軽にやる方法は[node-key-sender](https://www.npmjs.com/package/node-key-sender)を使用する。
 これはキーボードを自分で押したような動作をさせることが出来る。（らしい）
 
-###electronで使用するAPI
+### electronで使用するAPI
 （基本的なウィンドウを作るAPI＆方法は割愛）
 
-####globalShortcut
+#### globalShortcut
 [electron/global-shortcut.md at master · electron/electron · GitHub](https://github.com/electron/electron/blob/master/docs-translations/jp/api/global-shortcut.md)
 
 ※globalShortcutはapp（ウィンドウ）がreadyになるまで使ってはいけない、なのでapp（ウィンドウ）がready状態になった後にglobalShortcutを設定する。
 
-####clipboard
+#### clipboard
 [electron/clipboard.md at master · electron/electron · GitHub](https://github.com/electron/electron/blob/master/docs-translations/jp/api/clipboard.md)
 
 JavaRunTimeが必須なので
@@ -125,7 +125,7 @@ app.on('ready', function() {
 テキスト入力を受け付けているところならばどこでもok
 
 
-##追記（2017年5月24日）
+## 追記（2017年5月24日）
 あるアプリで貼り付け行為がうまく動きませんでした。
 そこでは貼り付けるだけで文字が決定されず仮の状態のままという・・・
 そこで単純に決定ボタンを（「enter」キー）を挿入してみました。しかし、それでは命令の実行順が想定通り行かないのでsleep()を挟むように微調整をしました。

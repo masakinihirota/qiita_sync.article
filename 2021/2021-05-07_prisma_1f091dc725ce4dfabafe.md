@@ -57,7 +57,7 @@ Output:
 
 
 
-#起こった問題
+# 起こった問題
 `
 npm install --save-dev @prisma/cli
 npm i -D @prisma/cli
@@ -80,5 +80,5 @@ npm ERR!     C:\Users\hi\AppData\Roaming\npm-cache\_logs\2021-05-07T03_05_47_308
 `
 とエラーが出る
 
-#原因
+# 原因
 `@prisma/cli`の名前がバージョンアップに伴い`prisma`に変更されました。
