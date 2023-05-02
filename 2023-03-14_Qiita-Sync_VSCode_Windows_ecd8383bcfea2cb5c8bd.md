@@ -20,6 +20,9 @@ A: 新規記事をVSCodeで書く場合は、テンプレートを使い記事�
 それをGithubにPUSHしたあと Workflowが自動実行してQiitaに反映されます。
 その後（Workflowが終わった）、数分待ってから手動でVSCodeへPULLすること。
 
+Q: Qiita Sync Checkでエラーが出る場合はどうすればいいのか？
+A: Qiita Sync Checkでエラーが出る場合は、Qiita Sync Checkを実行する前にVSCodeへPULLすること。
+
 
 # この記事に関して
 この記事は
