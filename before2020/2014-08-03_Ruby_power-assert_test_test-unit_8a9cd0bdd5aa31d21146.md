@@ -1,6 +1,6 @@
 <!--
 title:   test-unit3を触る。 6年ぶりのメジャーバージョンアップ
-tags:    Ruby,power-assert,test,test-unit,テスト
+tags:    Ruby,power-assert,test-unit,テスト
 id:      8a9cd0bdd5aa31d21146
 private: false
 -->
