@@ -22,7 +22,8 @@ A: 新規記事をVSCodeで書く場合は、テンプレートを使い記事�
 
 Q: Qiita Sync Checkでエラーが出る場合はどうすればいいのか？
 A: Qiita Sync Checkでエラーが出る場合は、Qiita Sync Checkを実行する前にVSCodeへPULLすること。
-
+そして手動でQiita Syncを実行すること。
+成功するとQiita Sync Checkが自動で起動して成功するはずです。
 
 # この記事に関して
 この記事は
