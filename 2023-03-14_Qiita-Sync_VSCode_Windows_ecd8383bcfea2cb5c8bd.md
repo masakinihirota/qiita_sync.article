@@ -18,12 +18,13 @@ Qiita上で更新をGitHubに反映させた後、ローカル側でのPULLも�
 Q: VSCodeからQiitaへアップする記事を書くにはどうすればいいのか？
 A: 新規記事をVSCodeで書く場合は、テンプレートを使い記事を書きます。
 それをGithubにPUSHしたあと Workflowが自動実行してQiitaに反映されます。
-その後（Workflowが終わった）、数分待ってから手動でVSCodeへPULLすること。
+その後（Workflowが終わった）、数分待ってから手動でVSCodeへPULLしましょう。
 
 Q: Qiita Sync Checkでエラーが出る場合はどうすればいいのか？
-A: Qiita Sync Checkでエラーが出る場合は、Qiita Sync Checkを実行する前にVSCodeへPULLすること。
-そして手動でQiita Syncを実行すること。
+A: Qiita Sync Checkでエラーが出る場合は、Qiita Sync Checkを実行する前にVSCodeへPULLしましょう。
+そして手動でQiita Syncを実行しましょう。
 成功するとQiita Sync Checkが自動で起動して成功するはずです。
+成功したらもう一度PULLしましょう。
 
 # この記事に関して
 この記事は
