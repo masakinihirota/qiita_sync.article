@@ -50,13 +50,17 @@ https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
 Supabase の設定を `.env` に記載します。
 
-※Supabase の設定は私の過去の記事か、Bing や ChatGPT に聞いてください。
+※Supabase の設定は私の過去の記事か、BardやBing 、 ChatGPT に聞いてください。
 
-Bing
+Bard (Google製AI)
+
+https://bard.google.com/
+
+Bing (Microsoft製AI)
 
 https://www.bing.com/?cc=jp
 
-ChatGPT
+ChatGPT(OpenAI製AI)
 
 https://chat.openai.com/
 
@@ -209,12 +213,20 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=***********************
 
 ```
 
-作り方は以前の記事や、Bing や ChatGPT に聞いてください。
+※作り方は私の過去の記事か、BardやBing 、 ChatGPT に聞いてください。
 
-Bing
+Bard (Google製AI)
+
+https://bard.google.com/
+
+Bing (Microsoft製AI)
+
 https://www.bing.com/?cc=jp
-ChatGPT
+
+ChatGPT(OpenAI製AI)
+
 https://chat.openai.com/
+
 
 # 環境のコード
 
