@@ -1,11 +1,9 @@
 <!--
 title:   認証ボタンの作成 Next.js 13 (app router) with Supabase Authentication(メール認証)
 tags:    AppRouter,Next.js,Supabase,authentication
-id:      9ed5d7118262a3b90d3c
+id:      ab00d7bf70742d805573
 private: false
 -->
-
-
 # リポジトリ
 masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
@@ -37,7 +35,6 @@ Zod
 # 目的
 Next.js 13.4 と Supabaseの認証ヘルパーを使ってメール認証を実装する。
 
-※装飾は一切していません。
 
 # Next.js 13.4 について
 
@@ -66,7 +63,7 @@ React16.8 の Hooks以前（＝Class）、以後（＝Function）
 npx create-next-app@latest
 
 コマンドの実行
-```
+`
 05-09 03:38:29> npx create-next-app@latest
 √ What is your project named? ... [アプリ名]
 √ Would you like to use TypeScript with this project? ... No / [Yes]
@@ -158,7 +155,7 @@ https://chat.openai.com/
 
 
 #
-```.eslintrc.json
+`.eslintrc.json
 
 {
   "extends": "next/core-web-vitals",
@@ -199,7 +196,7 @@ module.exports = nextConfig
 
 
 #
-```src\styles\globals.css
+`src\styles\globals.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -250,7 +247,7 @@ module.exports = {
 
 
 #
-```tsconfig.json
+`tsconfig.json
 {
   "compilerOptions": {
     "target": "es5",
@@ -329,7 +326,7 @@ Interというフォントをダウンロードできないとなっているの
 
 
 #
-```src\app\layout.tsx
+`src\app\layout.tsx
 import { AuthProvider } from "@/components/Auth/AuthProvider"
 import createClient from "@/lib/supabase-server"
 import Link from "next/link"
@@ -416,7 +413,7 @@ export default function Home() {
 
 
 #
-```src\app\auth\page.tsx
+`src\app\auth\page.tsx
 "use client"
 
 import Link from "next/link"
@@ -473,7 +470,7 @@ export default function Loading() {
 
 
 #
-```src\app\profile\page.js
+`src\app\profile\page.js
 
 import Link from "next/link"
 import { redirect } from "next/navigation"
@@ -613,7 +610,7 @@ export const useAuth = () => {
 ```
 
 #
-```src\components\Auth\index.js
+`src\components\Auth\index.js
 'use client';
 
 import { useAuth, VIEWS } from "./AuthProvider"
@@ -728,7 +725,7 @@ export default ResetPassword
 
 
 #
-```src\components\Auth\SignIn.js
+`src\components\Auth\SignIn.js
 "use client"
 
 import { useState } from "react"
@@ -849,7 +846,7 @@ export default function SignOut() {
 
 
 #
-```src\components\Auth\SignUp.js
+`src\components\Auth\SignUp.js
 "use client"
 
 import { useState } from "react"
@@ -1006,7 +1003,7 @@ export default UpdatePassword
 
 
 ###
-```src\lib\supabase-browser.js
+`src\lib\supabase-browser.js
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 const supabase = createBrowserSupabaseClient();
