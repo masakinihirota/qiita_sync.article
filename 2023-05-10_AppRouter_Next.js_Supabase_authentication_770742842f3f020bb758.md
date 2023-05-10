@@ -9,6 +9,28 @@ private: false
 VNS.BLUE は 開発中のサイト名です、押すとトップに戻ります。
 サイト名は各自自由に変えてください。
 
+# 目的
+
+Next.js 13.4 と Supabase の認証ヘルパーを使ってメール認証を実装します。
+
+※装飾はほとんどしていません。(error 部分だけちょっと)
+
+※あくまでも勉強用です。実際のサービスには使わないでください。
+
+
+## 環境
+
+Windows10
+VSCode
+Next.js 13.4.1 app router
+TailwindCSS
+Supabase
+Supabase 認証ヘルパー
+react-hook-form
+Zod
+
+
+
 # リポジトリ
 
 masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
@@ -22,7 +44,7 @@ https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
 `cd .\Next.js13.4AppRouterWithSupabaseAuthentication\`
 
-`npm i`
+`npm install`
 
 ※ `gh`コマンドは、GitHub CLI をインストールしてください。
 
@@ -30,27 +52,22 @@ Supabase の設定を `.env` に記載します。
 
 ※Supabase の設定は私の過去の記事か、Bing や ChatGPT に聞いてください。
 
+Bing
+
+https://www.bing.com/?cc=jp
+
+ChatGPT
+
+https://chat.openai.com/
+
+
+
 ## 起動
 
 `npm run dev`
 
-## 環境
-
-Next.js 13.4.1 app router
-TailwindCSS
-Supabase
-Supabase 認証ヘルパー
-react-hook-form
-Zod
-VSCode
-Windows10
 
 
-# 目的
-
-Next.js 13.4 と Supabase の認証ヘルパーを使ってメール認証を実装する。
-
-※装飾はほとんどしていません。(error 部分だけちょっと)
 
 # Next.js 13.4 について
 
@@ -74,6 +91,8 @@ React16.8 の Hooks 以前（＝ Class）、以後（＝ Function）
 どのようなキャッシュ戦略がされているのかはわかりません。
 
 </details>
+
+
 
 # インストール
 
@@ -162,7 +181,7 @@ https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
 Supabase 関連の環境ファイルを作成します
 
-.env ファイルの作り方は私の以前の記事や、Bing や ChatGPT に聞いてください。
+`.env` ファイルの作り方は私の以前の記事や、Bing や ChatGPT に聞いてください。
 
 **「user:masakinihirota tag:supabase」**
 
@@ -175,7 +194,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=***********************
 
 ```
 
-`.env` 関連を `.gitignore ファイルに追加します。
+`.env` 関連を `.gitignore` ファイルに追加します。
 
 ```.gitignore
 
@@ -1022,7 +1041,7 @@ export default () =>
 
 ## src\styles ディレクトリ
 
-`globals.css`が `src` 直下に置かれているので、`styles` ディレクトリを作成して移動させます。
+`globals.css`が `src/app`ディレクトリの直下に置かれているので、`styles` ディレクトリを作成して移動させます。
 
 `src\app\globals.css`
 から
@@ -1070,20 +1089,27 @@ VNS.BLUEボタンを押してトップページに戻る。
 ※ VNS.BLUEは開発中のサイト名です。
 サイト名は各自自由に変えてください。
 
-#  Supabase と Vercel の連携
+
+以上で認証ボタンの作成は完了です。
+
+これよりしたは参考サイトのURL等です。
+
+# その他
+
+##  Supabase と Vercel の連携
+
+Vercelにデプロイする場合、連携しておくと ちょっと便利で安全です。
 
 何が嬉しいのか？
-Supabase と Vercel の連携をすると、環境変数が自動で設定されます。ローカルにダウンロードして`.env`ファイルも作成できます。
-
-### 参考記事
+Supabase と Vercel の連携をすると、環境変数が自動で設定されます。ローカルにダウンロードして`.env`ファイルも作成できます。環境変数ファイルを自分で管理を任せるので少し安全です。
 
 Next.js×Supabase×Vercel 連携について - Qiita
 
 https://qiita.com/kaho_eng/items/8a7faf77222a599fb31c
 
-### 参考 URL
+# 参考 URL
 
-### blog版
+## blog版
 
 app router (下記の page router 記事の app router へのアップデート版)
 Authentication in Next.js with Supabase and Next 13 - Mykhaylo Ryechkin
@@ -1097,7 +1123,7 @@ https://www.misha.wtf/blog/nextjs-supabase-auth
 
 ---
 
-### dev.to版
+## dev.to版
 
 https://dev.to/mryechkin/authentication-in-nextjs-with-supabase-and-next-13-36le
 
@@ -1112,7 +1138,7 @@ https://dev.to/mryechkin/user-authentication-in-nextjs-with-supabase-4l12
 話題の Supabase でサクッと認証機能をつくってみた！ - Qiita
 https://qiita.com/kaho_eng/items/cb8d735b5b6ca1b3a6c5
 
-### Supabase 公式
+## Supabase 公式
 
 Supabase 公式動画リスト
 Next.js with Supabase - YouTube
