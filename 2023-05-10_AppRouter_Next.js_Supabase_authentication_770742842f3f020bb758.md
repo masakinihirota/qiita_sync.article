@@ -5,13 +5,16 @@ id:      770742842f3f020bb758
 private: false
 -->
 
+# VNS.BLUEって何？
+VNS.BLUE は 開発中のサイト名です、押すとトップに戻ります。
+サイト名は各自自由に変えてください。
+
 # リポジトリ
 
 masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
 https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
-※ VNS.BLUE は 開発中のサイト名です、押すとトップに戻ります。
 
 ## インストール
 
@@ -42,6 +45,7 @@ Zod
 VSCode
 Windows10
 
+
 # 目的
 
 Next.js 13.4 と Supabase の認証ヘルパーを使ってメール認証を実装する。
@@ -56,15 +60,16 @@ Next.js 13.4 から App Router が安定版になりました。
 
 個人の感想としては
 
-App Router (Next 13.4 以後)
-サーバー優先
-
 Page Router (Next 13.4 以前)
-クライアント優先
+クライアント優先のアーキテクチャから
+
+App Router (Next 13.4 以後)
+サーバー優先へのアーキテクチャに変わったことになります。
 
 React16.8 の Hooks 以前（＝ Class）、以後（＝ Function）
 ぐらいの境目ではないでしょうか？
-実際に Next.js の pages と App Router は共存できるそうです。
+
+あと、実際に Next.js の pages Router と App Router は共存できるそうです。
 どっちが優先されて、どのような処理が行われるのか、
 どのようなキャッシュ戦略がされているのかはわかりません。
 
@@ -72,7 +77,7 @@ React16.8 の Hooks 以前（＝ Class）、以後（＝ Function）
 
 # インストール
 
-リポジトリを使用せずに、0 から構築していきます。
+リポジトリを使用せずに、0 からソースコードを見つつ認証ボタンアプリを構築していきます。
 
 ## フレームワークのインストール
 
@@ -93,7 +98,7 @@ Creating a new Next.js app in next13appauth\[アプリ名]
 
 ```
 
-※選択は、全部 [Yes] を選択かそのままリターンキーを押してください。
+※選択肢は、全部 [Yes] を選択かそのままリターンキーを押してください。
 
 インストールした先に移動します。
 `cd [アプリ名]`
@@ -108,33 +113,39 @@ Next.js 13.4.1
 
 素の Next.js 13.4.1 で
 npm run build や npm run dev 実行時に
-フォントがダウンロードできなというエラーが出る。
+フォントがダウンロードできなというエラーが出ます。
 
-解決策 1.指定のフォントを使わない
-
-1. フォントを別にローカルにダウンロードして指定する @next/font/local
+詳細は↓を御覧ください。Google FontsがダウンロードできないとIssuesが出ています。
 
 Error 'Failed to fetch `Noto Sans JP` from Google Fonts.' · Issue #45080 · vercel/next.js
 
 https://github.com/vercel/next.js/issues/45080
 
-2 バイト文字を使った大きなフォントファイルだとタイムアウトやその他の原因でおこるようだ。
+解決策
+
+1. 指定のフォントを使わない
+
+1. フォントを別にローカルにダウンロードして指定する @next/font/local
+
+２バイト文字を使った大きなフォントファイルだとタイムアウトやその他の原因でおこるようです。
 
 </details>
 
+
+
 # ライブラリをインストール
 
-認証、フォーム、バリデーション関連
+## 認証、フォーム、バリデーション関連
 
-## Supabase認証関連
+### Supabase認証関連
 `npm install @supabase/supabase-js@latest @supabase/auth-helpers-nextjs@latest classnames encoding`
 
-## フォーム関連
+### フォーム関連
 `npm install react-hook-form @hookform/resolvers`
 
 `npm install -D @tailwindcss/forms`
 
-## バリデーション関連
+### バリデーション関連
 `npm install zod`
 
 
@@ -150,6 +161,13 @@ https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 # 環境ファイルの作成
 
 Supabase 関連の環境ファイルを作成します
+
+.env ファイルの作り方は私の以前の記事や、Bing や ChatGPT に聞いてください。
+
+**「user:masakinihirota tag:supabase」**
+
+`https://qiita.com/search?q=user%3Amasakinihirota+tag%3Asupabase+`
+
 
 ```.env
 NEXT_PUBLIC_SUPABASE_URL=https://*****************.supabase.co
@@ -242,7 +260,6 @@ module.exports = {
 ```
 
 
-折りたたむ
 
 
 
@@ -250,16 +267,19 @@ module.exports = {
 
 `npm run dev`
 
-ターミナルにエラーが出ます。
+エラーが出てもそれはNext.js側のフォントのエラーが出ると思います。
+ダウンロードできなかったフォントのエラーの場合、代わりのフォントが使用されます。
+
+<details><summary>Next.jsのエラー(詳細)</summary>
+
+現時点で、ターミナルにエラーが出力されます。
 
 対処方法は
 `Inter` というフォントを使わないことです。
 Next.jsでデフォルトで採用されているフォントです。
 このアプリでは使用しません。
 
-<details><summary>以下詳細</summary>
-
-
+ターミナルのログ
 
 ```terminal
 - wait compiling /page (client and server)...
@@ -288,13 +308,11 @@ const inter = Inter({ subsets: ['latin'] })
 
 ```
 
-`Inter` というフォントをダウンロードできないとなっているので
-このフォントを使わなければこのエラーは消えます。
-根本的な解消方法ではありませんが、今回はこのフォントを使わないことにします。
-
+`Inter` というフォントをダウンロードできないとなっているのでこのフォントを使わなければこのエラーは消えます、根本的な解消方法ではありませんが今回はこのフォントを使わないことにします。
 
 </details>
 
+# トップページのソースコード
 
 ## src\appディレクトリ
 
@@ -386,6 +404,8 @@ export default function Home() {
 }
 
 ```
+
+# 認証ボタンのソースコード
 
 ## src\app\authButtonディレクトリ
 
@@ -1002,6 +1022,15 @@ export default () =>
 
 ## src\styles ディレクトリ
 
+`globals.css`が `src` 直下に置かれているので、`styles` ディレクトリを作成して移動させます。
+
+`src\app\globals.css`
+から
+`src\styles\globals.css`
+へ移動させます。
+
+中身も↓のようにTailwindCSSの設定部分の下側をすべて削除しました。
+
 ### src\styles\globals.css
 
 ```src\styles\globals.css
@@ -1013,27 +1042,33 @@ export default () =>
 
 
 
-# 動かす
+# 認証ボタンの動作確認を行います。
 
-npm run dev
+`npm run dev`
 
+## 動作確認
 
-# 動作確認
+認証ボタンを押す。
 
-認証ボタンを押す
+メールアドレスとパスワードを用いてアカウントを作成する。
 
-メールアドレスとパスワードを用いてアカウントを作る
+> ↓アカウントが無い場合は
+VNS.BLUEに登録ボタンを押す。
 
-メールアドレスとパスワードを用いてログインする
+ログアウトする。
+
+メールアドレスとパスワードを用いてログインする。
+
+自分のプロフィールを見る。
 
 パスワードを忘れた場合の動作を確認する。
 
-トップページに戻る
+VNS.BLUEボタンを押してトップページに戻る。
 
+ホームに戻る。ボタンを押してトップページに戻る。
 
-
-
-
+※ VNS.BLUEは開発中のサイト名です。
+サイト名は各自自由に変えてください。
 
 #  Supabase と Vercel の連携
 
@@ -1091,4 +1126,12 @@ Supabase Auth with Next.js app directory | Supabase Docs
 https://supabase.com/docs/guides/auth/auth-helpers/nextjs-server-components
 
 
+# Qiita記事をGitHub上で管理する。
 
+## qiita_sync
+
+qiita-syncの導入 体験記 - Qiita
+https://qiita.com/masakinihirota/items/ecd8383bcfea2cb5c8bd
+
+masakinihirota/qiita_sync.article
+https://github.com/masakinihirota/qiita_sync.article
