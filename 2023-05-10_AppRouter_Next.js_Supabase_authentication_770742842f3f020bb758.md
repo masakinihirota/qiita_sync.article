@@ -4,66 +4,83 @@ tags:    AppRouter,Next.js,Supabase,authentication
 id:      770742842f3f020bb758
 private: false
 -->
+
 # リポジトリ
+
 masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
 https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
+※ VNS.BLUE は 開発中のサイト名です、押すとトップに戻ります。
+
 ## インストール
+
 `gh repo clone masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication`
+
+`cd .\Next.js13.4AppRouterWithSupabaseAuthentication\`
 
 `npm i`
 
-※  `gh`コマンドは、GitHub CLI をインストールしてください。
+※ `gh`コマンドは、GitHub CLI をインストールしてください。
 
-Supabaseの設定を `.env` に記載します。
+Supabase の設定を `.env` に記載します。
+
+※Supabase の設定は私の過去の記事か、Bing や ChatGPT に聞いてください。
 
 ## 起動
 
 `npm run dev`
 
-
 ## 環境
+
 Next.js 13.4.1 app router
 TailwindCSS
 Supabase
 Supabase 認証ヘルパー
 react-hook-form
 Zod
-
+VSCode
+Windows10
 
 # 目的
-Next.js 13.4 と Supabaseの認証ヘルパーを使ってメール認証を実装する。
 
+Next.js 13.4 と Supabase の認証ヘルパーを使ってメール認証を実装する。
+
+※装飾はほとんどしていません。(error 部分だけちょっと)
 
 # Next.js 13.4 について
 
-折りたたむ
+<details><summary>個人の感想</summary>
 
-(Next.js 13.4からApp Routerが安定版になりました。)
+Next.js 13.4 から App Router が安定版になりました。
 
 個人の感想としては
 
-App Routerr (Next 13.4 以後)
+App Router (Next 13.4 以後)
 サーバー優先
 
 Page Router (Next 13.4 以前)
 クライアント優先
 
-React16.8 の Hooks以前（＝Class）、以後（＝Function）
+React16.8 の Hooks 以前（＝ Class）、以後（＝ Function）
 ぐらいの境目ではないでしょうか？
-実際にNext.jsのpagesとApp Routerは共存できるそうです。
+実際に Next.js の pages と App Router は共存できるそうです。
 どっちが優先されて、どのような処理が行われるのか、
 どのようなキャッシュ戦略がされているのかはわかりません。
 
+</details>
+
 # インストール
+
+リポジトリを使用せずに、0 から構築していきます。
 
 ## フレームワークのインストール
 
-npx create-next-app@latest
+`npx create-next-app@latest`
 
 コマンドの実行
-`
+
+```terminal
 05-09 03:38:29> npx create-next-app@latest
 √ What is your project named? ... [アプリ名]
 √ Would you like to use TypeScript with this project? ... No / [Yes]
@@ -72,53 +89,67 @@ npx create-next-app@latest
 √ Would you like to use `src/` directory with this project? ... No / [Yes]
 √ Use App Router (recommended)? ... No / [Yes]
 √ Would you like to customize the default import alias? ... No / [Yes]
-Creating a new Next.js app in C:\2023src\next13appauth\[アプリ名]
+Creating a new Next.js app in next13appauth\[アプリ名]
 
 ```
+
+※選択は、全部 [Yes] を選択かそのままリターンキーを押してください。
+
+インストールした先に移動します。
+`cd [アプリ名]`
+
+この場所で VSCode を開きます。
+`code .`
 
 インストールしたバージョン
 Next.js 13.4.1
 
-問題点
-素のNext.js 13.4.1で
-npm run buildやnpm run dev実行時に
+<details><summary>問題点(この記事と直接関係はありません)</summary>
+
+素の Next.js 13.4.1 で
+npm run build や npm run dev 実行時に
 フォントがダウンロードできなというエラーが出る。
 
-解決策
-1.指定のフォントを使わない
+解決策 1.指定のフォントを使わない
+
 1. フォントを別にローカルにダウンロードして指定する @next/font/local
 
 Error 'Failed to fetch `Noto Sans JP` from Google Fonts.' · Issue #45080 · vercel/next.js
+
 https://github.com/vercel/next.js/issues/45080
 
-2バイト文字など大きなファイルだとタイムアウトやその他の原因でおこるようだ。
+2 バイト文字を使った大きなフォントファイルだとタイムアウトやその他の原因でおこるようだ。
 
-
+</details>
 
 # ライブラリをインストール
 
 認証、フォーム、バリデーション関連
 
+## Supabase認証関連
 `npm install @supabase/supabase-js@latest @supabase/auth-helpers-nextjs@latest classnames encoding`
+
+## フォーム関連
 `npm install react-hook-form @hookform/resolvers`
+
 `npm install -D @tailwindcss/forms`
+
+## バリデーション関連
 `npm install zod`
 
 
-# Githubにpush
+
+# Github に push
+
+アップロードしたリポジトリ
 
 masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
 https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
 
-
-
-
-
-
 # 環境ファイルの作成
 
-Supabase関連の環境ファイルを作成します
+Supabase 関連の環境ファイルを作成します
 
 ```.env
 NEXT_PUBLIC_SUPABASE_URL=https://*****************.supabase.co
@@ -126,9 +157,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=***********************
 
 ```
 
-.env関連を.gitignoreファイルに追加します。
+`.env` 関連を `.gitignore ファイルに追加します。
 
 ```.gitignore
+
 # local env files
 .env*.local
 .env.development.local
@@ -140,23 +172,19 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=***********************
 
 ```
 
-作り方は以前の記事や、BingやChatGPTに聞いてください。
+作り方は以前の記事や、Bing や ChatGPT に聞いてください。
 
 Bing
 https://www.bing.com/?cc=jp
 ChatGPT
 https://chat.openai.com/
 
+# 環境のコード
 
 
+### .eslintrc.json
 
-
-
-
-
-#
-`.eslintrc.json
-
+```.eslintrc.json
 {
   "extends": "next/core-web-vitals",
   "rules": {
@@ -164,23 +192,21 @@ https://chat.openai.com/
     "no-shadow": "warn",
     // 未使用の変数がある場合に警告を表示する
     "no-unused-vars": "warn",
-    // Reactフックで使用される依存関係がすべて指定されていることを確認する
+    // React フックで使用される依存関係がすべて指定されていることを確認する
     "react-hooks/exhaustive-deps": "warn",
-    // Reactの関数コンポーネントの書き方についての規約を定めるために使用されます。
+    // React の関数コンポーネントの書き方についての規約を定めるために使用されます。
     "react/function-component-definition": "off",
-    // JSX内で関数のバインドを禁止する
+    // JSX 内で関数のバインドを禁止する
     "react/jsx-no-bind": "off",
-    // JSXでReactを使用する際に、必ずReactをインポートすることを強制するルール
+    // JSX で React を使用する際に、必ず React をインポートすることを強制するルール
     "react/react-in-jsx-scope": "off"
   }
 }
 
 ```
 
+### next.config.js
 
-
-
-#
 ```next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = { reactStrictMode: true }
@@ -189,34 +215,8 @@ module.exports = nextConfig
 
 ```
 
+### tailwind.config.js
 
-
-
-
-
-
-#
-`src\styles\globals.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-```
-
-
-
-
-
-#
-
-
-
-
-
-
-
-#
 ```tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 const forms = require("@tailwindcss/forms")
@@ -242,52 +242,24 @@ module.exports = {
 ```
 
 
+折りたたむ
 
 
 
+# 現時点で起動確認
 
-#
-`tsconfig.json
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
-}
+`npm run dev`
 
-```
+ターミナルにエラーが出ます。
+
+対処方法は
+`Inter` というフォントを使わないことです。
+Next.jsでデフォルトで採用されているフォントです。
+このアプリでは使用しません。
+
+<details><summary>以下詳細</summary>
 
 
-
-
-
-
-#
-起動確認
-
-npm run dev
 
 ```terminal
 - wait compiling /page (client and server)...
@@ -316,24 +288,28 @@ const inter = Inter({ subsets: ['latin'] })
 
 ```
 
-Interというフォントをダウンロードできないとなっているので
+`Inter` というフォントをダウンロードできないとなっているので
 このフォントを使わなければこのエラーは消えます。
-根本的な解消方法ではありませんが、
-色々と調べみてこの結論に至りました。
+根本的な解消方法ではありませんが、今回はこのフォントを使わないことにします。
 
 
+</details>
 
 
+## src\appディレクトリ
 
-#
-`src\app\layout.tsx
+### src\app\layout.tsx
+
+上書きします。
+
+```src\app\layout.tsx
 import { AuthProvider } from "@/components/Auth/AuthProvider"
 import createClient from "@/lib/supabase-server"
 import Link from "next/link"
 
 import "@/styles/globals.css"
 
-// layoutはキャッシュしないでください。:特に動的なサイトの場合は、revalidateを0に設定してください。
+// layout はキャッシュしないでください。:特に動的なサイトの場合は、revalidate を 0 に設定してください。
 export const revalidate = 0
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -361,9 +337,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 
 
+### src\app\page.tsx
 
+このページも上書きします。
 
-#
 ```src\app\page.tsx
 "use client"
 import Link from "next/link"
@@ -410,10 +387,12 @@ export default function Home() {
 
 ```
 
+## src\app\authButtonディレクトリ
+
+### src\app\authButton\page.tsx
 
 
-#
-`src\app\auth\page.tsx
+```src\app\authButton\page.tsx
 "use client"
 
 import Link from "next/link"
@@ -457,9 +436,12 @@ export default function Home() {
 
 ```
 
+## src\app\profile ディレクトリ
 
 
-#
+
+### src\app\profile\loading.js
+
 ```src\app\profile\loading.js
 export default function Loading() {
   return <div>データロード中...</div>
@@ -469,9 +451,9 @@ export default function Loading() {
 
 
 
-#
-`src\app\profile\page.js
+### src\app\profile\page.js
 
+```src\app\profile\page.js
 import Link from "next/link"
 import { redirect } from "next/navigation"
 
@@ -507,13 +489,10 @@ export default async function Profile() {
 
 
 
+## src\components\Auth ディレクトリ
 
-#
+### src\components\Auth\AuthProvider.js
 
-
-
-
-#
 ```src\components\Auth\AuthProvider.js
 "use client"
 
@@ -609,43 +588,43 @@ export const useAuth = () => {
 
 ```
 
-#
-`src\components\Auth\index.js
-'use client';
+### src\components\Auth\index.js
+
+```src\components\Auth\index.js
+"use client"
 
 import { useAuth, VIEWS } from "./AuthProvider"
 import ResetPassword from "./ResetPassword"
 import SignIn from "./SignIn"
-import SignUp from './SignUp';
-import UpdatePassword from './UpdatePassword';
+import SignUp from "./SignUp"
+import UpdatePassword from "./UpdatePassword"
 
 const Auth = ({ view: initialView }) => {
-  let { view } = useAuth();
+  let { view } = useAuth()
 
   if (initialView) {
-    view = initialView;
+    view = initialView
   }
 
   switch (view) {
     case VIEWS.UPDATE_PASSWORD:
-      return <UpdatePassword />;
+      return <UpdatePassword />
     case VIEWS.FORGOTTEN_PASSWORD:
-      return <ResetPassword />;
+      return <ResetPassword />
     case VIEWS.SIGN_UP:
-      return <SignUp />;
+      return <SignUp />
     default:
-      return <SignIn />;
+      return <SignIn />
   }
-};
+}
 
-export default Auth;
+export default Auth
 
 
 ```
 
+### src\components\Auth\ResetPassword.js
 
-
-#
 ```src\components\Auth\ResetPassword.js
 "use client"
 
@@ -719,13 +698,12 @@ const ResetPassword = () => {
 
 export default ResetPassword
 
-
 ```
 
 
+### src\components\Auth\SignIn.js
 
-#
-`src\components\Auth\SignIn.js
+```src\components\Auth\SignIn.js
 "use client"
 
 import { useState } from "react"
@@ -811,12 +789,10 @@ const SignIn = () => {
 
 export default SignIn
 
-
 ```
 
+### src\components\Auth\SignOut.js
 
-
-#
 ```src\components\Auth\SignOut.js
 "use client"
 
@@ -840,13 +816,11 @@ export default function SignOut() {
   )
 }
 
-
 ```
 
+### src\components\Auth\SignUp.js
 
-
-#
-`src\components\Auth\SignUp.js
+```src\components\Auth\SignUp.js
 "use client"
 
 import { useState } from "react"
@@ -933,12 +907,11 @@ const SignUp = () => {
 
 export default SignUp
 
-
 ```
 
 
+## src\components\Auth\UpdatePassword.js
 
-#
 ```src\components\Auth\UpdatePassword.js
 "use client"
 
@@ -997,25 +970,23 @@ const UpdatePassword = () => {
 
 export default UpdatePassword
 
-
 ```
 
+## src\lib ディレクトリ
 
+### src\lib\supabase-browser.js
 
-###
-`src\lib\supabase-browser.js
+```src\lib\supabase-browser.js
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 const supabase = createBrowserSupabaseClient();
 
 export default supabase;
 
-
 ```
 
+### src\lib\supabase-server.js
 
-
-#
 ```src\lib\supabase-server.js
 import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { cookies, headers } from 'next/headers';
@@ -1027,29 +998,59 @@ export default () =>
     cookies,
   });
 
+```
+
+## src\styles ディレクトリ
+
+### src\styles\globals.css
+
+```src\styles\globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 ```
 
 
-# Supabase と Vercelの連携
 
-## 何が嬉しいのか？
+# 動かす
 
-Supabase と Vercelの連携をすると、環境変数が自動で設定されます。ローカルにダウンロードして`.env`ファイルも作成できます。
+npm run dev
 
-## 参考記事
 
-Next.js×Supabase×Vercel連携について - Qiita
+# 動作確認
+
+認証ボタンを押す
+
+メールアドレスとパスワードを用いてアカウントを作る
+
+メールアドレスとパスワードを用いてログインする
+
+パスワードを忘れた場合の動作を確認する。
+
+トップページに戻る
+
+
+
+
+
+
+#  Supabase と Vercel の連携
+
+何が嬉しいのか？
+Supabase と Vercel の連携をすると、環境変数が自動で設定されます。ローカルにダウンロードして`.env`ファイルも作成できます。
+
+### 参考記事
+
+Next.js×Supabase×Vercel 連携について - Qiita
 
 https://qiita.com/kaho_eng/items/8a7faf77222a599fb31c
 
+### 参考 URL
 
+### blog版
 
-# 参考URL
-
-## blog版
-
-app router (下記のpage router記事のapp routerへのアップデート版)
+app router (下記の page router 記事の app router へのアップデート版)
 Authentication in Next.js with Supabase and Next 13 - Mykhaylo Ryechkin
 
 https://www.misha.wtf/blog/supabase-auth-next-13#server-component-client
@@ -1061,10 +1062,7 @@ https://www.misha.wtf/blog/nextjs-supabase-auth
 
 ---
 
-## dev.to版
-
-検索結果
-Authentication in Next.js with Supabase and Next 13 - DEV Community
+### dev.to版
 
 https://dev.to/mryechkin/authentication-in-nextjs-with-supabase-and-next-13-36le
 
@@ -1076,10 +1074,10 @@ User Authentication in Next.js with Supabase - DEV Community
 
 https://dev.to/mryechkin/user-authentication-in-nextjs-with-supabase-4l12
 
-話題のSupabaseでサクッと認証機能をつくってみた！ - Qiita
+話題の Supabase でサクッと認証機能をつくってみた！ - Qiita
 https://qiita.com/kaho_eng/items/cb8d735b5b6ca1b3a6c5
 
-## Supabase 公式
+### Supabase 公式
 
 Supabase 公式動画リスト
 Next.js with Supabase - YouTube
@@ -1091,3 +1089,6 @@ Supabase 公式ドキュメント
 Supabase Auth with Next.js app directory | Supabase Docs
 
 https://supabase.com/docs/guides/auth/auth-helpers/nextjs-server-components
+
+
+
