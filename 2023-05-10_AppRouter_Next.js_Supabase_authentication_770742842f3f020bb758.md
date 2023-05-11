@@ -4,10 +4,39 @@ tags:    AppRouter,Next.js,Supabase,authentication
 id:      770742842f3f020bb758
 private: false
 -->
-
 # VNS.BLUEって何？
 VNS.BLUE は 開発中のサイト名です、押すとトップに戻ります。
 サイト名は各自自由に変えてください。
+
+# スクリーンショット
+
+
+![001.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/1c898285-0c72-464b-ea82-f0b1d83030d1.png)
+
+
+![002.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/a1ae7e25-9ceb-088b-a06a-38246f58e2e8.png)
+
+![003.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/c0754b66-0215-6b83-4109-c56dc41ede11.png)
+
+![004.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/1b2b3bef-21b4-84d9-2a18-197320568980.png)
+
+![005.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/eadb13b2-cc7b-6d97-ed7a-989361759a54.png)
+
+![006.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/14dbed6c-adbf-9adb-be34-9eb19d78a47b.png)
+
+![007.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/b4146f2a-1ed5-0916-69e7-e7a0ded6f0e6.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 目的
 
