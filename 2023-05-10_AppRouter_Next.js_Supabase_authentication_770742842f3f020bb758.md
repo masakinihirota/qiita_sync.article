@@ -237,17 +237,11 @@ https://chat.openai.com/
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    // 同じ名前の変数が複数のスコープで使用されると警告を表示する
     "no-shadow": "warn",
-    // 未使用の変数がある場合に警告を表示する
     "no-unused-vars": "warn",
-    // React フックで使用される依存関係がすべて指定されていることを確認する
     "react-hooks/exhaustive-deps": "warn",
-    // React の関数コンポーネントの書き方についての規約を定めるために使用されます。
     "react/function-component-definition": "off",
-    // JSX 内で関数のバインドを禁止する
     "react/jsx-no-bind": "off",
-    // JSX で React を使用する際に、必ず React をインポートすることを強制するルール
     "react/react-in-jsx-scope": "off"
   }
 }

@@ -1,12 +1,12 @@
 <!--
 title:   Next.js 13 (app router) with Supabase Authentication の解説
-tags:    AppRunner,Next.js
+tags:    AppRouter,Next.js,Supabase,authentication
 id:      3b063f27ce902db68b05
 private: true
 -->
 
 # VNS.BLUEって何？
-VNS.BLUE は 開発中のサイト名です、押すとトップに戻ります。
+VNS.BLUE は 開発中のサイト名です、ボタンになっていて押すとトップに戻ります。
 サイト名は各自自由に変えてください。
 
 # 目的
@@ -70,30 +70,6 @@ Creating a new Next.js app in next13appauth\[アプリ名]
 インストールしたバージョン
 Next.js 13.4.1
 
-<details><summary>問題点(この記事と直接関係はありません)</summary>
-
-素の Next.js 13.4.1 で
-npm run build や npm run dev 実行時に
-フォントがダウンロードできなというエラーが出ます。
-
-詳細は↓を御覧ください。Google FontsがダウンロードできないとIssuesが出ています。
-
-Error 'Failed to fetch `Noto Sans JP` from Google Fonts.' · Issue #45080 · vercel/next.js
-
-https://github.com/vercel/next.js/issues/45080
-
-解決策
-
-1. 指定のフォントを使わない
-
-1. フォントを別にローカルにダウンロードして指定する @next/font/local
-
-２バイト文字を使った大きなフォントファイルだとタイムアウトやその他の原因でおこるようです。
-
-</details>
-
-
-
 # ライブラリをインストール
 
 ## 認証、フォーム、バリデーション関連
@@ -109,26 +85,7 @@ https://github.com/vercel/next.js/issues/45080
 ### バリデーション関連
 `npm install zod`
 
-
-
-# Github に push
-
-アップロードしたリポジトリ
-
-masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
-
-https://github.com/masakinihirota/Next.js13.4AppRouterWithSupabaseAuthentication
-
 # 環境ファイルの作成
-
-Supabase 関連の環境ファイルを作成します
-
-`.env` ファイルの作り方は私の以前の記事や、Bing や ChatGPT に聞いてください。
-
-**「user:masakinihirota tag:supabase」**
-
-https://qiita.com/search?q=user%3Amasakinihirota+tag%3Asupabase+
-
 
 ```.env
 NEXT_PUBLIC_SUPABASE_URL=https://*****************.supabase.co
@@ -151,23 +108,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=***********************
 
 ```
 
-※作り方は私の過去の記事か、BardやBing 、 ChatGPT に聞いてください。
-
-Bard (Google製AI)
-
-https://bard.google.com/
-
-Bing (Microsoft製AI)
-
-https://www.bing.com/?cc=jp
-
-ChatGPT(OpenAI製AI)
-
-https://chat.openai.com/
-
-
 # 環境のコード
-
 
 ### .eslintrc.json
 
