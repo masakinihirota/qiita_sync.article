@@ -189,7 +189,7 @@ Supabase 関連の環境ファイルを作成します
 
 **「user:masakinihirota tag:supabase」**
 
-`https://qiita.com/search?q=user%3Amasakinihirota+tag%3Asupabase+`
+https://qiita.com/search?q=user%3Amasakinihirota+tag%3Asupabase+
 
 
 ```.env
