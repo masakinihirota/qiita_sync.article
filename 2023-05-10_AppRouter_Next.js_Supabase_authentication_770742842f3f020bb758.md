@@ -228,7 +228,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=***********************
 
 ```
 
-※作り方は私の過去の記事か、BardやBing 、 ChatGPT に聞いてください。
+※作り方は私の過去の記事か、BardやBing 、ChatGPT に聞いてください。
 
 Bard (Google製AI)
 
