@@ -1002,12 +1002,12 @@ https://qiita.com/kaho_eng/items/8a7faf77222a599fb31c
 
 ## blog版
 
-app router (下記の page router 記事の app router へのアップデート版)
+app router版 (下記の page router 記事の app router へのアップデート版)
 Authentication in Next.js with Supabase and Next 13 - Mykhaylo Ryechkin
 
-https://www.misha.wtf/blog/supabase-auth-next-13#server-component-client
+https://www.misha.wtf/blog/supabase-auth-next-13
 
-page router
+page router版
 User Authentication in Next.js with Supabase - Mykhaylo Ryechkin
 
 https://www.misha.wtf/blog/nextjs-supabase-auth
@@ -1027,6 +1027,7 @@ User Authentication in Next.js with Supabase - DEV Community
 https://dev.to/mryechkin/user-authentication-in-nextjs-with-supabase-4l12
 
 話題の Supabase でサクッと認証機能をつくってみた！ - Qiita
+
 https://qiita.com/kaho_eng/items/cb8d735b5b6ca1b3a6c5
 
 ## Supabase 公式
@@ -1048,7 +1049,9 @@ https://supabase.com/docs/guides/auth/auth-helpers/nextjs-server-components
 ## qiita_sync
 
 qiita-syncの導入 体験記 - Qiita
+
 https://qiita.com/masakinihirota/items/ecd8383bcfea2cb5c8bd
 
 masakinihirota/qiita_sync.article
+
 https://github.com/masakinihirota/qiita_sync.article
