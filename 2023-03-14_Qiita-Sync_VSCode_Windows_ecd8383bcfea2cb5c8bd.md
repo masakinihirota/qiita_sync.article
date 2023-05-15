@@ -14,6 +14,38 @@ Qiita上で更新をGitHubに反映させた後、ローカル側でのPULLも�
 
 ---
 
+
+
+# まとめ
+Q: 記事を書く手順は？
+A:
+1. Qiita上で限定共有投稿で記事を書きます。
+そうすると、Qiitaからidが割り振られた非公開の記事が出来ます。
+
+1. そうしてからQiita SyncとQiitaSync Checkを実行します。（例えば、ローカルで記事を変更してPUSHするとこのコマンドの実行が開始されます。）
+
+1. GitHub上にQiitaの記事が反映されるのでPULLするとローカルにも新たにidが割り振られた.mdファイルができます。
+
+1. そのファイルを自由に編集します。
+
+1. private: falseにします。
+
+1. その後はPUSHすると自動でQiitaに反映されます。
+
+※ この方法だとid問題でのトラブルを回避することが出来ます。
+
+Q: VSCodeからQiitaへアップする記事を書くにはどうすればいいのか？
+A: 新規記事をVSCodeで書く場合は、テンプレートを使い記事を書きます。
+それをGithubにPUSHしたあと Workflowが自動実行してQiitaに反映されます。
+その後（Workflowが終わった）、数分待ってから手動でVSCodeへPULLしましょう。
+
+Q: Qiita Sync Checkでエラーが出る場合はどうすればいいのか？
+A: Qiita Sync Checkでエラーが出る場合は、Qiita Sync Checkを実行する前にVSCodeへPULLしましょう。
+そして手動でQiita Syncを実行しましょう。
+成功するとQiita Sync Checkが自動で起動して成功するはずです。
+成功したらもう一度PULLしましょう。
+
+
 # Qiita SyncとQiita Sync Checkでやらかし。
 
 新規でローカルで記事を書いてからQiitaへアップする場合、もちろんidは割り振られてないのでid:の行は削除しておきます。
