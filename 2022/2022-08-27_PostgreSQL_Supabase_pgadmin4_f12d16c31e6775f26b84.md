@@ -912,7 +912,7 @@ postgresqlではデータベースを作成すると自動的にpublicと呼ば�
 
 
 
-# BUG
+# バグ
 
 Getting error "relation "pgsodium.key_key_id_seq" does not exist (SQLSTATE 42P01)" when using "db remote commit" · Issue #8616 · supabase/supabase
 https://github.com/supabase/supabase/issues/8616
