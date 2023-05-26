@@ -33,6 +33,7 @@ https://github.com/trpc/trpc
 [![Star History Chart](https://api.star-history.com/svg?repos=trpc/trpc&type=Date)](https://star-history.com/#trpc/trpc)
 
 #### Star数
+**2023/05/27 25.9K**
 **2023/01/25 20.0k**
 **2023/01/23 19.8k**
 **2023/01/15 19.2k**
