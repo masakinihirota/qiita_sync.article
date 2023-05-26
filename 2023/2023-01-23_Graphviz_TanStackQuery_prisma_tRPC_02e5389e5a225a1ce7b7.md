@@ -291,7 +291,7 @@ hello client
 
 フロントエンド側からバックエンドへプロシージャ関数を利用してデータの状態管理をおこなう。
 この時に使用される技術がtRPCです。
-プロシージャ関数がTtRPC技術でanstack QueryのuseQueryを使用します。
+プロシージャ関数がtRPC技術でTanstack QueryのuseQueryを使用します。
 tRPCは `useQuery`をラップして使っている技術です。
 tRPCの派生で`Jotai`をラップしている `jotai-trpc`もあります。
 
