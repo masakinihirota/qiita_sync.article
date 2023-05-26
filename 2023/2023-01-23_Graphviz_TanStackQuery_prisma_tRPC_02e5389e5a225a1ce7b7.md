@@ -267,8 +267,9 @@ export default function IndexPage() {
 
 ソースはこれで完成です、早速動かしてみます。
 
-```powershellsh
+```powershell
 npm run dev
+
 ```
 
 http://localhost:3000/
@@ -417,8 +418,8 @@ export default trpc.withTRPC(MyApp);
 
 ```
 
-
 tRPCのhooksを利用する。
+
 ```src\utils\trpc.ts
 // フロントエンド側
 // データを取得するため
