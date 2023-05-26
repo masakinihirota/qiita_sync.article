@@ -428,7 +428,7 @@ export default trpc.withTRPC(MyApp);
 
 tRPC の hooks を利用する。
 
-`src\utils\trpc.ts
+```src\utils\trpc.ts
 // フロントエンド側
 // データを取得するため
 import { httpBatchLink, loggerLink, httpLink } from '@trpc/client';
