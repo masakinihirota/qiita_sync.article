@@ -15,7 +15,7 @@ AIがソース付きで質問に答えてくれる。
 追記終了
 
 # 初めに
-tRPCの記事は2個目[超入門 tRPC ハンズオン v10～](https://qiita.com/masakinihirota/items/771036db647e9394a8fd)です、ベータが取れたこともあり改めて調べてみました。
+tRPCの記事は2個目[超入門 tRPC ハンズオン v10～](../2022/2022-09-21_tRPC_771036db647e9394a8fd.md)です、ベータが取れたこともあり改めて調べてみました。
 
 
 
@@ -419,7 +419,7 @@ export default trpc.withTRPC(MyApp);
 
 
 tRPCのhooksを利用する。
-```src\utils\trpc.ts
+`src\utils\trpc.ts
 // フロントエンド側
 // データを取得するため
 import { httpBatchLink, loggerLink, httpLink } from '@trpc/client';
