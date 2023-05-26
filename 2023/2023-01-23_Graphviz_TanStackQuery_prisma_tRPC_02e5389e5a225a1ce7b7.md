@@ -4,61 +4,66 @@ tags:    Graphviz,TanStackQuery,prisma,tRPC
 id:      02e5389e5a225a1ce7b7
 private: false
 -->
-追記 2023年1月31日
+
+追記 2023 年 1 月 31 日
 Perplexity AI: Ask Anything
 https://www.perplexity.ai/
 
-AIがソース付きで質問に答えてくれる。
+AI がソース付きで質問に答えてくれる。
 `とはなんですか？日本語で解説してください。`
 と質問の単語、文の後にこの文を追記すると日本語で答えてくれる。
 
 追記終了
 
 # 初めに
-tRPCの記事は2個目[超入門 tRPC ハンズオン v10～](../2022/2022-09-21_tRPC_771036db647e9394a8fd.md)です、ベータが取れたこともあり改めて調べてみました。
 
+tRPC の記事は 2 個目[超入門 tRPC ハンズオン v10 ～](../2022/2022-09-21_tRPC_771036db647e9394a8fd.md)です、ベータが取れたこともあり改めて調べてみました。
 
+## tRPC の紹介
 
-## tRPCの紹介
 ### 公式
+
 tRPC - Move Fast and Break Nothing. End-to-end typesafe APIs made easy. | tRPC
 https://trpc.io/
 
 ### github
+
 trpc/trpc: 🧙‍♀️ Move Fast and Break Nothing. End-to-end typesafe APIs made easy.
 https://github.com/trpc/trpc
 
-### Githubでの Star History
+### Github での Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=trpc/trpc&type=Date)](https://star-history.com/#trpc/trpc)
 
-#### Star数
+#### Star 数
+
 **2023/05/27 25.9K**
 **2023/01/25 20.0k**
 **2023/01/23 19.8k**
 **2023/01/15 19.2k**
 **2022/09/22 13.1k**
 
-### tRPCの立ち位置
+### tRPC の立ち位置
 
 ![tRPCvsGraphQL枠.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/8a88dfce-465a-29c2-619f-90445545b633.png)
-
 
 勢力図
 
 ![ベン図.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/e8638611-3560-6173-f0b1-14ee643f699d.png)
 
-# tRPCの初見の感想
-tRPCは初見では何がどう動いているのかさっぱりわかりません。
+# tRPC の初見の感想
 
-他のRPCを触っていたのならばこれはこうだろうと推測できると思いますが、
-初めてRPCを触った場合に、どうすればいいのか調査していきます。
+tRPC は初見では何がどう動いているのかさっぱりわかりません。
+
+他の RPC を触っていたのならばこれはこうだろうと推測できると思いますが、
+初めて RPC を触った場合に、どうすればいいのか調査していきます。
 
 ## RPC（Remote Procedure Call）とは
+
 あるコンピュータで動作するソフトウェアから、通信回線やコンピュータネットワークを通じて別のコンピュータ上で動作するソフトウェアへ命令を出して実行させる技術。
 
-
 # 環境
+
 Windows10
 VScode
 PowerShell
@@ -66,15 +71,16 @@ Typescript
 Next.js
 
 # ソース
+
 基本的にこのページのソースを使います。
 
-Next.jsでの使い方 | tRPC
+Next.js での使い方 | tRPC
 https://trpc.io/docs/nextjs
 
 採用理由
-tRPCはフロントエンド、バックエンド両側ともTypescriptが必須であること
-Next.jsにはフロントエンド、バックエンドが揃っていること。
-tRPCを一番利用するBFF(backend for frontend)がNext.jsだと思うから。
+tRPC はフロントエンド、バックエンド両側とも Typescript が必須であること
+Next.js にはフロントエンド、バックエンドが揃っていること。
+tRPC を一番利用する BFF(backend for frontend)が Next.js だと思うから。
 
 まずは最初に動かしてみます。
 
@@ -111,9 +117,10 @@ Rename-Item src\pages\index.js index.tsx
 ```
 
 # 最小構成のソース
-## tRPCルーターの作成
 
-Next.jsでの使い方 | tRPC
+## tRPC ルーターの作成
+
+Next.js での使い方 | tRPC
 https://trpc.io/docs/nextjs
 ソースはこのページのを利用しています。
 
@@ -263,7 +270,7 @@ export default function IndexPage() {
 
 ※ src\utils\trpc.ts でエラーが出るが問題なく動きます。
 公式ページのエラー？
-23行目 configの下に赤い線が表示されます。
+23 行目 config の下に赤い線が表示されます。
 
 ソースはこれで完成です、早速動かしてみます。
 
@@ -277,24 +284,23 @@ http://localhost:3000/
 hello client
 と表示されれば成功です。
 
-
 # 解説
 
-※ わかりやすくするため、tRPCに必要な所は追加して、不要な部分は削除して見ていきます。
+※ わかりやすくするため、tRPC に必要な所は追加して、不要な部分は削除して見ていきます。
 
 ## 大雑把な流れ
 
-* ブラウザ画面（＝フロントエンド側）を表示、もしくはブラウザ画面からデータを入力する。
-* バックエンド側にデータが送られる。
-* 送られてきたデータをチェックする。
-* バックエンド側でデータが加工される、もしくはDBからデータを取り出す、そのデータを加工する。
-* 加工されたデータをフロントエンド側に送る。
+- ブラウザ画面（＝フロントエンド側）を表示、もしくはブラウザ画面からデータを入力する。
+- バックエンド側にデータが送られる。
+- 送られてきたデータをチェックする。
+- バックエンド側でデータが加工される、もしくは DB からデータを取り出す、そのデータを加工する。
+- 加工されたデータをフロントエンド側に送る。
 
 フロントエンド側からバックエンドへプロシージャ関数を利用してデータの状態管理をおこなう。
-この時に使用される技術がtRPCです。
-プロシージャ関数がtRPC技術でTanstack QueryのuseQueryを使用します。
-tRPCは `useQuery`をラップして使っている技術です。
-tRPCの派生で`Jotai`をラップしている `jotai-trpc`もあります。
+この時に使用される技術が tRPC です。
+プロシージャ関数が tRPC 技術で Tanstack Query の useQuery を使用します。
+tRPC は `useQuery`をラップして使っている技術です。
+tRPC の派生で`Jotai`をラップしている `jotai-trpc`もあります。
 
 https://zenn.dev/dai_shi/articles/464db84e2ee3bb
 
@@ -324,6 +330,7 @@ https://zenn.dev/dai_shi/articles/464db84e2ee3bb
 ## ファイルの簡単な解説
 
 ### フロントエンド側
+
 `src\pages\index.tsx`
 スタート地点
 API リクエストの作成
@@ -333,25 +340,26 @@ API リクエストの作成
 `withTRPC()` 高階コンポーネントを置くところ
 
 ### バックエンド側
+
 この箇所にリクエストが集まる
 `src\pages\api\trpc\[trpc].ts`
-APIエンドポイント（実態は `src/server/routers` 配下に実装する）
+API エンドポイント（実態は `src/server/routers` 配下に実装する）
 最初に実装が完了したらこのファイルを編集せずに、
-tRPCルーター
+tRPC ルーター
 `src/server/routers/**/*.ts`
 ここに定義を書いていきます。
 
 `src\server\routers\_app.ts`
-APIエンドポイントを実装する。
-他のAPIエンドポイントも `src/server/routers` 配下に追加する。
+API エンドポイントを実装する。
+他の API エンドポイントも `src/server/routers` 配下に追加する。
 
 `src\server\trpc.ts`
-server側の trpc設定
+server 側の trpc 設定
 
 `src\utils\trpc.ts`
 `tRPC hooks` の作成
 
-# ソースコードを追ってのtRPCの調査
+# ソースコードを追っての tRPC の調査
 
 ソースにコメントを書き込んでいく
 （理解しやすくするために変更有り）
@@ -361,7 +369,7 @@ https://github.com/masakinihirota/trpc_nextjs_minimum
 
 下記のソースと同じものです。
 
-## tRPC処理のスタート地点
+## tRPC 処理のスタート地点
 
 ```src\pages\index.tsx
 // フロントエンド側
@@ -404,7 +412,7 @@ export default function IndexPage() {
 
 ```
 
-```src\pages\_app.tsx
+```src\pages_app.tsx
 // フロントエンド側
 import type { AppType } from 'next/app';
 import { trpc } from '../utils/trpc';
@@ -418,45 +426,44 @@ export default trpc.withTRPC(MyApp);
 
 ```
 
-tRPCのhooksを利用する。
+tRPC の hooks を利用する。
 
-```src\utils\trpc.ts
+`src\utils\trpc.ts
 // フロントエンド側
 // データを取得するため
 import { httpBatchLink, loggerLink, httpLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
-import type { AppRouter } from '../server/routers/_app';
+import type { AppRouter } from '../server/routers/\_app';
 
-// Next.js用
+// Next.js 用
 // your typesafe tRPC hooks
 export const trpc = createTRPCNext<AppRouter>({
-  config() {
-    // APIエンドポイント
-    // ローカルホストのポート3000/api/trpcに設定
-    // これにsrc\server\routers\_app.tsで設定した
-    // プロシージャ関数を合わせてアクセスする
-    // 今回の例
-    // http://localhost:3000/api/trpc/hello
-    const url = `http://localhost:3000/api/trpc`;
-    return {
-      // ルーターを設定
-      links: [
-        // ログがブラウザのコンソールに表示される
-        loggerLink(),
-        // リンクの設定
-        // リンクは必ず一つ設定する必要があります。
-        // 1つの場合それを終端リンクと呼びます。
-        // httpBatchLinkは複数のリンク設定をしてそれらを一つにまとめます。
-        httpLink({
-          url,
-        }),
-      ],
-    };
-  },
+config() {
+// API エンドポイント
+// ローカルホストのポート 3000/api/trpc に設定
+// これに src\server\routers_app.ts で設定した
+// プロシージャ関数を合わせてアクセスする
+// 今回の例
+// http://localhost:3000/api/trpc/hello
+const url = `http://localhost:3000/api/trpc`;
+return {
+// ルーターを設定
+links: [
+// ログがブラウザのコンソールに表示される
+loggerLink(),
+// リンクの設定
+// リンクは必ず一つ設定する必要があります。
+// 1 つの場合それを終端リンクと呼びます。
+// httpBatchLink は複数のリンク設定をしてそれらを一つにまとめます。
+httpLink({
+url,
+}),
+],
+};
+},
 });
 
-
-```
+````
 
 `loggerLink()`
 この関数を挿入するとブラウザのコンソールにログが表示されます。
@@ -503,9 +510,9 @@ export default trpcNext.createNextApiHandler({
 });
 
 
-```
+````
 
-```src\server\routers\_app.ts
+```src\server\routers_app.ts
 // バックエンド側
 // 動的型チェック
 import { z } from 'zod';
@@ -563,7 +570,6 @@ export const procedure = t.procedure;
 
 ```
 
-
 この時点での動作確認をします。
 
 ```powershellsh
@@ -583,22 +589,21 @@ http://localhost:3000/
 ファイルを追っているだけでは理解が難しいので
 関連図にしてみます。
 
-
-
 ## 画像生成ツールのインストール
 
-事前準備 Windowsの場合
+事前準備 Windows の場合
 
-### Graphvizのインストール
+### Graphviz のインストール
 
 Download | Graphviz
 https://www.graphviz.org/download/
 
 `graphviz-7.0.6 (64-bit) EXE installer` をダウンロード
-インストール時に怪しいファイルですと警告がでます、今回はexeの方がpath設定もしてくれるのでこちらを使います。
-気になる方はzipファイルをダウンロードして環境変数を設定してください。
+インストール時に怪しいファイルですと警告がでます、今回は exe の方が path 設定もしてくれるのでこちらを使います。
+気になる方は zip ファイルをダウンロードして環境変数を設定してください。
 
-### dependency-cruiserのインストール
+### dependency-cruiser のインストール
+
 `powershellsh
 npm install --save-dev dependency-cruiser
 `
@@ -619,40 +624,35 @@ npx depcruise src --include-only "^src" --config --output-type dot | dot -T svg 
 
 ![関連図.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/e7eda581-d390-22e0-3c0f-f561087a7e04.png)
 
+# React の状態管理について、
 
-
-
-
-
-
-# Reactの状態管理について、
 `Tanstack Query`（旧名：React Query）という状態管理がバックエンドからデータを取ってくる。
 状態管理ツールは今までブラウザ上（＝フロントエンド側）のみのデータを操作する関数だった。
-tRPCを利用することでネットの壁を飛び越え、APIを利用してサーバ側からデータを取ってこれるようになった。
+tRPC を利用することでネットの壁を飛び越え、API を利用してサーバ側からデータを取ってこれるようになった。
 
-# tRPCでのリンクとは
+# tRPC でのリンクとは
 
 リンクの設定場所
 `src\utils\trpc.ts`
 
 リンクの概要
 リンクを使用すると、
-tRPCフロントエンド側とバックエンドの間のデータの流れを
+tRPC フロントエンド側とバックエンドの間のデータの流れを
 カスタマイズできます。
 
 リンクは、
-tRPCの操作
+tRPC の操作
 (クエリ、ミューテーション、またはサブスクリプション)
 または操作に基づく副作用
 (ログ記録など)
-のいずれかの1つだけを設定します。
+のいずれかの 1 つだけを設定します。
 
 複数の操作をまとめる
 リンクをまとめて配列にすることで、
-linksプロパティを通じてtRPCフロントエンド側設定に提供することで、
+links プロパティを通じて tRPC フロントエンド側設定に提供することで、
 リンクチェーンを表現することができます。
 
-つまり、tRPCフロントエンド側はリクエストを行う際に
+つまり、tRPC フロントエンド側はリクエストを行う際に
 リンクの配列に追加された順にリンクを実行し、
 
 レスポンスを処理する際には逆にリンクを
@@ -665,15 +665,12 @@ linksプロパティを通じてtRPCフロントエンド側設定に提供す�
 
 バックエンドはリクエストに返答する。
 
+# API とプロシージャ関数
 
+Next.js は API を持ちそれを設定します
+API は URL の形をしています。
 
-
-# APIとプロシージャ関数
-
-Next.jsはAPIを持ちそれを設定します
-APIはURLの形をしています。
-
-tRPCでプロシージャ関数を作りAPIに渡すには
+tRPC でプロシージャ関数を作り API に渡すには
 
 API ＋ プロシージャ関数
 `http://localhost:3000/api/trpc`
@@ -685,61 +682,70 @@ API ＋ プロシージャ関数
 と組み立てます。
 これでバックエンドにアクセスしてデータを取得できます。
 
-# VScodeの自動補完について
+# VScode の自動補完について
+
 バックエンドとフロントエンドの自動補完
 バックエンド側が作られていると
-フロントエンド側でAutoComplicationが働く。
+フロントエンド側で AutoComplication が働く。
 
-tRPCにPrisma（DB:データベースのORM）を利用すると
-Prismaのスキーマから型を自動的に取得する。
+tRPC に Prisma（DB:データベースの ORM）を利用すると
+Prisma のスキーマから型を自動的に取得する。
 
 ORM（Object-Relational Mapping）
-データベースとNode.jsの間でデータをスムーズに取り出すツール
+データベースと Node.js の間でデータをスムーズに取り出すツール
 
 欠点
-バックエンドもしくはDB（Prisma）側から作らないと
+バックエンドもしくは DB（Prisma）側から作らないと
 型の恩恵が得られない。
 つまり先にフロントエンド側を作ろうとすると
-AutoComplicationが効かない。
+AutoComplication が効かない。
 
 # 用語
 
-## APIエンドポイント
+## API エンドポイント
+
 バックエンド側のデータ入出力が可能な場所。
 
 ## BFF(backend for frontend)
+
 フロントエンドとバックエンドの間を取り持つサーバー
-バックエンドのAPIから取得したデータを加工してフロントエンドに渡す役割を持つ。
-Next.jsのようなタイプのフレームワーク
+バックエンドの API から取得したデータを加工してフロントエンドに渡す役割を持つ。
+Next.js のようなタイプのフレームワーク
 
 ## HOC
+
 高階コンポーネント (higher-order component)
 
 ## Prisma
-PrismaとはTypeScript（Node.js）用のORM（Object-Relational Mapping）
-TypeScriptとデータベースとのデータのやり取りを簡単に行えるようになります。
-Prismaを使用するとPrismaが作成したスキーマ等からDBから型を取得することが出来る。
-型があるとAutoComplicationが効く。
+
+Prisma とは TypeScript（Node.js）用の ORM（Object-Relational Mapping）
+TypeScript とデータベースとのデータのやり取りを簡単に行えるようになります。
+Prisma を使用すると Prisma が作成したスキーマ等から DB から型を取得することが出来る。
+型があると AutoComplication が効く。
 
 ## RPC
+
 リモートプロシージャコール
 ネットワークで接続された他のコンピューターで関数などを実行させるための仕組み。
 
 ## Tanstack Query
+
 「非同期」状態管理ツール
 「非同期」という所が重要
 （ただのデータ取得、キャッシュツールではない。）
-コードジェネレーターで自動生成されるhooks
+コードジェネレーターで自動生成される hooks
 TanStack Query | React Query, Solid Query, Svelte Query, Vue Query
 https://tanstack.com/query/latest
 
 ## tRPC
-TypeScriptを使ってフロントエンドとバックエンドの両方で共通の型を持ち、
-APIエンドポイントで動的に型チェックを行い
+
+TypeScript を使ってフロントエンドとバックエンドの両方で共通の型を持ち、
+API エンドポイントで動的に型チェックを行い
 フロントエンドとバックエンド間でデータのやり取りを行うライブラリ
-Prismaを利用するとデータベースのスキーマから型の自動生成も行う。
+Prisma を利用するとデータベースのスキーマから型の自動生成も行う。
 
 ## 型推論
+
 静的な型付けを持つ言語において、
 変数や関数シグネチャの型を明示的に宣言しなくても、
 変数宣言における初期化のための初期値や、
@@ -748,38 +754,45 @@ Prismaを利用するとデータベースのスキーマから型の自動生�
 各々の型を決定する
 
 ## クエリ
-CRUDのうちのR、データを読み込むだけ、加工したり削除はしない。
+
+CRUD のうちの R、データを読み込むだけ、加工したり削除はしない。
 ミューテーション
-CRUDのうちのCUDを利用したデータの操作。
+CRUD のうちの CUD を利用したデータの操作。
 
 CRUD
-Create	何かを作成
-Read	何かを読む
-Uudate	何かを更新する
-Delete	何かを削除する
-それぞれの頭文字でCRUD
+Create 何かを作成
+Read 何かを読む
+Uudate 何かを更新する
+Delete 何かを削除する
+それぞれの頭文字で CRUD
 
 ## コンテキスト
+
 データ送受信等に必要なメタデータ
 
 ## 宣言的
+
 どうやってやるかではなく、
 何をやりたいか？を書くプログラミング手法、
 どのようにやるかは裏側で自動的に決まる。
 
 ## ハンドラー
+
 プログラムやその一部分で、何らかの処理要求が発生したときに起動するもの。
 
 ## 非同期
+
 2 つ以上の事象が同時に発生したり、関連する複数の事象が互いの完了を待たずに発生したりする概念
 
 ## フェッチ
+
 プログラム等が特定の場所からデータを読み出す関数のこと。
 
 ## プロシージャ関数
-tRPCでの命令の一つの塊を指す。
+
+tRPC での命令の一つの塊を指す。
 例
- [名前]という文字列を入力して、
+[名前]という文字列を入力して、
 型チェックをして
 バックエンドに送信して
 バックエンドから戻ってきた文字列を
@@ -789,9 +802,10 @@ tRPCでの命令の一つの塊を指す。
 プロシージャとファンクションの違い
 値を返すのがファンクション
 値を返さないのがプロシージャ
-（Wiki調べ）
+（Wiki 調べ）
 
 ## ヘルパー
+
 データ加工等の処理をライブラリ化したもの。
 
 メタデータ
@@ -799,31 +813,33 @@ tRPCでの命令の一つの塊を指す。
 あるデータそのものではなく、そのデータを表す属性や関連する情報を記述したデータのこと。
 
 ## リクエスト
+
 データの本体
 例
- [名前]
+[名前]
 
 ## ルーター
+
 フロントエンドからバックエンドへの経路を設定したデータ。
 
 # 雑学
 
 ## 静的、動的型チェック
 
-TypeScriptは静的型チェック
-Zodは動的型チェック
+TypeScript は静的型チェック
+Zod は動的型チェック
 
-TypeScriptはソースコードに型チェックを入れ
+TypeScript はソースコードに型チェックを入れ
 ビルドすると消えますが
-Zodは動作中に型チェックを行います。
+Zod は動作中に型チェックを行います。
 
+# tRPC 技術を利用した T3 Stack
 
-# tRPC技術を利用したT3 Stack
 T3 Stack
 基本
 Next.js
 TypeScript
-基本この2つを利用する。
+基本この 2 つを利用する。
 
 追加オプション（インストール時に選択可能）
 NextAuth.js
@@ -831,20 +847,22 @@ Prisma
 Tailwind CSS
 tRPC
 
-## T3 Axiom＝T3における哲学
+## T3 Axiom ＝ T3 における哲学
+
 Typesafety is not optional(型安全はオプションじゃない)
 ＝型安全を最優先に利用していくスタイル。
 
 # 雑感
 
-## tRPCを使用できるまでの必要な技術
+## tRPC を使用できるまでの必要な技術
 
-tRPCは色々な技術を使って実現されている。
+tRPC は色々な技術を使って実現されている。
 
 ## 事前に必要な技術
 
 ### 理解しておくべき技術
-HTML＆CSSの基礎
+
+HTML＆CSS の基礎
 Javascript（Node.js）
 Typescript
 React
@@ -852,30 +870,33 @@ Next.js
 Zod
 
 ### 型安全
-tRPCでの型安全とは？
-型付け出来るプログラム＝TypeScript（静的な型チェック）
+
+tRPC での型安全とは？
+型付け出来るプログラム＝ TypeScript（静的な型チェック）
 プログラマーが入力するデータのチェック
 
-間違った入力が無いプログラム＝Zod（動的な型チェック）
+間違った入力が無いプログラム＝ Zod（動的な型チェック）
 ユーザーが入力するデータのチェック
 でそれぞれ対処している。
 
 ### 型推論
-tRPCはプロシージャ関数のコードからフロントエンド側での型定義を推論します。
-TypeScriptの`Conditional types`という高度な技術が使われています。
+
+tRPC はプロシージャ関数のコードからフロントエンド側での型定義を推論します。
+TypeScript の`Conditional types`という高度な技術が使われています。
 
 業務で見つけた！ Conditional Types
 https://engineering.linecorp.com/ja/blog/uit-conditional-types/
 
-`ConditionalTypes`はTypeScript2.8で追加された機能で、
+`ConditionalTypes`は TypeScript2.8 で追加された機能で、
 部分型関係に基づいた型レベルの条件分岐や
 パターンマッチができる機能です。
-TypeScriptの機能の中でも高度な部類であり、
+TypeScript の機能の中でも高度な部類であり、
 一部の型に凝ったライブラリや曲芸的な遊びを除いては
 なかなか実用例を聞かないものです。
 
 ### 型安全性
-TypeScriptでコンパイルが通ったら型でのバグが存在しない。
+
+TypeScript でコンパイルが通ったら型でのバグが存在しない。
 
 テストと型検査どっちがいいの？
 両方やる
@@ -885,13 +906,12 @@ TypeScriptでコンパイルが通ったら型でのバグが存在しない。
 型安全性入門
 https://www.slideshare.net/AkinoriAbe1/ss-74534932`
 
-
 # Zodios
 
-Zod のスキーマが使えるAPIクライアントZodios を紹介したい - とろろこんぶろぐ
+Zod のスキーマが使える API クライアント Zodios を紹介したい - とろろこんぶろぐ
 
 https://oisham.hatenablog.com/entry/2022/09/14/210857
 
-Zodiosとはなんですか？
+Zodios とはなんですか？
 
 https://www.perplexity.ai/?s=u&uuid=e5f940cb-699d-4348-b878-801a82d31a26
