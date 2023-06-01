@@ -467,18 +467,13 @@ Started supabase local development setup.
       Studio URL: http://localhost:54323
     Inbucket URL: http://localhost:54324
       JWT secret: super-secret-jwt-token-with-at-least-32-characters-long
-        anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs
-service_role key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSJ9.vI9obAHOGyVVKa3pD--kJlyxp-Z2zV9UUMAhKpNLAcU
+        anon key: eyJh**********************************************************sLNHzTs
+service_role key: eyJhb**********************************************************AhKpNLAcU
 ```
-
-※ ローカル環境変数の値は **固定値** です。
 
 ## REST API
 
 REST APIの仕様書(OpenAPI)は
 `https://your-project.supabase.co/rest/v1/?apikey=your-anon-key`
 
-http://localhost:54321/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs
-
 OpenAPIのJSONからTypeScriptの型情報を作成する。
-※ ローカル環境変数の値は **固定値** です。

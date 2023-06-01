@@ -111,8 +111,8 @@ supabase local development setup is running.
           DB URL: postgresql://postgres:postgres@localhost:54322/postgres
       Studio URL: http://localhost:54323
     Inbucket URL: http://localhost:54324
-        anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs
-service_role key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSJ9.vI9obAHOGyVVKa3pD--kJlyxp-Z2zV9UUMAhKpNLAcU
+        anon key: eyJhbG*********************************************qj0ssLNHzTs
+service_role key: eyJhb***********************************************************************pNLAcU
 
 ```
 
@@ -138,7 +138,7 @@ https://vercel.com/dashboard
 ```.env.local
 # リモート開発環境利用時のDB用の環境変数
 NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
-NEXT_PUBLIC_SUPABASE_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs
+NEXT_PUBLIC_SUPABASE_API_KEY=ey**********************************************************0ssLNHzTs
 
 # リモートサーバー利用時のDB用の環境変数
 # NEXT_PUBLIC_SUPABASE_URL=https://[project-ref].supabase.co
@@ -536,10 +536,10 @@ Endpoint
 http://localhost:54321/graphql/v1
 
 ##### Authentication
-`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs`
+`Bearer eyJhbGciOiJIUzI1NiIs******************************************************************_4qj0ssLNHzTs`
 
 ##### apikey
-`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs`
+`eyJ****************************************************************************************HzTs`
 
 入力したsaveボタンを押す
 
@@ -558,8 +558,8 @@ supabase local development setup is running.
           DB URL: postgresql://postgres:postgres@localhost:54322/postgres
       Studio URL: http://localhost:54323
     Inbucket URL: http://localhost:54324
-        anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs
-service_role key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSJ9.vI9obAHOGyVVKa3pD--kJlyxp-Z2zV9UUMAhKpNLAcU
+        anon key: eyJ**********************************************************s_4qj0ssLNHzTs
+service_role key: eyJhbGci**********************************************************AhKpNLAcU
 
 ```
 
@@ -768,8 +768,8 @@ Started supabase local development setup.
           DB URL: postgresql://postgres:postgres@localhost:54322/postgres
       Studio URL: http://localhost:54323
     Inbucket URL: http://localhost:54324
-        anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24ifQ.625_WdcF3KHqz5amU0x2X5WWHP-OEs_4qj0ssLNHzTs
-service_role key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSJ9.vI9obAHOGyVVKa3pD--kJlyxp-Z2zV9UUMAhKpNLAcU
+        anon key: eyJh**********************************************************ssLNHzTs
+service_role key: eyJh**********************************************************AhKpNLAcU
 
 ```
 
