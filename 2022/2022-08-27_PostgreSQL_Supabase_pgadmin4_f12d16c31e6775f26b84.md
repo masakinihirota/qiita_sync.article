@@ -876,6 +876,8 @@ values
 
 
 
+Insert、Update、Upsert、Delete これらはFetch data(select文)似たようなので省略
+公式ドキュメントのURLのみ貼り付けておきます。
 
 # Insert data
 
@@ -897,11 +899,73 @@ https://supabase.com/docs/reference/javascript/delete
 
 関数呼び出しを実行する。
 
-Postgresの関数をリモートプロシージャコールとして呼び出すことができ、データベース内のロジックをどこからでも実行することができます。
-関数は、パスワードのリセットや更新のように、ロジックがほとんど変更されない場合に便利です。
+SupabaseのJavaScriptクライアントでPostgreSQLの関数を呼び出す方法です。
+関数は、データベース内のロジックをどこからでも実行することができ、パスワードのリセットや更新などのように、データがそれほど変更が必要ない場合に便利です。
+
+関数を呼び出すには、supabaseオブジェクトのrpcメソッドを使用します。
+
+rpcメソッドには、呼び出す関数の名前と、オプションの引数が含まれます。
+
+以下は、hello_worldという名前の関数を呼び出す例です。
+
+```TypeScript
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://your-supabase-url.com';
+const supabaseKey = 'your-supabase-key';
+
+const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey);
+
+async function callHelloWorld() {
+  const { data, error } = await supabase.rpc<{ message: string }>('hello_wor ld');
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  console.log(data);
+}
+
+callHelloWorld();
+
+
+
+# Data source
+create function hello_world() returns text as $$
+  select 'Hello world';
+$$ language ;
+
+
+
+# Response
+{
+  "data": "Hello world",
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+この例では、rpcメソッドに'hello_world'を指定して、hello_worldという名前の関数を呼び出しています。
+
+関数が返すデータは、dataプロパティに含まれます。
+
+errorプロパティには、エラーが発生した場合にエラーオブジェクトが含まれます。
+
+また、options引数には、countとheadという2つのオプションが含まれます。
+
+countオプションは、関数が返す行数を数える方法を指定します。
+
+headオプションは、dataプロパティを返さず、行数だけを返すようにします。
+
+
+
+
 
 # フィルターの使用について (Using filters)
 
+※ ここも特に長いです。
 
 フィルタを使用すると、特定の条件に一致する行のみを返すことができます。
 
@@ -909,35 +973,106 @@ Postgresの関数をリモートプロシージャコールとして呼び出す
 
 Postgres の関数がテーブル応答を返す場合にも、フィルタを適用することができます。
 
+https://supabase.com/docs/reference/javascript/using-filters
 
-Column is equal to a value
-Column is not equal to a value
-Column is greater than a value
-Column is greater than or equal to a value
-Column is less than a value
-Column is less than or equal to a value
-Column matches a pattern
-Column matches a case-insensitive pattern
-Column is a value
-Column is in an array
-Column contains every element in a value
-Contained by value
-Greater than a range
-Greater than or equal to a range
-Less than a range
-Less than or equal to a range
-Mutually exclusive to a range
-With a common element
-Match a string
-Match an associated value
-Don't match the filter
-Match at least one filter
-Match the filter
+↓省略
+
+## Column is equal to a value (列は値と等しい)
+## Column is not equal to a value (列は値と等しくない)
+## Column is greater than a value (列はある値より大きい)
+## Column is greater than or equal to a value (列は値より大きいか等しい)
+## Column is less than a value (列は値より小さい)
+## Column is less than or equal to a value (列は値より小さいか等しい)
+## Column matches a pattern (列がパターンにマッチする)
+## Column matches a case-insensitive pattern (列は大文字と小文字を区別しないパターンにマッチする)
+## Column is a value (列は値である)
+## Column is in an array (列が配列に含まれる)
+## Column contains every element in a value (列は値の全要素を含む)
+## Contained by value (値に含まれる)
+## Greater than a range (ある範囲より大きい)
+## Greater than or equal to a range (ある範囲より大きいか等しい)
+## Less than a range (ある範囲より小さい)
+## Less than or equal to a range (範囲より小さい、または範囲に等しい)
+## Mutually exclusive to a range (相互に排他的な範囲)
+## With a common element (共通の要素を持つ)
+## Match a string (文字列と一致する)
+## Match an associated value (関連する値にマッチする)
+## Don't match the filter (フィルタにマッチしない)
+## Match at least one filter (少なくとも1つのフィルタにマッチする)
+## Match the filter (フィルタに一致する)
+
+↑省略
+
+
 Using modifiers
 
+フィルタは、行レベルで機能し、特定の条件に一致する行のみを返すことができます。フィルタを使用することで、行の形状を変更することなく、特定の条件に一致する行のみを取得することができます。修飾子は、この定義に合わないすべてのもので、応答の形式を変更することができます（たとえば、CSV文字列を返すことができます）。
 
+修飾子は、フィルタの後に指定する必要があります。一部の修飾子は、行を返すクエリ（たとえば、テーブル応答を返す関数のselect()またはrpc()）にのみ適用されます。
 
+PostgreSQLのフィルタと修飾子について説明しています。フィルタは、行レベルで機能し、特定の条件に一致する行のみを返すことができます。修飾子は、フィルタの後に指定することができ、応答の形式を変更することができます。
 
+↓省略
+
+https://supabase.com/docs/reference/javascript/db-modifiers-select
+
+## Return data after inserting (挿入後のデータを返す)
+## Order the results (結果を順番に並べる)
+## Limit the number of rows returned (返される行数を制限する)
+## Limit the query to a range (クエリーの範囲を限定する)
+## Set an abort signal (アボートシグナルを設定する)
+## Retrieve the query as one row (クエリーを1行で取得する)
+## Retrieve the query as 0-1 rows (クエリーを0～1行で取得する)
+## Retrieve the query as a CSV string (クエリをCSV文字列で取得する)
+## Override type of successful response (成功したレスポンスの種類を上書きする)
+
+↑省略
+
+# Auth
+
+https://supabase.com/docs/reference/javascript/auth-api
+
+Create auth client (server-side)
+
+```
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(supabase_url, anon_key, {
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false,
+    detectSessionInUrl: false
+  }
+})
+
+```
+
+https://supabase.com/docs/reference/javascript/auth-signup
+
+↓省略
+
+## Overview (概要)
+## Create a new user (ユーザーを新規に作成する)
+## Sign in a user (ユーザーのサインイン)
+## Sign in a user through OTP (OTPによるサインイン)
+## Sign in a user through OAuth (OAuthによるサインイン)
+## Sign in a user through SSO (SSOによるサインイン)
+## Sign out a user (ユーザーからサインアウトする)
+## Send a password reset request (パスワードリセットリクエストを送信する)
+## Verify and log in through OTP (OTPによる認証とログイン)
+## Retrieve a session (セッションを取得する)
+## Retrieve a new session (新しいセッションを取得する)
+## Retrieve a user (ユーザーを取得する)
+## Update a user (ユーザーを更新する)
+## Send a password reauthentication nonce (パスワード再認証用Nonceの送信)
+## Resend an OTP (OTPの再送信)
+## Set the session data (セッションデータを設定する)
+## Listen to auth events (auth イベントを聞く)
+## Exchange an auth code for a session (セッションのAuthコードを交換する)
+## Auth MFA (Auth MFA)
+## Auth Admin (管理者認証)
+
+↑省略
 
 
 
