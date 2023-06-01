@@ -4,6 +4,947 @@ tags:    PostgreSQL,Supabase,pgadmin4
 id:      f12d16c31e6775f26b84
 private: false
 -->
+
+# TypeScriptサポート
+
+Supabase Javascript Client
+
+https://supabase.com/docs/reference/javascript/installing
+
+## Supabaseクライアントの生成
+
+```
+import { createClient } from '@supabase/supabase-js'
+
+// Create a single supabase client for interacting with your database
+const supabase = createClient('https://xyzcompany.supabase.co', 'public-anon-key')
+
+```
+
+
+## Supabaseクライアントの必須項目
+supabaseUrl（必須）：プロジェクトダッシュボードで作成したときに提供される一意のSupabase URL。
+supabaseKey（必須）：プロジェクトダッシュボードで作成したときに提供される一意のSupabaseキー。
+
+
+
+## Supabaseクライアントのオプション項目
+
+### authのオプション
+認証オブジェクト
+
+autoRefreshToken（オプション）
+ログイン済みユーザーのトークンを自動的に更新するかどうかを指定するブール値。デフォルトはtrue。
+
+detectSessionInUrl（オプション）
+URLからセッションを検出するかどうかを指定するブール値。OAuthログインのコールバックに使用されます。デフォルトはtrue。
+
+
+flowType（オプション）
+flowTypeプロパティを使用することで、Supabaseクライアントが使用するOAuthフローを指定することができます。
+デフォルトでは、implicit flowが使用されます。
+デフォルトでは、implicit flowを使用します。
+
+ただし、モバイルアプリケーションやサーバーサイドアプリケーションでは、PKCEが推奨されています。
+PKCEを使用することで、より安全なOAuth認証を実現することができます。
+
+OAuthフローは、認証サーバーとクライアントアプリケーション間での認証と認可を行うためのプロトコルです。
+
+PKCE（Proof Key for Code Exchange）は、OAuth 2.0の認証フローの一つで、Webアプリケーションやモバイルアプリケーションなど、クライアントが公開されたクライアントシークレットを使用せずに、より安全な認証を実現するための仕組みです。
+
+PKCEは、認証コードを取得する前に、ランダムな文字列（code_verifier）を生成し、ハッシュ関数を使用して変換した値（code_challenge）を作成します。このcode_challengeを、認証コードを取得する際に、認証サーバーに送信します。認証サーバーは、code_challengeを保存し、認証コードを発行します。その後、クライアントは、認証コードを使用してアクセストークンを取得するために、code_verifierを使用してcode_challengeを再計算し、認証サーバーに送信します。認証サーバーは、再計算されたcode_challengeと保存されたcode_challengeを比較し、一致する場合にのみアクセストークンを発行します。
+
+このように、PKCEは、ランダムな文字列を使用して、認証コードを取得する前と後に、認証サーバーとクライアント間で秘密情報を共有することなく、より安全な認証を実現することができます。PKCEは、モバイルアプリケーションやサーバーサイドアプリケーションなど、公開されたクライアントシークレットを使用できない場合に特に有用です。
+
+persistSession（オプション）：ログイン済みセッションをストレージに永続化するかどうかを指定するブール値。デフォルトはtrue。
+
+storage（オプション）：ログイン済みセッションを保存するために使用されるストレージプロバイダー。
+
+storageKey（オプション）：ローカルストレージにトークンを保存するために使用されるオプションのキー名。
+
+### dbのオプション
+テーブルが属するPostgresスキーマ。Supabaseで公開されているスキーマのリストに含まれている必要があります。デフォルトはpublicです。
+
+schema（オプション）：スキーマ名。
+
+### globalのオプション
+
+fetch（オプション）：カスタムfetch実装。
+
+headers（オプション）：クライアントを初期化するためのオプションヘッダー。
+
+realtime（オプション）：realtime-jsインスタンスに渡されるオプション。
+
+
+
+
+
+## Supabaseの型の生成
+
+SupabaseのDB内にあるすべての型を生成します。
+
+Next.jsの場合 `src/types`フォルダを作成しておきます。
+
+```Powershell、Next.js
+supabase start
+supabase gen types typescript --local > src/types/database.types.ts
+
+```
+
+※ Docker Desktopを起動させておきます。（ローカル開発時）
+※ `src/types`フォルダは作成しておくこと（型の生成場所は自由）
+
+※ DBのテーブルを変更した場合は、再度型を生成する必要があります。（重要）
+
+↑上記コマンドでSupabaseから型を取得すると、
+↓中身はこうなっています。
+
+```database.types.ts
+//一部抜粋
+        Row: {
+          content: string | null;
+          user_id: string | null;
+          id: string;
+          created_at: string | null;
+        };
+        Insert: {
+          content?: string | null;
+          user_id?: string | null;
+          id?: string;
+          created_at?: string | null;
+        };
+        Update: {
+          content?: string | null;
+          user_id?: string | null;
+          id?: string;
+          created_at?: string | null;
+        };
+
+```
+
+Row
+説明: テーブルの行を取得する時に使用される型、select文を実行するときに、Rowの型を指定して取得したデータを型付けすることができます。
+
+Insert  インサートにはInsertを使用する
+説明: テーブルに行を挿入するために使用される型、insert文を実行するときに、Insertの型を指定して挿入するデータを型付けすることができます。
+
+Update
+説明: テーブルの行を更新するために使用される型、update文を実行するときに、Updateの型を指定して更新するデータを型付けすることができます。
+
+
+※Rowとか説明もなしに書かれていて、何がどうなっているのかわかりにくいですが、select文を実行するときに、Rowの型を指定して取得したデータを型付けすることができます。
+
+↓実際の使い方、`database.types.ts`という型を生成したファイルから
+
+```database.types.ts
+interface Database {
+  public: {
+    Tables: {
+      movies: {
+        Row: {} // The data expected to be returned from a "select" statement.
+        Insert: {} // The data expected passed to an "insert" statement.
+        Update: {} // The data expected passed to an "update" statement.
+      }
+    }
+  }
+}
+
+```
+
+↑型ファイル`database.types.ts`の中身はこうなっています。
+
+↓このように型をimportします。
+`import type { Database } from './lib/database.types';`
+
+↓実際に型ファイルを使用してデータを取得するコード例
+データベースから`public.movies`テーブルの全データ`.select('*')`を取得しています。
+
+これが基本形です。
+
+```typescript.ts
+import { createClient } from '@supabase/supabase-js';
+import type { Database } from './lib/database.types';
+
+const supabaseUrl = 'https://your-supabase-url.com';
+const supabaseKey = 'your-supabase-key';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+async function getMovies() {
+  const { data, error } = await supabase
+    .from<Database['public']['Tables']['movies']['Row']>('public.movies')
+    .select('*');
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  console.log(data);
+}
+
+getMovies();
+
+```
+
+↑TypeScriptの場合は、`from`メソッドに型を渡す必要があります。
+TypeScriptのジェネリック型を使用して、型を渡すことができます。
+
+`.from<Database['public']['Tables']['movies']['Row']>`
+
+Rowを渡しているのでSQL文でいうselectでデータを取得するとわかります。
+Rowは型を生成するごとに変わります。
+
+```database.types.ts
+// 一部抜粋
+Row: {
+  content: string | null;
+  user_id: string | null;
+  id: string;
+  created_at: string | null;
+};
+
+```
+
+※この部分はドキュメントの説明が足りないので色々と調べる必要がありました。
+
+
+
+## Injecting type definitions
+
+
+```typescript.ts
+import { createClient } from '@supabase/supabase-js'
+import { Database } from 'lib/database.types'
+
+  // ↓ジェネリック型を使用して、型を渡すことができます。
+const supabase = createClient<Database>(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+)
+
+```
+
+このようにDBで生成した方を読み込ませて、ジェネリック型を使用することで `createClient<Database> `で型を指定してあげることで、型が適用される。
+
+このコードでは、Supabaseクライアントを作成する際に、createClient関数にジェネリック型<Database>を指定しています。これにより、Supabaseクライアントが使用する型がDatabase型になり、型安全性が向上します。また、Database型は、DBで生成した型定義を読み込んでいるため、正しい型が適用されるようになっています。
+
+
+
+
+
+
+## Type hints
+
+
+```typescript.ts
+ export async function getMovies() {
+   return await supabase.from('movies').select(`id, title`)
+ }
+
+ type MoviesResponse = Awaited<ReturnType<typeof getMovies>>
+ export type MoviesResponseSuccess = MoviesResponse['data']
+ export type MoviesResponseError = MoviesResponse['error']
+
+```
+
+
+このコードでは、Supabaseクライアントのfromメソッドを使用して、moviesテーブルからidとtitleの列を選択するクエリを実行しています。getMovies関数は、このクエリを実行し、成功した場合はdataオブジェクトを、失敗した場合はerrorオブジェクトを返します。
+
+MoviesResponse型は、getMovies関数の戻り値の型を表します。Awaitedユーティリティ型を使用して、getMovies関数の戻り値のPromise型から、実際の戻り値の型を取得しています。
+
+MoviesResponseSuccess型は、MoviesResponse型のdataプロパティの型を表します。これにより、getMovies関数が成功した場合に返されるデータの型を取得することができます。
+
+MoviesResponseError型は、MoviesResponse型のerrorプロパティの型を表します。これにより、getMovies関数が失敗した場合に返されるエラーの型を取得することができます。
+
+このように、TypeScriptの型ヒントを使用することで、Supabaseクライアントから返されるデータの型を正確に指定することができます。
+
+
+
+## Nested tables
+
+このコードでは、Supabaseクライアントのfromメソッドを使用して、moviesテーブルからid、title、およびactorsテーブルのすべての列を選択するクエリを実行しています。
+
+Actors型は、actorsテーブルの行の型を表します。Database型は、DBで生成した型定義を読み込んでいるため、Actors型は、Database型から取得することができます。
+
+MoviesResponse型は、getMovies関数の戻り値の型を表します。Awaitedユーティリティ型を使用して、getMovies関数の戻り値のPromise型から、実際の戻り値の型を取得しています。
+
+MoviesResponseSuccess型は、MoviesResponse型のdataプロパティの型を表します。&演算子を使用して、actorsプロパティを追加しています。これにより、getMovies関数が成功した場合に返されるデータの型を取得することができます。actorsプロパティの型は、Actors型の配列です。
+
+このように、TypeScriptの型ヒントを使用することで、Supabaseクライアントから返されるデータの型を正確に指定することができます。また、ネストされたテーブルの場合には、自分で型を構築することができます。
+
+
+# Fetch data
+
+https://supabase.com/docs/reference/javascript/select
+
+※ SQL文でいうselectでデータを取得するに相当します。
+
+Supabaseクライアントのselectメソッドを使用して、テーブルまたはビューからデータを取得する方法です。
+selectメソッドは、カンマで区切られた列名を指定することで、取得する列を指定することができます。また、customName:columnNameの形式で列名を変更することもできます。
+
+※ この Fetch data は特に説明が長いです。
+
+## Fetch data オプション
+
+### count
+countプロパティには、
+exact、planned、estimatedの3つの値を指定することができます。
+
+exact
+正確なが遅いカウントアルゴリズムが使用されます。内部でCOUNT(*)が実行されます。
+
+planned
+近似値が高速に計算されるカウントアルゴリズムが使用されます。内部でPostgresの統計情報が使用されます。
+
+estimated
+低い数値では正確なカウントが使用され、高い数値では近似値が使用されます。
+
+### head (boolean)
+true, false
+
+true
+dataは返されません。
+※ カウントのみが必要な場合に便利です。
+
+false
+デフォルト値です。
+
+
+
+## Fetch data使用例
+
+
+### 全データの取得方法 (Getting your data)
+
+```
+# Code
+const { data, error } = await supabase
+  .from('countries')
+  .select()
+
+
+
+# Data source
+create table
+  countries (id int8 primary key, name text);
+
+insert into
+  countries (id, name)
+values
+  (1, 'Afghanistan'),
+  (2, 'Albania'),
+  (3, 'Algeria');
+
+
+
+# Response
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Afghanistan"
+    },
+    {
+      "id": 2,
+      "name": "Albania"
+    },
+    {
+      "id": 3,
+      "name": "Algeria"
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+
+### 特定のデータ項目の取得方法 (Selecting specific columns)
+nameだけ抜き出す。（idは不要）
+
+```
+# Code
+const { data, error } = await supabase
+  .from('countries')
+  .select('name')
+
+
+
+# Data source
+create table
+  countries (id int8 primary key, name text);
+
+insert into
+  countries (id, name)
+values
+  (1, 'Afghanistan'),
+  (2, 'Albania'),
+  (3, 'Algeria');
+
+
+
+# Response
+
+{
+  "data": [
+    {
+      "name": "Afghanistan"
+    },
+    {
+      "name": "Albania"
+    },
+    {
+      "name": "Algeria"
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+### 外部キーを使用して関連データを抜き出す (Query foreign tables)
+テーブルに外部キーと関係がある場合、関連するテーブルにも問い合わせることができます。
+
+```
+# Code
+const { data, error } = await supabase
+  .from('countries')
+  .select(`
+    name,
+    cities (
+      name
+    )
+  `)
+
+
+
+# Data source
+create table
+  countries (id int8 primary key, name text);
+create table
+  cities (
+    id int8 primary key,
+    country_id int8 not null references countries,
+    name text
+  );
+
+insert into
+  countries (id, name)
+values
+  (1, 'Germany'),
+  (2, 'Indonesia');
+insert into
+  cities (id, country_id, name)
+values
+  (1, 2, 'Bali'),
+  (2, 1, 'Munich');
+
+
+
+# Response
+{
+  "data": [
+    {
+      "name": "Germany",
+      "cities": [
+        {
+          "name": "Munich"
+        }
+      ]
+    },
+    {
+      "name": "Indonesia",
+      "cities": [
+        {
+          "name": "Bali"
+        }
+      ]
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+
+### 結合テーブルを介した外部テーブルのクエリ方法 (Query foreign tables through a join table)
+
+外部テーブルを結合テーブルを介してクエリする方法について。
+結合テーブルは、外部キーを含む複合主キーの一部である必要があります。
+
+この例では、usersテーブルとteamsテーブルがあり、users_teamsテーブルが結合テーブルとして使用されています。
+
+users_teamsテーブルは、user_idとteam_idの2つの外部キーを持ち、複合主キーとして定義されています。
+
+selectメソッドでは、usersテーブルからname列を取得し、teamsテーブルからname列を取得しています。
+
+teamsテーブルは、users_teamsテーブルを介してusersテーブルと関連付けられています。
+
+dataプロパティには、name列とteams列が含まれています。teams列には、name列が含まれています。
+
+statusプロパティには、HTTPステータスコードが含まれています。statusTextプロパティには、HTTPステータスコードに対応するテキストが含まれています。
+
+
+
+```
+# Code
+  const { data, error } = await supabase
+    .from('users')
+    .select(`
+      name,
+      teams (
+        name
+      )
+    `)
+
+
+
+# Data source
+create table
+  users (
+    id int8 primary key,
+    name text
+  );
+create table
+  teams (
+    id int8 primary key,
+    name text
+  );
+-- join table
+create table
+  users_teams (
+    user_id int8 not null references users,
+    team_id int8 not null references teams,
+    -- both foreign keys must be part of a composite primary key
+    primary key (user_id, team_id)
+  );
+
+insert into
+  users (id, name)
+values
+  (1, 'Kiran'),
+  (2, 'Evan');
+insert into
+  teams (id, name)
+values
+  (1, 'Green'),
+  (2, 'Blue');
+insert into
+  users_teams (user_id, team_id)
+values
+  (1, 1),
+  (1, 2),
+  (2, 2);
+
+
+
+# Response
+  {
+    "data": [
+      {
+        "name": "Kiran",
+        "teams": [
+          {
+            "name": "Green"
+          },
+          {
+            "name": "Blue"
+          }
+        ]
+      },
+      {
+        "name": "Evan",
+        "teams": [
+          {
+            "name": "Blue"
+          }
+        ]
+      }
+    ],
+    "status": 200,
+    "statusText": "OK"
+  }
+
+```
+
+
+### 同じ外部テーブルを複数回クエリする方法 (Query the same foreign table multiple times)
+
+同じ外部テーブルを複数回クエリする必要がある場合は、参加する列の名前を使用して、どの結合を使用するかを識別します。また、各列にエイリアスを付けることもできます。
+
+この例では、usersテーブルが2回参照されています。messagesテーブルには、sender_idとreceiver_idの2つの外部キーがあり、それぞれusersテーブルのid列を参照しています。
+
+selectメソッドでは、messagesテーブルからcontent列を取得し、sender_id列とreceiver_id列をusersテーブルのname列に参照しています。
+
+fromとtoは、それぞれsender_idとreceiver_idのエイリアスです。
+
+dataプロパティには、content列、from列、to列が含まれています。
+
+from列とto列には、それぞれname列が含まれています。
+
+statusプロパティには、HTTPステータスコードが含まれています。
+
+statusTextプロパティには、HTTPステータスコードに対応するテキストが含まれています。
+
+
+```
+# Code
+const { data, error } = await supabase
+  .from('messages')
+  .select(`
+    content,
+    from:sender_id(name),
+    to:receiver_id(name)
+  `)
+
+
+
+# Data source
+ create table
+ users (id int8 primary key, name text);
+
+ create table
+   messages (
+     sender_id int8 not null references users,
+     receiver_id int8 not null references users,
+     content text
+   );
+
+ insert into
+   users (id, name)
+ values
+   (1, 'Kiran'),
+   (2, 'Evan');
+
+ insert into
+   messages (sender_id, receiver_id, content)
+ values
+   (1, 2, '👋');
+
+
+
+# Response
+{
+  "data": [
+    {
+      "content": "👋",
+      "from": {
+        "name": "Kiran"
+      },
+      "to": {
+        "name": "Evan"
+      }
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+### 外部テーブルをフィルタリングする方法 (Filtering through foreign tables)
+
+supabaseクライアントのselectメソッドを使用して、citiesテーブルからname列とcountriesテーブルの全列を取得し、countriesテーブルのname列がEstoniaである行のみをフィルタリングしています。
+
+dataプロパティには、name列とcountries列が含まれています。
+
+countries列には、name列が含まれていますが、フィルタリング条件に一致する行がないため、nullが返されています。
+
+外部テーブルの列でフィルタリング条件が満たされない場合、外部テーブルは[]またはnullを返しますが、親テーブルはフィルタリングされません。
+
+親テーブルの行もフィルタリングしたい場合は、!innerヒントを使用する必要があります。!innerヒントを使用すると、外部テーブルのフィルタリング条件が満たされない場合、親テーブルの行もフィルタリングされます。
+
+```
+# Code
+const { data, error } = await supabase
+  .from('cities')
+  .select('name, countries(*)')
+  .eq('countries.name', 'Estonia')
+
+
+
+# Data source
+create table
+  countries (id int8 primary key, name text);
+create table
+  cities (
+    id int8 primary key,
+    country_id int8 not null references countries,
+    name text
+  );
+
+insert into
+  countries (id, name)
+values
+  (1, 'Germany'),
+  (2, 'Indonesia');
+insert into
+  cities (id, country_id, name)
+values
+  (1, 2, 'Bali'),
+  (2, 1, 'Munich');
+
+
+
+# Response
+{
+  "data": [
+    {
+      "name": "Bali",
+      "countries": null
+    },
+    {
+      "name": "Munich",
+      "countries": null
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+
+### 関連するテーブルのカウントを使用したクエリ (Querying foreign table with count)
+
+cities(count)を使用することで、citiesテーブルの各国に関連する行の数を取得できます。このクエリの結果、countriesテーブルの各行には、citiesテーブルの各国に関連する行の数が含まれるようになります。
+
+また、このクエリでは、countriesテーブルとcitiesテーブルの関係を表す外部キー制約が設定されています。citiesテーブルのcountry_id列は、countriesテーブルのid列を参照しています。これにより、citiesテーブルの各行がどの国に関連しているかを特定することができます。
+
+このクエリの結果は、以下のようになります。
+
+この結果では、countriesテーブルの各行には、idとnameの2つの列が含まれます。また、citiesテーブルの各国に関連する行の数が含まれるようになります。この例では、citiesテーブルのcountry_id列が693694e7-d993-4360-a6d7-6294e325d9b6である行が4つあるため、cities配列には{"count": 4}が含まれます。
+
+関連するテーブルの行数を取得するには、countプロパティを使用します。
+
+```
+# Code
+const { data, error } = await supabase
+  .from('countries')
+  .select(`*, cities(count)`)
+
+
+# Data source
+create table countries (
+  "id" "uuid" primary key default "extensions"."uuid_generate_v4"() not null,
+  "name" text
+);
+
+create table cities (
+  "id" "uuid" primary key default "extensions"."uuid_generate_v4"() not null,
+  "name" text,
+  "country_id" "uuid" references public.countries on delete cascade
+);
+
+with country as (
+  insert into countries (name)
+  values ('united kingdom') returning id
+)
+insert into cities (name, country_id) values
+('London', (select id from country)),
+('Manchester', (select id from country)),
+('Liverpool', (select id from country)),
+('Bristol', (select id from country));
+
+
+# Response
+[
+  {
+    "id": "693694e7-d993-4360-a6d7-6294e325d9b6",
+    "name": "United Kingdom",
+    "cities": [
+      {
+        "count": 4
+      }
+    ]
+  }
+]
+
+
+
+
+
+
+```
+
+
+### 行数取得の使用例 (Querying with count option)
+
+countriesテーブルからすべての行を取得し、行の数を取得しています。selectメソッドの第2引数に{ count: 'exact', head: true }を指定することで、行の数を取得できます。countプロパティには、行の数が含まれます。
+
+また、このクエリでは、countriesテーブルに3つの行があることが前提となっています。insert文を使用して、countriesテーブルに3つの行を挿入しています。
+
+
+```
+# Code
+const { count, error } = await supabase
+  .from('countries')
+  .select('*', { count: 'exact', head: true })
+
+
+
+# Data source
+create table
+  countries (id int8 primary key, name text);
+
+insert into
+  countries (id, name)
+values
+  (1, 'Afghanistan'),
+  (2, 'Albania'),
+  (3, 'Algeria');
+
+
+
+# Response
+{
+  "count": 3,
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+### JSONデータのクエリ例 (Querying JSON data)
+
+usersテーブルからすべての行を取得し、address列のcityプロパティを取得しています。
+
+address->cityを使用することで、address列のJSONオブジェクトからcityプロパティを取得できます。
+
+また、このクエリでは、usersテーブルに1つの行があることが前提となっています。
+
+insert文を使用して、usersテーブルに1つの行を挿入しています。
+
+dataプロパティには、id、name、およびaddress列のcityプロパティが含まれるオブジェクトが含まれます。
+
+また、statusプロパティにはHTTPステータスコードが含まれます。
+
+この例では、ステータスコードは200であり、statusTextプロパティにはステータスコードに対応するテキストが含まれます。
+
+JSONカラムの中でデータを選択し、フィルタリングすることができます。
+
+```
+# Code
+const { data, error } = await supabase
+  .from('users')
+  .select(`
+    id, name,
+    address->city
+  `)
+
+
+# Data source
+create table
+  users (
+    id int8 primary key,
+    name text,
+    address jsonb
+  );
+
+insert into
+  users (id, name, address)
+values
+  (1, 'Avdotya', '{"city":"Saint Petersburg"}');
+
+
+
+# Response
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Avdotya",
+      "city": "Saint Petersburg"
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
+
+```
+
+
+
+
+
+# Insert data
+
+https://supabase.com/docs/reference/javascript/insert
+
+# Update data
+
+https://supabase.com/docs/reference/javascript/update
+
+# Upsert data
+
+https://supabase.com/docs/reference/javascript/upsert
+
+# Delete data
+
+https://supabase.com/docs/reference/javascript/delete
+
+# Call a Postgres function
+
+関数呼び出しを実行する。
+
+Postgresの関数をリモートプロシージャコールとして呼び出すことができ、データベース内のロジックをどこからでも実行することができます。
+関数は、パスワードのリセットや更新のように、ロジックがほとんど変更されない場合に便利です。
+
+# フィルターの使用について (Using filters)
+
+
+フィルタを使用すると、特定の条件に一致する行のみを返すことができます。
+
+フィルタは、select()、update()、upsert()、delete()クエリで使用することができます。
+
+Postgres の関数がテーブル応答を返す場合にも、フィルタを適用することができます。
+
+
+Column is equal to a value
+Column is not equal to a value
+Column is greater than a value
+Column is greater than or equal to a value
+Column is less than a value
+Column is less than or equal to a value
+Column matches a pattern
+Column matches a case-insensitive pattern
+Column is a value
+Column is in an array
+Column contains every element in a value
+Contained by value
+Greater than a range
+Greater than or equal to a range
+Less than a range
+Less than or equal to a range
+Mutually exclusive to a range
+With a common element
+Match a string
+Match an associated value
+Don't match the filter
+Match at least one filter
+Match the filter
+Using modifiers
+
+
+
+
+
+
+
+# ここより下は古い情報 2023年6月1日
+ちょっと触ってみた所結構変わってるので・・・
+
+
 # Docker でのローカル開発環境の想定
 
 まず、ローカル側で Supabase の開発環境を作り
