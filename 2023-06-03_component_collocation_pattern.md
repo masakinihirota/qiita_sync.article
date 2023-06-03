@@ -1,7 +1,6 @@
 <!--
 title:   コンポーネントコロケーションパターン
 tags:    Next.js,React,Storybook,TypeScript,tailwindcss
-id:      40a529c6a7a4b3fcc806
 private: true
 -->
 
