@@ -6,6 +6,7 @@ private: true
 
 コンポーネントコロケーションパターン
 component collocation pattern
+
 component_collocation_pattern
 
 コンポーネント単位で一つにまとめる
