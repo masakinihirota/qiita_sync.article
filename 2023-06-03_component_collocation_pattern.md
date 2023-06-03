@@ -1,8 +1,10 @@
 <!--
 title:   コンポーネントコロケーションパターン
-tags:    Next.js,React,Storybook,TypeScript,tailwindcss
+tags:    Next.js,React,TypeScript,storybook,tailwindcss
+id:      27f961dfa6871aad0550
 private: true
 -->
+
 
 コンポーネントコロケーションパターン
 component collocation pattern
@@ -37,5 +39,4 @@ https://zenn.dev/ampersand/articles/9cf546795074d1
 
 Collocation
 コロケーションとは、ネットワークへの常時接続環境のもとに、サーバや回線接続装置などを共同の場所に設置する事を言う。ユーザが構築した、サーバを預かって管理保守していくサービスの事を、コロケーションサービスや、ハウジングサービスという。
-
 
