@@ -45,6 +45,19 @@ A: Qiita Sync Checkでエラーが出る場合は、Qiita Sync Checkを実行す
 成功するとQiita Sync Checkが自動で起動して成功するはずです。
 成功したらもう一度PULLしましょう。
 
+# IDが割り振られたQiitaの記事をローカル側でファイル名を変えてしまったら？
+記事名をわかりやすく変更したい場合があります。
+しかし、 そのままでは素直にSyncしてくれないので、
+
+1. Qiita上の該当記事を削除します。
+
+1. ローカルでその該当記事のID行を削除します。
+
+1. PUSHしてGithubリポジトリと同期します。
+
+1. その後、Qiita Syncを実行します。
+
+※ git mvコマンドで問題ないかもしれない。（未検証）
 
 # Qiita SyncとQiita Sync Checkでやらかし。
 
