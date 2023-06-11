@@ -4,6 +4,11 @@ tags:    Locofy,Next.js,TeleportHQ,figma,overlay
 id:      0c8bc09e032f2155a3b5
 private: false
 -->
+追記 2023年6月11日
+TeleportHQが日本語に対応していました。
+
+追記終了
+
 # はじめに
 Figmaでプロトタイプを作っても、それをどうNext.jsに取り込めばいいか？
 デザインをコード化してくれるツールが色々出てきたようなのでそれらを調査してみました。
