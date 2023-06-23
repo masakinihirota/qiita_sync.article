@@ -34,6 +34,16 @@ PlantUMLを書くのはテキストファイルなので Git で差分を管理�
 しかし、公式マニュアルはER図以外にも他の図の書き方の説明が豊富であまり実用的ではありません。
 
 
+# QiitaでPlantUMLの図を書く
+
+```plantuml
+```
+
+PlantUMLのコードを上のMarkdown形式で書くとそのコードに沿ったER図が表示されます。
+
+
+
+
 # 環境
 Windows10
 VSCode
@@ -118,7 +128,53 @@ Class図の記号に無く、ER図に必要な記号が追加サポートとい�
 # 目指す形、学習した結果
 example1から8を順番に学習していくと、
 
-https://www.plantuml.com/plantuml/png/SoWkIImgAStDKN3DAyaigGnApKaioSpFAyx8BE3YKW22LB2uWjBZvcMFc_SyRje699KK4eiLIejJYueLghaKe41R8JJODIZUqqKXEi0x5YwigmjZGkJz77rT4IAUBd2sfnzGEYJUnJ744I4V0EIwWiGGUbnSVLo1Ocu-ZkumiLfqfqv_tBpsSVFKnqqB7pSjUToy6kpWWgByjCoSL5Gt1mJvktdwkE9pjZB2OsvOLS0C0ViDGz0_p3KepDCrd5AF4lRbuyPrpwViVjhSZ-pT-CpSn7GqJtlwEhhZzpBCzSJu6cmQDNp7fVwuQVFZveMFcu5an_izirwszZxVk-xPj9tFDa_bWgGtNTsYpFIC4btT_6f4X5ef5AKMb-QcSa55GCfIyilpT7Lhgb720QmMp5103ZWkBeVKl1HWBk3Y0W00
+```plantuml
+@startuml EntityRelationship
+
+    entity "ユーザー" as users {
+        + USER_ID [PK]
+        --
+        USER_NAME
+        UID
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+       }
+
+    entity "プロファイル" as profiles {
+        + PROFILE_ID [PK]
+        --
+        # USER_ID [FK]
+        --
+        PROFILE_NAME
+        PROFILE_OVERVIEW
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "プロファイルの画像" as profile_images {
+        + IMAGE_ID [PK]
+        --
+        # PROFILE_ID [FK]
+        --
+        PROFILE_IMAGE
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+
+'コメント：配置方法
+users --right--o{ profiles : resume
+profiles --down--|{ profile_images : image ファイル
+
+@enduml
+
+
+
+```
+
 
 ```PlantUML.puml
 @startuml EntityRelationship
@@ -173,6 +229,21 @@ profiles --down--|{ profile_images : image ファイル
 
 ER図のシンプルな形から育てていく。
 VScodeを立ち上げexample01.puという空ファイルを作ります。
+
+
+```plantuml
+@startuml example01
+
+entity users
+entity profiles
+
+users ||--o{ profiles : resume
+
+@enduml
+
+
+
+```
 
 ```example01.puml
 @startuml example01
@@ -237,6 +308,25 @@ users ||--o{ profiles : resume
 
 # example02
 
+
+```plantuml
+@startuml example02
+
+' Entity01 }|..|| Entity02
+' Entity03 }o..o| Entity04
+' Entity05 ||--o{ Entity06
+' Entity07 |o--|| Entity08
+
+Entity09 "1" ||-----o{ "0以上" Entity10 : contains
+Entity11 "0以上"  }o--|| "1のみ" Entity12  : aggregation
+Entity13 "1以上" }|..o| "0 or 1"  Entity14 : 破線 で つなぐ
+
+@enduml
+
+
+
+```
+
 ```example02.puml
 @startuml example02
 
@@ -296,6 +386,39 @@ Entity11 "0以上"
 
 
 # example03
+
+
+```plantuml
+@startuml example03
+
+entity users {
+USER_ID
+--通常線--
+==二重線==
+..ドット線..
+__太文字線__
+USER_NAME
+UID
+}
+
+entity profiles{
+PROFILE_ID
+'--
+==
+PROFILE_NAME
+PROFILE_OVERVIEW
+}
+
+users --right--o{ profiles : resume
+' users --down--o{ profiles : resume
+' users --up--o{ profiles : resume
+' users --left--o{ profiles : resume
+
+@enduml
+
+
+
+```
 
 ```example03.puml
 @startuml example03
@@ -367,6 +490,40 @@ right、down、up、leftで左側（users）を基準に線が伸びる方向が
 
 # example04
 
+```plantuml
+@startuml example04
+
+' エンティティ名の日本語化
+entity "ユーザー" as users {
+' プライマリキー
++ USER_ID [PK]
+--
+USER_NAME
+UID
+}
+
+' エンティティ名の日本語化
+entity "プロファイル" as profiles {
+' プライマリキー
+' 丸記号
++ PROFILE_ID [PK]
+--
+' 外部キー
+' ダイヤ記号
+# USER_ID [FK]
+--
+PROFILE_NAME
+PROFILE_OVERVIEW
+}
+
+users --right--o{ profiles : resume
+
+@enduml
+
+
+
+```
+
 ```example04.puml
 @startuml example04
 
@@ -425,6 +582,91 @@ asでつなげることで日本語を表示できます。
 
 
 # example05
+
+```plantuml
+@startuml example05
+
+' 拡大縮小
+scale 0.7
+
+' タイトル
+title Values communication \n example
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor #d9cb65
+
+
+entity "ユーザー" as users {
+' 丸記号
++ USER_ID [PK]
+--
+' 強調文字
+**USER_NAME**
+' 丸記号＋強調文字
+* **UID**
+INSERT_DATA
+UPDATE_DATE
+DELETE_FLAG
+}
+
+entity "プロファイル" as profiles {
++ PROFILE_ID [PK]
+--
+' ダイヤ記号
+# USER_ID [FK]
+--
+PROFILE_NAME
+PROFILE_OVERVIEW
+INSERT_DATA
+UPDATE_DATE
+DELETE_FLAG
+}
+
+entity "プロファイルの画像" as profile_images {
++ IMAGE_ID [PK]
+--
+# PROFILE_ID [FK]
+--
+PROFILE_IMAGE
+INSERT_DATA
+UPDATE_DATE
+DELETE_FLAG
+}
+
+
+' コメント：配置方法
+users --right--o{ profiles : resume
+profiles --down--|{ profile_images : image ファイル
+
+' ヘッダー
+header
+<font color=red>Warning:</font>
+Do not use in production.
+製品版で使わないでね。
+endheader
+
+' フッター
+center footer Generated for demonstration
+
+' キャプション(見出し)
+caption Values Network Service
+
+' legend(説明文)
+legend
+' legend top right
+' legend left
+これは説明文です
+
+ER図の解説を行います。
+空行もそのまま表示されます。
+endlegend
+
+@enduml
+
+
+
+```
 
 ```example05.puml
 @startuml example05
@@ -596,6 +838,28 @@ left、right、top、bottom、center を使って、図の凡例の位置を指�
 
 ER図の外側に書ける説明文
 
+```plantuml
+@startuml example06
+
+header some header
+footer some footer
+title My title
+caption This is caption
+legend
+The legend
+end legend
+
+entity users
+entity profiles
+
+users ||--o{ profiles : resume
+
+@enduml
+
+
+
+```
+
 ```example06.puml
 @startuml example06
 
@@ -635,6 +899,54 @@ legend	legendはend legendで囲む
 
 色をつける、文字の大きさを変える
 装飾文字等
+
+```plantuml
+@startuml example07
+
+<style>
+title {
+HorizontalAlignment right
+FontSize 24
+FontColor blue
+}
+header {
+HorizontalAlignment center
+FontSize 26
+FontColor purple
+}
+footer {
+HorizontalAlignment left
+FontSize 28
+FontColor red
+}
+legend {
+FontSize 30
+BackGroundColor yellow
+Margin 30
+Padding 50
+}
+caption {
+FontSize 32
+}
+</style>
+header some header
+footer some footer
+title My title
+caption This is caption
+legend
+The legend
+end legend
+
+entity users
+entity profiles
+
+users ||--o{ profiles : resume
+
+@enduml
+
+
+
+```
 
 ```example07.puml
 @startuml example07
@@ -695,6 +1007,57 @@ FontSizeやFontColorを指定したものにします。
 
 孤立したエンティティを非表示または削除します。
 デフォルトでは、すべてのクラスが表示されます：
+
+```plantuml
+@startuml example08
+
+entity "ユーザー" as users {
++ USER_ID [PK]
+--
+USER_NAME
+UID
+INSERT_DATA
+UPDATE_DATE
+DELETE_FLAG
+}
+
+entity "プロファイル" as profiles {
++ PROFILE_ID [PK]
+--
+' ダイヤ記号
+# USER_ID [FK]
+--
+PROFILE_NAME
+PROFILE_OVERVIEW
+INSERT_DATA
+UPDATE_DATE
+DELETE_FLAG
+}
+
+entity "プロファイルの画像" as profile_images {
++ IMAGE_ID [PK]
+--
+# PROFILE_ID [FK]
+--
+PROFILE_IMAGE
+INSERT_DATA
+UPDATE_DATE
+DELETE_FLAG
+}
+
+
+' コメント：配置方法
+users --right--o{ profiles : resume
+
+
+' hide @unlinked
+' remove @unlinked
+
+@enduml
+
+
+
+```
 
 ```example08.puml
 @startuml example08
@@ -820,6 +1183,24 @@ sqlantはデータベースからPlantUMLを出力するツール
 
 ## 出力結果
 
+```plantuml
+@startuml
+
+hide circle
+skinparam linetype ortho
+
+entity "**test**" {
+# <b>""id""</b>: //""integer"" <b><color:goldenrod>(PK) </color></b> //
+---
+* <b>""name""</b>: //""text""  //
+}
+
+@enduml
+
+
+
+```
+
 ```test01.puml
 @startuml
 
@@ -834,6 +1215,8 @@ entity "**test**" {
 
 @enduml
 
+
+
 ```
 
 ![ER図出力結果.JPG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/03b474ab-0cfd-73a6-7d05-1b5ab38d1b21.jpeg)
@@ -847,6 +1230,25 @@ entity "**test**" {
 `***.plantumlファイルの@startuml の直下`
 に置くと装飾無効となりデフォルト色に戻ります。
 
+
+```plantuml
+@startuml
+skin rose
+
+hide circle
+skinparam linetype ortho
+
+entity "**test**" {
+# <b>""id""</b>: //""integer"" <b><color:goldenrod>(PK) </color></b> //
+---
+* <b>""name""</b>: //""text""  //
+}
+
+@enduml
+
+
+
+```
 
 ```test01.puml
 @startuml
@@ -863,6 +1265,8 @@ entity "**test**" {
 
 @enduml
 
+
+
 ```
 
 
@@ -874,3 +1278,7 @@ PlantUMLのER図はClass図の拡張なのでほぼすべてのClass図は参考
 Real World PlantUML
 
 https://real-world-plantuml.com/?type=class
+
+QiitaでPlantUMLが使えるようになっていた - Qiita
+
+https://qiita.com/kazuki43zoo/items/d23148c149f4d31d2521
