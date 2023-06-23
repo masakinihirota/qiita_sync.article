@@ -502,6 +502,30 @@ __太文字線__
 ### 伸ばす方向
 right、down、up、leftで左側（users）を基準に線が伸びる方向が決まります。
 
+r
+d
+u
+l
+と省略できます。
+
+```
+users --right--o{ profiles : resume
+' users --down--o{ profiles : resume
+' users --up--o{ profiles : resume
+' users --left--o{ profiles : resume
+```
+
+を
+
+```
+users --ri--o{ profiles : resume
+' users --d--o{ profiles : resume
+' users --u--o{ profiles : resume
+' users --l--o{ profiles : resume
+```
+
+書き換えることが出来ます。
+
 ### コメント
 シングルクォート' 以降はすべてコメントになります。
 /' で始まり'/で終わる複数行のコメントを入れることもできます。
@@ -1113,7 +1137,7 @@ users --right--o{ profiles : resume
 ## example08の解説
 
 hide(隠す)すると非表示になる。
-remode(削除)すると非表示になり、表示領域が削除した分だけ減る。
+remove(削除)すると非表示になり、表示領域が削除した分だけ減る。
 
 
 
