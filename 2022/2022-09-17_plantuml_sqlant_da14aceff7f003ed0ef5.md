@@ -26,10 +26,25 @@ PlantUMLを書くのはテキストファイルなので Git で差分を管理�
 # 環境
 Windows10
 VSCode
-VSCode拡張機能 PlantUML
+VSCode拡張機能 PlantUML - Simple Viewer
 VSCodeでプレビュー表示が出来るようになる。
 
+## 使用中の拡張機能
+PlantUML - Simple Viewer - Visual Studio Marketplace
+
+https://marketplace.visualstudio.com/items?itemName=well-ar.plantuml
+
+Alt + Dキーでプレビューが表示されます。
+
+ER図からコードのジャンプしてくれます。
+使用を停止した拡張機能にはない機能です。
+
+## 使用停止した拡張機能
+
 https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
+
+ER図からコードのジャンプする機能はありません。
+
 
 現在、VSCode拡張機能をインストールするだけで PlantUML が利用できるようになります。
 
