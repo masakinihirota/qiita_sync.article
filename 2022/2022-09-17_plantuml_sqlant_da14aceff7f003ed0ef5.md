@@ -7,6 +7,14 @@ private: false
 
 2023年6月23日 リニューアル
 
+# 関連記事
+VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ、画像拡大縮小も大幅に便利に ) - Qiita
+
+VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ、画像拡大縮小も大幅に便利に ) - Qiita
+https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
+
+
+
 # コードのリポジトリ
 
 今回紹介したコードのリポジトリ
@@ -104,6 +112,32 @@ PlantUMLで書ける図の種類は20以上あります。
 Class図の記号に無く、ER図に必要な記号が追加サポートという形になっています。
 逆に言えば、ER図を書く時にPlantUMLのClass図のテクニックがそのまま使えます。
 
+# PlantUMLのテーマ
+昔の黄色と赤、灰色のテーマから、現在はデフォルトでは白と灰色のテーマになっています。
+
+テーマを変更すると色々な図の見た目が変わります。
+
+コードの先頭に
+```
+!theme toy
+!theme vibrant
+!theme _none_
+
+```
+のどれかをつけると適用されるようになります。
+
+※この3つは自分の好みのテーマです。他に30個ほどがあります。
+!theme _none_はデフォルト設定
+
+
+
+## テーマギャラリー
+
+このページ全てのテーマの使用例があります。
+
+https://the-lum.github.io/puml-themes-gallery/
+
+※全テーマの使用例を1ページに収めているので超巨大ページになっています、開く時に注意してください。
 
 
 # 用語
@@ -169,9 +203,10 @@ profiles --down--|{ profile_images : image ファイル
 
 @enduml
 
-
-
 ```
+
+※↑Qiitaの機能でPlantUMLのER図が表示できています。
+↓そのコードです。
 
 
 ```PlantUML.puml
@@ -217,8 +252,6 @@ profiles --down--|{ profile_images : image ファイル
 
 @enduml
 
-
-
 ```
 
 このようなER図が書けるようになります。
@@ -239,8 +272,6 @@ users ||--o{ profiles : resume
 
 @enduml
 
-
-
 ```
 
 ```example01.puml
@@ -252,8 +283,6 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
-
-
 
 ```
 
@@ -275,8 +304,6 @@ PlantUMLのER図はエンティティとその間のリレーションを図に�
 ```
 @startuml base
 @enduml
-
-
 
 ```
 
@@ -321,8 +348,6 @@ Entity13 "1以上" }|..o| "0 or 1"  Entity14 : 破線 で つなぐ
 
 @enduml
 
-
-
 ```
 
 ```example02.puml
@@ -338,8 +363,6 @@ Entity11 "0以上"  }o--|| "1のみ" Entity12  : aggregation
 Entity13 "1以上" }|..o| "0 or 1"  Entity14 : 破線 で つなぐ
 
 @enduml
-
-
 
 ```
 
@@ -414,8 +437,6 @@ users --right--o{ profiles : resume
 
 @enduml
 
-
-
 ```
 
 ```example03.puml
@@ -445,8 +466,6 @@ users --right--o{ profiles : resume
 ' users --left--o{ profiles : resume
 
 @enduml
-
-
 
 ```
 
@@ -518,8 +537,6 @@ users --right--o{ profiles : resume
 
 @enduml
 
-
-
 ```
 
 ```example04.puml
@@ -551,8 +568,6 @@ PROFILE_OVERVIEW
 users --right--o{ profiles : resume
 
 @enduml
-
-
 
 ```
 
@@ -662,8 +677,6 @@ endlegend
 
 @enduml
 
-
-
 ```
 
 ```example05.puml
@@ -746,8 +759,6 @@ ER図の解説を行います。
 endlegend
 
 @enduml
-
-
 
 ```
 
@@ -854,8 +865,6 @@ users ||--o{ profiles : resume
 
 @enduml
 
-
-
 ```
 
 ```example06.puml
@@ -875,8 +884,6 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
-
-
 
 ```
 
@@ -942,8 +949,6 @@ users ||--o{ profiles : resume
 
 @enduml
 
-
-
 ```
 
 ```example07.puml
@@ -989,8 +994,6 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
-
-
 
 ```
 
@@ -1053,8 +1056,6 @@ users --right--o{ profiles : resume
 
 @enduml
 
-
-
 ```
 
 ```example08.puml
@@ -1103,8 +1104,6 @@ users --right--o{ profiles : resume
 ' remove @unlinked
 
 @enduml
-
-
 
 ```
 
@@ -1195,8 +1194,6 @@ entity "**test**" {
 
 @enduml
 
-
-
 ```
 
 ```test01.puml
@@ -1212,8 +1209,6 @@ entity "**test**" {
 }
 
 @enduml
-
-
 
 ```
 
@@ -1244,8 +1239,6 @@ entity "**test**" {
 
 @enduml
 
-
-
 ```
 
 ```test01.puml
@@ -1262,8 +1255,6 @@ entity "**test**" {
 }
 
 @enduml
-
-
 
 ```
 
