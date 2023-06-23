@@ -97,7 +97,7 @@ Class図の記号に無く、ER図に必要な記号が追加サポートとい�
 # 目指す形、学習した結果
 example1から8を順番に見ていくと、
 
-```plantuml
+```plantuml.puml
 @startuml EntityRelationship
 
     entity "ユーザー" as users {
@@ -146,7 +146,7 @@ profiles --down--|{ profile_images : image ファイル
 ER図のシンプルな形から育てていく。
 VScodeを立ち上げexample01.puという空ファイルを作る。
 
-```plantuml
+```example01.puml
 @startuml example01
 
 entity users
@@ -157,7 +157,7 @@ users ||--o{ profiles : resume
 @enduml
 ```
 
-```example01.pu
+```example01.puml
 @startuml example01
 
 entity users
@@ -219,7 +219,9 @@ users ||--o{ profiles : resume
 
 
 # example02
-`plantuml
+
+
+```example02.puml
 @startuml example02
 
 ' Entity01 }|..|| Entity02
@@ -290,7 +292,8 @@ Entity11 "0以上"
 
 
 # example03
-`plantuml
+
+```example03.puml
 @startuml example03
 
 entity users {
@@ -317,7 +320,7 @@ users --right--o{ profiles : resume
 ' users --left--o{ profiles : resume
 
 @enduml
-`
+```
 
 ```example03.pu
 @startuml example03
@@ -347,6 +350,9 @@ users --right--o{ profiles : resume
 ' users --left--o{ profiles : resume
 
 @enduml
+
+
+
 ```
 
 
@@ -386,7 +392,8 @@ right、down、up、leftで左側（users）を基準に線が伸びる方向が
 
 
 # example04
-`plantuml
+
+```example04.puml
 @startuml example04
 
 ' エンティティ名の日本語化
@@ -415,9 +422,9 @@ PROFILE_OVERVIEW
 users --right--o{ profiles : resume
 
 @enduml
-`
+```
 
-```example04.pu
+```example04.punl
 @startuml example04
 
 ' エンティティ名の日本語化
@@ -471,7 +478,8 @@ asでつなげることで日本語を表示できます。
 
 
 # example05
-`plantuml
+
+```example05.puml
 @startuml example05
 
 ' 拡大縮小
@@ -551,9 +559,9 @@ ER図の解説を行います。
 endlegend
 
 @enduml
-`
+```
 
-```example05.pu
+```example05.puml
 @startuml example05
 
 ' 拡大縮小
@@ -713,8 +721,10 @@ left、right、top、bottom、center を使って、図の凡例の位置を指�
 
 
 # example06
+
 ER図の外側に書ける説明文
-`plantuml
+
+```example06.puml
 @startuml example06
 
 header some header
@@ -731,7 +741,10 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
-`
+
+
+
+```
 
 ```example06.pu
 @startuml example06
@@ -766,7 +779,8 @@ legend	legendはend legendで囲む
 # example07
 色をつける、文字の大きさを変える
 装飾文字等
-`plantuml
+
+```example07.puml
 @startuml example07
 
 <style>
@@ -809,9 +823,12 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
-`
 
-```example07
+
+
+```
+
+```example07.puml
 @startuml example07
 
 <style>
@@ -854,6 +871,9 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
+
+
+
 ```
 
 ## example07の解説
@@ -863,7 +883,8 @@ FontSizeやFontColorを指定したものにする。
 # example08
 孤立したエンティティを非表示または削除する
 デフォルトでは、すべてのクラスが表示されます：
-`plantuml
+
+```example08.puml
 @startuml example08
 
 entity "ユーザー" as users {
@@ -909,9 +930,9 @@ users --right--o{ profiles : resume
 ' remove @unlinked
 
 @enduml
-`
+```
 
-```example08
+```example08.puml
 @startuml example08
 
 entity "ユーザー" as users {
@@ -1013,7 +1034,8 @@ sqlantはデータベースからPlantUMLを出力するツール
 ※local環境でのSupabaseの設定はどのPC環境でも同じになる。
 
 ## 出力結果
-`test01.plantuml
+
+```test01.puml
 @startuml
 
 hide circle
@@ -1041,7 +1063,7 @@ entity "**test**" {
 に置くと装飾無効となりデフォルト色に戻ります。
 
 
-```test01.plantuml
+```test01.puml
 @startuml
 skin rose
 
