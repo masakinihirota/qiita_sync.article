@@ -1,17 +1,21 @@
 <!--
-title:   超入門 ハンズオン PlantUML で遷移図 ER図  for VSCode
-tags:    ER図,plantuml,sqlant,遷移図
+title:   PlantUML入門 ER図を書く基本 for VSCode
+tags:    ER図,plantuml,sqlant
 id:      da14aceff7f003ed0ef5
 private: false
 -->
-※ 重要
-コードを書いてプレビューで表示するまでに、画像表示に反映されるまで数秒かかる。
-（それまで赤い警告マークが表示される。）
 
-超入門 PlantUML ER図  for VSCode
+2023年6月23日 リニューアル
+
+今回紹介したコードのリポジトリ
+
+masakinihirota/plantuml
+
+https://github.com/masakinihirota/plantuml
+
 
 [PlantUML](http://plantuml.com/) というツールを使いER図を書きます。
-PlantUMLを書くのはテキストファイルなので Git で差分を管理できます
+PlantUMLを書くのはテキストファイルなので Git で差分を管理できます。
 
 公式マニュアル（日本語）
 [ダウンロードのページ](https://plantuml.com/ja/download)
@@ -26,27 +30,35 @@ PlantUMLを書くのはテキストファイルなので Git で差分を管理�
 # 環境
 Windows10
 VSCode
-VSCode拡張機能 PlantUML - Simple Viewer
-VSCodeでプレビュー表示が出来るようになる。
+GitHub
+PlantUML - Simple Viewer (VSCode拡張機能)
+
+
 
 ## 使用中の拡張機能
-PlantUML - Simple Viewer - Visual Studio Marketplace
 
 https://marketplace.visualstudio.com/items?itemName=well-ar.plantuml
 
 Alt + Dキーでプレビューが表示されます。
-
 ER図からコードのジャンプしてくれます。
-使用を停止した拡張機能にはない機能です。
 
-## 使用停止した拡張機能
+その他の機能は↓下とほぼ同じです。
+
+<details><summary>使用をやめた拡張機能</summary>
+
+PlantUML
 
 https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 
-ER図からコードのジャンプする機能はありません。
+ダウンロード数は多いのですが、
+この拡張機能にはER図からコードへジャンプする機能が無いので使うのを止めました。
+
+</details>
+
 
 
 現在、VSCode拡張機能をインストールするだけで PlantUML が利用できるようになります。
+（昔は色々インストールとか設定とかマニュアル読み込まないと大変だったのです。）
 
 インストールすると下記の拡張子がサポートされます。
 `*.pu, *.puml, *.plantuml, *.iuml, *.wsd`
@@ -61,17 +73,18 @@ VScodeの基本的な知識
 (テーブル、プライマリキー、外部キーが説明できる程度)
 
 # 現在の他の選択肢
-Draw.io マウスで地道に書いていく必要があります。
-Mermaid VScode上でのプレビュー拡大縮小がマウスホイールで出来ません
-MermaidとPlantUML両方とも文字や図、記号に色を付けるのがどちらもとても大変です、目的だけに集中して凝ったことはしないほうが良いと思います。
+Draw.io マウスで地道に書いていく必要があります。コード管理できない。
+Mermaid VScodeの拡張機能がプレビュー画像を拡大縮小してくれません。
 
 以上の理由からPlantUML を選択しました。
 
 
 
 # PlantUML
+
 PlantUMLで書ける図の種類は20以上あります。
 `PlantUMLでのER図はClass図の拡張版という扱いです。`
+
 Class図の記号に無く、ER図に必要な記号が追加サポートという形になっています。
 逆に言えば、ER図を書く時にPlantUMLのClass図のテクニックがそのまま使えます。
 
@@ -139,12 +152,17 @@ users --right--o{ profiles : resume
 profiles --down--|{ profile_images : image ファイル
 
 @enduml
+
+
+
 ```
-このようなER図が書けるようになる。
+
+このようなER図が書けるようになります。
 
 # example01
+
 ER図のシンプルな形から育てていく。
-VScodeを立ち上げexample01.puという空ファイルを作る。
+VScodeを立ち上げexample01.puという空ファイルを作ります。
 
 ```example01.puml
 @startuml example01
@@ -155,30 +173,14 @@ entity profiles
 users ||--o{ profiles : resume
 
 @enduml
-```
 
-```example01.puml
-@startuml example01
 
-entity users
-entity profiles
 
-users ||--o{ profiles : resume
-
-@enduml
 ```
 
 
 
-`Alt+D`でプレビューが開く
-
-tips
-プレビューが反映されない時は、
-1、数秒待つ、
-2、もう一度`Alt+D`を押す。
-3、一旦閉じて再び`Alt+D`でプレビューを開く。
-
-文法が正確でも10-30秒ぐらいエラー（🔴赤い丸）が表示されてしまう場合があります。
+`Alt+D`でプレビューが開きます。
 
 
 
@@ -189,11 +191,16 @@ tips
 PlantUMLのER図はエンティティとその間のリレーションを図にします。
 つまり基本的にエンティティ（DBでいうテーブル）とリレーション（関係）
 この2種類の文法がわかれば書けます。
-（他にタイトルや、コメント等の文法があります。）
+（他にタイトルや、コメント等の文法がありますが。）
 
-
+```
 @startuml base
 @enduml
+
+
+
+```
+
 この2行の間にコードを書きます。
 
 entity（エンティティ）
@@ -229,29 +236,17 @@ users ||--o{ profiles : resume
 ' Entity05 ||--o{ Entity06
 ' Entity07 |o--|| Entity08
 
-Entity09 "1" ||--o{ "0以上" Entity10 : contains
+Entity09 "1" ||-----o{ "0以上" Entity10 : contains
 Entity11 "0以上"  }o--|| "1のみ" Entity12  : aggregation
 Entity13 "1以上" }|..o| "0 or 1"  Entity14 : 破線 で つなぐ
 
 @enduml
-`
 
-```example02.pu
-@startuml example02
 
-' Entity01 }|..|| Entity02
-' Entity03 }o..o| Entity04
-' Entity05 ||--o{ Entity06
-' Entity07 |o--|| Entity08
-
-Entity09 "1" ||-o{ "0以上" Entity10 : contains
-Entity11 "0以上" }o--|| "1のみ" Entity12  : aggregation
-
-Entity13 "1以上" }|..o| "0 or 1"  Entity14 : 破線 で つなぐ
-
-@enduml
 
 ```
+
+
 
 ## example02の解説
 
@@ -283,7 +278,7 @@ o	英小文字のoを使用する
 
 自分は基本的に記号2文字を使います。
 記号1文字と2文字を混ぜて使うと2文字使う箇所は、線が長く伸びます。
-「---------------------」このように20文字以上つかうと使う分だけ伸びていきます。
+「-------」このように伸ばすと伸ばす分だけER図の方も伸びていきます。
 
 Entity11 "0以上"
 のように注釈をつけることが出来ます。
@@ -310,36 +305,6 @@ entity profiles{
 PROFILE_ID
 '--
 ==
-PROFILE_NAME
-PROFILE_OVERVIEW
-}
-
-users --right--o{ profiles : resume
-' users --down--o{ profiles : resume
-' users --up--o{ profiles : resume
-' users --left--o{ profiles : resume
-
-@enduml
-```
-
-```example03.pu
-@startuml example03
-
-entity users {
-USER_ID
---
---通常線--
-==二重線==
-..ドット線..
-__太文字線__
-
-USER_NAME
-UID
-}
-
-entity profiles{
-PROFILE_ID
-'--
 PROFILE_NAME
 PROFILE_OVERVIEW
 }
@@ -422,38 +387,11 @@ PROFILE_OVERVIEW
 users --right--o{ profiles : resume
 
 @enduml
+
+
+
 ```
 
-```example04.punl
-@startuml example04
-
-' エンティティ名の日本語化
-entity "ユーザー" as users {
-' プライマリキー
-+ USER_ID [PK]
---
-USER_NAME
-UID
-}
-
-' エンティティ名の日本語化
-entity "プロファイル" as profiles {
-' プライマリキー
-' 丸記号
-+ PROFILE_ID [PK]
---
-' 外部キー
-' ダイヤ記号
-# USER_ID [FK]
---
-PROFILE_NAME
-PROFILE_OVERVIEW
-}
-
-users --right--o{ profiles : resume
-
-@enduml
-```
 
 ## example04の解説
 
@@ -559,88 +497,12 @@ ER図の解説を行います。
 endlegend
 
 @enduml
+
+
+
 ```
 
-```example05.puml
-@startuml example05
 
-' 拡大縮小
-scale 0.7
-
-' タイトル
-title Values communication \n example
-skinparam titleBorderRoundCorner 15
-skinparam titleBorderThickness 2
-skinparam titleBorderColor red
-skinparam titleBackgroundColor #d9cb65
-
-
-entity "ユーザー" as users {
-' 丸記号
-+ USER_ID [PK]
---
-' 強調文字
-**USER_NAME**
-' 丸記号＋強調文字
-* **UID**
-INSERT_DATA
-UPDATE_DATE
-DELETE_FLAG
-}
-
-entity "プロファイル" as profiles {
-+ PROFILE_ID [PK]
---
-' ダイヤ記号
-# USER_ID [FK]
---
-PROFILE_NAME
-PROFILE_OVERVIEW
-INSERT_DATA
-UPDATE_DATE
-DELETE_FLAG
-}
-
-entity "プロファイルの画像" as profile_images {
-+ IMAGE_ID [PK]
---
-# PROFILE_ID [FK]
---
-PROFILE_IMAGE
-INSERT_DATA
-UPDATE_DATE
-DELETE_FLAG
-}
-
-' コメント：配置方法
-users --right--o{ profiles : resume
-profiles --down--|{ profile_images : image ファイル
-
-' ヘッダー
-header
-<font color=red>Warning:</font>
-Do not use in production.
-製品版で使わないでね。
-endheader
-
-' フッター
-center footer Generated for demonstration
-
-' キャプション(見出し)
-caption Values Network Service
-
-' legend(説明文)
-legend
-' legend top right
-' legend left
-これは説明文です
-
-ER図の解説を行います。
-空行もそのまま表示されます。
-endlegend
-
-@enduml
-```
 
 ## example05の解説
 ### プレビューを拡大、縮小
@@ -720,6 +582,7 @@ legend と end legendの間に
 left、right、top、bottom、center を使って、図の凡例の位置を指定する事もできます。
 
 
+
 # example06
 
 ER図の外側に書ける説明文
@@ -746,24 +609,7 @@ users ||--o{ profiles : resume
 
 ```
 
-```example06.pu
-@startuml example06
 
-header some header
-footer some footer
-title My title
-caption This is caption
-legend
-The legend
-end legend
-
-entity users
-entity profiles
-
-users ||--o{ profiles : resume
-
-@enduml
-```
 
 ## example06の解説
 ### ER図の外側に書ける説明文など
@@ -777,6 +623,7 @@ caption
 legend	legendはend legendで囲む
 
 # example07
+
 色をつける、文字の大きさを変える
 装飾文字等
 
@@ -828,60 +675,16 @@ users ||--o{ profiles : resume
 
 ```
 
-```example07.puml
-@startuml example07
-
-<style>
-title {
-HorizontalAlignment right
-FontSize 24
-FontColor blue
-}
-header {
-HorizontalAlignment center
-FontSize 26
-FontColor purple
-}
-footer {
-HorizontalAlignment left
-FontSize 28
-FontColor red
-}
-legend {
-FontSize 30
-BackGroundColor yellow
-Margin 30
-Padding 50
-}
-caption {
-FontSize 32
-}
-</style>
-header some header
-footer some footer
-title My title
-caption This is caption
-legend
-The legend
-end legend
-
-entity users
-entity profiles
-
-users ||--o{ profiles : resume
-
-@enduml
-
-
-
-```
 
 ## example07の解説
 ### Font
-FontSizeやFontColorを指定したものにする。
+FontSizeやFontColorを指定したものにします。
+
+
 
 # example08
-孤立したエンティティを非表示または削除する
+
+孤立したエンティティを非表示または削除します。
 デフォルトでは、すべてのクラスが表示されます：
 
 ```example08.puml
@@ -930,53 +733,11 @@ users --right--o{ profiles : resume
 ' remove @unlinked
 
 @enduml
+
+
+
 ```
 
-```example08.puml
-@startuml example08
-
-entity "ユーザー" as users {
-+ USER_ID [PK]
---
-USER_NAME
-UID
-INSERT_DATA
-UPDATE_DATE
-DELETE_FLAG
-}
-
-entity "プロファイル" as profiles {
-+ PROFILE_ID [PK]
---
-' ダイヤ記号
-# USER_ID [FK]
---
-PROFILE_NAME
-PROFILE_OVERVIEW
-INSERT_DATA
-UPDATE_DATE
-DELETE_FLAG
-}
-
-entity "プロファイルの画像" as profile_images {
-+ IMAGE_ID [PK]
---
-# PROFILE_ID [FK]
---
-PROFILE_IMAGE
-INSERT_DATA
-UPDATE_DATE
-DELETE_FLAG
-}
-
-' コメント：配置方法
-users --right--o{ profiles : resume
-
-' hide @unlinked
-' remove @unlinked
-
-@enduml
-```
 
 ## example08の解説
 
@@ -985,9 +746,24 @@ remode(削除)すると非表示になり、表示領域が削除した分だけ
 
 
 
-# Chrome拡張
+# Chrome拡張をいれてGitHub上でER図でみる。
+
 GitHubで差分を見る時にPlantUMLを描画させる - Qiita
+
 https://qiita.com/suzuki-hoge/items/648f5dbeeec5365666eb
+
+PlantUML Viewer
+
+https://chrome.google.com/webstore/detail/plantuml-viewer/legbfeljfbjgfifnkmpoajgpgejojooj?hl=ja
+
+↑このChrome拡張機能を入れる。
+
+使い方
+GitHubの***.pumlファイルを開いてRawボタンを押します。
+
+
+
+
 
 # データベースからPlantUML形式のファイルを出力する
 今回はSupabase（PostgreSQLを使用している）のテーブルスキーマをPlantUML形式で出力する。
