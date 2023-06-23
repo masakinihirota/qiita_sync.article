@@ -118,8 +118,6 @@ Class図の記号に無く、ER図に必要な記号が追加サポートとい�
 # 目指す形、学習した結果
 example1から8を順番に見ていくと、
 
-![EntityRelationship](http://localhost:30001/svg/SoWkIImgAStDKN3DAyaigGnApKaioSpFAyx8BE3YKW22LB2uWjBZvcMFc_SyRje699KK4eiLIejJYueLgi6AG41R8JJODIZUqqKXEi0x5YwigmjdWkNz77rT4IAUBd2sfnzGEYJUnJ744I4V0EIwWiGGUbnSVLo1Ocu-ZkumiLfqfqv_tBpsSVFKnqqB7pSjUToy6kpWWgByjCoSL5Gt1mJvktdwkE9pjZB2OsxOLS0CGV4RJD0_p3KepDCrd6AF4lJbuyPrpwViVjhSZ-pT-CpSn7GqJtlwEheJy39ok13mDTWqQlYEI_rnq-R7pGiVDmF9ZlTxPhrixNs-TzspQJkVRPxA1Kblkhf5cUaP9Rgw-TM82BLIA4ejBirDvOABwEgcv9VdwUhMLAE7WvK2cA60771SN0wfUId0N000 "EntityRelationship")
-
 ```PlantUML.puml
 @startuml EntityRelationship
 
@@ -173,8 +171,6 @@ profiles --down--|{ profile_images : image ファイル
 
 ER図のシンプルな形から育てていく。
 VScodeを立ち上げexample01.puという空ファイルを作ります。
-
-![example01](http://localhost:30001/svg/SoWkIImgAStDKKYjICmjo4arCEJYIiqhoIofL2WjJYqgXd4AYlBJCdDIYxcumC8ADJMwkldLS645AuMYrEBIt5GkBeVKl1IWWG00 "example01")
 
 ```example01.puml
 @startuml example01
@@ -239,8 +235,6 @@ users ||--o{ profiles : resume
 
 # example02
 
-![example02](http://localhost:30001/svg/SoWkIImgAStDKKYjICmjo4arCEBYKbTmpIl9BAaqC5IehT7Jgwc1yOqGKiOAjVbwUlbmAHE4bAb2JOskRdurZ6-6a39NgCdNrKKOQC751MLPAYWPAe4rweBrAXaysRtqoOuk9QXIGmC5AuNa_BoInCoyOgWcGqCaPK3tW4rMCdpSkEvnutwuHYC5eCx4zFIYrFJ4aipyF9XcOw1Ic6QGDu5-KJ9Go2zI0Be3fjS4gFNvWYtFjyzIUDou78YNF6vSzRXn0XUNGsfU2Z3O0000 "example02")
-
 ```example02.puml
 @startuml example02
 
@@ -300,8 +294,6 @@ Entity11 "0以上"
 
 
 # example03
-
-![example03](http://localhost:30001/svg/SoWkIImgAStDKKYjICmjo4arCERYIiqhoIofL2WjJYqgLgZc2Wrs3OhtTE7IrNtPCElfZXtFjy_IrUMojNsog-TbUo-GPslBfQVtkBdpSNFpu-OEe82U7bTy_DCbgvvDQt-wTZfG83uUOegVewyhLoZGh5guBGL5-McPEQd5rLm1GVvkdZwk8AlKmHR0HS3QO1p_CDUWC4_NS90P42VgwXPbfcUKwEhcLyEDKx1IA4ejBirDvL9NWAbAoI_F8wYej82WafpKD5oMSJcavgK0WnC0 "example03")
 
 ```example03.puml
 @startuml example03
