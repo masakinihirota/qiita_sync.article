@@ -36,10 +36,8 @@ PlantUMLを書くのはテキストファイルなので Git で差分を管理�
 
 # QiitaでPlantUMLの図を書く
 
-```plantuml
-```
+` ```plantuml ` と` ``` `で囲むとその中に書いたPlantUMLのコードがQiita上でER図になります。
 
-PlantUMLのコードを上のMarkdown形式で書くとそのコードに沿ったER図が表示されます。
 
 
 
