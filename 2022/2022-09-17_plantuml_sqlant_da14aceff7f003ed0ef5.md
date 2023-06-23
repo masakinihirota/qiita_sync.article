@@ -7,12 +7,19 @@ private: false
 
 2023年6月23日 リニューアル
 
-今回紹介したコードのリポジトリ
+# コードのリポジトリ
 
-masakinihirota/plantuml
+今回紹介したコードのリポジトリ
 
 https://github.com/masakinihirota/plantuml
 
+※↓Chrome拡張機能をいれるとGitHub上でもER図として見ることが出来るようになります。
+
+PlantUML Viewer
+
+https://chrome.google.com/webstore/detail/plantuml-viewer/legbfeljfbjgfifnkmpoajgpgejojooj?hl=ja
+
+# PlantUMLについて
 
 [PlantUML](http://plantuml.com/) というツールを使いER図を書きます。
 PlantUMLを書くのはテキストファイルなので Git で差分を管理できます。
@@ -32,6 +39,7 @@ Windows10
 VSCode
 GitHub
 PlantUML - Simple Viewer (VSCode拡張機能)
+PlantUML Viewer (Chrome拡張機能)
 
 
 
@@ -861,5 +869,7 @@ entity "**test**" {
 # 参考
 Class図での例だが具体例が沢山ある。
 PlantUMLのER図はClass図の拡張なのでほぼすべてのClass図は参考にできる。
+
 Real World PlantUML
+
 https://real-world-plantuml.com/?type=class
