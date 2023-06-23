@@ -8,9 +8,9 @@ private: false
 2023年6月23日 リニューアル
 
 # 関連記事
-VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ、画像拡大縮小も大幅に便利に ) - Qiita
 
 VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ、画像拡大縮小も大幅に便利に ) - Qiita
+
 https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
 
