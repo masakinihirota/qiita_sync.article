@@ -15,6 +15,25 @@ https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
 # 追記 2023年6月26日
 
+## テーブルの命名規則
+
+テーブル名は
+複数形、スネークケース、小文字のみ、英語で命名
+
+カラム名は
+テーブル名からわかることは書かない
+
+１対多の関係で他テーブルのidを参照する場合は単数形を利用する
+
+③DATE型のカラムは「受動態_on」
+opened_on
+
+④TIMESTAMP型のカラムは「受動態_at」
+updated_at
+
+
+
+## PlantUMLでのER図設定の追加
 PlantUMLのプレビュー画像で「E」を「T」に変えたい。
 項目の先頭に記号を付けて 項目名を太文字にしたい。
 項目名を太文字にしたい。
@@ -29,7 +48,7 @@ entity users as "users\nユーザー" <<T,TRANSACTION>> {
   --
 * **name** : text
 **description** : text
-created_at : DATE
+created_at : TIMESTAMP
 
 }
 
@@ -79,8 +98,6 @@ package default {
 
 # それぞれを別ファイルで管理
 
-## テーブルファイル
-
 ```table.puml
 @startuml table
 !define TRANSACTION CAE7F2
@@ -91,8 +108,8 @@ entity users as "users\nユーザー" <<T,TRANSACTION>> {
   --
   name VARCHAR(30) [名前]
   # country_id [FK]
-  created_at : DATE
-  updated_at : DATE
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
 }
 
 
@@ -102,8 +119,8 @@ entity posts as "posts\n記事" <<T,TRANSACTION>> {
   title VARCHAR(30) [タイトル]
   body VARCHAR(255) [記事]
   # user_id [FK]
-  created_at : DATE
-  updated_at : DATE
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
 }
 
 
@@ -111,14 +128,16 @@ entity countries as "countries\n国" <<M,MASTER>> {
   + id INT(10) [PK]
   --
   name VARCHAR(50) [国名]
-  created_at : DATE
-  updated_at : DATE
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
 }
 
+logs users
+logs posts
+logs countries
+
 @enduml
-
 ```
-
 ## リレーションファイル
 
 ``` relation.puml
@@ -1429,5 +1448,9 @@ https://qiita.com/kazuki43zoo/items/d23148c149f4d31d2521
 設計 | PlantUMLでER図を作成 - わくわくBank
 
 https://www.wakuwakubank.com/posts/805-design-uml-er/
+
+〜テーブル設計基礎の「キ」　命名規則〜 - Qiita
+
+https://qiita.com/tatsuya_1995/items/4b706fc40fe2f300bbc0
 
 ※大変参考になりました、ありがとうございました。
