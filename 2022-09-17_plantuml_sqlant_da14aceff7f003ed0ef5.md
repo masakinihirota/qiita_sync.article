@@ -24,10 +24,10 @@ https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
 １対多の関係で他テーブルのidを参照する場合は単数形を利用する
 
-③DATE型のカラムは「受動態_on」
+DATE型のカラムは「受動態_on」
 opened_on
 
-④TIMESTAMP型のカラムは「受動態_at」
+TIMESTAMP型のカラムは「受動態_at」
 updated_at
 
 
