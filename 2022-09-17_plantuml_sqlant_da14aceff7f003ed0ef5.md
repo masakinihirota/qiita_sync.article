@@ -4,7 +4,6 @@ tags:    ER図,plantuml,sqlant
 id:      da14aceff7f003ed0ef5
 private: false
 -->
-
 2023年6月23日 リニューアル
 
 # 関連記事
@@ -25,10 +24,10 @@ https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
 １対多の関係で他テーブルのidを参照する場合は単数形を利用する
 
-DATE型のカラムは「受動態_on」
+③DATE型のカラムは「受動態_on」
 opened_on
 
-TIMESTAMP型のカラムは「受動態_at」
+④TIMESTAMP型のカラムは「受動態_at」
 updated_at
 
 
