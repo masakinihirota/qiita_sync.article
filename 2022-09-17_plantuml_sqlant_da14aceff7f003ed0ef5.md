@@ -82,10 +82,10 @@ created_at : TIMESTAMP
 
 package database <<Database>> {
   entity entity01 <<T,TRANSACTION>> {
-   'ここの項目を書く
+   'ここに項目を書く
   }
   entity entity02 <<T,TRANSACTION>> {
-   'ここの項目を書く
+   'ここに項目を書く
   }
 }
 
@@ -120,10 +120,10 @@ package default {
 
 package database <<Database>> {
   entity entity01 <<T,TRANSACTION>> {
-   'ここの項目を書く
+   'ここに項目を書く
   }
   entity entity02 <<T,TRANSACTION>> {
-   'ここの項目を書く
+   'ここに項目を書く
   }
 }
 
@@ -190,10 +190,6 @@ entity countries as "countries\n国" <<M,MASTER>> {
   updated_at : TIMESTAMP
 }
 
-logs users
-logs posts
-logs countries
-
 @enduml
 
 ```
@@ -229,10 +225,6 @@ entity countries as "countries\n国" <<M,MASTER>> {
   created_at : TIMESTAMP
   updated_at : TIMESTAMP
 }
-
-logs users
-logs posts
-logs countries
 
 @enduml
 
