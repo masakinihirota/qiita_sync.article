@@ -13,7 +13,135 @@ VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ�
 
 https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
+# 追記 2023年6月26日
 
+PlantUMLのプレビュー画像で「E」を「T」に変えたい。
+項目の先頭に記号を付けて 項目名を太文字にしたい。
+項目名を太文字にしたい。
+
+```modifications_E_to_T.puml
+@startuml modifications_E_to_T
+
+!define TRANSACTION CAE7F2
+
+entity users as "users\nユーザー" <<T,TRANSACTION>> {
+  + id INT(10) [PK]
+  --
+* **name** : text
+**description** : text
+created_at : DATE
+
+}
+
+@enduml
+
+```
+
+# エンティティをグループ化
+
+```group.puml
+@startuml group
+!define TRANSACTION CAE7F2
+
+package database <<Database>> {
+  entity entity01 <<T,TRANSACTION>> {
+   'ここの項目を書く
+  }
+  entity entity02 <<T,TRANSACTION>> {
+   'ここの項目を書く
+  }
+}
+
+package folder <<folder>> {
+  entity entity10 <<T,TRANSACTION>>{}
+  entity entity11 <<T,TRANSACTION>>{}
+}
+
+package rectangle <<rectangle>> {
+  entity entity30 <<T,TRANSACTION>>{}
+}
+
+package frame <<frame>> {
+  entity entity40 <<T,TRANSACTION>>{}
+}
+
+package node <<node>> {
+  entity entity50 <<T,TRANSACTION>>{}
+}
+
+package default {
+  entity entity60 <<T,TRANSACTION>>{}
+}
+
+@enduml
+
+```
+
+# それぞれを別ファイルで管理
+
+## テーブルファイル
+
+```table.puml
+@startuml table
+!define TRANSACTION CAE7F2
+!define MASTER F9DFD5
+
+entity users as "users\nユーザー" <<T,TRANSACTION>> {
+  + id INT(10) [PK]
+  --
+  name VARCHAR(30) [名前]
+  # country_id [FK]
+  created_at : DATE
+  updated_at : DATE
+}
+
+
+entity posts as "posts\n記事" <<T,TRANSACTION>> {
+  + id INT(10) [PK]
+  --
+  title VARCHAR(30) [タイトル]
+  body VARCHAR(255) [記事]
+  # user_id [FK]
+  created_at : DATE
+  updated_at : DATE
+}
+
+
+entity countries as "countries\n国" <<M,MASTER>> {
+  + id INT(10) [PK]
+  --
+  name VARCHAR(50) [国名]
+  created_at : DATE
+  updated_at : DATE
+}
+
+@enduml
+
+```
+
+## リレーションファイル
+
+``` relation.puml
+@startuml relation
+
+!include table.puml
+
+users }|-l-|| countries
+users ||-r-o{ posts
+
+@enduml
+
+```
+
+※それぞれ別ファイルに分けておくと、ER図のコードが長くなっても見やすくなります。
+※ファイルに分けずこのままAlt+dでプレビュー表示してもエラーになります。
+`!include table.puml`
+この行の指示通り、外に`table.puml`を作成しておく必要があります。
+
+※VSCode拡張機能の「PlantUML - Simple Viewer」のコードジャンプ機能はリレーションファイルからではテーブルの項目にジャンプしてくれません。テーブルファイルを開いている状態からなら指定のテーブルの項目にジャンプしてくれます。
+
+
+# 追記終了
 
 # コードのリポジトリ
 
@@ -1297,3 +1425,9 @@ https://real-world-plantuml.com/?type=class
 QiitaでPlantUMLが使えるようになっていた - Qiita
 
 https://qiita.com/kazuki43zoo/items/d23148c149f4d31d2521
+
+設計 | PlantUMLでER図を作成 - わくわくBank
+
+https://www.wakuwakubank.com/posts/805-design-uml-er/
+
+※大変参考になりました、ありがとうございました。
