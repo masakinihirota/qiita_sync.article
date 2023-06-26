@@ -37,6 +37,25 @@ PlantUMLのプレビュー画像で「E」を「T」に変えたい。
 項目の先頭に記号を付けて 項目名を太文字にしたい。
 項目名を太文字にしたい。
 
+
+```plantuml
+@startuml modifications_E_to_T
+
+!define TRANSACTION CAE7F2
+
+entity users as "users\nユーザー" <<T,TRANSACTION>> {
+  + id INT(10) [PK]
+  --
+* **name** : text
+**description** : text
+created_at : TIMESTAMP
+
+}
+
+@enduml
+
+```
+
 ```modifications_E_to_T.puml
 @startuml modifications_E_to_T
 
@@ -56,6 +75,44 @@ created_at : TIMESTAMP
 ```
 
 # エンティティをグループ化
+
+```plantuml
+@startuml group
+!define TRANSACTION CAE7F2
+
+package database <<Database>> {
+  entity entity01 <<T,TRANSACTION>> {
+   'ここの項目を書く
+  }
+  entity entity02 <<T,TRANSACTION>> {
+   'ここの項目を書く
+  }
+}
+
+package folder <<folder>> {
+  entity entity10 <<T,TRANSACTION>>{}
+  entity entity11 <<T,TRANSACTION>>{}
+}
+
+package rectangle <<rectangle>> {
+  entity entity30 <<T,TRANSACTION>>{}
+}
+
+package frame <<frame>> {
+  entity entity40 <<T,TRANSACTION>>{}
+}
+
+package node <<node>> {
+  entity entity50 <<T,TRANSACTION>>{}
+}
+
+package default {
+  entity entity60 <<T,TRANSACTION>>{}
+}
+
+@enduml
+
+```
 
 ```group.puml
 @startuml group
@@ -97,7 +154,11 @@ package default {
 
 # それぞれを別ファイルで管理
 
-```table.puml
+テーブルとリレーションをそれぞれ別ファイルで管理することができます。
+
+※注意: ↓下のテーブルファイルとリレーションファイルのコードはファイルを分けていなければエラーになります。
+
+```plantuml
 @startuml table
 !define TRANSACTION CAE7F2
 !define MASTER F9DFD5
@@ -111,7 +172,6 @@ entity users as "users\nユーザー" <<T,TRANSACTION>> {
   updated_at : TIMESTAMP
 }
 
-
 entity posts as "posts\n記事" <<T,TRANSACTION>> {
   + id INT(10) [PK]
   --
@@ -121,7 +181,6 @@ entity posts as "posts\n記事" <<T,TRANSACTION>> {
   created_at : TIMESTAMP
   updated_at : TIMESTAMP
 }
-
 
 entity countries as "countries\n国" <<M,MASTER>> {
   + id INT(10) [PK]
@@ -136,8 +195,61 @@ logs posts
 logs countries
 
 @enduml
+
+```
+
+```table.puml
+@startuml table
+!define TRANSACTION CAE7F2
+!define MASTER F9DFD5
+
+entity users as "users\nユーザー" <<T,TRANSACTION>> {
+  + id INT(10) [PK]
+  --
+  name VARCHAR(30) [名前]
+  # country_id [FK]
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+entity posts as "posts\n記事" <<T,TRANSACTION>> {
+  + id INT(10) [PK]
+  --
+  title VARCHAR(30) [タイトル]
+  body VARCHAR(255) [記事]
+  # user_id [FK]
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+entity countries as "countries\n国" <<M,MASTER>> {
+  + id INT(10) [PK]
+  --
+  name VARCHAR(50) [国名]
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+logs users
+logs posts
+logs countries
+
+@enduml
+
 ```
 ## リレーションファイル
+
+```plantuml
+@startuml relation
+
+!include table.puml
+
+users }|-l-|| countries
+users ||-r-o{ posts
+
+@enduml
+
+```
 
 ``` relation.puml
 @startuml relation
@@ -157,7 +269,6 @@ users ||-r-o{ posts
 この行の指示通り、外に`table.puml`を作成しておく必要があります。
 
 ※VSCode拡張機能の「PlantUML - Simple Viewer」のコードジャンプ機能はリレーションファイルからではテーブルの項目にジャンプしてくれません。テーブルファイルを開いている状態からなら指定のテーブルの項目にジャンプしてくれます。
-
 
 # 追記終了
 
