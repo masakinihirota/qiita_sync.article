@@ -290,12 +290,15 @@ VSCode の管理（左下の歯車アイコン）＞キーボードショート�
 ### 画面構成 GitHub Copilot chat
 右上に画面構成のアイコンがあります。
 
-3つの
 
 
-## Tips GitHub Copilot chat
 
-### 範囲選択
+
+
+
+# Tips GitHub Copilot chat
+
+## 範囲選択
 
 GitHub Copilot chatは賢く、範囲選択をした部分を認識してくれます。
 そこに命令を出すと、その範囲選択した部分に対して命令を出してくれます。
@@ -332,6 +335,25 @@ dateOfBirth, socialSecurityNumber, homeAddress, emailAddress, phoneNumber
 ```
 
 このように一部キャメルケースに変換してくれます。
+
+
+
+## Markdownに貼り付ける
+
+例えばデータを用意してMarkdownに貼り付ける時に
+
+「データをMarkdown形式で表示してください。」
+だと
+Markdownの表で出力されます。
+(時々空気を読んで貼り付けられる形式に出力されるときもありますが。)
+
+そんな時は
+「データをMarkdownファイルに貼り付けられる形式で出力してください。」
+などと「貼り付けられる形式」と目的をはっきり書くことで出力形式が代わります。
+
+
+
+
 
 
 

@@ -12,6 +12,35 @@ VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ�
 
 https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
+# 追記 2023年6月27日
+
+## テーブルをマクロで定義する方法
+
+!define Table(name,desc)は、Tableという名前のマクロを定義しています。このマクロは、テーブルの名前と説明を引数として受け取り、テーブルを表すクラスを作成します。テーブルの名前はname、説明はdescという変数名で定義されています。テーブルの外観は、<< (T,#FFAAAA) >>で定義されています。<< (T,#FFAAAA) >>は、PlantUMLでテーブルを表すためのスタイルです。Tはテーブルを表し、#FFAAAAはテーブルの背景色を表しています。
+
+!define primary_key(x)は、primary_keyという名前のマクロを定義しています。このマクロは、主キーを表すために使用されます。主キーの列名を引数として受け取り、その列名を太字で下線付きにします。
+
+!define foreign_key(x)は、foreign_keyという名前のマクロを定義しています。このマクロは、外部キーを表すために使用されます。外部キーの列名を引数として受け取り、その列名を下線付きにします。
+
+```table.puml
+@startuml production_anime_table
+!define Table(name,desc) entity name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b><u>x</u></b>
+!define foreign_key(x) <u>x</u>
+
+Table(works, "テーブル1: works") {
+  primary_key(id)
+  ---
+  タイトル
+  新規登録日時
+  最終更新日
+}
+@enduml
+
+```
+
+# 追記終了
+
 # 追記 2023年6月26日
 
 ## テーブルの命名規則
