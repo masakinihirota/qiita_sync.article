@@ -55,7 +55,10 @@ Supabaseのテーブル設計でPlantUMLのER図で書く時は、Supabaseのダ
 
 # PostgreSQLの型
 
-※↓PostgreSQLにはあってSupabaseのGUIからは設定できない型はかなりあります。
+※↓PostgreSQLには、SupabaseのGUIから設定できない型がかなりあります。
+
+>Supabaseは、PostgreSQLをベースにしているため、PostgreSQLで使用できるデータ型の多くをサポートしています。ただし、SupabaseのGUIから設定できない型があるのは、Supabaseが独自に開発した機能をサポートしているためです。また、Supabaseは、Webアプリケーションの開発に特化しており、一般的なWebアプリケーションで使用されるデータ型を中心にサポートしています。そのため、PostgreSQLで使用できるデータ型のうち、Webアプリケーションで使用頻度が低いものは、SupabaseのGUIから設定できない場合があります。
+
 
 ※PostgreSQLの型はバージョン15を参考にしています。
 
@@ -107,4 +110,4 @@ https://www.postgresql.jp/document/15/html/datatype.html
 | uuid |  | 汎用一意識別子 |
 | xml |  | XMLデータ |
 
-※確認していませんが、SQL Editor からSQL文を流し込めば使える・・・かもしれない・・・
+※確認していませんが、Supabaseのダッシュボードの SQL Editor からSQL文を流し込めば使える・・・かもしれない・・・
