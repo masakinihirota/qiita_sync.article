@@ -22,13 +22,16 @@ https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
 !define foreign_key(x)は、foreign_keyという名前のマクロを定義しています。このマクロは、外部キーを表すために使用されます。外部キーの列名を引数として受け取り、その列名を下線付きにします。
 
+
+
 ```table.puml
 @startuml production_anime_table
 !define Table(name,desc) entity name as "desc" << (T,#FFAAAA) >>
 !define primary_key(x) <b><u>x</u></b>
 !define foreign_key(x) <u>x</u>
 
-Table(works, "テーブル1: works") {
+' ↓背景色の指定 #色
+Table(works, "テーブル1: works") #lightblue {
   primary_key(id)
   ---
   タイトル
@@ -38,6 +41,116 @@ Table(works, "テーブル1: works") {
 @enduml
 
 ```
+
+## テーブル単位で背景色を指定する方法
+
+↓シャープ記号の後に色を指定します。
+`Table(works, "テーブル1: works") #lightblue {`
+↓場所と色でも指定できます。
+`Table(works, "テーブル1: works") #back:lightblue {`
+↓背景色と縁の色を指定しています。
+`#lightblue;line:red`
+
+### 背景色に使えそうな色の一覧
+
+```plantuml
+@startuml color
+title
+|= 色の名前 |
+|<#lightblue> #lightblue |
+|<#LightGoldenRodYellow> #LightGoldenRodYellow |
+|<#LightGray> #LightGray |
+|<#LightGreen> #LightGreen |
+|<#LightGrey> #LightGrey |
+|<#LightPink> #LightPink |
+|<#LightSkyBlue> #LightSkyBlue |
+|<#LightSteelBlue> #LightSteelBlue |
+|<#MistyRose> #MistyRose |
+|<#Moccasin> #Moccasin |
+|<#NavajoWhite> #NavajoWhite |
+|<#PaleGoldenRod> #PaleGoldenRod |
+|<#PaleGreen> #PaleGreen |
+|<#PaleTurquoise> #PaleTurquoise |
+|<#PapayaWhip> #PapayaWhip |
+|<#PeachPuff> #PeachPuff |
+|<#Pink> #Pink |
+|<#Plum> #Plum |
+|<#PowderBlue> #PowderBlue |
+|<#SpringGreen> #SpringGreen |
+|<#Tan> #Tan |
+|<#Thistle> #Thistle |
+|<#Turquoise> #Turquoise |
+|<#Wheat> #Wheat |
+end title
+
+@enduml
+
+```
+
+```color.puml
+@startuml color
+title
+|= 色の名前 |
+|<#lightblue> #lightblue |
+|<#LightGoldenRodYellow> #LightGoldenRodYellow |
+|<#LightGray> #LightGray |
+|<#LightGreen> #LightGreen |
+|<#LightGrey> #LightGrey |
+|<#LightPink> #LightPink |
+|<#LightSkyBlue> #LightSkyBlue |
+|<#LightSteelBlue> #LightSteelBlue |
+|<#MistyRose> #MistyRose |
+|<#Moccasin> #Moccasin |
+|<#NavajoWhite> #NavajoWhite |
+|<#PaleGoldenRod> #PaleGoldenRod |
+|<#PaleGreen> #PaleGreen |
+|<#PaleTurquoise> #PaleTurquoise |
+|<#PapayaWhip> #PapayaWhip |
+|<#PeachPuff> #PeachPuff |
+|<#Pink> #Pink |
+|<#Plum> #Plum |
+|<#PowderBlue> #PowderBlue |
+|<#SpringGreen> #SpringGreen |
+|<#Tan> #Tan |
+|<#Thistle> #Thistle |
+|<#Turquoise> #Turquoise |
+|<#Wheat> #Wheat |
+end title
+
+@enduml
+
+```
+
+
+
+#lightblue
+#LightGoldenRodYellow
+#LightGray
+#LightGreen
+#LightGrey
+#LightPink
+#LightSkyBlue
+#LightSteelBlue
+#MistyRose
+#Moccasin
+#NavajoWhite
+#PaleGoldenRod
+#PaleGreen
+#PaleTurquoise
+#PapayaWhip
+#PeachPuff
+#Pink
+#Plum
+#PowderBlue
+#SpringGreen
+#Tan
+#Thistle
+#Turquoise
+#Wheat
+
+※ ライトモードで、テーブル文字の色が黒の場合
+
+
 
 # 追記終了
 
@@ -1246,7 +1359,7 @@ legend
 The legend
 end legend
 
-entity users
+entity users #back:lightblue
 entity profiles
 
 users ||--o{ profiles : resume
@@ -1292,7 +1405,7 @@ legend
 The legend
 end legend
 
-entity users
+entity users #back:lightblue
 entity profiles
 
 users ||--o{ profiles : resume
@@ -1306,6 +1419,10 @@ users ||--o{ profiles : resume
 ### Font
 FontSizeやFontColorを指定したものにします。
 
+#### テーブル単位で背景色を指定する方法
+
+↓シャープ記号の後に場所と色を指定します。
+`entity users #back:lightblue`
 
 
 # example08

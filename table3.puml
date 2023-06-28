@@ -1,0 +1,42 @@
+@startuml
+
+note "AntiqueWhite" as AntiqueWhite #AntiqueWhite
+note "Aquamarine" as Aquamarine #Aquamarine
+note "Beige" as Beige #Beige
+note "Bisque" as Bisque #Bisque
+note "BlanchedAlmond" as BlanchedAlmond #BlanchedAlmond
+note "BurlyWood" as BurlyWood #BurlyWood
+note "Cornsilk" as Cornsilk #Cornsilk
+note "Gainsboro" as Gainsboro #Gainsboro
+note "GreenYellow" as GreenYellow #GreenYellow
+note "Khaki" as Khaki #Khaki
+note "Lavender" as Lavender #Lavender
+note "LavenderBlush" as LavenderBlush #LavenderBlush
+note "LawnGreen" as LawnGreen #LawnGreen
+note "LemonChiffon" as LemonChiffon #LemonChiffon
+note "LightBlue" as LightBlue #LightBlue
+note "LightCyan" as LightCyan #LightCyan
+note "LightGoldenRodYellow" as LightGoldenRodYellow #LightGoldenRodYellow
+note "LightGray" as LightGray #LightGray
+note "LightGreen" as LightGreen #LightGreen
+note "LightGrey" as LightGrey #LightGrey
+note "LightPink" as LightPink #LightPink
+note "LightSkyBlue" as LightSkyBlue #LightSkyBlue
+note "LightSteelBlue" as LightSteelBlue #LightSteelBlue
+note "MistyRose" as MistyRose #MistyRose
+note "Moccasin" as Moccasin #Moccasin
+note "NavajoWhite" as NavajoWhite #NavajoWhite
+note "PaleGoldenRod" as PaleGoldenRod #PaleGoldenRod
+note "PaleGreen" as PaleGreen #PaleGreen
+note "PaleTurquoise" as PaleTurquoise #PaleTurquoise
+note "PapayaWhip" as PapayaWhip #PapayaWhip
+note "PeachPuff" as PeachPuff #PeachPuff
+note "Pink" as Pink #Pink
+note "Plum" as Plum #Plum
+note "PowderBlue" as PowderBlue #PowderBlue
+note "SpringGreen" as SpringGreen #SpringGreen
+note "Tan" as Tan #Tan
+note "Thistle" as Thistle #Thistle
+note "Turquoise" as Turquoise #Turquoise
+note "Wheat" as Wheat #Wheat
+@enduml
