@@ -12,6 +12,148 @@ VSCodeで書くPlantUML ER図 (ER図からコードへジャンプやテーマ�
 
 https://qiita.com/masakinihirota/items/f8357fc7d17456738e93
 
+# 追記 2023年7月3日
+
+## テンプレート
+メインテーブル、サブテーブル、テーブル関係、パッケージ
+
+```plantuml
+
+' PlantUML ER図ファイルの拡張子 puml
+
+' ルール
+' テーブルの背景色
+' リソースエンティティ
+' #PaleTurquoise
+' 水色 緑色系 (落ち着いた色)
+
+' イベントエンティティ
+' #NavajoWhite
+' 黄色 オレンジ色系 (活発な色)
+
+' |o-- 0 か 1
+' ||-- 1 のみ
+' }o-- 0 以上
+' }|-- 1 以上
+
+' main_tables }-d-|| sub_tables
+
+' テンプレート
+
+@startuml table_name
+
+!define Table(name,desc) entity name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b><u>x</u></b>
+!define foreign_key(x) <u>x</u>
+
+' パッケージ
+package package <<Database>> {
+
+' テーブルの名前小文字複数形スネークケース
+Table(main_tables, "メインテーブル") #PaleTurquoise {
+    primary_key(id) <<generated>> [ID]
+    --
+    ' テーブルのカラム名 小文字スネークケース
+    --
+    ' 日付
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(sub_tables, "サブテーブル") #PaleTurquoise {
+    primary_key(id) <<generated>> [ID]
+    --
+    ' 外部キー
+    foreign_key(main_table_id) <<FK>> [メインテーブルID]
+    --
+    ' テーブルのカラム名 小文字スネークケース
+    --
+    ' 日付
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+
+
+ main_tables }--|| sub_tables
+
+'パッケージの閉じカッコ
+}
+
+@enduml
+
+```
+
+```template.puml
+
+' PlantUML ER図ファイルの拡張子 puml
+
+' ルール
+' テーブルの背景色
+' リソースエンティティ
+' #PaleTurquoise
+' 水色 緑色系 (落ち着いた色)
+
+' イベントエンティティ
+' #NavajoWhite
+' 黄色 オレンジ色系 (活発な色)
+
+' |o-- 0 か 1
+' ||-- 1 のみ
+' }o-- 0 以上
+' }|-- 1 以上
+
+' registration_records }-d-|| countries
+
+' テンプレート
+
+@startuml table_name
+
+!define Table(name,desc) entity name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b><u>x</u></b>
+!define foreign_key(x) <u>x</u>
+
+' パッケージ
+package package <<Database>> {
+
+' テーブルの名前小文字複数形スネークケース
+Table(main_tables, "メインテーブル") #PaleTurquoise {
+    primary_key(id) <<generated>> [ID]
+    --
+    ' テーブルのカラム名 小文字スネークケース
+    --
+    ' 日付
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(sub_tables, "サブテーブル") #PaleTurquoise {
+    primary_key(id) <<generated>> [ID]
+    --
+    ' 外部キー
+    foreign_key(main_table_id) <<FK>> [メインテーブルID]
+    --
+    ' テーブルのカラム名 小文字スネークケース
+    --
+    ' 日付
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+
+
+ main_tables }--|| sub_tables
+
+'パッケージの閉じカッコ
+}
+
+@enduml
+
+```
+
+# 追記終了
+
+
 # 追記 2023年6月27日
 
 ## テーブルをマクロで定義する方法
@@ -149,6 +291,35 @@ end title
 #Wheat
 
 ※ ライトモードで、テーブル文字の色が黒の場合
+
+テーブルの背景色
+リソースエンティティ
+#PaleTurquoise
+水色 緑色系 (落ち着いた色)
+
+イベントエンティティ
+#NavajoWhite
+黄色 オレンジ色系 (活発な色)
+
+
+ER図とは？書き方やテクニックをわかりやすく解説
+
+https://products.sint.co.jp/ober/blog/create-er-diagram
+
+ER図を見やすくするテクニック
+
+リソースエンティティとイベントエンティティで色分けする
+リソースエンティティを緑、
+イベントエンティティを黄色で色分け
+
+リソースエンティティは、データベースのテーブルのうち、最終的にマスタ系のテーブルとなるものを指します。
+
+マスタ系のテーブルとは、主に静的なデータを管理するテーブルです。
+例えば、商品マスタや顧客マスタなどが該当します。
+
+イベントエンティティは、トランザクションを管理するテーブルで、主に動的なデータを管理するテーブルです。
+
+リソースエンティティとイベントエンティティを色分けすることで、データと業務の関連がわかりやすくなります。
 
 
 
@@ -1700,5 +1871,9 @@ https://www.wakuwakubank.com/posts/805-design-uml-er/
 〜テーブル設計基礎の「キ」　命名規則〜 - Qiita
 
 https://qiita.com/tatsuya_1995/items/4b706fc40fe2f300bbc0
+
+ER図とは？書き方やテクニックをわかりやすく解説
+
+https://products.sint.co.jp/ober/blog/create-er-diagram
 
 ※大変参考になりました、ありがとうございました。
