@@ -1,0 +1,130 @@
+
+@startuml production_anime_table
+
+!define Table(name,desc) entity name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b><u>x</u></b>
+!define foreign_key(x) <u>x</u>
+
+' 関連線が直角になる
+skinparam linetype ortho
+
+' パッケージ
+package anime_items <<Database>> {
+
+Table(anime_items, "アニメ") #PaleTurquoise  {
+    primary_key(anime_id) <<generated>> [主キー]
+    --
+    userType [ユーザー種別 公式 or ユーザー]
+    title [作品タイトル]
+    furigana [ふりがな]
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(countries, "制作国") #PaleTurquoise  {
+    primary_key(country_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    production_country [制作国]
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(supported_languages, "対応言語") #PaleTurquoise  {
+    primary_key(language_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    supported_language [対応言語]
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(genres, "アニメジャンル") #PaleTurquoise  {
+    primary_key(genre_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    genre [ジャンル]
+}
+
+Table(anime_genres, "中間テーブル") #PaleTurquoise {
+    primary_key(anime_id) [主キー]
+    primary_key(genre_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    foreign_key(genre_id) <<FK>>
+}
+
+Table(introduction_urls, "紹介URL") #PaleTurquoise {
+    primary_key(introduction_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    introduction_site [紹介サイト]
+    introduction_url [紹介URL]
+    --
+    is_advertisement [広告かどうか]
+    is_affiliate [アフィリエイトリンクかどうか]
+    --
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(purchase_urls, "購入URL") #PaleTurquoise  {
+    primary_key(purchase_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    purchase_site [購入サイト]
+    purchase_url [購入URL]
+    --
+    is_advertisement [広告かどうか]
+    is_affiliate [アフィリエイトリンクかどうか]
+    --
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(registrants, "作品の登録者情報") #PaleTurquoise  {
+    primary_key(registration_id) [主キー]
+    --
+    foreign_key(anime_id) <<FK>>
+    registrant [登録者]
+    registration_change_count [登録変更回数]
+    consumption_points[消費ポイント]
+    registration_date timestamptz [登録日時]
+}
+
+Table(anime_tags, "タグ情報") #PaleTurquoise {
+    primary_key(tag_id) <<generated>> [ID]
+    --
+    tag_name varchar [タグ名]
+    tag_description varchar [タグの説明]
+    --
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+Table(anime_tag_mappings, "中間テーブル") #PaleTurquoise {
+    primary_key(tag_mapping_id) <<generated>> [ID]
+    --
+    foreign_key(anime_id) <<FK>> [アニメ作品ID]
+    foreign_key(tag_id) <<FK>> [タグID]
+    --
+    new_registration_date_time timestamptz [新規登録日時]
+    last_update_date timestamptz [最終更新日時]
+}
+
+
+' テーブルの関連線
+anime_items ||-r-|{ countries
+anime_items ||-u-|{ supported_languages
+anime_items ||-d-o{ introduction_urls
+anime_items ||-d-o{ purchase_urls
+anime_items ||-u-|{ registrants
+anime_genres |o-l-o{ anime_items
+anime_genres |o--o{ genres
+anime_tag_mappings |o--o{ anime_items
+anime_tag_mappings |o-u-o{ anime_tags
+
+
+
+'パッケージの閉じカッコ
+}
+
+@enduml
+
+
