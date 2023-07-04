@@ -1986,7 +1986,7 @@ anime_tag_mappings |o-u-o{ anime_tags
 ↓ この行を追加すると、線が直角になります。（コメント部分で追加しています。）
 
 ```
-' 関連線が直角になる
+' =関連線が直角になる
 skinparam linetype ortho
 ```
 
