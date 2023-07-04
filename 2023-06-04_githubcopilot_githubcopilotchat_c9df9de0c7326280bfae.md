@@ -5,6 +5,15 @@ id:      c9df9de0c7326280bfae
 private: false
 -->
 
+追記 2023年7月4日
+
+GitHub Copilot Nightly は GitHub Copilot に統合されました。
+
+https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
+
+追記終了
+
+
 **Github Copilot** が利用できれば、**Github Copilot chat** も利用できます。
 
 ※前の記事
