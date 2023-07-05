@@ -1,6 +1,6 @@
 <!--
 title:   PlantUMLでER図を書く その時に必要なSupabaseの型情報 SupabaseのGUIから作るテーブルの型のまとめ (＋PostgreSQL)
-tags:    ER図,Supabase,plantuml
+tags:    ER図,PlantUML,Supabase
 id:      95be003ae46dbb4e4ed4
 private: false
 -->
