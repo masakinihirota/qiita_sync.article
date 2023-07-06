@@ -5,6 +5,49 @@ id:      c9df9de0c7326280bfae
 private: false
 -->
 
+
+追記 2023年7月6日
+
+GitHub Copilot chatはファイルを指定したり、URLを渡すと読んでくれます。
+たとえば↓のようにファイル名やURLを貼り付けてあげると、そのサイトの説明をしてくれます。
+
+
+```GitHub Copilot chatとの会話
+masakinihirota: readme.mdを読んでください。
+
+GitHub Copilot: `readme.md`は、ファイル管理に関する説明が書かれたファイルです。このファイルでは、以下のような情報が記載されています。
+
+- ファイル管理における思想について
+- `vns`と`vns.blue`に関する思想について
+- `vns.blue`の機能について
+
+このファイルは、プロジェクトの説明やドキュメントとして利用されることが多いです。また、GitHubなどのリポジトリにおいては、リポジトリのトップページに表示されることがあります。
+
+
+
+masakinihirota: Grafbaseとはなんですか？
+
+GitHub Copilot: 申し訳ありませんが、私は「Grafbase」という用語について情報を持っていません。可能であれば、より詳細な情報を提供していただけますか？
+
+masakinihirota: https://grafbase.com/
+
+GitHub Copilot: Grafbaseは、グラフデータベースを提供する企業です。Grafbaseは、グラフデータベースを使用することで、複雑なデータの関係性を簡単に表現し、データの検索や分析を高速化することができます。Grafbaseは、GraphQLを使用してグラフデータベースにアクセスすることができ、GraphQLの柔軟性とグラフデータベースのパフォーマンスを組み合わせることができます。Grafbaseは、多くのWebアプリケーションやモバイルアプリケーションで使用されており、高速で信頼性が高く、柔軟性があります。
+
+
+
+masakinihirota: Tigrisとはなんですか？
+
+GitHub Copilot: 申し訳ありませんが、私は「Tigris」という用語について情報を持っていません。可能であれば、より詳細な情報を提供していただけますか？
+
+masakinihirota: https://www.tigrisdata.com/docs/
+
+GitHub Copilot: ありがとうございます。Tigrisは、データ分析およびビジネスインテリジェンスのためのクラウドベースのプラットフォームです。Tigrisを使用することで、データの収集、分析、可視化、共有を簡単に行うことができます。Tigrisは、多くのデータソースに対応しており、データの統合や変換を自動化することができます。また、Tigrisは、高度な分析機能を提供し、データの傾向やパターンを特定することができます。Tigrisは、多くの企業で使用されており、高速で信頼性が高く、柔軟性があります。提供されたリンクは、Tigrisの公式ドキュメントです。
+
+```
+
+
+追記終了
+
 追記 2023年7月4日
 
 GitHub Copilot Nightly は GitHub Copilot に統合されました。
