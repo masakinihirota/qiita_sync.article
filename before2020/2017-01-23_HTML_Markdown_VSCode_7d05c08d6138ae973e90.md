@@ -25,12 +25,13 @@ Ctrl+p もしくは F1キーから
 # 設定を書き込む
 ファイル＞基本設定＞ユーザー設定
 
-`settings.json
+```settings.json
 // 自動セーブ
 "markdown-pdf.convertOnSave": true,
 // 出力フォーマット: pdf, html, png, jpeg
 "markdown-pdf.type": "html",
-`
+```
+
 を追加する。
 ※デフォルトではPDFが出力される。
 

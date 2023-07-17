@@ -30,35 +30,45 @@ https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold
 
 
 「[Inline fold](https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold)」拡張機能を使うとこの**属性値**を折りたたみます。
-`html
+
+```html
 <p className="mt-4 text-xl">
-`
+```
+
 これが
-`html
+
+```html
 <p className="。。。">
-`
+```
+
 と短くなります。
 
 また
-`html
+
+```html
 <a href="https://nextjs.org/learn"
    className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
 >
-`
+```
+
 このように長くても
-`html
+
+```html
 <a href="https://nextjs.org/learn"
    className="。。。"
 >
-`
+```
+
 と短くなります。
 
 href属性も設定すると
-`html
+
+```html
 <a href="。。。"
    className="。。。"
 >
-`
+```
+
 と短くなります。
 
 ## マーケットプレイスからインストール
@@ -143,7 +153,7 @@ inlineFold.autoFold ファイルを開いたときのインライン折りたた
 ```
 
 ※対象言語のIDリスト
-`
+```
 vue
 html
 svelte

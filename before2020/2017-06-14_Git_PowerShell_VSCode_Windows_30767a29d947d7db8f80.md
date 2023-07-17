@@ -68,7 +68,7 @@ Powershellのターミナルから
 更にタブキーを押せばその他の候補がタブキーを押すごとに表示されます。
 
 例（タブキーを押すと候補が順に、シフトタブキーで逆順に表示される。）
-`
+```
 git cherry
 git cherry-pick
 git citool
@@ -77,7 +77,7 @@ git clone
 git commit
 git config
 git checkout ←ループ
-`
+```
 
 ※補完が効いていないようならVSCodeを再起動してみてください。
 
@@ -399,7 +399,7 @@ New-Alias -Name br -Value Get-GitBranch -Force -Option AllScope
 # New-Alias -Name r -Value Get-GitRemote -Force -Option AllScope
 
 
-####################################################### 
+#######################################################
 # 実験
 
 # プロンプトの前後に文章を入れる

@@ -52,7 +52,7 @@ https://myaccount.google.com/security
 .env.localファイルの下記の部分を自分のメールに変更します。
 NEXTAUTH_EMAIL_SERVER=smtp://{gmailのメールアドレス}:{メールのパスワード}@smtp.gmail.com:587
 
-`.env.local
+```.env.local
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_TWITTER_ID=
 NEXTAUTH_TWITTER_SECRET=
@@ -65,7 +65,8 @@ NEXTAUTH_FACEBOOK_SECRET=
 NEXTAUTH_EMAIL_SERVER=smtp://{gmailのメールアドレス}:{メールのパスワード}@smtp.gmail.com:587
 NEXTAUTH_EMAIL_FROM=NextAuth <masakinihirota@gmail.com>
 NEXTAUTH_DATABASE_URL=sqlite://localhost/:memory:?synchronize=true
-`
+```
+
 .env.localファイルは.gitignoreでgitが追跡していない設定になっているはずです。
 **パスワードが書かれているのでネットにアップしないよう気をつけましょう。**
 

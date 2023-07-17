@@ -604,21 +604,23 @@ https://www.graphviz.org/download/
 
 ### dependency-cruiser のインストール
 
-`powershellsh
+```powershellsh
 npm install --save-dev dependency-cruiser
-`
+```
 
 初期化
-`powershellsh
+
+```powershellsh
 npx depcruise --init
-`
+```
 
 依存関係の画像を`svgファイル`へ出力
 基本形
 `src`以下を出力
-`powershellsh
+
+```powershellsh
 npx depcruise src --include-only "^src" --config --output-type dot | dot -T svg > dependency-graph.svg
-`
+```
 
 ## 画像
 

@@ -7,14 +7,14 @@ private: false
 備忘録
 
 # 結論
-`yarn版
+```yarn版
 # @prisma/cli をアンイストール
 yarn remove @prisma/cli
 # prisma をインストール
 yarn add prisma --dev
 # prismaをついでにインストール
 yarn add @prisma/client
-`
+```
 
 `yarn add @prisma/cli ` が非推奨になり、
 `yarn add prisma --dev ` が推奨されるようになりました。
@@ -28,7 +28,7 @@ npm install prisma --save-dev
 npm install @prisma/client
 ```
 
-`
+```
 Output:
 ┌───────────────────────┐
 │                                                                       │
@@ -51,22 +51,25 @@ Output:
 └───────────────────────┘
 
 
-`
+```
+
 ちょっと古い記事だと
 `npm uninstall @prisma/cli`のままなのが結構あるので検索用として残します。
 
 
 
 # 起こった問題
-`
+
+```
 npm install --save-dev @prisma/cli
 npm i -D @prisma/cli
 yarn add @prisma/cli
-`
+```
+
 のどれかでインストールすると
 
 
-`***err.log
+```***err.log
 npm ERR! code ELIFECYCLE
 npm ERR! errno 1
 npm ERR! @prisma/cli@2.20.1 preinstall: `node scripts/preinstall-entry.js`
@@ -77,7 +80,8 @@ npm ERR! This is probably not a problem with npm. There is likely additional log
 
 npm ERR! A complete log of this run can be found in:
 npm ERR!     C:\Users\hi\AppData\Roaming\npm-cache\_logs\2021-05-07T03_05_47_308Z-debug.log
-`
+```
+
 とエラーが出る
 
 # 原因
