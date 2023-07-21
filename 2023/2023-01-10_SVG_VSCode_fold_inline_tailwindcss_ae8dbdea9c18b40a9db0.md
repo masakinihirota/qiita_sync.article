@@ -153,7 +153,7 @@ inlineFold.autoFold ファイルを開いたときのインライン折りたた
 ```
 
 ※対象言語のIDリスト
-```
+`
 vue
 html
 svelte

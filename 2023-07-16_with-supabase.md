@@ -4,7 +4,6 @@ tags:    AppRouter,Next.js,ServerAction,Supabase,middleware
 id:      b4b168a056dc10776d87
 private: true
 -->
-
 Next.js公式examples集を分類からサンプルを一つ取り上げてNext.jsを勉強します。
 
 今回は
@@ -51,7 +50,7 @@ http://localhost:3000/
 
 
 エラーが出ます。
-```
+`
 Server Error
 Error: either NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY env variables or supabaseUrl and supabaseKey are required!
 

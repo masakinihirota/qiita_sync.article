@@ -7,14 +7,14 @@ private: false
 備忘録
 
 # 結論
-```yarn版
+`yarn版
 # @prisma/cli をアンイストール
 yarn remove @prisma/cli
 # prisma をインストール
 yarn add prisma --dev
 # prismaをついでにインストール
 yarn add @prisma/client
-```
+`
 
 `yarn add @prisma/cli ` が非推奨になり、
 `yarn add prisma --dev ` が推奨されるようになりました。
