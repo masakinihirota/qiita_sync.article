@@ -199,9 +199,39 @@ Look in the _examples folder to see how to create a Supabase client in all the d
 
 
 
+
+
+
+
+
+
+
+
+----------------------------------------
+
+(10): declare function createClientComponentClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>({ supabaseUrl, supabaseKey, options, cookieOptions, isSingleton }?: {
+(40): declare function createServerComponentClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
+
+(49): declare function createRouteHandlerClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
+
+(58): declare const createServerActionClient: typeof createRouteHandlerClient;
+
+
+
+(18): declare const createPagesBrowserClient: typeof createClientComponentClient;
+(20): declare function createPagesServerClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: GetServerSidePropsContext | {
+(30): declare function createMiddlewareClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
+
+(63): declare function createBrowserSupabaseClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>({ supabaseUrl, supabaseKey, options, cookieOptions }?: {
+(72): declare function createServerSupabaseClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: GetServerSidePropsContext | {
+(84): declare function createMiddlewareSupabaseClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
+
+----------------------------------------
+
+
 # Client Components
 
-```
+```app\_examples\client-component\page.tsx
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
