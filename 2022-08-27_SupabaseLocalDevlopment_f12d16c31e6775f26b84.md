@@ -4,7 +4,6 @@ tags:    PostgreSQL,Supabase,pgadmin4
 id:      f12d16c31e6775f26b84
 private: false
 -->
-
 # TypeScriptサポート
 
 Supabase Javascript Client
@@ -1263,7 +1262,7 @@ http://localhost:54323
 
 テーブルを作ってみる
 SQL Editor
-```
+`
 create table employees (
     id integer primary key generated always as identity,
     name text
