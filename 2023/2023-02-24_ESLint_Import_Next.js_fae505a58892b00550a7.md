@@ -7,8 +7,6 @@ private: false
 
 # 簡易版（まとめ）
 
-
-
 ## インストール
 
 Next.jsのインストール
@@ -32,29 +30,68 @@ Next.jsのインストール
 
 これを
 
-```設定が完了した.eslintrc.json
+```.eslintrc.json
 {
   "env": {
+    // Node.jsのランタイム環境の一部です。
     "node": true,
-    "es6": true
+    // 最新のJavaScriptの機能を有効にするための設定です。
+    "es2022": true
   },
-  "extends": "next/core-web-vitals",
-  "plugins": ["import", "unused-imports"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "next/core-web-vitals",
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  // ESLintが使用するパーサーを指定します。この例では、@typescript-eslint/parserを指定しています。
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "import", "unused-imports"],
+  // ESLintが設定ファイルを探しに行く際に、ルートディレクトリから探索を開始するかどうかを指定します。
+  "root": true,
   "rules": {
+    // TypeScriptで未使用の変数を許可するかどうかを指定します。この例では、offに設定されているため、未使用の変数を許可します。
     "@typescript-eslint/no-unused-vars": "off",
+    // 未使用のインポートに関するルールを指定します。この例では、warnに設定されているため、未使用のインポートがある場合に警告を出します。
     "unused-imports/no-unused-imports": "warn",
+    // モジュールのインポート順序に関するルールを指定します。この例では、配列の中に複数のグループが定義されています。各グループは、groupsプロパティで定義されています。
     "import/order": [
-      "warn",
+      "error",
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
-        // それぞれのgroupsとの間は1行分空ける。
+        "groups": [
+          // builtin: Node.js に組み込まれているモジュール
+          // external: npm install 等 プロジェクト外部からインストールされたモジュール
+          // internal: プロジェクト内のモジュールで、パスを指定してインポートされたもの
+          // parent: 親モジュール 相対パスを使用してインポートされたもの
+          // sibling: 兄弟モジュール 相対パスを使用してインポートされたもの
+          // index: インデックスファイルで、相対パスを使用してインポートされたもの
+          // object: オブジェクトファイルで、相対パスを使用してインポートされたもの
+          // type: 型ファイルで、相対パスを使用してインポートされたもの
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "object",
+          "type"
+        ],
+        // それぞれのgroupsとの間は1行分空けます。
         "newlines-between": "always",
-        "pathGroupsExcludedImportTypes": ["builtin"],
-        // 大文字小文字関係なくアルファベット順にする。
+        // 特定のグループの import 文を除外するかどうかを指定します。
+        "pathGroupsExcludedImportTypes": ["builtin", "external"],
+        // order オプションは、アルファベット順にします。
+        // caseInsensitive オプションは、大文字小文字を無視してアルファベット順に並べるかどうかを指定します。
         "alphabetize": { "order": "asc", "caseInsensitive": true },
         "pathGroups": [
-          { "pattern": "src/types/**", "group": "internal", "position": "before" },
-          { "pattern": "src/repositories/**", "group": "internal", "position": "before" }
+          // pattern: インポートパスのパターンを指定します。この例では、src/ディレクトリ以下のすべてのファイルを指定しています。
+          // group: インポートパスが一致した場合に、どのグループに属するかを指定します。この例では、internalグループに属するように指定しています。
+          // position: インポートパスが一致した場合に、どの位置に挿入するかを指定します。この例では、beforeに指定しているため、他のグループよりも前に挿入されます。
+          { "pattern": "src/**", "group": "internal", "position": "before" }
         ]
       }
     ]
@@ -65,7 +102,7 @@ Next.jsのインストール
 
 成功しているならば、import文の自動挿入と自動削除が成功します。
 
-終了
+# 簡易版（まとめ）終了
 
 # 完成リポジトリ
 
