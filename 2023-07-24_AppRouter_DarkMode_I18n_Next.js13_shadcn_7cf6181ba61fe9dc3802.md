@@ -4,6 +4,9 @@ tags:    AppRouter,DarkMode,I18n,Next.js13,shadcn
 id:      7cf6181ba61fe9dc3802
 private: true
 -->
+
+ダークモードを調査しました。
+
 # やること
 
 shadcn/ui公式ドキュメント
