@@ -2,7 +2,7 @@
 title:   Next.js App Router 開発用テンプレートに shadcn/ui でダークモードを実装する。
 tags:    AppRouter,DarkMode,I18n,Next.js13,shadcn
 id:      7cf6181ba61fe9dc3802
-private: true
+private: false
 -->
 
 shadcn/ui を利用した場合の ダークモード を調査しました。
