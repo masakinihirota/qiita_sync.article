@@ -364,10 +364,11 @@ CSS変数の値をHSL色空間で定義することで、色相、彩度、明�
 
 
 
-List of variables
+## List of variables
 
 カスタマイズ可能なCSS変数の一覧
 
+```
 背景色
 Default background color of <body />...その他
 --background: 0 0% 100%;
@@ -430,9 +431,14 @@ Border radius for card, input and buttons
 
 カード、入力フィールド、ボタンなどの要素に適用される角丸の半径
 
+```
+
+
 新しい色の追加
 新しい色を追加するには、CSSファイルとtailwind.config.jsファイルに追加する必要があります。
 
+
+```
 app/globals.css
 :root {
   --warning: 38 92% 50%;
@@ -455,6 +461,7 @@ module.exports = {
     },
   },
 }
+```
 
 これで、↓コンポーネントで警告ユーティリティ・クラスを使用できるようになりました。
 
