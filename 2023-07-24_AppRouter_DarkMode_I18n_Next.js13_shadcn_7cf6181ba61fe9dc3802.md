@@ -5,7 +5,14 @@ id:      7cf6181ba61fe9dc3802
 private: true
 -->
 
-ダークモードを調査しました。
+shadcn/ui を利用した場合の ダークモード を調査しました。
+
+ダークモードを使いたいだけならば、Chrome拡張機能である ↓ Dark Reader を使うのが簡単です。
+
+https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
+
+
+
 
 # やること
 
@@ -556,7 +563,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   )
 }
 
-
 ```
 
 
@@ -584,7 +590,7 @@ export default function Home() {
 
 ```
 
-※各機能へのリンクを追加しました。
+※↑各機能へのリンクを追加しました。
 
 
 
