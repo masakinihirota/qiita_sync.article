@@ -9,12 +9,11 @@ private: false
 
 shadcn/ui を利用した場合の ダークモード を調査しました。
 
-純粋にダークモードを使いたいだけならば、Chrome拡張機能である ↓ Dark Reader を使ってもらうのが簡単です。
+純粋にダークモードを使いたいだけならば、Chrome 拡張機能である ↓ Dark Reader を使ってもらうのが簡単です。
 
 https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
 
-
-# Next.js 13 App Routerへの対応は？
+# Next.js 13 App Router への対応は？
 
 Next.js 13 App Router 使用時にはまだ問題があるようです。
 
@@ -23,25 +22,23 @@ Next.js 13 appDir support · Issue #152 · pacocoursey/next-themes
 https://github.com/pacocoursey/next-themes/issues/152
 
 対処方法は プロパティ suppressHydrationWarning を利用します。
-その他に mount状態をチェックします。
+その他に mount 状態をチェックします。
 
 詳しくは ↑Issue を御覧ください。
 
-
 # リポジトリ
 
-## 第1部のコード
+## 第 1 部のコード
 
 masakinihirota/shadcn_darkmode
 
 https://github.com/masakinihirota/shadcn_darkmode
 
-
 # やること
 
 公式ドキュメントを読む。
 
-shadcn/ui公式ドキュメント
+shadcn/ui 公式ドキュメント
 
 Dark Mode - shadcn/ui
 
@@ -49,7 +46,7 @@ https://ui.shadcn.com/docs/dark-mode
 
 1. Next.js に shadcn/ui でダークモードを追加する
 
-shadcn/uiを調査する。
+shadcn/ui を調査する。
 ダークモードが成功したら
 
 2. 開発用テンプレートにダークモードを追加する
@@ -58,8 +55,8 @@ Next.js app router 開発用テンプレート (Storybook Supabase shadcn/ui) - 
 
 https://qiita.com/masakinihirota/items/3ad7a1564d2b6c56d4db
 
-
 ## 環境
+
 Windows10
 VSCode
 Next.js 13 App Router
@@ -89,38 +86,34 @@ options:
 
 ```
 
-
-
-# 第１部 Next.js ＋ shadcn/uiダークモード
+# 第１部 Next.js ＋ shadcn/ui ダークモード
 
 ## はじめに - shadcn/ui
 
 https://ui.shadcn.com/docs
 
- shadcn/ui はコンポーネントライブラリではありません、
- コンポーネントのコレクションです。
+shadcn/ui はコンポーネントライブラリではありません、
+コンポーネントのコレクションです。
 
 必要なコンポーネントを選択します。
 コードをコピーしてプロジェクトに貼り付け、
 ニーズに合わせてカスタマイズします。
 
-CLIからでもインストールできます。
+CLI からでもインストールできます。
 
 ## インストール - shadcn/ui
 
 https://ui.shadcn.com/docs/installation
 
-Next.jsを選択
+Next.js を選択
 
 Next.js - shadcn/ui
 
 https://ui.shadcn.com/docs/installation/next
 
-Next.jsのインストール
+Next.js のインストール
 
 npx create-next-app@latest shadcn_darkmode --typescript --tailwind --eslint
-
-
 
 ### TailwindCSS
 
@@ -155,19 +148,17 @@ import '@/styles/globals.css'
 
 ```
 
-jaと日本語にも設定しておきます。
+ja と日本語にも設定しておきます。
 
-
-
-## shadcnの初期化
+## shadcn の初期化
 
 npx shadcn-ui@latest init
 
-global CSSのファイルの場所を指定します。
+global CSS のファイルの場所を指定します。
 
 src/styles/globals.css
 
-
+初期化が終了すると、components.json というファイルが作成されます。
 
 ```components.json
 {
@@ -188,8 +179,6 @@ src/styles/globals.css
 }
 
 ```
-
-
 
 ## ソース構造（参考）
 
@@ -219,40 +208,60 @@ src
 
 ```
 
-* UIコンポーネントはcomponents/uiフォルダに配置しています。
+- UI コンポーネントは components/ui フォルダに配置しています。
 
-* <PageHeader />や<MainNav />などの残りのコンポーネントは、componentsフォルダに配置します。
+- <PageHeader />や<MainNav />などの残りのコンポーネントは、components フォルダに配置します。
 
-* libフォルダにはすべてのユーティリティ関数が入っています。utils.tsにはcnヘルパーを定義しています。
+- lib フォルダにはすべてのユーティリティ関数が入っています。utils.ts には cn ヘルパーを定義しています。
 
-* stylesフォルダにはグローバルCSSが入っています。
-
-
+- styles フォルダにはグローバル CSS が入っています。
 
 ## ボタンを追加してみる
 
 コンポーネントのインストール
 
-npx shadcn-ui@latest add button
+npx shadcn-ui@latest add
+
+button コンポーネントを選択します。
+
+インストール場所
+
+src\components\ui
+
+インストールされたファイル
+
+src\components\ui\button.tsx
 
 ボタンを表示するコンポーネントを作成します。
 
 ```src\app\page.tsx
-import Link from "next/link"
+// import文の順番も自動整形されます。
+import { type NextPage } from "next";
+import Link from "next/link";
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+
+const Home: NextPage = () => {
   return (
     <main>
-      <h1>VNS.BLUE</h1>
-      <!-- ボタンコンポーネントテストページへのリンク -->
-      <Link href="./ButtonTestPage">ButtonTestPage</Link>
+      {/* TailwindCSSのプロパティ値も自動整列されます。 */}
+      <h1 className="p-4 pt-2">VNS.BLUE</h1>
+      Next.js app router 開発用テンプレート (Storybook Supabase shadcn/ui)
+      <br />
+      {/* ↓この行を消すとimport文が自動削除されます。 */}
+      <Link href="/">Home</Link>
+      <div>
+        <Button>shadcn/ui の Button</Button>
+      </div>
+      <br />
+      <Link href="./ModeTogglePage">ModeTogglePage</Link>
     </main>
-  )
-}
+  );
+};
+
+export default Home;
 
 ```
-
-
 
 ボタンコンポーネントテストページ
 
@@ -268,8 +277,6 @@ export default function Home() {
 }
 
 ```
-
-
 
 ```components.json
 {
@@ -291,23 +298,19 @@ export default function Home() {
 
 ```
 
-
-
 ## Theming テーマ設定
 
 Theming - shadcn/ui
 
 https://ui.shadcn.com/docs/theming
 
-
-
-テーマ設定に CSS変数 または TailwindCSS を使用します。
+テーマ設定に CSS 変数 または TailwindCSS を使用します。
 
 CSS 変数を使用する、
 もしくは
 Tailwind CSS の ユーティリティクラス を使用するかを選択できます。
 
-↓ユーティリティクラス の例
+↓ ユーティリティクラス の例
 
 <div className="bg-zinc-950 dark:bg-white" />
 
@@ -331,13 +334,11 @@ Tailwind CSS の ユーティリティクラス を使用するかを選択で�
 
 ```
 
-
-
-CSS変数 の例
+CSS 変数 の例
 
 <div className="bg-background text-foreground" />
 
-CSS変数 を使用する場合の設定
+CSS 変数 を使用する場合の設定
 
 ```components.json
 {
@@ -357,8 +358,6 @@ CSS変数 を使用する場合の設定
 
 ```
 
-
-
 ### Convention 規約
 
 色に関しては、シンプルな背景と前景のコンベンションを使用しています。
@@ -367,20 +366,19 @@ CSS変数 を使用する場合の設定
 
 変数がコンポーネントの背景色に使用される場合、背景接尾辞は省略されます。
 
-例えば、--primary-backgroundという変数は、コンポーネントの背景色に使用する場合は、--primaryとして省略して使用することができます。
+例えば、--primary-background という変数は、コンポーネントの背景色に使用する場合は、--primary として省略して使用することができます。
 
-例えば、次のようなCSS変数が与えられます。
+例えば、次のような CSS 変数が与えられます。
 
 --primary: 222.2 47.4% 11.2%;
 --primary-foreground: 210 40% 98%;
 
-※ --primary-backgroundは省略され--primaryになっています。
+※ --primary-background は省略され--primary になっています。
 
-
---primaryとは？
-「--primary」は、カスタマイズ可能なCSS変数の一つで、プロジェクトで使用される主要な色を表します。
+--primary とは？
+「--primary」は、カスタマイズ可能な CSS 変数の一つで、プロジェクトで使用される主要な色を表します。
 この変数は、コンポーネントの背景色やテキスト色など、プロジェクト内の様々な要素の色に使用されます。
-例えば、以下のようにして「--primary」変数を使用して、背景色が変更されたdiv要素を作成することができます。
+例えば、以下のようにして「--primary」変数を使用して、背景色が変更された div 要素を作成することができます。
 
 ```
 div {
@@ -388,38 +386,35 @@ div {
 }
 ```
 
-「The background suffix」とは、前述の通り、背景色に使用されるCSS変数名において、接尾辞として使用される文字列のことを指します。例えば、変数名が「--primary」である場合、背景色に使用する場合は「--primary」とだけ指定し、接尾辞は省略されます。一方、テキスト色に使用する場合は、変数名に「-foreground」などの接尾辞を付けることが一般的です。このように、接尾辞を使用することで、変数名からどのような色が使用されるかを容易に理解することができます。
+「The background suffix」とは、前述の通り、背景色に使用される CSS 変数名において、接尾辞として使用される文字列のことを指します。例えば、変数名が「--primary」である場合、背景色に使用する場合は「--primary」とだけ指定し、接尾辞は省略されます。一方、テキスト色に使用する場合は、変数名に「-foreground」などの接尾辞を付けることが一般的です。このように、接尾辞を使用することで、変数名からどのような色が使用されるかを容易に理解することができます。
 
-
-
-↑↑先程の↓この数値は
+↑↑ 先程の ↓ この数値は
 
 --primary: 222.2 47.4% 11.2%;
 --primary-foreground: 210 40% 98%;
 
 このように使われます。
+
 <div className="bg-primary text-primary-foreground">Hello</div>
 
-このコンポーネントの背景色は hsl(var(--primary))、前景色はhsl(var(--primary-foreground))となります。
+このコンポーネントの背景色は hsl(var(--primary))、前景色は hsl(var(--primary-foreground))となります。
 
-CSS変数の値は、HSL色空間で定義されています。HSL色空間は、色相（Hue）、彩度（Saturation）、明度（Lightness）の3つの値を使用して色を表現します。HSL色空間は、RGB色空間よりも直感的に理解しやすいため、CSS変数の値をHSL色空間で定義しています。
+CSS 変数の値は、HSL 色空間で定義されています。HSL 色空間は、色相（Hue）、彩度（Saturation）、明度（Lightness）の 3 つの値を使用して色を表現します。HSL 色空間は、RGB 色空間よりも直感的に理解しやすいため、CSS 変数の値を HSL 色空間で定義しています。
 
-HSLとは
-HSLは、色相（Hue）、彩度（Saturation）、明度（Lightness）の3つの値を使用して色を表現する色空間の一つです。
+HSL とは
+HSL は、色相（Hue）、彩度（Saturation）、明度（Lightness）の 3 つの値を使用して色を表現する色空間の一つです。
 
-色相は、色の種類を表し、0度から360度までの値で表されます。
-彩度は、色の鮮やかさを表し、0%から100%までの値で表されます。
-明度は、色の明るさを表し、0%から100%までの値で表されます。
+色相は、色の種類を表し、0 度から 360 度までの値で表されます。
+彩度は、色の鮮やかさを表し、0%から 100%までの値で表されます。
+明度は、色の明るさを表し、0%から 100%までの値で表されます。
 
-例えば、赤色は色相が0度、彩度が100%、明度が50%となります。
+例えば、赤色は色相が 0 度、彩度が 100%、明度が 50%となります。
 
-CSS変数の値をHSL色空間で定義することで、色相、彩度、明度の値を直接指定することができます。
-
-
+CSS 変数の値を HSL 色空間で定義することで、色相、彩度、明度の値を直接指定することができます。
 
 ### List of variables
 
-カスタマイズ可能なCSS変数の一覧
+カスタマイズ可能な CSS 変数の一覧
 
 ```
 背景色
@@ -486,11 +481,9 @@ Border radius for card, input and buttons
 
 ```
 
-
-
 ### 新しい色の追加
 
-新しい色を追加するには、CSSファイル と tailwind.config.jsファイル に追加する必要があります。
+新しい色を追加するには、CSS ファイル と tailwind.config.js ファイル に追加する必要があります。
 
 ```
 app/globals.css
@@ -517,23 +510,20 @@ module.exports = {
 }
 ```
 
-これで、↓コンポーネントで警告ユーティリティ・クラスを使用できるようになりました。
+これで、↓ コンポーネントで警告ユーティリティ・クラスを使用できるようになりました。
 
 <div className="bg-warning text-warning-foreground" />
 
 その他のカラーフォーマット
-テーマ設定にはHSLカラーを使用することをお勧めしますが、お好みにより他のカラーフォーマットを使用することもできます。
+テーマ設定には HSL カラーを使用することをお勧めしますが、お好みにより他のカラーフォーマットを使用することもできます。
 
-rgb、rgba、またはhslカラーの使用に関する詳細は、Tailwind CSSドキュメントを参照してください。
-
-
+rgb、rgba、または hsl カラーの使用に関する詳細は、Tailwind CSS ドキュメントを参照してください。
 
 ## ダークモード
 
 Dark Mode - shadcn/ui
 
 https://ui.shadcn.com/docs/dark-mode
-
 
 ### Create a theme provider テーマプロバイダーの作成
 
@@ -547,22 +537,21 @@ https://www.npmjs.com/package/next-themes
 
 https://next-themes-example.vercel.app/
 
-Next.jsアプリのテーマを抽象化。
+Next.js アプリのテーマを抽象化。
 
-* 2行のコードで完璧なダークモードを実現
-* prefers-color-schemeによるシステム設定
-* カラースキームを使ったテーマブラウザUI
-* 読み込み時にフラッシュなし(SSRとSSGの両方)
-* タブとウィンドウ間でテーマを同期
-* テーマ変更時のフラッシュを無効化
-* 特定のテーマにページを強制的に合わせる
-* クラスまたはデータ属性セレクタ
-* useTheme フック
+- 2 行のコードで完璧なダークモードを実現
+- prefers-color-scheme によるシステム設定
+- カラースキームを使ったテーマブラウザ UI
+- 読み込み時にフラッシュなし(SSR と SSG の両方)
+- タブとウィンドウ間でテーマを同期
+- テーマ変更時のフラッシュを無効化
+- 特定のテーマにページを強制的に合わせる
+- クラスまたはデータ属性セレクタ
+- useTheme フック
 
 インストール
 
 npm install next-themes
-
 
 touch src\components\theme-provider.tsx
 
@@ -571,12 +560,12 @@ touch src\components\theme-provider.tsx
 ```components/theme-provider.tsx
 "use client"
 
-import * as React from "react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { type ThemeProviderProps } from "next-themes/dist/types"
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { type ThemeProviderProps } from "next-themes/dist/types";
+import * as React from "react";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
 
 ```
@@ -586,19 +575,25 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 src\app\layout.tsx
 
 ```src\app\layout.tsx
-import "@/styles/globals.css"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
+import "@/styles/globals.css";
+import { Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import React from "react";
 
-const inter = Inter({ subsets: ["latin"] })
+import type { Metadata } from "next";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
   description: "Generated by create next app",
-}
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja" suppressHydrationWarning>
       <body className={inter.className}>
@@ -607,7 +602,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
 
 ```
@@ -620,11 +615,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 https://logsuke.com/web/programming/react/next-themes
 
-
-
 #### テーマを切り替える モードトグルを作成する
 
-odeTogglePageフォルダを作ります。
+ModeTogglePage フォルダを作ります。
 
 src\app\ModeTogglePage\page.tsx ファイルを作ります。
 
@@ -646,43 +639,51 @@ export default function Home() {
 
 ```
 
-※↑各機能へのリンクを追加しました。
-
-
+※↑ 各機能へのリンクを追加しました。
 
 ```src\app\ModeTogglePage\page.tsx
-"use client"
+"use client";
 
-import * as React from "react"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="default">
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 ```
-
 
 npm run dev
 
@@ -692,11 +693,29 @@ http://localhost:3000/ModeTogglePage
 
 切り替えが確認できれば作業は完了です。
 
+# 第２部 開発用テンプレート ＋ shadcn/ui ダークモード
+
+第１部で調べた内容を↓このリポジトリに組み込みました。
+
+masakinihirota/next13apptemplate
+
+https://github.com/masakinihirota/next13apptemplate/tree/main
+
+↓この記事の一部を切り出したものになります。
+
+Next.js app router 開発用テンプレート (Storybook Supabase shadcn/ui) - Qiita
+
+https://qiita.com/masakinihirota/items/3ad7a1564d2b6c56d4db
 
 
-# 第２部 開発用テンプレート ＋ shadcn/uiダークモード
 
-[WIP]
+
+
+
+
+
+
+
 
 
 
@@ -716,9 +735,7 @@ Tailwind CSS のダークモード対応ガイド - snappify.com
 https://snappify.com/view/8d426d44-f485-4c62-9bc8-8efe23f558ea
 
 > まとめ
-> 以上を踏まえ、冒頭で紹介した CSS変数と　カスタムカラーを使うアプローチが最適解だという結論に至りました。このアプローチは最近海外で注目を集めている shadcn/ui で知りました。 shadcn/ui をつかうとよくある変数の定義とカスタムカラーの紐付けをプロジェクトに反映することができるので興味のある方は試してみてください。
-
-
+> 以上を踏まえ、冒頭で紹介した CSS 変数と　カスタムカラーを使うアプローチが最適解だという結論に至りました。このアプローチは最近海外で注目を集めている shadcn/ui で知りました。 shadcn/ui をつかうとよくある変数の定義とカスタムカラーの紐付けをプロジェクトに反映することができるので興味のある方は試してみてください。
 
 ## ライブラリ next-themes について
 
@@ -726,13 +743,12 @@ next-themes - npm
 
 https://www.npmjs.com/package/next-themes
 
-
 ## 簡単な解説
 
 <html class="dark">
 
-↑このようにHTMLにdarkクラスを追加すると、
-↓このようにTailwindCSSのdarkモードが有効になります。
+↑ このように HTML に dark クラスを追加すると、
+↓ このように TailwindCSS の dark モードが有効になります。
 
 <div className="dark:bg-darkgrey dark:text-white">
 
@@ -740,15 +756,11 @@ https://www.npmjs.com/package/next-themes
 
 npm install next-themes
 
-
-
 ## App Router での利用時の問題点
 
 Next.js 13 appDir support · Issue #152 · pacocoursey/next-themes
 
 https://github.com/pacocoursey/next-themes/issues/152
-
-
 
 ## shadcn/ui その他
 
@@ -760,7 +772,7 @@ https://ui.shadcn.com/docs/cli
 
 (実験的コマンド)
 
-↓更新が利用可能なコンポーネントのリストを取得します。
+↓ 更新が利用可能なコンポーネントのリストを取得します。
 
 npx shadcn-ui diff
 
@@ -780,8 +792,6 @@ https://ui.shadcn.com/docs/components/typography
 
 https://www.figma.com/community/file/1203061493325953101
 
-
-
 ### 変更履歴
 
 Changelog - shadcn/ui
@@ -796,9 +806,6 @@ slate
 stone
 zinc
 
-
-
-
 # shadcn/ui の読み方は？
 
 作者本人のツィート
@@ -809,14 +816,12 @@ https://twitter.com/shadcn/status/1647397488742080512
 
 @shadcn 他の人にあなたのプロジェクトを紹介するとき、あなたのハンドルネームをどう発音すればいいのでしょうか？
 
-
 > shad as in shadow
 
 シャドウ
 
 シャドウ ユーアイ
 シャドウ ユーザーインターフェース
-
 
 # 参考
 
@@ -826,12 +831,10 @@ https://logsuke.com/web/programming/react/next-themes
 
 ※この記事には、ハイドレーションエラー対策があります。
 
-Next × Stitches × next-themesを使用してダークモード実装
+Next × Stitches × next-themes を使用してダークモード実装
 
 https://zenn.dev/hiro4hiro4/articles/e90778a816df84
 
 Tailwind CSS を使った ダークモード実装の効率的なアプローチ
 
 https://zenn.dev/deer/articles/d3b104ac97711d
-
-
