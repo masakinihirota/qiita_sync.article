@@ -12,7 +12,11 @@ shadcn/ui を利用した場合の ダークモード を調査しました。
 https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
 
 
+# リポジトリ
 
+masakinihirota/shadcn_darkmode
+
+https://github.com/masakinihirota/shadcn_darkmode
 
 # やること
 
@@ -33,6 +37,37 @@ Next.js app router 開発用テンプレート (Storybook Supabase shadcn/ui) - 
 
 https://qiita.com/masakinihirota/items/3ad7a1564d2b6c56d4db
 
+
+# 環境
+Windows10
+VSCode
+Next.js 13 App Router
+shadcn/ui
+
+# shadcn/ui コマンド
+
+```shadcn-u インストール
+初期化
+npx shadcn-ui@latest init
+
+※初期化コマンドは既存設定ファイルがある場合上書きされます。
+
+CLI からのコンポーネントインストール方法
+npx @shadcn/ui add
+
+npx @shadcn-ui add [options] [components...]
+
+※addコマンドは既存コンポーネントファイルがあっても上書きされます。(確認)
+
+
+options:
+  -y, --yes          skip confirmation prompt. (default: false)
+  -o, --overwrite    overwrite existing files. (default: false)
+  -c, --cwd <cwd>    the working directory. defaults to the current directory.
+  -p, --path <path>  the path to add the component to.
+  -h, --help         display help for command
+
+```
 
 # 第１部 Next.js ＋ shadcn/uiダークモード
 
