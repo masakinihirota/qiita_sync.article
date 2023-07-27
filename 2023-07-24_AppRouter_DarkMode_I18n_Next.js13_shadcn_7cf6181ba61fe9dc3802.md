@@ -7,9 +7,19 @@ private: false
 
 shadcn/ui を利用した場合の ダークモード を調査しました。
 
-ダークモードを使いたいだけならば、Chrome拡張機能である ↓ Dark Reader を使うのが簡単です。
+純粋にダークモードを使いたいだけならば、Chrome拡張機能である ↓ Dark Reader を使ってもらうのが簡単です。
 
 https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
+
+Next.js 13 App Router 使用時にはまだ問題があるようです。
+
+Next.js 13 appDir support · Issue #152 · pacocoursey/next-themes
+
+https://github.com/pacocoursey/next-themes/issues/152
+
+対処方法は プロパティ suppressHydrationWarning を利用します。
+
+詳しくは Issue を御覧ください。
 
 
 # リポジトリ
@@ -600,6 +610,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```
 
+※ suppressHydrationWarning は、React がクライアント側でレンダリングされたコンテンツをハイドレーションすることを抑制するために使用されます。
+
+これで Next.js 13 App Router 使用時にダークモードを使用してもハイドレーションエラーが回避できると報告されています。
+
+【Next.js 13】 next-themes でダークモードを実装する方法 | logsuke
+
+https://logsuke.com/web/programming/react/next-themes
+
+
 
 #### テーマを切り替える モードトグルを作成する
 
@@ -718,9 +737,84 @@ http://localhost:3000/ModeTogglePage
 
 
 
+# ライブラリ next-themes について
+
+## 簡単な解説
+
+<html class="dark">
+
+↑このようにHTMLにdarkクラスを追加すると、
+↓このようにTailwindCSSのdarkモードが有効になります。
+
+<div className="dark:bg-darkgrey dark:text-white">
+
+## インストール
+
+npm install next-themes
+
+## App Router での利用時の問題点
+
+Next.js 13 appDir support · Issue #152 · pacocoursey/next-themes
+
+https://github.com/pacocoursey/next-themes/issues/152
+
+【Next.js 13】 next-themes でダークモードを実装する方法 | logsuke
+
+https://logsuke.com/web/programming/react/next-themes
 
 
 
+
+
+
+
+
+
+
+# shadcn/ui その他
+
+## CLI
+
+CLI - shadcn/ui
+
+https://ui.shadcn.com/docs/cli
+
+(実験的コマンド)
+
+↓更新が利用可能なコンポーネントのリストを取得します。
+
+npx shadcn-ui diff
+
+↓ diff [component] コマンドで変更の確認します。
+
+npx shadcn-ui diff alert
+
+## タイポグラフィ 装飾の使い方
+
+タイポグラフィ - shadcn/ui
+
+https://ui.shadcn.com/docs/components/typography
+
+## Figma
+
+@shadcn/ui - Design System – Figma
+
+https://www.figma.com/community/file/1203061493325953101
+
+
+## 変更履歴
+
+Changelog - shadcn/ui
+
+https://ui.shadcn.com/docs/changelog
+
+例
+ベースカラー
+gray
+neutral
+slate
+stone
+zinc
 
 
 
