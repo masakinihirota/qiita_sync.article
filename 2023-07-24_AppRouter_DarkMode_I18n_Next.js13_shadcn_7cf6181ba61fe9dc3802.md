@@ -1,15 +1,20 @@
 <!--
 title:   Next.js App Router 開発用テンプレートに shadcn/ui でダークモードを実装する。
-tags:    AppRouter,DarkMode,I18n,Next.js13,shadcn
+tags:    AppRouter,DarkMode,Next.js13,shadcn
 id:      7cf6181ba61fe9dc3802
 private: false
 -->
+
+# この記事に関して
 
 shadcn/ui を利用した場合の ダークモード を調査しました。
 
 純粋にダークモードを使いたいだけならば、Chrome拡張機能である ↓ Dark Reader を使ってもらうのが簡単です。
 
 https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh
+
+
+# Next.js 13 App Routerへの対応は？
 
 Next.js 13 App Router 使用時にはまだ問題があるようです。
 
@@ -18,17 +23,23 @@ Next.js 13 appDir support · Issue #152 · pacocoursey/next-themes
 https://github.com/pacocoursey/next-themes/issues/152
 
 対処方法は プロパティ suppressHydrationWarning を利用します。
+その他に mount状態をチェックします。
 
-詳しくは Issue を御覧ください。
+詳しくは ↑Issue を御覧ください。
 
 
 # リポジトリ
+
+## 第1部のコード
 
 masakinihirota/shadcn_darkmode
 
 https://github.com/masakinihirota/shadcn_darkmode
 
+
 # やること
+
+公式ドキュメントを読む。
 
 shadcn/ui公式ドキュメント
 
@@ -48,15 +59,15 @@ Next.js app router 開発用テンプレート (Storybook Supabase shadcn/ui) - 
 https://qiita.com/masakinihirota/items/3ad7a1564d2b6c56d4db
 
 
-# 環境
+## 環境
 Windows10
 VSCode
 Next.js 13 App Router
 shadcn/ui
 
-# shadcn/ui コマンド
+# 基本的な shadcn/ui コマンド
 
-```shadcn-u インストール
+```shadcn/ui コマンド
 初期化
 npx shadcn-ui@latest init
 
@@ -69,7 +80,6 @@ npx @shadcn-ui add [options] [components...]
 
 ※addコマンドは既存コンポーネントファイルがあっても上書きされます。(確認)
 
-
 options:
   -y, --yes          skip confirmation prompt. (default: false)
   -o, --overwrite    overwrite existing files. (default: false)
@@ -79,19 +89,22 @@ options:
 
 ```
 
+
+
 # 第１部 Next.js ＋ shadcn/uiダークモード
 
 ## はじめに - shadcn/ui
 
 https://ui.shadcn.com/docs
 
-コンポーネントライブラリではない
-
-コンポーネントのコレクション
+ shadcn/ui はコンポーネントライブラリではありません、
+ コンポーネントのコレクションです。
 
 必要なコンポーネントを選択します。
 コードをコピーしてプロジェクトに貼り付け、
 ニーズに合わせてカスタマイズします。
+
+CLIからでもインストールできます。
 
 ## インストール - shadcn/ui
 
@@ -106,6 +119,8 @@ https://ui.shadcn.com/docs/installation/next
 Next.jsのインストール
 
 npx create-next-app@latest shadcn_darkmode --typescript --tailwind --eslint
+
+
 
 ### TailwindCSS
 
@@ -144,16 +159,11 @@ jaと日本語にも設定しておきます。
 
 
 
-
-
-
-
-
 ## shadcnの初期化
 
 npx shadcn-ui@latest init
 
-global CSSのファイルの場所
+global CSSのファイルの場所を指定します。
 
 src/styles/globals.css
 
@@ -181,7 +191,7 @@ src/styles/globals.css
 
 
 
-構造（参考）
+## ソース構造（参考）
 
 ```tree
 src
@@ -219,16 +229,11 @@ src
 
 
 
+## ボタンを追加してみる
 
-
-
-
-
-
-ボタンを追加してみる
+コンポーネントのインストール
 
 npx shadcn-ui@latest add button
-
 
 ボタンを表示するコンポーネントを作成します。
 
@@ -247,6 +252,8 @@ export default function Home() {
 
 ```
 
+
+
 ボタンコンポーネントテストページ
 
 ```src\app\ButtonTestPage\page.tsx
@@ -260,17 +267,16 @@ export default function Home() {
   )
 }
 
-
 ```
 
-TypeScript
+
 
 ```components.json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "default",
   "rsc": true,
-  "tsx": true,          <<< TypeScriptを使う場合はtrue
+  "tsx": true,          ＜＜＜ TypeScriptを使う場合はtrue
   "tailwind": {
     "config": "tailwind.config.js",
     "css": "src/styles/globals.css",
@@ -294,13 +300,15 @@ Theming - shadcn/ui
 https://ui.shadcn.com/docs/theming
 
 
+
 テーマ設定に CSS変数 または TailwindCSS を使用します。
 
-CSS 変数を使用する。
+CSS 変数を使用する、
 もしくは
 Tailwind CSS の ユーティリティクラス を使用するかを選択できます。
 
-ユーティリティクラス の例
+↓ユーティリティクラス の例
+
 <div className="bg-zinc-950 dark:bg-white" />
 
 ユーティリティクラス を使用する場合の設定
@@ -322,6 +330,7 @@ Tailwind CSS の ユーティリティクラス を使用するかを選択で�
 }
 
 ```
+
 
 
 CSS変数 の例
@@ -349,7 +358,8 @@ CSS変数 を使用する場合の設定
 ```
 
 
-Convention 規約
+
+### Convention 規約
 
 色に関しては、シンプルな背景と前景のコンベンションを使用しています。
 前景変数はテキスト色に使用されます。
@@ -382,7 +392,6 @@ div {
 
 
 
-
 ↑↑先程の↓この数値は
 
 --primary: 222.2 47.4% 11.2%;
@@ -408,15 +417,7 @@ CSS変数の値をHSL色空間で定義することで、色相、彩度、明�
 
 
 
-
-
-
-
-
-
-
-
-## List of variables
+### List of variables
 
 カスタマイズ可能なCSS変数の一覧
 
@@ -486,9 +487,10 @@ Border radius for card, input and buttons
 ```
 
 
-新しい色の追加
-新しい色を追加するには、CSSファイルとtailwind.config.jsファイルに追加する必要があります。
 
+### 新しい色の追加
+
+新しい色を追加するには、CSSファイル と tailwind.config.jsファイル に追加する必要があります。
 
 ```
 app/globals.css
@@ -682,17 +684,13 @@ export default function ModeToggle() {
 ```
 
 
-npm run dev でローカルサーバーを起動して動作確認をします。
+npm run dev
+
+でローカルサーバーを起動して動作確認をします。
 
 http://localhost:3000/ModeTogglePage
 
-
-
-
-
-
-
-
+切り替えが確認できれば作業は完了です。
 
 
 
@@ -709,35 +707,25 @@ http://localhost:3000/ModeTogglePage
 
 # 第３部 ダークモードの調査
 
-[WIP]
+Tailwind CSS を使った ダークモード実装の効率的なアプローチ
+
+https://zenn.dev/deer/articles/d3b104ac97711d
+
+Tailwind CSS のダークモード対応ガイド - snappify.com
+
+https://snappify.com/view/8d426d44-f485-4c62-9bc8-8efe23f558ea
+
+> まとめ
+> 以上を踏まえ、冒頭で紹介した CSS変数と　カスタムカラーを使うアプローチが最適解だという結論に至りました。このアプローチは最近海外で注目を集めている shadcn/ui で知りました。 shadcn/ui をつかうとよくある変数の定義とカスタムカラーの紐付けをプロジェクトに反映することができるので興味のある方は試してみてください。
 
 
 
+## ライブラリ next-themes について
 
+next-themes - npm
 
+https://www.npmjs.com/package/next-themes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ライブラリ next-themes について
 
 ## 簡単な解説
 
@@ -752,28 +740,19 @@ http://localhost:3000/ModeTogglePage
 
 npm install next-themes
 
+
+
 ## App Router での利用時の問題点
 
 Next.js 13 appDir support · Issue #152 · pacocoursey/next-themes
 
 https://github.com/pacocoursey/next-themes/issues/152
 
-【Next.js 13】 next-themes でダークモードを実装する方法 | logsuke
-
-https://logsuke.com/web/programming/react/next-themes
 
 
+## shadcn/ui その他
 
-
-
-
-
-
-
-
-# shadcn/ui その他
-
-## CLI
+### CLI
 
 CLI - shadcn/ui
 
@@ -789,20 +768,21 @@ npx shadcn-ui diff
 
 npx shadcn-ui diff alert
 
-## タイポグラフィ 装飾の使い方
+### タイポグラフィ 装飾の使い方
 
 タイポグラフィ - shadcn/ui
 
 https://ui.shadcn.com/docs/components/typography
 
-## Figma
+### Figma
 
 @shadcn/ui - Design System – Figma
 
 https://www.figma.com/community/file/1203061493325953101
 
 
-## 変更履歴
+
+### 変更履歴
 
 Changelog - shadcn/ui
 
@@ -836,4 +816,22 @@ https://twitter.com/shadcn/status/1647397488742080512
 
 シャドウ ユーアイ
 シャドウ ユーザーインターフェース
+
+
+# 参考
+
+【Next.js 13】 next-themes でダークモードを実装する方法 | logsuke
+
+https://logsuke.com/web/programming/react/next-themes
+
+※この記事には、ハイドレーションエラー対策があります。
+
+Next × Stitches × next-themesを使用してダークモード実装
+
+https://zenn.dev/hiro4hiro4/articles/e90778a816df84
+
+Tailwind CSS を使った ダークモード実装の効率的なアプローチ
+
+https://zenn.dev/deer/articles/d3b104ac97711d
+
 
