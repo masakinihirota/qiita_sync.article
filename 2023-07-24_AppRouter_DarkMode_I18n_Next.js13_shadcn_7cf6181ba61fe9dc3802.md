@@ -34,6 +34,8 @@ masakinihirota/shadcn_darkmode
 
 https://github.com/masakinihirota/shadcn_darkmode
 
+※この記事とリポジトリとのコードに差分がもしあった場合、リポジトリのコードが正しいものとなります。
+
 # やること
 
 公式ドキュメントを読む。
