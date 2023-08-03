@@ -4,7 +4,16 @@ tags:    AppRouter,I18n,Next.js,i18next
 id:      873c2558e6d8864d8148
 private: true
 -->
-## i18nとは
+
+# この記事のリポジトリ
+
+next13appI18n
+
+https://github.com/masakinihirota/next13appI18n
+
+
+
+# i18nとは
 
 Internationalization の略で、国際化を意味します。
 具体的には、アプリケーションの多言語化を実現するための技術です。
