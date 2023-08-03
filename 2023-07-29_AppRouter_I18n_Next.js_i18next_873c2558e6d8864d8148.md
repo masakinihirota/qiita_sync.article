@@ -362,15 +362,10 @@ Using npm.
 ```
 
 
-npm install i18next react-i18next i18next-resources-to-backend
-npm install i18next react-i18next i18next-resources-to-backend
-npm install i18next react-i18next i18next-resources-to-backend
-npm install i18next react-i18next i18next-resources-to-backend
-npm install i18next react-i18next i18next-resources-to-backend
-npm install i18next react-i18next i18next-resources-to-backend
 
+### ライブラリのインストール
 
-
+npm install i18next react-i18next i18next-resources-to-backend
 
 src\app\globals.css
 このファイルの配置を
@@ -440,94 +435,103 @@ export default function Page({ params: { lng } }) {
 ```
 
 
+
 ```src/app/[lng]/second-page/page.js
-import Link from 'next/link'
+import Link from "next/link"
 
 export default function Page({ params: { lng } }) {
   return (
     <>
-      <h1>Hi from second page!</h1>
-      <Link href={`/${lng}`}>
-        back
-      </Link>
+      <h1>VNS.BLUE second page!</h1>
+      <Link href={`/${lng}`}>back</Link>
     </>
   )
 }
 
-
 ```
 
-```src/app/[lng]/layout.js
-import { dir } from 'i18next'
 
-const languages = ['en', 'ja']
+
+```src/app/[lng]/layout.js
+import { dir } from "i18next"
+
+const languages = ["ja", "en"]
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }))
 }
 
-export default function RootLayout({
-  children,
-  params: {
-    lng
-  }
-}) {
+export default function RootLayout({ children, params: { lng } }) {
   return (
     <html lang={lng} dir={dir(lng)}>
       <head />
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
 
 ```
+
+
+
+動作確認
+
+npm run dev
+
+http://localhost:3000/ja
+http://localhost:3000/en
+
+にアクセスすると ページが表示され、2ページ目へのリンクや戻るリンクも機能してるはずです。
+
 
 
 ## 言語の検出
 
-これで、http://localhost:3000/en または http://localhost:3000/ja にナビゲートすると何かが表示され、2ページ目へのリンクや戻るリンクも機能するはずです。
+前項で動作確認ができました、しかし
 
-しかし、http://localhost:3000 にナビゲートすると404エラーが返されます。
+http://localhost:3000
 
-これを修正するために、Next.jsミドルウェアを作成し、コードを少しリファクタリングします：
+にナビゲートするとNext.jsデフォルトページが返されます。
 
-まず、新しいファイル app/i18n/settings.js を作成します：
+ここで Next.js ミドルウェア を作成し、コードを少しリファクタリングします：
+
+まず、新しいファイル src/app/i18n/settings.js を作成します：
 
 ```src/app/i18n/settings.js
-export const fallbackLng = 'en'
-export const languages = [fallbackLng, 'ja']
+export const fallbackLng = "ja"
+export const languages = [fallbackLng, "en"]
 
 ```
 
 
+
+↓外部から設定ファイルを読み込みます。
+
 ```src/app/[lng]/layout.js
-import { dir } from 'i18next'
-import { languages } from '../i18n/settings'
+import { dir } from "i18next"
+
+import { languages } from "../i18n/settings"
+
+// ↑外部ファイルから読み込むために↓削除します
+// const languages = ["ja", "en"]
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }))
 }
 
-export default function RootLayout({
-  children,
-  params: {
-    lng
-  }
-}) {
+export default function RootLayout({ children, params: { lng } }) {
   return (
     <html lang={lng} dir={dir(lng)}>
       <head />
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
 
+
 ```
 
+ライブラリのインストール
 npm install accept-language
 
 ```middleware.js
@@ -568,7 +572,6 @@ export function middleware(req) {
 
   return NextResponse.next()
 }
-
 
 ```
 
@@ -632,15 +635,17 @@ export async function useTranslation(lng, ns, options = {}) {
 
 ```
 
+
+
 app/i18n/settings.js ファイルに i18next オプションを追加します。
 
 
 ```src/app/i18n/settings.js
-export const fallbackLng = 'en'
-export const languages = [fallbackLng, 'ja']
-export const defaultNS = 'translation'
+export const fallbackLng = "ja"
+export const languages = [fallbackLng, "en"]
+export const defaultNS = "translation"
 
-export function getOptions (lng = fallbackLng, ns = defaultNS) {
+export function getOptions(lng = fallbackLng, ns = defaultNS) {
   return {
     // debug: true,
     supportedLngs: languages,
@@ -648,7 +653,7 @@ export function getOptions (lng = fallbackLng, ns = defaultNS) {
     lng,
     fallbackNS: defaultNS,
     defaultNS,
-    ns
+    ns,
   }
 }
 
@@ -672,7 +677,7 @@ src
 
 
 
-```src/app/i18n/locales/en/translation.json:
+```src/app/i18n/locales/en/translation.json
 {
   "title": "Hi there!",
   "to-second-page": "To second page"
@@ -680,7 +685,7 @@ src
 
 ```
 
-```src/app/i18n/locales/de/translation.json:
+```src/app/i18n/locales/de/translation.json
 {
   "title": "Hallo Leute!",
   "to-second-page": "Zur zweiten Seite"
@@ -689,7 +694,7 @@ src
 ```
 
 
-```src/app/i18n/locales/en/second-page.json:
+```src/app/i18n/locales/en/second-page.json
 {
   "title": "Hi from second page!",
   "back-to-home": "Back to home"
@@ -697,13 +702,15 @@ src
 
 ```
 
-```src/app/i18n/locales/de/second-page.json:
+```src/app/i18n/locales/de/second-page.json
 {
   "title": "Hallo von der zweiten Seite!",
   "back-to-home": "Zurück zur Hauptseite"
 }
 
 ```
+
+
 
 サーバーページは非同期でuseTranslationのレスポンスを待つことができます。
 
@@ -777,6 +784,8 @@ export const Footer = async ({ lng }) => {
 }
 
 ```
+
+
 react-i18nextのTransコンポーネントも使えます。
 
 新しい名前空間:
@@ -796,6 +805,7 @@ react-i18nextのTransコンポーネントも使えます。
 }
 
 ```
+
 
 
 And add that Footer component to the pages:
@@ -846,11 +856,22 @@ export default async function Page({ params: { lng } }) {
 
 
 
+※サーバー側でのエラー
+useTranslationがサーバー側でawaitが使えないとエラーが出る。
 
+src\app\[lng]\second-page\page.js
+src\app\[lng]\components\Footer\index.js
 
+```
+// awaitが使えないとあるが、Next.js 13 ではサーバーサイドでawaitが使えるようになった
+// 現在このページはサーバーサイドなのでエラーが出るのは間違い。無効化する。
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const { t } = await useTranslation(lng, "footer")
 
+```
 
-
+※Next.jsでは基本全てのファイルはサーバーサイドで実行される。
+ESlintはNext.js 13 の App Router に対応しきれておらず、クライアン側だと認識してしまっているのでこのエラーが出ているようだ。
 
 
 
@@ -909,9 +930,12 @@ export function useTranslation(lng, ns, options) {
 
 ```
 
-クライアント側では通常のi18nextシングルトンでよい。一度だけ初期化されます。そして、"通常の "useTranslationフックを利用できます。言語を渡せるようにラップするだけです。
+クライアント側では通常のi18nextシングルトンでよい。
+一度だけ初期化されます。そして、"通常の "useTranslationフックを利用できます。言語を渡せるようにラップするだけです。
 
 サーバーサイドの言語検出に合わせるために、i18next-browser-languagedetectorを利用し、それに従って設定します。
+
+npm install i18next-browser-languagedetector
 
 また、2つのバージョンのフッターコンポーネントを作成する必要があります。
 
@@ -926,6 +950,7 @@ src
                 └── index.js
 
 ```
+
 
 
 
@@ -962,11 +987,12 @@ export const FooterBase = ({ t, lng }) => {
 
 
 ```src/app/[lng]/components/Footer/index.js
-import { useTranslation } from '../../../i18n'
-import { FooterBase } from './FooterBase'
+import { useTranslation } from "../../../i18n"
+import { FooterBase } from "./FooterBase"
 
 export const Footer = async ({ lng }) => {
-  const { t } = await useTranslation(lng, 'footer')
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { t } = await useTranslation(lng, "footer")
   return <FooterBase t={t} lng={lng} />
 }
 
