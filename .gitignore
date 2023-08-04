@@ -13,5 +13,5 @@ node_modules/
 *.jsx
 *.ts
 *.tsx
+*.puml
 
-ER図 重要項目のみ.md
