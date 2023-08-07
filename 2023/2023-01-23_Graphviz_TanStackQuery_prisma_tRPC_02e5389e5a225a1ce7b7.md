@@ -5,19 +5,14 @@ id:      02e5389e5a225a1ce7b7
 private: false
 -->
 
-追記 2023 年 1 月 31 日
-Perplexity AI: Ask Anything
-https://www.perplexity.ai/
+# 次の記事
 
-AI がソース付きで質問に答えてくれる。
-`とはなんですか？日本語で解説してください。`
-と質問の単語、文の後にこの文を追記すると日本語で答えてくれる。
+tRPC v10.35 の最小コードを読み解く (2023年7月21日) - Qiita
+https://qiita.com/masakinihirota/items/771036db647e9394a8fd
 
-追記終了
+※2023年7月21日に書き直しています。
 
-# 初めに
 
-tRPC の記事は 2 個目[超入門 tRPC ハンズオン v10 ～](../2022/2022-09-21_tRPC_771036db647e9394a8fd.md)です、ベータが取れたこともあり改めて調べてみました。
 
 ## tRPC の紹介
 
