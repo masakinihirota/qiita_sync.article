@@ -15,3 +15,7 @@ node_modules/
 *.tsx
 *.puml
 
+# 新しい記事(草稿)をGithub反映させないための場所。
+new/
+
+
