@@ -5,6 +5,197 @@ id:      c9df9de0c7326280bfae
 private: false
 -->
 
+**Github Copilot** が利用できれば、**Github Copilot chat** も利用できます。
+
+※前の記事
+
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+この記事は **Github Copilot** の **チャット機能** について説明しています。
+
+
+
+追記 2023年8月16日
+
+# 翻訳テクニック
+
+英語を翻訳するにはDeepL翻訳などを利用すればいいのですが、技術用語を含んだりすると翻訳がうまくいかない時があります。
+
+そこでGitHub Copilot chatで翻訳をつかいます。
+
+しかし、
+「英文を翻訳してください。」
+とだけただ伝えると、翻訳をしてくれる場合もありますが、殆どの場合は要約になってしまいます。
+特に長文になるとほぼ確実に要約になってしまします。
+
+何段階か手順を踏んで翻訳をしてくれるかを考えます。
+
+この手順を沿えば確実に翻訳をしてくれるようになります。
+
+* 1
+一般的な翻訳方法は
+テキスト形式のファイル、例えば markdownファイル(*.md) に英文を書いてGitHub Copilot chatに
+「英文を翻訳してください。」
+と翻訳をしてくれるように指示をします。
+(長文になるほどに要約になってしまう。)
+
+* 2
+拡張子をコード形式のファイル
+例えば TypeScriptファイル(*.tsx) に変えて、英文をコメントアウト化して
+GitHub Copilot chatに
+「英文を翻訳してください。」
+と翻訳をしてくれるように指示をします。
+(長文になるほどに要約になってしまう。)
+
+* 3
+英文の前に
+en:
+その下に
+ja:
+を挿入して、コメントアウトしてから
+「英文を翻訳してください。」と指示する。
+
+かなりの確率で翻訳してくれるようになる。
+しかし要約になってしまう場合もある。
+
+* 4
+英文の前に
+en:
+その下に
+ja:
+を挿入して、コメントアウトしてから
+トリガーキーを使い提案を出してもらって手動で翻訳する。
+
+※この方法で100％確実に翻訳をしてくれます。
+
+## 正規表現を使ってen: ja:を挿入するテクニック
+
+en: ja: は正規表現を利用して挿入します。
+
+上の行が置換前の正規表現です。
+下の行が置換後の正規表現です。
+↓
+```
+^([a-zA-Z].*)\n
+ja:\n\nen:$1
+```
+
+^([a-zA-Z].*)は英文の先頭は英文字が来ることを想定しています。
+
+数字も来る場合があるなら
+^([a-zA-Z0-9].*)
+とこのようにします。
+
+$1は上の()カッコ内に一致した1番目をそのまま置換します。
+
+
+## 環境
+VScode
+GitHub Copilot chat
+
+GitHub Copilot chatに翻訳をさせようとするとそれは私の仕事ではありませんと断られます。
+もしくは短い要約文になってしまいます。
+
+GitHub Copilot chatはコメント部分の翻訳はしてくれるのでそれを逆手に取って翻訳をしてもらいます。
+
+## 翻訳例
+
+VSCode上で翻訳をしてもらいます。
+
+翻訳文をコードの拡張子のコメントに入れてもらいます。
+
+
+Create a New Supabase Project and Basic PostgreSQL Schema | egghead.io
+https://egghead.io/lessons/postgresql-create-a-new-supabase-project-and-basic-postgresql-schema
+
+この講座の書き起こしチャット部分を翻訳してもらいます。
+
+
+↓元の英文
+
+```translation.tsx
+Instructor: Head over to database.new to create a new Supabase project. Then I'm going to sign in with GitHub, enter my username and password, and click Sign in. You'll see this has selected my default organization. We're going to be building a Twitter clone. The name of my project is going to be Blue Bird.
+
+I'm going to click this button here to generate a database password. Make sure you copy this value into something like a password manager as this is your database password and the only time you'll be able to read that value. For the region, I'm going to select Sydney as this is closest to my geographical location. You want this region to be close to your users for the best performance.
+
+Everything we'll do in this course will be on the free plan. I'm going to click this button to create my new project. You'll see this will take a little bit of time to set up our project. Once that's finished, we want to come over to the Table Editor to create a new table to store our tweets.
+
+I'm going to leave row level security, or RLS enabled, as this is recommended. For the structure of our table, we've already got an id, but I'm going to change the type of this from int8 to uuid, and then click these three dots to set the default value for this column to be a freshly generated random uuid.
+
+We also have a created_at timestamp which has a default value set to the time that this row was created. Now, if we click this cog, we can see some more options for this column, and we'll see the value for this column can be set to NULL.
+
+Since this timestamp is automatically generated for us and we're going to use it for sorting our tweets, we're always going to want this column to have a value. Let's untick Is Nullable, and then add a new column for the title of our tweet. The type for this one is going to be text. We won't have a default value for this one, but we always want our tweets to have a title.
+
+Let's also untick Is Nullable, and then click Save to create our tweets table. Now we can insert a new row. Again, these two values will be generated for us. We just need a title, which is going to be, first tweet, and then click Save to insert that new row into the tweets table.
+
+I'm going to magically add two more tweets. We can see we have our first, second and third tweet in our Supabase database.
+
+```
+
+↑上の英文を正規表現にかけると↓下の英文のように変換されます。
+そして全体を選択してコメントアウトしています。
+
+```translation.tsx
+// en:Instructor: We're going to use MPX to run the create-next-app package to create our new Next.js app. We're going to call this one blue-bird, and then this will step us through some questions to configure our project.
+// ja:
+
+// en:I'm going to use TypeScript. I do want ESLint. I want Tailwind CSS. I don't want to use the source directory. I do want to use the new app router, and I don't want to customise the default import alias. Once that's finished, we can change into our new directory and open it up in VS Code.
+// ja:
+
+// en:You can see we've got a starter project using the app directory with our index route that looks something like this. We can run npm run dev to start our development server, and if we navigate over to localhost over port 3000, we'll see the contents of that page.tsx file rendered in the browser.
+// ja:
+
+```
+
+↑このような状態になった時にja:の後ろの部分でGitHub Copilot chatと使用して手動トリガーすると↓下のように翻訳をしてくれます。
+
+```translation.tsx
+// en:Instructor: We're going to use MPX to run the create-next-app package to create our new Next.js app. We're going to call this one blue-bird, and then this will step us through some questions to configure our project.
+// ja:講師：私たちは、MPXを使用して、create-next-appパッケージを実行して、新しいNext.jsアプリを作成します。 これをblue-birdと呼び、これにより、プロジェクトを構成するためのいくつかの質問が表示されます。
+
+// en:I'm going to use TypeScript. I do want ESLint. I want Tailwind CSS. I don't want to use the source directory. I do want to use the new app router, and I don't want to customise the default import alias. Once that's finished, we can change into our new directory and open it up in VS Code.
+// ja:私はTypeScriptを使用します。 ESLintを使用したい。 Tailwind CSSを使用します。 ソースディレクトリを使用したくありません。 新しいアプリルーターを使用したい。 デフォルトのインポートエイリアスをカスタマイズしたくありません。 それが終わったら、新しいディレクトリに変更して、VS Codeで開きます。
+
+// en:You can see we've got a starter project using the app directory with our index route that looks something like this. We can run npm run dev to start our development server, and if we navigate over to localhost over port 3000, we'll see the contents of that page.tsx file rendered in the browser.
+// ja:appディレクトリを使用したスタータープロジェクトが表示され、次のようになっているindexルートが表示されます。 npm run devを実行して開発サーバーを起動でき、localhostのポート3000に移動すると、ブラウザーでそのページ.tsxファイルの内容がレンダリングされます。
+
+```
+
+英語部分を削除します
+↓正規表現を使って英語部分を削除します。
+置換後の正規表現文字列は空にします。
+
+```
+^// en:.*\n
+
+```
+
+ついでにja:部分も削除します。
+置換後の正規表現文字列は空にします。
+
+```
+^// ja:
+
+```
+
+
+コメントアウトを外せば完成です。
+
+
+
+## トリガーキーの設定方法は？
+
+トリガーキーは↓下の記事を参照して設定しておいてください。
+
+GitHub Copilot導入後、初めて使う時。(豊富な使用例付き)
+
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+追記終了 2023年8月16日
+
+
+
+
 追記 2023年7月18日
 [GitHub Copilot chat changelog](https://github.blog/changelog/2023-07-14-github-copilot-july-14th-update/)
 
@@ -31,7 +222,7 @@ private: false
 
 
 
-追記終了
+追記終了 2023年7月18日
 
 
 
@@ -75,7 +266,7 @@ GitHub Copilot: ありがとうございます。Tigrisは、データ分析お�
 ```
 
 
-追記終了
+追記終了 2023年7月6日
 
 追記 2023年7月4日
 
@@ -83,7 +274,7 @@ GitHub Copilot Nightly は GitHub Copilot に統合されました。
 
 https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
 
-追記終了
+追記終了 2023年7月4日
 
 
 **Github Copilot** が利用できれば、**Github Copilot chat** も利用できます。
