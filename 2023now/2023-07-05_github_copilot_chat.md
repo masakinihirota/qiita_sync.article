@@ -107,6 +107,8 @@ VSCode上で翻訳をしてもらいます。
 
 翻訳文をコードの拡張子のコメントに入れてもらいます。
 
+※英語の文章が長すぎる場合は、適度に空行を入れて段落に分けてください。
+
 
 Create a New Supabase Project and Basic PostgreSQL Schema | egghead.io
 https://egghead.io/lessons/postgresql-create-a-new-supabase-project-and-basic-postgresql-schema
@@ -192,6 +194,9 @@ I'm going to magically add two more tweets. We can see we have our first, second
 
 後はコメントアウトを外せば完成です。
 
+日本語がおかしかったら
+「校正してください」
+とお願いすると読みやすい日本語にしてくれます。
 
 
 ## トリガーキーの設定方法は？
