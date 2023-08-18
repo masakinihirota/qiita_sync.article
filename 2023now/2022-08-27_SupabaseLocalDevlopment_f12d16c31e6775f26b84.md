@@ -1613,6 +1613,7 @@ Endpoint
 http://localhost:54321/graphql/v1
 
 ##### Authentication
+
 `Bearer eyJhbGciOiJIUzI1NiIs******************************************************************_4qj0ssLNHzTs`
 
 ##### apikey
@@ -1627,7 +1628,8 @@ http://localhost:54321/graphql/v1
 `リモートサーバーで作られる全てのkeyは隠さなければならない。`
 
 ### ローカルの情報
-`
+
+```
 > supabase status
 supabase local development setup is running.
 
@@ -1672,8 +1674,8 @@ query Query {
 
 
 Operation
-```
 
+```
 mutation Mutation($objects: [employeesInsertInput!]!) {
   insertIntoemployeesCollection(objects: $objects) {
     records {
@@ -1683,12 +1685,12 @@ mutation Mutation($objects: [employeesInsertInput!]!) {
   }
 }
 
-
 ```
 
 
 
 Variables
+
 ```
 {
   "objects": [
@@ -2164,5 +2166,11 @@ npx vercel env pull
 # 以下、TODO
 
 Next.js
+
 Storybook
+
 TEST
+
+書いている途中でもどんどん新しい技術がでてくるのでとても追いつけません。
+
+Web開発は楽しいですが、その分野は広範囲にわたります。 特に独学では効率が悪く、限界があることが多いです。 もう個人でできる範囲を超えているため、グループ開発を行うための環境を整えたいですね。
