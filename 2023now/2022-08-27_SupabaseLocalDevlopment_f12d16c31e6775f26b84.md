@@ -768,11 +768,6 @@ insert into cities (name, country_id) values
   }
 ]
 
-
-
-
-
-
 ```
 
 
@@ -781,6 +776,7 @@ insert into cities (name, country_id) values
 countriesテーブルからすべての行を取得し、行の数を取得しています。selectメソッドの第2引数に{ count: 'exact', head: true }を指定することで、行の数を取得できます。countプロパティには、行の数が含まれます。
 
 また、このクエリでは、countriesテーブルに3つの行があることが前提となっています。insert文を使用して、countriesテーブルに3つの行を挿入しています。
+
 
 
 ```
@@ -871,8 +867,6 @@ values
 }
 
 ```
-
-
 
 
 Insert、Update、Upsert、Delete これらはFetch data(select文)似たようなので省略
@@ -976,6 +970,8 @@ https://supabase.com/docs/reference/javascript/using-filters
 
 ↓省略
 
+```
+
 ## Column is equal to a value (列は値と等しい)
 ## Column is not equal to a value (列は値と等しくない)
 ## Column is greater than a value (列はある値より大きい)
@@ -1000,6 +996,8 @@ https://supabase.com/docs/reference/javascript/using-filters
 ## Match at least one filter (少なくとも1つのフィルタにマッチする)
 ## Match the filter (フィルタに一致する)
 
+```
+
 ↑省略
 
 
@@ -1015,6 +1013,8 @@ PostgreSQLのフィルタと修飾子について説明しています。フィ�
 
 https://supabase.com/docs/reference/javascript/db-modifiers-select
 
+```
+
 ## Return data after inserting (挿入後のデータを返す)
 ## Order the results (結果を順番に並べる)
 ## Limit the number of rows returned (返される行数を制限する)
@@ -1024,6 +1024,8 @@ https://supabase.com/docs/reference/javascript/db-modifiers-select
 ## Retrieve the query as 0-1 rows (クエリーを0～1行で取得する)
 ## Retrieve the query as a CSV string (クエリをCSV文字列で取得する)
 ## Override type of successful response (成功したレスポンスの種類を上書きする)
+
+```
 
 ↑省略
 
@@ -1050,6 +1052,7 @@ https://supabase.com/docs/reference/javascript/auth-signup
 
 ↓省略
 
+```
 ## Overview (概要)
 ## Create a new user (ユーザーを新規に作成する)
 ## Sign in a user (ユーザーのサインイン)
@@ -1070,6 +1073,8 @@ https://supabase.com/docs/reference/javascript/auth-signup
 ## Exchange an auth code for a session (セッションのAuthコードを交換する)
 ## Auth MFA (Auth MFA)
 ## Auth Admin (管理者認証)
+
+```
 
 ↑省略
 
@@ -1372,14 +1377,18 @@ https://app.supabase.com/project/********************
 ```
 
 ※リモートサーバーのリンクに失敗する場合
-`
+
+```
 >npx supabase link --project-ref [project-id]
 Enter your database password:
 Error: failed to connect to `host=db.[project-id].supabase.co user=postgres database=postgres`: dial error (dial tcp 127.0.0.1:6543: connectex: No connection could be made because the target machine actively refused it.)
 Try rerunning the command with --debug to troubleshoot the error.
-`
+
+```
+
 このようにエラーが出る、そんな時は
 supabase CLIをインストールして、データベースパスワードも一緒に入力する。
+
 `supabase link --project-ref [project-id] --password [Database Password]
 `
 のように入力すると通ることがある。（n=1の解決方法）
