@@ -9,7 +9,14 @@ Next.js公式examples集を分類からサンプルを一つ取り上げてNext.
 今回は
 with-supabase
 
-READ.MEにはVercelにデプロイさせるよう書かれていますが、ローカルのDockerで立ち上げます。
+next.js/examples/with-supabase at canary · vercel/next.js
+https://github.com/vercel/next.js/tree/canary/examples/with-supabase
+
+READ.MEにはVercelにデプロイさせるよう書かれていますが、
+ローカルのDockerで立ち上げます。＜＜面倒なので
+もしくは
+サーバーと接続します。
+
 
 # 環境
 Windows10
@@ -17,13 +24,34 @@ VSCode
 Docker Desktop
 
 # インストール
+
+差分を調べるための土台
+npx create-next-app
+全てデフォルト
+
+git initでコミットして
+上書きする
+
 npx create-next-app -e with-supabase
 
+npx create-next-app -e with-supabase my-app && cd my-app
 
+上書き後
 
+npm i eslint eslint-config-next
 
+npm i @supabase/supabase-js @supabase/auth-helpers-nextjs
 
+```.env.local
+NEXT_PUBLIC_SUPABASE_URL=https://zhlmcrnnjbsfhbnctenz.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=ey***********************************74
 
+```
+これで
+npm run dev
+を実行すると
+http://localhost:3000/
+で起動の確認が出来ます。
 
 
 
