@@ -2,13 +2,14 @@
 title:   Supabase Auth スキーマ と そのテーブルの詳細
 tags:    PostgreSQL,Supabase,auth
 id:      7f65f732ecbafbd5cb00
-private: true
+private: false
 -->
-
 # この記事の趣旨
 
 PostgreSQLの認証についてざっくり理解することを目的とします。
 高度な技術力が必要な内容ではなく、どのような役割なのか全体を理解する手助けをすることを目的としています。
+そしてこの記事の半分はSupabase公式ドキュメントのAuthenticationの翻訳になります。
+
 
 # 最も大事なこと
 
@@ -2505,4 +2506,3 @@ GitHub認証とGoogle認証側で別のメールアドレスを登録時に使�
 
 # 真っ先に拾ったとは (名前の由来 masakinihirota)
 	インターネット言う情報の洪水の中からまっさきに価値がある情報を拾い上げる。
-
