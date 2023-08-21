@@ -664,11 +664,13 @@ auth.users テーブルのカラムは34個あります。
 
 ここまでで、auth スキーマのテーブルの詳細は終了です。
 
+# Supabase 公式ドキュメント Auth ページ
 
+ここより下は、 Supabase 公式ドキュメントの Auth ページをざっくりと翻訳しています。
 
-# ドキュメント Auth ページ
+※必要な部分だけ翻訳しています。 (主に Next.js 関連)
 
-Supabase のセキュリティという心臓部。
+Supabase のセキュリティという心臓部 Auth
 
 Auth | Supabase Docs
 
@@ -688,25 +690,31 @@ select * from auth.users
 
 authスキーマの usersテーブルのカラムを調べるコマンドです。
 
-SQL文を見ても分かる通り、このSupabaseのシステム部分であるAuthスキーマのusersテーブルは、システム的に削除できないだけで通常のリレーショナルデータベースのテーブルと同じです。
+SQL文を見ても分かる通り、この Supabase のシステム部分である Authスキーマ の usersテーブル は、システム的に削除できないだけで通常のリレーショナルデータベースのテーブルと同じです。
 
 
 
 ## Vercel
+
 VercelプレビューURL
-Vercelを使用する場合、SITE_URLを公式サイトのURLに設定します。ローカル開発やデプロイメントプレビューのために、次の追加のリダイレクトURLを追加します。
+Vercelを使用する場合、 SITE_URL を公式サイトのURLに設定します。ローカル開発やデプロイメントプレビューのために、次の追加のリダイレクトURLを追加します。
 
 http://localhost:3000/**
+
 https://*-username.vercel.app/**
 
-Vercelは、デプロイのURLに関する環境変数であるNEXT_PUBLIC_VERCEL_URLを提供しています。
+
+
+Vercelは、デプロイのURLに関する環境変数である NEXT_PUBLIC_VERCEL_URL を提供しています。
 詳細については、Vercelのドキュメントを参照してください。
 
 この変数を使用して、環境に応じて動的にリダイレクトできます。
 また、次の環境変数の値を設定する必要があります。
 
-NEXT_PUBLIC_SITE_URLは、本番環境でのサイトURLに設定する必要があります。
+NEXT_PUBLIC_SITE_URL は、本番環境でのサイトURLに設定する必要があります。
 これにより、リダイレクトが正常に機能するようになります。
+
+
 
 ```
 const getURL = () => {
@@ -733,10 +741,12 @@ const { data, error } = await supabase.auth.signInWithOAuth({
 ## Authorization
 
 ### 行レベルのセキュリティ
+
 詳細な認証ルールが必要な場合、PostgreSQLの行レベルセキュリティ(RLS)に勝るものはありません。SupabaseではRLSのオン/オフを簡単に切り替えることができます。
 
 
 ### Policies (ポリシー)
+
 ポリシーはPostgreSQLのルールエンジンです。非常に強力で柔軟性があり、独自のビジネスニーズに合った複雑なSQLルールを書くことができます。
 
 
@@ -778,7 +788,7 @@ const loggedInUserId = 'd0714948'
 let { data, error } = await supabase
   .from('users')
   .select('user_id, name')
-  .eq('user_id', loggedInUserId)   ＜＜＜フィルタリング ユーザーが存在するかのチェック この部分を省略できるようになります。
+  .eq('user_id', loggedInUserId)   ＜＜＜フィルタリング ユーザーが存在するかのチェック この行を省略できるようになります。
 
 // console.log(data)
 // => { id: 'd0714948', name: 'Jane' }
@@ -812,6 +822,7 @@ let { data, error } = await supabase.from('users').select('user_id, name')
 6. ユーザのUIDは、行へのアクセスを制限するポリシーで使用できます。
 
 ### auth.uid()
+
 Supabaseは、PostgreSQLの特別な関数である auth.uid() を提供し、 JWT からユーザのUIDを抽出します。これは、ポリシーを作成する際に特に便利です。
 
 
@@ -880,6 +891,7 @@ OAuth でサインインする
 # QUICK STARTS
 
 Use Supabase Auth with Next.js | Supabase Docs
+
 https://supabase.com/docs/guides/auth/quickstarts/nextjs
 
 
@@ -887,10 +899,15 @@ https://supabase.com/docs/guides/auth/quickstarts/nextjs
 # AUTHENTICATION 認証
 
 ## 認証の種類
+
 ### Email Login
+
 ### Magic Link Login
+
 ### Phone Login
+
 ### Social Login
+
 ### Enterprise SSO
 
 
@@ -916,6 +933,8 @@ https://supabase.com/docs/guides/auth/quickstarts/nextjs
 * WorkOS
 * Zoom
 
+
+
 #### Provider Tokens
 
 OAuthフローが完了すると、Supabase Auth はユーザーをサインインします。
@@ -931,18 +950,23 @@ OAuthフローで使用されたプロバイダートークンのコピーが返
 
 OAuthフローを完了したブラウザー以外でプロバイダートークンを使用する場合は、手動で安全なサーバーに送信する必要があります。
 
+
+
 ##### プロバイダートークンとは
 
 プロバイダートークンは、OAuthフローを通じて取得されるトークンであり、サードパーティのシステムにアクセスするために使用されます。このトークンには、ユーザーの機密情報が含まれる場合があります。例えば、Googleプロバイダートークンには、ユーザーのメールアドレスやカレンダー情報などが含まれる場合があります。このため、プロバイダートークンは潜在的に機密性の高いユーザーデータにアクセスできるため、安全に管理する必要があります。
+
+
 
 ##### プロバイダートークンをわざと保存しない理由
 
 プロバイダートークンをプロジェクトのデータベースに保存すると、第三者による不正アクセスやデータ漏洩のリスクが高まるため、意図的に保存されないようになっています。
 
+
+
 ##### 手動で安全なサーバーに送信
 
 手動で安全なサーバーに送信するとは、OAuthフローを完了したブラウザー以外でプロバイダートークンを使用する場合に、プロバイダートークンを安全なサーバーに送信することを意味します。これにより、プロバイダートークンが第三者に漏洩することを防ぎ、ユーザーの機密情報を保護することができます。ただし、安全なサーバーに送信する前に、送信先のサーバーが信頼できるかどうかを確認する必要があります。
-
 
 
 
@@ -2402,16 +2426,6 @@ createClientComponentClient はシングルトンを返します。
 
 
 
-
-
-
-
-
-
-
-
-
-
 ## Remix
 
 
@@ -2500,4 +2514,5 @@ GitHub認証とGoogle認証側で別のメールアドレスを登録時に使�
 
 
 # 真っ先に拾ったとは (名前の由来 masakinihirota)
-	インターネット言う情報の洪水の中からまっさきに価値がある情報を拾い上げる。
+
+インターネット言う情報の洪水の中からまっさきに価値がある情報を拾い上げる。
