@@ -652,7 +652,7 @@ auth.users テーブルのカラムは34個あります。
 15. `email_change_sent_at`: メールアドレス変更トークンが送信された日時を示します。
 16. `last_sign_in_at`: 最後にログインした日時を示します。
 17. `raw_app_meta_data`: アプリケーションのメタデータを示します。
-18. `raw_user_meta_data`: ユーザーのメタデータを示します。
+18. `raw_user_meta_data`: **ユーザーのメタデータを示します。**
 19. `is_super_admin`: ユーザーがスーパー管理者かどうかを示します。
 20. `created_at`: ユーザーが作成された日時を示します。
 21. `updated_at`: ユーザーが更新された日時を示します。
@@ -670,9 +670,74 @@ auth.users テーブルのカラムは34個あります。
 33. `is_sso_user`: SSOからのアカウントかどうかを示します。
 34. `deleted_at`: ユーザーが削除された日時を示します。
 
+※ **ユーザーのメタデータ** は、auth.usersテーブルの raw_user_meta_data カラムに格納されます。
+
+サインアップ時に メタデータを保存できます。
+
+```sql
+const { data, error } = await supabase.auth.signUp({
+  email: 'example@email.com',
+  password: 'example-password',
+  options: {
+    data: {
+      first_name: 'John',
+      age: 27,
+    },
+  },
+})
+
+```
+
+ユーザーメタデータ へのアクセス方法↓
+
+```
+const {
+  data: { user },
+} = await supabase.auth.getUser()
+let metadata = user.user_metadata
+
+```
+
+
+※ ユーザーメタデータは、ユーザーに関する情報で、メールアドレスやパスワード以外の情報を指します。
+
+例えば、ユーザーの名前、年齢、住所、プロフィール画像などの情報を保存することができます。
+
+ユーザーメタデータは、 auth.users テーブルの **raw_user_meta_data** カラムに保存されます。
+
+
+### 高度なテクニック
+
+トリガーを使う
+
+ユーザーがサインアップするたびに public.profiles テーブルに行を追加したい場合、トリガーを使用することができます。
+しかし、トリガーが失敗すると、ユーザー登録がブロックされる可能性があります。
+
+```sql
+-- inserts a row into public.profiles
+create function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer set search_path = public
+as $$
+begin
+  insert into public.profiles (id)
+  values (new.id);
+  return new;
+end;
+$$;
+
+-- trigger the function every time a user is created
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
+
+```
 
 
 ここまでで、auth スキーマのテーブルの詳細は終了です。
+
+
 
 # Supabase 公式ドキュメント Auth ページ
 
