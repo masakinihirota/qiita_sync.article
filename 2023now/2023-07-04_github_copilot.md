@@ -2053,9 +2053,11 @@ https://twitter.com/voluntas/status/1647224026492813312
  * request to Supabase with an expired `access_token`.
  */
 
-// jp:
+// ja:
 
 ```
+
+※ja:やjp:などどちらでも大丈夫です。
 
 jp:と 「:」記号まで付けてください。
 
@@ -2090,6 +2092,10 @@ jp:と 「:」記号まで付けてください。
 // ja: withAuthを使用して、ミドルウェアをカスタムAPIルートに追加します。
 
 ```
+
+※短い英文の場合は、「en:」を省略できます。
+`// ja:` だけを書いてからトリガーすると翻訳してくれます。
+
 
 
 ## 例3 READ.MEファイルを翻訳をしてもらう
