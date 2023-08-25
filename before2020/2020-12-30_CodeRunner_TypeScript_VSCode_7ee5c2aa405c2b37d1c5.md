@@ -33,10 +33,11 @@ VSCodeのターミナルから
 
 ```
 > tsc -v
-Version 4.9.4
+Version 5.2.2
 
 > ts-node -v
 v10.9.1
+
 ```
 # 拡張機能CodeRunnerをインストール
 
@@ -73,6 +74,7 @@ TypeScriptの設定ファイル
   "compilerOptions": {
     "isolatedModules": false,
 }
+
 ```
 
 他には
@@ -90,6 +92,7 @@ VSCodeの設定ファイル
   "files.associations": {
     "*.tsx": "typescript"
   },
+
 ```
 
 ### お試し用プログラム
@@ -105,6 +108,7 @@ const main = () => {
 };
 
 main();
+
 ```
 
 コマンドパレット（Ctrl + Shift + p）を開き、
