@@ -46,7 +46,8 @@ supabase CLI の更新
 https://github.com/supabase/cli
 
 # 全コマンド群
-`
+
+```
 supabase link --project-ref [project-id] -p [Database Password]
 supabase start
 supabase stop
@@ -58,7 +59,8 @@ supabase db remote changes -p [Database Password]
 supabase db remote commit -p [Database Password]
 supabase db push -p [Database Password]
 supabase db push -p [Database Password] --dry-run
-`
+
+```
 
 
 

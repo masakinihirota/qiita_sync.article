@@ -78,7 +78,8 @@ http://localhost:3000/
 
 
 エラーが出ます。
-`
+
+```
 Server Error
 Error: either NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY env variables or supabaseUrl and supabaseKey are required!
 

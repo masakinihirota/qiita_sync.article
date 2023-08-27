@@ -177,7 +177,7 @@ https://qiita.com/Slowhand0309/items/f954237520d343fa9e4c
 ※`.gitignore`に`.env`を **必ず** 登録しておきましょう。公開してしまい誰かに悪用されてしまうととんでもないことになる場合があります。
 
 
-`
+```
 # 環境変数の全リスト表示
 vercel env ls
 # それぞれの環境の環境変数
@@ -186,7 +186,9 @@ vercel env ls preview
 vercel env ls development
 # secretsのリスト
 vercel secrets list
-`
+
+```
+
 ※使わなくなった環境変数は自分で削除しましょう。
 アプリ側を消してもVercel側のも同時に消さないと残ったままです。
 

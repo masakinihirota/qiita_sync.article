@@ -12,17 +12,21 @@ https://supabase.com/blog/2022/07/05/beta-update-june-2022
 supabase-auth-helpersは全部入りの認証ライブラリ。
 auth-helpers は個別の認証ライブラリです。
 
-`
+```
 import { UserProvider } from '@supabase/supabase-auth-helpers/react';
 import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs';
-`
+
+```
+
 と、このように前者はreactとnextjsが一緒に入っています。
 それを切り分けたのが後者のauth-helpersです。
 
-`
+```
 import { UserProvider } from @supabase/auth-helpers-react
 import { supabaseClient } from @supabase/auth-helpers-nextjs
-`
+
+```
+
 各フレームワークのライブラリを全部一緒に入れていたのが前者、各フレームワークごとに独立させたのが後者。
 React
 Next.js

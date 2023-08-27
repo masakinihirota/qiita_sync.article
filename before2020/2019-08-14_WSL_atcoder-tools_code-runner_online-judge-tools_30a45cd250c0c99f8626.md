@@ -534,11 +534,12 @@ https://qiita.com/masakinihirota/items/396e0398472833f25895
 # コンパイルエラー（既知の問題）
 提出時の画面に表示されるコンパイルエラー
 
-`
+```
 ./Main.cpp:66:22: warning: ignoring return value of ‘int scanf(const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
      scanf("%lld", &M);
                       ^
-`
+```
+
 ※エラーではなく警告です
 
 atcoder-toolsで取得した自動入力付きのソースファイルで提出するとコンパイルエラーが表示されます。
@@ -547,6 +548,7 @@ atcoder-toolsで取得した自動入力付きのソースファイルで提出�
 気になる人は`scan`の部分を`cin>>`に変更しましょう。
 
 ### その他
+
 `atcoder-tools test`
  カレント・ディレクトリ上に実行ファイルと入出力(in_*.txt, out_*.txt)がある状態で実行するとローカルテストを行います。
 

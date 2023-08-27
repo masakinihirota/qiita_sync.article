@@ -122,9 +122,10 @@ settings.jsonに書き出しておいたほうが便利なので設定をコピ�
 やり方は、設定項目の左にある歯車から「JSONとして設定をコピー」を選択します、コピーしたものをsettings.json貼り付けます。
 
 デフォルト値は
-`
+
+```
   "inlineFold.regex": "(class|className)=(({(`|))|(['\"`]))(.*?)(\\2|(\\4)})"
-`
+```
 
 ですが、hrefも折りたたみの対象にするために `|href` を追加します。
 
@@ -139,6 +140,7 @@ settings.jsonに書き出しておいたほうが便利なので設定をコピ�
 これでかなり見やすくなりました。
 
 ## オプション
+
 ```
 inlineFold.regex コード行にマッチする正規表現
 inlineFold.regexFlags 正規表現フラグ
@@ -150,10 +152,12 @@ inlineFold.after 折り畳まれたコードの末尾に追加されるテキス
 inlineFold.supportedLanguages 対象言語のIDリスト（※）
 inlineFold.unfoldOnLineSelect 行の一部が選択されたときに、その行を展開する。
 inlineFold.autoFold ファイルを開いたときのインライン折りたたみのデフォルト状態
+
 ```
 
 ※対象言語のIDリスト
-`
+
+```
 vue
 html
 svelte
@@ -198,19 +202,23 @@ Regex Group: 2
 ```
 
 ### SVG
-`
+
+```
 Regex to Match: <svg(\s*.*?\s*)<\/svg>
 Regex Flags: gs
 Regex Group: 2
-`
+
+```
 
 ### Markdown links
-`
+
+```
 Regex: \[.*\]\((.*)\)
 Regex Flags: g
 Regex Group: 1
 Supported languages: markdown
-`
+
+```
 
 
 # その他の便利拡張機能
@@ -222,3 +230,4 @@ Tailwind CSS クラスをソートしてくれます。
 # 参考
 紹介動画（英語）
 https://www.youtube.com/shorts/4VUaoUAaMQg
+

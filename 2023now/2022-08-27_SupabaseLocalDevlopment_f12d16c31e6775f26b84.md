@@ -1389,8 +1389,8 @@ Try rerunning the command with --debug to troubleshoot the error.
 このようにエラーが出る、そんな時は
 supabase CLIをインストールして、データベースパスワードも一緒に入力する。
 
-`supabase link --project-ref [project-id] --password [Database Password]
-`
+`supabase link --project-ref [project-id] --password [Database Password]`
+
 のように入力すると通ることがある。（n=1の解決方法）
 
 
@@ -1657,8 +1657,8 @@ service_role key: eyJhbGci******************************************************
 #### コマンドQueryを使ってみる
 
 Operation
-`
 
+```
 query Query {
   employeesCollection {
     edges {
