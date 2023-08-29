@@ -10,6 +10,7 @@ private: false
 Next.js の Server Actions は先日アルファが取れたようです。
 Next.jsの公式ドキュメントで確認。ただし、ベータ版とも書かれていませんでした。
 APIの関数として紹介されています。
+
 現在、実験的機能のフラグをtrueにする事で利用できます。
 
 https://nextjs.org/docs/app/api-reference/functions/server-actions
@@ -24,6 +25,17 @@ module.exports = {
 
 ```
 
+# この記事の完成リポジトリ
+
+https://github.com/masakinihirota/vercel_supabase_starter
+
+ダウンロード
+
+```
+gh repo clone masakinihirota/vercel_supabase_starter
+
+```
+
 Next.js公式examples集を分類（2023年7月版）
 https://qiita.com/masakinihirota/items/c4c8931d7067349006ef
 
@@ -35,10 +47,6 @@ next.js/examples/with-supabase at canary · vercel/next.js
 https://github.com/vercel/next.js/tree/canary/examples/with-supabase
 
 ※このサンプルは認証機能付きです。
-
-# この記事のリポジトリ
-
-https://github.com/masakinihirota/vercel_supabase_starter
 
 
 
@@ -238,14 +246,22 @@ app\_examples\server-component
 ※Next.jsの App router のルールとして フォルダ名の先頭に _[アンダーバー]が
 ついているとそのフォルダは無視されます。
 
+```
 app\_examples
+
+```
+
 このアンダーバーを消して
+
+```
 app\examples
+
+```
+
 にフォルダ名を変更します。
 
-※VSCode上でフォルダ名を変更するとかなり時間がかかるので、
+※VSCode上でフォルダ名を変更すると時間がかなりかかるので、
 一旦VSCodeを閉じてエクスプローラー上から変更して、再度VSCodeを起動します。
-
 
 最初にトップページにそれぞれのコンポーネントにリンクを貼っておきます。
 
