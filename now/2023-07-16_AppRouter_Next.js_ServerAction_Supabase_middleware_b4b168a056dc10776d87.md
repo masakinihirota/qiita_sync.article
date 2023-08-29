@@ -4,6 +4,30 @@ tags:    AppRouter,Next.js,ServerAction,Supabase,middleware
 id:      b4b168a056dc10776d87
 private: false
 -->
+
+# 昔と現在のデータ取得事情
+
+昔は（1990年代後半から2000年代前半）、HTMLからCRUDを作りサーバーにアクセスして、そこからORMを利用してデータベースにアクセスしてデータを取得していました。
+
+現在では、Server Actions、Supabase、tRPCなどの新技術が登場しつつあります。これらの技術は、ORMの代わりに、ブラウザから直接DBを操作できるため、より効率的かつ安全なデータ取得が可能になってきています。
+
+※ Next.js の Server Actions は先日アルファが取れたようです。
+Next.jsの公式ドキュメントで確認。ただし、ベータ版とも書かれていませんでした。
+APIの関数として紹介されています。
+現在、実験的機能のフラグをtrueにする事で利用できます。
+
+https://nextjs.org/docs/app/api-reference/functions/server-actions
+
+```
+next.config.js
+module.exports = {
+  experimental: {
+    serverActions: true,
+  },
+}
+
+```
+
 Next.js公式examples集を分類（2023年7月版）
 https://qiita.com/masakinihirota/items/c4c8931d7067349006ef
 
@@ -150,12 +174,6 @@ Supabaseのダッシュボードの Table Editor で todosテーブルを選択�
 これからNext.jsのコードからSupabaseにアクセスして
 そのデータを表示するまでを実践します。
 
-# 昔
-
-昔は（1990年代後半から2000年代前半）、HTMLからCRUDを作りサーバーにアクセスして、そこからORMを利用してデータベースにアクセスしてデータを取ってきていました。
-
-現在では、Server Actions、Supabase、tRPCなどの新技術が登場しつつあります。これらの技術は、ORMの代わりに、ブラウザから直接DBを操作できるため、より効率的かつ安全なデータ取得が可能になってきています。
-
 
 
 
@@ -195,7 +213,11 @@ Supabaseから直接データを挿入しています。
 
 ### サーバーコンポーネントで Supabaseのデータを取得する方法
 
+このサンプルではサーバーコンポーネントのクライアントを使用しています。
+サーバーコンポーネントからデータを取得しているので、データの取得は高速で、セキュリティリスクは少ないです。
 
+サーバーコンポーネント
+サーバー側でのみ実行されるコンポーネントです。
 
 
 ## 4つのコンポーネント
