@@ -1,92 +1,64 @@
 <!--
-title:   with-supabase (Next.js公式examples集を分類)
+title:   Next.js 13 App router と Supabase での４つのアクセス方法 
 tags:    AppRouter,Next.js,ServerAction,Supabase,middleware
 id:      b4b168a056dc10776d87
-private: true
+private: false
 -->
-Next.js公式examples集を分類からサンプルを一つ取り上げてNext.jsを勉強します。
+Next.js公式examples集を分類（2023年7月版）
+https://qiita.com/masakinihirota/items/c4c8931d7067349006ef
 
-今回は
-with-supabase
+Next.jsのサンプル集の中の **with-supabase** を見ていきます。
+このサンプルは Supabase 側でも 推奨されています。
+
+
 
 next.js/examples/with-supabase at canary · vercel/next.js
 https://github.com/vercel/next.js/tree/canary/examples/with-supabase
 
-READ.MEにはVercelにデプロイさせるよう書かれていますが、
-ローカルのDockerで立ち上げます。＜＜面倒なので
-もしくは
-サーバーと接続します。
+※このサンプルは認証機能付きです。
+
 
 
 # 環境
+
 Windows10
 VSCode
-Docker Desktop
+Supabase
+
+
+
+# 前提知識
+
+Supabaseのアカウント作成済み。
+Supabaseの環境変数の取得方法を理解している
+Supabaseのダッシュボードが使えるようになっている。
+
+
 
 # インストール
 
-差分を調べるための土台
-npx create-next-app
-全てデフォルト
-
-git initでコミットして
-上書きする
-
 npx create-next-app -e with-supabase
 
-npx create-next-app -e with-supabase my-app && cd my-app
-
-上書き後
-
-npm i eslint eslint-config-next
-
-npm i @supabase/supabase-js @supabase/auth-helpers-nextjs
+# 環境変数の設定
 
 ```.env.local
-NEXT_PUBLIC_SUPABASE_URL=https://zhlmcrnnjbsfhbnctenz.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=ey***********************************74
+NEXT_PUBLIC_SUPABASE_URL=https://z************z.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=ey**************************74
 
 ```
-これで
+
+
+これで設定が完了していれば
+
 npm run dev
+
 を実行すると
+
 http://localhost:3000/
+
 で起動の確認が出来ます。
 
 
-
-# ローカルで動作させる
-
-サンプルのインストール
-with-supabaseというフォルダを作りそこでVSCodeを起動する。
-ターミナルを開く
-npx create-next-app -e with-supabase
-
-プロジェクト名を聞かれるので
-現在のフォルダ名をそのまま使うので「.」記号を入力します。
-
-```
-√ What is your project named? ... .
-
-```
-
-インストール完了後起動させてみる。
-npm run dev
-
-
-http://localhost:3000/
-
-
-エラーが出ます。
-
-```
-Server Error
-Error: either NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY env variables or supabaseUrl and supabaseKey are required!
-
-```
-
-これは環境変数を設定してくださいとエラーが出ます。
-起動を中止します。(ctrl+c)
 
 参考
 
@@ -94,33 +66,65 @@ Supabase ローカル開発環境 ＋ サーバー運用を想定 2023 - Qiita
 
 https://qiita.com/masakinihirota/items/be94b4c74a7850a4b79c
 
-ローカルにSupabaseのプロジェクトを作ります。
-
-上記の記事通りに
-ローカルに
-SupabaseのCLI
-Docker Desktop
-supabase （ローカルのSupabaseを操作するために必要）
-をインストールします。
-
-SupabaseのCLIのインストール
-省略
-Docker Desktopのインストール
-省略
-
-supabaseのインストール
-npm i supabase --save-dev
+※今回は Supabaseのローカル環境を必要としません。
 
 
-supabaseのヘルプ
-supabase help
+
+# データベースの初期化
+
+## マイグレーションファイルをサーバーに適用する方法
+
+このリポジトリにはサンプル用のSQLがすでに用意されています。
+それをSupabaseに適用します。
+
+Supabaseのダッシュボードを開きます。
+
+SQL Editorを開きます。
+
+supabase\migrations\20230618024722_init.sql
+
+```supabase\migrations\20230618024722_init.sql
+create table if not exists todos (
+  id uuid default gen_random_uuid() primary key,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  title text,
+  is_complete boolean default false,
+  user_id uuid references auth.users default auth.uid()
+);
+
+-- Set up Row Level Security (RLS)
+-- See https://supabase.com/docs/guides/auth/row-level-security for more details.
+alter table todos
+  enable row level security;
+
+create policy "Authenticated users can select todos" on todos
+  for select to authenticated using (true);
+
+create policy "Authenticated users can insert their own todos" on todos
+  for insert to authenticated with check (auth.uid() = user_id);
+
+```
+
+を貼り付けます。
+
+右下の 「RUN CTRL」ボタンを押して 成功したら メッセージ ↓Successを確認できます。
+
+「Success. No rows returned」
+
+これで todos テーブルが出来ました。
+
+※SupabaseのCLIからサーバーに直接適用できるかどうか調べてみましたが、ローカル環境を作らずに直接サーバーに適用させる方法はわかりませんでした。
+ですので上記のようにSQL文をコピペしています。
+
+通常、SupabaseのCLIは、ローカル環境でマイグレーションを作成し、DBでテーブルを作成して、シードファイルを読み込ませて、動作確認ができたらサーバーにPUSHしています。
+
+ローカルからならたくさんのマイグレーションファイルを作ってもPUSH出来ますし、一つにまとめるコマンドもあるようですからローカルからサーバーに反映させるのには問題ありません。
 
 
-Supabaseを初期化の前に
 
-初期化コマンドを実行するとsupabase\seed.sqlがクリアされてしまうのでファイルを別に保存しておくか、↓のコードを貼り付けるか、gitのsupabase\seed.sqlファイルの変更を破棄して元に戻します。
+## シードファイルをサーバーに適用する方法
 
-↓シードファイルは初期化コマンドを実行すると消えてしまいます。
+supabase\seed.sql
 
 ```supabase\seed.sql
 insert into todos(title)
@@ -131,101 +135,173 @@ values
 
 ```
 
-# Supabaseの初期化
-
-ローカル用の設定をするために初期化します。
-
-supabase init
-
-supabase\config.toml等が新たに作られます。
-
-# ローカルのSupabaseの起動
-
-※Docker Desktopを起動させておきます。
-すでに起動しているSupabaseのコンテナがあったのならば停止、削除しておきます。（ローカルに2つ以上のSupabaseは起動できないため）
-
-起動中のコンテナをすべて停止するコマンド。
-docker stop $(docker ps -q)
+シードファイルもテーブル作成と同様にSQL文を貼り付けて実行します。
 
 
-supabase start
-
-成功すると
-
-
-Started supabase local development setup.
-
-         API URL: http://localhost:54321
-     GraphQL URL: http://localhost:54321/graphql/v1
-          DB URL: postgresql://postgres:postgres@localhost:54322/postgres
-      Studio URL: http://localhost:54323
-    Inbucket URL: http://localhost:54324
-      JWT secret: super-secret-jwt-token-with-at-least-32-characters-long
-        anon key: eyJ**********************************YTn_I0
-service_role key: eyJ********************************************pN81IU
-
-Supabaseのstatusが表示されます。
-
-↓このコマンドで同じ情報が表示されます。
-supabase status
+Supabaseのダッシュボードの Table Editor で todosテーブルを選択すると。
+データも入っていることが確認できます。
 
 
-↓このファイル名を
-.env.local.example
-を
-.env.local
-に変更します。
+これでSupabase側の下準備は完了です。
 
-※.gitignoreに登録されていて、gitに追跡されていないことを確認してください。
+これからNext.jsのコードからSupabaseにアクセスして
+そのデータを表示するまでを実践します。
+
+# 昔
+
+昔は（1990年代後半から2000年代前半）、HTMLからCRUDを作りサーバーにアクセスして、そこからORMを利用してデータベースにアクセスしてデータを取ってきていました。
+
+現在では、Server Actions、Supabase、tRPCなどの新技術が登場しつつあります。これらの技術は、ORMの代わりに、ブラウザから直接DBを操作できるため、より効率的かつ安全なデータ取得が可能になってきています。
 
 
 
-NEXT_PUBLIC_SUPABASE_URLには
-API URLを設定します。
 
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-anon key:を設定します。
+----------------------------------------
 
-```.env.local
-# Update these with your Supabase details from your project settings > API
-# https://app.supabase.com/project/_/settings/api
-NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ**********************************YTn_I0
+# Next.jsでのコンポーネント
+
+サンプルには4つのコンポーネントが用意されています。
+この4つにはSupabaseにアクセスする4種類のパターンが用意されています。
+
+
+## 4種類のアクセス方法
+
+### クライアントから Supabaseのデータを取得する方法
+useEffectを利用してデータを取得しています。
+Supabaseはクライアントから直接データを取得できます。
+クライアントコンポーネントにしています。
+
+
+
+### ルートハンドラーで Supabaseのデータを取得する方法
+Next.jsのルーティング機能を使用してHTTPリクエストを送信してデータを取得しています。
+Supabaseから直接データを取得しています。
+
+ルートハンドラー
+Webアプリケーションにおいて、特定のURLに対するリクエストを処理するための関数です。
+ルートハンドラーは、リクエストを受け取り、適切なレスポンスを返すために使用されます。
+
+
+
+### Server ActionsでSupabaseのDBを操作する方法
+
+このサンプルではインサート関数を作ってタイトルを保存しています。
+Supabaseから直接データを挿入しています。
+
+
+
+### サーバーコンポーネントで Supabaseのデータを取得する方法
+
+
+
+
+## 4つのコンポーネント
+app\_examples\client-component
+
+app\_examples\route-handler
+
+app\_examples\server-action
+
+app\_examples\server-component
+
+クライアントコンポーネント
+ルートハンドラー
+サーバーアクション
+サーバーコンポーネント
+の4種類です。
+
+※Next.jsの App router のルールとして フォルダ名の先頭に _[アンダーバー]が
+ついているとそのフォルダは無視されます。
+
+app\_examples
+このアンダーバーを消して
+app\examples
+にフォルダ名を変更します。
+
+※VSCode上でフォルダ名を変更するとかなり時間がかかるので、
+一旦VSCodeを閉じてエクスプローラー上から変更して、再度VSCodeを起動します。
+
+
+最初にトップページにそれぞれのコンポーネントにリンクを貼っておきます。
+
+ログイン部分の機能だけ残して不要な部分を削除します。
+（見た目を綺麗にするだけです）
+
+
+
+app\page.tsx
+
+```app\page.tsx
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
+import Link from "next/link"
+import LogoutButton from "../components/LogoutButton"
+
+export default async function Index() {
+  const supabase = createServerComponentClient({ cookies })
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  return (
+    <>
+      <nav className="flex justify-center w-full h-16 border-b border-b-foreground/10">
+        <div className="flex items-center justify-between w-full max-w-4xl p-3 text-sm text-foreground">
+          <div />
+          <div>
+            {user ? (
+              <div className="flex items-center gap-4">
+                Hey, {user.email}!
+                <LogoutButton />
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="px-4 py-2 no-underline rounded-md bg-btn-background hover:bg-btn-background-hover"
+              >
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
+      </nav>
+      <Link href="./examples/client-component">Client Component Example</Link>
+      <Link href="./examples/route-handler">Route Handler Example</Link>
+      <Link href="./examples/server-action">Server Action Example</Link>
+      <Link href="./examples/server-component">Server Component Example</Link>
+    </>
+  )
+}
 
 ```
 
-※NEXT_PUBLIC_SUPABASE_API_KEYではありません、ANON_KEYです。
+リンクを貼るだけでコードの作業は完了です。
 
-
-
-ここまでの設定が成功すると
-↓このコマンドでブラウザで動作を確認できます。
+あとは
 npm run dev
+でローカル環境を立ち上げて
+
+http://localhost:3000/
+
+をブラウザで表示します。
+
+ログインをします。
+※ログインはそれぞれ各自で設定してください。
 
 
-ここまでが下準備です。
-ここからコードを読んでいきます。
+そうするとトップページに4つのリンクが表示されます。
 
-まずはサンプルのトップページにこれを見てと指示があります。
+```
+Client Component Example
+Route Handler Example
+Server Action Example
+Server Component Example
 
+```
 
-Look in the _examples folder to see how to create a Supabase client in all the different contexts.
->examplesフォルダで、Supabaseクライアントの作成方法をご覧ください。
-
-
-
-| Type                | Src                                            |
-|---------------------|------------------------------------------------|
-| Client Components   | app/_examples/client-component/page.tsx        |
-| Server Components   | app/_examples/server-component/page.tsx        |
-| Server Actions      | app/_examples/server-action/page.tsx           |
-| Route Handlers      | app/_examples/route-handler.ts                 |
-| Middleware          | app/middleware.ts                              |
-| Protected Routes    | app/_examples/protected/page.tsx               |
-
-
-
-
+※ダッシュボードの Table Editor を開き todos テーブルのデータと見比べてください。
+※Server Action Exampleはなにか文字列を入力してリターンキーを押すと、データがテーブルに登録されます。リターンキーを押しすぎるとそのまま複数のデータが登録されるので注意してください。
 
 
 
@@ -235,50 +311,37 @@ Look in the _examples folder to see how to create a Supabase client in all the d
 
 
 
-----------------------------------------
-
-(10): declare function createClientComponentClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>({ supabaseUrl, supabaseKey, options, cookieOptions, isSingleton }?: {
-(40): declare function createServerComponentClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
-
-(49): declare function createRouteHandlerClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
-
-(58): declare const createServerActionClient: typeof createRouteHandlerClient;
 
 
 
-(18): declare const createPagesBrowserClient: typeof createClientComponentClient;
-(20): declare function createPagesServerClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: GetServerSidePropsContext | {
-(30): declare function createMiddlewareClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
 
-(63): declare function createBrowserSupabaseClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>({ supabaseUrl, supabaseKey, options, cookieOptions }?: {
-(72): declare function createServerSupabaseClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: GetServerSidePropsContext | {
-(84): declare function createMiddlewareSupabaseClient<Database = any, SchemaName extends string & keyof Database = 'public' extends keyof Database ? 'public' : string & keyof Database, Schema extends GenericSchema = Database[SchemaName] extends GenericSchema ? Database[SchemaName] : any>(context: {
+# Supabaseのアクセス方法の解説 （おまけ）
 
-----------------------------------------
+## Client Component Example
+
+クライアントコンポーネントです。
+なので"use client"とディレクティブが書かれています。
 
 
-# Client Components
-
-```app\_examples\client-component\page.tsx
-'use client'
-
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useEffect, useState } from 'react'
-
-export default function ClientComponent() {
   const [todos, setTodos] = useState<any[]>([])
 
-  // Create a Supabase client configured to use cookies
-  // ja:クッキーを使用するように構成されたSupabaseクライアントを作成します
+Hooks useState の基本的な使いかたなので説明の必要はありません。
+
+
+
   const supabase = createClientComponentClient()
 
+createClientComponentClient を使用してクライアントを作っています。
+
+※Supabaseのクライアントつくると Supabaseへアクセスする事ができるようになります。
+
+
+
+```
   useEffect(() => {
     const getTodos = async () => {
-      // en:This assumes you have a `todos` table in Supabase. Check out
-      // the `Create Table and seed with data` section of the README 👇
-      // https://github.com/vercel/next.js/blob/canary/examples/with-supabase/README.md
-      // ja:これは、Supabaseに`todos`テーブルがあることを前提としています。READMEの`Create Table and seed with data`セクションをチェックしてください👇
       const { data } = await supabase.from("todos").select()
+	// データがあるのなら
       if (data) {
         setTodos(data)
       }
@@ -287,107 +350,182 @@ export default function ClientComponent() {
     getTodos()
   }, [supabase, setTodos])
 
-  return <pre>{JSON.stringify(todos, null, 2)}</pre>
-}
+```
 
+↑Supabaseにアクセスするために非同期処理 async/await を利用しています。
+
+
+
+supabase.from("todos").select()
+
+↑このコードはSupabaseにアクセスしています。
+見た目通り todos テーブルから select 関数で 全てのカラムを取得しています。
+
+
+
+  }, [supabase, setTodos])
+
+↑この行は useEffect の第2引数で 依存配列です。
+どちらかが変更された場合に再度実行されます。
+これも useEffect の基本的な使い方です。
+
+
+  return <pre>{JSON.stringify(todos, null, 2)}</pre>
+
+return文は取得したデータを表示するだけの役割です。
+
+特に難しいところはありませんでした。
+
+
+
+## Route Handler Example
+
+Next.jsのルーティング機能を使用して、HTTPリクエストを受け取り、適切なルートにルーティングするための関数が定義されたファイルです。このファイルには、`GET`HTTPメソッド関数が定義されており、リクエストを受け取り、適切な処理を行うためのコードが記述されています。
+
+`GET` 関数は、HTTP GETリクエストを受け取り、Supabaseを使用してデータを取得するための処理を行います。
+
+このファイルは、Next.jsのルーティング機能を使用して、サーバーサイドでのAPIエンドポイントを簡単に作成するためのサンプルです。
+
+
+ルートハンドラーのクライアントは
+createRouteHandlerClient
+を利用してクライアントを作成しています。
+
+  const supabase = createRouteHandlerClient({ cookies })
+
+※クッキーを使用してクライアントを作成しています。
+
+  const { data: todos } = await supabase.from('todos').select()
+
+これは前項のデータ取得方法と同じです。
+
+  return NextResponse.json(todos)
+
+取得したデータをjsonで返しています。
+
+特に難しいところはありませんでした。
+
+
+
+## Server Action Example
+
+このサンプルのメイン Server Actions の利用方法です。
+このサンプルでは、Supabaseの todos テーブルにデータを登録しています。
+
+このコンポーネントは、`createServerActionClient` 関数を使用して、Supabaseのクライアントを初期化し、`useEffect` フックを使用して、コンポーネントがマウントされたときにデータを取得する処理を行っています。
+
+取得したデータは、`setTodos` 関数を使用して、`todos` ステートに保存され、`JSON.stringify` メソッドを使用して、JSON形式で表示されます。
+
+
+
+revalidatePath()
+この関数は、ページのパスを受け取り、そのパスに関連するデータを再検証するための処理を行います。
+
+Next.js Server Actions と revalidate 周りの挙動を確認する
+
+https://zenn.dev/cybozu_frontend/articles/server-actions-and-revalidate
+
+
+
+
+
+サーバーアクションのクライアントは
+createServerActionClient
+を利用してクライアントを作成しています。
+
+ServerAction()関数は非同期関数です
+
+```
+  const addTodo = async (formData: FormData) => {
+    "use server"
+    const title = formData.get("title")
+
+``
+
+↑この場所で"use server" ディレクティブが宣言されています。
+
+このファイルはサーバー側です、しかしこのように "use server"とディレクティブを宣言しないと関数をクライアントコンポーネントに渡すことは出来ません。
+
+    <form action={addTodo}>
+
+この場所で関数を渡しています。
+
+
+
+    const title = formData.get("title")
+
+↑この行で 、フォームから送信されたデータからタイトルを取得しています。
+formDataという変数は、フォームのデータを表すオブジェクトです。get()メソッドを使用して、titleという名前のフィールドの値を取得します。
+
+タイトルが存在する場合
+
+      const supabase = createServerActionClient({ cookies })
+クライアントを作成しています。
+
+今回はクライアントからDBへ直接挿入をしています。
+
+   await supabase.from("todos").insert({ title })
+
+↑この1行だけでフォームに入力したタイトルを直接DBに登録しています。
+コードは非常にシンプルです。
+
+      revalidatePath("/server-action-example")
+revalidatePathをつかい、データが更新されていたらページのデータが最新のものに更新されます。
 
 
 ```
+  return (
+    <form action={addTodo}>
+      <input name="title" />
+    </form>
+  )
+
+```
+
+↑return文でフォームに ServerAction関数である addTodo が登録されています。
 
 
 
 
 
+## Server Component Example
+
+このコンポーネントは、`createServerComponentClient` 関数を使用して、Supabaseのクライアントを初期化し、`useEffect` フックを使用して、コンポーネントがマウントされたときにデータを取得する処理を行っています。
+
+サーバーコンポーネントなので、
+データへのアクセス速度は早く、
+セキュリティリスクは少なく、
+安全にデータを扱うことが可能です。
+
+
+  const supabase = createServerComponentClient({ cookies })
+Supabaseのクライアントを作っています。
+
+  const { data: todos } = await supabase.from('todos').select()
+
+supabase.from('todos').select()
+Supabaseの todos テーブルから すべてのデータを取得しています。
+
+  return <pre>{JSON.stringify(todos, null, 2)}</pre>
+
+`JSON.stringify()`関数は、JavaScriptオブジェクトをJSON文字列に変換するために使用されます。
+この関数は、3つの引数を受け取ります。最初の引数は変換するオブジェクトであり、2番目の引数は置換関数であり、3番目の引数はインデントレベルです。この場合、`todos`オブジェクトが変換され、インデントレベルが2に設定されています。
+
+
+App routerの特性を利用して サーバからDBにアクセスをしてもらって
+それをブラウザで表示しています。
+
+これも特に難しい処理はありません。
+
+以上が４つのDBへのアクセス方法になります。
 
 
 
+# ログアウト
 
+ログアウトすると、ブラウザ上にはデータが表示されません。
+Server Actionsからもデータを登録できません。
+これは RLS が効いているからです。
 
-
-
-
-
-
-next.js/examples/with-supabase at canary · vercel/next.js
-https://github.com/vercel/next.js/tree/canary/examples/with-supabase
-
-
-withsupabase
-x8uL22MeCC6B
-
-
-
-
-
-
-
-
-
-
-
-
-参考
-
-next.js/examples/with-supabase at canary · vercel/next.js
-
-https://github.com/vercel/next.js/tree/canary/examples/with-supa
-supabase - npm
-
-https://www.npmjs.com/package/supabase?activeTab=readme
-
-Supabase CLI reference
-
-https://supabase.com/docs/reference/cli/supabase-init
-
-
-
-# Supabase スターター
-
-このスターターは、Supabase Auth がクッキーを使用するように設定し、Next.js アプリ全体（クライアントコンポーネント、サーバーコンポーネント、ルートハンドラ、サーバーアクション、ミドルウェア）でユーザーのセッションを利用できるようにします。
-
-## 自分でデプロイする
-
-Vercel のデプロイメントでは、Supabase のアカウントとプロジェクトの作成が案内されます。Supabase インテグレーションをインストールした後、関連するすべての環境変数が設定され、デプロイ後すぐにプロジェクトが使用できるようになります 🚀。
-
-[Vercel でデプロイ](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&integration-ids=oac_jUduyjQgOyzev1fjrW83NYOv)
-
-## 使い方
-
-1. 新しい Supabase プロジェクトを作成する](https://database.new)
-1. npx create-next-app -e with-supabase` を実行して、Supabase Starter テンプレートを使って Next.js アプリを作成します。
-1. cd` を使ってアプリのディレクトリに移動します。
-1. npm install` を実行して依存関係をインストールする。
-1. .env.local.example`を`.env.local`にリネームし、[Supabase プロジェクトの API 設定](https://app.supabase.com/project/_/settings/api) から`NEXT_PUBLIC_SUPABASE_URL`と`NEXT_PUBLIC_SUPABASE_ANON_KEY` の値を更新する。
-1. npm run dev` を実行してローカル開発サーバーを起動する。
-
-> ローカルで Supabase を実行するには、[ローカル開発に関するドキュメント](https://supabase.com/docs/guides/getting-started/local-development) を参照してください。
-
-### Supabase クライアントの作成
-
-Supabase クライアントの作成例は、[`/app/_examples`](./app/_examples/)フォルダを参照してください：
-
-- クライアントコンポーネント](./app/\_examples/client-component/page.tsx)
-- サーバーコンポーネント](./app/\_examples/server-component/page.tsx)
-- ルートハンドラ](./app/\_examples/route-handler/route.ts)
-- サーバーアクション](./app/\_examples/server-action/page.tsx)
-
-### todo`テーブルを作成し、データをシードする。
-
-プロジェクトの SQL エディタ](https://app.supabase.com/project/_/sql)に移動し、`New query`をクリックし、[init.sql](./supabase/migrations/20230618024722_init.sql)ファイルの内容を貼り付け、`RUN`をクリックします。
-
-これにより、基本的な `todos` テーブルが作成され、行レベルセキュリティ (RLS) が有効になり、`select` と `insert` アクションを `認証済み` ユーザに許可する RLS ポリシーが作成される。
-
-テーブル `todos` にダミーデータを追加するには、[seed.sql](./supabase/seed.sql) ファイルの内容を実行してください。
-
-## フィードバックと問題点
-
-フィードバックや問題点は [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose) にお願いします。
-
-## その他の Supabase の例
-
-- [Next.js サブスクリプション決済スターター](https://github.com/vercel/nextjs-subscription-payments)
-- クッキーベースの認証と Next.js 13 アプリルーター（無料コース）](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- Supabase 認証と Next.js アプリルーター](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
-- [Next.js 認証ヘルパードキュメント](https://supabase.com/docs/guides/auth/auth-helpers/nextjs)
-
-www.DeepL.com/Translator（無料版）で翻訳しました。
+最初に使用したSQL文で、テーブルを作成した後半に RLS を有効にするコードと
+RLSの使用条件を設定したコードが書かれています。
