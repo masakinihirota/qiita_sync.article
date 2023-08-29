@@ -18,8 +18,6 @@ https://github.com/vercel/next.js/tree/canary/examples/with-supabase
 
 # この記事のリポジトリ
 
-masakinihirota/vercel_supabase_starter
-
 https://github.com/masakinihirota/vercel_supabase_starter
 
 
@@ -201,6 +199,8 @@ Supabaseから直接データを挿入しています。
 
 
 ## 4つのコンポーネント
+
+```
 app\_examples\client-component
 
 app\_examples\route-handler
@@ -208,6 +208,8 @@ app\_examples\route-handler
 app\_examples\server-action
 
 app\_examples\server-component
+
+```
 
 クライアントコンポーネント
 ルートハンドラー
@@ -328,13 +330,17 @@ Server Component Example
 なので"use client"とディレクティブが書かれています。
 
 
+```
   const [todos, setTodos] = useState<any[]>([])
+
+```
 
 Hooks useState の基本的な使いかたなので説明の必要はありません。
 
-
-
+```
   const supabase = createClientComponentClient()
+
+```
 
 createClientComponentClient を使用してクライアントを作っています。
 
@@ -361,14 +367,20 @@ createClientComponentClient を使用してクライアントを作っていま�
 
 
 
+```
 supabase.from("todos").select()
+
+```
 
 ↑このコードはSupabaseにアクセスしています。
 見た目通り todos テーブルから select 関数で 全てのカラムを取得しています。
 
 
 
+```
   }, [supabase, setTodos])
+
+```
 
 ↑この行は useEffect の第2引数で 依存配列です。
 どちらかが変更された場合に再度実行されます。
@@ -396,15 +408,24 @@ Next.jsのルーティング機能を使用して、HTTPリクエストを受け
 createRouteHandlerClient
 を利用してクライアントを作成しています。
 
+```
   const supabase = createRouteHandlerClient({ cookies })
+
+```
 
 ※クッキーを使用してクライアントを作成しています。
 
+```
   const { data: todos } = await supabase.from('todos').select()
+
+```
 
 これは前項のデータ取得方法と同じです。
 
+```
   return NextResponse.json(todos)
+
+```
 
 取得したデータをjsonで返しています。
 
@@ -445,36 +466,53 @@ ServerAction()関数は非同期関数です
     "use server"
     const title = formData.get("title")
 
-``
+```
 
 ↑この場所で"use server" ディレクティブが宣言されています。
 
 このファイルはサーバー側です、しかしこのように "use server"とディレクティブを宣言しないと関数をクライアントコンポーネントに渡すことは出来ません。
 
+```
     <form action={addTodo}>
+```
 
 この場所で関数を渡しています。
 
 
 
+```
     const title = formData.get("title")
+
+```
 
 ↑この行で 、フォームから送信されたデータからタイトルを取得しています。
 formDataという変数は、フォームのデータを表すオブジェクトです。get()メソッドを使用して、titleという名前のフィールドの値を取得します。
 
 タイトルが存在する場合
 
+```
       const supabase = createServerActionClient({ cookies })
+
+```
+
 クライアントを作成しています。
 
 今回はクライアントからDBへ直接挿入をしています。
 
-   await supabase.from("todos").insert({ title })
+
+```
+await supabase.from("todos").insert({ title })
+
+```
 
 ↑この1行だけでフォームに入力したタイトルを直接DBに登録しています。
 コードは非常にシンプルです。
 
+```
       revalidatePath("/server-action-example")
+
+```
+
 revalidatePathをつかい、データが更新されていたらページのデータが最新のものに更新されます。
 
 
@@ -503,15 +541,26 @@ revalidatePathをつかい、データが更新されていたらページのデ
 安全にデータを扱うことが可能です。
 
 
+```
   const supabase = createServerComponentClient({ cookies })
+
+```
+
 Supabaseのクライアントを作っています。
 
+```
   const { data: todos } = await supabase.from('todos').select()
+
+```
 
 supabase.from('todos').select()
 Supabaseの todos テーブルから すべてのデータを取得しています。
 
+
+```
   return <pre>{JSON.stringify(todos, null, 2)}</pre>
+
+```
 
 `JSON.stringify()`関数は、JavaScriptオブジェクトをJSON文字列に変換するために使用されます。
 この関数は、3つの引数を受け取ります。最初の引数は変換するオブジェクトであり、2番目の引数は置換関数であり、3番目の引数はインデントレベルです。この場合、`todos`オブジェクトが変換され、インデントレベルが2に設定されています。
