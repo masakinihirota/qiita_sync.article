@@ -195,11 +195,11 @@ typescriptreact
 ## その他
 
 ### 設定された文字数以上の場合折りたたむ
-```
+`
 Regex to Match: (class|className)=[`'{"]([^`'"}]{30,})[`'"}]
 Regex Flags: g
 Regex Group: 2
-```
+`
 
 ### SVG
 
@@ -230,4 +230,3 @@ Tailwind CSS クラスをソートしてくれます。
 # 参考
 紹介動画（英語）
 https://www.youtube.com/shorts/4VUaoUAaMQg
-
