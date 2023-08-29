@@ -1,5 +1,5 @@
 <!--
-title:   Next.js 13 App router と Supabase での４つのアクセス方法 
+title:   Next.js 13 App router と Supabase での４つのアクセス方法
 tags:    AppRouter,Next.js,ServerAction,Supabase,middleware
 id:      b4b168a056dc10776d87
 private: false
@@ -10,12 +10,17 @@ https://qiita.com/masakinihirota/items/c4c8931d7067349006ef
 Next.jsのサンプル集の中の **with-supabase** を見ていきます。
 このサンプルは Supabase 側でも 推奨されています。
 
-
-
 next.js/examples/with-supabase at canary · vercel/next.js
+
 https://github.com/vercel/next.js/tree/canary/examples/with-supabase
 
 ※このサンプルは認証機能付きです。
+
+# この記事のリポジトリ
+
+masakinihirota/vercel_supabase_starter
+
+https://github.com/masakinihirota/vercel_supabase_starter
 
 
 
@@ -30,7 +35,7 @@ Supabase
 # 前提知識
 
 Supabaseのアカウント作成済み。
-Supabaseの環境変数の取得方法を理解している
+Supabaseの環境変数の取得方法を理解している。
 Supabaseのダッシュボードが使えるようになっている。
 
 
