@@ -5,7 +5,18 @@ id:      b4b168a056dc10776d87
 private: false
 -->
 
-# Server Actions
+# Supabaseへの 4種類のアクセス方法
+
+* クライアントから Supabaseのデータを取得する方法
+* ルートハンドラーで Supabaseのデータを取得する方法
+* Server ActionsでSupabaseのDBを操作する方法
+* サーバーコンポーネントで Supabaseのデータを取得する方法
+
+これら4種類のアクセス方法を紹介します。
+
+
+
+# 現時点での Server Actions について (2023年8月31日)
 
 Next.js の Server Actions は先日アルファが取れたようです。
 Next.jsの公式ドキュメントで確認。ただし、ベータ版とも書かれていませんでした。
