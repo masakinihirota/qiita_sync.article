@@ -1,5 +1,5 @@
 <!--
-title:   Next.js app router 開発用テンプレート (Storybook Supabase shadcn/ui)
+title:   Next.js app router 開発用テンプレート ノーマルバージョン (Storybook Supabase shadcn/ui)
 tags:    AppRouter,Next.js,Supabase,shadcn,storybook
 id:      3ad7a1564d2b6c56d4db
 private: false
@@ -1310,43 +1310,10 @@ Use JSDoc: Index
 https://jsdoc.app/
 
 
-## Storybook のインストール
-
-npx storybook@latest init
-
-インストールが完了すると 自動で Storybook のチュートリアルが始まるので体験してみてください。英語ですが始めてStorybookを触る人にとって最初に知っておくべき重要なことが約3分で知ることができます。
-
-TailwindCSS を Storybook でも適用されるように設定します。
-
-```.storybook/preview.ts (追記)
-import "../src/styles/globals.css"
-
-```
 
 
-# Storybook のインストール直後
 
-'aria-query' の型定義ファイルが見つかりません。
-というエラーが出たので対処します。
 
-npm install aria-query
-
-tsconfig.jsonファイルに、
-"types": ["aria-query"] を追記します。
-
-```tsconfig.json
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "types": ["aria-query"]
-  },
-
-```
 
 
 
