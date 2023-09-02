@@ -72,7 +72,7 @@ i18n を実現させるためには 2つの機能をもたせる必要があり�
 
 
 
-## Localeの判定とそれにあわせたルーティング
+## 1.Localeの判定とそれにあわせたルーティング
 
 対象言語にあったURLへのルーティング
 
@@ -81,7 +81,7 @@ i18n を実現させるためには 2つの機能をもたせる必要があり�
 
 
 
-## 文章のローカライゼーション
+## 2.文章のローカライゼーション
 
 対象文章の翻訳
 辞書ファイルの用意
@@ -263,6 +263,9 @@ Next.js アプリケーションで i18next を使うためのライブラリで
 i18n with Next.js 13 and app directory / App Router (an i18next guide)
 
 https://locize.com/blog/next-13-app-dir-i18n/
+
+今回、↑このブログの記事を元に、実装していきi18nに関して色々調べていきます。
+
 
 
 # Next.js App Router での i18n関連 公式ドキュメント
@@ -508,11 +511,6 @@ https://locize.com/blog/next-13-app-dir-i18n/
 
 ※このブログによると 新しいアプローチが採用され next-i18next はもう必要ありません。
 
-日本語 ja
-英語 en
-
-この2カ国語を切り替えるアプリを作成します。
-
 
 
 ## 新しいアプローチを使用して国際化する方法
@@ -532,6 +530,8 @@ https://react.i18next.com/
 i18next/i18next-resources-to-backend: This package helps to transform resources to an i18next backend
 
 https://github.com/i18next/i18next-resources-to-backend
+
+
 
 ## インストール
 
