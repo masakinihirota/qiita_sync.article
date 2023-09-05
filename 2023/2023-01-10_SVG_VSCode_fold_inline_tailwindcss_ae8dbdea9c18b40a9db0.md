@@ -195,11 +195,13 @@ typescriptreact
 ## その他
 
 ### 設定された文字数以上の場合折りたたむ
-`
+
+```
 Regex to Match: (class|className)=[`'{"]([^`'"}]{30,})[`'"}]
 Regex Flags: g
 Regex Group: 2
-`
+
+```
 
 ### SVG
 
