@@ -3684,7 +3684,6 @@ https://www.i18next.com/misc/creating-own-plugins
 
 何が必要なのかを考えてみましょう。
 
-
 * どの環境のための国際化ソリューションをお探しですか？
 
   * サーバーレス環境（AWS lambda、Google Cloud Functions、Azure Functionsなど）のための特別な処理。
@@ -3695,9 +3694,13 @@ https://www.i18next.com/misc/creating-own-plugins
 
 * http経由でアプリとは別に翻訳をロードしたいですか？
 
+* 優れた翻訳管理システムで翻訳を管理したいですか？
 
 
-### 優れた翻訳管理システムで翻訳を管理したいですか？ ## どの環境のための国際化ソリューションをお探しですか？
+
+## For which environment are you looking for an i18n solution?
+
+どの環境のための国際化ソリューションをお探しですか？
 
 クライアント、サーバー、ブラウザ、React、モバイル、デスクトップ、Node.js、Deno...。
 
@@ -3711,9 +3714,7 @@ https://www.i18next.com/overview/supported-frameworks
 
 サーバーレス環境のための特別な処理
 
-
-
-i18next-fs-backendを使用する
+i18next-fs-backend を使用する
 
 ```
 import i18next from 'i18next';
