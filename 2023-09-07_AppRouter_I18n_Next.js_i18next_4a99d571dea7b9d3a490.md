@@ -143,7 +143,9 @@ webpack を使用したコードからの翻訳の抽出
 
 ## Getting started
 
-### インストール
+### Installation
+
+インストール
 
 ```
 npm install i18next --save
@@ -156,7 +158,9 @@ UMDとは？
 UMDはUniversal Module Definitionの略で、モジュールをブラウザやnode.jsなどの環境で使用するための仕様です。UMDに対応したモジュールは、ブラウザのグローバルオブジェクトに登録されます。
 
 
-### denoでの導入
+### Load in Deno
+
+denoでの導入
 
 ```
 import i18next from 'https://deno.land/x/i18next/index.js'
@@ -171,7 +175,9 @@ import i18next from 'https://deno.land/x/i18next/index.js'
 
 
 
-### 重要な注意事項
+### Important Caveat
+
+重要な注意事項
 
 最初のサンプルに入る前に、以下のことに注意してください。
 デフォルトでは、i18nextは翻訳を検索するためにキーベースの記法を使用します。
@@ -181,7 +187,9 @@ import i18next from 'https://deno.land/x/i18next/index.js'
 
 
 
-### 基本的なサンプル
+### Basic sample
+
+基本的なサンプル
 
 これらのサンプルは、コア機能の基本的な使用方法を示しているだけであり、本番環境で使用する場合は、フレームワークの統合を使用して、より良く、よりシンプルな統合を行ってください。
 （innerHTMLを設定するのは、それがどのように機能するかを示すために行われています）。
@@ -542,7 +550,7 @@ i18next
 
 
 
-### t
+### t()
 
 t関数
 
@@ -1258,7 +1266,7 @@ i18next.off('initialized');
 このように、`i18next.off`メソッドを使用することで、i18nextで使用されるイベントのリスナーを解除することができます。
 
 
-#### 解説
+##### 解説
 
 1. イベントリスナーとは？
 
@@ -2331,7 +2339,9 @@ description
 
 
 
-##### initImmediate 即時初期化
+##### initImmediate
+
+即時初期化
 
 true
 
@@ -6118,7 +6128,7 @@ i18next.t('intlNumberWithOptions', { val: 2000, minimumFractionDigits: 3 });
 For options see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 
 
-### Currency 通貨
+### Currency
 
 通貨
 
@@ -6165,7 +6175,7 @@ For options see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 
 
 
-### DateTime 日付と時間
+### DateTime
 
 日付と時間
 
@@ -6454,7 +6464,9 @@ i18next.t('key', {count: 100}); // -> "other"
 
 
 
-### 正しい複数形の接尾辞を見つけるには？
+### How to find the correct plural suffix?
+
+正しい複数形の接尾辞を見つけるには？
 
 この小さなユーティリティを使えば、正しい複数形の接尾辞を求めることができます。
 
@@ -6469,7 +6481,9 @@ https://jsfiddle.net/6bpxsgd4
 
 
 
-### 序数詞
+### Ordinal plurals
+
+序数詞
 
 序数（英語の "1st"、"2nd"、"3rd "のように、物事の順序や順位を指す）もサポートされています。
 ordinalオプション（および_ordinal接尾辞）は、複数キーを決定するために序数を使用するようにヘルパーに指示します。
@@ -6503,7 +6517,9 @@ i18next.t('key', { count: 32, ordinal: true }); // -> "32nd place"
 
 
 
-### 区間複数表現
+### Interval plurals
+
+区間複数表現
 
 ある範囲内にあるアイテムの数を表すフレーズを定義したい場合、例えば、いくつかの項目やたくさんの項目などがあります。
 このような場合には、 i18next-intervalplural-postprocessor というポストプロセッサーを追加する必要があります。
@@ -7846,17 +7862,23 @@ locizeは、i18nextプロジェクトのための完璧な翻訳管理ツール�
 
 ある時点で、新しい翻訳キー/値を名前空間(翻訳)ファイルにどのように取り込むかという疑問にぶつかるでしょう。
 
-### 1) 手動で新しい文字列を追加する
+### 1 Adding new strings manually
+
+手動で新しい文字列を追加する
 
 確かにこれは新しい翻訳を追加するための最も効率の悪い方法ですが、 多くのプロジェクトがこれをやっていることは知っています。開発者が余計な手間を省けるだけで、実際には何の問題もありません。
 
-### 2) 抽出ツールを使う
+### 2 Using an extraction tool
+
+抽出ツールを使う
 
 i18next-scanner、i18next-parser、babel-plugin-i18next-extractはこの目標を達成するための賢明な選択です。
 あるいは、translation-checkを試してみてください。どのキーがまだ翻訳されていないかチェックしてください。
 抽出ツールの詳細については、プラグインとユーティリティのドキュメントページを参照してください。
 
-### 3) ランタイム抽出
+### 3 Runtime extraction
+
+ランタイム抽出
 
 I18nextには、ランタイム中に解決できなかったすべてのキーを添付のバックエンドを使って送信する設定があります。
 
@@ -8340,7 +8362,6 @@ i18next JSONには、バージョン1から4までの4つのバージョンが�
 Intl.PluralRules API
 複数形の形式を決定するためのAPIです。
 
-
 このAPIは、言語によって異なる複数形の形式をサポートしており、複数形の形式を決定するために、数値を入力するだけで簡単に使用できます。
 このAPIは、i18nライブラリなどで広く使用されています。
 ただし、このAPIはすべてのブラウザでサポートされているわけではないため、必要に応じてポリフィルを使用する必要があります。
@@ -8348,6 +8369,8 @@ Intl.PluralRules API
 
 
 ### i18next JSON v4
+
+現在はv4を使用することが推奨されています。
 
 ```
 {
@@ -8391,7 +8414,7 @@ Intl.PluralRules APIをポリフィルする必要があるかもしれません
 
 既存の翻訳を新しいv4フォーマットに変換するには、i18next-v4-format-converterかこのウェブツールを見てください。(これはデフォルトの pluralSeparator _ を持つキーのみを扱います)
 
-v3-v1は省略
+i18next JSON v3-v1は省略
 
 
 
@@ -8431,13 +8454,11 @@ i18nextの歴史
 
 お客様の声
 
-
+省略
 
 ----------------------------------------
 
 # 参考URL
-
-# 情報源
 
 Introduction - i18next documentation
 
