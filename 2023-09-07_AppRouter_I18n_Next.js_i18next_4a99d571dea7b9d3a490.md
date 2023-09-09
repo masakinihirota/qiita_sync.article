@@ -1,13 +1,17 @@
 <!--
-title:   i18n 国際化フレームワーク i18next入門
+title:   国際化フレームワーク i18next入門
 tags:    AppRouter,I18n,Next.js,i18next
 id:      4a99d571dea7b9d3a490
-private: true
+private: false
 -->
 
-GitHub Copilot:
-
 # i18n 国際化フレームワーク i18next入門
+
+正確な情報は↓公式ドキュメントを確認してください。
+
+Introduction - i18next documentation
+
+https://www.i18next.com/
 
 
 
@@ -48,11 +52,37 @@ markdownファイルでは、見出しの行がアウトラインに表示され
 
 この機能を使用するとスクロールしても項目の見出しが画面上部に固定されます。
 
+※ VSCodeのアウトラインを開いたら右上に設定ボタンがあるのでカーソルの追従を有効にしてください。
+そうすれば今時分のカーソルの一がアウトラインに反映されて、どこにいるのか一目でわかります。
 
 
-# 用語集
 
-* 翻訳ファイル
+# 用語集 順不同
+
+* バリアント
+i18nextにおいて、言語の特定のバージョンを「バリアント」と呼びます。
+
+例えば、英語にはイギリス英語とアメリカ英語のように、地域やスクリプトなどが異なるバリアントがあります。
+
+バリアントの具体例としては、以下のようなものがあります。
+
+- 英語: `en-US` (アメリカ英語), `en-GB` (イギリス英語)
+- スペイン語: `es-ES` (スペイン語), `es-MX` (メキシコスペイン語)
+- ポルトガル語: `pt-PT` (ポルトガルポルトガル語), `pt-BR` (ブラジルポルトガル語)
+
+これらのバリアントは、地域やスクリプトなどが異なるため、ユーザーが使用する言語に合わせた翻訳を提供することが重要です。
+
+i18nextでは、`supportedLngs`オプションを使用して、サポートする言語コードを指定することができます。
+このオプションには、言語コードのバリアントを含めることができます。
+
+
+
+* ns (=namespace, 名前空間)
+翻訳されたテキストをグループ化するために使用されます。
+
+具体的には、翻訳されたテキストを、機能や画面などの単位でグループ化することができます。
+
+* 翻訳ファイル、言語ファイル、リソース、翻訳テキスト
 ローカライズされたテキストの集合を表すオブジェクトです。
 i18nextの翻訳ファイルは、JSON形式で表現されたオブジェクトです。
 オブジェクト内には、キーと値のペアが含まれており、キーは翻訳されるテキストを識別するための識別子で、値は翻訳されたテキストです。
@@ -98,9 +128,6 @@ i18nextで提供される翻訳関数で、キーを渡すと翻訳されたテ�
 翻訳されたテキスト内に埋め込まれた変数の値です。
 i18nextでは、変数に対応する値を渡すことで、テキスト内に埋め込まれた値を置き換えることができます。
 
-* バリアント
-i18nextでは、言語の特定のバージョンを「バリアント」と呼びます。
-例えば、英語にはイギリス英語とアメリカ英語のように、地域やスクリプトなどが異なるバリアントがあります。
 
 * フォールバック
 翻訳が見つからなかった場合に、別の翻訳を探すことです。
@@ -113,7 +140,7 @@ i18nextが異なる名前空間、言語、およびキーの組み合わせて�
 イベントが発生することを指します。
 イベントが発生すると、登録されたイベントリスナーが自動的に呼び出されます。
 
-* 一般的な i18n のフォーマット
+* 一般的に使用されている様々な i18n のフォーマット
 
 `gettext`、`csv`、`RESX`の`JSON`は、i18n（国際化）のコンテキストで使用されるファイルフォーマットの一部です。
 
@@ -127,17 +154,49 @@ Comma-Separated Valuesの略で、カンマで区切られたテキストファ�
 Windowsのリソースファイルで使用されるファイルフォーマットで、`.resx`という拡張子が付けられます。`.resx`ファイルには、翻訳元のテキストと翻訳後のテキストが含まれています。
 
 `JSON`
-JavaScript Object Notationの略で、JavaScriptのオブジェクトを表現するための軽量なデータ交換フォーマットです。i18nのコンテキストでは、翻訳元のテキストと翻訳後のテキストをJSON形式で保存することがあります。
+JavaScript Object Notationの略で、JavaScriptのオブジェクトを表現するための軽量なデータ交換フォーマットです。
+i18nのコンテキストでは、翻訳元のテキストと翻訳後のテキストをJSON形式で保存することがあります。
 
 * UMD
-UMDはUniversal Module Definitionの略で、モジュールをブラウザやnode.jsなどの環境で使用するための仕様です。UMDに対応したモジュールは、ブラウザのグローバルオブジェクトに登録されます。
+Universal Module Definitionの略で、モジュールをブラウザやnode.jsなどの環境で使用するための仕様です。UMDに対応したモジュールは、ブラウザのグローバルオブジェクトに登録されます。
+
+* rtlまたはltr
+テキストの方向を表す用語です。
+
+`rtl`は、右から左に書かれる言語（例：アラビア語、ヘブライ語）を表し、
+`ltr`は、左から右に書かれる言語（例：英語、日本語）を表します。
+
+i18nのコンテキストでは、テキストの方向に応じて、表示方法を変更することがあります。
+例えば、`rtl`の場合は、テキストの表示位置を右寄せにするなどの調整が必要になります。
 
 
+* インスタンス
+インスタンスを作成することで、i18nextの機能を使用することができるようになります。
+具体的には、以下のような機能を使用することができます。
 
+- 翻訳テキストの取得
+- 言語の切り替え
+- 言語ファイルの読み込み
+- 翻訳テキストの動的な生成
 
+* シングルトン
+アプリケーション内で一つだけのインスタンスを作成し、それを複数の箇所で共有する設計パターンのことを指します。
 
+i18nextの場合、シングルトンパターンを採用することで、アプリケーション内で一つだけの`i18next`インスタンスを作成し、それを複数の箇所で共有することができます。
+これにより、メモリ使用量を削減し、パフォーマンスを向上させることができます。
 
+* cimode
+i18nextで翻訳機能を無効にするために使用する特殊な言語コードです。
+この言語コードを指定することで、i18nextは翻訳テキストをそのまま返すようになります。
+cimodeは、翻訳機能を使用しない場合に使用する言語コードとして、i18nextで推奨されています。
 
+* dev
+i18nextで言語ファイルが見つからなかった場合に使用される言語コードです。
+devは、開発者向けのデフォルト言語コードであり、翻訳テキストが見つからなかった場合に、デフォルトの英語の翻訳テキストを返すようになっています。
+
+* noop
+`noop`は、i18nextで翻訳が見つからなかった場合に何もしないようにするための言語コードです。
+`noop`を使用すると、翻訳が見つからなかった場合に、何も表示されないようにすることができます。
 
 
 
@@ -708,6 +767,10 @@ i18nextのgetFixedT()メソッドについて、
 
 このメソッドは、指定された言語、名前空間、キーのプレフィックスに対応する翻訳を取得するために使用されます。
 
+逆に言えば、t関数 は引数を省略している getFixedTの簡易版 とも言えます。（すでに色々と事前設定済みだから。）
+
+
+
 例えば、以下のような翻訳があるとします。
 
 ```javascript.js
@@ -754,18 +817,29 @@ lng と ns の引数は言語または名前空間の配列で、その場合は
 
 
 
+
+
 ```
 const t = i18next.getFixedT(null, null, 'user.accountSettings.changePassword')
-const title = t('title'); // same as i18next.t('user.accountSettings.changePassword.title');
+const title = t('title');
 
 ```
 
+↓この関数の形と同じです。
+
 ```
-i18next.getFixedT(null, null, 'user.accountSettings.changePassword')
-// ↑ ↓ と同じ
 i18next.t('user.accountSettings.changePassword.title');
 
 ```
+
+
+
+```
+i18next.getFixedT(null, null, 'user.accountSettings.changePassword')
+i18next.t('user.accountSettings.changePassword.title');
+
+```
+
 
 
 ↓プレフィックス付き名前空間表記のキーを使いたい場合は、keyPrefixオプションを使わないでください
@@ -776,7 +850,9 @@ const title = t('ns:title'); // this will not work
 
 ```
 
-↑このコードは動きません
+※↑このコードは動きません
+
+
 
 返された関数では、t関数のように、言語や名前空間をオプションで渡したり、名前空間を前につけたりして上書きすることができます。
 
@@ -811,14 +887,12 @@ i18next.changeLanguage(lng, callback) // -> プロミスを返す
 
 ```
 
-
-
 言語を変更します。コールバックは翻訳がロードされるか、ロード中にエラーが発生するとすぐに呼び出されます。
 
 `lng`を指定せずに`changeLanguage`を呼び出すと、言語検出器を使用して言語を選択します。
 
 'i18next'の言語設定の一つである'cimode'は、翻訳を無効にするために使用されます。
-'cimode'を設定すると、'i18next'は翻訳を行わず、指定されたキーをそのまま返します。
+'cimode'を設定すると、'i18next'は翻訳を行わず、**指定されたキーをそのまま返します。**
 
 これは、テスト目的で使用されることがあります。
 例えば、'i18next'の't()'メソッドが正しく動作しているかどうかを確認するために、'cimode'を設定して、't()'メソッドがキーを返すことを確認することができます。
@@ -838,13 +912,15 @@ i18next
     t('key'); // -> same as i18next.t
   });
 
-// ↓引数を与えない場合、このように手動で再検出をします。
+// changeLanguageに↓引数を与えない場合、このように手動で再検出をします。
 i18next.changeLanguage().then(...)
 
 ```
 
 i18nextは、ブラウザの言語設定やクエリパラメーターなどを使用して、通常は自動的に言語を検出しますが、場合によっては自動検出がうまく機能しないことがあります。
+
 その場合、i18next.changeLanguage()メソッドを使用して、手動で言語を再検出することができます。
+
 changeLanguage()メソッドに引数を与えない場合は、i18nextが自動的に言語を再検出します。
 しかし、引数を与えることで明示的に言語を変更することもできます。
 
@@ -854,25 +930,28 @@ changeLanguage()メソッドに引数を与えない場合は、i18nextが自動
 
 単一の言語
 
-`i18next.language`は、現在検出された言語または設定された言語に設定されます。
+`i18next.language`は、現在検出された言語、または設定された言語に設定されます。
 
 設定された言語がない場合、i18nextはクライアント側で言語を検出します。
 
-
-
 `i18next.resolvedLanguage`は、設定された言語がない場合に使用されるプライマリ言語を返します。
-
-
 
 #### 解説
 
-これら３つの `i18next.language`、`i18next.resolvedLanguage`、`i18next.changeLanguage()`は、i18nextの言語設定に関連するプロパティとメソッドです。
+これら３つの
+`i18next.language`
+`i18next.resolvedLanguage`
+`i18next.changeLanguage()`
+は、i18nextの言語設定に関連するプロパティとメソッドです。
 
 - `i18next.language`は、現在の言語を取得するために使用されます。読み取り専用のプロパティであり、i18nextが現在使用している言語を取得するために使用されます。
 
 - `i18next.resolvedLanguage`は、i18nextが自動的に検出した言語を取得するために使用されます。内部的に使用されるプロパティであり、通常は開発者が使用する必要はありません。
 
-- `i18next.changeLanguage()`メソッドは、アプリケーションで使用する言語を変更するために使用されます。言語を動的に変更することができます。`changeLanguage()`メソッドに引数を与えることで、明示的に言語を変更することができます。引数を与えない場合は、i18nextが自動的に言語を再検出します。
+- `i18next.changeLanguage()`メソッドは、アプリケーションで使用する言語を変更するために使用されます。言語を動的に変更することができます。
+
+この`changeLanguage()`メソッドに引数を与えることで、明示的に言語を変更することができます。
+引数を与えない場合は、i18nextが自動的に言語を再検出します。
 
 これらのプロパティとメソッドは、i18nextの言語設定に関連しており、開発者がi18nextを使用する際に役立ちます。
 
@@ -895,6 +974,7 @@ i18next.languages
 言語が設定されるとき、この配列は新しい言語コードで満たされます。
 
 オーバーライドされない限り、この配列はフォールバックのためにそのコードのあまり特定されていないバージョンで満たされ、フォールバック言語のリストが続きます。
+
 値は一意であるため、配列の前のほうに現れた場合は、再度追加されることはありません。
 
 複数の言語を設定する方法
@@ -998,12 +1078,12 @@ i18next.hasLoadedNamespace(ns, options)
 例えば、以下のように使用することができます。
 
 ```javascript
-i18next.hasLoadedNamespace('common', { lng: 'en' }); // commonという名前空間がロードされている場合はtrue、ロードされていない場合はfalseを返す
+i18next.hasLoadedNamespace('common', { lng: 'en' });
+// commonという名前空間がロードされている場合はtrue、ロードされていない場合はfalseを返す
+
 ```
 
 このように、i18next.hasLoadedNamespaceメソッドを使用することで、特定の名前空間がロードされたかどうかを確認することができます。
-
-
 
 ### loadNamespaces
 
@@ -1028,7 +1108,10 @@ i18next
 
 ### loadLanguages
 
+```
 i18next.loadLanguages(lngs, callback) // -> Promiseを返します。
+
+```
 
 initオプション(preload)で定義されていない追加言語をロードします。
 
@@ -1050,7 +1133,8 @@ i18next
 リソースの再読み込み
 
 ```
-i18next.reloadResources() // -> Promiseを返します。
+i18next.reloadResources()
+// -> Promiseを返します。
 
 ```
 
@@ -1113,7 +1197,10 @@ i18next.setDefaultNamespace(ns)
 
 ### dir
 
+```
 i18next.dir(lng)
+
+```
 
 言語の読み取り方向に応じてrtlまたはltrを返します。
 
@@ -1242,11 +1329,10 @@ i18next.cloneInstance(options)
 
 ```
 
+現在のインスタンスのクローンを作成します。
+ストア、プラグイン、初期設定を共有します。ストレージを共有するインスタンスを作成しますが、設定言語やデフォルトの名前空間には依存しません。
 
-
-現在のインスタンスのクローンを作成します。ストア、プラグイン、初期設定を共有します。ストレージを共有するインスタンスを作成しますが、設定言語やデフォルトの名前空間には依存しません。
-
-「i18next.cloneInstance(options)」は、i18nextのインスタンスを複製するためのメソッドです。このメソッドは、1つの引数を受け取ります。引数は、オプションを指定するオブジェクトです。
+このメソッドは、1つの引数を受け取ります。引数は、オプションを指定するオブジェクトです。
 
 例えば、以下のように使用することができます。
 
@@ -1417,6 +1503,20 @@ i18next.on('initialized', function(options) {})
 
 初期化後に発火します。
 
+`onInitialized`は、i18nextの初期化が完了した際に呼び出されるコールバック関数です。
+
+i18nextを使用する場合、i18nextの初期化が完了するまで翻訳機能を使用することができません。
+そのため、初期化が完了した際にコールバック関数を呼び出し、初期化完了後の処理を実行する必要があります。
+`onInitialized`は、初期化完了後に実行する処理を定義するための関数であり、以下のように使用します。
+
+```javascript
+i18next.init(options, function(err, t) {
+  // 初期化完了後に実行する処理を記述する
+});
+```
+
+`init()`メソッドの第2引数に、`onInitialized`として実行する関数を定義します。この関数は、初期化完了後に呼び出され、引数としてエラーオブジェクトと翻訳関数が渡されます。この関数内で、初期化完了後に実行する処理を記述することができます。
+
 
 
 #### onLanguageChanged
@@ -1427,6 +1527,19 @@ i18next.on('languageChanged', function(lng) {})
 ```
 
 changeLanguageが呼び出されたときに発火します。
+
+`onLanguageChanged`は、i18nextで言語が変更された際に呼び出されるコールバック関数です。
+
+i18nextを使用する場合、アプリケーション内で言語が変更された場合に、翻訳テキストを更新する必要があります。
+そのため、言語が変更された際にコールバック関数を呼び出し、翻訳テキストを更新する必要があります。`onLanguageChanged`は、言語が変更された際に実行する処理を定義するための関数であり、以下のように使用します。
+
+```javascript
+i18next.on('languageChanged', function(lang) {
+  // 言語が変更された際に実行する処理を記述する
+});
+```
+
+`on()`メソッドに、`languageChanged`というイベント名を指定して、`onLanguageChanged`として実行する関数を定義します。この関数は、言語が変更された際に呼び出され、引数として変更後の言語が渡されます。この関数内で、言語が変更された際に実行する処理を記述することができます。
 
 
 
@@ -1450,6 +1563,20 @@ i18next.on('failedLoading', function(lng, ns, msg) {})
 
 リソースのロードに失敗した場合に発火します（組み込みのリトライアルゴリズムの後）。
 
+`onFailedLoading`は、i18nextで言語ファイルの読み込みに失敗した際に呼び出されるコールバック関数です。
+
+i18nextを使用する場合、言語ファイルの読み込みに失敗した場合に、エラー処理を行う必要があります。
+そのため、言語ファイルの読み込みに失敗した際にコールバック関数を呼び出し、エラー処理を行う必要があります。
+`onFailedLoading`は、言語ファイルの読み込みに失敗した際に実行する処理を定義するための関数であり、以下のように使用します。
+
+```javascript
+i18next.on('failedLoading', function(lang, ns, errMsg) {
+  // 言語ファイルの読み込みに失敗した際に実行する処理を記述する
+});
+```
+
+`on()`メソッドに、`failedLoading`というイベント名を指定して、`onFailedLoading`として実行する関数を定義します。この関数は、言語ファイルの読み込みに失敗した際に呼び出され、引数として失敗した言語、名前空間、エラーメッセージが渡されます。
+この関数内で、言語ファイルの読み込みに失敗した際に実行する処理を記述することができます。
 
 
 #### onMissingKey
@@ -1458,8 +1585,6 @@ i18next.on('failedLoading', function(lng, ns, msg) {})
 i18next.on('missingKey', function(lngs, namespace, key, res) {})
 
 ```
-
-
 
 保存されていないキーにアクセスしたときに発火します。saveMissingをtrueに設定する必要があります。
 
@@ -1495,7 +1620,10 @@ i18next.on('missingKey', function(lngs, namespace, key, res) {
 
 i18next.storeは、initコール後にのみ使用可能です。
 
-「store events」とは、i18nextの翻訳データを保持する「store」オブジェクトに対するイベントのことです。i18nextでは、翻訳データを保持するために、様々な種類のストレージを使用することができます。例えば、メモリ内のオブジェクト、ローカルストレージ、サーバー上のデータベースなどです。
+「store events」とは、i18nextの翻訳データを保持する「store」オブジェクトに対するイベントのことです。
+i18nextでは、翻訳データを保持するために、様々な種類のストレージを使用することができます。
+
+例えば、メモリ内のオブジェクト、ローカルストレージ、サーバー上のデータベースなどです。
 
 「store events」には、以下のようなイベントがあります。
 
@@ -1516,7 +1644,9 @@ i18next.addResource('en', 'translation', 'key', 'value');
 
 ```
 
-このように、`on`メソッドを使用して、`added`イベントに対するイベントリスナーを登録することができます。そして、`addResource`メソッドを使用して、新しい翻訳を追加すると、登録したイベントリスナーが自動的に呼び出されます。この例では、翻訳が追加された場合に、コンソールに「Translation added:」というメッセージが表示されます。
+このように、`on`メソッドを使用して、`added`イベントに対するイベントリスナーを登録することができます。
+そして、`addResource`メソッドを使用して、新しい翻訳を追加すると、登録したイベントリスナーが自動的に呼び出されます。
+この例では、翻訳が追加された場合に、コンソールに「Translation added:」というメッセージが表示されます。
 
 
 
@@ -1661,9 +1791,9 @@ i18next.addResources(lng, ns, resources)
 
 ```javascript
 i18next.addResources('ja', 'translation', {
-key1: '値1',
-key2: '値2',
-key3: '値3'
+  key1: '値1',
+  key2: '値2',
+  key3: '値3'
 });
 
 ```
@@ -1763,9 +1893,12 @@ i18next.getResourceBundle(lng, ns)
 
 ```
 
-「i18next.getResourceBundle(lng, ns)」は、指定された言語（lng）、名前空間（ns）に対応する翻訳データを取得するためのメソッドです。このメソッドは、指定された言語、名前空間に対応する全ての翻訳データを取得します。
+「i18next.getResourceBundle(lng, ns)」は、指定された言語（lng）、名前空間（ns）に対応する翻訳データを取得するためのメソッドです。
+このメソッドは、指定された言語、名前空間に対応する全ての翻訳データを取得します。
 
-Resourceは、i18nextで使用される翻訳データを表すオブジェクトのことです。このオブジェクトは、言語（lng）、名前空間（ns）、キー（key）に対応する翻訳文（value）を含んでいます。Resourceオブジェクトは、i18nextの多言語対応機能を実現するために使用されます。
+Resourceは、i18nextで使用される翻訳データを表すオブジェクトのことです。
+このオブジェクトは、言語（lng）、名前空間（ns）、キー（key）に対応する翻訳文（value）を含んでいます。
+Resourceオブジェクトは、i18nextの多言語対応機能を実現するために使用されます。
 
 例えば、以下のように使用することができます。
 
@@ -1788,8 +1921,6 @@ i18next.removeResourceBundle(lng, ns)
 ```
 
 既存のバンドルを削除します。
-
-
 
 バンドルとは
 i18nextで使用される翻訳データを管理するためのオブジェクトです。`Bundle`オブジェクトは、言語（lng）、名前空間（ns）、翻訳データ（resources）を含んでいます。
@@ -1831,6 +1962,8 @@ false
 
 ログレベルをinfoに設定します。ロードが機能しない問題を見つけるのに役立ちます。
 
+trueにするとコンソールにログが出力されます。
+i18nextの設定情報が表示されます。
 
 
 ### Languages, namespaces, resources
@@ -1845,9 +1978,7 @@ description
 
 undefined
 
-初期化に使用するリソース（バックエンドプラグインを使用していない場合やaddResourceBundleを使用していない場合）
-
-
+初期化に使用する リソース （バックエンドプラグインを使用していない場合や addResourceBundle を使用していない場合）
 
 ##### lng
 
@@ -1856,13 +1987,27 @@ undefined
 使用する言語（言語検出を上書きします）。 'cimode'に設定すると、出力テキストはキーになります。
 アンダースコアなどではなく、'en-US'形式を使用してください。
 
-
-
 ##### appendNamespaceToCIMode
 
 false
 
 lng: 'cimode'を使用すると、返されるキーの先頭に名前空間が付加されます。
+
+`appendNamespaceToCIMode`は、i18nextで`cimode`を使用した場合に、名前空間を追加するためのオプションです。
+`cimode`は、翻訳機能を無効にするために使用される言語コードであり、この言語コードを使用する場合に、名前空間を追加することで、翻訳テキストを管理しやすくすることができます。`appendNamespaceToCIMode`を有効にすることで、`cimode`を使用した場合に、名前空間を追加することができます。
+
+具体的には、以下のようにオプションを設定します。
+
+```javascript
+i18next.init({
+  lng: 'cimode',
+  appendNamespaceToCIMode: true,
+  // その他のオプション
+});
+```
+
+このように、`appendNamespaceToCIMode`オプションを`true`に設定することで、`cimode`を使用した場合に、名前空間を追加することができます。
+名前空間を追加することで、翻訳テキストを管理しやすくなり、開発効率を向上させることができます。
 
 
 
@@ -1873,13 +2018,33 @@ lng: 'cimode'を使用すると、返されるキーの先頭に名前空間が�
 ユーザー言語の翻訳が利用できない場合に使用する言語。
 falseに明示的に設定すると、fallbackLngをロードすることはありません。フォールバックドキュメントを参照してください。
 
-
-
 ##### supportedLngs
 
 false
 
 許可された言語の配列
+
+`supportedLngs`は、i18nextでサポートする言語コードの一覧を指定するためのオプションです。
+
+supportedLngsには、サポートする言語コードを配列で指定することができます。
+i18nextは、supportedLngsで指定された言語コードのみをサポートし、それ以外の言語コードは無視されます。
+
+i18nextは、デフォルトで全ての言語に対応していますが、必要な言語のみをサポートするように設定することが推奨されています。
+
+supportedLngsオプションを使用することで、サポートする言語を配列で指定することができます。
+
+指定された言語以外の言語は無視されるため、アプリケーションのパフォーマンスを向上させることができます。
+
+以下は、`supportedLngs`を設定する例です。
+
+```javascript
+i18next.init({
+  supportedLngs: ['en', 'fr', 'de', 'ja'],
+  // その他のオプション
+});
+```
+
+このように、`supportedLngs`にサポートする言語コードを配列で指定することで、i18nextは指定された言語コードのみをサポートするようになります。
 
 
 
@@ -1887,25 +2052,46 @@ false
 
 false
 
-もし true なら、メイン言語がサポートされているときに variant もサポートされているとみなします。
-例えば、en が supportedLngs にあれば en-US は有効です。
-もし true で i18next-http-backend のようなバックエンドを使うと、 リクエストエラーの原因になります。
+`nonExplicitSupportedLngs`は、i18nextで言語コードのバリアントをサポートするかどうかを指定するオプションです。
 
+このオプションを`true`に設定すると、メイン言語がサポートされている場合に、バリアントもサポートされているとみなされます。
 
+例えば、`en`が`supportedLngs`に含まれている場合、`en-US`も有効になります。ただし、`nonExplicitSupportedLngs`を`true`に設定している場合、i18next-http-backendなどのバックエンドを使用すると、リクエストエラーの原因になる可能性があるため、注意が必要です。
+
+`nonExplicitSupportedLngs`を`false`に設定することで、バリアントをサポートしないようにすることができます。
 
 ##### load
 
 'all'
 
-調べる言語コードを定義する戦略。 例:設定された言語がen-USの場合: - 'all' ⇒ ['en-US', 'en', 'dev'] - 'currentOnly' ⇒ 'en-US' - 'languageOnly' ⇒ 'en'
+調べる言語コードを定義する戦略。 例:設定された言語がen-USの場合:
 
+`load`は、i18nextで調べる言語コードを定義するためのオプションです。
+このオプションには、以下の3つの戦略があります。
+
+- `all`: 設定された言語コードが`en-US`の場合、`['en-US', 'en', 'dev']`のように、指定された言語コードの順に翻訳を探します。
+- `currentOnly`: 設定された言語コードが`en-US`の場合、`'en-US'`のように、現在の言語コードのみを使用して翻訳を探します。
+- `languageOnly`: 設定された言語コードが`en-US`の場合、`'en'`のように、言語コードのみを使用して翻訳を探します。
+
+```
+'all' ⇒ ['en-US', 'en', 'dev']
+'currentOnly' ⇒ 'en-US'
+'languageOnly' ⇒ 'en'
+
+```
 
 
 ##### preload
 
 false
 
-プリロードする言語の配列。 ビューをレンダリングする前に翻訳がロードされていることを保証するためにサーバーサイドで重要です。
+`preload`は、i18nextでプリロードする言語の配列を指定するためのオプションです。
+
+`preload`には、プリロードする言語コードを配列で指定することができます。
+i18nextは、`preload`で指定された言語コードの翻訳をビューをレンダリングする前にロードすることができます。
+これにより、ユーザーがページを開いたときに翻訳がすぐに表示されるようになります。
+
+`preload`オプションは、`false`に設定することもできます。この場合、i18nextはプリロードを行わず、必要に応じて翻訳をロードします。
 
 
 
@@ -1921,7 +2107,16 @@ false
 
 false
 
-主言語は小文字になります。例えば、EN ⇒ en のように、en-US のような完全なロケールは残す。
+`cleanCode`は、i18nextで言語コードをクリーンアップするためのオプションです。このオプションには、`true`または`false`を指定することができます。
+
+`cleanCode`が`false`に設定されている場合、i18nextは言語コードをクリーンアップしません。
+つまり、言語コードがそのまま使用されます。
+
+例えば、`EN`や`en-US`のような完全なロケールがそのまま残ります。
+
+一方、`cleanCode`が`true`に設定されている場合、i18nextは言語コードをクリーンアップします。
+主言語は小文字になり、完全なロケールは残ります。
+例えば、`EN`は`en`に、`en-US`は`en-US`のまま残ります。
 
 
 
@@ -1929,8 +2124,13 @@ false
 
 'translation'
 
-ロードする名前空間の文字列または配列
+`ns`は、i18nextでロードする名前空間を指定するためのオプションです。このオプションには、文字列または配列を指定することができます。
 
+`ns`に文字列を指定した場合、指定された名前空間の翻訳のみがロードされます。例えば、`ns: 'common'`と指定した場合、`common`という名前空間の翻訳のみがロードされます。
+
+`ns`に配列を指定した場合、指定された複数の名前空間の翻訳がロードされます。例えば、`ns: ['common', 'home']`と指定した場合、`common`と`home`という名前空間の翻訳がロードされます。
+
+`ns`オプションのデフォルト値は`['translation']`です。つまり、`translation`という名前空間の翻訳がロードされます。
 
 
 ##### defaultNS
@@ -1938,9 +2138,9 @@ false
 'translation'
 
 (ns オプションがあり、defaultNS オプションが定義されていない場合、最初の名前空間が defaultNS オプションとして使用されます。)
-(これをfalseまたは空の配列[]に設定すると、このフォールバック動作が無効になる。)
+(これをfalseまたは空の配列[]に設定すると、このフォールバック動作が無効になります。)
 
-翻訳関数に渡されなかった場合に使用されるデフォルトの名前空間。
+翻訳関数に渡されなかった場合に使用されるデフォルトの名前空間です。
 
 
 
@@ -1948,7 +2148,8 @@ false
 
 false
 
-指定された名前空間でキーが見つからない場合に検索する名前空間の文字列または配列。 NSフォールバックドキュメントを参照してください。
+指定された名前空間でキーが見つからない場合に検索する名前空間の文字列または配列です。
+NSフォールバックドキュメントを参照してください。
 
 
 
@@ -1956,13 +2157,20 @@ false
 
 false
 
-一部のリソースを初期化時に設定することを許可します。 他のリソースはバックエンドコネクタを使用してロードできます。
+`partialBundledLanguages`は、i18nextで一部のリソースを初期化時に設定することを許可するためのオプションです。
+
+`partialBundledLanguages`が`false`に設定されている場合、i18nextはすべてのリソースをバックエンドコネクタを使用してロードします。
+つまり、初期化時にすべてのリソースがロードされるまで、アプリケーションの初期化が完了しない可能性があります。
+
+一方、`partialBundledLanguages`が`true`に設定されている場合、i18nextは一部のリソースを初期化時に設定することを許可しをます。
+これにより、アプリケーションの初期化が高速化されます。ただし、他のリソースはバックエンドコネクタを使用してロードする必要があります。
 
 
 
 ### Missing keys
 
-i18nextの欠落したキー機能は、開発中に非常に便利です。 有効にすると（saveMissing:true）、まだ翻訳リソースの一部ではない使用されたi18nキーを収集し、使用されているバックエンドに保存しようとします（これには、create機能を提供するバックエンドプラグインが必要です）。
+i18nextの欠落したキー機能は、開発中に非常に便利です。
+有効にすると（saveMissing:true）、まだ翻訳リソースの一部ではない使用されたi18nキーを収集し、使用されているバックエンドに保存しようとします（これには、create機能を提供するバックエンドプラグインが必要です）。
 
 このビデオでは、saveMissing機能がどのように使用されるかを見ることができます。
 
@@ -1996,7 +2204,9 @@ etc.
 
 false
 
-実験的: saveMissingを使用してデフォルト値を更新することを有効にします（defaultValueが翻訳された値と異なる場合にのみ機能します。初期開発時や、コードを真実のソースとして保持し、コードの外側の値を変更しない場合にのみ有用です。バックエンドが既にサポートしている場合のみサポートされます）
+実験的: saveMissingを使用してデフォルト値を更新することを有効にします（defaultValueが翻訳された値と異なる場合にのみ機能します。
+初期開発時や、コードを真実のソースとして保持し、コードの外側の値を変更しない場合にのみ有用です。
+バックエンドが既にサポートしている場合のみサポートされます）
 
 
 
@@ -2007,7 +2217,9 @@ false
 'current' or 'all'
 デフォルトでは、設定されたフォールバック言語を使用して、欠落したキーを保存します。
 
-保存する言語を定義します。 'current'は現在使用されている/検出されている言語（i18next.language）を使用します。
+保存する言語を定義します。
+
+'current'は現在使用されている/検出されている言語（i18next.language）を使用します。
 'all'は、i18next.languagesに含まれるすべての言語に保存します。
 
 
@@ -2018,7 +2230,9 @@ true
 
 「saveMissingPlurals」は、i18nextで使用されるオプションの一つで、翻訳データが存在しない場合に、自動的に翻訳データを生成するための機能です。
 
-このオプションを有効にすると、i18nextは、翻訳データが存在しない場合に、自動的に翻訳データを生成し、それを保存することができます。また、複数形の翻訳データが存在しない場合にも、自動的に複数形の翻訳データを生成することができます。
+このオプションを有効にすると、i18nextは、翻訳データが存在しない場合に、自動的に翻訳データを生成し、それを保存することができます。
+
+また、複数形の翻訳データが存在しない場合にも、自動的に複数形の翻訳データを生成することができます。
 
 例えば、以下のように使用することができます。
 
@@ -2029,8 +2243,8 @@ i18next.init({
 });
 ```
 
-このように、`saveMissingPlurals`オプションを`true`に設定することで、i18nextは、翻訳データが存在しない場合に、自動的に複数形の翻訳データを生成し、それを保存することができます。このオプションを使用することで、翻訳データの不足を自動的に補完することができます。
-
+このように、`saveMissingPlurals`オプションを`true`に設定することで、i18nextは、翻訳データが存在しない場合に、自動的に複数形の翻訳データを生成し、それを保存することができます。
+このオプションを使用することで、翻訳データの不足を自動的に補完することができます。
 
 
 
@@ -2038,29 +2252,44 @@ i18next.init({
 
 false
 
-function(lngs, ns, key, fallbackValue, updateMissing, options) { } カスタム欠落キー処理に使用されます (saveMissing を true に設定する必要があります!)。
-optionsは、t()オプションと同様の内部値コンテナです。
-fallbackValue引数は、翻訳が提供されない場合に表示される値です（通常はdefaultValue）。updateMissing 引数は、updateMissing 機能によって missingKeyHandler 関数が呼び出された場合に true に設定されます。
+`missingKeyHandler`は、i18nextで翻訳が見つからなかった場合に呼び出されるコールバック関数を指定するためのオプションです。
+このオプションには、コールバック関数を指定することができます。
 
-「missingKeyHandler」は、i18nextで使用されるオプションの一つで、翻訳データが存在しない場合に、自動的に翻訳データを生成するためのカスタムハンドラーを定義するための機能です。このオプションを使用することで、翻訳データが存在しない場合に、自動的に翻訳データを生成するためのカスタムハンドラーを定義することができます。
+i18nextは、翻訳が見つからなかった場合に、`missingKeyHandler`で指定されたコールバック関数を呼び出します。
+このコールバック関数には、翻訳が見つからなかったキーとオプションが渡されます。
+コールバック関数は、翻訳が見つからなかった場合に、代替のテキストを返すことができます。
 
-例えば、以下のように使用することができます。
+`missingKeyHandler`オプションは、i18nextの柔軟性を高めるために使用されます。
+例えば、翻訳が見つからなかった場合に、デフォルトのテキストを表示する代わりに、エラーメッセージを表示することができます。
+
+以下は、`missingKeyHandler`オプションの例です。
 
 ```javascript
+const i18next = require('i18next');
+
+const missingHandler = (key, options) => {
+  console.warn(`Translation key "${key}" not found`);
+  return key;
+};
+
 i18next.init({
-  missingKeyHandler: function(lng, ns, key, fallbackValue) {
-    console.log('Missing translation key:', key);
-    return key;
-  }
+  lng: 'en',
+  resources: {
+    en: {
+      translation: {
+        hello: 'Hello, world!'
+      }
+    }
+  },
+  missingKeyHandler: missingHandler
 });
+
+console.log(i18next.t('hello')); // Output: "Hello, world!"
+console.log(i18next.t('goodbye')); // Output: "goodbye"
 ```
 
-このように、`missingKeyHandler`オプションを使用して、翻訳データが存在しない場合に、自動的に翻訳データを生成するためのカスタムハンドラーを定義することができます。
-
-この例では、翻訳データが存在しない場合に、コンソールに「Missing translation key:」というメッセージが表示され、翻訳キーがそのまま返されます。このように、`missingKeyHandler`オプションを使用することで、翻訳データの不足を自動的に補完することができます。
-
-
-
+上記の例では、`missingHandler`という名前のコールバック関数を定義し、`missingKeyHandler`オプションで指定しています。
+`missingHandler`関数は、翻訳が見つからなかった場合に、キーを返すだけでなく、コンソールに警告メッセージを出力することも出来ます。
 
 
 
@@ -2147,14 +2376,11 @@ i18next.init({
 
 
 
-
-
 ##### missingKeyNoValueFallbackToKey
 
 false
 
 saveMissing機能を使用している場合、キーをデフォルト値としてフォールバックしないようにするために使用されます。 * i.e. i18next-http-backendを使用している場合、これにより、空の文字列値を持つキーが生成されます。
-
 
 「missingKeyNoValueFallbackToKey」は、i18nextで使用されるオプションの一つで、翻訳データが存在しない場合に、翻訳キーをそのまま翻訳文として使用するための機能です。
 
@@ -2187,7 +2413,7 @@ description
 
 false
 
-デフォルトで適用する ポストプロセッサ の文字列または配列
+デフォルトで適用する ポストプロセッサ の文字列または配列です。
 
 「postProcess」は、i18nextで使用されるオプションの一つで、翻訳文を変換するためのカスタムプロセッサを定義するための機能です。
 このオプションを使用することで、翻訳文を変換するための カスタムプロセッサ を定義することができます。
@@ -2252,6 +2478,7 @@ false
 i18next.init({
   returnObjects: true
 });
+
 ```
 
 このように、`returnObjects`オプションを`true`に設定することで、i18nextは、翻訳データをオブジェクトとして取得することができます。
@@ -2338,7 +2565,6 @@ i18next.init({
 
 
 
-
 ##### interpolation
 
 {...}
@@ -2364,7 +2590,6 @@ i18next.init({
 
 この例では、 `{ { ` と ` } } ` をプレフィックスとサフィックスとして定義しています。
 このように、`interpolation`オプションを使用することで、翻訳文中に変数を埋め込むことができます。
-
 
 
 
@@ -2539,15 +2764,16 @@ i18next.init({
 
 
 
-
-
 ##### maxParallelReads
 
 10
 
-同時にバックエンドへの読み込みを制限し、同時に数千のソケットまたはファイルディスクリプタを開くことを防ぎます。これにより、ulimit -nが超過されるとEMFILEエラーが発生します（debug: trueを設定する必要があります）。並列性を制限すると、すべてのアイテムを読み込むのにかかる時間が、すべての読み込みが完了する前にすべての読み込みを開始するよりもかなり短くなります。
+同時にバックエンドへの読み込みを制限し、同時に数千のソケットまたはファイルディスクリプタを開くことを防ぎます。
+これにより、ulimit -nが超過されるとEMFILEエラーが発生します（debug: trueを設定する必要があります）。
+並列性を制限すると、すべてのアイテムを読み込むのにかかる時間が、すべての読み込みが完了する前にすべての読み込みを開始するよりもかなり短くなります。
 
-「maxParallelReads」は、i18nextで使用されるオプションの一つで、バックエンドからの読み込みを並列に行う際の最大数を指定するための機能です。このオプションを使用することで、バックエンドからの読み込みを効率的に行うことができます。
+「maxParallelReads」は、i18nextで使用されるオプションの一つで、バックエンドからの読み込みを並列に行う際の最大数を指定するための機能です。
+このオプションを使用することで、バックエンドからの読み込みを効率的に行うことができます。
 
 例えば、以下のように使用することができます。
 
@@ -2557,7 +2783,9 @@ i18next.init({
 });
 ```
 
-このように、`maxParallelReads`オプションを使用して、バックエンドからの読み込みを並列に行う際の最大数を指定することができます。この例では、最大10個の読み込みを並列に行うように設定しています。このように、`maxParallelReads`オプションを使用することで、バックエンドからの読み込みを効率的に行うことができます。
+このように、`maxParallelReads`オプションを使用して、バックエンドからの読み込みを並列に行う際の最大数を指定することができます。
+この例では、最大10個の読み込みを並列に行うように設定しています。
+このように、`maxParallelReads`オプションを使用することで、バックエンドからの読み込みを効率的に行うことができます。
 
 
 
@@ -2565,9 +2793,11 @@ i18next.init({
 
 同期（ブロッキング）ロードを許可するバックエンドプラグインを使用する場合に、initImmediateを使用するサンプル。
 
-「maxParallelReads」は、i18nextで使用されるオプションの一つで、バックエンドからの読み込みを並列に行う際の最大数を指定するための機能です。このオプションを使用することで、バックエンドからの読み込みを効率的に行うことができます。
+「maxParallelReads」は、i18nextで使用されるオプションの一つで、バックエンドからの読み込みを並列に行う際の最大数を指定するための機能です。
+このオプションを使用することで、バックエンドからの読み込みを効率的に行うことができます。
 
-この例では、`maxParallelReads`オプションを使用して、最大10個の読み込みを並列に行うように設定しています。しかし、この例では、バックエンドプラグインが同期（ブロッキング）ロードを許可しているため、`init()`関数が非同期で実行されるため、`t()`関数が呼び出された時点で翻訳データが読み込まれていないため、正しい値が返されません。
+この例では、`maxParallelReads`オプションを使用して、最大10個の読み込みを並列に行うように設定しています。
+しかし、この例では、バックエンドプラグインが同期（ブロッキング）ロードを許可しているため、`init()`関数が非同期で実行されるため、`t()`関数が呼び出された時点で翻訳データが読み込まれていないため、正しい値が返されません。
 
 このような場合には、`initImmediate`オプションを使用することで、`init()`関数が同期的に実行されるようにすることができます。例えば、以下のように使用することができます。
 
@@ -2589,7 +2819,7 @@ i18next.t('key'); // -> 正しい値が返されます
 
 
 
-```
+```javascript
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 
@@ -2645,7 +2875,7 @@ execution order of function calls
 
 ----------------------------------------
 
-# Plugins and Utils
+## Plugins and Utils
 
 ### i18n formats
 
@@ -3084,8 +3314,6 @@ bundler
 bundle language resource files for i18next
 
 `grunt - i18next`は、Gruntタスクランナー用のプラグインで、i18nextの言語リソースファイルをバンドルするためのツールです。
-
-
 
 このプラグインを使用することで、複数の言語リソースファイルを1つのファイルにまとめることができます。
 また、バンドルされたファイルを圧縮することもできます。
@@ -3660,7 +3888,9 @@ i18next.t('welcome', 'John'); // "Welcome, John!"
 }
 ```
 
-上記の例では、"items"というキーに対して、"items_plural"という複数形のキーと、"items_interval"というinterval pluralsを定義しています。"items_interval"には、数値の範囲に応じた複数形の定義が含まれており、"min"と"max"で範囲を指定し、"singular"と"plural"で単数形と複数形を指定しています。このように、interval pluralsを使用することで、数値の範囲に応じた複数形を簡単に定義することができます。
+上記の例では、"items"というキーに対して、"items_plural"という複数形のキーと、"items_interval"というinterval pluralsを定義しています。
+"items_interval"には、数値の範囲に応じた複数形の定義が含まれており、"min"と"max"で範囲を指定し、"singular"と"plural"で単数形と複数形を指定しています。
+このように、interval pluralsを使用することで、数値の範囲に応じた複数形を簡単に定義することができます。
 
 
 
@@ -3774,16 +4004,15 @@ https://www.i18next.com/misc/creating-own-plugins
 
 ----------------------------------------
 
-# For Enterprises
+## For Enterprises
 
 省略
 
 
 
-
 ----------------------------------------
 
-# First setup help
+## First setup help
 
 何が必要なのかを考えてみましょう。
 
@@ -3896,11 +4125,12 @@ i18next
 
 ----------------------------------------
 
-# TypeScript
+## TypeScript
 
 i18n i18next ドキュメント TypeScript
 
 TypeScript - i18next documentation
+
 https://www.i18next.com/overview/typescript
 
 i18nextには、型定義が組み込まれています。
@@ -3909,28 +4139,29 @@ IDEのエクスペリエンスを向上させ、エラー（型変換など）�
 
 型安全(キーと戻り値型)
 
-1
+* i
 これはオプションの機能であり、プロジェクトのサイズに応じてコンパイル時間に影響を与える場合があります。
 
 このセクションを無視して、タイプの強化を行わないこともできます。
 
 
 
-2
+* i
 tsconfigのcompilerOptionsにstrictフラグまたはstrictNullChecksをtrueに設定してください。
 
 TypeScript v5 を使用することをお勧めします。
 
 
 
-3
+* i
 プロジェクトが複数のi18nextインスタンスにまたがって異なる翻訳リソースを持っている場合、タイプセーフな翻訳を使用することはできません。
 
-ここでは、TypeScriptをi18nextに最適に使用する方法についての簡単なガイドをご覧いただけます。
-
-
+* ✔
+↓ここでは、TypeScriptをi18nextに最適に使用する方法についての簡単なガイドをご覧いただけます。
 
 タイプセーフ翻訳をマスターし、正確なローカリゼーションを実現し、ランタイムエラーを排除することで、TypeScriptアプリケーションでi18nextの可能性を最大限に引き出す方法をご覧ください。
+
+https://locize.com/blog/i18next-typescript/
 
 
 
@@ -3944,12 +4175,8 @@ TypeAugmentation
 MergingInterfaces
 を使用して拡張することができます。
 
-
-
 そのため、最初のステップとして、
 例えば宣言ファイル（i18next.d.ts）を作成してみます。
-
-
 
 ```i18next.d.ts
 // import the original type declarations
@@ -3974,8 +4201,7 @@ declare module "i18next" {
 
 ```
 
-あるいは、すべての名前空間を一度に含めたい場合は、私たちが推奨する方法を使うこともできる：
-
+あるいは、すべての名前空間を一度に含めたい場合は、私たちが推奨する方法を使うこともできます。
 
 ```i18n.ts
 export const defaultNS = "ns1";
@@ -4007,10 +4233,12 @@ declare module "i18next" {
 
 ```
 
-srcの下かその上に@typesディレクトリを作り、そこにすべての型宣言を置くことをお勧めする。
+srcの下かその上に@typesディレクトリを作り、そこにすべての型宣言を置くことをお勧めします。
 
 例えば
 src/@types/i18next.d.ts
+
+
 
 ### Some examples
 
@@ -4034,16 +4262,16 @@ react-i18next-example-app-ts
 
 i18next用のTypeScriptを改善するためのオプションをいくつか提供しています。
 
-
-
 すべてのオプションはデフォルト値で提供されており、
 
 変更したい場合は、i18next型宣言ファイル(i18next.d.ts)の
 CustomTypeOptionsインターフェイスの下に追加するだけです。
 
+option
+default
 
 
-defaultNS
+#### defaultNS
 
 'translation'
 
@@ -4055,7 +4283,7 @@ defaultNS
 
 
 
-resources
+#### resources
 
 object
 
@@ -4065,7 +4293,7 @@ object
 
 
 
-fallbackNS
+#### fallbackNS
 
 false
 
@@ -4081,7 +4309,7 @@ https://www.i18next.com/principles/fallback
 
 
 
-keySeparator
+#### keySeparator
 
 '.'
 
@@ -4089,7 +4317,7 @@ Char to separate keys.
 
 
 
-nsSeparator
+#### nsSeparator
 
 ':'
 
@@ -4118,7 +4346,7 @@ i18nextでは、デフォルトのnsSeparatorであるコロンを使用して�
 
 
 
-pluralSeparator
+#### pluralSeparator
 
 '_'
 
@@ -4152,7 +4380,7 @@ i18nextでは、デフォルトのpluralSeparatorであるアンダースコア�
 
 
 
-returnNull
+#### returnNull
 
 true
 
@@ -4182,16 +4410,14 @@ i18next.init({
 });
 
 i18next.t('welcome'); // null
+
 ```
 
 このように、returnNullを使用することで、nullを有効な翻訳として扱うことができます。
 
 
 
-
-
-
-returnObjects
+#### returnObjects
 
 false
 
@@ -4237,10 +4463,7 @@ i18next.t('welcome'); // { message: "Hello, world!", author: "John" }
 
 
 
-
-
-
-jsonFormat
+#### jsonFormat
 
 'v4'
 
@@ -4252,7 +4475,7 @@ https://www.i18next.com/translation-function/plurals
 
 
 
-allowObjectInHTMLChildren
+#### allowObjectInHTMLChildren
 
 false
 
@@ -4302,17 +4525,13 @@ i18next.t('welcome.message', { name: { first: 'John', last: 'Doe' } }); // "Hell
 
 
 
-
-
-
-
-interpolationPrefix
+#### interpolationPrefix
 
 '{{'
 
 Prefix for interpolation
 
-interpolationSuffix
+#### interpolationSuffix
 
 '}}'
 
@@ -4353,8 +4572,6 @@ i18next.t('welcome', { name: 'John' }); // "Hello, John!"
 
 
 
-
-
 ### Troubleshooting
 
 #### Not working interpolation values
@@ -4388,7 +4605,6 @@ t関数を完全にタイプするために、プライマリ・ロケール・�
 
 
 
-
 #### Type error - template literal
 
 タイプエラー - テンプレート・リテラル
@@ -4409,6 +4625,7 @@ function showMessage(msg: string) {
 }
 
 showMessage(message);
+
 ```
 
 このコードでは、テンプレートリテラルを使用して、変数「name」を含む文字列を作成しています。しかし、関数「showMessage」に渡す際に、TypeScriptはエラーを発生させます。
@@ -4424,11 +4641,10 @@ function showMessage(msg: string) {
 }
 
 showMessage(message);
+
 ```
 
 このように、式の型を明示的に指定することで、エラーを回避することができます。
-
-
 
 
 
@@ -4475,16 +4691,16 @@ t(`${expression}.title` as const);
 
 
 
-
 #### Type error - excessively deep and possibly infinite
 
 型エラー - 深すぎて無限に続く可能性がある
 
 t関数を呼び出すたびにこの問題に直面する場合は、次のようになります。
 
-
+```
 TS2589: TS2589: Type Instantiation is excessively deep and possibly infinite.
 
+```
 
 おそらく型宣言を正しく設定していないことを意味するので、設定を見直してください。
 
@@ -4510,14 +4726,6 @@ t`key1.key2`;
 TemplateStringsArray はまだジェネリック型を受け付けないので、キーと戻り値の型推論は機能しません。
 
 タグ付きテンプレート・リテラル構文を使用することはできますが、引数として任意の文字列を受け入れます。
-
-
-
-
-
-
-
-
 
 
 
@@ -4554,11 +4762,13 @@ i18next.init({
 
 ```
 
+
+
 ----------------------------------------
 
 # TRANSLATION FUNCTION
 
-# Essentials i18nextの基礎情報
+## Essentials i18nextの基礎情報
 
 必要なもの
 
@@ -5365,7 +5575,7 @@ ignoreJSONStructureオプションを使用することで、翻訳リソース�
 
 ----------------------------------------
 
-# Interpolation
+## Interpolation
 
 変数埋め込み
 補間
@@ -6035,7 +6245,7 @@ https://www.i18next.com/principles/best-practices#impact-of-interpolation-on-loc
 
 ----------------------------------------
 
-# Formatting
+## Formatting
 
 `Formatting`は、i18nextでのフォーマットに関する機能について説明されているセクションです。
 このセクションでは、i18nextでのフォーマットの方法について説明されています。
@@ -6443,7 +6653,7 @@ format関数 function format(value, format, lng, edit) {}
 
 ----------------------------------------
 
-# Plurals
+## Plurals
 
 複数形
 
@@ -6663,7 +6873,7 @@ i18next.t('key2_interval', {postProcess: 'interval', count: 100}); // -> "100 it
 
 ----------------------------------------
 
-# Nesting
+## Nesting
 
 入れ子
 
@@ -6848,7 +7058,7 @@ escaped suffix for nesting (regexSafe)
 
 ----------------------------------------
 
-# Context
+## Context
 
 `Context`は、i18nextで翻訳文字列をコンテキストに応じて分類する方法です。
 例えば、`male`と`female`という2つのコンテキストがある場合、それぞれのコンテキストに応じた翻訳文字列を定義することができます。
@@ -6931,7 +7141,7 @@ i18next.t('friend', {context: 'female', count: 100}); // -> "100 girlfriends"
 
 ----------------------------------------
 
-# Objects and Arrays
+## Objects and Arrays
 
 オブジェクトと配列
 
@@ -7033,7 +7243,7 @@ i18next.t('arrayOfObjects.0.name');
 
 # PRINCIPLES
 
-# Best Practices
+## Best Practices
 
 This content is available to you thanks to the contribution of following people:
 
@@ -7102,7 +7312,7 @@ https://github.com/jennylreid
 
 ----------------------------------------
 
-# Translation Resolution
+## Translation Resolution
 
 翻訳の解決
 i18nextが翻訳ファイルからテキストを取得する方法を指します。
@@ -7266,7 +7476,7 @@ https://www.i18next.com/principles/fallback
 
 ----------------------------------------
 
-# Namespaces
+## Namespaces
 
 名前空間
 
@@ -7327,7 +7537,7 @@ https://www.i18next.com/overview/getting-started
 
 ----------------------------------------
 
-# Fallback
+## Fallback
 
 Fallbackとは、i18nextが、翻訳が見つからなかった場合に、別の名前や言語、キーの組み合わせを試して、最も関連性の高い翻訳を提供しようとすることです。
 具体的な組み合わせから順に試して、翻訳が見つかるまで続けます。
@@ -7712,7 +7922,7 @@ i18next.t()関数を使用して、翻訳を行います。
 
 ----------------------------------------
 
-# Plugins
+## Plugins
 
 プラグイン
 
@@ -7761,7 +7971,7 @@ sprintfは、i18nextのポストプロセッサを設定するために使用さ
 
 # HOW TO
 
-# Add or Load Translations
+## Add or Load Translations
 
 i18nextを使って翻訳されたアプリに翻訳を読み込む方法はいくつかあります。
 一番よく使われる方法は、i18nextに「バックエンドプラグイン」というものを追加することです。
@@ -7939,7 +8149,7 @@ locizeは、i18nextプロジェクトのための完璧な翻訳管理ツール�
 
 ----------------------------------------
 
-# Extracting translations
+## Extracting translations
 
 翻訳の抽出
 
@@ -8000,7 +8210,7 @@ https://github.com/i18next/i18next-http-middleware#add-routes
 
 ----------------------------------------
 
-# Caching
+## Caching
 
 ### Browser caching with local storage
 
@@ -8174,7 +8384,7 @@ i18next-chained-backendとsaveMissingまたはupdateMissingを組み合わせて
 
 ----------------------------------------
 
-# Backend Fallback
+## Backend Fallback
 
 ローカル翻訳を使用するフォールバックを定義しますか？
 
@@ -8296,16 +8506,16 @@ i18next-chained-backendとsaveMissingまたはupdateMissingを組み合わせて
 
 ----------------------------------------
 
-# FAQ
+## FAQ
 
-Misc
+### Misc
 
 英語の「miscellaneous」の略語で、様々な種類のものや、他のカテゴリーに分類されないものを指します。
 プログラミングの文脈では、しばしば「Misc」というカテゴリーが使用され、様々な種類の関数や変数、定数などが含まれます。
 
 
 
-### i18next is awesome. How can I support the project?
+#### i18next is awesome. How can I support the project?
 
 i18nextは素晴らしい。どのようにプロジェクトをサポートできますか？
 
@@ -8318,6 +8528,8 @@ i18nextは素晴らしい。どのようにプロジェクトをサポートで�
 ### Loading issues
 
 読み込みの問題
+
+#### I don't see my translations!!!
 
 翻訳が表示されません！
 
@@ -8434,7 +8646,7 @@ e2eテストでは、init時に言語をcimodeに設定するのが良い方法�
 
 # MISC
 
-# JSON Format
+## JSON Format
 
 i18next JSONには、バージョン1から4までの4つのバージョンがあります。
 バージョンが上がるにつれ、複数の複数形形式を持つ言語の複数形処理の方法が変更されています。
@@ -8497,20 +8709,22 @@ Intl.PluralRules APIをポリフィルする必要があるかもしれません
 
 既存の翻訳を新しいv4フォーマットに変換するには、i18next-v4-format-converterかこのウェブツールを見てください。(これはデフォルトの pluralSeparator _ を持つキーのみを扱います)
 
+
+
 i18next JSON v3-v1は省略
 
 
 
 ----------------------------------------
 
-# Creating own Plugins
+## Creating own Plugins
 
 省略
 
 
 ----------------------------------------
 
-# Migration Guide
+## Migration Guide
 
 移行ガイド
 
@@ -8521,7 +8735,7 @@ v22.x.x to v23.0.0
 
 ----------------------------------------
 
-# The history of i18next
+## The history of i18next
 
 i18nextの歴史
 
@@ -8531,7 +8745,7 @@ i18nextの歴史
 
 ----------------------------------------
 
-# Testimonials
+## Testimonials
 
 推薦文
 
