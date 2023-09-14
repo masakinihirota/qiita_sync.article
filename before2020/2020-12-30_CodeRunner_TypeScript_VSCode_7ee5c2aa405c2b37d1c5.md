@@ -1,9 +1,36 @@
 <!--
-title:   VSCodeでTypeScriptを気軽に実行する環境を作る。部分実行も可能
+title:   VSCodeでTypeScriptを気軽に実行する環境を作る。部分実行も可能 CodeRunner
 tags:    CodeRunner,TypeScript,VSCode
 id:      7ee5c2aa405c2b37d1c5
 private: false
 -->
+
+追記 2023年9月15日
+
+こちらの拡張機能は、エディタ上に結果が出力されます。
+
+Quokka.js - Visual Studio Marketplace (無料版)
+
+https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode
+
+Quokka Editions (有料版との比較)
+
+https://quokkajs.com/pro/
+
+[小ネタ] VSCodeの拡張機能にQuokka.jsを入れたらとても便利だった | DevelopersIO
+
+https://dev.classmethod.jp/articles/quokka-js-is-useful/
+
+VSCode拡張機能 Quokka.jsの紹介｜wharaguchi
+
+https://note.com/wharaguchi/n/n8a92cb2fa4c2
+
+
+
+
+追記終了
+
+
 
 VSCodeでRubyを気軽に実行する環境を作る。 - Qiita
 https://qiita.com/masakinihirota/items/ec90086bab86f369fa15
