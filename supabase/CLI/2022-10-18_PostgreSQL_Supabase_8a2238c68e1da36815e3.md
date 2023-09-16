@@ -4,8 +4,11 @@ tags:    PostgreSQL,Supabase
 id:      8a2238c68e1da36815e3
 private: false
 -->
-※現在この記事は少し古くなっています、下記の記事をご覧ください。
-[Supabase CLI のコマンド (v1.28.3)](../2023/2023-01-05_Next.js_Supabase_Windows_cli_685f70770d8224ba2fa5.md) 2023年1月10日
+
+# 履歴
+[Supabase CLI のコマンド (v1.93.0) - Qiita](https://qiita.com/masakinihirota/items/b84c071415eeebb4a252)
+[Supabase CLI のコマンド (v1.28.3) - Qiita](https://qiita.com/masakinihirota/items/685f70770d8224ba2fa5)
+[Supabase CLI のコマンド (v1.8.7) - Qiita](https://qiita.com/masakinihirota/items/8a2238c68e1da36815e3)
 
 
 # よく使うコマンド群
