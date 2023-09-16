@@ -1,29 +1,11 @@
 <!--
-title:   Supabase CLI のコマンド (v1.**.3)
+title:   Supabase CLI のコマンド (v1.28.3)
 tags:    CLI,Next.js,Supabase,Windows
 id:      8e903039f82a3f674a94
 private: false
 -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[WIP]
 
 
 # Supabase CLI v1.28.3
