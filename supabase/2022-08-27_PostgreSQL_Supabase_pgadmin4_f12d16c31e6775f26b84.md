@@ -61,10 +61,15 @@ storage（オプション）：ログイン済みセッションを保存する�
 
 storageKey（オプション）：ローカルストレージにトークンを保存するために使用されるオプションのキー名。
 
+
+
 ### dbのオプション
+
 テーブルが属するPostgresスキーマ。Supabaseで公開されているスキーマのリストに含まれている必要があります。デフォルトはpublicです。
 
 schema（オプション）：スキーマ名。
+
+
 
 ### globalのオプション
 
@@ -73,8 +78,6 @@ fetch（オプション）：カスタムfetch実装。
 headers（オプション）：クライアントを初期化するためのオプションヘッダー。
 
 realtime（オプション）：realtime-jsインスタンスに渡されるオプション。
-
-
 
 
 
@@ -230,11 +233,7 @@ const supabase = createClient<Database>(
 
 
 
-
-
-
 ## Type hints
-
 
 ```typescript.ts
  export async function getMovies() {
@@ -246,6 +245,7 @@ const supabase = createClient<Database>(
  export type MoviesResponseError = MoviesResponse['error']
 
 ```
+
 
 
 このコードでは、Supabaseクライアントのfromメソッドを使用して、moviesテーブルからidとtitleの列を選択するクエリを実行しています。getMovies関数は、このクエリを実行し、成功した場合はdataオブジェクトを、失敗した場合はerrorオブジェクトを返します。
@@ -273,6 +273,7 @@ MoviesResponseSuccess型は、MoviesResponse型のdataプロパティの型を�
 このように、TypeScriptの型ヒントを使用することで、Supabaseクライアントから返されるデータの型を正確に指定することができます。また、ネストされたテーブルの場合には、自分で型を構築することができます。
 
 
+
 # Fetch data
 
 https://supabase.com/docs/reference/javascript/select
@@ -284,9 +285,12 @@ selectメソッドは、カンマで区切られた列名を指定すること�
 
 ※ この Fetch data は特に説明が長いです。
 
+
+
 ## Fetch data オプション
 
 ### count
+
 countプロパティには、
 exact、planned、estimatedの3つの値を指定することができます。
 
@@ -407,6 +411,7 @@ values
 
 
 ### 外部キーを使用して関連データを抜き出す (Query foreign tables)
+
 テーブルに外部キーと関係がある場合、関連するテーブルにも問い合わせることができます。
 
 ```
@@ -1191,8 +1196,8 @@ supabase local development setup is running.
           DB URL: postgresql://postgres:postgres@localhost:54322/postgres
       Studio URL: http://localhost:54323
     Inbucket URL: http://localhost:54324
-        anon key: eyJhbG*********************************************qj0ssLNHzTs
-service_role key: eyJhb***********************************************************************pNLAcU
+        anon key: ey***************Ts
+service_role key: ey****************AcU
 
 ```
 
@@ -1218,11 +1223,11 @@ https://vercel.com/dashboard
 ```.env.local
 # リモート開発環境利用時のDB用の環境変数
 NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
-NEXT_PUBLIC_SUPABASE_API_KEY=ey**********************************************************0ssLNHzTs
+NEXT_PUBLIC_SUPABASE_API_KEY=ey*****NHzTs
 
 # リモートサーバー利用時のDB用の環境変数
 # NEXT_PUBLIC_SUPABASE_URL=https://[project-ref].supabase.co
-# NEXT_PUBLIC_SUPABASE_API_KEY=eyJh*****************************************************************************nMw
+# NEXT_PUBLIC_SUPABASE_API_KEY=eyJh****nMw
 
 
 ```
@@ -1338,6 +1343,8 @@ diffコマンドは
 `supabase/seed.sql`ファイル
 というファイルを作っておく必要がある。
 
+
+
 ## 設計情報の保存方法（マイグレーション）
 
 データベースの変更は
@@ -1356,6 +1363,8 @@ Database Password [プロジェクト名]
 ---
 
 このパスワードはプロジェクト作成時のみにしか表示されないのでメモを取っておく必要がある。
+
+
 
 ### マイグレーションファイルの作成するための準備
 
@@ -1398,6 +1407,8 @@ supabase CLIをインストールして、データベースパスワードも�
 リンクの設定が完了すると
 今までのマイグレーションリストが表示できるようになる。
 このリストコマンドはローカル開発環境とリモートサーバー両方のマイグレーションファイルのリストを表示してくれる。
+
+
 
 ### マイグレーションのリスト
 
@@ -2010,21 +2021,27 @@ Docker で Supabase を「初めて」立ち上げた後、
 supabase init
 supabase start
 supabase link --project ...
-supabase db remote commit
+    #  supabase db remote commit （＜＜非推奨になりました。）
+supabase db pull
 supabase db reset
 ```
 
-をするとエラーが出て立ち上がらなくなる。
+をするとエラーが出て立ち上がらなくなります。
 
-これはマイグレーションファイルを削除するとエラーは解消する。
+```
+↓このコマンドは非推奨になりました。
+supabase db remote commit
+
+↓このコマンドを利用してください。
+supabase db pull
+
+```
+
+マイグレーションファイルを削除するとエラーは解消されます。
 
 supabase/migrations の下に、
 `202208260*****1_remote_commit.sql`
-マイグレーションファイルが出来ている
-このファイルを削除する。
-
-
-
+マイグレーションファイルが出来ているので、このファイルを削除します。
 
 # 注意点
 現時点でローカルで開発してリモートに`シンクロ`させようとすると色々とエラーがでる
