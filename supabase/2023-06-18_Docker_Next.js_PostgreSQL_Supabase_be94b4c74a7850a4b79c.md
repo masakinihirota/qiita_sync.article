@@ -17,11 +17,17 @@ supabase db diff
 ローカルでのSupabaseのコンテナの操作
 supabase start
 supabase stop
-supabase reset
 supabase status
+
+マイグレーションファイルやシードファイルの設定を反映させます。
+supabase reset
+
 
 ローカルから見たマイグレーションの状態
 supabase migration list
+
+ローカル側のスキーマを サーバーに反映させます。
+supabase db push
 
 サーバー側のスキーマを ローカルに反映させます。
 supabase db pull
@@ -52,7 +58,6 @@ https://app.supabase.com/project/[project-id]
 アクセストークン
 Supabase | Supabase
 https://app.supabase.com/account/tokens
-
 
 
 
