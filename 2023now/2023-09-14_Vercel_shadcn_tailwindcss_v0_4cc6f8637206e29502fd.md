@@ -34,10 +34,39 @@ shadcn/ui というサービスがあります。
 
 https://ui.shadcn.com/
 
+https://ui.shadcn.com/docs
+
+
 shadcn/ui というのは？
 
-shadcn/uiは、Radix UIと Tailwind CSSを組み合わせたコンポーネントのカタログです。このプロジェクトは、再利用可能なコンポーネントの集まりであり、開発速度とカスタマイズ性を両立することができます。shadcn/uiを使用することで、洗練されたコンポーネントを手軽に自身のソースフォルダーに組み込むことができます。
+shadcn/ui は、Radix UIと Tailwind CSSを組み合わせたコンポーネントのカタログです。
+このプロジェクトは、再利用可能なコンポーネントの集まりであり、開発速度とカスタマイズ性を両立することができます。shadcn/uiを使用することで、洗練されたコンポーネントを手軽に自身のソースフォルダーに組み込むことができます。
 自身のソースコード上にcliを使用してコンポーネントをコピペするので、コンポーネントを柔軟にカスタマイズすることもできます。
+
+よくあるUIライブラリとは違い、コードをコピーして自分のプロジェクトに貼り付けて利用することが出来ます、そのコードをユーザーのニーズに合わせてカスタマイズすることが可能です。
+
+v0はこの特徴を利用して、AIにプロンプトを入力すると、その希望に沿ったのUIコードをAIが出力してくれます。
+
+
+
+# shadcn/ui の読み方は？
+
+作者本人のツィート
+
+https://twitter.com/shadcn/status/1647397488742080512
+
+> @shadcn how do i properly pronounce your handle when i'm introducing your projects to others 😅 been saying "shad-see-enn" but idk if that's correct
+
+@shadcn 他の人にあなたのプロジェクトを紹介するとき、あなたのハンドルネームをどう発音すればいいのでしょうか？
+
+> shad as in shadow
+
+シャドウ
+
+シャドウ ユーアイ
+シャドウ ユーザーインターフェース
+
+
 
 
 # 例
@@ -103,6 +132,7 @@ export default function Component() {
 ```
 
 AIに提案をしてもらいます。
+このような提案をAIに22回繰り返してもらって↓このようなコードになりました。
 
 v22
 
