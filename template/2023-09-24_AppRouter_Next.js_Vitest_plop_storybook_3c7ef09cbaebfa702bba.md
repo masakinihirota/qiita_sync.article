@@ -15,9 +15,12 @@ Hooksコンポーネントのテストコード
 動的フォルダのテストコード
 RSC(React Server Components)のテストコード
 
-テンプレートを利用したテスト駆動開発の開発環境作り (予定)
-逆引きテスト駆動開発のコード (予定)
+plopを使って、テンプレートを利用したテスト駆動開発の開発環境作り
+plopを使うと最低限動くコンポーネントが自動生成されます。
+
 ソースインコードでの開発環境 (予定)
+
+逆引きテスト駆動開発のコード (予定)
 
 
 
@@ -183,6 +186,8 @@ vitest の in-source-testing は上記サイクルの完成後に余裕があれ
 
 
 
+----------------------------------------
+
 ## 環境構築
 
 ### Next.js 13 App router
@@ -235,6 +240,10 @@ npx typesync
 
 
 
+----------------------------------------
+
+# vitest
+
 スクリプトの追加
 
 ```package.json
@@ -268,7 +277,7 @@ export default defineConfig({
 ```
 
 
-# 基礎 シンプルなクライアントコンポーネントとそのテストコード
+# サンプル01 基礎 シンプルなクライアントコンポーネントとそのテストコード
 
 mkdir app/client
 touch app/client/page.tsx
@@ -329,7 +338,7 @@ export default function Home() {
 
 
 
-# Hooksを使用したクライアントコンポーネントとそのテストコード
+# サンプル02 Hooksを使用したクライアントコンポーネントとそのテストコード
 
 コンポーネントファイルの作成
 
@@ -413,7 +422,7 @@ npm run dev
 
 
 
-# 動的なルートセグメントを使用した場合のテスト
+# サンプル03 動的なルートセグメントを使用した場合のテスト
 
 mkdir app/blog/[slug]
 touch app/blog/[slug]/page.tsx
@@ -506,12 +515,11 @@ npm run dev
 
 
 
-# RSCのテスト
-
-サーバーコンポーネントのテスト。
-4個目
+# サンプル04 RSCのテスト
 
 React server componentsのテスト
+
+サーバーコンポーネントのテスト。
 
 mkdir app/rsc/
 touch app/rsc/page.test.tsx
@@ -583,110 +591,453 @@ export default function Home() {
 以上4つのコンポーネントとテストファイルでした。
 
 
+----------------------------------------
 
-### Storybook
+# Storybook
 
 インストール
 
-npx storybook@latestyn init
+npx storybook@latest init
 
+実行方法
+npm run storybook
 
+http://localhost:6006/
 
 
+## Storybookの設定
 
+サンプル01を元に最低限のストーリーファイルを作成します。
 
+最低限とは
+Storybookのダッシュボードに表示できるまで、それ以外の機能は無し。
 
+最初にStorybookの設定ファイルで、
+ストーリーファイル(*.sotries.ts)をどこに置いても探してもらえるようにします。
 
+.storybook\main.ts
 
+```.storybook\main.ts
+  stories: [
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
 
+```
 
+※コロケーションの考え方により、コンポーネントコードのそばにテストファイルとストーリーファイルを置きたいと思います。
+実際使用する時は srcフォルダ を作ってその下を見てもらえるようにします。
 
+例
 
-### Plop
+```
+    "src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
 
+```
 
+第1部のテストコードを作った時にコンポーネントはありますので
+そのコンポーネントのストーリーファイル(*.stories.ts)を作ります。
 
 
+## サンプル02の最低限のストーリーファイル
 
 
+サンプル 01のコンポーネント用です。
+↓最低限のストーリーファイル (*.stories.ts)
 
+```app\client\page.stories.ts
+import type { Meta, StoryObj } from "@storybook/react";
 
+// 作ったコンポーネントをインポートします。
+import Page from "./page";
 
+const meta = {
+  // Storybookのダッシュボードのサイドバーに表示されるタイトルを定義します。
+  title: "01Client/page",
+  component: Page,
+  parameters: {},
+} satisfies Meta<typeof Page>;
 
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+// Storybookのダッシュボードのサイドバーに表示されるコンポーネントの色々なパーターンを定義します。
+export const PageFirst: Story = {};
+export const PageSecond: Story = {};
+export const PageThird: Story = {};
 
+```
 
 
 
+----------------------------------------
 
+## サンプル02の最低限のストーリーファイル
 
+Hooksを使ったサンプル
 
+```app\components\component.stories.ts
+import type { Meta, StoryObj } from "@storybook/react";
 
+// 作ったコンポーネントをインポートします。
+import Counter from "./component";
 
+const meta = {
+  // Storybookのダッシュボードのサイドバーに表示されるタイトルを定義します。
+  title: "02hooks/component",
+  component: Counter,
+  parameters: {},
+} satisfies Meta<typeof Counter>;
 
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+// Storybookのダッシュボードのサイドバーに表示されるコンポーネントの色々なパーターンを定義します。
+export const ComponentFirst: Story = {};
+export const ComponentSecond: Story = {};
+export const ComponentThird: Story = {};
 
+```
 
 
 
+----------------------------------------
 
+## サンプル03の最低限のストーリーファイル
 
+動的なルートセグメントを使ったサンプル
 
+```app\blog\[slug]\page.stories.ts
+import type { Meta, StoryObj } from "@storybook/react";
 
+// 作ったコンポーネントをインポートします。
+import Page from "./page";
 
+const meta = {
+  // Storybookのダッシュボードのサイドバーに表示されるタイトルを定義します。
+  title: "03slug/page",
+  component: Page,
+  parameters: {
+    slug: "Button",
+  },
+} satisfies Meta<typeof Page>;
 
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+// Storybookのダッシュボードのサイドバーに表示されるコンポーネントの色々なパーターンを定義します。
+// 今回はパラメーターを渡しています。
+// このパラメーターは、コンポーネントのpropsとして渡されます。
+export const SlugFirst: Story = { args: { params: { slug: "first_page" } } };
+export const SlugSecond: Story = { args: { params: { slug: "second_page" } } };
+export const SlugThird: Story = { args: { params: { slug: "third_page" } } };
 
+```
 
 
+### 解説
 
+※↓このストーリーファイルでのポイント
 
+SlugFirst: Story = { args: { params: { slug: "first_page" } } }
 
+引数を渡す時に
 
+args: { params: { slug: "first_page" } }
 
+この形でpropsを渡しています。
 
+Storybookでは、ストーリーファイルでコンポーネントの状態を定義するために、 args というオブジェクトを使用します。
+args オブジェクトには、コンポーネントのプロパティに渡す値を設定することができます。
+これにより、ストーリーファイルでコンポーネントの様々な状態を定義することができます。
 
 
 
+----------------------------------------
 
+## サンプル04の最低限のストーリーファイル
 
+サーバーコンポーネントのテスト。
 
+```app\rsc\page.stories.ts
+import type { Meta, StoryObj } from "@storybook/react";
 
+// 作ったコンポーネントをインポートします。
+import Page from "./page";
 
+const meta = {
+  // Storybookのダッシュボードのサイドバーに表示されるタイトルを定義します。
+  title: "04_rsc/page",
+  component: Page,
+  parameters: {
+    slug: "Button",
+  },
+} satisfies Meta<typeof Page>;
 
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+// Storybookのダッシュボードのサイドバーに表示されるコンポーネントの色々なパーターンを定義します。
+export const pageFirst: Story = {};
+export const pageSecond: Story = {};
+export const pageThird: Story = {};
 
+```
 
 
 
+----------------------------------------
 
+Storybookのダッシュボードの表示順について
+titleに数字を入れてみましたが
+3 1 2 4 で数字順でソートされませんでした。
 
 
 
+----------------------------------------
 
+# Plop
 
+ツールPlop を使うには設定ファイルとテンプレートファイルが必要です。
 
+## インストール
 
+npm i -g plop
 
+※グローバルにインストールすると後で紹介するVSCode拡張機能が使えます。
 
 
-第2部
 
-WIP
+## plopの設定ファイル
 
-リアクトのコンポーネントのテスト駆動開発
+touch plopfile.mjs
 
-propsを受け取る時
 
-サーバーコンポーネント
+
+```plopfile.mjs
+const pad00 = (num) => String(num).padStart(2, "0");
+
+const date = new Date();
+const year = date.getFullYear();
+const month = pad00(date.getMonth() + 1);
+const day = pad00(date.getDate());
+const hms = `${pad00(date.getHours())}:00:00`;
+const datePrefix = `${year}-${month}-${day}`;
+
+const categories = ["Other", "Tech", "BlogOps"];
+
+export default function (
+  // JSDocコメントを使用して、import('plop').NodePlopAPIという型を指定しています。これは、plopというライブラリが提供するNodePlopAPIという型をインポートしていることを示しています。この型は、plopfile.mjsで使用されるplopオブジェクトの型を定義しています。
+  /** @type {import('plop').NodePlopAPI} */
+  plop
+) {
+  plop.setGenerator("component", {
+    description: "Create a new component",
+    prompts: [
+      {
+        type: "input",
+        name: "path",
+        message: "どこにコンポーネントを置きますか？(例: app/components/)",
+      },
+      {
+        type: "input",
+        name: "name",
+        message: "コンポーネントの名前を入力してください",
+      },
+    ],
+    actions: [
+      {
+        type: "add",
+        path: "app/components/{{path}}/{{pascalCase name}}/{{name}}.tsx",
+        templateFile: "templates/component/component.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "app/components/{{path}}/{{pascalCase name}}/{{name}}.test.tsx",
+        templateFile: "templates/component/component.test.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "app/components/{{path}}/{{pascalCase name}}/{{name}}.stories.tsx",
+        templateFile: "templates/component/component.stories.tsx.hbs",
+      },
+    ],
+  });
+}
+
+```
+
+
+
+## plop テンプレートファイルの作成
+
+テンプレートファイルの置く場所
+
+mkdir templates\component
+
+このフォルダの中にテンプレートファイルを置きます。
+
+例
+templates\component\[ファイル名].tsx.hbs
+
+
+
+## コンポーネントのテンプレートファイルを作成
+
+touch templates\component\component.tsx.hbs
+
+```templates\component\component.tsx.hbs
+// "use client";
+
+import React from "react";
+import { FC } from 'react'; export
+
+default function {{pascalCase name}}() {
+	return <h1>{{pascalCase name}}</h1>;
+}
+
+```
+
+
+
+## テストファイルのテンプレートファイルを作成
+
+touch templates\component\component.test.tsx.hbs
+
+```templates\component\component.test.tsx.hbs
+import { render, screen } from "@testing-library/react";
+import React from "react";
+import { expect, test } from "vitest";
+
+import {{pascalCase name}} from "./{{name}}";
+
+test("template component", () => {
+  render(<{{pascalCase name}} />);
+  expect(
+    screen.getByRole("heading", { level: 1, name: "{{pascalCase name}}" })
+  ).toBeDefined();
+});
+
+```
+
+
+
+## Storybook ストーリーファイルのテンプレートファイルを作成
+
+touch templates\component\component.stories.tsx.hbs
+
+```templates\component\component.stories.tsx.hbs
+import type { Meta, StoryObj } from "@storybook/react";
+
+// 作ったコンポーネントをインポートします。
+import {{pascalCase name}} from './{{name}}';
+
+const meta = {
+  // Storybookのダッシュボードのサイドバーに表示されるタイトルを定義します。
+  title: "{{pascalCase name}}",
+  component: {{pascalCase name}},
+  parameters: {},
+} satisfies Meta<typeof {{pascalCase name}}>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// Storybookのダッシュボードのサイドバーに表示されるコンポーネントの色々なパーターンを定義します。
+export const {{pascalCase name}}First: Story = {};
+export const {{pascalCase name}}Second: Story = {};
+export const {{pascalCase name}}Third: Story = {};
+
+```
+
+
+
+# テンプレートの書き方のルール
+
+* 拡張子
+
+テンプレートファイルは .hbs という拡張子を使います。
+
+
+
+* パス
+
+{{path}}
+
+
+
+* 名前
+
+{{name}}
+
+
+
+* 名前の変更
+
+パスカルケース
+{{pascalCase name}}
+CurrentUserItem のように書きます。
+要素語( current user item )の最初を大文字で書き始めます。
+
+例えば、nameプロパティが"foo-bar"の場合、{{ pascalCase name }}は"FooBar"になります。
+
+ケバブケース
+{{ kebabCase name}}
+current-user-item のように書きます。
+ハイフン で要素語( current user item )を連結します。
+
+例えば、nameプロパティが"FooBar"の場合、{{ kebabCase name }}は"foo-bar"になります。
+
+
+
+## VSCode の拡張機能
+
+File Templates - Visual Studio Marketplace
+https://marketplace.visualstudio.com/items?itemName=SamKirkland.plop-templates
+
+※同じ名前のVSCode拡張機能が沢山あるので間違えないでください。
+
+この VSCode の拡張機能は、右クリックから plop のテンプレートを使ってコンポーネントを自動生成できるようになります。今のところマウスからでも自動生成できるようになるだけです。
+
+この拡張機能はデフォルトで、グローバルにインストールされた plop を使用することを想定しています。
+
+
+
+Consistency Made Simple : PLOP
+https://plopjs.com/
+
+
+
+----------------------------------------
+
+# ソースインコードのテストを書く
+
+
+
+
+# ソースインコードのテンプレートを作る
+
+
+
+
+
+
+----------------------------------------
+
+# 第2部 テンプレートを利用してNext.jsのテスト駆動開発
 
 クライアントコンポーネント
 
-RSCコンポーネント
+Hooksを使用したコンポーネント
+
+動的なルートセグメント (propsを受け取る時)
+
+サーバーコンポーネント
 
 ソース・イン・コード
 
 
+----------------------------------------
 
 第3部
 逆引きテスト駆動開発時 でのテクニック
@@ -697,6 +1048,7 @@ WIP
 を書く
 
 
+----------------------------------------
 
 
 # 参考URL
