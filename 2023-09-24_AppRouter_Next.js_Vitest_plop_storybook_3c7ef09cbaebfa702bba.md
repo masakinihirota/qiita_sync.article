@@ -89,16 +89,15 @@ https://nextjs.org/docs/app/building-your-application/rendering/composition-patt
 
 | 何がしたいか？ | Server Component | Client Component |
 | --- | --- | --- |
-| データの取得｜✅｜ ❌｜
-| バックエンドのリソースに（直接）アクセスする。｜✅｜ ❌｜
-| サーバー上に機密情報を保持する（アクセストークン、APIキーなど）。｜✅｜ ❌｜
-| 大きな依存関係をサーバに残す / クライアントサイドのJavaScriptを減らす。｜✅｜ ❌｜
+| データの取得|✅| ❌|
+| バックエンドのリソースに（直接）アクセスする。|✅| ❌|
+| サーバー上に機密情報を保持する（アクセストークン、APIキーなど）。|✅| ❌|
+| 大きな依存関係をサーバに残す / クライアントサイドのJavaScriptを減らす。|✅| ❌|
 | インタラクティブ性とイベントリスナーを追加する (`onClick()`、`onChange()`など) | ❌ | ✅ |
 | ステートとライフサイクルエフェクトを使う (`useState()`、`useReducer()`、`useEffect()` など) | ❌ | ✅ |
 | ブラウザ専用のAPIを使う | ❌ | ✅ |.
 | 状態、エフェクト、またはブラウザ専用APIに依存するカスタムフックを使用する。 | ❌ | ✅ |.
 | [React Classのコンポーネント](https://react.dev/reference/react/Component)を使う。 | ❌ | ✅ |.
-
 
 
 ### サーバーコンポーネント側
