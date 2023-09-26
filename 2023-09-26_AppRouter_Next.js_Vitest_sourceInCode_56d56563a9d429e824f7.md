@@ -4,12 +4,6 @@ tags:    AppRouter,Next.js,Vitest,sourceInCode
 id:      56d56563a9d429e824f7
 private: false
 -->
-<!--
-title:   Next.js 13 App router に vitest の In-source testing の組み込みを推奨しない。
-tags:    AppRouter,Next.js,Vitest,sourceInCode
-id:      56d56563a9d429e824f7
-private: true
--->
 
 # 結論
 

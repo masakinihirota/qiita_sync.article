@@ -1148,6 +1148,39 @@ https://plopjs.com/
 したほうがいいとおもいます。
 
 
+# 型テスト
+
+Vitestを使った型テストの始め方 - Speaker Deck
+
+https://speakerdeck.com/mascii/vitestwoshi-tutaxing-tesutonoshi-mefang
+
+package.json に scripts を追加
+
+```package.json
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
+    "typecheck": "vitest typecheck"
+  },
+
+```
+
+vitestはすでにインストールしているので、さらなる追加ライブライのインストールは不要です。
+
+
+型テスト
+
+
+
+
+
+
+
+
+
+
+
 
 # 参考URL
 
@@ -1162,3 +1195,7 @@ https://plopjs.com/
 効率的なUI開発の鍵：Next.js (TypeScript) にStorybookを導入 (storybook/main.jsではなくstorybook/main.tsを生成し構築) - Qiita
 
 https://qiita.com/rikuto125/items/e596cdb53f2ead0eea18
+
+Vitestを使った型テストの始め方 - Speaker Deck
+
+https://speakerdeck.com/mascii/vitestwoshi-tutaxing-tesutonoshi-mefang
