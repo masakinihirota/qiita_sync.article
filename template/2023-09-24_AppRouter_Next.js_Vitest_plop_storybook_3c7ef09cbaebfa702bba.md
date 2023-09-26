@@ -1122,6 +1122,7 @@ https://marketplace.visualstudio.com/items?itemName=SamKirkland.plop-templates
 
 
 Consistency Made Simple : PLOP
+
 https://plopjs.com/
 
 
@@ -1132,25 +1133,6 @@ https://plopjs.com/
 テスト駆動開発ならば他のテストをGREENにしてから
 新しい次の開発につなげて、その最初のテストはREDに
 したほうがいいとおもいます。
-
-
-
-
-
-# 実践
-
-Buttonコンポーネントを作る。
-
-```
-plop
-
-? どこにコンポーネントを置きますか？(例:
-app/components/) button
-? コンポーネントの名前を入力してください button
-
-```
-
-
 
 
 
