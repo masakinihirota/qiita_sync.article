@@ -2,10 +2,9 @@
 title:   Next.js App router での vitest テスト (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop)
 tags:    AppRouter,Next.js,Vitest,plop,storybook
 id:      3c7ef09cbaebfa702bba
-private: true
+private: false
 -->
-
-# この記事の趣旨 ＋ 予定
+# この記事の趣旨
 
 Next.js App router (React)でのテストコードはどう書かれているのかの調査
 
@@ -17,10 +16,6 @@ RSC(React Server Components)のテストコード
 
 plopを使って、テンプレートを利用したテスト駆動開発の開発環境作り
 plopを使うと最低限動くコンポーネントが自動生成されます。
-
-ソースインコードでの開発環境 (予定)
-
-逆引きテスト駆動開発のコード (予定)
 
 
 
@@ -49,18 +44,6 @@ https://github.com/masakinihirota/template_testdriven
 1. コンポーネントを本体に取り込みます。
 
 以上を繰り返します。
-
-
-
-# 目標 目次
-
-第1部はテスト駆動開発の開発環境を構築します。
-
-第2部は実際に作成した環境を使ってテスト駆動開発を行います。（予定）
-
-第3部は逆引きテストコード（予定）
-
-第4部はソースインコードでのテスト駆動開発の開発環境作り（予定）
 
 
 
@@ -127,7 +110,7 @@ React クラスコンポーネントを使用する。
 ## 使用ツール
 
 Next.js 13 App router
-vitest ＋ in-source-testing
+vitest
 Storybook
 Plop
 
@@ -147,19 +130,13 @@ https://nextjs.org/
 
 
 
-### vitest ＋ in-source-testing
+### vitest
 
 viteを利用しているテスティングフレームワーク
-
-in-source-testing は同じファイルの中に コードとテストを同時に書く手法
 
 Vitest | A blazing fast unit test framework powered by Vite
 
 https://vitest.dev/
-
-Features | Guide | Vitest
-
-https://vitest.dev/guide/features.html#in-source-testing
 
 
 
@@ -180,9 +157,6 @@ https://storybook.js.org/
 Consistency Made Simple : PLOP
 
 https://plopjs.com/
-
-vitest の in-source-testing は上記サイクルの完成後に余裕があれば取り入れます。
-(最初はコードとテストとストーリーファイルは分けておきたい。)
 
 
 
@@ -240,6 +214,21 @@ npx typesync
 
 
 
+## VSCode拡張機能
+
+Vitest - Visual Studio Marketplace
+
+https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer
+
+この拡張機能を使用するためには、npm run test を実行させておく必要があります。
+(vitest の ウォッチモード)
+
+VSCodeのエディタ画面の行の左にGREENやREDのアイコンが表示されています。
+左クリックでテストの実行
+右クリックでメニューが開きます。
+
+
+
 ----------------------------------------
 
 # vitest
@@ -248,12 +237,16 @@ npx typesync
 
 ```package.json
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
 
 ```
 
 testはウォッチ形式でソースコードを保存するたびにテストが回ります。
 test:uiはブラウザでテスト結果を表示してくれます。
+storybook、build-storybookはstorybookインストール時に自動で追加されます。
 
 
 
@@ -262,19 +255,22 @@ test:uiはブラウザでテスト結果を表示してくれます。
 touch vitest.config.ts
 
 ```vitest.config.ts
-import react from "@vitejs/plugin-react"
-import { defineConfig } from "vitest/config"
+/// <reference types="vitest" />
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vitest/config";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: "jsdom"
-  }
-})
+    environment: "jsdom",
+    include: ["app/**/*.test.{js,ts,jsx,tsx}"],
+  },
+});
 
 ```
+
 
 
 # サンプル01 基礎 シンプルなクライアントコンポーネントとそのテストコード
@@ -335,6 +331,10 @@ export default function Home() {
 }
 
 ```
+
+動作確認
+
+npm run dev
 
 
 
@@ -462,8 +462,6 @@ test("App Router: Works with dynamic route segments", () => {
 
 ```
 
-
-
 テストの動作確認
 
 npm test
@@ -588,7 +586,16 @@ export default function Home() {
 
 ```
 
+
+
+動作確認
+
+npm run dev
+
+
+
 以上4つのコンポーネントとテストファイルでした。
+
 
 
 ----------------------------------------
@@ -805,7 +812,7 @@ titleに数字を入れてみましたが
 
 npm i -g plop
 
-※グローバルにインストールすると後で紹介するVSCode拡張機能が使えます。
+※plop専用の、あるVSCode拡張機能で使う場合グローバルにインストールしておくほうが簡単に使えます。そうでないと色々と設定する必要が出てきます。
 
 
 
@@ -816,17 +823,6 @@ touch plopfile.mjs
 
 
 ```plopfile.mjs
-const pad00 = (num) => String(num).padStart(2, "0");
-
-const date = new Date();
-const year = date.getFullYear();
-const month = pad00(date.getMonth() + 1);
-const day = pad00(date.getDate());
-const hms = `${pad00(date.getHours())}:00:00`;
-const datePrefix = `${year}-${month}-${day}`;
-
-const categories = ["Other", "Tech", "BlogOps"];
-
 export default function (
   // JSDocコメントを使用して、import('plop').NodePlopAPIという型を指定しています。これは、plopというライブラリが提供するNodePlopAPIという型をインポートしていることを示しています。この型は、plopfile.mjsで使用されるplopオブジェクトの型を定義しています。
   /** @type {import('plop').NodePlopAPI} */
@@ -845,21 +841,28 @@ export default function (
         name: "name",
         message: "コンポーネントの名前を入力してください",
       },
+      {
+        type: "list",
+        name: "componentType",
+        message: "Component type",
+        // サーバーコンポーネント、クライアントコンポーネント
+        choices: ["server", "client"],
+      },
     ],
     actions: [
       {
         type: "add",
-        path: "app/components/{{path}}/{{pascalCase name}}/{{name}}.tsx",
+        path: "app/components/{{componentType}}/{{path}}/{{pascalCase name}}/{{name}}.tsx",
         templateFile: "templates/component/component.tsx.hbs",
       },
       {
         type: "add",
-        path: "app/components/{{path}}/{{pascalCase name}}/{{name}}.test.tsx",
+        path: "app/components/{{componentType}}/{{path}}/{{pascalCase name}}/{{name}}.test.tsx",
         templateFile: "templates/component/component.test.tsx.hbs",
       },
       {
         type: "add",
-        path: "app/components/{{path}}/{{pascalCase name}}/{{name}}.stories.tsx",
+        path: "app/components/{{componentType}}/{{path}}/{{pascalCase name}}/{{name}}.stories.tsx",
         templateFile: "templates/component/component.stories.tsx.hbs",
       },
     ],
@@ -919,6 +922,108 @@ test("template component", () => {
   ).toBeDefined();
 });
 
+// // Vitestの基本構文
+// describe("Vitest", () => {
+//   beforeAll(() => {
+//     // console.log("テストファイル開始前");
+//   });
+//   afterAll(() => {
+//     // console.log("テストファイル終了後");
+//   });
+
+//   beforeEach(() => {
+//     // console.log("テスト開始前");
+//   });
+//   afterEach(() => {
+//     // console.log("テスト終了後");
+//   });
+
+//   test("マッチャー", () => {
+//     expect(1 + 1).toBe(2);
+
+//     expect({foo: "bar"}).toEqual({foo: "bar"});
+//     expect([1, 2, 3]).toStrictEqual([1, 2, 3]);
+
+//     expect(undefined).toBeUndefined();
+//     expect("foo").toBeDefined();
+
+//     expect(true).toBeTruthy();
+//     expect(false).toBeFalsy();
+
+//     expect(null).toBeNull();
+//     expect("foo").not.toBeNull();
+
+//     expect("foo").toHaveLength(3);
+//     expect([1, 2, 3]).toHaveLength(3);
+
+//     expect({foo: "bar", baz: "hoge"}).toHaveProperty("foo");
+//     expect(["foo", "bar"]).toContain("foo");
+//     expect([{foo: "bar"}, {foo: "hoge"}]).toContainEqual({foo: "bar"});
+//     expect("foo12345").toMatch(/foo\d{5}/);
+
+//     class CustomError extends Error {
+//     }
+
+//     const throwError = (message: string) => {
+//       throw new CustomError(message);
+//     };
+//     expect(() => throwError("")).toThrow(); // エラーになることを検証
+//     expect(() => throwError("")).toThrow(CustomError); // 送出したエラーの型判定
+//   });
+
+//   test.each`
+//     unitPrice | quantity | expected
+//     ${100}    | ${1}     | ${100}
+//     ${150}    | ${2}     | ${300}
+//     ${200}    | ${0}     | ${0}
+//   `(
+//     "パラメタライズドテスト:$unitPrice * $quantity = $expected",
+//     ({unitPrice, quantity, expected}) => {
+//       expect(unitPrice * quantity).toBe(expected);
+//     }
+//   );
+
+//   test("モック", () => {
+//     const mockFn = vi.fn((a: number) => a * 10);
+//     mockFn(1);
+//     mockFn(2);
+
+//     expect(mockFn.mock.calls).toHaveLength(2);
+
+//     expect(mockFn.mock.calls[0][0]).toBe(1); // 1回目の呼出の引数
+//     expect(mockFn.mock.calls[1][0]).toBe(2); // 2回目の呼出の引数
+
+//     expect(mockFn.mock.results[0].value).toBe(10); // 1回目の呼出の戻り値
+//     expect(mockFn.mock.results[1].value).toBe(20); // 1回目の呼出の戻り値
+//   });
+
+//   test("Expectマッチャーユーティリティ", () => {
+//     const obj = {
+//       foo: "bar",
+//       count: 10,
+//       id: "123-456",
+//       nested: {hoge: true, fuga: false},
+//       array: [1, 2, 3],
+//     };
+//     expect(obj).toEqual({
+//       foo: expect.any(String), // String
+//       count: expect.anything(), // 値は何でもOK
+//       id: expect.stringMatching(/\d{3}-\d{3}/), // 正規表現
+//       nested: expect.objectContaining({hoge: true}), // 指定したkey-valueが含まれていること
+//       array: expect.arrayContaining([1, 2]), // 配列に要素が含まれていること
+//     });
+//   });
+
+//   test("スナップショットテスト", () => {
+//     const html = `<div class="container">
+//   <article>
+//     <p class="title">UI生成結果</p>
+//   </article>
+// </div>`;
+//     expect(html).toMatchSnapshot();
+//   });
+// });
+
 ```
 
 
@@ -931,22 +1036,29 @@ touch templates\component\component.stories.tsx.hbs
 import type { Meta, StoryObj } from "@storybook/react";
 
 // 作ったコンポーネントをインポートします。
-import {{pascalCase name}} from './{{name}}';
+import {{pascalCase name}}, { {{pascalCase name}}Props } from './{{name}}';
+
+type T = typeof {{pascalCase name}}
 
 const meta = {
   // Storybookのダッシュボードのサイドバーに表示されるタイトルを定義します。
-  title: "{{pascalCase name}}",
+  title: "{{componentType}}/{{pascalCase name}}",
   component: {{pascalCase name}},
   parameters: {},
-} satisfies Meta<typeof {{pascalCase name}}>;
+  argTypes: {
+  },
+} satisfies Meta<T>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<T>;
 
 // Storybookのダッシュボードのサイドバーに表示されるコンポーネントの色々なパーターンを定義します。
 export const {{pascalCase name}}First: Story = {};
 export const {{pascalCase name}}Second: Story = {};
-export const {{pascalCase name}}Third: Story = {};
+export const {{pascalCase name}}Third: Story = {
+    args : {
+  },
+};
 
 ```
 
@@ -976,6 +1088,7 @@ export const {{pascalCase name}}Third: Story = {};
 
 パスカルケース
 {{pascalCase name}}
+
 CurrentUserItem のように書きます。
 要素語( current user item )の最初を大文字で書き始めます。
 
@@ -983,6 +1096,7 @@ CurrentUserItem のように書きます。
 
 ケバブケース
 {{ kebabCase name}}
+
 current-user-item のように書きます。
 ハイフン で要素語( current user item )を連結します。
 
@@ -995,9 +1109,13 @@ current-user-item のように書きます。
 File Templates - Visual Studio Marketplace
 https://marketplace.visualstudio.com/items?itemName=SamKirkland.plop-templates
 
-※同じ名前のVSCode拡張機能が沢山あるので間違えないでください。
+※同じ名前のVSCode拡張機能がいくつかあるので間違えないようにしてください。
+
+
 
 この VSCode の拡張機能は、右クリックから plop のテンプレートを使ってコンポーネントを自動生成できるようになります。今のところマウスからでも自動生成できるようになるだけです。
+設定ファイルでpathを固定しなければマウスで指定した場所に自動生成が出来るようになります。
+
 
 この拡張機能はデフォルトで、グローバルにインストールされた plop を使用することを想定しています。
 
@@ -1008,47 +1126,32 @@ https://plopjs.com/
 
 
 
-----------------------------------------
-
-# ソースインコードのテストを書く
-
-
-
-
-# ソースインコードのテンプレートを作る
+※plopの項目の最後に
+テスト駆動開発をするのならばテンプレートを作るとき
+わかりやすいエラーを入れておくといいと思います。
+テスト駆動開発ならば他のテストをGREENにしてから
+新しい次の開発につなげて、その最初のテストはREDに
+したほうがいいとおもいます。
 
 
 
 
 
+# 実践
 
-----------------------------------------
+Buttonコンポーネントを作る。
 
-# 第2部 テンプレートを利用してNext.jsのテスト駆動開発
+```
+plop
 
-クライアントコンポーネント
+? どこにコンポーネントを置きますか？(例:
+app/components/) button
+? コンポーネントの名前を入力してください button
 
-Hooksを使用したコンポーネント
-
-動的なルートセグメント (propsを受け取る時)
-
-サーバーコンポーネント
-
-ソース・イン・コード
+```
 
 
-----------------------------------------
 
-第3部
-逆引きテスト駆動開発時 でのテクニック
-
-WIP
-
-こうしたい時はこう
-を書く
-
-
-----------------------------------------
 
 
 # 参考URL
@@ -1057,3 +1160,10 @@ next.js/examples/with-vitest at canary · vercel/next.js
 
 https://github.com/vercel/next.js/tree/canary/examples/with-vitest
 
+Consistency Made Simple : PLOP
+
+https://plopjs.com/
+
+効率的なUI開発の鍵：Next.js (TypeScript) にStorybookを導入 (storybook/main.jsではなくstorybook/main.tsを生成し構築) - Qiita
+
+https://qiita.com/rikuto125/items/e596cdb53f2ead0eea18
