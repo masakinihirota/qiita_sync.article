@@ -317,9 +317,8 @@ npm test
 
 ブラウザで表示
 
-```app\page.tsx
+```app/page.tsx
 import ClientComponent from "./client/page";
-import Counter from "./components/component";
 
 export default function Home() {
   return (
