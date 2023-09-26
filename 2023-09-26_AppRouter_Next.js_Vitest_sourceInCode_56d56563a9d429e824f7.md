@@ -1,47 +1,45 @@
 <!--
-title:   Next.js 13 App router vitest の In-source testing
+title:   Next.js 13 App router に vitest の In-source testing の組み込みは推奨しない。
+tags:    AppRouter,Next.js,Vitest,sourceInCode
+id:      56d56563a9d429e824f7
+private: false
+-->
+<!--
+title:   Next.js 13 App router に vitest の In-source testing の組み込みを推奨しない。
 tags:    AppRouter,Next.js,Vitest,sourceInCode
 id:      56d56563a9d429e824f7
 private: true
 -->
 
+# 結論
+
+ドキュメントの最後にこうありました。
+
+It's recommended to use separate test files instead for more complex tests like components or E2E testing.
+
+>より複雑なテスト（コンポーネントや E2E テストなど）には、別々のテストファイルを使用することが推奨されています。
+
+
+公式が推奨しているので、Webアプリに In-Source Testing を組み込むことは諦めます。
+
+※最初に公式ドキュメントを最後まで読めばよかった・・・
+ここより下は、読む価値がありません。
+
+
+
 # この記事の趣旨
 
 ↓前回の記事で Next.js 13 App router での vitest テストコードを書く。 という記事を書きました。
 
-Next.js App router での vitest テスト (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop) - Qiita
+基本的な Next.js 13 App router での vitest テストファイルの書き方 (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop)  - Qiita
 
 https://qiita.com/masakinihirota/items/3c7ef09cbaebfa702bba
 
-この記事を vitest の In-source testing に書き直したいと思います。
+↑この記事を 「vitest の In-source testing」 に書き直したいと思います。
 
-
+vitest の In-source testingとは、テストコードをコードの中に書くことが出来る機能です。
 
 # vitestの インソーステスティングを調査
-
-予定
-
-Next.js App router をインストール
-
-vitestをインストール
-
-In-source testingに設定をする
-
-
-コードとテストを書く
-
-Qiita記事のコードを変換する
-
-終了
-
-
-
-# この記事のリポジトリ
-
-？？？？？？？？？？？？
-
-
-----------------------------------------
 
 # 使用ツール
 
@@ -89,8 +87,6 @@ npx create-next-app inSourceTesting
 選択
 
 	全部Yes
-
-
 
 動作確認
 
@@ -156,10 +152,9 @@ VSCodeのエディタ画面の行の左にGREENやREDのアイコンが表示さ
     "coverage": "vitest run --coverage",
 
 ```
+
 testはウォッチ形式でソースコードを保存するたびにテストが回ります。
 test:uiはブラウザでテスト結果を表示してくれます。
-
-
 
 
 
@@ -306,7 +301,13 @@ export default defineConfig({
 
 ```
 
-import.meta.vitestをfalseにすることで、ビルド時にテストコードが含まれないようにします。
+include: ["src/**/*.{js,ts,jsx,tsx}"],
+
+↑この部分の設定で、以前は.test.tsx等がテストファイルでしたが、今回はpage.tsxにテストコードを移したので、ファイル名の設定を調整しなければなりません。
+
+逆にこれでは、コードの中にテストコードがないと「ファイルの中にテストケースが見つからないというエラー判定」が出てしまいます。
+
+import.meta.vitestをfalseにすることで、ビルド時にテストコードが含まれないようにしています。
 
 
 
@@ -322,7 +323,11 @@ import.meta.vitestをfalseにすることで、ビルド時にテストコード
 
 ```
 
-import.meta.vitest の型情報を追加します。
+TypeScript サポートを得るために、
+
+"types": ["vitest/importMeta"]
+
+で型情報を追加します。
 
 
 
@@ -375,25 +380,42 @@ import文もテストの時だけ使いたいので、これにも対処する�
 
 
 
+In-source testing | Guide | Vitest
+
+https://vitest.dev/guide/in-source.html
 
 
 
 
+Next.jsでのファイルの規約
+
+Building Your Application: Routing | Next.js
+https://nextjs.org/docs/app/building-your-application/routing
+
+以前は *.test.拡張子 というパターンでテストファイルを分類できていました。
+Next.jsではファイルの規約があるので、ファイル名は固定です。
+
+例えば、
+
+In-Source Testingコードであるpage.tsxを
+page.text.tsxと名前を変えると
+
+404
+This page could not be found.
+と認識されなくなります。
 
 
 
+対処方法は、
+一つ一つ指定する
 
+全ファイルに無理やりテストを書く
 
+コンポーネントだけにテストを絞る
 
+諦める。 ＜＜＜ new
 
-
-
-
-
-
-
-
-
+最後は結論に戻ります。
 
 
 
@@ -468,4 +490,3 @@ https://vitest.dev/guide/features.html#in-source-testing
 VitestのIn-source Testingを試してみた | Marginalia
 
 https://blog.lacolaco.net/2023/08/vitest-in-source-testing/
-
