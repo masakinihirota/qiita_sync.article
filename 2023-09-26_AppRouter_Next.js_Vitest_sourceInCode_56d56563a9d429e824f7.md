@@ -1,9 +1,35 @@
 <!--
-title:   Next.js 13 App router vitest の source in code
+title:   Next.js 13 App router vitest の In-source testing
 tags:    AppRouter,Next.js,Vitest,sourceInCode
 id:      56d56563a9d429e824f7
 private: true
 -->
+
+
+Next.js App router での vitest テスト (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop) - Qiita
+https://qiita.com/masakinihirota/items/3c7ef09cbaebfa702bba
+
+これを vitest の In-source testing に書き直す。
+
+vitestの インソーステスティングを調査
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------
 
 # ソースインコードのテストを書く
