@@ -5,19 +5,15 @@ id:      56d56563a9d429e824f7
 private: true
 -->
 
-# 前提
+# この記事の趣旨
 
-↓この記事はテスト駆動開発を実践するための下準備みたいな記事です。
+↓前回の記事で Next.js 13 App router での vitest テストコードを書く。 という記事を書きました。
 
 Next.js App router での vitest テスト (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop) - Qiita
 
 https://qiita.com/masakinihirota/items/3c7ef09cbaebfa702bba
 
-これを vitest の In-source testing に書き直したいと思います。
-
-vitest の In-source testing を使おうとすると、
-コードのファイルとテストファイルを分けて使う設定が使えませんでした。
-※これも後で調査
+この記事を vitest の In-source testing に書き直したいと思います。
 
 
 
@@ -42,16 +38,12 @@ Qiita記事のコードを変換する
 
 # この記事のリポジトリ
 
-masakinihirota/template_testdriven
-https://github.com/masakinihirota/template_testdriven
-
+？？？？？？？？？？？？
 
 
 ----------------------------------------
 
-# 第1部
-
-## 使用ツール
+# 使用ツール
 
 Next.js 13 App router
 vitest
@@ -203,7 +195,6 @@ mkdir src/app/client
 touch src/app/client/page.tsx
 touch src/app/client/page.test.tsx
 
-
 ```src/app/client/page.tsx
 "use client"
 
@@ -241,9 +232,8 @@ npm test
 
 ブラウザで表示
 
-```src/app\page.tsx
+```src/app/page.tsx
 import ClientComponent from "./client/page";
-import Counter from "./components/component";
 
 export default function Home() {
   return (
@@ -260,6 +250,128 @@ export default function Home() {
 
 npm run dev
 
+これでテストとブラウザに表示することが出来ました。
+
+
+
+----------------------------------------
+
+# vitest の In Source Testing
+
+次に、作成したテストをコードの中に組み込んでみたいと思います。
+
+
+# コードの中にテストがかける仕組み。
+
+vitestでは import.meta.vitest を使います。
+
+import.meta.vitest の型定義は、tsconfig の types オプションに渡した vitest/importMeta が持っています。
+
+テスト記述用のAPIは、通常の静的なインポートではなく、import.meta.vitest から取得します。
+import.meta.vitest が定義されていない場合、if文全体が使われないコードになり、アプリケーションをビルドした時に、テスト関連のコードはまるごと消えます。
+
+よって開発時にのみテストコードが有効になります。
+
+
+
+※コード＋テストのファイルは、一緒になったがゆえに大きくなりがちですが、
+その時は関心を分離するためのリファクタリングを行いましょう。
+
+※このコード＋テストを書く時はエディタで同一ファイルを画面分割して編集をします。
+
+
+
+# 設定
+
+vitest.config.tsを編集します。
+
+```vitest.config.ts
+/// <reference types="vitest" />
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vitest/config";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  define: {
+    "import.meta.vitest": false,
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    include: ["src/**/*.{js,ts,jsx,tsx}"],
+  },
+});
+
+
+```
+
+import.meta.vitestをfalseにすることで、ビルド時にテストコードが含まれないようにします。
+
+
+
+```tsconfig.json
+
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["vitest/importMeta"]
+  },
+
+
+```
+
+import.meta.vitest の型情報を追加します。
+
+
+
+# In-Sourceのテストコード
+
+
+先程書いたコンポーネントの中にテストコードを組み込みます。
+
+`import.meta.vitest` は、テストランナーが提供するオブジェクトで、`it` と `expect` メソッドを持っています。
+
+
+
+```src/app/client/page.tsx
+"use client";
+
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { expect, test } from "vitest";
+
+export default function ClientComponent() {
+  return <h1>Client Component</h1>;
+}
+
+if (import.meta.vitest) {
+  test("App Router: Works with Client Components", () => {
+    render(<ClientComponent />);
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Client Component" })
+    ).toBeDefined();
+  });
+}
+
+```
+
+
+コンポーネントのコードの中にテストコードを組み込んだら
+
+src\app\client\page.test.tsx
+
+このファイルを削除します。
+
+テストファイルとする対象は
+    include: ["src/**/*.{js,ts,jsx,tsx}"],
+としたのでこの拡張子がつくファイルはすべてテストファイルが含まれると判定されてしまいます。
+
+Next.jsはファイル名は固有のルールがあるので変更できないので、
+それにも対応する必要があるようです。
+
+import文もテストの時だけ使いたいので、これにも対処する必要があります。
 
 
 
@@ -286,4 +398,74 @@ npm run dev
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------
+
+# 参考URL
+
+Vitest | A blazing fast unit test framework powered by Vite
+
+https://vitest.dev/
+
+Features | Guide | Vitest
+
+https://vitest.dev/guide/features.html#in-source-testing
+
+VitestのIn-source Testingを試してみた | Marginalia
+
+https://blog.lacolaco.net/2023/08/vitest-in-source-testing/
 

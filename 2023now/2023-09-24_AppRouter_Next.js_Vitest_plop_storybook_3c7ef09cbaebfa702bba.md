@@ -1,21 +1,24 @@
 <!--
-title:   Next.js App router での vitest テスト (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop)
+title:   基本的な Next.js 13 App router での vitest テストファイルの書き方 (テンプレートから始めるテスト駆動開発 Next.js 13 App router、 vitest 、 Storybook、 Plop)
 tags:    AppRouter,Next.js,Vitest,plop,storybook
 id:      3c7ef09cbaebfa702bba
 private: false
 -->
 # この記事の趣旨
 
-Next.js App router (React)でのテストコードはどう書かれているのかの調査
+Next.js 13 App router でテストコードはどのように書いたらいいのか？ を調査します。
 
-Next.js App routerでの
-基本コンポーネントのテストコード
-Hooksコンポーネントのテストコード
-動的フォルダのテストコード
-RSC(React Server Components)のテストコード
+plopというテンプレートからファイルを自動生成するツールを使って、それを利用したテスト駆動開発の開発環境作りをします。
 
-plopを使って、テンプレートを利用したテスト駆動開発の開発環境作り
 plopを使うと最低限動くコンポーネントが自動生成されます。
+
+
+## Next.js App routerでかかれる **基本的な4種類のテストコード** を調べます。
+
+1. 基本コンポーネントのテストコード
+1. Hooksコンポーネントのテストコード
+1. 動的フォルダのテストコード
+1. RSC(React Server Components)のテストコード
 
 
 
@@ -600,6 +603,17 @@ npm run dev
 ----------------------------------------
 
 # Storybook
+
+Storybookのコンポーネントは公式サイトで公開されているので利用できるのならそちらを使うのが良いと思います。
+
+Component Encyclopedia | Storybook
+
+https://storybook.js.org/showcase
+
+※古いのはSF3(ストーリーファイル version 3) を使っていないので新しいのを参考にしたらいいと思います。
+
+↑の各それぞれのgithubページに行って stories.tsx で検索しましょう。
+
 
 インストール
 
