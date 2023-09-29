@@ -1148,13 +1148,66 @@ https://plopjs.com/
 したほうがいいとおもいます。
 
 
+
+----------------------------------------
+
 # 型テスト
+
+これは
+
+* 通常のコード
+* テストコード
+* 型テストコード ＜＜ new
+
+という第2のテストコードを書くことになります。
+
+
+
+※重要 通常コードを書くときVSCodeでは警告やエラーを出してくれるので、型テストコードまで書く必要はありません。
+
+`tsc --noEmit` で問題ありません。
+
+ただし、色々なBlogを読むとライブラリ開発で、公開インターフェイスが仕様に沿っていることを保証するのに良いのではないか？と書かれていました。
+
+この項目の最後の方にその他の恩恵も書かれているので、自分の状況と付き合わせて使用するかどうかを決めてください。
+
+
+
+## tsc --noEmit とは？
+
+`tsc`はTypeScriptのコンパイラで、`--noEmit`オプションを指定すると、JavaScriptファイルを出力せずに型チェックだけを行い、ビルド時間を短縮できます。
+
+しかし、JavaScriptファイルが生成されないため、実際に動作するかどうかを確認できません。
+
+
+
+Testing Types | Guide | Vitest
+
+https://vitest.dev/guide/testing-types.html
+
+Viteベースの高速テスティングフレームワークVitestを使ってみる | 豆蔵デベロッパーサイト
+
+https://developer.mamezou-tech.com/blogs/2022/12/28/vitest-intro/
 
 Vitestを使った型テストの始め方 - Speaker Deck
 
 https://speakerdeck.com/mascii/vitestwoshi-tutaxing-tesutonoshi-mefang
 
-package.json に scripts を追加
+
+
+## 使用方法
+
+
+デフォルトでは、型チェックのテストは
+<test-name>-test-d.ts
+<test-name>-spec-d.ts
+としてテストコードを記述します。
+
+
+
+
+
+package.json に scripts を追加します。
 
 ```package.json
   "scripts": {
@@ -1171,6 +1224,79 @@ vitestはすでにインストールしているので、さらなる追加ラ�
 
 型テスト
 
+## コードファイル
+
+```app\typecheck\test01.ts
+// user:Alice
+// このような文字列を key, value にパースするような関数を考えます。
+
+function parse<T extends string, U extends string>(kv: `${T}:${U}`) {
+  const [key, value] = kv.split(":");
+  return { key, value } as { key: T; value: U };
+}
+
+//  実行例
+// parse("key:value"); // {key: "key", value: "value"}
+
+```
+
+
+
+### 解説
+
+1. `parse`関数は、2つのジェネリック型`T`と`U`を持ちます。これらの型は、それぞれ文字列型を表します。
+
+2. `kv`パラメータは、`${T}:${U}`という形式の文字列を受け取ります。`${T}:${U}`は、テンプレートリテラルを使用して、`T`と`U`をコロンで区切った文字列を表します。
+
+3. `kv`パラメータを`split`メソッドを使用して、コロンで区切ります。`split`メソッドは、文字列を指定された区切り文字で分割し、分割された文字列の配列を返します。
+
+4. `split`メソッドによって得られた配列の要素を、`key`と`value`という変数に分割代入します。
+
+5. `key`と`value`を、オブジェクトリテラルを使用して、`{ key, value }`というオブジェクトにまとめます。
+
+6. `key`と`value`の型を、ジェネリック型`T`と`U`に指定します。これにより、`key`と`value`の型が、`parse`関数を呼び出すときに指定された型と一致するようになります。
+
+7. `parse`関数は、`{ key, value }`というオブジェクトを返します。このオブジェクトの型は、`{ key: T; value: U }`となります。
+
+この関数の長所は、与えられた文字列を型安全にパースできることです。ジェネリック型を使用することで、`key`と`value`の型が、`parse`関数を呼び出すときに指定された型と一致するようになります。また、テンプレートリテラルを使用することで、文字列の形式を厳密に指定できます。
+
+短所としては、与えられた文字列が`${T}:${U}`という形式でない場合、`parse`関数はエラーをスローします。また、`parse`関数は、与えられた文字列を分割してオブジェクトに変換するだけであり、より複雑な処理を行うことはできません。
+
+利用用途としては、与えられた文字列を型安全にパースする必要がある場合に使用できます。例えば、APIのレスポンスから取得した文字列をパースして、型安全なオブジェクトに変換する場合などに使用できます。また、テストコードなどで、文字列を型安全に扱う必要がある場合にも使用できます。
+
+## テストファイル
+
+```app\typecheck\test01.test.ts
+import { expect, test } from "vitest";
+
+test("parse", () => {
+  expect(parse("user:Alice")).toEqual({ key: "user", value: "Alice" });
+});
+
+```
+
+## 型テストファイル
+
+```app\typecheck\test01.test-d.ts
+import { expect, expectTypeOf, test } from "vitest";
+
+test("parse", () => {
+  expectTypeOf(parse("user:Alice")).toEqualTypeOf<{
+    key: "user";
+    value: "Alice";
+  }>();
+});
+
+```
+
+
+
+# 型テストの恩恵
+
+vitestを実行しなくてもテスト結果をリアルタイムに確認できます。
+複雑な値型の関数
+Reactコンポーネントのprops
+型テストがあると、型のリアクタリングや機能追加がやりやすくなります。
 
 
 
@@ -1199,3 +1325,7 @@ https://qiita.com/rikuto125/items/e596cdb53f2ead0eea18
 Vitestを使った型テストの始め方 - Speaker Deck
 
 https://speakerdeck.com/mascii/vitestwoshi-tutaxing-tesutonoshi-mefang
+
+Viteベースの高速テスティングフレームワークVitestを使ってみる | 豆蔵デベロッパーサイト
+
+https://developer.mamezou-tech.com/blogs/2022/12/28/vitest-intro/
