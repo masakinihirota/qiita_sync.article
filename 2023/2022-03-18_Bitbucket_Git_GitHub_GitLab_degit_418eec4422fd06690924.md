@@ -1,6 +1,6 @@
 <!--
 title:   tiged、degitとは （GitHubリポジトリの中の一部だけを簡単にダウンロードするツール）
-tags:    tiged,Git,GitHub,GitLab,degit
+tags:    Git,GitHub,GitLab,degit,tiged
 id:      418eec4422fd06690924
 private: false
 -->
@@ -25,6 +25,8 @@ Next.jsのリポジトリの中にあるサンプル hello-world **（約2KB）*
 https://github.com/vercel/next.js/tree/canary/examples/hello-world
 
 適当な空フォルダの場所に行き、terminalを開きます。
+
+![tiged001＋説明付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/cf6b4658-6f57-8d96-07e5-63952e4ff2d2.png)
 
 `tiged ＋ ユーザーアカウント名 ＋ パス`
 
