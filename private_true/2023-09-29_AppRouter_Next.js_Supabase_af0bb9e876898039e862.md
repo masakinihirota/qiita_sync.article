@@ -4,6 +4,36 @@ tags:    AppRouter,Next.js,Supabase
 id:      af0bb9e876898039e862
 private: true
 -->
+
+参考
+
+# GitHub 認証
+
+【AppRouter】Supabase のAuth Helpersを触ってみる
+
+https://zenn.dev/otaki0413/articles/supabase-auth-with-app-router
+
+RLS に関する記述もあります。
+
+
+
+# Google 認証
+
+
+
+
+
+メール認証はSupabase のサンプルを使用します。
+またこのサンプルを使用して
+GitHub認証とGoogle認証を追加していきます。
+
+
+
+
+
+
+
+
 Next.js App routerで複数の認証
 メール
 GitHub
@@ -244,6 +274,15 @@ using (true);
 
 
 
+
+ {user.id},
+ {user.aud}, 認証しているか
+ {user.created_at},
+ {user.confirmed_at},
+ {user.email_confirmed_at},
+ {user.last_sign_in_at},
+ {user.role},
+ {user.updated_at},
 
 
 
