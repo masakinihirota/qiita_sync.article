@@ -19,6 +19,10 @@ private: false
 
 npm install -g tiged
 
+もしくは、npx を付けて実行します。(この方法は実行時に少々時間がかかります)
+
+
+
 # 使用方法
 
 Next.jsのリポジトリの中にあるサンプル hello-world **（約2KB）**
@@ -26,24 +30,45 @@ https://github.com/vercel/next.js/tree/canary/examples/hello-world
 
 適当な空フォルダの場所に行き、terminalを開きます。
 
-![tiged001＋説明付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/cf6b4658-6f57-8d96-07e5-63952e4ff2d2.png)
-
 `tiged ＋ ユーザーアカウント名 ＋ パス`
 
 `tiged vercel/next.js/examples/hello-world`
 
+`npx tiged vercel/next.js/examples/hello-world`
+
 GitHubのパスはリポジトリの横にコピーボタンがあるのでそれを利用します。
 
+![tiged001＋説明付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/cf6b4658-6f57-8d96-07e5-63952e4ff2d2.png)
+
+↑の画像では
+vercel/next.js
+next.js/examples/hello-world
+この2つの文字列を繋げていますが、**next.js** が被っています。
+
+ユーザーアカウント名は **vercel** です。
+パスは **next.js/examples/hello-world** です。
+↑この2つの文字列を繋げて実行します。
 
 使用方法はdegit時代の方法と変わっていません。
 詳細なルールは下記のdegit時代の記事を参照してください。
+
+
+
+## フォルダの指定
+
+上記コマンドはその場にダウンロードする方法でした、しかし上記コマンドに `hello-world` という↓フォルダ名を指定すると、
+
+`tiged vercel/next.js/examples/hello-world hello-world`
+
+新たに `hello-world` というフォルダが作成され、その中にダウンロードされます。
+
+
 
 ## 失敗した場合
 
 **cloned**
 
-と表示されたのに、フォルダが空の場合は、
-Windowsで(内部的に)pathが長すぎると失敗する場合があります。
+と表示されたのにフォルダが空の場合は何らかの原因で失敗している場合があります。
 
 そんな時は、
 
