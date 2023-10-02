@@ -4,8 +4,8 @@ tags:    AppRouter,Next.js,Supabase
 id:      af0bb9e876898039e862
 private: true
 -->
-
 参考
+![OAuth Flowトップ画面.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/91bd9272-3dfd-6460-2729-5e4c24e166ca.png)
 
 # GitHub 認証
 
@@ -304,5 +304,3 @@ using (true);
 Login with GitHub | Supabase Docs
 
 https://supabase.com/docs/guides/auth/social-login/auth-github
-
-
