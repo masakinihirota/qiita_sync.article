@@ -6,12 +6,14 @@ private: false
 -->
 # 出来ること
 
-大型リポジトリの中の一部をダウンロードしたい。
+大型リポジトリの中の一部のコード、サンプルをダウンロードしたい。
 
 # 使用ツール
 
 **tiged** degitの後継ツールです。
 **degit** 2021年から開発が止まっています。
+
+
 
 # インストール方法
 
@@ -24,7 +26,12 @@ https://github.com/vercel/next.js/tree/canary/examples/hello-world
 
 適当な空フォルダの場所に行き、terminalを開きます。
 
+`tiged ＋ ユーザーアカウント名 ＋ パス`
+
 `tiged vercel/next.js/examples/hello-world`
+
+GitHubのパスはリポジトリの横にコピーボタンがあるのでそれを利用します。
+
 
 使用方法はdegit時代の方法と変わっていません。
 詳細なルールは下記のdegit時代の記事を参照してください。
@@ -39,6 +46,7 @@ https://github.com/vercel/next.js
 GitHub CLIを使って巨大なリポジトリをクローンする方法
 
 `gh repo clone vercel/next.js`
+
 
 
 # ツールのリポジトリ
