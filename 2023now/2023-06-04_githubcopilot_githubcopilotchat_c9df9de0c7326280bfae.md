@@ -12,6 +12,38 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 この記事は **Github Copilot** の **チャット機能** について説明しています。
 
+追記 2023年10月6日
+
+今までキーボードショートカットで開く時に
+
+viewContainer.workbench.view.extensions.enabled
+
+↑このコマンドを使っていましたが、このコマンドは廃止されました。
+
+代わりに↓このコマンドを使用してください。
+
+workbench.panel.chatSidebar
+
+## キーボードショートカット設定例
+
+```
+{
+    // GitHub Copilot chat をプライマリバーに開きます
+    "key": "ctrl+shift+x",
+    "command": "workbench.panel.chatSidebar",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+  // プライマリサイドバーを閉じます。(プライマリサイドバーが開いている時)
+  {
+    "key": "ctrl+shift+x",
+    "command": "workbench.action.closeSidebar",
+    "when": "sideBarVisible"
+  }
+
+```
+
+追記終了
+
 
 
 追記 2023年8月16日
