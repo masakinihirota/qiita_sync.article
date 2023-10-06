@@ -14,9 +14,11 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 追記 2023年10月6日
 
-今までキーボードショートカットで開く時に
+# キーボードショートカット
 
-viewContainer.workbench.view.extensions.enabled
+今まで キーボードショートカット で開く時に
+
+workbench.panel.chatSidebar.copilot
 
 ↑このコマンドを使っていましたが、このコマンドは廃止されました。
 
@@ -24,21 +26,32 @@ viewContainer.workbench.view.extensions.enabled
 
 workbench.panel.chatSidebar
 
-## キーボードショートカット設定例
+## キーボードショートカット 設定例
+
+現在、キーボードショートカット はプライマリバーで開閉するようにしています。
 
 ```
-{
-    // GitHub Copilot chat をプライマリバーに開きます
+  {
+    // GitHub Copilot chat をプライマリバーに開きます。
+    // GitHub Copilot chat 入力場所へのフォーカスします。
     "key": "ctrl+shift+x",
     "command": "workbench.panel.chatSidebar",
     "when": "viewContainer.workbench.view.extensions.enabled"
   },
-  // プライマリサイドバーを閉じます。(プライマリサイドバーが開いている時)
   {
+    // プライマリサイドバーを閉じます。(プライマリサイドバーが開いている時)
     "key": "ctrl+shift+x",
     "command": "workbench.action.closeSidebar",
     "when": "sideBarVisible"
-  }
+  },
+
+  // {
+  //   // ↑上のを利用すれば、↓これは利用しません。
+  //   // GitHub Copilot chat をプライマリバーで開閉します。
+  //   // GitHub Copilot chat 入力場所へのフォーカスは無し。
+  //   "key": "ctrl+shift+x",
+  //   "command": "workbench.action.toggleSidebarVisibility"
+  // },
 
 ```
 
