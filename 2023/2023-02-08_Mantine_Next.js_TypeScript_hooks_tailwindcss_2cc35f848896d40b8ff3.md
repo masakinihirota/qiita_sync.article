@@ -32,7 +32,7 @@ https://qiita.com/masakinihirota/items/2afd18f1bce3b7b70b60
 |	[use-previous](https://mantine.dev/hooks/use-previous/ "use-previous") 	|	開発者がコンポーネントを作成する際に使用できる機能であり、以前のバージョンから変更されたプロパティを取得して再利用することができます。	|
 |	[use-queue](https://mantine.dev/hooks/use-queue/ "use-queue") 	|	現在の状態のデータ量を制限し、残りのデータをキューに入れる機能です。例えば、@mantine/notificationsパッケージでは、現在の状態にあるデータ量を制限することができます。	|
 |	[use-set-state](https://mantine.dev/hooks/use-set-state/ "use-set-state") 	|	クラスコンポーネント内のthis.setStateと同様に動作します。これは、現在の状態に部分的な状態を浅くマージするものです。	|
-|	[use-timeout](https://mantine.dev/hooks/use-timeout/ "use-timeout") 	|	指定されたミリ秒後にコールバック関数を呼び出すタイマーを設定するためのAPIである。	|
+|	[use-timeout](https://mantine.dev/hooks/use-timeout/ "use-timeout") 	|	指定されたミリ秒後にコールバック関数を呼び出すタイマーを設定するためのAPIです。	|
 |	[use-toggle](https://mantine.dev/hooks/use-toggle/ "use-toggle") 	|	与えられた値を切り替えるためのフックです。これは、状態パターンの共通的なパターンを実装します。	|
 |	[use-uncontrolled](https://mantine.dev/hooks/use-uncontrolled/ "use-uncontrolled") 	|	制御されるコンポーネントと制御されないコンポーネントの両方の状態を管理することができます。	|
 |	[use-validated-state](https://mantine.dev/hooks/use-validated-state/ "use-validated-state") 	|	状態が設定されるたびに与えられたルールで状態を検証します。それは、現在の検証状態、最後の正しい値、およびエラーメッセージを含むオブジェクトを返します。	|
@@ -44,7 +44,7 @@ https://qiita.com/masakinihirota/items/2afd18f1bce3b7b70b60
 |	[use-element-size](https://mantine.dev/hooks/use-element-size/ "use-element-size") 	|	指定した要素の幅と高さを取得します。	|
 |	[use-event-listener](https://mantine.dev/hooks/use-event-listener/ "use-event-listener") 	|	refが割り当てられた要素にイベントリスナーを追加するものです。HookはaddEventListenerメソッドと同じオプションをサポートします。	|
 |	[use-focus-return](https://mantine.dev/hooks/use-focus-return/ "use-focus-return") 	|	指定された条件が満たされたときにフォーカスを最後にフォーカスした要素に自動的に戻す機能です。例えば、モーダルコンポーネントで使用されています。	|
-|	[use-focus-trap](https://mantine.dev/hooks/use-focus-trap/ "use-focus-trap") 	|	モーダル、ドロワー、メニューなどでフォーカスを特定のノードに固定するためのツールである。少なくとも1つの入力可能な要素を含むノードが必要であり、ノードがアンマウントされたときにフォーカスがリセットされる。	|
+|	[use-focus-trap](https://mantine.dev/hooks/use-focus-trap/ "use-focus-trap") 	|	モーダル、ドロワー、メニューなどでフォーカスを特定のノードに固定するためのツールです。少なくとも1つの入力可能な要素を含むノードが必要であり、ノードがアンマウントされたときにフォーカスがリセットされる。	|
 |	[use-focus-within](https://mantine.dev/hooks/use-focus-within/ "use-focus-within") 	|	指定した要素の内部にフォーカスがあるかどうかを検出し真偽値を返すhookです。フォーカスがあたっている時になにかの処理を追加します。	|
 |	[use-fullscreen](https://mantine.dev/hooks/use-fullscreen/ "use-fullscreen") 	|	Fullscreen APIを使用して、指定された要素に入り/出ることを可能にするものです。デフォルトでは、refを提供しない場合、フックはドキュメントを対象とします。	|
 |	[use-hotkeys](https://mantine.dev/hooks/use-hotkeys/ "use-hotkeys") 	|	最初の引数としてホットキーとハンドラーのタプルの配列を受け入れます：ホットキー - ホットキー文字列（例：ctrl + E、shift + alt + L、mod + Sなど）。	|
@@ -57,7 +57,7 @@ https://qiita.com/masakinihirota/items/2afd18f1bce3b7b70b60
 |	[use-resize-observer](https://mantine.dev/hooks/use-resize-observer/ "use-resize-observer") 	|	コンポーネントのリサイズを検知するhookです。幅と高さと要素の位置を取得します。	|
 |	[use-scroll-into-view](https://mantine.dev/hooks/use-scroll-into-view/ "use-scroll-into-view") 	|	任意の可スクロール要素のスクロール動作を処理します。基本的な使用方法は、element.scrollIntoView()と同じです。	|
 |	[use-scroll-lock](https://mantine.dev/hooks/use-scroll-lock/ "use-scroll-lock") 	|	document.body overflowをhiddenに設定して現在の位置でスクロールをロックする機能です。スクロールをロックします。	|
-|	[use-viewport-size](https://mantine.dev/hooks/use-viewport-size/ "use-viewport-size") 	|	リサイズとオリエンテーションチェンジイベントを購読し、SSR時には{width: 0, height: 0}を返すフックである。	|
+|	[use-viewport-size](https://mantine.dev/hooks/use-viewport-size/ "use-viewport-size") 	|	リサイズとオリエンテーションチェンジイベントを購読し、SSR時には{width: 0, height: 0}を返すフックです。	|
 
 |Utilities |	説明	 |
 |---|---|
@@ -69,10 +69,10 @@ https://qiita.com/masakinihirota/items/2afd18f1bce3b7b70b60
 |	[use-hash](https://mantine.dev/hooks/use-hash/ "use-hash") 	|	URLからハッシュ値を取得したり、ハッシュ変更イベントに購読したり、ハッシュを設定したりすることができるツールです。	|
 |	[use-merged-ref](https://mantine.dev/hooks/use-merged-ref/ "use-merged-ref") 	|	複数のrefを使用する必要がある場合に使用するフックです。これは、domノードに渡される関数を返します。	|
 |	[use-network](https://mantine.dev/hooks/use-network/ "use-network") 	|	ネットワーク接続の状態を取得するためのJavaScriptフックであり、オンライン/オフラインの状態を取得したり、RTT（Round Trip Time）やダウンリンクなどの情報を取得することができます。	|
-|	[use-os](https://mantine.dev/hooks/use-os/ "use-os") 	|	ユーザーのOSを検出するためのツールであり、可能な値はundetermined、macos、ios、windows、android、linuxである。	|
+|	[use-os](https://mantine.dev/hooks/use-os/ "use-os") 	|	ユーザーのOSを検出するためのツールであり、可能な値はundetermined、macos、ios、windows、android、linuxです。	|
 |	[use-page-leave](https://mantine.dev/hooks/use-page-leave/ "use-page-leave") 	|	マウスがページから離れたときに指定した関数を呼び出すものです。	|
 |	[use-text-selection](https://mantine.dev/hooks/use-text-selection/ "use-text-selection") 	|	現在のテキスト選択を返すフックであり、テキスト選択を無効にすることができます。例えば、ユーザビリティのために、テキスト選択を無効にすることが望ましい場合があります。	|
-|	[use-window-event](https://mantine.dev/hooks/use-window-event/ "use-window-event") 	|	コンポーネントマウント時にウィンドウへのイベントリスナーを追加し、アンマウント時に削除するものである。	|
+|	[use-window-event](https://mantine.dev/hooks/use-window-event/ "use-window-event") 	|	コンポーネントマウント時にウィンドウへのイベントリスナーを追加し、アンマウント時に削除するものです。	|
 |	[use-window-scroll](https://mantine.dev/hooks/use-window-scroll/ "use-window-scroll") 	|	現在のスクロール位置を返し、指定された位置にスムーズにスクロールする関数を提供する。	|
 
 |Lifecycle |	説明	 |

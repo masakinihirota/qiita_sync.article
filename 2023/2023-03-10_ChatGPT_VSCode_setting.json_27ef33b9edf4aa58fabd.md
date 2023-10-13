@@ -943,7 +943,7 @@ https://thepast.jp/blog/the-ultimate-guide-for-using-chatgpt-for-english-learnin
 以下の制約条件をもとに、 私とチャットしてください。
 
 # 制約条件:
-・私は英語初級者である。
+・私は英語初級者です。
 ・トピックはあなたが決める。
 ・一文ずつ会話をする。
 ・文法間違い、より適切な表現があれば訂正し、その理由を述べる。

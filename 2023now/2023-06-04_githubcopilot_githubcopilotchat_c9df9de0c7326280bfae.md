@@ -742,7 +742,7 @@ https://typescriptbook.jp/tutorials/component-test
 #### 具体的には
 コードは
 Reactのコンポーネントである
-ONとOFFを切り替えるコンポーネントである。
+ONとOFFを切り替えるコンポーネントです。
 
 テストコードは
 最初の表示はOFFというボタンが表示されることを期待する。

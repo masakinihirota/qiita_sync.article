@@ -154,7 +154,7 @@ https://www.perplexity.ai/
 
 https://www.perplexity.ai/?s=u&uuid=f8a98d79-dec4-414a-8d48-c18c4ea5276a
 
-Perplexity.aiは、AIを用いた質問応答サービスで、日本語にも対応している。Perplexityとは、ある事象に対して、別の事象が発生した際の頻度（確率）を対数を組み合わせて表す機械学習の指標である。
+Perplexity.aiは、AIを用いた質問応答サービスで、日本語にも対応している。Perplexityとは、ある事象に対して、別の事象が発生した際の頻度（確率）を対数を組み合わせて表す機械学習の指標です。
 
 
 
