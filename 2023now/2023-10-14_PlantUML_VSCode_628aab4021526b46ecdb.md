@@ -59,7 +59,7 @@ state vnsページ {
 ```
 
 
-# 使用Gifツール
+# 使用GIF動画作成ツール
 
 ScreenToGif - 画面を録画し、編集して GIF、ビデオ、またはその他の形式で保存します。
 https://www.screentogif.com/
