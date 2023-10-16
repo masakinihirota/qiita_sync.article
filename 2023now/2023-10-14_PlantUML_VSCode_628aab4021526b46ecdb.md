@@ -15,11 +15,13 @@ https://marketplace.visualstudio.com/items?itemName=well-ar.plantuml
 背景黒で目に優しいテーマを使用しています。
 
 画像上で項目名をクリックするとコードの場所に飛んでくれます。
-ただし同じ項目名があるとクリックしても１番目に飛んでしまいます。
+ただし同じ項目名があるとクリックしても１番目に（最初にヒットしたキーワード）飛んでしまいます。
 
 ![PlantUML_crt.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/1abb26f6-e08c-23a2-3354-10f9125c2320.gif)
 
-容量 1.2M
+↑GIF画像の容量 1.2MB
+
+
 
 ```PlantUML.puml
 @startuml vns
