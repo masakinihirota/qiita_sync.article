@@ -39,11 +39,11 @@ supabase start
 supabase stop
 supabase status
 
-DB内のデータを保存したくない場合は 
+DB内のデータを保存したくない場合は
 supabase stop --no-backup
 
 supabase stop では保存されますが、
-supabase start で再度立ち上げ 
+supabase start で再度立ち上げ
 supabase db reset を実行するとSeed等に記録されてないデータは消えます。
 
 supabase db dump -f supabase/seed.sql --data-only
@@ -72,11 +72,6 @@ supabase migration repair 20230918014029 --status applied
 
 ローカル側はマイグレーションファイル自体を削除すれば消えます。
 
-マイグレーションファイルを削除した場合は、
-
-supabase reset
-
-を実行しておきます。
 
 
 
@@ -2045,7 +2040,7 @@ supabase migration list で確認します。
 
 ```
 
-        LOCAL      │     REMOTE     │     TIME (UTC) 
+        LOCAL      │     REMOTE     │     TIME (UTC)
   ─────────────────┼────────────────┼──────────────────────
     20230917104838 │ 20230917104838 │ 2023-09-17 10:48:38
     20230920103250 │                │ 2023-09-20 10:32:50  ＜＜追加された
@@ -2065,7 +2060,7 @@ supabase migration list で確認します。
 
 ```
 
-        LOCAL      │     REMOTE     │     TIME (UTC) 
+        LOCAL      │     REMOTE     │     TIME (UTC)
   ─────────────────┼────────────────┼──────────────────────
     20230917104838 │ 20230917104838 │ 2023-09-17 10:48:38
     20230920103250 │ 20230920103250 │ 2023-09-20 10:32:50
@@ -2997,7 +2992,7 @@ https://supabase.com/docs/guides/cli/testing-and-linting
 Supabase CLI は、
 Postgres データベース
 Edge 関数のテスト
-lint 
+lint
 これらに役立つ一連のツールを提供しています。
 
 

@@ -5,6 +5,32 @@ id:      4cc6f8637206e29502fd
 private: false
 -->
 
+追記 2023年10月18日
+
+https://v0.dev/
+
+↓動画で使い方がわかりやすいです。
+
+https://twitter.com/v0/status/1712151235715883310
+
+Announcing v0: Generative UI – Vercel
+
+https://vercel.com/blog/announcing-v0-generative-ui
+
+
+
+Vercel、生成AIへのプロンプトでWebアプリのUIを自動生成してくれる「v0」をベータ公開。Freeプランも提供 － Publickey
+
+https://www.publickey1.jp/blog/23/vercelaiwebuiv0free.html
+
+無料は 20回まで
+月額 10ドルで 150回まで
+月額 30ドルで 500回まで
+月額 50ドルで 1000回まで
+
+追記終了
+
+
 追記 2023年10月1日
 
 参加許可のメールが来ました。
