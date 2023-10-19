@@ -60,6 +60,8 @@ supabase reset
 
 supabase migration list
 
+
+
 # マイグレーションリストの操作
 
 ↓REMOTE側の削除方法
@@ -71,7 +73,6 @@ supabase migration repair 20230918014029 --status applied
 ※数字はマイグレーションファイルのタイムスタンプ部分です。
 
 ローカル側はマイグレーションファイル自体を削除すれば消えます。
-
 
 
 
