@@ -258,7 +258,7 @@ https://www.gaji.jp/blog/2022/05/26/9784/
 
 Storybook Connect を使って Figma で Storybook のコンポーネントを確認する
 
-Storybook Connect プラグインを使って Figma と Chromatic 上の Storybook をを連携する方法
+Storybook Connect プラグインを使って Figma と Chromatic 上の Storybook を連携する方法
 
 Figma と Storybook を連携することで Figma 上に Storybook のウィンドウを表示させることができ、よりシームレスに UI コンポーネントの確認が進められます。
 
