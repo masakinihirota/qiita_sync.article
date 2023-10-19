@@ -40,8 +40,6 @@ module.exports = {
 この記事ではNext.jsが公式で用意しているSupabaseのサンプルを使って、
 Supabaseのデータを取得する方法を解説します。
 
-より理解しやすくするためにちょっとソースをいじっています、そのソースの完成形が↓この記事の完成リポジトリになります。
-
 Next.js公式examples集を分類（2023年7月版）
 https://qiita.com/masakinihirota/items/c4c8931d7067349006ef
 
