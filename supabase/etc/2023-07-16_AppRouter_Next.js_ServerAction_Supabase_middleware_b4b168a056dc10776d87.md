@@ -42,18 +42,6 @@ Supabaseのデータを取得する方法を解説します。
 
 より理解しやすくするためにちょっとソースをいじっています、そのソースの完成形が↓この記事の完成リポジトリになります。
 
-
-# この記事の完成リポジトリ
-
-https://github.com/masakinihirota/vercel_supabase_starter
-
-ダウンロード
-
-```
-gh repo clone masakinihirota/vercel_supabase_starter
-
-```
-
 Next.js公式examples集を分類（2023年7月版）
 https://qiita.com/masakinihirota/items/c4c8931d7067349006ef
 
