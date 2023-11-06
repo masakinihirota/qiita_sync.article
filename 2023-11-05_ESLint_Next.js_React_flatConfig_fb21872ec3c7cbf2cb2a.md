@@ -8,17 +8,43 @@ private: false
 
 ドキュメント編はドキュメントの翻訳になります、これを踏み台にNext.js App router に合ったESLint Flat Configを調べていきます。
 
+その新設定ファイルの解説が↓このページで説明されています。
+Configuration Files (New) - ESLint - Pluggable JavaScript Linter
+
+https://eslint.org/docs/latest/use/configure/configuration-files-new
+
+# ESLint Rules
+
+全 ESLint ルール一覧
+https://docs.google.com/spreadsheets/d/1zUU5h_nEXFCg_E2ktmE7Hv-SFir5Y0tFkKcQ1oMQCBc/edit?usp=sharing
+
+Google Spreadsheet
+
+
+
+# ESLint
+
+Find and fix problems in your JavaScript code - ESLint - Pluggable JavaScript Linte
+
+https://eslint.org/
+
 
 
 # 新設定ファイル eslint.config.js
 
-ESLintは v9から 新しいConfigファイルを採用する事になりました。
+ESLintは v9から Flat Config がデフォルトで採用されます。
 
-今までの設定は難解で、設定がネストされていましたが、これからの設定はすべて同列に置かれシンプルになります。
+※現在のバージョンはv8 ですが Flat Config で設定できます。(2023年11月6日)
 
-その新設定ファイルの解説が↓このページで説明されています。
-Configuration Files (New) - ESLint - Pluggable JavaScript Linter
-https://eslint.org/docs/latest/use/configure/configuration-files-new
+今までの設定は難解で、設定がネストされ複雑化していましたが、これからの設定はすべて同列に置かれシンプルになり、設定ファイルの名前も `eslint.config.js` に統一されます。
+
+設定が重複した場合、上にある設定は下にある設定に上書きされてしまいます。
+基本的にベースとなる設定ファイルを上に置き、下に独自の設定を追加していく形になります。
+
+
+# Flat Confgi ドキュメントページ
+
+以下ドキュメントページの翻訳部分です。
 
 
 
