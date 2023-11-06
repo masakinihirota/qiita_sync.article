@@ -15,11 +15,15 @@ https://eslint.org/docs/latest/use/configure/configuration-files-new
 
 # ESLint Rules
 
-全 ESLint ルール一覧
+全 ESLint & typescript-eslint ルール一覧
 
 https://docs.google.com/spreadsheets/d/1zUU5h_nEXFCg_E2ktmE7Hv-SFir5Y0tFkKcQ1oMQCBc/edit?usp=sharing
 
-Google Spreadsheet
+Google Spreadsheetに書き起こしました。
+
+ESLint のルールを一覧で見ることができます。
+typescript-eslint のルールを一覧で見ることができます。
+全ルールをABC順ソートしています。
 
 
 
