@@ -2095,14 +2095,45 @@ jp:と 「:」記号まで付けてください。
 ※短い英文の場合は、「en:」を省略できます。
 `// ja:` だけを書いてからトリガーすると翻訳してくれます。
 
+```Server-Side Rendering.md
+Single-page apps with server-side rendering (SSR) is a popular way to optimize rendering performance and leverage advanced caching strategies.
+ja: サーバーサイドレンダリングを使用すると、レンダリングパフォーマンスを最適化し、高度なキャッシュ戦略を活用できます。
+
+Supabase Auth supports server-side rendering when you need access to user information, or your server needs to authorize API requests on behalf of your user to render content.
+ja:
+When a user authenticates with Supabase Auth, two pieces of information are issued by the server:
+
+
+```
+
+↑ 2個目まではja:を書いてからトリガーすると翻訳してくれます。
+
+
+```Server-Side Rendering.md
+Single-page apps with server-side rendering (SSR) is a popular way to optimize rendering performance and leverage advanced caching strategies.
+ja: サーバーサイドレンダリングを使用すると、レンダリングパフォーマンスを最適化し、高度なキャッシュ戦略を活用できます。
+
+
+Supabase Auth supports server-side rendering when you need access to user information, or your server needs to authorize API requests on behalf of your user to render content.
+ja: Supabase Authは、ユーザー情報にアクセスする必要がある場合や、サーバーがユーザーの代わりにAPIリクエストを承認してコンテンツをレンダリングする必要がある場合に、サーバーサイドレンダリングをサポートしています。
+
+When a user authenticates with Supabase Auth, two pieces of information are issued by the server:
+ja: ユーザーがSupabase Authで認証すると、サーバーから2つの情報が発行されます。
+
+```
+
+2個目まではja:を書くことで翻訳してくれました。
+さらに、3個目の英文はja:を書かなくても英文の下にカーソルを持っていき提案キーを押すだけで翻訳してくれました。
+どうやらGitHub Copilot chatが学習してくれたようです。おまけに翻訳時に空行まで付けてくれました。
+
 
 
 ## 例3 READ.MEファイルを翻訳をしてもらう
 
-普通に翻訳をしてくださいというと浮く翻訳できない時がありますが
+普通に翻訳をしてくださいというだけでは上手く翻訳してくれない場合があります。
 READ.MEを用意して
 
-`readme.mdを日本語に翻訳してください``
+`readme.mdを日本語に翻訳してください`
 
 とするだけで、きれいに翻訳してくれます。
 
