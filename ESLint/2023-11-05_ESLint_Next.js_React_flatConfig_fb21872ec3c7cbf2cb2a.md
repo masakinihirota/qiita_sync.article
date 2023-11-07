@@ -8,10 +8,12 @@ private: false
 
 ドキュメント編はドキュメントの翻訳になります、これを踏み台にNext.js App router に合ったESLint Flat Configを調べていきます。
 
-その新設定ファイルの解説が↓このページで説明されています。
+このページの翻訳です。
 Configuration Files (New) - ESLint - Pluggable JavaScript Linter
 
 https://eslint.org/docs/latest/use/configure/configuration-files-new
+
+
 
 # ESLint Rules
 
