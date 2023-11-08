@@ -13,9 +13,9 @@ Configuration Files (New) - ESLint - Pluggable JavaScript Linter
 https://eslint.org/docs/latest/use/configure/configuration-files-new
 
 
-[ESLint Flat Config 入門編 +ESLintの基礎知識](2023-11-08_React_flatConfig_4674389f844fd7e50058.md)
+[ESLint Flat Config 入門編 +ESLintの基礎知識](https://qiita.com/masakinihirota/items/b61d595e4ea746adef57)
 ESLint Flat Config 入門 ドキュメント編 (Next.js App router、React) #React - Qiita
-[ESLint Flat Config 入門 マイグレーション編 (Next.js App router、React) #React - Qiita](2023-11-07_React_flatConfig_08908beecd2ca11aa729.md)
+[ESLint Flat Config 入門 マイグレーション編 (Next.js App router、React) #React - Qiita](https://qiita.com/masakinihirota/items/ba54efa93989de68d2a0)
 
 
 
