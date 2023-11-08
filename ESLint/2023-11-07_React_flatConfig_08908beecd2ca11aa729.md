@@ -1,8 +1,10 @@
 <!--
 title:   ESLint Flat Config 入門 マイグレーション編 (Next.js App router、React)
-tags:    Next.js,React,eslint,flatConfig
+tags:    ESLint,Next.js,React,flatConfig
+id:      ba54efa93989de68d2a0
 private: false
 -->
+
 # マイグレーション編
 
 マイグレーション編はマイグレーションの翻訳になります、これを踏み台にNext.js App router に合ったESLint  Flat Configを調べていきます。
