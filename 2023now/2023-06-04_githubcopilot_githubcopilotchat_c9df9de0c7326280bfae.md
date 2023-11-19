@@ -4,33 +4,52 @@ tags:    githubcopilot,githubcopilotchat
 id:      c9df9de0c7326280bfae
 private: false
 -->
-**Github Copilot** が利用できれば、**Github Copilot chat** も利用できます。
+**Github Copilot chat** は**Github Copilot** で課金していれば、無料で利用できます。
 
 ※前の記事
 
+GitHub Copilot導入後、初めて使う時。(豊富な使用例付き)
+
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
-この記事は **Github Copilot** の **チャット機能** について説明しています。
 
-追記 2023年10月6日
+
+# Github Copilot chat の機能
+
+* インラインチャット
+* チャットサイドバー
+
+
+
+# インラインチャット
+
+ショートカット
+ctrl + i
+ctrl + k i
+
+ファイル上から直接提案をしてもらえます。
+
+GitHub Copilot ではコメントに対して提案をしてくていました。
+
+
+
+# チャットサイドバー
+
+プライマリサイドバー(＝デフォルトで左側にあるサイドバー)のGitHub Copilot chatのアイコンから開きます。
+
+ショートカット無し
+
+
+
+VSCodeのサイドバーを開いてそこでAIに質問をしたり、提案をしたりできます。
+
+
 
 # キーボードショートカット
 
-今まで キーボードショートカット で開く時に
+一部抜粋
 
-workbench.panel.chatSidebar.copilot
-
-↑このコマンドを使っていましたが、このコマンドは廃止されました。
-
-代わりに↓このコマンドを使用してください。
-
-workbench.panel.chatSidebar
-
-## キーボードショートカット 設定例
-
-現在、キーボードショートカット はプライマリバーで開閉するようにしています。
-
-```
+```keybindings.json
   {
     // GitHub Copilot chat をプライマリバーに開きます。
     // GitHub Copilot chat 入力場所へのフォーカスします。
@@ -44,22 +63,24 @@ workbench.panel.chatSidebar
     "command": "workbench.action.closeSidebar",
     "when": "sideBarVisible"
   },
-
-  // {
-  //   // ↑上のを利用すれば、↓これは利用しません。
-  //   // GitHub Copilot chat をプライマリバーで開閉します。
-  //   // GitHub Copilot chat 入力場所へのフォーカスは無し。
-  //   "key": "ctrl+shift+x",
-  //   "command": "workbench.action.toggleSidebarVisibility"
-  // },
+  {
+    "key": "ctrl+k i",
+    "command": "inlineChat.start",
+    "when": "inlineChatHasProvider && !editorReadonly"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "inlineChat.start",
+    "when": "inlineChatHasProvider && !editorReadonly"
+  }
 
 ```
 
-追記終了
 
 
 
-追記 2023年8月16日
+
+
 
 # 翻訳テクニック
 
@@ -251,12 +272,10 @@ GitHub Copilot導入後、初めて使う時。(豊富な使用例付き)
 
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
-追記終了 2023年8月16日
 
 
 
 
-追記 2023年7月18日
 [GitHub Copilot chat changelog](https://github.blog/changelog/2023-07-14-github-copilot-july-14th-update/)
 
 チャット履歴の保存と復元 – これにより、ユーザーが Visual Studio を閉じるたびにディスカッション/チャットを失うことがなくなります。現在は永続化され、復元されています。
@@ -281,12 +300,6 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 
 
-
-追記終了 2023年7月18日
-
-
-
-追記 2023年7月6日
 
 GitHub Copilot chatはファイルを指定したり、URLを渡すと読んでくれます。
 たとえば↓のようにファイル名やURLを貼り付けてあげると、そのサイトの説明をしてくれます。
@@ -326,15 +339,11 @@ GitHub Copilot: ありがとうございます。Tigrisは、データ分析お�
 ```
 
 
-追記終了 2023年7月6日
-
-追記 2023年7月4日
 
 GitHub Copilot Nightly は GitHub Copilot に統合されました。
 
 https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
 
-追記終了 2023年7月4日
 
 
 **Github Copilot** が利用できれば、**Github Copilot chat** も利用できます。
@@ -1140,3 +1149,37 @@ GitHub Copilot chatでは区切り文字を＜＜＜3文字以上などが利用
 
 ＜＜＜＜このコードを必要性、関連性、注意点を交えて解説してください。
 こ
+
+
+
+
+
+## キーボードショートカット 設定例
+
+現在、キーボードショートカット はプライマリバーで開閉するようにしています。
+
+```
+  {
+    // GitHub Copilot chat をプライマリバーに開きます。
+    // GitHub Copilot chat 入力場所へのフォーカスします。
+    "key": "ctrl+shift+x",
+    "command": "workbench.panel.chatSidebar",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+  {
+    // プライマリサイドバーを閉じます。(プライマリサイドバーが開いている時)
+    "key": "ctrl+shift+x",
+    "command": "workbench.action.closeSidebar",
+    "when": "sideBarVisible"
+  },
+
+  // {
+  //   // ↑上のを利用すれば、↓これは利用しません。
+  //   // GitHub Copilot chat をプライマリバーで開閉します。
+  //   // GitHub Copilot chat 入力場所へのフォーカスは無し。
+  //   "key": "ctrl+shift+x",
+  //   "command": "workbench.action.toggleSidebarVisibility"
+  // },
+
+```
+

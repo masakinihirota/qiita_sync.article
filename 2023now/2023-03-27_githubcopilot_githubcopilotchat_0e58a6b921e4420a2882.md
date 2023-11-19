@@ -4,21 +4,24 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
-追記 2023年7月4日
-
-GitHub Copilot Nightly は GitHub Copilot に統合されました。
-
-https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
-
-追記終了
-
-追記:2023/06/05
+追記:2023/11/19
 
 次の記事
 
+GitHub Copilot chatの使い方
+
 https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
 
+GitHub Copilot chatは・・・
+* GitHub Copilotに課金しているユーザーは無料で利用できます。
+* GitHub Copilotの機能をさらに拡張したものです。
+* コードに関することに限りChatGPTのようにAIと会話ができるようになりました。
+* GitHub Copilotではコメントを書いて指示を出すことが出来ましたが、GitHub Copilot chatではファイル上から直接インライン機能を起動させて指示を出すことができるようになりました。
+
+
+
 追記終了
+
 
 ### アイコンの説明
 
@@ -3188,3 +3191,11 @@ GitHub Copilot を始める前に下記の拡張機能をOFFにしてくださ�
 これらの拡張機能がONになっていると、コードが正常に出力されない、コメントが正常に挿入されない等の不具合が発生します。
 
 ※ VSCode Insiderで不具合を確認したので、VSCodeでも同じ不具合が発生する可能性があります。
+
+追記 2023年7月4日
+
+GitHub Copilot Nightly は GitHub Copilot に統合されました。
+
+https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
+
+追記終了
