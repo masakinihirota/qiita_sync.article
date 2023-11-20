@@ -4,7 +4,7 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
-追記:2023/11/19
+追記:2023/11/20
 
 次の記事
 
@@ -18,7 +18,7 @@ GitHub Copilot chatは・・・
 * コードに関することに限りChatGPTのようにAIと会話ができるようになりました。
 * GitHub Copilotではコメントを書いて指示を出すことが出来ましたが、GitHub Copilot chatではファイル上から直接インライン機能を起動させて指示を出すことができるようになりました。
 
-
+例えば、README.mdが英語で、日本語に翻訳したい時にGitHub Copilot chat のインライン機能を起動させて「このREADME.mdを翻訳してください」と指示を出すと、翻訳してくれます。
 
 追記終了
 
