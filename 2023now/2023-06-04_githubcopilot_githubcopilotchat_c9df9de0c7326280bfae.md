@@ -20,9 +20,16 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 ![Animation.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/22edf20c-ae2d-af3f-9bc9-aeeaa90ecd24.gif)
 
 翻訳は長くても７０行程度まで（エディタの幅による）
-AIの区切り記号で停止することがある。
 
+AIの区切り記号で停止することがある。
 ※AIの区切り記号とは＝＝＝＝や＞＞＞＞など３-４文字以上の連続した記号文字。
+
+※左側の青い停止ボタンは、gif作成動画ツールの停止ボタンです。
+
+### 使用GIF動画作成ツール
+
+ScreenToGif - 画面を録画し、編集して GIF、ビデオ、またはその他の形式で保存します。
+https://www.screentogif.com/
 
 
 
