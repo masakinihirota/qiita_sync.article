@@ -15,6 +15,25 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 # GitHub Copilot chat inline機能
 
+## FizzBuzz問題を解いて結果を表示させる。
+
+inline機能から↓入力します。
+
+```
+reactコンポーネントでFizzBuzz問題を書いてください。出力はブラウザの画面上にしてください。
+
+```
+
+
+![AnimationFizzBuzz.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/6ab3b5c3-f930-ab6d-e039-4a94ba189c11.gif)
+
+画面にコードが出力されます。
+実際に動くのを確認しました。
+
+※一度目は console.logだったのでやり直してもらいました。
+
+
+
 ## inline機能を使って翻訳をしてみる。
 
 ![Animation.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/22edf20c-ae2d-af3f-9bc9-aeeaa90ecd24.gif)
