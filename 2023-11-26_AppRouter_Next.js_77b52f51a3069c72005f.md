@@ -10,16 +10,11 @@ Configuring: src Directory | Next.js
 
 https://nextjs.org/docs/app/building-your-application/configuring/src-directory
 
-
-
 # 理由
-
 Next.jsサンプルなどで、srcフォルダを使わないApp routerのサンプルがあったので、
 その時の差分はどこを修正すればいいのか調べました。
 
 ※自分は自分のコードをすべてsrcの下に置きたい派
-
-
 
 # 差分＆移動＆修正
 
