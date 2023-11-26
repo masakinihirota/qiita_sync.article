@@ -3199,3 +3199,40 @@ GitHub Copilot Nightly は GitHub Copilot に統合されました。
 https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
 
 追記終了
+
+# 何が足りてないか？何が欲しいか？
+
+GitHub Copilot が登場してからかなり経ちました、
+後発の GitHub Copilot 類似ツールも登場しています。
+その後発のツールには付いているが、 GitHub Copilot には付いていない機能があります。
+
+## Chat機能
+
+GitHub Copilot chat で出来るようになりました。
+
+GitHub Copilot chat inline機能を使用すれが実現できます。
+
+
+
+## 自動修正機能
+
+これはGitHub Copilot で指示を出さないと出来ません。
+
+
+
+## 読み込み機能
+
+プロジェクト全体 or リポジトリ全体を読み込む機能
+
+ドキュメントを読み込む機能
+
+読み込ませるとそれを元にして質問に答えてくれたり、最新の情報に沿ったコードを生成してくれるようになります。
+
+現在のGitHub Copilot は古い情報を元にしてコードを生成してしまう事があります。
+
+ファイル読み込み機能。
+GitHub Copilot chat inline機能で実現できます。
+ただファイル全体を読んではくれず、現在は、一定の範囲を見るに留まっています。
+
+現在、GitHub Copilot には指定フォルダ全体を読み込ませる機能はありません。
+
