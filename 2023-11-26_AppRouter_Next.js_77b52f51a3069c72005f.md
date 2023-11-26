@@ -1,5 +1,5 @@
 <!--
-title:   Next.js のインストール時にsrcを選択した時と、しない時の差分の調査 (Next.js 14 App router) 
+title:   Next.js のインストール時にsrcを選択した時と、しない時の差分の調査 (Next.js 14 App router)
 tags:    AppRouter,Next.js
 id:      77b52f51a3069c72005f
 private: false
@@ -10,11 +10,16 @@ Configuring: src Directory | Next.js
 
 https://nextjs.org/docs/app/building-your-application/configuring/src-directory
 
+
+
 # 理由
+
 Next.jsサンプルなどで、srcフォルダを使わないApp routerのサンプルがあったので、
 その時の差分はどこを修正すればいいのか調べました。
 
 ※自分は自分のコードをすべてsrcの下に置きたい派
+
+
 
 # 差分＆移動＆修正
 
