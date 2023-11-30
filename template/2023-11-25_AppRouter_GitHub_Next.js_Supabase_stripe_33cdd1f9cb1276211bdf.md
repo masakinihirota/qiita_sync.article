@@ -38,12 +38,26 @@ npm run dev
 
 
 
-# Stripe Subscription Starter – Vercel
+# Stripe Subscription Starter - Vercel
 
 https://vercel.com/new/templates/next.js/subscription-starter
 
 今回はこのStarterを使ってハンズオンをしていきます。
 
+
+<details><summary>デプロイボタンを読みやすくします。</summary>
+
+https://vercel.com/new/clone?
+repository-url=https://github.com/vercel/nextjs-subscription-payments
+env=NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,STRIPE_SECRET_KEY
+envDescription=Stripe API キーを入力してください。
+envLink=https://dashboard.stripe.com/apikeys
+project-name=nextjs-subscription-payments
+repository-name=nextjs-subscription-payments
+integration-ids=oac_VqOgBHqhEoFTPzGkPd7L0iH6
+external-id=https://github.com/vercel/nextjs-subscription-payments/tree/main
+
+</details>
 
 
 ## ↑この Starter のデモ
@@ -57,7 +71,7 @@ Stripeはインボイス制度の導入などあって、このStarter開発当�
 
 
 
-# セットアップ開始前の準備
+<details><summary>セットアップ開始前の準備</summary>
 
 Next.jsの基礎
 と
@@ -69,7 +83,7 @@ Stripeのアカウントと利用方法
 
 
 
-# GitHub
+* GitHub
 
 GitHub Japan | GitHub
 https://github.co.jp/
@@ -78,7 +92,7 @@ https://github.co.jp/
 
 
 
-## Vercel
+* Vercel
 
 https://vercel.com/
 
@@ -86,7 +100,7 @@ https://vercel.com/
 
 
 
-## Supabase
+* Supabase
 
 https://supabase.com/
 
@@ -97,7 +111,7 @@ https://supabase.com/
 
 
 
-## Stripe | オンライン決済・決済代行プラットフォーム
+* Stripe | オンライン決済・決済代行プラットフォーム
 
 https://stripe.com/jp
 
@@ -106,7 +120,7 @@ https://stripe.com/jp
 
 
 
-# Next.jsの基礎について
+* Next.jsの基礎について
 
 Next.jsの公式サイトがNext.js学習用のサイトを公開してくれています。
 
@@ -117,64 +131,94 @@ https://nextjs.org/learn
 ここにNext.js の App router や Sever actionsの最新情報が詰まっています。(無料)
 (2023年11月25日 現在)
 
-
-
-# Starter セットアップの開始
-
-↑上の方に書いたStripe Subscription Starter ページのDeployボタンを押して開始します。
-
-もしくは、
-
-GitHub のリポジトリに行きます。
-
-vercel/nextjs-subscription-payments: Clone, deploy, and fully customize a SaaS subscription application with Next.js.
-
-https://github.com/vercel/nextjs-subscription-payments
-
-ここのREADME.mdにあるデプロイボタンを押します。
-
-どちらからでも行えます。
+</details>
 
 
 
-少し待って、
+----------------------------------------
+
+↓README.mdに書かれている手順をそのままなぞっていきます。
+
+# Step-by-step setup Starter セットアップの開始
+
+↑上の方に書いたStripe Subscription Starter ページの **Deployボタン** を押して開始します。
+
 You're almost done. (ほとんど終了)
 と表示されます。
 
+
+
+# Create Git Repository
+
 続いて、ソースコードを置く場所を決めます。
 
-今回は、GitHubを選択します。作る
+今回はGitHubを選択します。
 
 GitHubにリポジトリを作ります。
 
 リポジトリ名を決めて Createボタンを押します。
 
+vns
 
+
+
+
+## Add Integrations
 
 次にSupabaseを設定します。
 
-Supabaseでアカウントを作ってあれば、
-Supabaseの新しいプロジェクトを１つ作ります。
+Addボタンを押します。
 
-プロジェクト名、パスワードを決めます。
+新しいウィンドウが開いて
+Choose organization
+Install integrationボタンを押します。
+
+例
+Project nameを決めます。
+vns-supabase
+
+Database Passwordを決めます。
+データベースパスワードは、Generate a passwordを押せば自動生成機能されます。
+
+Regionを決定します、近いほどアクセスが良いです。
+
+シードデータを作ります。
+Create sample tables with seed data
+
+成功すると右上にメッセージが出ます。
 
 
 
-次にStripeを設定します。
+## Configure Project
 
-Stripeのアカウントは作ってあると思います。
+環境変数を設定します。
 
-Stripe の ダッシュボードへ行きます。
+API キー | Stripe のドキュメント
 
-Stripe のテストモード ダッシュボード
+https://stripe.com/docs/keys
 
-https://dashboard.stripe.com/test/dashboard
+Stripeのダッシュボードのapikeysページから環境変数を取得します。
 
-開発者 – 新規ビジネス – Stripe [テスト]
-
-https://dashboard.stripe.com/test/apikeys
+https://dashboard.stripe.com/apikeys
 
 ↑ここで、StripeのAPI keysを取得します。
+
+
+```
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+STRIPE_SECRET_KEY
+
+```
+
+Deployボタンを押します。
+
+# Deploy
+
+Deployが開始されます。
+
+数分待ちます。
+
+
 
 デプロイをします。
 成功すると Congratulations! と表示されます。
@@ -183,76 +227,20 @@ https://dashboard.stripe.com/test/apikeys
 
 ----------------------------------------
 
-ここでGitHubの作成されたリポジトリから
-ローカルPCにCloneします。
+# Configure Auth
 
-GitHubリポジトリから自分のPCにダウンロードする方法はどれでもいいです。
-
-例：
-ghコマンドを使う方法
-
-VSCodeのterminalから実行します。
-
-```terminal
-gh repo clone [GitHubアカウント名]/[先ほど決めたリポジトリ名]
-
-```
-
-※ gh コマンドを利用するには、GitHub CLIをインストールしておく必要があります。
-
-
-Starter のソースコードをダウンロード後、インストールします。
-
-```
-npm install
-npm run dev
-
-```
-
-
-
-※次に環境変数などを設定していきます。
-
-
-
-Supabaseのダッシュボードへ行きます。
+## Supabaseでの設定
 
 Dashboard | Supabase
-
 https://supabase.com/dashboard/projects
 
-プロジェクトを開いてTable Editorを見て
+先程作ったSupabaseのプロジェクトのダッシュボードを開きます。
 
-```table
-customers
-prices
-products
-subscriptions
-users
-
-```
-
-
-
-デプロイボタンからインストールしていれば出来ているはずです。
-これらのテーブルが出来ていることを確認します。
-
-テーブルが出来ていなかった場合は、
-SQL Editorにある
-
-`Stripe Subscriptions`
-
-というSQL文を実行します。
-
-
-
-# 認証の設定
-
-Supabaseのプロジェクトダッシュボードの
 左サイドバーにある Authentication > URL configuration
 を選択します。
 
-Site URLを公開するURLに設定をします。
+
+Site URLを公開されたURLに設定をします。
 
 例えば、Vercelで公開されているURLを指定します。
 
@@ -261,20 +249,29 @@ https://[Vercelで作成された公開ページ].vercel.app/
 
 ```
 
+Save ボタンを押します。
+
 ※独自ドメインがあるなら、Vercelで登録してそのURLを貼り付けます。
 
 
 
+## Vercelでの設定
+
+Vercel
+https://vercel.com/
+
 次に
-Vercelのプロジェクト画面の
-上部メニューにあるSettingsから
+先程作ったProjectの、Vercelでのダッシュボードを開きます。
+
+Vercelのプロジェクト画面の上部メニューにあるSettingsから
 Project Settings＞Environment Variables
+を開きます。
 
-デプロイ設定で、Production環境変数
+ここで
 NEXT_PUBLIC_SITE_URL
-を同じURLで設定します。
+という環境変数を設定します。
 
-
+先程登録したURLと同じURLを登録します。
 
 ```
 Key
@@ -286,9 +283,15 @@ https://[Vercelで作成された公開ページ].vercel.app/
 ```
 
 プレビューブランチとローカル開発が正しく動作するように
-preview environments
-development environments
-の選択を **必ず解除** します。
+
+Environmentの
+
+Productionだけチェックします。
+
+Preview
+と
+Development
+のチェックを **必ずはずし** ます。
 
 設定が終了したら Saveボタンを押します。
 
@@ -298,10 +301,11 @@ development environments
 
 [オプション]
 
-- デプロイプレビューのリダイレクトワイルドカードの設定
+デプロイプレビューのリダイレクトワイルドカードの設定
 
-※このテンプレートを"Deploy to Vercel"ボタンを通じてデプロイした場合は、
-このステップをスキップできます。
+
+
+<details><summary>※デプロイ ボタンを使用してインストールした場合は必要ありません。</summary>
 
 SupabaseのダッシュボードのAuthentication
 URL Configurationへ行きます。
@@ -323,13 +327,24 @@ https://*-[username].vercel.app/**
 
 ※[username]は自分の設定に合わせて登録してください。
 
+</details>
 
+
+
+----------------------------------------
 
 [オプション] - OAuthプロバイダーの設定
-GitHubやGoogleのようなサードパーティのログインプロバイダーを使用できます。これらの設定方法については、ドキュメントを参照してください。設定したら、Authコンポーネントページのprovider配列に追加できます。
+
+GitHubやGoogleのようなサードパーティのログインプロバイダーを追加できます。
+これらの設定方法については、ドキュメントを参照してください。
+
+設定したら、Authコンポーネントページのprovider配列に追加できます。
 
 Auth | Supabase Docs
+
 https://supabase.com/docs/guides/auth#third-party-logins
+
+
 
 <details><summary>提供OAuth一覧 (現在：2023年11月25日)</summary>
 
@@ -357,19 +372,40 @@ provider: 'zoom',
 
 ```
 
-</details>
 
 
-
-### 登録場所
+### OAuthプロバイダー登録場所
 
 nextjs-subscription-payments/app/signin/AuthUI.tsx at main · vercel/nextjs-subscription-payments
 
 https://github.com/vercel/nextjs-subscription-payments/blob/main/app/signin/AuthUI.tsx
 
+```nextjs-subscription-payments/app/signin/AuthUI.tsx
+ <div className="flex flex-col space-y-4">
+   <Auth
+     supabaseClient={supabase}
+     providers={['github']}      ＜＜＜＜この配列に登録するとブラウザ画面側で表示されます。
 
 
-[オプション] - Supabase環境変数の設定（デプロイボタンでインストールした場合はこの手順をスキップできます)。
+```
+
+それぞれのOAuthボタンが表示されるだけですので、実際の認証はSupabaseのドキュメントを読んでください。
+
+Social Login | Supabase Docs
+
+https://supabase.com/docs/guides/auth/social-login
+
+</details>
+
+
+
+----------------------------------------
+
+[オプション] - Supabase環境変数の設定
+
+<details><summary>※デプロイ ボタンを使用してインストールした場合は必要ありません。</summary>
+
+
 
 ※デプロイボタンからインストールした場合は、Supabase Vercel Integrationというツールが環境変数を自動で設定してくれます。
 
@@ -410,66 +446,98 @@ SUPABASE_SERVICE_ROLE_KEY
 フィールドに貼り付け、
 プロジェクトURLをコピーしてVercelに貼り付けます。
 
+</details>
+
+
+
+----------------------------------------
+
 これでSupabaseのセットアップが完了しました。
 のこりはあと少しです。
 
+ここまではマニュアル通りに順に設定していけばよかったですが、
+Stripeの設定はかなりの知識が必要です。
+Stripeのドキュメントを読んでください。
 
 
-# Stripeの設定
+
+# Configure Stripe
+
+Stripeの設定
 
 次に、テスト支払いを処理するためにStripeを設定する必要があります。
 
 以下の手順では、
+
 ダッシュボードで右上にテスト環境になっていることを確認します。
 
 Stripeダッシュボード
 
 開発者 – 新規ビジネス – Stripe [テスト]
+
 https://dashboard.stripe.com/test/apikeys
 
 Stripe | オンライン決済・決済代行プラットフォーム
+
 https://stripe.com/jp
 
 Test payment methods | Stripe のドキュメント
+
 https://stripe.com/docs/testing
 
 テスト環境 | Stripe のドキュメント
+
 https://stripe.com/docs/test-mode
 
 
 
+## Create a webhook
+
 Webhookの作成
+
 Stripeの「開発者」セクションでWebhookを作成する必要があります。
+
+上のアーキテクチャ図にあるように、
+このWebhookはStripeとVercel Serverless Functionsを接続する部分です。
 
 アーキテクチャ図に示されているように、
 このWebhookはStripeとVercelのサーバーレス関数を接続する役割を果たします。
 
 
 
+### 1
+
 ダッシュボード
 開発者 – 新規ビジネス – Stripe [テスト]
+
 https://dashboard.stripe.com/test/apikeys
 
-中央上にあるタブのWebhookを選択
-そのページの下に
+中央上にあるタブの中のWebhookタブを選択します。
+
+オンラインエンドポイントの右にある  ＋エンドポイントを追加 ボタンを押します。
+（パスワードを求められます。）
+
+
+
+### 2
+
+Stripe イベントのリッスン のページが開きます。
+
 エンドポイントを追加
-ボタンを押す。
-（パスワードを求められる。）
+
+エンドポイントURL
 
 エンドポイントURLに、本番デプロイURLの後に/api/webhooksを入力します。
 
 
 
-先程登録したURLに/api/webhooks を追加します。
-
-Stripe イベントのリッスン
-エンドポイントを追加
-
 ```
-
 エンドポイント URL
 
 https://[Vercelで作成された公開ページ].vercel.app/api/webhooks
+
+例
+https://your-deployment-url.vercel.app/api/webhooks
 
 説明
 
@@ -477,7 +545,20 @@ Webhooksの利用
 
 ```
 
+リッスンする
+アカウントでのイベント
 
+バージョン
+
+バージョンはそのまま
+現在ご利用のバージョン 2022-11-15
+
+※package.jsonに登録したライブラリをバージョンアップしたら変更する必要があります。
+最新バージョンと2022-11-15は少々違うところがあるのでバージョンアップする場合は慎重に選択してください。
+
+
+
+### 3
 
 「リッスンするイベントを選択」の下にある「イベントを選択」をクリックします。
 
@@ -485,19 +566,39 @@ Webhooksの利用
 送信するイベントの選択
 のページが表示されます。
 
-「送信するイベントを選択」セクションで「すべてのイベントを選択」をクリックします。
 
-イベントを追加ボタンを押します。（1回目）
-イベントを追加ボタンを押します。（2回目）
+
+### 4
+
+「全イベントを選択」のラジオボタンをチェックします。
+
+全イベントが選択されます。
+
+イベントを追加ボタンを押します。
+
+さらに
+イベントを追加ボタンを押します。
+
+これで新しくWebhookが出来ました。
+
+
+### 5
 
 次のステップで必要になるため、Signing secretをコピーします。
-場所は、シークレットキー の所の 「テストキーを表示」とされている所を開きます。
 
-そして署名シークレットを表示させて、コピーをします。
+先程登録したURLに
+
+イベントを待っています。という文言の間に
+
+署名シークレットがあり、
+その下に表示ボタンがあるので押します。
+
+署名シークレットが表示されるので、
+コピーをします。
 
 例
 
-```
+```署名シークレット
 
 whsec_su*********************
 
@@ -505,93 +606,228 @@ whsec_su*********************
 
 
 
+### 6
+
 デプロイ時に設定した
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 STRIPE_SECRET_KEY
-に加えて、Webhookのシークレットを
+に加えて、Webhookのシークレット
 STRIPE_WEBHOOK_SECRET
-環境変数として追加する必要があります。
+を、Vercelの環境変数に追加登録する必要があります。
 
+Vercel
 
+https://vercel.com/
 
 Vercelのダッシュボードのトップページに戻ります。
 
-Vercelのダッシュボードの上部のナビバーからSettingsを選択します。
+プロジェクトを選択してください。
+
+そして、Vercelのダッシュボードの上部のナビバーからSettingsを選択します。
 
 Project Settings
-Environment Variablesのページに戻り、
+Environment Variablesのページを開きます。
 
 Webhooksの署名シークレットを登録します。
 
+```環境変数登録
 Key
 STRIPE_WEBHOOK_SECRET
 
 Value
 whsec_su*********************
 
+```
+
 Saveボタンを押します。
 
 
-
-# 新しい環境変数で再デプロイ
-
-新しく設定した環境変数が反映され、すべてが正しく連携するために、Vercelでアプリを再デプロイする必要があります。
+これでWebhookまでの作業は完了です。
 
 
+
+# Redeploy with new env vars
+
+# 新しい環境変数での再デプロイ
+
+新しく設定した環境変数が反映させ、すべてが正しく連携するために、Vercelでアプリを再デプロイする必要があります。
+
+再デプロイすると再ビルドも同時に行われます。
+
+## 再デプロイ
 
 Vercelのダッシュボードのトップページに戻ります。
+
 上部ナビバーからDeploymentsを選択します。
 
-Deployments
+Deploymentsのページに プロジェクトのURLが表示されているはずです。
 
-このページに
-リスト
+↓ このような形で登録されているはずです。
 「登録したURL Ready main Xd ago by username アイコン 三点リーダー…」
 
-三点リーダー…ボタンを押します。
+この↑三点リーダー…ボタンを押します。
+
+ドロップダウンメニューが表示されるので、その中の
 
 Redeployを選択します。
 
-確認画面が出てきます。
-さっき設定した環境変数を反映させたいので
+Redeploy to Production と確認画面が出てきます。
 
-オーバーフローメニューボタンをクリックして「再デプロイ」を選択します（「既存のビルドキャッシュを使用する」オプションにはチェックを入れません
+※「既存のビルドキャッシュを使用する」オプションにはチェックを入れません。
 
 Redeployボタンを押します。
 
 1分少々待ちます
 
-Vercelがアプリを再ビルド＋再デプロイしたら、製品と価格の設定が完了です。
+Vercelがアプリを再ビルド＋再デプロイし、成功が表示されたら、
+環境変数やWebhookは正常にse一定されました。
 
 
 
-# 製品と価格情報の作成
+----------------------------------------
 
-アプリケーションのWebhookはStripe上の製品の更新を監視し、それらを自動的にSupabaseデータベースに反映します。
+次は
+製品と価格の設定です。
+
+その前に、
+VSCodeに戻って、GitHub のリポジトリからローカルの開発環境にソースコードを
+ダウンロード＆インストールをしておきます。
+
+
+
+StripeのCLIもインストールをしておきます。
+
+Stripe CLI を使ってみる | Stripe のドキュメント
+
+https://stripe.com/docs/stripe-cli?locale=ja-JP
+
+
+
+ローカル開発環境で開発時に立ち上げておきます。
+
+```
+stripe listen --forward-to=localhost:3000/api/webhooks
+npm run dev
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------
+
+# Create product and pricing information
+
+製品と価格情報の作成
+
+アプリケーションのWebhookはStripe上の製品の更新を監視し、
+それらを自動的にSupabaseデータベースに反映します。
 
 Webhookリスナーが実行されている状態で、Stripeダッシュボードで製品と価格情報を作成できます。
 
 Stripe Checkoutは、特定の間隔で事前に定義された金額を請求する価格をサポートしています。
 より複雑なプラン（異なる価格帯やシートなど）はまだサポートされていません。
 
+
+
 例えば、以下のような異なる価格帯のビジネスモデルを作成できます：
 
 ```
 Product 1: Hobby
-Price 1: 10 USD per month
-Price 2: 100 USD per year
+Price 1: 1 USD per month
+Price 2: 10 USD per year
 
 Product 2: Freelancer
-Price 1: 20 USD per month
-Price 2: 200 USD per year
+Price 1: 10 USD per month
+Price 2: 100 USD per year
 
 ```
 
 
 
-オプションとして、セットアップをスピードアップするために、fixturesファイルをStripeアカウントにブートストラップするために追加しました。
+具体的には、fixtures/stripe-fixtures.jsonというJSONファイルに定義された一連のAPIリクエストを実行することで、データのブートストラップ（初期セットアップ）を行います。
 
-Stripe CLI の fixturesコマンド は、このJSONファイルで定義された一連のAPIリクエストを実行します。
+```terminal
+stripe fixtures fixtures/stripe-fixtures.json
+
+```
+
+を実行します。
+
+これにより、テスト用の商品と価格データがStripeアカウントに追加されます。
+
+この手順はオプションであり、セットアップを高速化するためのものです。
+この手順を行わなくてもシステムは動作しますが、行うことでテストデータの準備がより迅速に行えます。
+
+重要：StripeのWebフックを正しく設定し、必要な環境変数を含めて再デプロイしていることを確認してください。
+
+
+
+
+```terminal
+stripe fixtures fixtures/stripe-fixtures.json
+
+```
+
+を、中身の数値を変えて何度も実行するとどうなるのか？
+を実験する。
+
+
+
+
+
+
+
+# Configure the Stripe customer portal
+
+Stripeのカスタマーポータルを設定する
+
+
+1. ↓設定でカスタムブランディングを設定する
+
+https://dashboard.stripe.com/settings/branding
+
+
+2. ↓カスタマーポータルの設定を構成する
+
+https://dashboard.stripe.com/test/settings/billing/portal
+
+
+
+3. 「顧客が支払い方法を更新できるようにする」をオンにする
+4. 「顧客がサブスクリプションを更新できるようにする」をオンにする
+5. 「顧客がサブスクリプションをキャンセルできるようにする」をオンにする
+
+6. 追加したい商品と価格を追加する
+7. 必要な事業情報とリンクを設定する
+
+以上です
+
+多くの内容がありましたが、それは価値があります。これで顧客からの定期収益を得る準備が整いました。🥳
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 nextjs-subscription-payments/fixtures/stripe-fixtures.json at main · vercel/nextjs-subscription-payments
 
@@ -926,6 +1162,71 @@ Stripe関連を開発中の時は、ダッシュボードを常にブラウザ�
 
 
 
+----------------------------------------
+----------------------------------------
+----------------------------------------
 
+
+
+ここでGitHubの作成されたリポジトリから
+ローカルPCにCloneします。
+
+GitHubリポジトリから自分のPCにダウンロードする方法はどれでもいいです。
+
+例：
+ghコマンドを使う方法
+
+VSCodeのterminalから実行します。
+
+```terminal
+gh repo clone [GitHubアカウント名]/[先ほど決めたリポジトリ名]
+
+```
+
+※ gh コマンドを利用するには、GitHub CLIをインストールしておく必要があります。
+
+
+Starter のソースコードをダウンロード後、インストールします。
+
+```
+npm install
+npm run dev
+
+```
+
+
+
+※次に環境変数などを設定していきます。
+
+
+
+Supabaseのダッシュボードへ行きます。
+
+Dashboard | Supabase
+
+https://supabase.com/dashboard/projects
+
+プロジェクトを開いてTable Editorを見て
+
+```table
+customers
+prices
+products
+subscriptions
+users
+
+```
+
+
+
+デプロイボタンからインストールしていれば出来ているはずです。
+これらのテーブルが出来ていることを確認します。
+
+テーブルが出来ていなかった場合は、
+SQL Editorにある
+
+`Stripe Subscriptions`
+
+というSQL文を実行すれば同じテーブルが出来ます。
 
 
