@@ -13,6 +13,82 @@ GitHub Copilot導入後、初めて使う時。(豊富な使用例付き)
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 
+
+# GitHub Copilot chatによる コミットメッセージ生成機能
+
+通常のVScode コミットメッセージ入力欄の右側に星のアイコンが表示されています。
+そのアイコンボタンを押すと、 **コミットメッセージを自動生成** してくれます。
+
+
+
+# エージェント機能
+
+GitHub Copilot chat にエージェントの概念が追加されました。
+
+エージェントとは質問範囲を限定する機能です。
+
+
+GitHub Copilot chatのチャット欄に
+@
+を入力するとエージェントの候補が現れます。
+
+* @workspaceエージェント
+現在のワークスペースのファイルについての質問をすることができます。
+
+* @vscodeエージェント
+VS Codeについての質問をすることができます。
+
+
+エージェント機能は
+* 一般的なプログラミングに関する質問に答えることができます。
+* 特定のエージェントとチャットを行い、専門的な知識を持つエージェントからアクションを実行することができます。
+
+
+
+## 現時点でのエージェント (2023年12月5日現在)
+
+@workspace
+@vscode
+
+この2つです。
+
+## 参考URL
+
+紹介記事 (英語)
+Pursuit of wicked smartness in VS Code
+
+https://code.visualstudio.com/blogs/2023/11/13/vscode-copilot-smarter
+
+
+
+# スラッシュコマンド
+
+GitHub Copilot chat欄に入力してください。
+
+* `/api` - VS Codeの拡張開発について尋ねます。
+* `/explain` - 選択したコードの動作を説明します。
+* `/fix` - 選択したコードの問題を修正する提案をします。
+* `/new` - 新しいワークスペースのためのコードを生成します。
+* `/newNotebook` - 新しいJupyter Notebookを作成します。
+* `/terminal` - ターミナルで何かをする方法を尋ねます。
+* `/tests` - 選択したコードのためのユニットテストを生成します。
+
+/help GitHub Copilot のヘルプを表示します。
+/clear チャット欄をクリアします。
+
+
+
+
+これらのコマンドは、エージェントと組み合わせて使用することができます。
+
+例えば、`@workspace /explain`と入力すると、選択したコードの動作を説明します。
+
+また、エディタの選択についての質問も、インラインチャットセッションを開始して尋ねることができます。
+
+詳細は[GitHub Copilot](https://docs.github.com/copilot/getting-started-with-github-copilot?tool=vscode)の[Visual Studio Code](https://code.visualstudio.com/docs/editor/artificial-intelligence)に関するドキュメンテーションをご覧ください。
+
+
+
 # GitHub Copilot chat inline機能
 
 ## FizzBuzz問題を解いて結果を表示させる。
