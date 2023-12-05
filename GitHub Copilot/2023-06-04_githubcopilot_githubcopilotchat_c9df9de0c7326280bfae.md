@@ -54,7 +54,7 @@ VS Codeについての質問をすることができます。
 
 ## 参考URL
 
-紹介記事 (英語)
+公式Blog (英語)
 Pursuit of wicked smartness in VS Code
 
 https://code.visualstudio.com/blogs/2023/11/13/vscode-copilot-smarter
