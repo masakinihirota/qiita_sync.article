@@ -901,7 +901,7 @@ export default [
 
 Flat Config ファイルでは、globalsとparserOptionsはlanguageOptionsキーの下に統合されます。
 
-envプロパティは無くなりました。。
+envプロパティは無くなりました。
 
 特定のランタイムのグローバル変数のグループは、globals npmパッケージからインポートされ、globalsプロパティに含まれます。
 
