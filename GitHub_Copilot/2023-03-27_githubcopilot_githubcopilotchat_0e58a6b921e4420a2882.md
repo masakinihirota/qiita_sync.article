@@ -79,7 +79,6 @@ VSCode Insider (VSCodeの開発版 GitHub Copilot chatを使用するために�
 
 1. Copilot
 1. Copilot Labs
-1. Copilot Nightly
 1. Copilot for Individuals
 1. Copilot for Business
 1. Copilot X
@@ -94,9 +93,6 @@ VSCode Insider (VSCodeの開発版 GitHub Copilot chatを使用するために�
 - Copilot Labs
   GitHub Copilot の**実験的な機能**を提供するプログラムです。このプログラムは、GitHub Copilot の最新機能を試す事ができます。
   いうなれば、幅広く横に広げる機能を追加していきます。
-- Copilot Nightly
-  **GitHub Copilot の最新版**を提供するプログラムです。このプログラムは、GitHub Copilot の最新機能を試す事ができます。ただし、**不安定な機能**が含まれている可能性があります。
-  いうなれば、最新の機能を追加していきます。
 - Copilot for Individuals
   料金のプラン名：**個人利用向け**の GitHub Copilot です。このプランは、個人で利用する場合に適しています。
 - Copilot for Business
@@ -115,8 +111,6 @@ VSCode Insider (VSCodeの開発版 GitHub Copilot chatを使用するために�
   Copilot X の機能の一つと思われる名前。ドキュメント作成時にコード補完機能を提供するプログラムです。このプログラムは、**ドキュメント作成時にコード補完機能**を提供します。
 
 ※GitHub Copilotは、OpenAIが作成した人工知能モデルのOpenAI Codexを利用しています。OpenAI Codexは、数十億行の公開されたソースコードでトレーニングされた、コーディングに特化した言語モデルであり、GPT-3をベースにしています。Codexは、GPT-3よりもコード生成に特化しているため、GitHub Copilotのコード補完機能に適しています。
-
-※Copilot Nightlyは一日に数回ものアップデートがあるので、最新の機能を試したい人向けです。
 
 ※Copilot X シリーズはOpenAIの新しいGPT-4モデルを採用しただけでなく、Copilotにチャットと音声機能を導入し、Pull Request、コマンドライン、ドキュメントにCopilotを組み込んで、プロジェクトに関する質問に対応します。あらゆるステップでAIを活用できるようになることによって、開発者の生産性に対する考え方を根本から再定義していくツールになる予定です。
 
@@ -173,19 +167,14 @@ VSCode で使用する。問題はここから、
 
 最初に、これらの VSCode 拡張機能を入れます。
 
-- GitHub Copilot 拡張機能 (Nightly と共用不可)
+- GitHub Copilot 拡張機能
 - GitHub Copilot Labs 拡張機能
-- GitHub Copilot Nightly 拡張機能
-  （Nightly は GitHub Copilot 拡張機能をアンイストールしないとインストール出来ません。）
 
 GitHub Copilot
 https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 
 GitHub Copilot Labs
 https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-labs
-
-GitHub Copilot Nightly
-https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-nightly
 
 ※GitHub Copilot X の発表はされましたが、まだ詳細な報告はされていません。 (2023 年 3 月 28 日)
 
