@@ -14,6 +14,10 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 
 
+
+
+
+
 # GitHub Copilot chatによる コミットメッセージ生成機能
 
 通常のVScode コミットメッセージ入力欄の右側に星のアイコンが表示されています。
@@ -47,10 +51,32 @@ VS Codeについての質問をすることができます。
 
 ## 現時点でのエージェント (2023年12月5日現在)
 
+@terminal
 @workspace
 @vscode
 
-この2つです。
+この3つです。
+
+例えば、↓のように使います。
+
+何かしらのコマンドを入力して、そのコマンドの意味を教えてもらいたい時に
+
+GitHub Copilot chat のチャット欄から、
+
+```GitHub Copilot chat
+@terminal #terminalLastCommand このコマンドの意味を教えてください。
+
+```
+
+`#terminalLastCommand`
+
+↑これは直前に使用したターミナルのコマンドを表示してくれます。
+また、`@`や `#`を入力した時点でサジェストが出てきます。
+
+ターミナルへ入力したコマンドが失敗した場合
+ターミナルのプロンプトの左に✧✧星のマークが表示されるので、そのボタンを押すと自動的に@terminal #terminalLastCommandが入力されて、そのコマンドの説明をしてくれるように選択できます。
+
+
 
 ## 参考URL
 
@@ -58,6 +84,15 @@ VS Codeについての質問をすることができます。
 Pursuit of wicked smartness in VS Code
 
 https://code.visualstudio.com/blogs/2023/11/13/vscode-copilot-smarter
+
+GitHub Copilotが便利になったのでターミナルもVSCodeで良いのでは？という話 #VSCode - Qiita
+https://qiita.com/EichiSanden/items/0e4f14c1e4c6e4c61982
+
+|プロンプト内容|説明|
+|:-----------------|:-----------------|
+|@terminal <プロンプト>|プロンプトで直接指示を与える|
+|@terminal #terminalSelection|ターミナルの選択した部分について説明させる|
+|@terminal #terminalLastCommand|最後に実行したコマンドについてサジェストさせる|
 
 
 
