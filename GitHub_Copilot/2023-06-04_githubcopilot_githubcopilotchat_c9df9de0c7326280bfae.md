@@ -12,9 +12,28 @@ GitHub Copilot導入後、初めて使う時。(豊富な使用例付き)
 
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
+# GitHub Copilot chatのヘルプ
+
+チャット欄から `/help` と入力するとヘルプが表示されます。
 
 
 
+# GitHub Copilot chatの言語
+
+デフォルトでは、Copilot Chat は最初、VS Code で設定された表示言語を使用して応答するようになりました。 github.copilot.chat.localeOverride を構成することで、この自動動作をオーバーライドできます。
+
+
+
+# GitHub Copilot chatの履歴
+
+GitHub Copilot chatのチャット欄から **上下キー** で以前の履歴が見れます。
+
+
+
+# GitHub Copilot chatの履歴の保存
+
+VScodeを閉じても、PCを再起動しても保存されるようになりました。
+これにより、過去のコマンドや質問を再利用したり、特定のコードスニペットの説明を再度要求したりすることが容易になります。
 
 
 
@@ -37,10 +56,13 @@ GitHub Copilot chatのチャット欄に
 を入力するとエージェントの候補が現れます。
 
 * @workspaceエージェント
-現在のワークスペースのファイルについての質問をすることができます。
+ワークスペース内のコードに関するコンテキストを持ち、ワークスペースをナビゲートして関連するファイルやクラスを見つける手助けをしてくれます。
 
 * @vscodeエージェント
-VS Codeについての質問をすることができます。
+VSCodeエディタ自体のコマンドや機能を知っており、それらを使う手助けをしてくれます。
+
+
+
 
 
 エージェント機能は
@@ -76,6 +98,32 @@ GitHub Copilot chat のチャット欄から、
 ターミナルへ入力したコマンドが失敗した場合
 ターミナルのプロンプトの左に✧✧星のマークが表示されるので、そのボタンを押すと自動的に@terminal #terminalLastCommandが入力されて、そのコマンドの説明をしてくれるように選択できます。
 
+### エージェント機能 @terminalの使用例
+
+GitHub Copilot chat のチャット欄から、
+
+```GitHub Copilot chat
+@terminal how do I list files?
+@terminal #terminalSelection *****
+@terminal #terminalLastCommand *****
+@terminal #terminalLastCommand Explain this command
+
+```
+
+*****に何かしらの文章を入れます。
+#terminalSelection は選択した場所を意味します。
+#terminalLastCommand は最後に実行したコマンドを意味します。
+
+@terminal #terminalLastCommand Explain this command
+ならば最後に実行したコマンドの説明をしてくれます。
+
+
+
+## @workspace へのリクエストの送信
+
+チャット入力に質問を入力し、Ctrl+Enter を押して質問を送信すると、@workspace が自動的に先頭に追加されます。
+
+
 
 
 ## 参考URL
@@ -86,6 +134,7 @@ Pursuit of wicked smartness in VS Code
 https://code.visualstudio.com/blogs/2023/11/13/vscode-copilot-smarter
 
 GitHub Copilotが便利になったのでターミナルもVSCodeで良いのでは？という話 #VSCode - Qiita
+
 https://qiita.com/EichiSanden/items/0e4f14c1e4c6e4c61982
 
 |プロンプト内容|説明|
@@ -93,6 +142,10 @@ https://qiita.com/EichiSanden/items/0e4f14c1e4c6e4c61982
 |@terminal <プロンプト>|プロンプトで直接指示を与える|
 |@terminal #terminalSelection|ターミナルの選択した部分について説明させる|
 |@terminal #terminalLastCommand|最後に実行したコマンドについてサジェストさせる|
+
+Visual Studio コード 2023 年 11 月
+
+https://code.visualstudio.com/updates/v1_85#_github-copilot
 
 
 
@@ -948,11 +1001,11 @@ VSCode上でのコード的には
 以下の制約条件と入力文を守ってください。
 
 ======== 制約条件:
-・初心者でも理解できるように解説してください
-・一歩一歩考えていきましょう。
-・重要なキーワードを取り残さないでください。
-・小学生にもわかりやすくしてください。
-・日本語で回答してください。
+* 初心者でも理解できるように解説してください
+* 一歩一歩考えていきましょう。
+* 重要なキーワードを取り残さないでください。
+* 小学生にもわかりやすくしてください。
+* 日本語で回答してください。
 
 ======== 入力文:
 
