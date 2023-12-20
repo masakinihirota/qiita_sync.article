@@ -4,6 +4,18 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記:2023/12/20
+VSCodeのメッセージによると、GitHub Copilot Labs のテクニカルプレビューはまもなく終了し、新しいアクセス権は付与されなくなります。代わりに GitHub Copilot Chat のご利用をお勧めします。
+
+GitHub Copilot chatのインラインチャット機能(ctrl+i)で質問すると、コードを書いてくれます。
+
+例えばGitHub Copilot Labsでテストを書いていた場合
+GitHub Copilot chatでは`/test`と入力すると、選択したコードのテストを書いてくれます。
+このとき、"Create As"を選択することで、その新しいファイルの名前と保存場所を自由に選択することができます。
+
+追記終了
+
+
 追記:2023/11/20
 
 次の記事
@@ -21,6 +33,7 @@ GitHub Copilot chatは・・・
 例えば、README.mdが英語で、日本語に翻訳したい時にGitHub Copilot chat のインライン機能を起動させて「このREADME.mdを翻訳してください」と指示を出すと、翻訳してくれます。
 
 追記終了
+
 
 
 ### アイコンの説明
