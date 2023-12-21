@@ -4,6 +4,18 @@ tags:    AppRouter,GitHub,Next.js,Supabase,stripe
 id:      33cdd1f9cb1276211bdf
 private: false
 -->
+
+元のリポジトリで議論が行われているのでこの記事は中止します。
+
+Next.js 14 & Supabase SSR by dalkommatt · Pull Request #278 · vercel/nextjs-subscription-payments
+
+https://github.com/vercel/nextjs-subscription-payments/pull/278
+
+Supabase のSSR認証が使われるようになったら、新しく勉強したいと思います。
+※この記事はもう更新されません。
+
+
+
 # 重要コマンド
 
 ```
