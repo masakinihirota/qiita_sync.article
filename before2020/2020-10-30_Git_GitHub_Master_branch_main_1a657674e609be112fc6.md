@@ -4,8 +4,26 @@ tags:    Git,GitHub,Master,branch,main
 id:      1a657674e609be112fc6
 private: false
 -->
-2023/02/15 追記
+2023年12月25日 追記
+また変更方法が変わりました。
 
+リポジトリのトップ画面で
+左上のタブバー(Code Issues Pull requests Actions Projects Wiki Security Insights Settings)の下にある
+リポジトリ名の更に下にある
+masterを押します。
+そうするとその下にプルダウンメニューが開きます。
+その中にあるView all branchesを押します。
+ブランチの一覧が表示されます。
+その中にある三点リーダー(...)を押します。ゴミ箱アイコンの横です。
+そうすると「Rename branch」がありますので、押します。
+名前を変更して「Rename branch」を押します。
+ブラウザをリロードしたり、リポジトリのトップ画面に戻ると
+ブランチ名が変更されているのが確認できます。
+
+追記終了
+
+
+2023年02月15 追記
 
 # 手順 2023年以降
 
