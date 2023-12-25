@@ -1,9 +1,51 @@
 <!--
-title:   masterからmainに変更する（githubのリモート＆ローカルブランチ）branches
+title:   GitHubのブランチ名とそのローカルのブランチ名を変更する。2023年12月版 (ブランチ名 masterからmainに変更する場合等)
 tags:    Git,GitHub,Master,branch,main
 id:      1a657674e609be112fc6
 private: false
 -->
+2023年12月25日 追記
+ブランチ名の変更方法が変わりました。
+
+![masterブランチ名の変更1_文字.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/b5484701-c521-409d-9288-725766852804.png)
+
+リポジトリのトップ画面で
+左上のタブバー(Code Issues Pull requests Actions Projects Wiki Security Insights Settings)の下にある
+リポジトリ名の更に下にある
+masterを押します。
+そうするとその下にプルダウンメニューが開きます。
+その中にあるView all branchesを押します。
+ブランチの一覧が表示されます。
+
+![masterブランチ名の変更2_文字.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/861b7081-e990-9ba8-332e-c3dc9933094f.png)
+
+その中にある三点リーダー(...)を押します。ゴミ箱アイコンの横です。
+そうすると「Rename branch」がありますので、押します。
+名前を変更して「Rename branch」を押します。
+ブラウザをリロードしたり、リポジトリのトップ画面に戻ると
+ブランチ名が変更されているのが確認できます。
+
+
+Default branchを変更した後に、リポジトリのトップ画面に戻ると。
+
+```
+The default branch has been renamed!
+master is now named main
+
+If you have a local clone, you can update it by running the following commands.
+
+git branch -m master main
+git fetch origin
+git branch -u main main
+git remote set-head origin -a
+
+```
+と表示され、ローカル環境へのサポートもしてくれます。
+
+追記終了
+
+
+
 2023/02/15 追記
 
 
