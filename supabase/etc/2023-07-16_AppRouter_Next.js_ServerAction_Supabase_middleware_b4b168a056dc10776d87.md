@@ -5,8 +5,16 @@ id:      b4b168a056dc10776d87
 private: false
 -->
 ※2023年12月26日現在
-参考にしていた公式リポジトリの内容が変更されてしまいました。
-ですので公式リポジトリをダウンロードしても内容が異なります。
+
+masakinihirota/with-supabase
+
+https://github.com/masakinihirota/with-supabase
+
+※オリジナルのリポジトリが新バージョンになりましたので、この記事時点の自作リポジトリを公開します。
+
+このリポジトリで本来の4つのアクセス方法を確認できます。
+
+
 
 # Supabaseへの 4種類のアクセス方法
 
