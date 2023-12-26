@@ -501,16 +501,7 @@ Mexico
 
 
 
-このリポジトリのWebアプリは↓この記事でも使用しています。
-Next.js 13 App router と Supabase での４つのアクセス方法 - Qiita
-
-https://qiita.com/masakinihirota/items/b4b168a056dc10776d87
-
-
-
 ----------------------------------------
-
-
 
 VSCodeでgitをコミットしておきます。
 

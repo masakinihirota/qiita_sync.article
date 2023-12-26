@@ -20,7 +20,25 @@ masterを押します。
 ブラウザをリロードしたり、リポジトリのトップ画面に戻ると
 ブランチ名が変更されているのが確認できます。
 
+
+Default branchを変更した後に、リポジトリのトップ画面に戻ると。
+
+```
+The default branch has been renamed!
+master is now named main
+
+If you have a local clone, you can update it by running the following commands.
+
+git branch -m ***** *****
+git fetch origin
+git branch -u ***** *****
+git remote set-head origin -a
+
+```
+と表示され、ローカル環境へのサポートもしてくれます。
+
 追記終了
+
 
 
 2023年02月15 追記

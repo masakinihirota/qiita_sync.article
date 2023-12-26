@@ -4,6 +4,10 @@ tags:    AppRouter,Next.js,ServerAction,Supabase,middleware
 id:      b4b168a056dc10776d87
 private: false
 -->
+※2023年12月26日現在
+参考にしていた公式リポジトリの内容が変更されてしまいました。
+ですので公式リポジトリをダウンロードしても内容が異なります。
+
 # Supabaseへの 4種類のアクセス方法
 
 * クライアントから Supabaseのデータを取得する方法
@@ -51,7 +55,7 @@ next.js/examples/with-supabase at canary · vercel/next.js
 https://github.com/vercel/next.js/tree/canary/examples/with-supabase
 
 ※このサンプルは認証機能付きです。
-
+※2023年12月26日現在リポジトリの内容は変更されてしまいました。
 
 
 # 環境
