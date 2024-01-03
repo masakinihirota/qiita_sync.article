@@ -16,16 +16,21 @@ https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 チャット欄から `/help` と入力するとヘルプが表示されます。
 
+GitHub Copilot chatは毎日にように更新されています。
+
 
 
 # GitHub Copilot chatの言語
 
-デフォルトでは、Copilot Chat は最初、VS Code で設定された表示言語を使用して応答するようになりました。 github.copilot.chat.localeOverride を構成することで、この自動動作をオーバーライドできます。
+日本語が設定してあれば、GitHub Copilot chatの言語も日本語になります。
+
+デフォルトでは、Copilot Chat は最初、VS Code で設定された表示言語を使用して応答するようになりました。 github.copilot.chat.localeOverride を設定することで、この自動動作を上書き出来ます。
 
 
 
 # GitHub Copilot chatの履歴
 
+自分が入力したヒストリーが **上下キー** で見れます。
 GitHub Copilot chatのチャット欄から **上下キー** で以前の履歴が見れます。
 
 
@@ -33,6 +38,7 @@ GitHub Copilot chatのチャット欄から **上下キー** で以前の履歴�
 # GitHub Copilot chatの履歴の保存
 
 VScodeを閉じても、PCを再起動しても保存されるようになりました。
+
 これにより、過去のコマンドや質問を再利用したり、特定のコードスニペットの説明を再度要求したりすることが容易になります。
 
 
@@ -52,13 +58,15 @@ GitHub Copilot chat にエージェントの概念が追加されました。
 
 
 GitHub Copilot chatのチャット欄に
-@
+
+`@`
+
 を入力するとエージェントの候補が現れます。
 
-* @workspaceエージェント
+* `@workspace エージェント`
 ワークスペース内のコードに関するコンテキストを持ち、ワークスペースをナビゲートして関連するファイルやクラスを見つける手助けをしてくれます。
 
-* @vscodeエージェント
+* `@vscode エージェント`
 VSCodeエディタ自体のコマンドや機能を知っており、それらを使う手助けをしてくれます。
 
 
