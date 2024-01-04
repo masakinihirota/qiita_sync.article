@@ -4,12 +4,25 @@ tags:    GitHub,OAuth,localhost
 id:      f9b99ca444ddeda1f4ef
 private: false
 -->
-W.I.P
-
-# GitHub認証
 
 Next.js + Supabase <=ローカル開発環境を作成
 
+
+
+注意点
+環境変数.envファイルではダブルクォーテーションで囲みます。
+localhost は 127.0.0.1 にします。
+末尾にスラッシュはつけません。
+
+良い例
+`http://localhost:54321/auth/v1/callback`
+
+悪い例
+`http://localhost:54321/auth/v1/callback/`
+
+
+
+# GitHub認証
 
 GitHubのOAuth Appを新規作成します。
 そうするとGitHub認証の環境変数が取得できます。
@@ -20,7 +33,7 @@ GitHubのOAuth Appを新規作成します。
 
 最初に GitHub
 
-https://github.com/
+https://github.com
 
 にアクセスします。
 
@@ -79,11 +92,20 @@ af8a....
 
 
 ```.env
-DEV_GITHUB_CLIENT_ID={GITHUBのクライアントID}
-DEV_GITHUB_SECRET={GITHUBのクライアントシークレット}
+GITHUB_CLIENT_ID={GITHUBのクライアントID}
+GITHUB_SECRET={GITHUBのクライアントシークレット}
 
 ```
 
+例
+
+```.env
+GITHUB_CLIENT_ID="85ff...."
+GITHUB_SECRET="af8a...."
+
+```
+
+※ ↑環境変数はダブルクォーテーションで囲みます。
 
 
 
@@ -99,3 +121,39 @@ OAuth登録時のローカルでの設定例
 ※Supabaseでの設定が 127.0.0.1 と固定されているため(だと思う)
 
 GitHub側では `localhost` を `127.0.0.1` 自動変換してくれないため(だと思う)
+
+
+
+# Supabaseの設定ファイル
+
+GitHub
+と
+Google
+の例
+
+
+```supabase\config.toml
+[auth.external.github]
+enabled = true
+client_id = "env(GITHUB_CLIENT_ID)"
+secret = "env(GITHUB_SECRET)"
+redirect_uri = "http://127.0.0.1:54321/auth/v1/callback"
+
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_SECRET)"
+# Overrides the default auth redirectUrl.
+redirect_uri = ""
+
+```
+
+
+Local Development | Supabase Docs
+https://supabase.com/docs/guides/cli/local-development#use-auth-locally
+
+
+
+
+
+
