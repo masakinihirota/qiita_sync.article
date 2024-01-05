@@ -4,6 +4,9 @@ tags:    GitHub,Next.js,OAuth,Slack,Supabase
 id:      706326a64dab3ffbf55b
 private: false
 -->
+ローカルでのSlack認証は使用できません。
+※詳細は記事の中で。
+
 # 参考リポジトリ
 
 supabase-by-example/oauth-flow at main · supabase-community/supabase-by-example
@@ -125,7 +128,7 @@ supabase CLI をインストール後
 Supabaseのダッシュボードを開きます。
 左サイドバーの ↓Authentication を選択します。
 
-https://supabase.com/dashboard/project/[Reference ID]/auth/providers
+`https://supabase.com/dashboard/project/[Reference ID]/auth/providers`
 
 Auth Providers ページが表示されます。
 
@@ -312,7 +315,7 @@ export default function Home() {
 ----------------------------------------
 ----------------------------------------
 
-# Slack認証 の Client ID を取得します。
+# Slack認証
 
 Login with Slack | Supabase Docs
 
@@ -336,10 +339,10 @@ https://api.slack.com/apps
 から
 Create an Appボタンが表示されますので、このボタンを押します。
 
-Create an app モーダルウィンドウが開きます。
-
 ※ モーダルウィンドウとは、元画面の上に別のウィンドウを表示し、
 ユーザーに情報を伝える画面のことです。
+
+Create an app モーダルウィンドウが開きます。
 
 From scratch を選択します。
 
@@ -416,7 +419,7 @@ Supabaseのローカル認証では使えないようです。
 
 ----------------------------------------
 
-# Google認証 の Client ID を取得します。
+# Google認証
 
 Login with Google | Supabase Docs
 
@@ -565,7 +568,7 @@ JSONをダウンロードボタンを押すと、PCに保存できます。
 
 ----------------------------------------
 
-# GitHub認証 の Client ID を取得します。
+# GitHub認証
 
 Login with GitHub | Supabase Docs
 
