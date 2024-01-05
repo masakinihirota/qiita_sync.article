@@ -7,6 +7,12 @@ private: false
 ローカルでのSlack認証は使用できません。
 ※詳細は記事の中で。
 
+疑問があればAIに聞きましょう。
+
+https://bard.google.com/chat
+
+↑高性能で無料で使えます。
+
 # 参考リポジトリ
 
 supabase-by-example/oauth-flow at main · supabase-community/supabase-by-example
@@ -159,6 +165,34 @@ redirect_uri = "http://[URL]/auth/v1/callback"
 
 ```
 
+### redirect_uri
+
+空白の場合: 空白のままにすると、アプリケーション用に設定されたデフォルトのredirect_URLが使用されます。
+デフォルト値の変更: 必要に応じて、特定のURLをコールバックに使用するためにredirect_uriをカスタマイズすることができます。
+
+OAuth認証フローにおいて、安全な認証を実現するために不可欠な要素です。
+OAuthプロバイダに登録し、許可されたURLと一致させる必要があります。
+ユーザーがログイン後に目的のアプリケーションに戻れるようにします。
+
+```
+await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+		redirecto: "https://example.com/auth/callback"
+	}
+})
+
+```
+
+↑コードでredirectoを指定しておけば、設定ファイルのよりも優先されます。？
+？？？
+空欄の場合はこの値が使用されます？
+※検証の必要あり
+
+
+
+### *****
+各OAuthの名前です。
 ↑*****には以下のような値が入ります。
 
 ```
@@ -181,6 +215,8 @@ workos
 zoom
 
 ```
+
+
 
 ## Supabase初期化時のファイル (OAuth部分を抜粋)
 
@@ -275,16 +311,26 @@ redirect_uri = ""
 
 ```
 
+各OAuthを有効化するには、
+それぞれの
+`enabled = false`
+を
+`enabled = true`
+に変更します。
+
 環境変数を読み込む場合は、拡張子tomlファイルでは↑env()関数を使います。
+
+※環境変数を直接書き込んではいけません、
+直接書き込んで利用したい場合は .gitignoreファイルに追加してgitの管理外にしておいてください。
 
 
 <details><summary>環境変数 Next.jsの場合</summary>
 
 Next.jsの場合は、 `process.env.*****` で読み込みます。
 
-例
+読み込み例
 
-```
+```pages.tsx
 export default function Home() {
   return (
     <div className="">
@@ -738,3 +784,204 @@ https://zenn.dev/chot/articles/ddd2844ad3ae61
 ※サンプル4つ目の Azure 認証は取得を諦めました。
 ~~・・・めんどくさくなった~~
 4つもいらないと思ったため。
+
+# 認証の流れ
+
+サンプル
+
+https://github.com/supabase-community/supabase-by-example/tree/main/oauth-flow
+
+呼び出し
+
+OAuth SignIn Flow in SSR environment
+
+↓
+
+await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+		redirecto: "https://example.com/auth/callback"
+	}
+})
+
+↓GitHubにお願いしに行く。
+
+OAuth provider server <<=GitHub等
+
+↓GitHub等からSupabaseに戻ってくる。
+
+Supabse server
+	OAuth Endpoint
+		https://<project-ref>.supabse.co/auth/v1/callback
+
+↓Supabaseからエンドポイントに戻ってくる。
+
+https://example.com/auth/callback
+
+↓エンドポイントから自分のアプリに戻ってくる。
+
+https://example.com/
+
+
+
+
+
+
+
+
+
+
+
+
+# サンプルをローカルで動作させる
+
+GitHub 成功
+Slack 失敗
+Google 成功
+Azure 未登録
+
+<details><summary>サンプルのローカルでの設定 GitHubとGoogleの認証に成功 Slackは失敗 Azureは未登録</summary>
+
+```supabase\config.toml
+# A string used to distinguish different Supabase projects on the same host. Defaults to the working
+# directory name when running `supabase init`.
+project_id = "oauth-flow-nextjs"
+
+[api]
+# Port to use for the API URL.
+port = 54321
+# Schemas to expose in your API. Tables, views and stored procedures in this schema will get API
+# endpoints. public and storage are always included.
+schemas = ["public", "storage", "graphql_public"]
+# Extra schemas to add to the search_path of every request. public is always included.
+extra_search_path = ["public", "extensions"]
+# The maximum number of rows returns from a view, table, or stored procedure. Limits payload size
+# for accidental or malicious requests.
+max_rows = 1000
+
+[db]
+# Port to use for the local database URL.
+port = 54322
+# The database major version to use. This has to be the same as your remote database's. Run `SHOW
+# server_version;` on the remote database to check.
+major_version = 15
+
+[studio]
+# Port to use for Supabase Studio.
+port = 54323
+
+# Email testing server. Emails sent with the local dev setup are not actually sent - rather, they
+# are monitored, and you can view the emails that would have been sent from the web interface.
+[inbucket]
+# Port to use for the email testing server web interface.
+port = 54324
+smtp_port = 54325
+pop3_port = 54326
+
+[storage]
+# The maximum file size allowed (e.g. "5MB", "500KB").
+file_size_limit = "50MiB"
+
+[auth]
+# The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
+# in emails.
+site_url = "http://localhost:3000"
+# A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
+additional_redirect_urls = ["https://localhost:3000", "https://supabase-oauth-flow.tunnelto.dev/**"]
+# How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 seconds (one
+# week).
+jwt_expiry = 3600
+# Allow/disallow new user signups to your project.
+enable_signup = true
+
+[auth.email]
+# Allow/disallow new user signups via email to your project.
+enable_signup = true
+# If enabled, a user will be required to confirm any email change on both the old, and new email
+# addresses. If disabled, only the new email is required to confirm.
+double_confirm_changes = true
+# If enabled, users need to confirm their email address before signing in.
+enable_confirmations = true
+
+# Use an external OAuth provider. The full list of providers are: `apple`, `azure`, `bitbucket`,
+# `discord`, `facebook`, `github`, `gitlab`, `google`, `keycloak`, `linkedin`, `notion`, `twitch`,
+# `twitter`, `slack`, `spotify`, `workos`, `zoom`.
+[auth.external.apple]
+enabled = false
+client_id = ""
+secret = ""
+# Overrides the default auth redirectUrl.
+redirect_uri = ""
+# Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
+# or any other third-party OIDC providers.
+url = ""
+
+[auth.external.github]
+enabled = true
+client_id = "env(GITHUB_CLIENT_ID)"
+secret = "env(GITHUB_SECRET)"
+# Overrides the default auth redirectUrl.
+redirect_uri = ""
+
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_SECRET)"
+# Overrides the default auth redirectUrl.
+redirect_uri = ""
+
+[auth.external.azure]
+enabled = false
+client_id = "env(AZURE_CLIENT_ID)"
+secret = "env(AZURE_SECRET)"
+url = "https://login.microsoftonline.com/f242226b-5204-4bb2-86ff-69e42c87814c"
+# Overrides the default auth redirectUrl.
+redirect_uri = ""
+
+[auth.external.slack]
+enabled = true
+client_id = "env(SLACK_CLIENT_ID)"
+secret = "env(SLACK_SECRET)"
+# Overrides the default auth redirectUrl.
+redirect_uri = ""
+
+[analytics]
+enabled = false
+port = 54327
+vector_port = 54328
+# Setup BigQuery project to enable log viewer on local development stack.
+# See: https://logflare.app/guides/bigquery-setup
+gcp_project_id = ""
+gcp_project_number = ""
+gcp_jwt_path = "supabase/gcloud.json"
+
+```
+
+
+
+```.env
+NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJh...."
+
+GITHUB_CLIENT_ID="85ff...."
+GITHUB_SECRET="af8a...."
+
+GOOGLE_CLIENT_ID="6511...."
+GOOGLE_SECRET="GOCS...."
+
+# AZURE_CLIENT_ID=""
+# AZURE_SECRET=""
+
+# Slackはローカルでは利用できない
+SLACK_CLIENT_ID="6424...."
+SLACK_SECRET="9a6b...."
+
+```
+
+※環境変数の後半は非表示にしています。
+
+</details>
+
+以上でサンプルのローカルでの動作確認をしました。
+
+
