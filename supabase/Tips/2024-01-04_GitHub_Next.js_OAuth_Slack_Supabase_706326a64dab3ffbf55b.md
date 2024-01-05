@@ -994,6 +994,26 @@ SLACK_SECRET="9a6b...."
 ```
 
 ※環境変数の後半は非表示にしています。
+※↑この設定はローカル用です、↓サーバー用の環境変数は別に設定したりする必要があります。
+
+Next.jsの環境変数は、↓こちらをご覧ください。
+
+Configuring: Environment Variables | Next.js
+
+https://nextjs.org/docs/app/building-your-application/configuring/environment-variables
+
+拡張子を変えた環境変数ファイルを用意しないのならば、
+↓接頭辞 "SERVER_"を追加するなど区別できるようにします。
+
+```.env server用
+SERVER_GITHUB_CLIENT_ID="85ff...."
+SERVER_GITHUB_SECRET="af8a...."
+
+```
+
+※SERVERの設定はデプロイ先のサーバーの環境変数に設定します。
+例えば、Vercel等に登録しておきます。
+
 
 </details>
 
