@@ -13,6 +13,8 @@ https://bard.google.com/chat
 
 ↑高性能で無料で使えます。
 
+
+
 # 参考リポジトリ
 
 supabase-by-example/oauth-flow at main · supabase-community/supabase-by-example
@@ -22,6 +24,8 @@ https://github.com/supabase-community/supabase-by-example/tree/main/oauth-flow
 OAuthのサンプルを利用しています。
 
 OAuthの複数あるサンプルのうち、↓Next.js の App router版を選んでいます。
+
+
 
 ## サンプル
 
@@ -63,12 +67,18 @@ https://github.com/supabase-community/supabase-by-example/tree/main/oauth-flow/n
 
 
 
+----------------------------------------
+----------------------------------------
+----------------------------------------
+
 # はじめに
 
 Supabaseで開発する際に、
 ローカルで開発して、サーバーにデプロイする方法を採用しています。
 その時に、OAuth認証を利用するのですが、ローカルとサーバーでは少し設定が変わるので、
 ローカル用とサーバー用の2個OAuth認証を用意する必要があります。
+
+
 
 # 重要
 
@@ -109,11 +119,11 @@ supabase CLI をインストール後
 
 # Supabaseでの設定の共通の注意点
 
-* localhost は `127.0.0.1` にします。
+* localhost 部分は `127.0.0.1` にします。
 
-古い情報だと `localhost` と書いてるのがあります。
+※古い情報だと `localhost` と書いてるのがあります。
 
-* 環境変数 `.env` ファイルではダブルクォーテーションで囲みます。
+* 環境変数を `.env` ファイルに書き込む場合ではダブルクォーテーションで囲みます。
 
 `.env.local` というファイル名は使用しないでください。
 `.env`というファイル名で作成してください。
@@ -125,7 +135,6 @@ supabase CLI をインストール後
 
 悪い例
 `http://127.0.0.1:54321/auth/v1/callback/`
-
 
 
 
@@ -785,11 +794,17 @@ https://zenn.dev/chot/articles/ddd2844ad3ae61
 ~~・・・めんどくさくなった~~
 4つもいらないと思ったため。
 
+----------------------------------------
+----------------------------------------
+----------------------------------------
+
 # 認証の流れ
 
 サンプル
 
 https://github.com/supabase-community/supabase-by-example/tree/main/oauth-flow
+
+https://github.com/supabase-community/supabase-by-example/blob/main/oauth-flow/OAuth_SignIn_Flow_SSR.excalidraw.png
 
 呼び出し
 
