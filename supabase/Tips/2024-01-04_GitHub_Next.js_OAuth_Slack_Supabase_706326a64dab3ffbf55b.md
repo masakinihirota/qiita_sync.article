@@ -804,10 +804,12 @@ https://zenn.dev/chot/articles/ddd2844ad3ae61
 
 https://github.com/supabase-community/supabase-by-example/tree/main/oauth-flow
 
-https://github.com/supabase-community/supabase-by-example/blob/main/oauth-flow/OAuth_SignIn_Flow_SSR.excalidraw.png
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/a5620d73-2690-4721-d0b3-4bb98c2fa669.png)
+
 
 呼び出し
 
+```
 OAuth SignIn Flow in SSR environment
 
 ↓
@@ -837,6 +839,7 @@ https://example.com/auth/callback
 
 https://example.com/
 
+```
 
 
 
@@ -998,5 +1001,3 @@ SLACK_SECRET="9a6b...."
 </details>
 
 以上でサンプルのローカルでの動作確認をしました。
-
-
