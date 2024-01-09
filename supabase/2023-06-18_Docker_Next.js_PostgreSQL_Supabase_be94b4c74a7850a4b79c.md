@@ -30,7 +30,7 @@ supabase db diff --linked -f 接尾辞
 supabase projects list
 
 ↑プロジェクトのリストが取得できていればサーバーと繋がっています。
-
+(Supabaseを起動しているNext.jsアプリのRoot直下でなくても大丈夫です。)
 
 
 # ローカルでのSupabaseのコンテナの操作
