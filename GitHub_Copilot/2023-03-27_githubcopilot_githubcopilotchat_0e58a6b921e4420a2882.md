@@ -42,6 +42,10 @@ GitHub Copilot chatは・・・
 
 ![GitHub Copilotアイコン画像説明付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/c59d6119-a693-a156-7f4b-65c57d9308d4.png)
 
+※↑GitHub Copilot Labsのアイコンでした。
+
+
+
 ### キーボードショートカットキー (VSCode)
 
 ※提案＝GitHub Copilotが出力するコードの事です。
@@ -67,7 +71,7 @@ GitHub Copilot chatは・・・
 | インライン チャット: チャット欄のフォーカルの変更 | 上下キー |
 
 
-※GitHub Copilotが長いコードを提案してきた時、ショートカットキーの「単語単位で受け入れる」使用すると便利です。
+※GitHub Copilotが長いコードを提案してきた時、ショートカットキーの「単語単位で受け入れる」を使用すると便利です。
 
 ※ インライン候補をトリガーするとは提案が表示される場所ならばどこでも GitHub Copilot が動きます。
 例えば、提案が表示される場所からカーソルが動かしてしまっても、カーソルを元の場所に戻してトリガーコマンドを使うと提案が表示されます。

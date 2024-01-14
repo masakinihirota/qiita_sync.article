@@ -13,6 +13,12 @@ https://bard.google.com/chat
 
 ↑高性能で無料で使えます。
 
+# この記事から、Middlewareを複数のファイルに分割する部分のみの記事
+
+Next.js 14 App router Middlewareを複数のファイルに分割する方法 #Next.js - Qiita
+
+https://qiita.com/masakinihirota/items/c84daec1a48ee0a02199
+
 
 
 # 参考リポジトリ
@@ -23,7 +29,12 @@ https://github.com/supabase-community/supabase-by-example/tree/main/oauth-flow
 ↑Supabaseのコミュニティのサンプルのうち
 OAuthのサンプルを利用しています。
 
-OAuthの複数あるサンプルのうち、↓Next.js の App router版を選んでいます。
+OAuthの複数あるサンプルのうち、↑Next.js の App router版を選んでいます。
+
+# この記事の目的
+
+参考リポジトリにSupabaseのローカル認証の設定をします。
+そして、その設定したSupabaseのローカル認証の動作確認をします。
 
 
 
