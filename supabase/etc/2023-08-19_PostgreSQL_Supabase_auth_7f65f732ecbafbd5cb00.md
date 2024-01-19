@@ -91,13 +91,21 @@ Policy
 
 # RLS
 
-RLSは、Row Level Securityの略です。行レベルセキュリティと呼ばれます。
+RLSは、Row Level Securityの略です。
 PostgreSQLの代表的なセキュリティキーワードの一つです。
 
 RLSはポリシーを行に対して適用することができます。
 
 これは部屋の中の冷蔵庫の開け閉め、ベッドの利用の許可、テレビのスイッチのオンオフ等を許可するというレベルでデーターへのアクセス権が決められます。
 
+認証 誰がマンションに出入りできるか？
+Authentication
+
+認可 誰が部屋に入る許可を持っているか？
+Authorization
+
+RLS 入った人が、その部屋の中で何ができるか？
+row-level security
 
 
 ## RLSはポリシーの一部ですか？
