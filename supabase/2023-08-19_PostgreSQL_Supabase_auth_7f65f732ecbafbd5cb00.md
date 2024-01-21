@@ -697,6 +697,7 @@ auth.users テーブルのカラムは34個あります。
 34. `deleted_at`: ユーザーが削除された日時を示します。
 
 ※ **ユーザーのメタデータ** は、auth.usersテーブルの raw_user_meta_data カラムに格納されます。
+JSON形式であり、1つのカラムに複数の項目が入っています。
 
 サインアップ時に メタデータを保存できます。
 
@@ -760,8 +761,115 @@ create trigger on_auth_user_created
 
 ```
 
+### auth.usersカラムの詳細
+
+※典型的なOAuth認証した後に、public.profilesテーブルにユーザーデータを追加するslq文です。
+
+```database_sql\usertable.sql
+-- Create a table for public profiles
+create table profiles (
+  id uuid references auth.users on delete cascade not null primary key,
+  updated_at timestamp with time zone null default now(),
+  username text unique,
+  full_name text,
+  constraint username_length check (char_length(username) >= 6)
+);
+
+
+
+-- This trigger automatically creates a profile entry when a new user signs up via Supabase Auth.
+-- See https://supabase.com/docs/guides/auth/managing-user-data#using-triggers for more details.
+create function public.handle_new_user()
+returns trigger as $$
+begin
+  insert into public.profiles (id, full_name)
+  values (new.id, new.raw_user_meta_data->>'full_name');
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
+
+```
+
+raw_user_meta_dataはauth.usersテーブルのカラムの1つです。
+その中ではJSON形式のデータが格納されています。
+
+<details><summary>auth.usersのカラム(またはフィールド)</summary>
+
+auth.usersのカラム
+
+```auth.usersカラム
+"instance_id",
+"id",
+"aud",
+"role",
+"email",
+"encrypted_password",
+"email_confirmed_at",
+"invited_at",
+"confirmation_token",
+"confirmation_sent_at",
+"recovery_token",
+"recovery_sent_at",
+"email_change_token_new",
+"email_change",
+"email_change_sent_at",
+"last_sign_in_at",
+"raw_app_meta_data",
+"raw_user_meta_data", ＜＜＜
+"is_super_admin",
+"created_at",
+"updated_at",
+"phone",
+"phone_confirmed_at",
+"phone_change",
+"phone_change_token",
+"phone_change_sent_at",
+"confirmed_at",
+"email_change_token_current",
+"email_change_confirm_status",
+"banned_until",
+"reauthentication_token",
+"reauthentication_sent_at",
+"is_sso_user",
+"deleted_at"
+
+```
+
+↓auth.usersのカラムの中のraw_user_meta_dataのJSON形式のデータ
+
+```raw_user_meta_data
+
+"raw_user_meta_data",
+"{
+""iss"":""https://api.github.com"",
+""sub"":""76*****"",
+""name"":""*****"",
+""email"":""*****@gmail.com"",
+""full_name"":""*****"",
+""user_name"":""*****"",
+""avatar_url"":""https://avatars.githubusercontent.com/u/*****?v=4"",""provider_id"":""76*****"",
+""email_verified"":true,
+""phone_verified"":false,
+""preferred_username"":""*****""
+}",
+
+
+
+```
+
+</details>
+
+
 
 ここまでで、auth スキーマのテーブルの詳細は終了です。
+
+----------------------------------------
+----------------------------------------
+----------------------------------------
 
 
 
