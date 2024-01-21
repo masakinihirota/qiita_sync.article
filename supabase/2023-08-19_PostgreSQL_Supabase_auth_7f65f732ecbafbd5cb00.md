@@ -819,7 +819,7 @@ auth.usersのカラム
 "email_change_sent_at",
 "last_sign_in_at",
 "raw_app_meta_data",
-"raw_user_meta_data", ＜＜＜
+"raw_user_meta_data", ＜＜＜ここからデータを取得します。
 "is_super_admin",
 "created_at",
 "updated_at",
@@ -840,6 +840,8 @@ auth.usersのカラム
 ```
 
 ↓auth.usersのカラムの中のraw_user_meta_dataのJSON形式のデータ
+
+取得するデータです。
 
 ```raw_user_meta_data
 
@@ -862,6 +864,11 @@ auth.usersのカラム
 ```
 
 </details>
+
+
+AIによると現代のDB論では、設計によりますが、第一正規化をせずに1つのカラムに複数のデータを入れるのは問題ないということです。
+
+Supabaseの場合は、auth.usersのカラムの中のraw_user_meta_dataのJSON形式のデータを複数設定してあります。
 
 
 
