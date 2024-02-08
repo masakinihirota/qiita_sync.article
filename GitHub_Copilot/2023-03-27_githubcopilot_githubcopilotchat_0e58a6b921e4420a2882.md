@@ -4,6 +4,23 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+
+追記:2024/02/09
+GitHub Copilot Labs はGitHub Copilotに統合され、 VSCode等の拡張機能を含め削除されました。
+機能自体は消えていません。
+
+チャット欄から
+`#`
+`/`
+`@`
+記号を使用してファイルを直接指定したり、場所を指定したり、機能を指定したり、質問の範囲を絞ったり出来るようになりました。
+
+GitHub Copilotのチャット欄から`/help` と入力すると、使い方が表示されます。
+
+追記終了
+
+
+
 追記:2023/12/20
 VSCodeのメッセージによると、GitHub Copilot Labs のテクニカルプレビューはまもなく終了し、新しいアクセス権は付与されなくなります。代わりに GitHub Copilot Chat のご利用をお勧めします。
 
@@ -185,13 +202,9 @@ VSCode で使用する。問題はここから、
 最初に、これらの VSCode 拡張機能を入れます。
 
 - GitHub Copilot 拡張機能
-- GitHub Copilot Labs 拡張機能
 
 GitHub Copilot
 https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-
-GitHub Copilot Labs
-https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-labs
 
 ※GitHub Copilot X の発表はされましたが、まだ詳細な報告はされていません。 (2023 年 3 月 28 日)
 
@@ -199,8 +212,6 @@ https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-labs
 次に拡張機能を利用するため GitHub にログインをするように求められます。
 
 ログインをします。
-
-GitHub Copilot Labs で認証をします。
 
 ## GitHub Copilot の有効化、無効化
 
