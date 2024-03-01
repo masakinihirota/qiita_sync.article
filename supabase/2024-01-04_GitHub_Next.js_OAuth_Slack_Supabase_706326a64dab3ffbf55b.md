@@ -629,8 +629,6 @@ JSONをダウンロードボタンを押すと、PCに保存できます。
 
 
 
-
-
 ## ローカル
 
 ローカルでは、リダイレクト先をこのように設定します。
@@ -638,6 +636,9 @@ JSONをダウンロードボタンを押すと、PCに保存できます。
 `http://127.0.0.1:54321/auth/v1/callback`
 
 
+
+----------------------------------------
+----------------------------------------
 ----------------------------------------
 
 # GitHub認証
@@ -692,15 +693,28 @@ oauth-practice (適当な名前)
 
 Homepage URL
 http://localhost:3000
+http://127.0.0.1:3000
 
 Authorization callback URL
 http://localhost:54321/auth/v1/callback
+http://127.0.0.1:54321/auth/v1/callback
 
 ```
 
 ※↑ローカル開発環境の場合
 
 項目を埋めたら 緑色の 「Register application」 ボタンを押します。
+
+
+<details><summary>※localhostは127.0.0.1</summary>
+
+localhostは通常、IPアドレスの127.0.0.1に対応しています。
+これは、ネットワーク接続を必要とせずにコンピュータ自体にアクセスするための特別なアドレスです。
+これは「ループバックアドレス」とも呼ばれ、自分自身にネットワーク接続をループバックするために使用されます。
+
+</details>
+
+
 
 そうすると、次の項目の値が生成されます。
 
@@ -1052,4 +1066,17 @@ https://qiita.com/masakinihirota/items/7f65f732ecbafbd5cb00
 
 この記事を参考に必要な項目を選んで、コードを書きます。
 
+
+# 参考 Google Facebook認証
+
+Next.js+Supabaseで認証機能を実装しよう【コード付き完全ガイド】｜TodoONada株式会社
+https://note.com/libproc/n/n168e87864291
+
+Next.js + Supabaseでソーシャルログインを実装する方法｜TodoONada株式会社
+https://note.com/libproc/n/n7d417158843d
+
+## 招待形式
+
+Supabase + Next.jsでユーザー招待機能を実装する | NullNull
+https://nullnull.dev/236cebc7-96f0-4a12-b719-94fe23ceccc9
 

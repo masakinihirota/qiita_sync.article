@@ -35,7 +35,7 @@ gh repo clone masakinihirota/middleware-test
 
 # 0からNext.jsをインストールする方法
 
-pnpm create next-app@latest
+`pnpm create next-app@latest`
 
 
 
@@ -78,6 +78,7 @@ NextResponse.next();
 今の時代、AIに聞けば一瞬です。
 
 `npm run dev`
+
 を実行して、ブラウザで開いてみると、
 VSCodeのterminalに下記のように出力されます。
 
