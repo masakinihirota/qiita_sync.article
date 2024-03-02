@@ -14,7 +14,7 @@ nextjs-subscription-payments というリポジトリが大型アップデート
 ローカルとサーバーの組み合わせた時のパターンを3つに絞って、それぞれの環境変数を設定し動作確認をしました。
 
 パータン1
-Next.jsサーバー
+Next.jsサーバー (Vercel等)
 Supabaseサーバー
 
 パターン2
@@ -23,9 +23,10 @@ Supabaseサーバー
 
 パターン3
 Next.jsローカル
-Supabaseローカル
+Supabaseローカル (Docker)
 
-※Stripeはテスト環境のみです。本番環境は自己責任でお願いします。
+※Stripeはテスト環境だけです。
+本番環境の設定等は自己責任でお願いします。
 
 :::
 
@@ -416,6 +417,9 @@ s3_secret_key = "env(S3_SECRET_KEY)"
 .envファイルと
 .env.localに分かれています。
 
+.envはGitHubの設定ファイルになっています。
+.evnにSupabaseとStripeの環境変数が書かれています。
+
 ※Next.jsは複数の環境変数ファイルを読み込んでくれます。
 
 ※今回の記事ではGitHubに関連するところだけ追記しています。
@@ -650,42 +654,100 @@ npx supabase gen types typescript --project-id [Reference ID]
 
 ----------------------------------------
 
-Supabaseのプロジェクトを作ったら。次に、
+# Stripeの環境変数の取得
 
-# StripeとNext.jsに価格を設定
+Stripeは新しくアカウントを作ります。
 
-## サブスクリプションのプラン情報などを、Stripe / Supabaseに登録
+最小限の設定の場合はNext.jsのリポジトリからでも設定できるので
 
-サンプルのサブスクリプションのプラン情報は
-Next.jsアプリケーションの
-fixtures/stripe-fixtures.json
-に書かれているのを利用します。
+Stripeのダッシュボード上から特に設定は必要ありません。
+必要な公開キーと秘密キーの取得だけです。
 
-Supabaseに反映させます。
+これで環境変数の準備が出来ました。
 
-プラン・料金データの投入は、
-StripeとSupabaseそれぞれに行います。
+※StripeのCLIをインストールしておいてください。
 
-Next.jsのアプリケーションを起動させてから実行してください。
-※↑重要
-※↑重要
-※↑重要
-私は、起動させずに↓コマンドを実行したのでアプリケーションに価格が反映されずに、かなり長い間つまづきました。
+Stripeは
+テスト環境と本番環境があります。
+※この記事ではテスト環境のみを扱います。
+
+Stripeでアカウントを作り
+テスト環境の公開キーと秘密キーを取得します。
+
+```
+stripeの公開キー
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+*****
+
+stripeの秘密キー
+STRIPE_SECRET_KEY
+*****
+
+```
 
 
+
+## Webhookの設定
+
+Stripeはキーとは別に
+ローカルで開発する時WebHookを起動させて
+WebHookのキーを取得する必要があります。
+
+そのキーを取得するには
+
+アプリケーションを起動させます。
+
+:::note alert
+次に説明するコマンドの順番を守ってください。
+
+Next.jsのサーバーを立ち上げて(pnpm run dev)おいてから。
+StripeのAPI監視(stripe listen)
+価格設定の実行(stripe fixtures)
+この順番を守ってください。
+
+私は、起動させずに stripe fixturesコマンドを実行したのでアプリケーションに価格が反映されずに、かなり長い間つまづきました。
+
+:::
+
+
+↓それぞれVSCodeのターミナルの別ウィンドウで実行します。
 
 ```terminal
 pnpm run dev
 
+```
+
+```terminal
+stripe listen --forward-to http://127.0.0.1:3000/api/webhooks
+
+```
+
+↑stripe listenを実行すると表示されます。
+
+`STRIPE_WEBHOOK_SECRET`の値になります。
+
+
+```terminal
 stripe fixtures fixtures/stripe-fixtures.json
 
 ```
 
-これでStripeの価格設定がStripeのサーバー側に反映されるはずです。
+↑サンプルの価格を設定します。
+
+Next.js Subscription Starter
+http://localhost:3000/
+
+でサンプルの価格が反映されているかどうか確認してください。
+
+公式リポジトリのデモ画面のように
+Pricing Plans
+が表示されます。
 
 
 
 ----------------------------------------
+
+# GitHub認証
 
 次は右上の「Sign In」ボタンを使えるようにします。
 メールの設定は自動的にできているので、
@@ -722,70 +784,26 @@ Saveボタンを押します。
 
 
 
-----------------------------------------
+# SupabaseのローカルでGitHub認証を有効化する。
 
-# Stripeの環境変数の取得
-
-Stripeは新しくアカウントを作ります。
-
-最小限の設定の場合はNext.jsのリポジトリからでも設定できるので
-
-Stripeのダッシュボード上から特に設定は必要ありません。
-必要な公開キーと秘密キーの取得だけです。
-
-これで環境変数の準備が出来ました。
-
-
-
-Stripeは
-テスト環境と本番環境があります。
-※この記事ではテスト環境のみを扱います。
-
-Stripeでアカウントを作り
-テスト環境の公開キーと秘密キーを取得します。
+supabase\config.toml
+の
 
 ```
-stripeの公開キー
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-*****
-
-stripeの秘密キー
-STRIPE_SECRET_KEY
-*****
+[auth.external.github]
+enabled = true
 
 ```
 
+このように有効化します。
 
-
-## Webhookの設定
-
-Stripeはキーとは別に
-ローカルで開発する時WebHookを起動させて
-WebHookのキーを取得する必要があります。
-
-そのキーを取得するには
-
-アプリケーションを起動させます。
-
-
-```terminal
-pnpm run dev
-
-stripe listen --forward-to http://127.0.0.1:3000/api/webhooks
-
-```
-
-を実行すると表示されます。
-
-`STRIPE_WEBHOOK_SECRET`の値になります。
-
-
-
-※StripeのCLIをインストールしておいてください。
+GitHubのOAuth認証を取得してきます。後述
 
 
 
 ----------------------------------------
+
+
 
 # GitHub認証の環境変数の取得
 
