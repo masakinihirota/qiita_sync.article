@@ -4,6 +4,24 @@ tags:    AppRouter,Next.js,Supabase,stripe
 id:      1ae7d17377b8bac524d5
 private: false
 -->
+
+追記 2024年3月4日
+
+支払いしようと Subscriptボタンを押すと右下に赤くエラーが出る。
+
+```
+Unable to create checkout session.
+Please try again later or contact a system administrator
+
+```
+
+調査中
+
+現在ダミーでのカードのテスト画面が表示されません。
+
+追記終了
+
+
 # Nextjs Supabase Stripe スターターアプリケーション
 
 nextjs-subscription-payments というリポジトリが大型アップデートされました。
@@ -117,10 +135,13 @@ Stripeのようなサービスにぴったりだと思います。
 
 ログイン
 
-suppabase login
+`supabase login`
 
-supabase link
+↑ブラウザが立ち上がり、自動でログインします。(ブラウザの方で認証済みの場合)
 
+`supabase link --project-ref [Reference ID] -p [Database Password]`
+
+↑ローカルとサーバーのプロジェクトをリンクさせます。
 
 
 
@@ -521,13 +542,14 @@ Next.jsは環境変数ファイルを変更する事に読み込み直してく�
 
 リポジトリにあるサンプルをコピーして使います。
 
-```terminal
-cp .env.local.example .env.local
-cp .env.example .env
+```powershell
+Copy-Item .env.local.example .env.local
+Copy-Item .env.example .env
 
 ```
 
-
+※WindowsのPowerShellの場合はcpは使えません。
+Copy-Itemを使ってください。
 
 
 ----------------------------------------
@@ -742,8 +764,7 @@ npx supabase gen types typescript --project-id [Reference ID]
 
 Stripeは新しくアカウントを作ります。
 
-最小限の設定の場合はNext.jsのリポジトリからでも設定できるので
-
+最小限の設定の場合は、価格などがNext.jsのリポジトリからでも設定できるので
 Stripeのダッシュボード上から特に設定は必要ありません。
 必要な公開キーと秘密キーの取得だけです。
 
@@ -834,8 +855,11 @@ Pricing Plans
 # GitHub認証
 
 次は右上の「Sign In」ボタンを使えるようにします。
-メールの設定は自動的にできているので、
 GitHubの認証を設定します。
+
+※メールの送受信や、メール認証の設定はこの記事の範囲外です。
+
+
 
 # SupabaseのサーバーでGitHub認証を有効化する。
 
@@ -881,7 +905,7 @@ enabled = true
 
 このように有効化します。
 
-GitHubのOAuth認証を取得してきます。後述
+GitHubのOAuth認証を取得してきます。
 
 
 
@@ -932,6 +956,10 @@ Next.jsをローカルで動かすので
 
 Authorization callback URL
 はSupabaseのGitHub認証を有効化した場所にあります。
+
+Authentication | Supabase
+https://supabase.com/dashboard/project/_/auth/providers
+
 
 
 GitHub認証の
@@ -1068,7 +1096,7 @@ STRIPE_WEBHOOK_SECRET=whsec_1bc*****91a
 
 ## .env
 
-```
+```.env
 # GitHub認証環境変数
 
 # GitHub認証 Next.jsローカル Supabaseサーバー パターン
@@ -1090,7 +1118,9 @@ SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callb
 
 ```
 
-
+※環境変数ファイルを一つにまとめようとしてもエラーになります。
+SupabaseはGitHub認証の環境変数ファイルは.envファイルからしか読み込みません。
+.env.localに書いても読み込んでくれません。
 
 ----------------------------------------
 
