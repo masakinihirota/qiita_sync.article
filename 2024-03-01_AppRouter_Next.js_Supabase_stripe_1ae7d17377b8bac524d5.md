@@ -542,14 +542,16 @@ Next.jsは環境変数ファイルを変更する事に読み込み直してく�
 
 リポジトリにあるサンプルをコピーして使います。
 
+powershell
+
 ```powershell
 Copy-Item .env.local.example .env.local
 Copy-Item .env.example .env
 
 ```
 
-※WindowsのPowerShellの場合はcpは使えません。
-Copy-Itemを使ってください。
+※WindowsのPowerShellでコピーする場合は`Copy-Item`コマンドを使ってください。
+
 
 
 ----------------------------------------
@@ -811,6 +813,9 @@ StripeのAPI監視(stripe listen)
 この順番を守ってください。
 
 私は、起動させずに stripe fixturesコマンドを実行したのでアプリケーションに価格が反映されずに、かなり長い間つまづきました。
+
+この手順でするとStripeとSupabaseのテーブルに同時に登録できるようです。
+失敗した原因は、片方しか立ち上げてなかったので価格がNext.jsアプリケーションに反映されませんでした。
 
 :::
 
