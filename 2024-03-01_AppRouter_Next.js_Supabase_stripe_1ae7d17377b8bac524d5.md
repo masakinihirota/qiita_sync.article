@@ -15,7 +15,9 @@ Please try again later or contact a system administrator
 
 ```
 
-調査中
+Stripe上でも色々設定が必要だったのだが、
+価格設定がうまくいったので必要ないと思いこんでしまった
+丁寧にやり直すと成功した。（後で消す）
 
 現在ダミーでのカードのテスト画面が表示されません。
 
