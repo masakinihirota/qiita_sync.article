@@ -29,6 +29,8 @@ Stripe上でも色々設定が必要だったのだが、
 nextjs-subscription-payments というリポジトリが大型アップデートされました。
 動かしてみた所、デプロイボタン、環境変数の設定の仕方など色々つまずいたり混乱したので、調べたことを記事にしました。
 
+※その後、理解した後デプロイボタン経由でも成功しました。
+
 :::note info
 この記事の内容
 ローカルとサーバーの組み合わせた時のパターンを3つに絞って、それぞれの環境変数を設定し動作確認をしました。
@@ -113,8 +115,7 @@ Stripe アカウント
 # CLI
 
 それぞれのCLIをインストールしておきます。
-
-VSCodeのターミナル場で直接命令ができるようになります。
+VSCodeのターミナル上で直接命令ができるようになります。
 
 GitHub CLI
 Supabase CLI
@@ -129,7 +130,6 @@ Stripe CLI
 そのあとプロジェクトにリンクさせたり、Webhookが実行出来るようになります。
 
 Webhookは、Webアプリケーションで特定のイベントが発生した際に、他のアプリケーションへリアルタイムで通知する仕組みです。
-Stripeのようなサービスにぴったりだと思います。
 
 
 
@@ -145,27 +145,44 @@ Stripeのようなサービスにぴったりだと思います。
 
 ↑ローカルとサーバーのプロジェクトをリンクさせます。
 
+リンクされたかどうかの確認
+
+```terminal
+supabase projects list
+
+```
+
+Supabaseのサーバーのリストが表示されればリンクされています。
+
 
 
 ----------------------------------------
 
 # 開発環境 構成の事前準備
 
-ローカル開発環境と、サーバーの本番環境
+ローカル開発環境
+サーバーの本番環境
 この2つの環境変数を用意します。
 
-Next.js ローカルとVercel等のサーバーの2種類
+Next.jsはローカルとVercel上にデプロイします。
+※GitHubを経由します。
+
+ローカルの環境は
 SupabaseはサーバーとDockerで動かすローカル開発環境があります。
+
 Stripeはサーバーのみですがテスト環境と、本番環境があります。
+
 GitHubはサーバーだけです。
 
 
 
 ----------------------------------------
 
-# アプリケーションのリポジトリにある環境変数ファイル
+# スターターアプリケーションのリポジトリにある環境変数ファイル
 
-<details><summary>リポジトリにある環境変数ファイル</summary>
+<details><summary>スターターアプリケーションのリポジトリにある環境変数ファイル</summary>
+
+※まだ↓未設定です。
 
 ```.env.example
 SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callback"
@@ -228,6 +245,12 @@ Supabaseのサーバーorローカル
 Stripeのサーバー
 それぞれの環境変数を登録します。
 
+※環境変数を2つに分ける意味は、
+SupabaseがGitHub認証の環境変数を読み込む場合、
+.envファイルからしかよんでくれないからです。
+なのでこのリポジトリは2つに分かれているようです。
+
+## 環境変数設定時の細かなルール
 
 ```
 ◯
@@ -242,7 +265,7 @@ http://127.0.0.1:54321/auth/v1/callback/
 
 
 
-## localhost
+## localhostよりも127.0.0.1で設定
 
 最近はlocalhostよりも
 
@@ -252,7 +275,6 @@ http://127.0.0.1:54321/auth/v1/callback/
 ```
 
 での設定が推奨されることが多いです。
-
 
 
 
@@ -430,6 +452,9 @@ s3_secret_key = "env(S3_SECRET_KEY)"
 
 ここでGitHub認証の環境変数を設定しています。
 
+※Supabaseは多様な認証に対応していますが、
+このスターターリポジトリはGitHubのみ準備されています。
+
 `env()`関数を使うことで
 直接環境変数ファイルから読み込んでいます。
 
@@ -463,11 +488,15 @@ https://supabase.com/docs/guides/cli/managing-config
 パターン 2 開発用（Next.jsはローカル、Supabaseはサーバー）パターン
 パターン 3 開発用（Next.jsとSupabase、どちらもローカル）パターン
 
+※DBのテストもやる場合はパターン3が便利です。
+
 参考
 SupabaseとStripeを連携させるNext.jsのサンプルアプリケーションをローカル環境で動かしてみた | WP-kyoto
 https://wp-kyoto.net/try-supabase-by-usgin-vercel-stripe-subscription-example/
 
-↑参考サイトのパターンは2です。
+↑この参考サイトのパターンは2です。
+
+
 
 ## パターン 1 公開用パターン
 
@@ -561,7 +590,7 @@ Copy-Item .env.example .env
 ## Supabaseのプロジェクトの作成
 
 Supabaseのダッシュボードからサーバのプロジェクトを作成します。
-環境変数はプロジェクト事に変わります。
+環境変数はプロジェクトごとに変わります。
 無料範囲では2つだけ起動させておけます。
 プロジェクトを停止すればもっと作成できます。
 
@@ -571,6 +600,7 @@ Supabaseのダッシュボードからサーバのプロジェクトを作成し
 ※ローカルのSupabaseのプロジェクトは、
 Next.js等のアプリケーションにSupabaseを初期化させれば
 いくらでも作れます。
+
 
 
 ----------------------------------------
@@ -584,8 +614,7 @@ SupabaseのSQL Editorに貼り付け実行します。
 ※Supabaseのサーバーとローカル両方にテーブルを作ります。
 
 
-警告
-
+### 警告について
 
 ```schema.sql (一部)
 /**
@@ -596,7 +625,6 @@ drop publication if exists supabase_realtime;
 create publication supabase_realtime for table products, prices;
 
 ```
-
 
 drop命令を実行しようとすると警告が出ます。
 この部分だったらSupabaseは新規プロジェクトなので警告されても大丈夫です。
@@ -664,8 +692,6 @@ Supabaseは、PostgreSQLをベースとしたオープンソースのリアル�
 Supabaseを使用している場合は、自動設定によって簡単にリアルタイム機能を利用できます。
 
 </details>
-
-
 
 テーブルが５つ作成されます。
 
@@ -742,16 +768,14 @@ supabase login アクセストークン
 
 Table Plus接続
 postgresql://postgres:[PASSWORD]@db.[Reference ID].supabase.co:5432/postgres
-postgresql://postgres:[PASSWORD]@db.[Reference ID].supabase.co:5432/postgres
 
 ダッシュボード
-https://app.supabase.com/project/[Reference ID]
 https://app.supabase.com/project/[Reference ID]
 
 作成コマンド(link)
 supabase link --project-ref [Reference ID] -p [Database Password]
 
-形の取得
+型の取得
 npx supabase gen types typescript --project-id [Reference ID]
 
 ```
