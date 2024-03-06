@@ -5,6 +5,8 @@ id:      1ae7d17377b8bac524d5
 private: false
 -->
 
+追記 2024年3月7日
+
 Next.js Supabase Stripe のスターターアプリを デプロイボタンを利用して設定するハンズオン。 #Next.js - Qiita
 https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57
 
@@ -14,6 +16,8 @@ https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57
 ↓Stripeの設定で説明がない所がありました、そのせいで一部失敗することがわかっています。
 (商品を購入するところでエラーになる)
 （↑の記事では修正されています。）
+
+追記終了
 
 # Nextjs Supabase Stripe スターターアプリケーション
 
