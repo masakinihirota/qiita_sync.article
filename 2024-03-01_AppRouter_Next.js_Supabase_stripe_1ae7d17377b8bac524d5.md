@@ -4,33 +4,16 @@ tags:    AppRouter,Next.js,Supabase,stripe
 id:      1ae7d17377b8bac524d5
 private: false
 -->
-追記 2024年3月6日
-↓デプロイボタンを利用した、ハンズオン
 
 Next.js Supabase Stripe のスターターアプリを デプロイボタンを利用して設定するハンズオン。 #Next.js - Qiita
 https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57
 
-↑この記事で正常に動くことを確認してください。
+↑この記事はこの記事を書いた後、デプロイボタンを利用してパターン1のみを設定した記事になります。
 
-↓のエラーも修正しています。
-Stripe側での設定が正しくありませんでした。
-
-↓この記事はデプロイボタンを利用せず、全部手動で設定しています。
-追記終了
-
-追記 2024年3月4日
-
-支払いしようと Subscriptボタンを押すと右下に赤くエラーが出る。
-
-```
-Unable to create checkout session.
-Please try again later or contact a system administrator
-
-```
-
-追記終了
-
-
+↓この記事はパターン１，２，３の環境変数の設定した記事です。
+↓Stripeの設定で説明がない所がありました、そのせいで一部失敗することがわかっています。
+(商品を購入するところでエラーになる)
+（↑の記事では修正されています。）
 
 # Nextjs Supabase Stripe スターターアプリケーション
 
