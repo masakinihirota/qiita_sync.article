@@ -1542,6 +1542,145 @@ https://gemini.google.com/app
 大抵の疑問は答えてくれます。
 無料です。
 
+
+----------------------------------------
+
+# 完成した3つのパターンの環境変数ファイル
+
+```.env
+# サンプル
+# SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callback"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID=
+# SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET=
+
+# GitHub認証環境変数
+# パターン1
+# Next.jsサーバー (Vercel等)
+# Supabaseサーバー
+# SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="https://hbjoaqosoqfdjumfowdr.supabase.co/auth/v1/callback"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID="4c0*****cf5"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET="96b*****67a"
+
+
+
+# パターン2
+# Next.jsローカル
+# Supabaseサーバー
+# SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="https://hbjoaqosoqfdjumfowdr.supabase.co/auth/v1/callback"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID="49a*****4c1"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET="e50*****ae8"
+
+
+
+# パターン3
+# Next.jsローカル
+# Supabaseローカル (Docker)
+# SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callback"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID="67c*****120"
+# SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET="a4f*****944"
+
+
+
+# ----------------------------------------
+
+# GitHub認証のクライアントIDとクライアントシークレット
+# パターン1
+# vns_masakinihirota1
+# Client ID
+# 4c0*****cf5
+# Client secrets
+# 96b*****67a
+
+# パターン2
+# vns_masakinihirota2
+# Client ID
+# 49a*****4c1
+# Client secrets
+# e50*****ae8
+
+# パターン3
+# vns_masakinihirota3
+# Client ID
+# 67c*****120
+# Client secrets
+# a4f*****944
+
+
+
+
+```
+
+
+
+```.env.local
+# サンプル
+# NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+
+# # These environment variables are used for Supabase Local Dev
+# NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0"
+# NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
+# SUPABASE_SERVICE_ROLE_KEY=
+
+# # Get these from Stripe dashboard
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+# STRIPE_SECRET_KEY=
+# STRIPE_WEBHOOK_SECRET=
+
+
+
+# パターン1
+# Next.jsサーバー (Vercel等)
+# Supabaseサーバー
+
+# NEXT_PUBLIC_SITE_URL="https://vns-masakinihirota-kappa.vercel.app"
+
+# # These environment variables are used for Supabase Local Dev
+# NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJ*****Ob0"
+# NEXT_PUBLIC_SUPABASE_URL="https://hbjoaqosoqfdjumfowdr.supabase.co"
+# SUPABASE_SERVICE_ROLE_KEY="eyJ*****6b8"
+
+# # Get these from Stripe dashboard
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_51O*****E6O"
+# STRIPE_SECRET_KEY="sk_test_51O*****qVm"
+# STRIPE_WEBHOOK_SECRET="whsec_bc5*****919"
+
+
+
+# パターン2
+# Next.jsローカル
+# Supabaseサーバー
+# NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+
+# These environment variables are used for Supabase Local Dev
+# NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJ*****NOb0"
+# NEXT_PUBLIC_SUPABASE_URL="https://hbjoaqosoqfdjumfowdr.supabase.co"
+# SUPABASE_SERVICE_ROLE_KEY="eyJ*****6b8"
+
+# # Get these from Stripe dashboard
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_51O*****E6O"
+# STRIPE_SECRET_KEY="sk_test_51O*****LqVm"
+# STRIPE_WEBHOOK_SECRET="whsec_bc5*****919"
+
+
+
+# パターン3
+# Next.jsローカル
+# Supabaseローカル (Docker)
+# NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+
+# # These environment variables are used for Supabase Local Dev
+# NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJ*****_I0"
+# NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
+# SUPABASE_SERVICE_ROLE_KEY="eyJ*****1IU"
+
+# # Get these from Stripe dashboard
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_51O*****E6O"
+# STRIPE_SECRET_KEY="sk_test_51O*****919"
+
+```
+
+
+
 ----------------------------------------
 ----------------------------------------
 ----------------------------------------
