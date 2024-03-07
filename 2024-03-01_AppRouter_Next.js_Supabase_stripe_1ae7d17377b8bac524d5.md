@@ -4,7 +4,6 @@ tags:    AppRouter,Next.js,Supabase,stripe
 id:      1ae7d17377b8bac524d5
 private: false
 -->
-
 Next.js Supabase Stripe のスターターアプリを デプロイボタンを利用して設定するハンズオン。 #Next.js - Qiita
 https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57
 
@@ -799,22 +798,6 @@ vns_template2
 
 ## オンラインエンドポイント ローカルリスナー を作成する
 
-画像
-画像
-画像
-画像
-画像
-画像
-画像
-画像
-画像
-画像
-画像
-画像
-
-
-
-
 Webhook – vns_template2 – Stripe [テスト]
 https://dashboard.stripe.com/test/webhooks
 
@@ -900,11 +883,13 @@ endpoint_secret = 'whsec_bc5*****91U'
 有効
 と表示されています。
 
-画像
-画像
-画像
-画像
-画像
+![Striep オンラインエンドポイント.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/47d03499-c714-0ac1-8bc3-23d78e55cb0a.png)
+
+↑Stripe一つのアカウントに、複数のNext.jsアプリケーションを登録しているので、この画像では2つのオンラインエンドポイントが登録されています。
+
+![Striep キー モザイク.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/9cb7f3c6-b959-2982-9f9e-b9da7909affb.png)
+
+※公開キーは公開しても問題ありません。
 
 ----------------------------------------
 
