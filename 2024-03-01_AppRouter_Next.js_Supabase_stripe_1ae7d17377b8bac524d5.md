@@ -4,6 +4,13 @@ tags:    AppRouter,Next.js,Supabase,stripe
 id:      1ae7d17377b8bac524d5
 private: false
 -->
+
+Local Development for SaaS product in 2024 // Next.js, Supabase and Stripe - YouTube
+
+https://www.youtube.com/watch?v=Gbf-E3H824k
+
+----------------------------------------
+
 Next.js Supabase Stripe のスターターアプリを デプロイボタンを利用して設定するハンズオン。 #Next.js - Qiita
 https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57
 
