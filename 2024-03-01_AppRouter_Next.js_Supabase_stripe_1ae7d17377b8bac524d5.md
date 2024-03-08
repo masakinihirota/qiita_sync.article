@@ -40,6 +40,63 @@ Supabaseローカル (Docker)
 :::
 
 
+<details><summary>コラム:パターンを使い分ける意味</summary>
+
+パターンを分けることで、開発効率を大幅に向上させることができます。それぞれの環境で異なる設定や動作確認が必要となるため、パターンを分けることでそれぞれの環境に合わせた最適な開発環境を構築することができます。
+
+## パターン1：Next.jsサーバー (Vercel等) + Supabaseサーバー
+
+### 長所
+
+本番環境で直に動作確認。
+環境構築に時間をかけない。
+デプロイボタンで簡単構築。
+開発環境と本番環境に差がない。
+
+### 短所
+
+コードの反映がGitHub＞Vercel＞ビルド後
+
+## パターン2：Next.jsローカル + Supabaseサーバー
+
+### 長所
+
+ローカル環境で開発を迅速に進められる
+Next.jsのホットリロード機能でコード変更を即反映
+環境変数は.env.local .envファイルで設定
+本番環境のデータベースで直接アプリケーションのテストが可能。
+※開発時の話です。
+
+### 短所
+
+オフラインで開発できない
+
+## パターン3：Next.jsローカル + Supabaseローカル (Docker)
+
+### 長所
+
+ローカル環境で開発を迅速に進められる
+Next.jsのホットリロード機能でコード変更を即反映
+環境変数は.env.local .envファイルで設定
+オフライン環境でも開発が可能
+Supabaseの動作もローカルで確認できる
+Docker を使って簡単にSupabaseをローカルで起動、リセット、破棄が可能。
+
+### 短所
+
+## まとめ
+
+パターンを分けることで、開発効率を大幅に向上させることができます。それぞれの環境のメリットとデメリットを理解した上で、目的に合ったパターンを選択することが重要です。
+
+## パターン選択のヒント
+
+* 開発環境の構築に時間をかけたくない場合は、パターン1がおすすめです。
+* ローカル環境で開発を迅速に進めたい場合は、パターン2がおすすめです。
+* オフライン環境でも開発したい場合は、パターン3がおすすめです。
+
+</details>
+
+
 Fastest way to build a SaaS in 2024 - Next.js, Supabase and Stripe - YouTube
 
 https://www.youtube.com/watch?v=I7CFD99sp1g
@@ -1547,6 +1604,9 @@ https://gemini.google.com/app
 
 # 完成した3つのパターンの環境変数ファイル
 
+`.env`ファイルにはGitHub認証の環境変数を書きます。
+`.env.local`ファイルにはSupabaseとStripeの環境変数を書きます。
+
 ```.env
 # サンプル
 # SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callback"
@@ -1567,8 +1627,8 @@ https://gemini.google.com/app
 # Next.jsローカル
 # Supabaseサーバー
 # SUPABASE_AUTH_EXTERNAL_GITHUB_REDIRECT_URI="https://hbjoaqosoqfdjumfowdr.supabase.co/auth/v1/callback"
-# SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID="49a*****4c1"
-# SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET="e50*****ae8"
+j# SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID="49a*****4c1"
+#j SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET="e50*****ae8"
 
 
 
@@ -1604,8 +1664,6 @@ https://gemini.google.com/app
 # 67c*****120
 # Client secrets
 # a4f*****944
-
-
 
 
 ```
@@ -1649,6 +1707,7 @@ https://gemini.google.com/app
 # パターン2
 # Next.jsローカル
 # Supabaseサーバー
+
 # NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 
 # These environment variables are used for Supabase Local Dev
@@ -1666,6 +1725,7 @@ https://gemini.google.com/app
 # パターン3
 # Next.jsローカル
 # Supabaseローカル (Docker)
+
 # NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 
 # # These environment variables are used for Supabase Local Dev
@@ -1695,3 +1755,6 @@ https://supabase.com/docs/guides/cli/managing-config
 
 SupabaseとStripeを連携させるNext.jsのサンプルアプリをローカル環境で動かしてみた | WP-kyoto
 https://wp-kyoto.net/try-supabase-by-usgin-vercel-stripe-subscription-example/
+
+Next.js Supabase Stripe のスターターアプリを デプロイボタンを利用して設定するハンズオン。 #Next.js - Qiita
+https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57

@@ -632,13 +632,16 @@ scoop update supabase
 
 # ローカルでの基本動作
 
-先程動作確認したNext.ｊｓのルートから
+先程動作確認したNext.jsのルートから
 
 Local Development | Supabase Docs
 
 https://supabase.com/docs/guides/cli/local-development
 
+```
 supabase login
+
+```
 
 ※アクセストークンが必要です。
 
