@@ -16,6 +16,25 @@ Next.jsサンプルなどで、srcフォルダを使わないApp routerのサン
 
 ※自分は自分のコードをすべてsrcの下に置きたい派
 
+↓例えば Vercel公式サンプルですが、srcフォルダは使われていません。
+
+vercel/nextjs-subscription-payments: Clone, deploy, and fully customize a SaaS subscription application with Next.js.
+https://github.com/vercel/nextjs-subscription-payments
+
+
+この時自分でこのスターターを使う時に、ほんのちょっとファイルを修正するだけで、srcフォルダを使用できるようになります。
+
+# 参考
+
+Next.js App Router と Supabase と Stripe のスターターアプリに色んなパターンの環境変数を設定 #Next.js - Qiita
+https://qiita.com/masakinihirota/items/1ae7d17377b8bac524d5
+
+※Vercelのスターターを利用して、↑この記事を書いています。
+
+----------------------------------------
+----------------------------------------
+----------------------------------------
+
 # 差分＆移動＆修正
 
 src/appフォルダを作ります。
@@ -66,9 +85,11 @@ Middlewareを使用している場合は、srcディレクトリ内に配置さ�
 
 Tailwind CSSを使用している場合は、contentセクションのtailwind.config.jsファイルに/srcプレフィックスを追加する必要があります。
 
+# VSCodeのPath設定
+
+VSCodeを利用している場合、ファイルを移動させるとファイル内のパスの設定が、
+「自動で」変更されます。その時はpathが通るように「手動で」修正してください。
 
 
 
-
-
----------------------------
+----------------------------------------
