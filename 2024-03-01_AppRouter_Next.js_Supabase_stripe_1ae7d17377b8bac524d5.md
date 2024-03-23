@@ -849,7 +849,7 @@ https://dashboard.stripe.com/test/dashboard
 ※Stripeは一人のユーザーに付き複数のアカウントを作成できるタイプです。
 
 アカウント名
-vns_template2
+vns_template2(適当)
 
 アカウントを作り
 テスト環境になっていることを確認してください。（ダッシュボードの右上に表示されています。）
