@@ -18,6 +18,38 @@ https://qiita.com/masakinihirota/items/695f572b05b82c2a7d57
 ↑上の記事はデプロイボタンを利用して設定してきます。（パターン１）
 ↓下の記事は手動で環境変数を設定していきます。(パターン１、２、３)。
 
+
+<details><summary>Next.jsのアプリにStripeの価格を反映させる。</summary>
+
+順番を間違えるとStripeのサブスクライブのデータがNext.jsに反映されません。
+各環境変数の設定は済んでいるものとします。
+
+この順番で実行するとStripeのデータが反映されます。
+
+↓それぞれVSCodeのターミナルの別ウィンドウで実行します。
+
+```terminal
+pnpm run dev
+
+```
+
+```terminal
+stripe listen --forward-to http://127.0.0.1:3000/api/webhooks
+
+```
+
+```terminal
+stripe fixtures fixtures/stripe-fixtures.json
+
+# fixturesフォルダをsrcフォルダの下に移動している場合
+stripe fixtures src/fixtures/stripe-fixtures.json
+
+```
+
+</details>
+
+
+
 # Nextjs Supabase Stripe スターターアプリケーション
 
 nextjs-subscription-payments というリポジトリが大型アップデートされました。
@@ -1027,6 +1059,9 @@ stripe listen --forward-to http://127.0.0.1:3000/api/webhooks
 
 ```terminal
 stripe fixtures fixtures/stripe-fixtures.json
+
+# fixturesフォルダをsrcフォルダの下に移動している場合
+stripe fixtures src/fixtures/stripe-fixtures.json
 
 ```
 
