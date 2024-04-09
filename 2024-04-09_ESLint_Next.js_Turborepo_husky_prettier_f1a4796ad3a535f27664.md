@@ -616,6 +616,11 @@ eslint-plugin-tailwindcss/docs/rules/classnames-order.md at master · francoisma
 
 https://github.com/francoismassart/eslint-plugin-tailwindcss/blob/master/docs/rules/classnames-order.md
 
+francoismassart/eslint-plugin-tailwindcss: ESLint plugin for Tailwind CSS usage
+
+https://github.com/francoismassart/eslint-plugin-tailwindcss
+
+
 
 ## インストール
 
@@ -743,11 +748,12 @@ npx prettier . --check
 
 ## VSCodeの拡張機能
 
-Prettier
-
 Prettier - Code formatter - Visual Studio Marketplace
 https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
+tailwindlabs/tailwindcss-intellisense: Intelligent Tailwind CSS tooling for Visual Studio Code
+
+https://github.com/tailwindlabs/tailwindcss-intellisense
 
 
 ## ESlintとPrettierの基本コマンド
@@ -760,20 +766,24 @@ pnpm run prettier-fix
 
 ```
 
+
+
 ## 自動ソート
 
 現在の設定では、自動ソートになっているはずです。
 
+### 例
+
 ↓ソートされてない
 
-```
+```page.tsx
 <div className="p-3 border-gray-300 m-4 h-24 lg:p-4 flex border-2 lg:m-4"></div>
 
 ```
 
 ↓自動ソート後
 
-```
+```page.tsx
 <div className="m-4 flex h-24 border-2 border-gray-300 p-3 lg:m-4 lg:p-4"></div>
 
 ```
