@@ -256,9 +256,10 @@ Next.js アプリケーションで i18next を使うためのライブラリで
 
 ※Next.js 13 のApp Router を使用する場合は、next-i18next は必要ありません。i18next と React-i18next を使用します。(↓のブログ参照)
 
-i18n with Next.js 13 and app directory / App Router (an i18next guide)
+i18n with Next.js 13/14 and app directory / App Router (an i18next guide)
 
-https://locize.com/blog/next-13-app-dir-i18n/
+https://locize.com/blog/next-app-dir-i18n/
+
 
 今回、↑このブログの記事を元に、実装していきi18nに関して色々調べていきます。
 
@@ -501,9 +502,9 @@ Next.js Internationalization ドキュメント の解説はここまで。
 
 このブログをNext.jsで実装してみます。
 
-i18n with Next.js 13 and app directory / App Router (an i18next guide)
+i18n with Next.js 13/14 and app directory / App Router (an i18next guide)
 
-https://locize.com/blog/next-13-app-dir-i18n/
+https://locize.com/blog/next-app-dir-i18n/
 
 ※このブログによると 新しいアプローチが採用され next-i18next はもう必要ありません。
 
