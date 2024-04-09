@@ -175,7 +175,7 @@ Next.jsでは、`next/head`を使用してページの`<head>`要素を操作す
 
 
 * **その他**
-  * @next/next/no-html-link-for-pages: 内部リンク (<a> タグ) を使わず、Next.js のナビゲーション機能を使うように促す
+  * @next/next/no-html-link-for-pages: 内部リンク ( `<a> タグ`) を使わず、Next.js のナビゲーション機能を使うように促す
   * @next/next/no-page-custom-font: 特定のページだけでカスタムフォントを使わないように注意喚起
   * @next/next/no-typos: データ取得処理 (getStaticProps や getServerSideProps) でよくある入力ミスを防止
   * @next/next/no-unwanted-polyfill: 余計な Polyfill.io の読み込みを防止
@@ -577,11 +577,11 @@ package-lock.json
 node_modules
 public
 
-# shad/cn
+# shadcn/ui ※shadcn/uiのインストール場所なので、eslintの効果範囲に含めないようにします。
 src/components/ui/
 
 # supabase
-# supabase型ファイル
+# supabase型ファイル ※型ファイルは自動生成なので、eslintの効果範囲に含めないようにします。
 types_db.ts
 
 ```
@@ -603,6 +603,19 @@ types_db.ts
 ----------------------------------------
 
 # Prettier 独自設定
+
+classNameの順番を自動ソートする機能が
+`eslint-plugin-tailwindcss` (<=後から追加されたほう)
+`prettier-plugin-tailwindcss`
+の両方にあります。
+
+`eslint-plugin-tailwindcss` だけ導入するので良いそうです。
+
+## 参考
+eslint-plugin-tailwindcss/docs/rules/classnames-order.md at master · francoismassart/eslint-plugin-tailwindcss
+
+https://github.com/francoismassart/eslint-plugin-tailwindcss/blob/master/docs/rules/classnames-order.md
+
 
 ## インストール
 
@@ -747,7 +760,23 @@ pnpm run prettier-fix
 
 ```
 
+## 自動ソート
 
+現在の設定では、自動ソートになっているはずです。
+
+↓ソートされてない
+
+```
+<div className="p-3 border-gray-300 m-4 h-24 lg:p-4 flex border-2 lg:m-4"></div>
+
+```
+
+↓自動ソート後
+
+```
+<div className="m-4 flex h-24 border-2 border-gray-300 p-3 lg:m-4 lg:p-4"></div>
+
+```
 
 ----------------------------------------
 
