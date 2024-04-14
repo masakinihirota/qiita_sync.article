@@ -2242,10 +2242,7 @@ https://github.com/i18next/next-13-app-dir-i18next-example
 
 locize.appを使用して、翻訳を管理する方法を学びましょう。
 
-月700円ぐらい
 2週間お試しfree
-
-
 
 素晴らしい翻訳管理システムに接続し、コード外で翻訳を管理しましょう。
 
