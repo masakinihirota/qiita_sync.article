@@ -4,13 +4,13 @@ tags:    githubcopilot,githubcopilotchat
 id:      c9df9de0c7326280bfae
 private: false
 -->
-**Github Copilot chat** は**Github Copilot** で課金していれば、無料で利用できます。
-
-※前の記事
-
-GitHub Copilot導入後、初めて使う時。(豊富な使用例付き)
-
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+**Github Copilot chat** は**Github Copilot** で課金していれば、無料で利用できます。
 
 # GitHub Copilot chatのヘルプ
 

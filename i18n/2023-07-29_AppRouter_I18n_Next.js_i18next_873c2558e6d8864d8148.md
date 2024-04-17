@@ -254,7 +254,7 @@ Next.js アプリケーションで i18next を使うためのライブラリで
 
 これらのライブラリを組み合わせることで、React/Next.js アプリケーションで多言語対応のテキストを簡単に実現することができます。
 
-※Next.js 13 のApp Router を使用する場合は、next-i18next は必要ありません。i18next と React-i18next を使用します。(↓のブログ参照)
+※Next.js 13/14 のApp Router を使用する場合は、next-i18next は必要ありません。i18next と React-i18next を使用します。(↓のブログ参照)
 
 i18n with Next.js 13/14 and app directory / App Router (an i18next guide)
 

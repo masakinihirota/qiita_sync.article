@@ -4,6 +4,12 @@ tags:    Git,GitHub,VSCode,githubcopilot
 id:      61f8a26546f4139c353c
 private: false
 -->
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
 ![VNS画面GitHubCopilot文字付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/74ce79e7-8fba-bc76-cbe6-a9e89ea15925.png)
 
 ※左サイドバー（左:第一）、エディター（右上:第ニ）部分でGitHub Copilotを使えていました、ついにターミナル部分(右下:第三)でもGitHub Copilotが使えるようになりました。
@@ -156,7 +162,7 @@ CLI の Copilot がより適切な提案します。
 
 探しているコマンドのタイプ (汎用コマンド git または gh 他) を指定できます。
 
-結果が期待したものと異なる場合は、返されたコマンドが期待どおりになるまで質問を修正し続けることができます。
+結果が期待したものと異なる場合は、提案されたコマンドが期待どおりになるまで質問をしなおして、修正し続けることができます。
 
 
 ### タスクに最適なコマンドを生成したら
