@@ -4,72 +4,13 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
-
-追記:2024/04/03
-1年契約でGitHub Copilotを導入後1年が経ち、継続契約をしようと決めていましたが自動継続でした。
-契約を終えたいと思った方はご注意ください。
-
-追記終了
-
-追記:2024/02/09
-GitHub Copilot Labs はGitHub Copilotに統合され、 VSCode等の拡張機能を含め削除されました。
-機能自体は消えていません。
-
-チャット欄から
-`#`
-`/`
-`@`
-記号を使用してファイルを直接指定したり、場所を指定したり、機能を指定したり、質問の範囲を絞ったりすることが出来るようになりました。
-
-GitHub Copilotのチャット欄から`/help` と入力すると、使い方が表示されます。
-
-追記終了
-
-
-
-追記:2023/12/20
-VSCodeのメッセージによると、GitHub Copilot Labs のテクニカルプレビューはまもなく終了し、新しいアクセス権は付与されなくなります。代わりに GitHub Copilot Chat のご利用をお勧めします。
-
-GitHub Copilot chatのインラインチャット機能(ctrl+i)で質問すると、コードを書いてくれます。
-
-例えばGitHub Copilot Labsでテストを書いていた場合
-GitHub Copilot chatでは`/test`と入力すると、選択したコードのテストを書いてくれます。
-このとき、"Create As"を選択することで、その新しいファイルの名前と保存場所を自由に選択することができます。
-
-追記終了
-
-
-追記:2023/11/20
-
-次の記事
-
-GitHub Copilot chatの使い方
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
 
-GitHub Copilot chatは・・・
-* GitHub Copilotに課金しているユーザーは無料で利用できます。
-* GitHub Copilotの機能をさらに拡張したものです。
-* コードに関することに限りChatGPTのようにAIと会話ができるようになりました。
-* GitHub Copilotではコメントを書いて指示を出すことが出来ましたが、GitHub Copilot chatではファイル上から直接インライン機能を起動させて指示を出すことができるようになりました。
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
 
-例えば、README.mdが英語で、日本語に翻訳したい時にGitHub Copilot chat のインライン機能を起動させて「このREADME.mdを翻訳してください」と指示を出すと、翻訳してくれます。
-
-追記終了
-
-
-
-### アイコンの説明
-
-**GitHub Copilot コマンド パレット**
-
-![GitHub Copilotアイコン画像説明付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/c59d6119-a693-a156-7f4b-65c57d9308d4.png)
-
-※↑GitHub Copilot Labsのアイコンでした。
-
-
-
-### キーボードショートカットキー (VSCode)
+## キーボードショートカットキー (VSCode)
 
 ※提案＝GitHub Copilotが出力するコードの事です。
 

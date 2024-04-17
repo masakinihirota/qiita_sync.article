@@ -6,17 +6,30 @@ private: false
 -->
 この記事では下記のBlog記事を参考にNext.jsの国際化と、日本語翻訳の追加、TypeScriptの型の追加を0から追跡しています。
 
+##### 動機
+既存のアプリにi18nを追加した時、原因不明のエラーが起きたので0から見直してみた。
+※エラーの原因とその対処方法はこの記事の一番下を見てください。
 
+----------------------------------------
 
+# 使用資料
 Next.js ＋
 JavaScript版リポジトリ
 TypeScript版(JavaScript版+型)リポジトリ
 
-# 元となる記事
+## ライブラリ
+i18next 国際化のライブラリ
+react-i18next Reactでi18nextを使うための国際化のライブラリ
+
+next-i18next はNext.jsで使う国際化のライブラリ
+※App Routerでは↑このライブラリは不要になりました。
+
+## 元となる記事
 
 https://locize.com/blog/next-app-dir-i18n/
 
-↑このBlog記事のソースコードが↓下記のリポジトリにあります。
+↑このBlog記事は、少し修正が必要です。
+↑このBlog記事のソースコードが↓下記のリポジトリになります。
 
 ## JavaScript版リポジトリ
 
@@ -30,11 +43,10 @@ i18next/next-app-dir-i18next-example-ts: Next.js 13/14 app directory feature in 
 
 https://github.com/i18next/next-app-dir-i18next-example-ts
 
-↑これらの記事は、動作させるために少し訂正が必要です。
-
 ----------------------------------------
 
 調査して完成(動作確認済み)した私のリポジトリ
+(後、日本語訳も追加)
 
 masakinihirota/next_i18n_type
 
@@ -101,31 +113,19 @@ Blogなどに貼るTreeを作ります。
 
 # 0
 
-	normalのNext.jsを初期化
-
-	src\app\page.tsx
-
-	export default function Home() {
-	  return (
-	    <main className="">TOP PAGE
-	    </main>
-	  );
-	}
-
-
-	src\app\globals.css
-
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-
 削除
 src\app\page.tsx
-src\app\[lng]\layout.js
+src\app\layout.js
+
+通常のトップページを削除しています。
 
 ----------------------------------------
 
+※項目の数字は参考にしているBlog記事と同じです。
+
 # 1 Folder structure
+
+国際化した時のトップページを作っています。
 
 ```terminal
 mkdir src/app/[lng]/
@@ -1711,6 +1711,26 @@ vercel/nextjs-subscription-payments: Clone, deploy, and fully customize a SaaS s
 
 https://github.com/vercel/nextjs-subscription-payments
 
-このリポジトリを使ってi18n化したところ、言語変換ができなかった
+このリポジトリを使って、`i18next`でi18n化したところ、言語変換ができなかった。
 
-[WIP]原因を調査中
+### 調査の結果 原因が判明
+
+```package.json
+
+  "scripts": {
+    "dev": "next dev --turbo",
+
+```
+
+↑この `--turbo` オプションを↓削除する。
+
+```package.json
+
+  "scripts": {
+    "dev": "next dev",
+
+```
+
+スターターのpackage.jsonに `--turbo` オプションがつているのが原因だった。
+
+これだけで言語変換がうまくいくようになった。

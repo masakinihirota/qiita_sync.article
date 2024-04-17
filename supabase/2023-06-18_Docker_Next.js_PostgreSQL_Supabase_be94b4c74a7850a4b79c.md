@@ -4,12 +4,19 @@ tags:    Docker,Next.js,PostgreSQL,Supabase
 id:      be94b4c74a7850a4b79c
 private: false
 -->
-
 # 重要コマンド
 
 Supabase CLIのアップデート
-現在 2023年9月18日 supabase CLI 1.93.0
+2023年9月18日 supabase CLI 1.93.0
+`terminal
 scoop update supabase
+
+```
+
+現在 2024年4月18日
+supabase: 1.161.0
+
+
 
 ## ローカル、サーバー問わず、Supabaseのダッシュボードからテーブルに変更を加えた時
 
@@ -3065,6 +3072,3 @@ supabase db dump -f origin
 supabase db dump --use-copy -f usecopy
 
 ファイルに出力されたものは同じでした。
-
-
-
