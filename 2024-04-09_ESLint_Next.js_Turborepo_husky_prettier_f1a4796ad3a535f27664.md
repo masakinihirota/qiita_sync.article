@@ -1,87 +1,97 @@
 <!--
-title:   Next.js の ESLintとPrettier、turborepo、husky Next.js公式のドキュメントと独自調査
+title:   テンプレート作成用のNext.js の ESLintとPrettier、turborepo、husky
 tags:    ESLint,Next.js,Turborepo,husky,prettier
 id:      f1a4796ad3a535f27664
 private: false
 -->
-この記事は、公式ドキュメントと、独自に調べた設定について書きました。
-
-* 公式のドキュメントの設定
-* 独自調査の設定
-の二部に分けられています。
-
-公式のドキュメントは基礎的な設定だけです。
-独自調査では色々調べて作った設定です。
-
 ※この記事はvns_templateを作るために書きました。
+2024年5月2日
 
 ----------------------------------------
 
-# チェック＆整形＆修正コマンド
+# 今回設定したツールのコマンドリスト
 
 ```terminal
 pnpm run lint
 pnpm run lint:debug
 pnpm run lint:fix
+
 pnpm run prettier-fix
 
 ```
 
-これをhuskyをつかって、
+これらのコマンドを
+huskyをつかって、
 コミット時とプッシュ時に自動実行させます。
 
+----------------------------------------
 
+## プラグインのインストール
+
+```terminal
+pnpm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-unused-imports eslint-plugin-storybook
+
+```
+
+↑の↓リスト
+
+```
+@typescript-eslint/parser
+@typescript-eslint/eslint-plugin
+eslint-plugin-react
+eslint-plugin-react-hooks
+eslint-plugin-import
+eslint-plugin-unused-imports
+eslint-plugin-storybook
+
+```
 
 ----------------------------------------
 
 # ESLint
 
-ESLint自体はNext.jsインストール時に選択可能です。
-
 Next.js 公式ドキュメント App Router用
-
 Configuring: ESLint | Next.js
 
 https://nextjs.org/docs/app/building-your-application/configuring/eslint
 
+ESLint v9がリリースされていますが、Next.jsではそのサポートに追いついていないようなので、v8を利用します。
 
+ESLint v8がサポートしているTypeScriptのバージョンは5.3.3までです。
 
-----------------------------------------
+```terminal
+SUPPORTED TYPESCRIPT VERSIONS: >=4.3.5 <5.4.0
 
-# 1部
+```
+
+microsoft/TypeScript: TypeScript is a superset of JavaScript that compiles to clean JavaScript output.
+https://github.com/Microsoft/TypeScript
+
+バージョンダウンしておきます。
+
+```terminal
+pnpm add typescript@5.3.3 --save-dev
+
+pnpm install --save-dev eslint @eslint/js
+
+```
+
+package.jsonファイルもそれに合わせておきます。
+
+```package.json
+    "typescript": "5.3.3"
+
+```
+
 
 ## ESLintの設定ファイル
 
-
-.eslintrc.jsonなどの設定ファイルがない場合
-
-```terminal
-pnpm run lint
-
-```
-
-↑初めて実行すると選択肢が出てきます。
-
-
+.eslintrc.jsonファイルの作成
 
 ```terminal
-> pnpm run lint
-You'll see a prompt like this:
-
-? How would you like to configure ESLint?
-
-❯ Strict (recommended)
-Base
-Cancel
+touch .eslintrc.json
 
 ```
-
-どれかを選びます。
-すでに、設定ファイルがあるならCancelを選びます。
-
-
-
-### Strict (recommended)
 
 ```.eslintrc.json
 {
@@ -90,29 +100,67 @@ Cancel
 
 ```
 
+next/core-web-vitals はNext.js専用のESLint設定です。
 next/core-web-vitals はNext.jsに組み込まれています。
 
 
-### Base
 
-```.eslintrc.json
-{
-  "extends": "next"
-}
+.eslintignoreファイルの作成
+
+```terminal
+touch .eslintignore
 
 ```
 
-※ドキュメントによると、自動で設定ファイルが生成されます。
-(しかし、自分の場合は自動生成されなかったので手動で追加しました。)
+```.eslintignore
+# config
+.eslintrc.json
+.prettierrc
+next.config.js
+tailwind.config.js
+tsconfig.json
+postcss.config.js
 
+# build dir
+build/
+bin/
+obj/
+out/
+.next/
 
+# 自動生成されたファイル
+package-lock.json
+pnpm-lock.yaml
 
-next/core-web-vitals
-か
-next
-のどちらかを選ぶことになります。
+# Storybook
+*.stories.ts
+*.stories.tsx
 
-この設定ファイルに追加していきます。
+# CSSファイル
+*.css
+
+# mdxファイル
+*.mdx
+
+# すべての画像ファイルを除外する
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.ico
+
+node_modules
+public
+
+# shadcn/ui ※shadcn/uiのインストール場所なので、eslintの効果範囲に含めないようにします。
+src/components/ui/
+
+# supabaseの型ファイル
+# ※型ファイルは自動生成なので、eslintの効果範囲に含めないようにします。
+types_db.ts
+src/types/**
+
+```
 
 
 
@@ -141,19 +189,14 @@ eslint-plugin-next
   * @next/next/google-font-display: Google Fonts を使うとき、フォントの表示方法を正しく設定しているかチェック
   * @next/next/google-font-preconnect: Google Fonts を読み込む前に、ブラウザが準備するように促しているかチェック
 
-
 * **next/script コンポーネントまわり**
   * @next/next/inline-script-id: インラインスクリプトを含む next/script には id 属性が必須かどうかを教えてくれる
   * @next/next/next-script-for-ga: Google Analytics のインラインスクリプトを使うときは、next/script コンポーネントを使うように勧める
-
-
 
 * **Next.js 独自の挙動まわり**
   * @next/next/no-assign-module-variable: 特殊な変数 `module` に値を代入するのを防止
   * @next/next/no-async-client-component: クライアントコンポーネントを async 関数にしないように注意喚起
   * 他にも、特定のファイル以外で特定の機能を使わないように促すルールがあるよ
-
-
 
 * **不要なタグやコンポーネントの使用を防止**
   * @next/next/no-css-tags 手動でスタイルシートのタグを書くのを防止
@@ -166,13 +209,9 @@ Next.jsでは、`next/head`を使用してページの`<head>`要素を操作す
   * no-script-component-in-head `next/head`コンポーネント内での`next/script`の使用を防ぎます。`next/script`は`<body>`内でのみ使用することが推奨されています。
   * no-styled-jsx-in-document `pages/_document.js`での`styled-jsx`の使用を防ぎます。
 
-
-
 * **パフォーマンス改善のためのルール**
   * @next/next/no-img-element: 画像 (img タグ) の使いすぎを防止 (読み込みが遅くなるため)
   * @next/next/no-sync-scripts: 同期スクリプトの使用を減らすように勧める (ページの読み込みが遅くなるため)
-
-
 
 * **その他**
   * @next/next/no-html-link-for-pages: 内部リンク ( `<a> タグ`) を使わず、Next.js のナビゲーション機能を使うように促す
@@ -180,12 +219,7 @@ Next.jsでは、`next/head`を使用してページの`<head>`要素を操作す
   * @next/next/no-typos: データ取得処理 (getStaticProps や getServerSideProps) でよくある入力ミスを防止
   * @next/next/no-unwanted-polyfill: 余計な Polyfill.io の読み込みを防止
 
-
-
-Next.js向けの ESLint ルール一覧
-
 Next.js アプリのよくある間違いを防ぐために、Next.js では ESLint ルールが用意されています。
-
 これらのルールは、Next.js のベストプラクティスとアンチパターンを強制するためのものです。
 
 
@@ -194,8 +228,10 @@ Next.js アプリのよくある間違いを防ぐために、Next.js では ESL
 
 # カスタムディレクトリとファイルのリント
 
-デフォルトでは、Next.jsはpages/, app/, components/, lib/, src/ディレクトリのすべてのファイルに対してESLintを実行します。ただし、next.config.jsのeslint configでdirsオプションを指定することで、本番ビルドで使用するディレクトリを指定することができます：
+デフォルトでは、Next.jsはpages/, app/, components/, lib/, src/ディレクトリのすべてのファイルに対してESLintを実行します。
+ただし、next.config.jsのeslint configでdirsオプションを指定することで、本番ビルドで使用するディレクトリを指定することができます。
 
+例
 
 ```next.config.js
 module.exports = {
@@ -219,7 +255,8 @@ module.exports = {
 
 ESLintのキャッシュはデフォルトで有効になっています。
 
-パフォーマンスを向上させるために、ESLintによって処理されるファイルの情報はデフォルトでキャッシュされます。これは.next/cacheまたは定義したビルドディレクトリに保存されます。
+パフォーマンスを向上させるために、ESLintによって処理されるファイルの情報はデフォルトでキャッシュされます。
+これは.next/cacheまたは定義したビルドディレクトリに保存されます。
 一つのソースファイルの内容以上に依存するESLintルールを含み、キャッシュを無効にする必要がある場合は、next lintで--no-cacheフラグを使用してください。
 
 ## キャッシュの無効化
@@ -235,7 +272,7 @@ next lint --no-cache
 
 # ルールの無効化
 
-ルールを変更したり無効にしたい場合は、.eslintrcのrulesプロパティを使って直接変更することができます：
+個別にルールを変更したり無効にしたい場合は、.eslintrcのrulesプロパティを使って直接変更することができます：
 
 例
 
@@ -262,17 +299,21 @@ next lint --no-cache
 
 ### Core Web Vitals とは？
 
-Core Web Vitals は、Google が定めた、ウェブページの読み込み速度やインタラクティブさ、視覚的安定性などを測る指標のことです。ユーザーが快適にウェブページを利用できるかどうかを判断するのに役立ちます。
+Core Web Vitals は、Google が定めた、ウェブページの読み込み速度やインタラクティブさ、視覚的安定性などを測る指標のことです。
+ユーザーが快適にウェブページを利用できるかどうかを判断するのに役立ちます。
 
 ### Next.js の lint 設定と Core Web Vitals
 
-Next.js には、コードの品質チェックを行う ESLint というツールが組み込まれています。`next/core-web-vitals` という設定を使うと、このチェックに Core Web Vitals に関するルールを追加できます。
+Next.js には、コードの品質チェックを行う ESLint というツールが組み込まれています。
+`next/core-web-vitals` という設定を使うと、このチェックに Core Web Vitals に関するルールを追加できます。
 
 ### ポイント
 
 * `next lint` コマンドを実行するときに `strict` オプションを選ぶか、`.eslintrc.json` ファイルに `extends: "next/core-web-vitals"` と記述すると、Core Web Vitals に関するルールが有効になります。
 * 有効になると、本来は警告 (warning) レベルだったルールがエラー (error) レベルになり、コードが Core Web Vitals のスコアに悪影響を与える可能性がある箇所を厳しくチェックしてくれます。
 * 新しく Next.js アプリケーションを作成するときには、この `next/core-web-vitals` 設定が初期設定として自動的に含まれています。
+
+
 
 ### まとめ
 
@@ -294,7 +335,8 @@ Next.js の lint 設定を使って、コードが Core Web Vitals のスコア�
 
 ## Next.js の lint 設定: 既存設定との統合
 
-すでに別の ESLint 設定を使っている場合でも、`eslint-config-next` を取り入れることができます。ただし、**他の設定の後**、最後に `eslint-config-next` を継承するようにしてください。
+すでに別の ESLint 設定を使っている場合でも、`eslint-config-next` を取り入れることができます。
+ただし、 **他の設定の後** に `eslint-config-next` を継承するようにしてください。
 
 **例:**
 
@@ -321,7 +363,8 @@ Next.js の lint 設定を使って、コードが Core Web Vitals のスコア�
 
 # Pretter
 
-ESLint には、既存の Prettier 設定と競合する可能性があるコード形式ルールも含まれています。 ESLint と Prettier を連携させるために、ESLint 構成に eslint-config-prettier を含めることをお勧めします。
+ESLint には、既存の Prettier 設定と競合する可能性があるコード形式ルールも含まれています。
+ESLint と Prettier を連携させるために、ESLint 構成に eslint-config-prettier を含めることをお勧めします。
 
 
 
@@ -343,45 +386,13 @@ pnpm add --save-dev eslint-config-prettier
 
 ```
 
-
-
-
-
-----------------------------------------
-
-通常使用コマンド
-
-```terminal
-next lint
-
-```
-
-作った設定ファイル
-
-```.eslintrc.json
-{
-  "extends": ["next/core-web-vitals", "prettier"]
-}
-
-```
-
-ここまでがNext.js 公式ドキュメント
-
-
-
-----------------------------------------
 ----------------------------------------
 ----------------------------------------
 
-# 2部
 
 ## Next.js 公式ドキュメント以外の追加設定
 
-※個人の独自設定です。
 
-
-
-----------------------------------------
 
 ## tsconfig.json
 
@@ -411,12 +422,14 @@ TypeScriptを開発しやすくします。
 
 ## ESLint 独自設定
 
-.eslintrc.json ファイルを作成します。
+設定ファイル
 
 ```terminal
 touch .eslintrc.json
 
 ```
+
+
 
 ```.eslintrc.json
 {
@@ -433,7 +446,12 @@ touch .eslintrc.json
   // parserのオプションを設定
   // JSXやECMAScriptのバージョンの設定など
   "parserOptions": {
-    "EXPERIMENTAL_useProjectService": true,
+     // tsconfig.jsonへのパス
+     "project": "./tsconfig.json",
+    "EXPERIMENTAL_useProjectService": {
+      // 許容する最大ファイル数
+      "maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING": 30
+    },
     "ecmaFeatures": {
       "jsx": true
     },
@@ -451,7 +469,13 @@ touch .eslintrc.json
   // 追加ルールの指定
   // pluginsにルールを指定しても、ルールは適用されていない状態
   // 追加ルールを適用する場合は、extendsかrulesで設定が必要
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "unused-imports"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import",
+    "unused-imports"
+  ],
 
   // 共有設定の適用
   // 各pluginで公開されている設定ファイルを指定することで、ルールの設定を適用
@@ -529,64 +553,6 @@ touch .eslintrc.json
 
 ```
 
-
-
-.eslintignoreファイルの作成
-
-```terminal
-touch .eslintignore
-
-```
-
-```.eslintignore
-# config
-.eslintrc.json
-.prettierrc
-next.config.js
-tailwind.config.js
-tsconfig.json
-postcss.config.js
-
-# build dir
-build/
-bin/
-obj/
-out/
-.next/
-
-# 自動生成されたファイル
-package-lock.json
-
-# Storybook
-*.stories.ts
-*.stories.tsx
-
-# CSSファイル
-*.css
-
-# mdxファイル
-*.mdx
-
-# すべての画像ファイルを除外する
-**/*.png
-**/*.jpg
-**/*.jpeg
-**/*.gif
-**/*.ico
-
-node_modules
-public
-
-# shadcn/ui ※shadcn/uiのインストール場所なので、eslintの効果範囲に含めないようにします。
-src/components/ui/
-
-# supabase
-# supabase型ファイル ※型ファイルは自動生成なので、eslintの効果範囲に含めないようにします。
-types_db.ts
-
-```
-
-
 ## ESLint の scripts
 
 ```package.json
@@ -598,14 +564,23 @@ types_db.ts
 
 ```
 
+※ESLintの設定ファイルを保存したら
+
+```terminal
+pnpm run lint:fix
+
+```
+
+lintコマンドを実行しておいてください。
+
 
 
 ----------------------------------------
 
 # Prettier 独自設定
 
-classNameの順番を自動ソートする機能が
-`eslint-plugin-tailwindcss` (<=後から追加されたほう)
+TailwindCSSのclassNameのプロパティの順番を自動ソートする機能が
+`eslint-plugin-tailwindcss` (<=後から追加された設定)
 `prettier-plugin-tailwindcss`
 の両方にあります。
 
@@ -628,8 +603,12 @@ https://github.com/francoismassart/eslint-plugin-tailwindcss
 
 https://prettier.io/docs/en/install.html
 
+Configuration File · Prettier
+
+https://prettier.io/docs/en/configuration.html
+
 ```terminal
-touch .prettier.json
+touch .prettierrc.json
 
 ```
 
@@ -646,13 +625,10 @@ touch .prettier.json
 
 ```.prettier.json
 {
-  "semi": true,
-  "trailingComma": "all",
+  "arrowParens": "always",
   "singleQuote": true,
-  "printWidth": 100,
   "tabWidth": 2,
-  "arrowParens": "avoid",
-  "useTabs": false
+  "trailingComma": "none"
 }
 
 ```
@@ -756,17 +732,6 @@ tailwindlabs/tailwindcss-intellisense: Intelligent Tailwind CSS tooling for Visu
 https://github.com/tailwindlabs/tailwindcss-intellisense
 
 
-## ESlintとPrettierの基本コマンド
-
-```terminal
-pnpm run lint
-pnpm run lint:debug
-pnpm run lint:fix
-pnpm run prettier-fix
-
-```
-
-
 
 ## 自動ソート
 
@@ -784,18 +749,16 @@ pnpm run prettier-fix
 ↓自動ソート後
 
 ```page.tsx
-<div className="m-4 flex h-24 border-2 border-gray-300 p-3 lg:m-4 lg:p-4"></div>
-
+<div className="flex h-24 p-3 m-4 border-2 border-gray-300 lg:p-4 lg:m-4"></div>
 ```
+
+
 
 ----------------------------------------
 
 ##  turborepo の導入
 
 push時などにコードのチェックをしてもらいます。
-高速化
-
-
 
 ## 公式ドキュメント
 
@@ -810,15 +773,10 @@ https://turbo.build/repo/docs/getting-started/add-to-project
 グローバルにインストールします。
 
 ```terminal
+# install
 pnpm add turbo --global
 
-```
-
-
-
-更新
-
-```terminal
+# update
 npx @turbo/codemod@latest update
 
 ```
@@ -826,7 +784,11 @@ npx @turbo/codemod@latest update
 
 
 設定ファイル
+
+```terminal
 touch turbo.json
+
+```
 
 ```turbo.json
 {
@@ -841,7 +803,7 @@ touch turbo.json
 
 ```
 
-
+.gitignoreファイルに追加します。
 
 ```.gitignore
 ・・・
@@ -850,10 +812,20 @@ touch turbo.json
 
 ```
 
+
+## turborepoの実行
+
+※コミット後に実行します。
+アプリケーションを起動させていたら停止させておきます。
+
+
 1回目の実行
+
+```terminal
 turbo type-check build
 
-※コミット後に実行します、アプリケーションを起動させていたら停止させておきます。
+```
+
 
 ```terminal
  Tasks:    1 successful, 1 total
@@ -865,11 +837,17 @@ Cached:    1 cached, 1 total
 ビルドが成功すると緑色の文字でsuccessfulとでます。
 
 2回目の実行
+
+```terminal
 turbo type-check build
 
-↑すぐに2回目を実行すると、すぐに終了するのでキャッシュされていることがわかります。
+```
+
+↑そのまま2回目を実行すると、すぐに終了するのでキャッシュされていることがわかります。
 
 
+
+## turborepoのコマンド
 
 `turbo dev` (≒pnpm run dev)
 開発モードでアプリケーションを起動します。ソースコードの変更を監視し、変更があるたびにアプリケーションを自動的に再起動します。
@@ -882,18 +860,27 @@ TypeScriptの型チェックを行い、その後にビルドプロセスを実�
 ----------------------------------------
 
 # husky のインストール
-gitのコミット時にformatの実行します。
 
-(package.jsonのscript)
+## per-commit
 
-githubへのpushの時に
+gitのコミットの前に format を実行します。
+package.jsonのscriptを実行します。
+
+
+
+## pre-push
+
+githubへのpushの前に
 buildを実行します。
+
+
 
 ## インストール
 
 ```terminal
 pnpm i -D husky
 npx husky init
+
 touch .husky/pre-commit
 touch .husky/pre-push
 
@@ -904,8 +891,8 @@ touch .husky/pre-push
 ↑ファイルに記入するコマンドは自分の好みに設定します。
 
 ```.husky/pre-commit
-pnpm run prettier-fix
 pnpm run lint:fix
+pnpm run prettier-fix
 
 ```
 
@@ -916,21 +903,3 @@ turbo type-check build
 
 
 
-----------------------------------------
-
-## プラグインのインストール
-
-pnpm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-unused-imports eslint-plugin-storybook
-
-↑の↓リスト
-
-```
-@typescript-eslint/parser
-@typescript-eslint/eslint-plugin
-eslint-plugin-react
-eslint-plugin-react-hooks
-eslint-plugin-import
-eslint-plugin-unused-imports
-eslint-plugin-storybook
-
-```
