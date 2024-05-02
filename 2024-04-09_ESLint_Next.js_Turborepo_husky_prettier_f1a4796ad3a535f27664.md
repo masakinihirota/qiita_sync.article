@@ -33,7 +33,7 @@ pnpm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plug
 
 ```
 
-↑の↓リスト
+### ↑のリスト
 
 ```
 @typescript-eslint/parser
