@@ -750,7 +750,10 @@ https://github.com/tailwindlabs/tailwindcss-intellisense
 
 ```page.tsx
 <div className="flex h-24 p-3 m-4 border-2 border-gray-300 lg:p-4 lg:m-4"></div>
+
 ```
+
+これは、自動ソート後されているのを確認したら削除しておいてください。
 
 
 

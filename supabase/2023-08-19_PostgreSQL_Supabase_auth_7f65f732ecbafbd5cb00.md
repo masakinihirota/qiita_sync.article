@@ -4,6 +4,13 @@ tags:    PostgreSQL,Supabase,auth
 id:      7f65f732ecbafbd5cb00
 private: false
 -->
+追記 2024年5月4日
+以前は`@supabase/auth-helpers-nextjs`認証パッケージが使われていましたが、現在は`@supabase/ssr`認証パッケージの使用が推奨されています。
+
+追記終了
+
+
+
 # この記事の趣旨
 
 PostgreSQLの認証についてざっくり理解することを目的とします。
