@@ -3,6 +3,385 @@ title:   RLS(Row Level Security)入門ガイド Supabase(Postgres)データセ�
 tags:    Supabase,Postgres,RLS,Row Level Security
 private: false
 -->
+# 用語
+
+## Policy
+
+ポリシーは、PostgreSQLの ルールエンジン です。
+ルールエンジンと言われてもピンと来ないかもしれません。
+
+部屋の入室許可を自分だけにするか、家族全員にするか、友人にも許可するか等、
+誰が何をしてもいいか？を決めるのがポリシーです。
+
+
+
+## RLS
+
+RLSは、Row Level Securityの略です。
+PostgreSQLの代表的なセキュリティキーワードの一つです。
+
+RLSはポリシーをテーブルの行に対して適用することができます。
+
+認証 誰がマンションに出入りできるか？
+Authentication
+
+認可 誰が部屋に入る許可を持っているか？
+Authorization
+
+RLS 入った人が、その部屋の中で何ができるか？
+row-level security
+
+
+
+## ロール
+
+PostgreSQLにおいて、ロールは、データベース内のユーザーやグループを表すオブジェクトです。ロールは、データベースに接続するための認証情報を持ち、データベース内のオブジェクトに対するアクセス権を持つことができます。
+
+ロールは、CREATE ROLEステートメントを使用して作成できます。
+
+以下は、新しいロールを作成する例です。
+
+```sql
+CREATE ROLE myuser WITH LOGIN PASSWORD 'mypassword';
+
+```
+
+上記の例では、myuserという名前の新しいロールが作成され、LOGIN権限が付与され、パスワードが設定されています。
+
+ロールには、様々な権限を付与することができます。
+例えば、GRANTステートメントを使用して、ロールにテーブルへのアクセス権を付与することができます。
+
+```sql
+GRANT SELECT, INSERT, UPDATE, DELETE ON mytable TO myuser;
+
+```
+
+上記の例では、mytableという名前のテーブルに対して、myuserロールに対してSELECT、INSERT、UPDATE、DELETEの権限が付与されています。
+
+ロールには、他のロールをスーパーユーザーとして指定することもできます。これにより、スーパーユーザーに与えられた権限が、指定されたロールにも付与されます。
+
+```
+GRANT myadmin TO myuser;
+
+```
+
+上記の例では、myadminという名前のロールがスーパーユーザーとして指定され、myuserロールに付与されています。
+
+
+## RLSのロール
+
+RLS（Row Level Security）におけるロールは、PostgreSQLのロールとは異なります。RLSのロールは、テーブルに対するアクセス権を制御するために使用されます。
+
+RLSのロールは、CREATE ROLEステートメントを使用して作成できます。
+
+以下は、新しいRLSロールを作成する例です。
+
+
+```sql
+CREATE ROLE my_rls_role;
+
+```
+
+上記の例では、my_rls_roleという名前の新しいRLSロールが作成されています。
+
+RLSロールには、テーブルに対するアクセス権を付与することができます。
+
+例えば、GRANTステートメントを使用して、RLSロールにテーブルへのアクセス権を付与することができます。
+
+```
+GRANT SELECT, INSERT, UPDATE, DELETE ON mytable TO my_rls_role;
+
+```
+
+上記の例では、mytableという名前のテーブルに対して、my_rls_roleロールに対してSELECT、INSERT、UPDATE、DELETEの権限が付与されています。
+
+RLSロールは、ポリシーの定義に使用されます。ポリシーは、テーブルに対するアクセス権を制御するために使用されます。ポリシーは、CREATE POLICYステートメントを使用して作成できます。以下は、新しいポリシーを作成する例です。
+
+```sql
+CREATE POLICY my_policy ON mytable FOR SELECT TO my_rls_role USING (column = 'value');
+
+```
+
+上記の例では、mytableという名前のテーブルに対して、my_policyという名前の新しいポリシーが作成され、my_rls_roleロールに対してSELECTの権限が付与されています。ポリシーの条件は、USING句で指定されています。
+
+
+
+## サービング
+
+ファイルを提供することを指します。
+
+SupabaseStorageでは、アップロードされたファイルを保存し、
+必要に応じてそのファイルにアクセスするためのURLを生成することができます。
+
+これにより、アプリケーションからファイルを簡単に提供することができます。
+
+例えば、ユーザーがアップロードしたプロフィール画像を表示する場合、
+その画像にアクセスするためのURLを生成し、
+そのURLをimgタグのsrc属性に設定することで、
+画像を表示することができます。
+
+
+
+----------------------------------------
+
+# RLS入門
+
+## 有効化
+
+publicに art というテーブルがあるとします。
+
+まずは、RLSを有効化します。
+
+```sql
+-- Enable RLS
+ALTER TABLE public.art
+  ENABLE ROW LEVEL SECURITY;
+
+```
+
+ALTER TABLE でテーブルの権限を変更すると宣言しています。
+
+public.artというテーブルを指定しています。
+
+ENABLE ROW LEVEL SECURITY;
+これでRLSが有効化されました。
+
+
+
+## 最初の設定
+
+```sql
+-- Create Policy
+CREATE POLICY "make_art_table_read_only"
+ON public.art FOR SELECT USING (
+  true
+);
+
+```
+
+※ユーザー全員に許可しています。
+
+
+
+----------------------------------------
+
+# 基本構文
+
+## RLSの書き方
+
+```sql
+create policy "[ポリシーの説明]"
+  on [対象テーブル]
+  for [対象の操作]
+  to [対象のロール]
+  using (
+    [許可条件]
+);
+
+```
+
+### [ポリシーの説明]
+
+このポリシーの目的、説明を書きます。
+
+
+
+### on [対象テーブル]
+
+テーブルを指定します。
+
+
+
+### for [対象の操作]
+
+基本5つ
+
+SELECT	選ぶ
+INSERT		挿入
+UPDATE	更新
+DELETE	削除
+ALL		全て
+
+RLS（Row Level Security）において、複数のアクションに対して同じポリシーを適用する場合、FORキーワードを使用して、複数のアクションを指定することができます。
+
+以下は、FORキーワードを使用して、SELECT、INSERT、UPDATE、DELETEのすべてのアクションに対して同じポリシーを適用する例です。
+
+```sql
+CREATE POLICY my_policy
+ON mytable
+FOR SELECT, INSERT, UPDATE, DELETE
+TO my_role
+USING (column = 'value');
+
+```
+
+上記の例では、mytableという名前のテーブルに対して、my_policyという名前の新しいポリシーが作成され、my_roleロールに対してSELECT、INSERT、UPDATE、DELETEの権限が付与されています。
+ポリシーの条件は、USING句で指定されています。
+
+FORキーワードを使用することで、同じポリシーを複数のアクションに対して適用することができます。
+ただし、異なるアクションに対して異なるポリシーを適用する場合は、それぞれのアクションに対して別々のポリシーを作成する必要があります。
+
+
+
+### to [対象のロール]
+
+これはこの記事の最初の方で説明したロールを選びます。
+
+
+### using
+
+ここに[許可条件]を入力します。
+
+
+
+#### [許可条件]の種類
+
+```sql
+USING (condition)
+WITH CHECK (condition);
+
+```
+
+USING (condition)
+行に対するSELECTやDELETEを許可する条件を指定します。
+
+現在テーブルに既に保存されているデータを参照し権限設定ができます。
+
+WITH CHECK (condition)
+行に対するINSERTやUPDATEを許可する条件を指定します。
+
+新しく作成されるデータを指していて、insertやupdateをする際に更新後のデータを使って制限をかけることができます。
+
+
+
+----------------------------------------
+
+# ダッシュボードからの Supabase RLS の作成
+
+RLSを有効化した後はSupabaseのダッシュボードの左サイドバー
+Table Editorからテーブルを選び
+
+右上の
+New policies
+もしくは
+X Auth policies
+のボタンを押します。
+
+そうしたら、新規作成か編集が出来ます。
+
+そしてRLSをどう作るか選択が出来ます。
+
+```
+Get started quickly
+テンプレートから作成
+
+For full customization
+フルカスタマイズ
+
+```
+
+
+
+----------------------------------------
+
+# RLSの create policy と alter policy
+
+PostgreSQLのRow Level Security（RLS）を使用する場合、create policyとalter policyを使用して、テーブルにポリシーを作成および変更できます。
+
+## alter policy
+
+create policyは、新しいポリシーを作成するために使用されます。
+
+以下は、create policyを使用して、todosテーブルに対して、ユーザーが自分自身のタスクのみを選択できるようにするポリシーの例です。
+
+```sql
+create policy "Individuals can view their own todos."
+on todos for select
+using ( (select auth.uid()) = user_id );
+
+```
+
+
+
+## alter policy
+
+alter policyは、既存のポリシーを変更するために使用されます。
+
+以下は、alter policyを使用して、postsテーブルに対して、投稿の所有者のみが投稿を更新できるようにするポリシーの例です。
+
+```sql
+alter table posts enable row level security;
+
+alter policy "Allow update for owners" on posts for
+update
+  using ((select auth.uid()) = user_id);
+
+```
+
+ポリシーを変更する場合、alter policyを使用して、ポリシーの名前、テーブルの名前、および変更するポリシーの種類を指定する必要があります。
+
+
+
+----------------------------------------
+
+# 応用例
+
+あるユーザーが他のユーザーのデータを見ることは許可したいが、そのデータを変更することは許可したくない、という場合の行レベルセキュリティ（RLS）ポリシーの例を以下に示します。
+
+まず、RLSを有効にするために、以下のコマンドを実行します：
+
+```sql
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+```
+
+次に、全てのユーザーが他のユーザーのプロフィールを見ることを許可するポリシーを作成します：
+
+```sql
+CREATE POLICY "All users can view profiles."
+  ON profiles
+  FOR SELECT
+  USING (true);
+
+```
+
+このポリシーでは、`USING`条件に`true`を指定しているため、全ての行がSELECT操作に対して選択可能となります。
+
+最後に、ユーザーが自分のプロフィールのみを更新できるようにするポリシーを作成します：
+
+```sql
+CREATE POLICY "Users can update their own profiles."
+  ON profiles
+  FOR UPDATE
+  USING (auth.uid() = id)
+  WITH CHECK (auth.uid() = id);
+```
+
+このポリシーでは、`USING`条件と`WITH CHECK`条件に`auth.uid() = id`を指定しているため、現在のユーザーのIDが行のIDと等しい場合のみ、その行がUPDATE操作に対して更新可能となります。
+
+この例では、`auth.uid()`という関数はPostgreSQLの標準ではなく、おそらくカスタム関数または特定のフレームワークの一部である可能性があります。この関数が存在し、期待通りの動作をすることを確認してください。
+
+
+
+----------------------------------------
+
+# ヘルパー関数
+
+auth.uid()：リクエストを行ったユーザーのUIDを返す
+
+auth.jwt()：リクエストを行ったユーザーのメタデータを返す
+
+using ( team_id in (select auth.jwt() -> 'app_metadata' -> 'teams'));
+
+この条件は、現在のユーザーが所属するチーム（auth.jwt() -> 'app_metadata' -> 'teams'で取得）に行のteam_idが含まれている場合に真となります。
+
+したがって、この条件を使用すると、ユーザーは自分が所属するチームの行のみを選択または更新することができます。
+
+
+
+----------------------------------------
+----------------------------------------
+----------------------------------------
+
 # Supabase RLSの各ロールが持つ権限「強さ順」の一覧
 
 | ロール                      | 権限                                                                                   |
@@ -234,456 +613,6 @@ supabase_read_only_userロールは、RLSポリシーによって制御される
 
 
 ----------------------------------------
-
-# 用語
-
-## Policy
-
-ポリシーは、PostgreSQLの ルールエンジン です。
-ルールエンジンと言われてもピンと来ないかもしれません。
-
-部屋の入室許可を自分だけにするか、家族全員にするか、友人にも許可するか等、
-誰が何をしてもいいか？を決めるのがポリシーです。
-
-
-
-## RLS
-
-RLSは、Row Level Securityの略です。
-PostgreSQLの代表的なセキュリティキーワードの一つです。
-
-RLSはポリシーをテーブルの行に対して適用することができます。
-
-認証 誰がマンションに出入りできるか？
-Authentication
-
-認可 誰が部屋に入る許可を持っているか？
-Authorization
-
-RLS 入った人が、その部屋の中で何ができるか？
-row-level security
-
-
-
-## ロール
-
-PostgreSQLにおいて、ロールは、データベース内のユーザーやグループを表すオブジェクトです。ロールは、データベースに接続するための認証情報を持ち、データベース内のオブジェクトに対するアクセス権を持つことができます。
-
-ロールは、CREATE ROLEステートメントを使用して作成できます。
-
-以下は、新しいロールを作成する例です。
-
-```sql
-CREATE ROLE myuser WITH LOGIN PASSWORD 'mypassword';
-
-```
-
-上記の例では、myuserという名前の新しいロールが作成され、LOGIN権限が付与され、パスワードが設定されています。
-
-ロールには、様々な権限を付与することができます。
-例えば、GRANTステートメントを使用して、ロールにテーブルへのアクセス権を付与することができます。
-
-```sql
-GRANT SELECT, INSERT, UPDATE, DELETE ON mytable TO myuser;
-
-```
-
-上記の例では、mytableという名前のテーブルに対して、myuserロールに対してSELECT、INSERT、UPDATE、DELETEの権限が付与されています。
-
-ロールには、他のロールをスーパーユーザーとして指定することもできます。これにより、スーパーユーザーに与えられた権限が、指定されたロールにも付与されます。
-
-```
-GRANT myadmin TO myuser;
-
-```
-
-上記の例では、myadminという名前のロールがスーパーユーザーとして指定され、myuserロールに付与されています。
-
-
-## RLSのロール
-
-RLS（Row Level Security）におけるロールは、PostgreSQLのロールとは異なります。RLSのロールは、テーブルに対するアクセス権を制御するために使用されます。
-
-RLSのロールは、CREATE ROLEステートメントを使用して作成できます。
-
-以下は、新しいRLSロールを作成する例です。
-
-
-```sql
-CREATE ROLE my_rls_role;
-
-```
-
-上記の例では、my_rls_roleという名前の新しいRLSロールが作成されています。
-
-RLSロールには、テーブルに対するアクセス権を付与することができます。
-
-例えば、GRANTステートメントを使用して、RLSロールにテーブルへのアクセス権を付与することができます。
-
-```
-GRANT SELECT, INSERT, UPDATE, DELETE ON mytable TO my_rls_role;
-
-```
-
-上記の例では、mytableという名前のテーブルに対して、my_rls_roleロールに対してSELECT、INSERT、UPDATE、DELETEの権限が付与されています。
-
-RLSロールは、ポリシーの定義に使用されます。ポリシーは、テーブルに対するアクセス権を制御するために使用されます。ポリシーは、CREATE POLICYステートメントを使用して作成できます。以下は、新しいポリシーを作成する例です。
-
-```sql
-CREATE POLICY my_policy ON mytable FOR SELECT TO my_rls_role USING (column = 'value');
-
-```
-
-上記の例では、mytableという名前のテーブルに対して、my_policyという名前の新しいポリシーが作成され、my_rls_roleロールに対してSELECTの権限が付与されています。ポリシーの条件は、USING句で指定されています。
-
-
-
-## サービング
-
-ファイルを提供することを指します。
-
-SupabaseStorageでは、アップロードされたファイルを保存し、
-必要に応じてそのファイルにアクセスするためのURLを生成することができます。
-
-これにより、アプリケーションからファイルを簡単に提供することができます。
-
-例えば、ユーザーがアップロードしたプロフィール画像を表示する場合、
-その画像にアクセスするためのURLを生成し、
-そのURLをimgタグのsrc属性に設定することで、
-画像を表示することができます。
-
-
-
-----------------------------------------
-
-# RLS入門
-
-## 有効化
-
-publicに art というテーブルがあるとします。
-
-まずは、RLSを有効化します。
-
-```sql
--- Enable RLS
-ALTER TABLE public.art
-  ENABLE ROW LEVEL SECURITY;
-
-```
-
-ALTER TABLE でテーブルの権限を変更すると宣言しています。
-
-public.artというテーブルを指定しています。
-
-ENABLE ROW LEVEL SECURITY;
-これでRLSが有効化されました。
-
-
-
-## 最初の設定
-
-```sql
--- Create Policy
-CREATE POLICY "make_art_table_read_only"
-ON public.art FOR SELECT USING (
-  true
-);
-
-```
-
-※ユーザー全員に許可しています。
-
-
-
-----------------------------------------
-
-# Q&A
-
-## Q: RLSは作ったテーブル全部に有効化する必要がありますか？
-
-A: はい、publicスキーマに作成されたすべてのテーブル、ビュー、および関数に対してRLSを有効にすることを推奨します。
-これにより、認証されたユーザーがアクセスできるデータを制御することができます。
-
-ただし、RLSを有効にすると、RLSポリシーが設定されていない場合、認証されたユーザーでもデータにアクセスできなくなるため、注意が必要です。
-また、RLSを有効にすると、パフォーマンスに影響を与える可能性があるため、パフォーマンスの最適化にも注意する必要があります。
-
-
-
-## Q: RLSを有効化すると誰もアクセスできなくなりますか？
-
-A: はい、その通りです。
-enable row level security句を使用してテーブルでRLSを有効にすると、パブリックanonキーを使用してAPIからデータにアクセスできなくなります。
-
-ポリシーを作成するまで、データは誰にもアクセスできなくなります。
-
-けれども、publicスキーマで作成されたテーブルは、Supabase Data APIを介してアクセスできます。
-
-アクセスを制限するには、publicスキーマのすべてのテーブル、ビュー、および関数に対してRow Level Security（RLS）を有効にします。
-
-その後、認証トークンに基づいてユーザーに特定のデータベース行または関数へのアクセスを許可するRLSポリシーを作成できます。
-
-Supabaseダッシュボードを介して作成されたテーブルは、デフォルトでRLSが有効になっています。
-
-SQLエディタまたは他の方法でテーブルを作成した場合は、次のようにRLSを有効にします。
-
-```sql
-alter table "table_name" enable row level security;
-
-```
-
-RLSを有効にすると、ユーザーがデータにアクセスおよび更新することを許可または拒否するポリシーを作成できます。
-
-Row Level Securityポリシーの作成方法については、Authorization documentationで詳しく説明しています。
-
-
-
-## Q: 認証、認可、およびRLSとは
-
-A1: 認証
-認証は、ユーザーがアプリケーションにログインするために必要なプロセスです。Supabase Authを使用すると、ユーザーの認証を簡単に実装できます。Next.jsアプリ内にアクセスすることを許可するために、@supabase/supabase-jsパッケージを使用して、Supabaseクライアントを作成し、signInメソッドを使用してユーザーを認証します。
-
-A2: 認可
-認可は、認証されたユーザーがアプリケーション内でどのような操作を実行できるかを制御するために使用されます。Supabaseでは、認可を実装するために、RLS（Row Level Security）を使用します。
-RLSを使用すると、認証されたユーザーが特定の個人のデータにアクセスすることを許可することができます。
-Next.jsアプリ内で特定の個人のデータにアクセスするためには、@supabase/supabase-jsパッケージを使用して、Supabaseクライアントを作成し、fromメソッドを使用して、特定のテーブルにアクセスします。
-
-A3: RLS
-RLSは、認証されたユーザーが特定の個人のデータの特定の項目にアクセスすることを許可するために使用されます。
-RLSを使用すると、認証されたユーザーがアクセスできるデータを制御することができます。
-Next.jsアプリ内で特定の個人のデータの特定の項目にアクセスするためには、RLSポリシーを作成し、@supabase/supabase-jsパッケージを使用して、Supabaseクライアントを作成し、fromメソッドを使用して、特定のテーブルにアクセスします。
-
-
-
-----------------------------------------
-
-# 基本構文
-
-## RLSの書き方
-
-```sql
-create policy "[ポリシーの説明]"
-  on [対象テーブル]
-  for [対象の操作]
-  to [対象のロール]
-  using (
-    [許可条件]
-);
-
-```
-
-### [ポリシーの説明]
-
-このポリシーの目的、説明を書きます。
-
-
-
-### on [対象テーブル]
-
-テーブルを指定します。
-
-
-
-### for [対象の操作]
-
-基本5つ
-
-SELECT	選ぶ
-INSERT		挿入
-UPDATE	更新
-DELETE	削除
-ALL		全て
-
-RLS（Row Level Security）において、複数のアクションに対して同じポリシーを適用する場合、FORキーワードを使用して、複数のアクションを指定することができます。
-
-以下は、FORキーワードを使用して、SELECT、INSERT、UPDATE、DELETEのすべてのアクションに対して同じポリシーを適用する例です。
-
-```sql
-CREATE POLICY my_policy
-ON mytable
-FOR SELECT, INSERT, UPDATE, DELETE
-TO my_role
-USING (column = 'value');
-
-```
-
-上記の例では、mytableという名前のテーブルに対して、my_policyという名前の新しいポリシーが作成され、my_roleロールに対してSELECT、INSERT、UPDATE、DELETEの権限が付与されています。
-ポリシーの条件は、USING句で指定されています。
-
-FORキーワードを使用することで、同じポリシーを複数のアクションに対して適用することができます。
-ただし、異なるアクションに対して異なるポリシーを適用する場合は、それぞれのアクションに対して別々のポリシーを作成する必要があります。
-
-
-
-### to [対象のロール]
-
-これはこの記事の最初の方で説明したロールを選びます。
-
-
-### using
-
-ここに[許可条件]を入力します。
-
-
-
-#### [許可条件]の種類
-
-```sql
-USING (condition)
-WITH CHECK (condition);
-
-```
-
-USING (condition)
-行に対するSELECTやDELETEを許可する条件を指定します。
-
-WITH CHECK (condition)
-行に対するINSERTやUPDATEを許可する条件を指定します。
-
-
-
-----------------------------------------
-
-# SupabaseのRLSの作成
-
-RLSを有効化した後はSupabaseのダッシュボードの左サイドバー
-Table Editorからテーブルを選び
-
-右上の
-New policies
-もしくは
-X Auth policies
-のボタンを押します。
-
-そうしたら、新規作成か編集が出来ます。
-
-そしてRLSをどう作るか選択が出来ます。
-
-```
-Get started quickly
-テンプレートから作成
-
-For full customization
-フルカスタマイズ
-
-```
-
-
-
-----------------------------------------
-
-# RLSの create policy と alter policy
-
-PostgreSQLのRow Level Security（RLS）を使用する場合、create policyとalter policyを使用して、テーブルにポリシーを作成および変更できます。
-
-## alter policy
-
-create policyは、新しいポリシーを作成するために使用されます。
-
-以下は、create policyを使用して、todosテーブルに対して、ユーザーが自分自身のタスクのみを選択できるようにするポリシーの例です。
-
-```sql
-create policy "Individuals can view their own todos."
-on todos for select
-using ( (select auth.uid()) = user_id );
-
-```
-
-
-
-## alter policy
-
-alter policyは、既存のポリシーを変更するために使用されます。
-
-以下は、alter policyを使用して、postsテーブルに対して、投稿の所有者のみが投稿を更新できるようにするポリシーの例です。
-
-```sql
-alter table posts enable row level security;
-
-alter policy "Allow update for owners" on posts for
-update
-  using ((select auth.uid()) = user_id);
-
-```
-
-ポリシーを変更する場合、alter policyを使用して、ポリシーの名前、テーブルの名前、および変更するポリシーの種類を指定する必要があります。
-
-
-
-----------------------------------------
-
-# 応用例
-
-
-あるユーザーが他のユーザーのデータを見ることは許可したいが、そのデータを変更することは許可したくない、という場合の行レベルセキュリティ（RLS）ポリシーの例を以下に示します。
-
-まず、RLSを有効にするために、以下のコマンドを実行します：
-
-```sql
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-```
-
-次に、全てのユーザーが他のユーザーのプロフィールを見ることを許可するポリシーを作成します：
-
-```sql
-CREATE POLICY "All users can view profiles."
-  ON profiles
-  FOR SELECT
-  USING (true);
-
-```
-
-このポリシーでは、`USING`条件に`true`を指定しているため、全ての行がSELECT操作に対して選択可能となります。
-
-最後に、ユーザーが自分のプロフィールのみを更新できるようにするポリシーを作成します：
-
-```sql
-CREATE POLICY "Users can update their own profiles."
-  ON profiles
-  FOR UPDATE
-  USING (auth.uid() = id)
-  WITH CHECK (auth.uid() = id);
-```
-
-このポリシーでは、`USING`条件と`WITH CHECK`条件に`auth.uid() = id`を指定しているため、現在のユーザーのIDが行のIDと等しい場合のみ、その行がUPDATE操作に対して更新可能となります。
-
-この例では、`auth.uid()`という関数はPostgreSQLの標準ではなく、おそらくカスタム関数または特定のフレームワークの一部である可能性があります。この関数が存在し、期待通りの動作をすることを確認してください。
-
-
-
-
-
-
-
-
-##
-
-
-
-
-
-##
-
-
-
-
-
-----------------------------------------
-
-# ヘルパー関数
-
-auth.uid()：リクエストを行ったユーザーのUIDを返す
-
-auth.jwt()：リクエストを行ったユーザーのメタデータを返す
-
-using ( team_id in (select auth.jwt() -> 'app_metadata' -> 'teams'));
-
-この条件は、現在のユーザーが所属するチーム（auth.jwt() -> 'app_metadata' -> 'teams'で取得）に行のteam_idが含まれている場合に真となります。
-
-したがって、この条件を使用すると、ユーザーは自分が所属するチームの行のみを選択または更新することができます。
-
-
-
-----------------------------------------
 ----------------------------------------
 ----------------------------------------
 
@@ -836,8 +765,64 @@ for select using (
 ----------------------------------------
 ----------------------------------------
 
+# Q&A
 
-今回のこの記事の回答は、すべてSupabaseのAIに手助けしてもらってます。
+## Q: RLSは作ったテーブル全部に有効化する必要がありますか？
+
+A: はい、publicスキーマに作成されたすべてのテーブル、ビュー、および関数に対してRLSを有効にすることを推奨します。
+これにより、認証されたユーザーがアクセスできるデータを制御することができます。
+
+ただし、RLSを有効にすると、RLSポリシーが設定されていない場合、認証されたユーザーでもデータにアクセスできなくなるため、注意が必要です。
+また、RLSを有効にすると、パフォーマンスに影響を与える可能性があるため、パフォーマンスの最適化にも注意する必要があります。
+
+
+
+## Q: RLSを有効化すると誰もアクセスできなくなりますか？
+
+A: はい、その通りです。
+enable row level security句を使用してテーブルでRLSを有効にすると、パブリックanonキーを使用してAPIからデータにアクセスできなくなります。
+
+ポリシーを作成するまで、データは誰にもアクセスできなくなります。
+
+けれども、publicスキーマで作成されたテーブルは、Supabase Data APIを介してアクセスできます。
+
+アクセスを制限するには、publicスキーマのすべてのテーブル、ビュー、および関数に対してRow Level Security（RLS）を有効にします。
+
+その後、認証トークンに基づいてユーザーに特定のデータベース行または関数へのアクセスを許可するRLSポリシーを作成できます。
+
+Supabaseダッシュボードを介して作成されたテーブルは、デフォルトでRLSが有効になっています。
+
+SQLエディタまたは他の方法でテーブルを作成した場合は、次のようにRLSを有効にします。
+
+```sql
+alter table "table_name" enable row level security;
+
+```
+
+RLSを有効にすると、ユーザーがデータにアクセスおよび更新することを許可または拒否するポリシーを作成できます。
+
+Row Level Securityポリシーの作成方法については、Authorization documentationで詳しく説明しています。
+
+
+
+## Q: 認証、認可、およびRLSとは
+
+A1: 認証
+認証は、ユーザーがアプリケーションにログインするために必要なプロセスです。Supabase Authを使用すると、ユーザーの認証を簡単に実装できます。Next.jsアプリ内にアクセスすることを許可するために、@supabase/supabase-jsパッケージを使用して、Supabaseクライアントを作成し、signInメソッドを使用してユーザーを認証します。
+
+A2: 認可
+認可は、認証されたユーザーがアプリケーション内でどのような操作を実行できるかを制御するために使用されます。Supabaseでは、認可を実装するために、RLS（Row Level Security）を使用します。
+RLSを使用すると、認証されたユーザーが特定の個人のデータにアクセスすることを許可することができます。
+Next.jsアプリ内で特定の個人のデータにアクセスするためには、@supabase/supabase-jsパッケージを使用して、Supabaseクライアントを作成し、fromメソッドを使用して、特定のテーブルにアクセスします。
+
+A3: RLS
+RLSは、認証されたユーザーが特定の個人のデータの特定の項目にアクセスすることを許可するために使用されます。
+RLSを使用すると、認証されたユーザーがアクセスできるデータを制御することができます。
+Next.jsアプリ内で特定の個人のデータの特定の項目にアクセスするためには、RLSポリシーを作成し、@supabase/supabase-jsパッケージを使用して、Supabaseクライアントを作成し、fromメソッドを使用して、特定のテーブルにアクセスします。
+
+----------------------------------------
+----------------------------------------
+----------------------------------------
 
 Supabase AI
 
@@ -854,12 +839,6 @@ AIに質問できるダイアログが表示されます。
 Supabase Auth スキーマ と そのテーブルの詳細 #PostgreSQL - Qiita
 
 https://qiita.com/masakinihirota/items/7f65f732ecbafbd5cb00
-
-
-
-
-
-
 
 
 
