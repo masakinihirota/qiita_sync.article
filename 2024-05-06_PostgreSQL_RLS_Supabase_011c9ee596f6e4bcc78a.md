@@ -4,11 +4,7 @@ tags:    PostgreSQL,RLS,Supabase
 id:      011c9ee596f6e4bcc78a
 private: false
 -->
-<!--
-title:   RLS(Row Level Security)入門ガイド Supabase(Postgres)データセキュリティの基礎
-tags:    Supabase,Postgres,RLS,Row Level Security
-private: false
--->
+
 # 用語
 
 ## Policy
@@ -381,6 +377,14 @@ using ( team_id in (select auth.jwt() -> 'app_metadata' -> 'teams'));
 この条件は、現在のユーザーが所属するチーム（auth.jwt() -> 'app_metadata' -> 'teams'で取得）に行のteam_idが含まれている場合に真となります。
 
 したがって、この条件を使用すると、ユーザーは自分が所属するチームの行のみを選択または更新することができます。
+
+
+
+auth.role()
+リクエストを行ったユーザーのロールを返します。ほとんどの場合、authenticatedまたはanonのいずれかになります。
+
+auth.email()
+リクエストを行ったユーザーのEメールを返します。
 
 
 
@@ -845,3 +849,41 @@ AIに質問できるダイアログが表示されます。
 Supabase Auth スキーマ と そのテーブルの詳細 #PostgreSQL - Qiita
 
 https://qiita.com/masakinihirota/items/7f65f732ecbafbd5cb00
+
+
+実際のコードを書く時に参考にする
+
+RLSではじめるマルチテナントSaaS
+
+https://zenn.dev/nstock/articles/multi-tenant-saas-using-rls
+
+
+SupabaseのRow Level Securityについて
+
+https://zenn.dev/hrtk/scraps/a0381fa829dfab
+
+
+
+SupabaseのRLSを特定のユーザに適用する
+
+https://zenn.dev/n_o_n_a_m_e/articles/44c40043c658c3
+
+👆️勤怠管理アプリのユーザを 正社員, アルバイト, 業務委託, 事務員 に分け, 各社員個人と事務員のみに勤務時間データの取得を, 事務員のみに勤務時間データの更新を許可する
+
+ユーザーのサインアップと行レベルのセキュリティ - Supabase データベースのチュートリアル |サンドロ・マリオーネ
+
+https://www.sandromaglione.com/articles/supabase-database-user-sign-up-and-row-level-security
+
+👆️GUI操作でRLS
+
+Supabase で行レベル セキュリティ (RLS) を使用して認証を実装する (ステップ バイ ステップ ガイド) - YouTube
+
+https://www.youtube.com/watch?v=Ow_Uzedfohk
+
+👆️Supabase 公式 動画
+
+Row Level Security | Supabase Docs
+
+https://supabase.com/docs/guides/auth/row-level-security
+
+👆️Supabase 公式 ドキュメント

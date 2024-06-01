@@ -2007,7 +2007,7 @@ VSCode の左下の歯車アイコンをクリックして設定を開きます�
 
 ```
 
-###自分の設定例
+### 自分の設定例
 
 ※ Ctrl+mで提案を表示する。
 ※ Ctrl+nで単語単位で一つ受け入れる。
@@ -2043,7 +2043,6 @@ https://twitter.com/voluntas/status/1647224026492813312
  * middleware's `matcher` array. Without this, the Server Component may try to make a
  * request to Supabase with an expired `access_token`.
  */
-
 
 ```
 
@@ -2107,7 +2106,6 @@ ja: サーバーサイドレンダリングを使用すると、レンダリン�
 Supabase Auth supports server-side rendering when you need access to user information, or your server needs to authorize API requests on behalf of your user to render content.
 ja:
 When a user authenticates with Supabase Auth, two pieces of information are issued by the server:
-
 
 ```
 
