@@ -87,7 +87,9 @@ Supabaseのダッシュボードが使えるようになっている。
 
 # インストール
 
-npx create-next-app -e with-supabase
+~~npx create-next-app -e with-supabase~~
+
+※このリポジトリは新バージョンになってしまいました。
 
 # 環境変数の設定
 
