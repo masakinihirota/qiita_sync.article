@@ -4,7 +4,18 @@ tags:    AppRouter,Next.js,ServerAction,Supabase,middleware
 id:      b4b168a056dc10776d87
 private: false
 -->
-※2023年12月26日現在
+
+2024年6月2日現在
+
+この情報は古く、現在はSupabaseのクライアント作成に `@supabase/ssr` を利用しています。
+
+この記事では
+```
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+
+```
+
+このように `@supabase/auth-helpers-nextjs` を利用しています。
 
 Supabase公式のリポジトリ
 
