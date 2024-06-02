@@ -7,15 +7,16 @@ private: false
 
 2024年6月2日現在
 
-この情報は古く、現在はSupabaseのクライアント作成に `@supabase/ssr` を利用しています。
+現在はSupabaseのクライアント作成に `@supabase/supabase-js` を利用しています。
 
-この記事では
+この記事の情報は古く、
+
 ```
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
 ```
 
-このように `@supabase/auth-helpers-nextjs` を利用しています。
+このように `@supabase/auth-helpers-nextjs` を利用してSupabaseのクライアントを作成しています。
 
 Supabase公式のリポジトリ
 
