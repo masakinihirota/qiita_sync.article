@@ -19,7 +19,7 @@ https://github.com/masakinihirota/template_masakinihirota
 
 # スターターのリポジトリ
 
-Vercel公式がNext.jsに＋Supabase＋Stripeで作ったリ↓ポジトリ
+Vercel公式がNext.jsに+Supabase+Stripeで作ったリ↓ポジトリ
 
 vercel/nextjs-subscription-payments: Clone, deploy, and fully customize a SaaS subscription application with Next.js.
 https://github.com/vercel/nextjs-subscription-payments
