@@ -273,14 +273,3 @@ API リクエストに応じて透過的にスケールアップ
 公式blog
 New in Fauna: Add Fauna to your Vercel applications in minutes
 https://fauna.com/blog/new-in-fauna-add-fauna-to-your-vercel-applications-in-minutes
-
-Fauna公式ドキュメントのDeepL化 （＋Googl翻訳）
-
-masakinihirota/FaunaDB_Documents: https://docs.fauna.com/fauna/current/start/ を軽く翻訳 and md化
-https://github.com/masakinihirota/FaunaDB_Documents
-
-Vercel公式ドキュメント
-環境変数の項を日本語化
-
-FaunaDB_Documents/Environment Variables.md at main · masakinihirota/FaunaDB_Documents
-https://github.com/masakinihirota/FaunaDB_Documents/blob/main/Vercel/docs/Environment%20Variables.md

@@ -278,12 +278,6 @@ postgresは日時というものを認識しているわけではないのです
 
 想像してみてください、銀行の入出金などのデータを扱う場合プログラマー側がデータを繊細に追うしかありません、その作業を想像するだけで気が○いそうです。でも時制データベースを使えばプログラマー側が意識することなくシステム側で全て面倒を見てくれるのです。目的に沿って使えば時制データベースは絶大な力を発揮してくれるのです。
 
-# 日本語 Documents
-markdown化してDeepL翻訳にかけたもの。
-
-[https://github.com/masakinihirota/FaunaDB_Documents]
-(https://github.com/masakinihirota/FaunaDB_Documents)
-
 # その他
 Faunaをリレーショナルデータベースとして使いたい場合は
 GraphQLを使用すればいいと思います。

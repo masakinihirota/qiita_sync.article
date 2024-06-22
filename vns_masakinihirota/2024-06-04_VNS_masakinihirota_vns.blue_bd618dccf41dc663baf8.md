@@ -259,14 +259,15 @@ import { Tables } from '@/types/types_db';
 ## 型の生成
 
 
+
 ```terminal
 #サーバー
-supabase gen types typescript --project-id [Reference ID] > src/types/database.types.ts
+supabase gen types typescript --project-id [Reference ID] > src/types/types_db.ts
 
 #ローカル
-supabase gen types typescript --local --schema public > src/types/database.types.ts
+supabase gen types typescript --local --schema public > src/types/types_db.ts
 
-supabase gen types typescript --local > src/types/database.types.ts
+supabase gen types typescript --local > src/types/types_db.ts
 
 
 ```
@@ -277,16 +278,6 @@ publicの場合 --schema オプションは省略できます。
 `--schema public`
 
 成功すると型ファイルが生成されます。
-
-
-現在の型ファイルは2種類出来ています。
-
-src\types\types_db.ts ＜＜スターターのStripeの為の型ファイル
-src\types\database.types.ts  ＜＜アプリケーション用に追加していく型ファイル
-
-※アプリには新しいテーブルなどを作っていくのでそれぞれ種類ごとに分けておきます。
-
-
 
 # Stripeの設定 ローカル側（VSCode上での）Webhookの設定
 
@@ -815,7 +806,7 @@ supabase status
 supabase reset
 supabase link
 
-supabase gen types typescript --local > src/types/database.types.ts
+supabase gen types typescript --local > src/types/types_db.ts
 
 supabase db diff
 supabase migration new
@@ -4534,52 +4525,12 @@ touch src\app\examples\server-component\page.tsx
 todosテーブルを新たに作ったので、型ファイルを作成します。
 src\types\types_db.tsは型ファイルですが、この型ファイル(types_db.ts)はスターターが用意している型ファイルなので、Stripe関連の型が書かれています。
 
-それとは別にローカルの型ファイル(database.types.ts)を作成します。
+それとは別にローカルの型ファイル(types_db.ts)を作成します。
 
 ```terminal
-supabase gen types typescript --local > src/types/database.types.ts
+supabase gen types typescript --local > src/types/types_db.ts
 
 ```
-
-
-## 2つの型を混ぜるとき
-
-※Stripeの型とSupabaseの自作テーブルの型を分けて管理したい場合
-
-Supabaseのクライアントを作る時、この2つの型を混ぜます。
-
-※ただし、スターターの型ファイルを削除して、新しく作成した型ファイルだけでも問題ないはずです。
-
-👇今回は混ぜ合わせます。
-
-```src\utils\supabase\client.ts
-import { createBrowserClient } from '@supabase/ssr';
-
-// Supabase 自作の型 (todosが追加された型ファイル)
-import { Database as Database1 } from '@/types/database.types'
-// Supabase スターターが用意した型ファイル
-import { Database as Database2 } from '@/types/types_db';
-
-// 2つの型を混ぜる
-type CombinedDatabase = Database1 & Database2;
-
-// Define a function to create a Supabase client for client-side operations
-export const createClient = () =>
-  // createBrowserClient<Database>(
-    createBrowserClient<CombinedDatabase>(
-    // Pass Supabase URL and anonymous key from the environment to the client
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-
-```
-
-types_db.ts
-と
-database.types.ts
-この型ファイルの差分を見てみると微妙に違う点がありますが、
-実際はtodosの型が追加されているかどうかの違いでしかありません。
-
 
 
 ----------------------------------------
