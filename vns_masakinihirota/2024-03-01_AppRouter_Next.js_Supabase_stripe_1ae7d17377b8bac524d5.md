@@ -4,6 +4,28 @@ tags:    AppRouter,Next.js,Supabase,stripe
 id:      1ae7d17377b8bac524d5
 private: false
 -->
+※注意
+環境変数のパターン
+
+パターン 1
+Next.js サーバー
+Supabase サーバー
+
+パターン 2
+Next.js ローカル
+Supabase サーバー
+
+パターン 3
+Next.js ローカル
+Supabase ローカル
+
+これらのパターンを切り替える場合、(サーバーからローカル等)Dockerの再起動が必要な場合があります。
+
+```terminal
+supabase start
+supabase stop
+
+```
 
 Local Development for SaaS product in 2024 // Next.js, Supabase and Stripe - YouTube
 
