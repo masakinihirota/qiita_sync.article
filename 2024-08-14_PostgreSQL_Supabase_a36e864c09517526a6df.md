@@ -4,6 +4,9 @@ tags:    PostgreSQL,Supabase
 id:      a36e864c09517526a6df
 private: false
 -->
+VSCode上でDBの中身が見れます。
+![SupabaseVSCodeExtentions_081424_041747_AM.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/2a7e2cc2-869d-be26-5b9c-455ed79a8c14.jpeg)
+
 この拡張機能はSupabaseローンチウィーク12で発表されたものの一つです。
 
 # Supabaseローンチウィーク12
