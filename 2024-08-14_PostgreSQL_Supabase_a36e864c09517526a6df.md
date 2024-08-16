@@ -158,7 +158,7 @@ JavaScriptファイル上でSupabase用のスニペットが使えるように�
 
 
 ```snipet.js
-stc	Supabase テーブルに新しいレコードを作成する
+stc	Supabase テーブルに新しいレコードを作成する supabase table create
 const { data, error } = await supabase
   .from('table_name')
   .insert({
@@ -173,7 +173,7 @@ const { data, error } = await supabase
   .select('*')
   .eq('column_name', value)
 
-sbur	テーブル内のレコードを更新する
+sbur	テーブル内のレコードを更新する supabase update record
 const { data, error } = await supabase
   .from('table_name')
   .update({
@@ -181,57 +181,57 @@ const { data, error } = await supabase
   })
   .eq('column_name', value)
 
-sbdr	テーブルからレコードを削除する
+sbdr	テーブルからレコードを削除する supabase delete record
 const { data, error } = await supabase
     .from('table_name')
     .delete()
     .eq('column_name', value)
 
-sbuf	Supabase ストレージにファイルをアップロードする
+sbuf	Supabase ストレージにファイルをアップロードする supabase upload file
 const { data, error } = await supabase.storage
   .from('bucket_name')
   .upload('path/to/file', file)
 
-sbdf	Supabase ストレージからファイルを取得する
+sbdf	Supabase ストレージからファイルを取得する supabase donload file
 const { data, error } = await supabase.storage
   .from('bucket_name')
   .download('path/to/file')
 
-sbdelf	Supabase ストレージからファイルを削除する
+sbdelf	Supabase ストレージからファイルを削除するsupabase delete file
 const { data, error } = await supabase.storage
   .from('bucket_name')
   .remove('path/to/file')
 
-sblf	Supabase ストレージ内のフォルダ内のファイルをリストする
+sblf	Supabase ストレージ内のフォルダ内のファイルをリストする supabase list file
 const { data, error } = await supabase.storage
   .from('bucket_name')
   .list('path/to/folder')
 
-sb-signup	ユーザーをサインアップする
+sb-signup	ユーザーをサインアップする supabase signup
 const { user, session, error } = await supabase.auth.signUp({
   email: 'user@example.com',
   password: 'password'
 })
 
-sbs-login	ユーザーをログインさせる
+sbs-login	ユーザーをログインさせる supabase login
 const { user, session, error } = await supabase.auth.signInWithPassword({
   email: 'user@example.com',
   password: 'password'
 })
 
-sbs-logout	現在のユーザーをログアウトする
+sbs-logout	現在のユーザーをログアウトする supabase logout
 await supabase.auth.signOut()
 
-sbgu	現在のユーザーを取得する
+sbgu	現在のユーザーを取得する supabase get user
 const { data: { user } } = await supabase.auth.getUser()
 
-sbgs	現在のセッションを取得する
+sbgs	現在のセッションを取得する supabase get session
 const session = supabase.auth.session()
 
-sbrp	メールアドレスのパスワードをリセットする
+sbrp	メールアドレスのパスワードをリセットする supabase reset password
 await supabase.auth.resetPasswordForEmail('hello@example.com')
 
-sioauth	OAuth を通じてユーザーをサインインする
+sioauth	OAuth を通じてユーザーをサインインする sign oauth
 const { data, error } = await supabase.auth.signInWithOAuth({
   provider: 'github'
   options: {
@@ -239,12 +239,12 @@ const { data, error } = await supabase.auth.signInWithOAuth({
   }
 })
 
-fd	テーブルまたはビューに対して SELECT クエリを実行する
+fd	テーブルまたはビューに対して SELECT クエリを実行する from data
 const { data, error } = await supabase
   .from('name_table')
   .select()
 
-csurl	サインド URL を作成する
+csurl	サインド URL を作成する create signed url
 const { data, error } = await supabase
   .storage
   .from('avatars')
