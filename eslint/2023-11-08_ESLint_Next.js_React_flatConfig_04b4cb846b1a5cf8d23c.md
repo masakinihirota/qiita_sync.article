@@ -4,6 +4,9 @@ tags:    ESLint,Next.js,React,flatConfig
 id:      04b4cb846b1a5cf8d23c
 private: false
 -->
+追記 2024年9月2日
+Biome に乗り換え検討中。
+
 # ドキュメント編
 
 ドキュメント編はドキュメントの翻訳になります、これを踏み台にNext.js App router に合ったESLint Flat Configを調べていきます。
