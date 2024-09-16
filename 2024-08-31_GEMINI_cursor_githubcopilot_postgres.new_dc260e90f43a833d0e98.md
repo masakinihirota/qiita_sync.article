@@ -76,7 +76,7 @@ AIと相談しながらTailwindCSSで装飾されたフロントエンドを作�
 
 
 
-## gptEngimeer
+## GPT Engineer
 
 https://gptengineer.app/
 
@@ -320,7 +320,7 @@ https://aitestkitchen.withgoogle.com/ja/tools/image-fx
 画像生成系AIです。プロンプトを入力すると画像が生成されます。
 本当に自然な感じで出力されます。
 
-有料です。
+1日40回位までは無料で使用することができます。
 
 
 
