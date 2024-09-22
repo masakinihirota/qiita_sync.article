@@ -23,12 +23,19 @@ reweb
 
 ※未調査は永遠に未調査の可能性があります。
 
+
+
+全部のサブスクリプションの課金すれば問題ありませんが、
+全部を無課金で行うために、少しずつサービスを使うとか、
+Create.xyzはUI生成は無料でデザインが課金が必要なので
+何度も試行錯誤が必要なコンポーネントのUI生成だけはここで試すとか出来ます。
+
 追記終了
 
 
 ## 比較
 
-| 機能 | v0 | GPT Engineer | Create | Cursor composer |
+| 機能 | v0 | GPT Engineer | Create.xyz | Cursor composer |
 |:-:|:-:|:-:|:-:|:-:|
 | 出力コード | 個別コンポーネント | プロジェクト全体を考慮したコード | プロジェクト全体を考慮したコード | プロジェクトに沿ったコード |
 | 出力ファイル | 1ファイル | 複数ファイル可能 | Next.jsのアプリとして出力 | コード |
@@ -450,6 +457,8 @@ Supabaseと連結できます。
 SupabaseのURLとAPI Keyを貼り付けるだけです。
 
 GPT Eniginnerはプロジェクト単位で共通の設定が利用出来ます。
+
+
 
 ## 公開方法
 
@@ -1055,6 +1064,16 @@ https://qiita.com/masakinihirota/items/dc260e90f43a833d0e98
 # Createのそれから
 
 (未調査)
+
+
+----------------------------------------
+
+# GPT Eniginner Tips
+
+GPT EniginnerはGitHub連携ができて編集してPUSHするとmainブランチに反映されます。
+
+GitHub側でデフォルト設定を mainから例えば dev開発ブランチを作ってそちらをデフォルト設定にすれば
+GPT EniginnerでのPUSHはdevブランチに反映されます。
 
 
 
