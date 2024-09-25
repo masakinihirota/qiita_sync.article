@@ -60,9 +60,22 @@ https://www.youtube.com/のURL ＜＜＜＜ 優しく日本語で簡単な解説
 https://github.com/features/copilot
 
 プログラムを書く時に使います。(年契約で課金中 月10ドル)
-後発 ( [Cursor](https://www.cursor.com/) ＋ Claude 3.5 Sonnet) に便利機能が少し追い抜かれ気味ですが、そこら辺は頑張って欲しいですね。
 
+GitHub Copilotに OpenAI の o1-preview または o1-mini が搭載(予定)
 
+現在 waitlist で募集中
+
+OpenAI o1-preview/o1-miniがVS CodeのGitHub Copilot ChatとGitHub Modelsで利用可能に | gihyo.jp
+
+https://gihyo.jp/article/2024/09/openai-o1-github-copilot?utm_source=feed
+
+Try out OpenAI o1 in GitHub Copilot and Models - The GitHub Blog
+
+https://github.blog/news-insights/product-news/try-out-openai-o1-in-github-copilot-and-models/
+
+GitHub · Where software is built
+
+https://github.com/o1-waitlist-signup
 
 
 
@@ -78,44 +91,10 @@ https://v0.dev/chat
 https://v0.dev/docs
 
 AIと相談しながらTailwindCSSで装飾されたフロントエンドを作るのを手伝ってくれます。
-無料だと少し使えます、本当に便利ですが本格的に使うとなると課金が必要です。
+無料でも毎日クレジットが復活するので少しつづ進めていけます。
+うまくすれば複雑なものでも1日1コンポーネント、簡単なものなら(手動でやったほうが早いが)3つぐらい出来ます。
 
-装飾だけではなく、動きがついた動作も作成してくれます。
-例えば、ドラッグアンドドロップでやり取りしたいことを伝えると、そのようなコンポーネントを作成してくれます。
-もちろんちゃんと作れば、きちんとドラッグアンドドロップの操作が可能です。
-
-
-
-## GPT Engineer
-
-https://gptengineer.app/
-
-無料の利用可能 2024年9月15日 現在
-課金有り
-
-* ドキュメント GPT Engineer Docs
-
-https://docs.gptengineer.app/
-
-現在 一部ベータ版
-
-[v0](https://v0.dev/chat) の代替サービス。
-同じようなことが出来るがちょっと違う。
-
-* 良いところ
-
-Supabaseとの連携 簡単！
-複数ファイルの分割が可能( [v0](https://v0.dev/chat) では現在出来ない)。
-他のライブラリに変更が可能。
-例えば、shadcn/ui から MaterialUIに変更してくださいとお願いすると変えてくれます。
-
-* 駄目なところ
-
-デザインが [v0](https://v0.dev/chat) よりもよくないという声がチラホラ。
-
-
-
-
+本当に便利ですが本格的に使うとなると課金が必要です。
 
 
 
@@ -262,6 +241,39 @@ Googleが提供する生成AIアプリケーション開発のためのプラッ
 
 
 # ティア 3
+
+
+## GPT Engineer
+
+https://gptengineer.app/
+
+無料の利用可能 2024年9月15日 現在
+課金有り
+
+* ドキュメント GPT Engineer Docs
+
+https://docs.gptengineer.app/
+
+現在 一部ベータ版
+
+[v0](https://v0.dev/chat) の代替サービス。
+同じようなことが出来るがちょっと違う。
+
+* 良いところ
+
+Supabaseとの連携 簡単！
+複数ファイルの分割が可能( [v0](https://v0.dev/chat) では現在出来ない)。
+他のライブラリに変更が可能。
+例えば、shadcn/ui から MaterialUIに変更してくださいとお願いすると変えてくれます。
+
+* 駄目なところ
+
+デザインが [v0](https://v0.dev/chat) よりもよくないという声がチラホラ。
+
+
+
+
+
 
 便利だけど上位互換のティア1,2にあるAIサイトが便利すぎてティア3評価になっているものたちです。
 
