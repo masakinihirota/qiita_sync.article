@@ -1,22 +1,19 @@
 <!--
-title:   私の使用しているAI関連サイト 2024年 9月版
+title:   私の使用しているAI関連サイト 2024年 10月版
 tags:    GEMINI,cursor,githubcopilot,gptengineer,postgres.new
 id:      dc260e90f43a833d0e98
 private: false
 -->
 # 評価方法： 絶対相対評価
 
-まず一番よく使うのをトップにおいて固定し、2番目からはその一つ上のサイトと比較して同じぐらい便利か？もしくは一段落ちるか？という感じで相対評価していきます。
-同じぐらいに評価したものは同じティアに入れます。
+まず一番よく使う、もしくは好きなAIサイトをトップにおいて固定し(「絶対評価」)、2番目からは1番のサイトと比較して同じぐらい便利か？もしくは一段落ちるか？という感じで「相対評価」していきます。
+同じぐらいに評価したものは同じティアに入ります。
 
-# 調査中
-
-GUIでUIの微調整が出来る。
-
-Reweb — The visual website builder for developers
-
-https://www.reweb.so/
-
+評価方法
+* ティア 1
+* ティア 2
+* ティア 3
+* 普通 or 自分には合わなかった
 
 
 # ティア 1
@@ -25,11 +22,7 @@ https://www.reweb.so/
 
 https://gemini.google.com/app
 
-無料の利用可能 2024年9月15日 現在
-課金有り 上位AIエンジンに
-
-
-今はここを最もよく利用しています。
+geminiを最もよく利用しています。
 使い方は意味不明な単語の説明から、わからない文章を噛み砕いてもらう時に利用しています。
 
 使う理由は他のよりも最も早く質問できるから。
@@ -60,6 +53,8 @@ https://www.youtube.com/のURL ＜＜＜＜ 優しく日本語で簡単な解説
 https://github.com/features/copilot
 
 プログラムを書く時に使います。(年契約で課金中 月10ドル)
+
+学生や、OSSの開発者は無料
 
 GitHub Copilotに OpenAI の o1-preview または o1-mini が搭載(予定)
 
@@ -96,6 +91,21 @@ AIと相談しながらTailwindCSSで装飾されたフロントエンドを作�
 
 本当に便利ですが本格的に使うとなると課金が必要です。
 
+### リセット時間
+
+無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
+リセット時間が過ぎると試行回数が回復します。
+
+世界標準時0時 = 日本標準時午前9時 (未確認)
+
+https://x.com/v0/status/1840944045964869898
+
+v0 では、Supabase、Drizzle、Prisma に関する質問に答えられるようになりました。
+
+v0を日本語で利用できるようになりました。
+
+https://x.com/v0/status/1841313318101037391
+
 
 
 ## notebookLM
@@ -107,9 +117,21 @@ https://notebooklm.google.com/
 例えば数百ページのPDFファイルでも読み込ませることも可能で、
 質問すると、解説をしてくれて、引用した箇所もきちんと教えてくれます。
 
+Googleの自分専用AI作成サービス「NotebookLM」で学習データにYouTubeの動画を指定可能に - GIGAZINE
 
+https://gigazine.net/news/20240927-google-notebooklm-video-sources/
 
+notebookLMがYoutubeの動画に対応しました。
 
+Youtube動画を読み込ませて (英語の技術動画とか)
+文字起こし
+要約
+Q&A
+日本語に翻訳
+理解度チェッククイズ
+等を作ってもらいます。
+
+英語のリスニングが壊滅的な自分でも内容がわかるようになりました。
 
 
 
@@ -170,37 +192,56 @@ Postgres DB付きのアプリ開発者用です。
 
 
 
+## tailwindgenie
+
+https://tailwindgenie.com/
+
+Next.jsのアプリを作る時、TailwindCSSの装飾でパーツを作るツール
+
+無料
 
 
-## YouTube Summary with ChatGPT & Claude
 
-https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkfloonkhhcjmomieiodli
-
-これはChromeの拡張機能です。
-動画の要約などをしてくれます。
-
-👇️TinaMindという拡張機能が👆️これの上位互換のようです。
+## TinaMind
 
 https://chromewebstore.google.com/detail/tinamind-gpt-4%E6%90%AD%E8%BC%89%E3%81%AEai%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88/befflofjcniongenjmbkgkoljhgliihe
 
+YouTube Summary with ChatGPT & Claudeの上位互換
 
+Google Chromeの拡張機能です。
 
+たくさんの機能が色々ありますが、自分は主にYouTube動画の翻訳 要約に使用しています。
 
+英文と翻訳文が上下2行に表示されて便利です。
 
 
 
 # ティア 2
-
-
 
 ## Cursorエディタ
 
 https://www.cursor.com/
 
 次世代AIエディタ、最近アップデートされ、複数ファイルの同時生成、編集などが可能になっています。
-もし課金して有料で使用するなら ティア1評価です。 (現在 未課金  20ドル／月で少々お高い。)
+もし課金して有料で使用するなら ティア1評価です。 (現在 未課金  20ドル／月で少々お高い。 GitHub Copilotと比べ)
 Claudeと合わせてつかうとものすごい生産性があると思います。
 
+---
+
+参考書な本を購入して触ってみましたが、やっぱり課金しないとVSCodeのままで十分と感じました。
+肝心な機能は課金しないと、満足にこのツールの機能を十分に引き出せません。
+
+肝はVSCodeでGitHub Copilotだと拡張機能扱いであること、これは拡張機能でAIを組み込むと流石に限度があります、
+Cursorはエディタ自体にAI機能を組み込み、ネイティブにAIを使えるので十二分に👇️エディタ機能を生かせることが可能です。
+
+※複数ファイルへのプロンプト、提案、管理、コード自動生成、AIモデルの選択、細かな調整、推論等。
+
+無料で使う方はDocで公式ドキュメントを読み込ませて、無料のAIモデルを登録して、そして質問して使うという方法が良いでしょうか？
+このようなツールを使うと、無料と有料のAIの差は思った以上にでます。
+そこらの普通のツールだと有料でもちょっと毛が生えた程度に便利になるぐらいですが、このツールは有料と無料の差はかなり大きいです。
+
+Cursorは、Docs機能を使った公式ドキュメントのQ&Aツールにしようと思っています。
+AIモデルは無料Geminiを使う予定です。
 
 
 
@@ -210,7 +251,6 @@ https://chromewebstore.google.com/detail/chathub-gpt-4%E3%80%81gemini%E3%80%81cl
 
 これはChromeの拡張機能です。
 有料は6つ、無料は2つまで同時に複数のAIチャットサイトにプロンプトを送れます。
-
 
 
 
@@ -238,44 +278,19 @@ Googleが提供する生成AIアプリケーション開発のためのプラッ
 
 
 
+## YouTube Summary with ChatGPT & Claude
+
+https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkfloonkhhcjmomieiodli
+
+これはChromeの拡張機能です。
+動画の要約などをしてくれます。
+
+
 
 
 # ティア 3
 
-
-## GPT Engineer
-
-https://gptengineer.app/
-
-無料の利用可能 2024年9月15日 現在
-課金有り
-
-* ドキュメント GPT Engineer Docs
-
-https://docs.gptengineer.app/
-
-現在 一部ベータ版
-
-[v0](https://v0.dev/chat) の代替サービス。
-同じようなことが出来るがちょっと違う。
-
-* 良いところ
-
-Supabaseとの連携 簡単！
-複数ファイルの分割が可能( [v0](https://v0.dev/chat) では現在出来ない)。
-他のライブラリに変更が可能。
-例えば、shadcn/ui から MaterialUIに変更してくださいとお願いすると変えてくれます。
-
-* 駄目なところ
-
-デザインが [v0](https://v0.dev/chat) よりもよくないという声がチラホラ。
-
-
-
-
-
-
-便利だけど上位互換のティア1,2にあるAIサイトが便利すぎてティア3評価になっているものたちです。
+* 便利だけど上位互換のティア1,2にあるAIサイトが便利すぎてティア3評価になっているものたちです。
 
 ## Perplexity
 
@@ -316,7 +331,48 @@ https://copilot.microsoft.com/
 
 
 
-# 普通 or それ以下
+# 普通 or 自分には合わなかった
+
+
+## GPT Engineer
+
+https://gptengineer.app/
+
+無料の利用可能 2024年9月15日 現在
+課金有り
+
+* ドキュメント GPT Engineer Docs
+
+https://docs.gptengineer.app/
+
+現在 一部ベータ版
+
+最初は瞬間風速最大で大変便利なんだけど、その後が続かない。
+それで出来るのは、ある程度勉強したら自力でできる内容です。
+それだったら課金するならGitHub CopilotかCursorにしたほうが良いという結論です。
+
+無料の一月分を使ってしまうと、その後数週間何もできなくなるのも悪印象。
+v0だと1日10回分チャットが回復します。(上限は一月で200回までらしい、違うかも)
+
+[v0](https://v0.dev/chat) の代替サービス。
+同じようなことが出来るがちょっと違う。
+
+* 良いところ
+
+Supabaseとの連携 簡単！
+複数ファイルの分割が可能( [v0](https://v0.dev/chat) では現在出来ない)。
+他のライブラリに変更が可能。
+例えば、shadcn/ui から MaterialUIに変更してくださいとお願いすると変えてくれます。
+
+* 駄目なところ
+
+デザインが [v0](https://v0.dev/chat) よりもよくないという声がチラホラ。
+物は良いのだが、無料で試すとすぐに上限が来て、翌日には復活しない。どうやら一月ぐらい待つ必要があるようだ。
+[v0](https://v0.dev/chat) は上限が来ても、翌日には少し復活する。
+
+
+
+
 
 
 

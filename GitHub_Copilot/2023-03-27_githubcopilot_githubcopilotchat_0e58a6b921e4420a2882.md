@@ -4,6 +4,8 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+2024年9月26日 搭載AIは OpenAIのGPT-4o 近い将来 OpenAI o1-preview が搭載予定
+
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
@@ -72,6 +74,7 @@ VSCode Insider (VSCodeの開発版 GitHub Copilot chatを使用するために�
 
 - Copilot
   GitHub Copilot の**基本的な機能**です。**OpenAI Codex**をベースに作られています。Visual Studio Code、Visual Studio、Neovim、JetBrains の各統合開発環境（IDE）で利用できます。
+
 - Copilot Labs
   GitHub Copilot の**実験的な機能**を提供するプログラムです。このプログラムは、GitHub Copilot の最新機能を試す事ができます。
   いうなれば、幅広く横に広げる機能を追加していきます。
@@ -128,6 +131,8 @@ https://githubnext.com/projects/code-brushes
 **GitHub Copilot Labs** の機能をボタン一つで呼び出すための機能です。
 それぞれの関数名の上に出てくる約 10 個の Copilot アイコンの事を指します。
 アイコン一つ一つに **GitHub Copilot Labs** の機能が振り分けられています。
+
+自分の環境では、VScodeでは使えないが、Cursor(VSCodeのfork版)では使えるのが謎
 
 ### GitHub Copilot ステータスアイコン
 
