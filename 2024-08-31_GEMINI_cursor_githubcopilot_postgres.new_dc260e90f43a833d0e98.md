@@ -16,7 +16,42 @@ private: false
 * 普通 or 自分には合わなかった
 
 
+
+# お試し中
+
+AIによる自動デバッグも可能なバグレポートを1クリックで生成する「Jam」を使ってみた！ - paiza times
+
+https://paiza.hatenablog.com/entry/2023/06/07/150000
+
+無し
+
+
+
+
+
 # ティア 1
+
+
+## wrtn
+
+https://wrtn.jp/
+
+読めません・・・リートンと読むようです。
+
+それぞれの分野に特化したキャラクターが答えてくれます。
+日本製？でもAIモデルは海外のを利用しています。
+
+有料生成AIを無料・無制限で利用できる「リートン」が大規模リニューアル - 窓の杜
+
+https://forest.watch.impress.co.jp/docs/news/1630839.html
+
+　「リートン」は複数の生成AIを日本語対応にしたAIプラットフォーム。「ChatGPT」「Claude」「Stable Diffusion 3」などの最新AIモデルを無料・無制限で利用することが可能。
+
+👆️これらのモデルは使えますが、バージョンの指定はできず、現在どのバージョンを使っているかは不明です。
+
+有料生成AIを無料・無制限で利用できるためか、反応が早い。
+早いのは正義。
+
 
 ## gemini
 
@@ -43,9 +78,19 @@ https://www.youtube.com/のURL ＜＜＜＜ 優しく日本語で簡単な解説
 ```
 
 と入力する方法で使っています。
-時々拒否されるのが玉にキズです。
-一度拒否されても、続けて同じ質問をすると答えてくれる時がありました。
-処理が追いつかないと拒否する仕様なのでしょうか？
+
+Google Geminiに画像生成AI「Imagen 3」実装 - PC Watch
+https://pc.watch.impress.co.jp/docs/news/1630845.html
+
+使ってみると、人物は有料の Gemini Advance モデルでないと出力してくれないようです。
+※将来実装予定
+
+「オアシスを書いて」とプロンプトを書くと、書いてくれました。
+
+![Gemini_Generated_Image_lfj89elfj89elfj8.jfif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/9c5dd13b-10d1-b54e-e6bf-d1d4e3f27c96.jpeg)
+
+
+
 
 
 ## GitHub Copilot
@@ -56,21 +101,13 @@ https://github.com/features/copilot
 
 学生や、OSSの開発者は無料
 
-GitHub Copilotに OpenAI の o1-preview または o1-mini が搭載(予定)
 
-現在 waitlist で募集中
 
-OpenAI o1-preview/o1-miniがVS CodeのGitHub Copilot ChatとGitHub Modelsで利用可能に | gihyo.jp
-
-https://gihyo.jp/article/2024/09/openai-o1-github-copilot?utm_source=feed
-
-Try out OpenAI o1 in GitHub Copilot and Models - The GitHub Blog
-
-https://github.blog/news-insights/product-news/try-out-openai-o1-in-github-copilot-and-models/
-
-GitHub · Where software is built
-
-https://github.com/o1-waitlist-signup
+GitHub Copilotに OpenAI の
+GPT 4o
+o1-preview
+o1-mini
+AIモデルが選択可能です。
 
 
 
@@ -78,12 +115,26 @@ https://github.com/o1-waitlist-signup
 
 https://v0.dev/chat
 
-無料の利用可能 2024年9月15日 現在
+現在v0には、新しくバージョン「Chat」と古い「Legacy」があります。
+
+- Chat https://v0.dev/chat
+
+- Legacy https://v0.dev/?from=chat
+
+
+無料の利用可能 2024年10月7日 現在
+
 課金有り
 
 * ドキュメント v0.dev docs
 
 https://v0.dev/docs
+
+* Explore - v0
+
+https://v0.dev/explore
+
+👆️他の人の制作物
 
 AIと相談しながらTailwindCSSで装飾されたフロントエンドを作るのを手伝ってくれます。
 無料でも毎日クレジットが復活するので少しつづ進めていけます。
@@ -96,7 +147,7 @@ AIと相談しながらTailwindCSSで装飾されたフロントエンドを作�
 無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
 リセット時間が過ぎると試行回数が回復します。
 
-世界標準時0時 = 日本標準時午前9時 (未確認)
+世界標準時0時 = 日本標準時午前9時
 
 https://x.com/v0/status/1840944045964869898
 
@@ -105,6 +156,156 @@ v0 では、Supabase、Drizzle、Prisma に関する質問に答えられるよ�
 v0を日本語で利用できるようになりました。
 
 https://x.com/v0/status/1841313318101037391
+
+v0はあくまでも静的なUIレイアウトとスタイルを表示に特化しています。
+
+ドラッグアンドドロップのようなインタラクティブな機能は、実際のブラウザ環境でJavaScriptが動作確認することで初めて機能します。
+
+文字を入力して、リストに追加し、それを表示する程度のことは出来ました。
+
+既存のコンポーネントのコードを貼り付けて指示をして編集することも出来ます。
+
+
+
+### 現在の私の使い方
+
+Webアプリの設計書を書きます。
+その設計書を1ファイルにまとめます。
+Webアプリの画面設計をします。
+
+v0に設計ファイルを読み込ませます。
+画面設計に沿ってページ単位で作るように指示します。
+
+もしも複雑な画面の場合は
+最小単位の画面設計をし直し、もしくは共通のコンポーネントを切り出して設計します。
+その単位でコンポーネントを作ってもらって
+コンポーネントを組み合わせて画面をつくります。
+
+以下、繰り返します。
+
+### 使う時に気をつけること
+
+事前に設定書を書いておくと
+v0に教えておくことで反映してくれます。
+例えば2つのコンポーネントを使う時、事前に共通の名前にしておくことでDBに保存する時など便利です。
+
+### v0に聞いた共有できるコンポーネントの作り方。
+
+質問：
+Next.jsとSupabaseを利用します。 Next.jsで利用するコンポーネントをv0に生成してもらう時にSupabaseのテーブルを共有したいと思います。その場合テーブルのデータはどうしたら同じにして生成してもらえますか？
+
+
+
+<details><summary>回答：</summary>
+
+はい、Next.jsとSupabaseを利用する際に、Supabaseのテーブル構造を共有してコンポーネントを生成することは可能です。以下の方法で実現できます：
+
+1. Supabaseのテーブル構造をSQL形式で共有する：
+テーブルの作成に使用したSQLコマンドを提供してください。これにより、テーブルの正確な構造を把握できます。
+2. テーブル構造に基づいてTypeScriptの型定義を作成する：
+SQLの構造から、TypeScriptの型定義を作成します。これにより、型安全性を確保しつつ、正確なデータ構造を反映したコンポーネントを生成できます。
+3. 型定義を使用してNext.jsコンポーネントを生成する：
+作成した型定義を使用して、Next.jsのコンポーネントを生成します。
+
+
+例えば、以下のようなSQLでテーブルを作成したとします：
+
+```sql
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  username TEXT NOT NULL UNIQUE,
+  email TEXT NOT NULL UNIQUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+このSQLを共有していただければ、以下のようなTypeScript型定義を作成し、それに基づいてコンポーネントを生成できます：
+
+```typescript
+type User = {
+  id: string;
+  username: string;
+  email: string;
+  created_at: string;
+};
+```
+
+そして、この型定義を使用してNext.jsコンポーネントを生成します。例えば：
+
+```typescriptreact
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+// Supabaseクライアントの初期化
+const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY')
+
+type User = {
+  id: string;
+  username: string;
+  email: string;
+  created_at: string;
+};
+
+export default function UserList() {
+  const [users, setUsers] = useState<User[]>([])
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+
+      if (error) {
+        console.error('Error fetching users:', error)
+      } else {
+        setUsers(data || [])
+      }
+    }
+
+    fetchUsers()
+  }, [])
+
+  return (
+    <div>
+      <h1>ユーザーリスト</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            {user.username} ({user.email}) - 作成日: {new Date(user.created_at).toLocaleDateString()}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+このようにして、Supabaseのテーブル構造を共有し、それに基づいてTypeScriptの型定義を作成し、その型定義を使用してNext.jsコンポーネントを生成することができます。テーブル構造を共有する際は、CREATE TABLE文やテーブルのスキーマ情報を提供していただければ、それに基づいて適切なコンポーネントを生成できます。
+
+</details>
+
+
+
+
+### v0で生成したコンポーネントからSupabaseで利用できるSQL文を作るには？
+
+普通にv0に質問すれば、SQL文を出力してくれます。
+
+
+### v0が読み込めるファイル数は？
+
+現在1つです、設定書が複数のファイルに分かれている場合は、コンポーネントの生成に必要な情報を1つのファイルにまとめておいてv0に渡す必要があります。
+
+
+### v0はUIのコンポーネントを作るのに特化している
+
+v0はUIのコンポーネントを作るのに特化しています、なのでロジックを考えさせたりテストを書かせたりすることも出来と言えば出来るのですが、それだったらVSCodeのGitHub Copilot(有料)やCursor(有料)で自分で直接コードを書いたほうが良いと思います。
+
+軽く土台を作ってもらったらVSCode等で編集したほうが良いと思います。
+
+
+
+
 
 
 
@@ -212,7 +413,35 @@ Google Chromeの拡張機能です。
 
 たくさんの機能が色々ありますが、自分は主にYouTube動画の翻訳 要約に使用しています。
 
-英文と翻訳文が上下2行に表示されて便利です。
+Youtubeで英語の時、英文と翻訳文が上下2行に表示されて便利です。
+
+
+
+## Felo
+
+無料のAI検索エンジン
+
+https://felo.ai/search
+
+検索に加えて、マインドマップ、スライドデザインの作成が出来ます。
+
+PRO版(有料)になると、検索に他のAIモデルを使用できます、300回まで。
+
+無料版でもPRO版機能が1日5回まで使えます。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -284,6 +513,26 @@ https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkf
 
 これはChromeの拡張機能です。
 動画の要約などをしてくれます。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -408,13 +657,43 @@ https://aitestkitchen.withgoogle.com/ja/tools/image-fx
 
 
 
-## wrtn
 
-https://wrtn.jp/
 
-読めません、リートンと読むようです。
-それぞれの分野に特化したキャラクターが答えてくれます。
-日本製と言うのでここに置きます。
+
+
+## OpenAIのPalyground
+
+有料
+
+https://platform.openai.com/playground/
+
+ここではAIに入力する時の、プロンプトの下書きを作ってくれます。
+
+![OpenAIのプレイグラウンド 丸PNG.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/0c7374d9-9adf-6fa3-ca75-ae5f71d796a1.png)
+
+★のボタンを押すと別ウィンドウが開きます。
+そこに目的を書くとプロンプトの下書きを考えてくれます。
+
+後は出力されたものを自分で編集して、自分が使用しているAIに貼り付けます。
+
+
+
+
+
+
+
+## AIウェブアプリ開発
+
+ウェブアプリ開発をトータルで管理しているサービス
+
+Bolt.new
+や
+GPT Enginner
+
+
+
+
+
 
 
 
@@ -453,3 +732,45 @@ AIへの質問や提案などを指します。
 これらは美人投票ではなく、自分の価値観で便利だと判断したものを並べています。
 
 以上、現在私が使っているAIサイトでした。
+
+
+# おまけ
+
+AIとは関係ないけど使用しているサイト
+
+## PC ChromeブラウザのGoogleレンズ
+
+使い方
+URL入力欄にフォーカスして、Googleレンズを選択すると範囲選択できるようになるので翻訳したい箇所を選択します。
+
+* 検索が可能です。
+* 画像からでも翻訳が可能です。
+
+以前からツールがありましたが、これほど手軽に使えるようになったのがすごい。
+
+
+
+
+
+## コード専用タイピングゲーム
+
+https://untyping.jp/
+
+![コード専用タイピングゲーム.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/bcad5581-215c-ae0a-69f8-9f6f707dc126.png)
+
+稀に5000超え出来るぐらいの腕前、5000超えてもかなりタイプミスがあります。
+
+点数の感想としては、練習を続けてタッチタイピングが完璧になったら、6000超えはこれからずっと練習すれば数回は達成できるかもしれませんが、それ以上は不可能でしょう。
+
+
+
+
+
+
+## Figma
+
+https://www.figma.com/
+
+Figmaで下書きを書いて画像に撮って「v0」に渡すと、コンポーネントのベースが一瞬で出来上がります。
+
+画像に撮るには、Windows付属の「Snipping Tool」というのを使っています。

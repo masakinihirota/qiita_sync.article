@@ -12,6 +12,22 @@ https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
 
 https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
 
+## 現在(2024年10月15日)のAIモデル
+
+GitHub Copilotに OpenAI の
+GPT 4o
+o1-preview
+o1-mini
+AIモデルが選択可能です。
+
+まだ使用できない人はWait Listに登録する必要があります。
+
+![GitHub CopilotAIモデル2024年10月15日.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/fd7e3a79-32f5-9637-21f2-61fda5218108.png)
+
+チャット欄での 「@」 も項目が増えています。
+![GitHub Copilot AIの ＠.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/dc2d010a-bbd1-eb1d-f813-54325128b972.png)
+
+
 ## キーボードショートカットキー (VSCode)
 
 ※提案＝GitHub Copilotが出力するコードの事です。
