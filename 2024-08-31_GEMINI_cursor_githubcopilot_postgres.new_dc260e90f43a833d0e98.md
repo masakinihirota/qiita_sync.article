@@ -52,6 +52,18 @@ https://forest.watch.impress.co.jp/docs/news/1630839.html
 有料生成AIを無料・無制限で利用できるためか、反応が早い。
 早いのは正義。
 
+外部データを読み込むのに弱い。
+X(Twitter)とかのデータは読み込んでくれなかった。
+
+
+
+
+
+
+
+
+
+
 
 ## gemini
 
@@ -194,8 +206,6 @@ v0に教えておくことで反映してくれます。
 質問：
 Next.jsとSupabaseを利用します。 Next.jsで利用するコンポーネントをv0に生成してもらう時にSupabaseのテーブルを共有したいと思います。その場合テーブルのデータはどうしたら同じにして生成してもらえますか？
 
-
-
 <details><summary>回答：</summary>
 
 はい、Next.jsとSupabaseを利用する際に、Supabaseのテーブル構造を共有してコンポーネントを生成することは可能です。以下の方法で実現できます：
@@ -302,6 +312,211 @@ export default function UserList() {
 v0はUIのコンポーネントを作るのに特化しています、なのでロジックを考えさせたりテストを書かせたりすることも出来と言えば出来るのですが、それだったらVSCodeのGitHub Copilot(有料)やCursor(有料)で自分で直接コードを書いたほうが良いと思います。
 
 軽く土台を作ってもらったらVSCode等で編集したほうが良いと思います。
+
+
+
+### Tips
+
+v0は通常のUIを作成するとダミーデータが2,3個だったり、0個だったりします。
+なので見栄えを確認するためにダミーデータを追加するようお願いします。
+
+例
+20のダミーデータを追加してください。
+
+
+
+
+
+### Supabaseとの連結
+
+v0はSupabaseと連携しているので、v0に提案をすれば対応してくれます。
+
+<details><summary>プロンプトと出力の例</summary>
+
+#### プロンプト
+
+>Next.jsとSupabaseを使います。 Supabaseのクライアントを作っておいてください。 UIは自分の所持している漫画作品を表示します。データはSupabaseからフェッチして、UIで更新したり、削除できるようにしてください。Supabaseに登録済みのダミーデータは10作品ほど追加してください。
+
+##### 出力
+
+まず、`lib/supabase.ts`ファイルを作成し、Supabaseクライアントを設定します：
+
+```lib/supabase.ts
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+```
+
+次に、漫画作品を管理するためのコンポーネントを作成します：
+
+```components/manga-list.tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Pencil, Trash2 } from "lucide-react"
+
+type Manga = {
+  id: number
+  title: string
+  author: string
+}
+
+export default function MangaList() {
+  const [mangas, setMangas] = useState<Manga[]>([])
+  const [newManga, setNewManga] = useState({ title: '', author: '' })
+  const [editingId, setEditingId] = useState<number | null>(null)
+
+  useEffect(() => {
+    fetchMangas()
+  }, [])
+
+  async function fetchMangas() {
+    const { data, error } = await supabase
+      .from('mangas')
+      .select('*')
+      .order('id', { ascending: true })
+    if (error) console.error('エラー:', error)
+    else setMangas(data || [])
+  }
+
+  async function addManga() {
+    const { data, error } = await supabase
+      .from('mangas')
+      .insert([newManga])
+      .select()
+    if (error) console.error('エラー:', error)
+    else {
+      setMangas([...mangas, ...data])
+      setNewManga({ title: '', author: '' })
+    }
+  }
+
+  async function updateManga(id: number) {
+    const mangaToUpdate = mangas.find(manga => manga.id === id)
+    if (!mangaToUpdate) return
+
+    const { error } = await supabase
+      .from('mangas')
+      .update({ title: mangaToUpdate.title, author: mangaToUpdate.author })
+      .eq('id', id)
+    if (error) console.error('エラー:', error)
+    else {
+      setEditingId(null)
+      fetchMangas()
+    }
+  }
+
+  async function deleteManga(id: number) {
+    const { error } = await supabase
+      .from('mangas')
+      .delete()
+      .eq('id', id)
+    if (error) console.error('エラー:', error)
+    else {
+      setMangas(mangas.filter(manga => manga.id !== id))
+    }
+  }
+
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">私の漫画コレクション</h1>
+      <div className="grid gap-4 mb-4">
+        <Input
+          placeholder="タイトル"
+          value={newManga.title}
+          onChange={(e) => setNewManga({ ...newManga, title: e.target.value })}
+        />
+        <Input
+          placeholder="作者"
+          value={newManga.author}
+          onChange={(e) => setNewManga({ ...newManga, author: e.target.value })}
+        />
+        <Button onClick={addManga}>漫画を追加</Button>
+      </div>
+      <div className="grid gap-4">
+        {mangas.map(manga => (
+          <Card key={manga.id}>
+            <CardHeader>
+              <CardTitle>{editingId === manga.id ?
+                <Input
+                  value={manga.title}
+                  onChange={(e) => setMangas(mangas.map(m => m.id === manga.id ? { ...m, title: e.target.value } : m))}
+                /> :
+                manga.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {editingId === manga.id ?
+                <Input
+                  value={manga.author}
+                  onChange={(e) => setMangas(mangas.map(m => m.id === manga.id ? { ...m, author: e.target.value } : m))}
+                /> :
+                <p>{manga.author}</p>}
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              {editingId === manga.id ? (
+                <Button onClick={() => updateManga(manga.id)}>更新</Button>
+              ) : (
+                <Button onClick={() => setEditingId(manga.id)}><Pencil className="mr-2 h-4 w-4" />編集</Button>
+              )}
+              <Button variant="destructive" onClick={() => deleteManga(manga.id)}><Trash2 className="mr-2 h-4 w-4" />削除</Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+```
+
+このコンポーネントは、漫画のリストを表示し、新しい漫画の追加、既存の漫画の編集と削除ができるようになっています。
+
+最後に、Supabaseにダミーデータを追加するためのSQLクエリを作成します：
+
+```dummy-data.sql
+INSERT INTO mangas (title, author) VALUES
+('進撃の巨人', '諫山創'),
+('ワンピース', '尾田栄一郎'),
+('鬼滅の刃', '吾峠呼世晴'),
+('ナルト', '岸本斉史'),
+('ドラゴンボール', '鳥山明'),
+('ハンターハンター', '冨樫義博'),
+('ジョジョの奇妙な冒険', '荒木飛呂彦'),
+('ブリーチ', '久保帯人'),
+('スラムダンク', '井上雄彦'),
+('デスノート', '大場つぐみ・小畑健');
+
+```
+
+このSQLクエリをSupabaseのSQL Editorで実行することで、10作品のダミーデータが追加されます。
+
+これで、Next.jsとSupabaseを使用した漫画作品管理UIの基本的な実装が完了しました。このコンポーネントを適切なページに配置することで、ユーザーは自分の所持している漫画作品を表示、更新、削除することができます。
+
+※ファイル同士の連携は出来てないようなので手動で編集します。
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
