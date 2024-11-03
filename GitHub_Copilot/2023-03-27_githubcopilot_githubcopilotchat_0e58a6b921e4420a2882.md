@@ -4,13 +4,58 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
-2024年9月26日 搭載AIは OpenAIのGPT-4o 近い将来 OpenAI o1-preview が搭載予定
-
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
 
 https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+追記: 2024年11月3日
+
+claude 3.5 sonnet が利用できるようになりました。
+
+https://github.blog/changelog/2024-11-01-claude-3-5-sonnet-is-now-available-to-all-copilot-users-in-public-preview/
+
+追記終了
+
+追記: 2024年11月1日
+
+Copilot Edits
+
+https://code.visualstudio.com/docs/copilot/copilot-edits
+
+Copilot Editsは、AI（人工知能）を使ってコードを自動的に修正したり、新しいコードを生成してくれる機能です。
+複数のファイルにわたる大規模な変更が可能です。
+ユーザーは、自然言語で指示を与えるだけで、Copilot Editsがコードを自動的に修正してくれます。
+これを使うと、プログラミングの効率が大幅に向上します。また、プログラミング初心者でも、簡単にコードを書くことができます。
+
+追記終了
+
+
+
+追記: 2024年10月23日
+
+## GitHub Copilot WorkSpace
+
+GitHub Copilot Workspaceは、AIの力を借りて、プログラミング作業を大幅に効率化する新しい開発環境です。
+
+* **自然言語で指示** プログラミング言語ではなく、普段使っている言葉でAIに指示を出すことができます。
+
+* **AIが自動でコード生成** あなたの指示に基づいて、AIが自動的にコードを生成したり、修正したりしてくれます。
+
+* **一連の作業を自動化** コードの作成だけでなく、テストやデバッグなど、プログラミングに関わる様々な作業を自動化できます。
+
+
+
+👇️Wait Listに登録が必要です。
+
+GitHub Next | Copilot Workspace
+
+https://githubnext.com/projects/copilot-workspace
+
+追記終了
+
+
 
 ## 現在(2024年10月15日)のAIモデル
 
@@ -21,6 +66,29 @@ o1-mini
 AIモデルが選択可能です。
 
 まだ使用できない人はWait Listに登録する必要があります。
+
+### GPT-4o、o1-preview、o1-miniの各モデルについての解説
+
+o1-previewは現在の最新モデル
+o1-mini o1の小型デバイス向け
+GPT-4oは一つ前のモデル
+
+#### 性能
+
+GPT-4oは深い思考が求められる場面
+o1-previewは即時応答が必要な会話型アプリケーション
+o1-miniはコスト効率が求められる小型デバイス向け
+
+* GPT-4o
+テキスト、音声、ビジョンといった複数のモダリティを同時に処理・生成する能力を持ち、複雑なインタラクションや推論タスクにおいて優れた性能を発揮します。特に、言語のニュアンスや文脈の理解において深い思考を行い、科学や数学の分野で高いパフォーマンスを示します。
+
+* o1-preview
+即レスポンスと会話能力を重視したモデルで、複雑な問題解決においても優れた推論能力を発揮します。このモデルは、ユーザーとの対話をスムーズに行うことができ、特に計画や戦略立案、複雑な情報の分析において効果的です。o1-previewは、複雑なクイズや問題に対しても人間のように考えながら正解を導き出すことができます。
+
+* o1-mini
+小型デバイス向けに最適化されたモデルで、特にSTEM（科学、技術、工学、数学）分野のタスクに強みを持っています。このモデルは、コスト効率が高く、特にコーディングタスクにおいて優れた性能を発揮します。o1-miniは、o1-previewよりも80%安価で提供されるため、コストパフォーマンスが重視されるアプリケーションに適しています。
+
+
 
 ![GitHub CopilotAIモデル2024年10月15日.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/fd7e3a79-32f5-9637-21f2-61fda5218108.png)
 
@@ -2153,6 +2221,93 @@ VSCode の左下の歯車アイコンをクリックして設定を開きます�
 
 default:undoの設定にはシステムでは未設定です。
 ※ **"key"** の設定は好きなショートカットキーに変更してください。
+
+
+
+
+2024年10月31日現在の自分のGitHub Copilotキーバインド設定
+
+
+
+![VSCode画面説明.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/5922fb8d-8868-5fd5-5951-7fbb10a760c7.png)
+
+👇️自分の **keybindings.json** (一部抜粋)
+
+```keybindings.json
+  ////////////////////////////////////////////////////////////////
+  // GitHub Copilot キーバインド
+  ////////////////////////////////////////////////////////////////
+  // セカンダリーサイドバー
+  ////////////////////////////////////////////////////////////////
+  {
+    // GitHub Copilot chat をセカンダリーサイドバーに開きます。
+    // カーソルが入力場所へフォーカスします。
+    "key": "ctrl+shift+x",
+    "command": "workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    // GitHub Copilot chat デフォルトの設定を無効化
+    "key": "ctrl+alt+i",
+    "command": "-workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    // GitHub Copilot インラインチャットが開く
+    // ctrl+shift+,
+    "key": "ctrl+8",
+    "command": "inlineChat.start",
+    "when": "inlineChatHasProvider && !editorReadonly"
+  },
+  {
+    // インライン候補をトリガーする Github Copilot
+    "key": "ctrl+m",
+    "command": "editor.action.inlineSuggest.trigger",
+    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+  {
+    // 単語単位:インライン提案の次の単語を承諾する Github Copilot
+    "key": "ctrl+n",
+    "command": "editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    // GitHub Copilot の まとめて提案 を別のキーバインドに
+    "key": "ctrl+alt+enter",
+    "command": "github.copilot.generate",
+    "when": "editorTextFocus && github.copilot.activated && !inInteractiveInput && !interactiveEditorFocused"
+  },
+  {
+    // GitHub Copilot の まとめて提案 無効化
+    "key": "ctrl+enter",
+    "command": "-github.copilot.generate",
+    "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
+  },
+  ////////////////////////////////////////////////////////////////
+  // プライマリサイドバー
+  ////////////////////////////////////////////////////////////////
+  {
+    // プライマリサイドバーが閉じている時にエクスプローラーを開きます。
+    "key": "ctrl+shift+a",
+    "command": "workbench.view.explorer",
+    "when": "!sideBarVisible"
+  },
+  {
+    // プライマリサイドバーが開いている時に閉じます。
+    "key": "ctrl+shift+a",
+    "command": "workbench.action.closeSidebar",
+    "when": "sideBarVisible"
+  },
+  ////////////////////////////////////////////////////////////////
+  // ターミナル
+  ////////////////////////////////////////////////////////////////
+  {
+    // ターミナル表示切り替え
+    "key": "ctrl+shift+z",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+
+```
 
 
 

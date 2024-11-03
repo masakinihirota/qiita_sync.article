@@ -1,5 +1,5 @@
 <!--
-title:   私の使用しているAI関連サイト 2024年 10月版
+title:   私の使用しているAI関連サイト 2024年 11月版
 tags:    GEMINI,cursor,githubcopilot,gptengineer,postgres.new
 id:      dc260e90f43a833d0e98
 private: false
@@ -16,6 +16,32 @@ private: false
 * 普通 or 自分には合わなかった
 
 
+
+
+追記: 2024年10月30日
+
+## GitHub Spark
+
+自然言語を入力するだけでツールを作成できます。
+
+［速報］GitHub、自然言語による指示だけでデスクトップ、タブレット、モバイルデバイス用のツールを作成できます。
+
+対話だけでツールを作っていきます。コードを触れるプログラマーが直接コードを触ることも可能です。
+つまりこのツールは主従逆転することになります。
+
+「GitHub Spark」テクニカルプレビュー公開 － Publickey
+
+https://www.publickey1.jp/blog/24/githubgithub_spark.html
+
+
+使用するためにはWait Listに登録して待つ必要があります。
+
+GitHub 次 | GitHub Spark
+
+https://githubnext.com/projects/github-spark
+
+
+追記終了
 
 # お試し中
 
@@ -55,7 +81,74 @@ https://forest.watch.impress.co.jp/docs/news/1630839.html
 外部データを読み込むのに弱い。
 X(Twitter)とかのデータは読み込んでくれなかった。
 
+## v0
 
+https://v0.dev/chat
+
+テキストプロンプトからUIデザインコンポーネントを自動生成するサービスです。
+
+TailwindCSS
+shadcn/ui
+を利用しています。
+
+無料の利用可能 (2024年10月19日 現在)
+
+1日10回 リセット時間で回復。
+
+### リセット時間
+
+無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
+リセット時間が過ぎると試行回数が回復します。
+
+世界標準時0時 = 日本標準時午前9時
+
+UIコンポーネントの生成サービス v0 (+ shadcn/ui TailwindCSS Next.js Supabase) #tailwindcss - Qiita
+https://qiita.com/masakinihirota/items/e7da2254d7d54a6fad04
+
+
+
+
+
+
+
+
+
+
+
+## GitHub Copilot
+
+https://github.com/features/copilot
+
+プログラムを書く時に使います。(年契約で課金中 月10ドル)
+
+学生や、OSSの開発者は無料
+
+
+
+GitHub Copilotに OpenAI の
+GPT 4o
+o1-preview
+o1-mini
+AIモデルが選択可能です。
+
+
+### GitHub Copilot WorkSpace
+
+GitHub Copilot Workspaceは、AIの力を借りて、プログラミング作業を大幅に効率化する新しい開発環境です。
+
+* **自然言語で指示** プログラミング言語ではなく、普段使っている言葉でAIに指示を出すことができます。
+
+* **AIが自動でコード生成** あなたの指示に基づいて、AIが自動的にコードを生成したり、修正したりしてくれます。
+
+* **一連の作業を自動化** コードの作成だけでなく、テストやデバッグなど、プログラミングに関わる様々な作業を自動化できます。
+
+
+
+👇️Wait Listに登録が必要です。
+
+GitHub Next | Copilot Workspace
+
+https://githubnext.com/projects/copilot-workspace
 
 
 
@@ -105,422 +198,6 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 
 
 
-## GitHub Copilot
-
-https://github.com/features/copilot
-
-プログラムを書く時に使います。(年契約で課金中 月10ドル)
-
-学生や、OSSの開発者は無料
-
-
-
-GitHub Copilotに OpenAI の
-GPT 4o
-o1-preview
-o1-mini
-AIモデルが選択可能です。
-
-
-
-## v0
-
-https://v0.dev/chat
-
-現在v0には、新しくバージョン「Chat」と古い「Legacy」があります。
-
-- Chat https://v0.dev/chat
-
-- Legacy https://v0.dev/?from=chat
-
-
-無料の利用可能 2024年10月7日 現在
-
-課金有り
-
-* ドキュメント v0.dev docs
-
-https://v0.dev/docs
-
-* Explore - v0
-
-https://v0.dev/explore
-
-👆️他の人の制作物
-
-AIと相談しながらTailwindCSSで装飾されたフロントエンドを作るのを手伝ってくれます。
-無料でも毎日クレジットが復活するので少しつづ進めていけます。
-うまくすれば複雑なものでも1日1コンポーネント、簡単なものなら(手動でやったほうが早いが)3つぐらい出来ます。
-
-本当に便利ですが本格的に使うとなると課金が必要です。
-
-### リセット時間
-
-無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
-リセット時間が過ぎると試行回数が回復します。
-
-世界標準時0時 = 日本標準時午前9時
-
-https://x.com/v0/status/1840944045964869898
-
-v0 では、Supabase、Drizzle、Prisma に関する質問に答えられるようになりました。
-
-v0を日本語で利用できるようになりました。
-
-https://x.com/v0/status/1841313318101037391
-
-v0はあくまでも静的なUIレイアウトとスタイルを表示に特化しています。
-
-ドラッグアンドドロップのようなインタラクティブな機能は、実際のブラウザ環境でJavaScriptが動作確認することで初めて機能します。
-
-文字を入力して、リストに追加し、それを表示する程度のことは出来ました。
-
-既存のコンポーネントのコードを貼り付けて指示をして編集することも出来ます。
-
-
-
-### 現在の私の使い方
-
-Webアプリの設計書を書きます。
-その設計書を1ファイルにまとめます。
-Webアプリの画面設計をします。
-
-v0に設計ファイルを読み込ませます。
-画面設計に沿ってページ単位で作るように指示します。
-
-もしも複雑な画面の場合は
-最小単位の画面設計をし直し、もしくは共通のコンポーネントを切り出して設計します。
-その単位でコンポーネントを作ってもらって
-コンポーネントを組み合わせて画面をつくります。
-
-以下、繰り返します。
-
-### 使う時に気をつけること
-
-事前に設定書を書いておくと
-v0に教えておくことで反映してくれます。
-例えば2つのコンポーネントを使う時、事前に共通の名前にしておくことでDBに保存する時など便利です。
-
-### v0に聞いた共有できるコンポーネントの作り方。
-
-質問：
-Next.jsとSupabaseを利用します。 Next.jsで利用するコンポーネントをv0に生成してもらう時にSupabaseのテーブルを共有したいと思います。その場合テーブルのデータはどうしたら同じにして生成してもらえますか？
-
-<details><summary>回答：</summary>
-
-はい、Next.jsとSupabaseを利用する際に、Supabaseのテーブル構造を共有してコンポーネントを生成することは可能です。以下の方法で実現できます：
-
-1. Supabaseのテーブル構造をSQL形式で共有する：
-テーブルの作成に使用したSQLコマンドを提供してください。これにより、テーブルの正確な構造を把握できます。
-2. テーブル構造に基づいてTypeScriptの型定義を作成する：
-SQLの構造から、TypeScriptの型定義を作成します。これにより、型安全性を確保しつつ、正確なデータ構造を反映したコンポーネントを生成できます。
-3. 型定義を使用してNext.jsコンポーネントを生成する：
-作成した型定義を使用して、Next.jsのコンポーネントを生成します。
-
-
-例えば、以下のようなSQLでテーブルを作成したとします：
-
-```sql
-CREATE TABLE users (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  username TEXT NOT NULL UNIQUE,
-  email TEXT NOT NULL UNIQUE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-このSQLを共有していただければ、以下のようなTypeScript型定義を作成し、それに基づいてコンポーネントを生成できます：
-
-```typescript
-type User = {
-  id: string;
-  username: string;
-  email: string;
-  created_at: string;
-};
-```
-
-そして、この型定義を使用してNext.jsコンポーネントを生成します。例えば：
-
-```typescriptreact
-import { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
-
-// Supabaseクライアントの初期化
-const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY')
-
-type User = {
-  id: string;
-  username: string;
-  email: string;
-  created_at: string;
-};
-
-export default function UserList() {
-  const [users, setUsers] = useState<User[]>([])
-
-  useEffect(() => {
-    async function fetchUsers() {
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-
-      if (error) {
-        console.error('Error fetching users:', error)
-      } else {
-        setUsers(data || [])
-      }
-    }
-
-    fetchUsers()
-  }, [])
-
-  return (
-    <div>
-      <h1>ユーザーリスト</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.username} ({user.email}) - 作成日: {new Date(user.created_at).toLocaleDateString()}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-```
-
-このようにして、Supabaseのテーブル構造を共有し、それに基づいてTypeScriptの型定義を作成し、その型定義を使用してNext.jsコンポーネントを生成することができます。テーブル構造を共有する際は、CREATE TABLE文やテーブルのスキーマ情報を提供していただければ、それに基づいて適切なコンポーネントを生成できます。
-
-</details>
-
-
-
-
-### v0で生成したコンポーネントからSupabaseで利用できるSQL文を作るには？
-
-普通にv0に質問すれば、SQL文を出力してくれます。
-
-
-### v0が読み込めるファイル数は？
-
-現在1つです、設定書が複数のファイルに分かれている場合は、コンポーネントの生成に必要な情報を1つのファイルにまとめておいてv0に渡す必要があります。
-
-
-### v0はUIのコンポーネントを作るのに特化している
-
-v0はUIのコンポーネントを作るのに特化しています、なのでロジックを考えさせたりテストを書かせたりすることも出来と言えば出来るのですが、それだったらVSCodeのGitHub Copilot(有料)やCursor(有料)で自分で直接コードを書いたほうが良いと思います。
-
-軽く土台を作ってもらったらVSCode等で編集したほうが良いと思います。
-
-
-
-### Tips
-
-v0は通常のUIを作成するとダミーデータが2,3個だったり、0個だったりします。
-なので見栄えを確認するためにダミーデータを追加するようお願いします。
-
-例
-20のダミーデータを追加してください。
-
-
-
-
-
-### Supabaseとの連結
-
-v0はSupabaseと連携しているので、v0に提案をすれば対応してくれます。
-
-<details><summary>プロンプトと出力の例</summary>
-
-#### プロンプト
-
->Next.jsとSupabaseを使います。 Supabaseのクライアントを作っておいてください。 UIは自分の所持している漫画作品を表示します。データはSupabaseからフェッチして、UIで更新したり、削除できるようにしてください。Supabaseに登録済みのダミーデータは10作品ほど追加してください。
-
-##### 出力
-
-まず、`lib/supabase.ts`ファイルを作成し、Supabaseクライアントを設定します：
-
-```lib/supabase.ts
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
-```
-
-次に、漫画作品を管理するためのコンポーネントを作成します：
-
-```components/manga-list.tsx
-'use client'
-
-import { useState, useEffect } from 'react'
-import { supabase } from '../lib/supabase'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Pencil, Trash2 } from "lucide-react"
-
-type Manga = {
-  id: number
-  title: string
-  author: string
-}
-
-export default function MangaList() {
-  const [mangas, setMangas] = useState<Manga[]>([])
-  const [newManga, setNewManga] = useState({ title: '', author: '' })
-  const [editingId, setEditingId] = useState<number | null>(null)
-
-  useEffect(() => {
-    fetchMangas()
-  }, [])
-
-  async function fetchMangas() {
-    const { data, error } = await supabase
-      .from('mangas')
-      .select('*')
-      .order('id', { ascending: true })
-    if (error) console.error('エラー:', error)
-    else setMangas(data || [])
-  }
-
-  async function addManga() {
-    const { data, error } = await supabase
-      .from('mangas')
-      .insert([newManga])
-      .select()
-    if (error) console.error('エラー:', error)
-    else {
-      setMangas([...mangas, ...data])
-      setNewManga({ title: '', author: '' })
-    }
-  }
-
-  async function updateManga(id: number) {
-    const mangaToUpdate = mangas.find(manga => manga.id === id)
-    if (!mangaToUpdate) return
-
-    const { error } = await supabase
-      .from('mangas')
-      .update({ title: mangaToUpdate.title, author: mangaToUpdate.author })
-      .eq('id', id)
-    if (error) console.error('エラー:', error)
-    else {
-      setEditingId(null)
-      fetchMangas()
-    }
-  }
-
-  async function deleteManga(id: number) {
-    const { error } = await supabase
-      .from('mangas')
-      .delete()
-      .eq('id', id)
-    if (error) console.error('エラー:', error)
-    else {
-      setMangas(mangas.filter(manga => manga.id !== id))
-    }
-  }
-
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">私の漫画コレクション</h1>
-      <div className="grid gap-4 mb-4">
-        <Input
-          placeholder="タイトル"
-          value={newManga.title}
-          onChange={(e) => setNewManga({ ...newManga, title: e.target.value })}
-        />
-        <Input
-          placeholder="作者"
-          value={newManga.author}
-          onChange={(e) => setNewManga({ ...newManga, author: e.target.value })}
-        />
-        <Button onClick={addManga}>漫画を追加</Button>
-      </div>
-      <div className="grid gap-4">
-        {mangas.map(manga => (
-          <Card key={manga.id}>
-            <CardHeader>
-              <CardTitle>{editingId === manga.id ?
-                <Input
-                  value={manga.title}
-                  onChange={(e) => setMangas(mangas.map(m => m.id === manga.id ? { ...m, title: e.target.value } : m))}
-                /> :
-                manga.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {editingId === manga.id ?
-                <Input
-                  value={manga.author}
-                  onChange={(e) => setMangas(mangas.map(m => m.id === manga.id ? { ...m, author: e.target.value } : m))}
-                /> :
-                <p>{manga.author}</p>}
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              {editingId === manga.id ? (
-                <Button onClick={() => updateManga(manga.id)}>更新</Button>
-              ) : (
-                <Button onClick={() => setEditingId(manga.id)}><Pencil className="mr-2 h-4 w-4" />編集</Button>
-              )}
-              <Button variant="destructive" onClick={() => deleteManga(manga.id)}><Trash2 className="mr-2 h-4 w-4" />削除</Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-```
-
-このコンポーネントは、漫画のリストを表示し、新しい漫画の追加、既存の漫画の編集と削除ができるようになっています。
-
-最後に、Supabaseにダミーデータを追加するためのSQLクエリを作成します：
-
-```dummy-data.sql
-INSERT INTO mangas (title, author) VALUES
-('進撃の巨人', '諫山創'),
-('ワンピース', '尾田栄一郎'),
-('鬼滅の刃', '吾峠呼世晴'),
-('ナルト', '岸本斉史'),
-('ドラゴンボール', '鳥山明'),
-('ハンターハンター', '冨樫義博'),
-('ジョジョの奇妙な冒険', '荒木飛呂彦'),
-('ブリーチ', '久保帯人'),
-('スラムダンク', '井上雄彦'),
-('デスノート', '大場つぐみ・小畑健');
-
-```
-
-このSQLクエリをSupabaseのSQL Editorで実行することで、10作品のダミーデータが追加されます。
-
-これで、Next.jsとSupabaseを使用した漫画作品管理UIの基本的な実装が完了しました。このコンポーネントを適切なページに配置することで、ユーザーは自分の所持している漫画作品を表示、更新、削除することができます。
-
-※ファイル同士の連携は出来てないようなので手動で編集します。
-
-</details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -549,6 +226,11 @@ Q&A
 
 英語のリスニングが壊滅的な自分でも内容がわかるようになりました。
 
+
+### 自分がよく使う使い方
+
+電子書籍(PDF版等)を読み込ませて、理解したい部分をコピペして解説をしてもらいます。
+※PDFが文章をコピーできる形式のものの場合。
 
 
 ## Genspark
@@ -582,9 +264,28 @@ PlayStationを様々な軸で並行検索でまとめてください。
 
 
 
-## postgres.new
+## database.build
 
+Postgres Sandbox
+https://database.build/
+
+
+:::note warn
+### 注意
+名前がpostgres.newからdatabase.buildに変更されました。
+URLも変更されました。
+
+旧
 https://postgres.new/
+
+名前変更に伴い、データを移行する必要があります。
+データの移行期限は2024年11月15日です。
+
+:::
+
+
+
+
 
 PostgreSQL系DB付きの本格アプリを作るときにすごい便利なサイトです。
 
@@ -906,8 +607,10 @@ Bolt.new
 GPT Enginner
 
 
+## Figma Sides
 
-
+Figma Sidesがすごい！特徴や使用感を紹介します | 株式会社LIG(リグ)｜DX支援・システム開発・Web制作
+https://liginc.co.jp/651908
 
 
 
@@ -989,3 +692,42 @@ https://www.figma.com/
 Figmaで下書きを書いて画像に撮って「v0」に渡すと、コンポーネントのベースが一瞬で出来上がります。
 
 画像に撮るには、Windows付属の「Snipping Tool」というのを使っています。
+
+
+
+# VScode、Github Copilot、Cursorのエディタに対するAI史
+
+2021年6月: GitHub Copilotが技術プレビューとして初めて導入される。
+
+2022年7月: GitHub Copilotが一般公開され、すべてのGitHubアカウントを持つ開発者が利用可能に。
+
+2023年: GitHub Copilot Chatが導入され、自然言語で質問しながらコードの提案や修正を受けることが可能になる。
+
+2023年: GitHub Copilot CLIが登場し、コマンドラインからもAIの機能を活用できるようになる。
+
+2023年: Cursorが登場し、VSCodeをフォークした新しいエディタとしてAI機能がネイティブに組み込まれる。Cursorは、開発者がよりシームレスにAIと連携して作業できるようになる。
+
+2024年 Claude 3.5 Sonnet artifactが登場する。
+
+2024年4月: CursorのAIが複数のファイルを同時に編集する機能が追加され、開発効率が向上する。
+
+2024年: GitHub Copilot WorkSpaceが公開され、開発環境全体でAIを活用できるようになる。(予定)
+
+
+
+
+
+
+
+
+
+
+
+
+# 参考
+
+ノーコード＆AIカオスマップ更新【2024年10月版】
+
+https://no-coders-japan.org/nocode-ai-industry-landscape-map
+
+https://drive.google.com/file/d/1v24GbGYB8zZwutJvZAnh4ULxbq5TF2Qv/view
