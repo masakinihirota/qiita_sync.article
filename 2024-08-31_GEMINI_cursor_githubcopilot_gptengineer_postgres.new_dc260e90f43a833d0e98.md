@@ -18,9 +18,11 @@ private: false
 
 
 
-追記: 2024年10月30日
+# 追記: 2024年10月30日
 
-## GitHub Spark
+未来: 👇️これからリリース予定の期待しているサービス
+
+## GitHub Spark (Wait List中)
 
 自然言語を入力するだけでツールを作成できます。
 
@@ -41,18 +43,30 @@ GitHub 次 | GitHub Spark
 https://githubnext.com/projects/github-spark
 
 
-追記終了
 
-# お試し中
+## お試し中
 
 AIによる自動デバッグも可能なバグレポートを1クリックで生成する「Jam」を使ってみた！ - paiza times
 
 https://paiza.hatenablog.com/entry/2023/06/07/150000
 
+## 良いと噂を聞いたもの
+
+Lovable
+
+https://x.com/dshukertjrjp/status/1859615952717205855
+
+>LovableのSupabase連携めっちゃいいですね！
+データベースマイグレーションや設定変更も勝手に行ってくれて、Lovableの画面を出ることなくどんどんアプリが作れてめっちゃ便利です！
+もしまだ触ったことがない人がいたらぜひ触ってみてください！
+
+ただしある人によると、一番最低のランクで課金したが2日でリミットになったそうだ。
+
+
+
 無し
 
-
-
+追記終了
 
 
 # ティア 1
@@ -63,6 +77,14 @@ https://paiza.hatenablog.com/entry/2023/06/07/150000
 https://wrtn.jp/
 
 読めません・・・リートンと読むようです。
+
+今は無料で有料AIサービスを仕えると言うので最もよく使うChromeブックマークのブックマークバーの位置においています。
+
+シンプルに早い、ただそれだけです。
+
+他の人格サービスは使っていません。それで十分です。
+
+
 
 それぞれの分野に特化したキャラクターが答えてくれます。
 日本製？でもAIモデルは海外のを利用しています。
@@ -81,11 +103,15 @@ https://forest.watch.impress.co.jp/docs/news/1630839.html
 外部データを読み込むのに弱い。
 X(Twitter)とかのデータは読み込んでくれなかった。
 
+
+
 ## v0
 
 https://v0.dev/chat
 
 テキストプロンプトからUIデザインコンポーネントを自動生成するサービスです。
+
+現在プロジェクト単位で生成可能、Supabase、Vercel連携もできるそうです。
 
 TailwindCSS
 shadcn/ui
@@ -162,7 +188,11 @@ https://githubnext.com/projects/copilot-workspace
 
 https://gemini.google.com/app
 
-geminiを最もよく利用しています。
+geminiもよく利用しています。
+
+使う主な目的はYoutubu動画の主な要約
+動画の要約は他のAIサイトでは駄目でした。
+
 使い方は意味不明な単語の説明から、わからない文章を噛み砕いてもらう時に利用しています。
 
 使う理由は他のよりも最も早く質問できるから。
