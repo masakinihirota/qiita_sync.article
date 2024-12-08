@@ -82,16 +82,9 @@ https://orm.drizzle.team/docs/get-started/supabase-new
 npm i drizzle-orm postgres dotenv
 npm i -D drizzle-kit tsx
 
-	npm i drizzle-orm postgres dotenv
-	npm i -D drizzle-kit tsx
-
-	npm install @supabase/supabase-js drizzle-orm --legacy-peer-deps
-	npm install -D drizzle-kit --legacy-peer-deps
-
-	npm install @supabase/supabase-js drizzle-orm pg postgres --legacy-peer-deps
-	npm install -D drizzle-kit @types/pg  tsx dotenv --legacy-peer-deps
-
 ```
+
+必要なら ` --legacy-peer-deps` オプションをつけます。
 
 
 
