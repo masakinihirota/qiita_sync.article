@@ -56,7 +56,7 @@ Supabase の CLIはインストール済みとします。
 ## Next.jsをインストールします。
 
 ```terminal
-npx create-next-app@latest [next-supabase-drizzle-app]
+npx create-next-app@latest [drizzle_Nextjs_Supabase_app]
 
 # オプション選択
 # TypeScriptを使用する
@@ -68,7 +68,7 @@ npx create-next-app@latest [next-supabase-drizzle-app]
 # カスタマイズするデフォルトのインポートエイリアスを使用する
 # エイリアスは @/*
 
-cd [next-supabase-drizzle-app]
+cd [drizzle_Nextjs_Supabase_app]
 
 ```
 
