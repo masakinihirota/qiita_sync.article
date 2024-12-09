@@ -6,10 +6,6 @@ private: false
 -->
 Drizzle は、軽量で高速な TypeScript ORM です。
 
-NotebookLM
-
-https://notebooklm.google.com/
-
 Drizzle 公式ドキュメント
 
 Drizzle ORM - Query
