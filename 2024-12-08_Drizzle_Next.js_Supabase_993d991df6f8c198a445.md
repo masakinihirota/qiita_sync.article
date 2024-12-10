@@ -16,6 +16,94 @@ Next.js Supabase Drizzleを利用します。
 Supabaseはローカルで開発とテストを、サーバーで運用をします。
 DrizzleはローカルのSupabase DBを、TypeScriptのコードで管理します。
 
+Drizzleバージョン 0.38
+現在 2024年12月10日
+
+----------------------------------------
+
+# 重要コマンド
+
+```terminal
+npx drizzle-kit studio
+
+npx drizzle-kit generate
+npx drizzle-kit push
+npx drizzle-kit migrate
+npx drizzle-kit pull
+
+```
+
+## 主なコマンド
+
+*   `npx drizzle-kit studio`：Drizzle Studio を起動するコマンドです。データベースの構造とデータを視覚的に操作できます。
+*   `npx drizzle-kit generate`：TypeScript の Drizzle スキーマに基づいて SQL マイグレーションファイルを生成します。
+*   `npx drizzle-kit push`：TypeScript の Drizzle スキーマを直接データベースに適用します。
+*   `npx drizzle-kit migrate`：`drizzle-kit generate` で生成された SQL マイグレーションファイルをデータベースに適用します。
+*   `npx drizzle-kit pull`：データベースのスキーマを取得し、TypeScript の Drizzle スキーマファイルとして保存します。
+
+
+
+## `npx drizzle-kit push` と `npx drizzle-kit migrate` の違い
+
+どちらもデータベースのスキーマを管理するためのコマンドですが、動作が異なります。
+
+| コマンド | 動作 | 適した状況 |
+| ------- | ---- | --------- |
+| `npx drizzle-kit push` | TypeScript のスキーマを直接データベースに適用 | ラピッドプロトタイピング、サーバーレスデータベース |
+| `npx drizzle-kit migrate` | SQL マイグレーションファイルをデータベースに適用 | コードベースファースト、マイグレーションファイルのバージョン管理 |
+
+**`npx drizzle-kit push`**
+
+*   SQL マイグレーションファイルを作成せずに、TypeScript の Drizzle スキーマを直接データベースに適用します。
+*   ラピッドプロトタイピングに最適です。 
+*   ブルー/グリーンデプロイメント戦略や、Planetscale、Neon、Turso などのサーバーレスデータベースとの相性も抜群です。
+*   Expo SQLite や OP SQLite のようなオンデバイスデータベースには使用できません。
+
+**`npx drizzle-kit migrate`**
+
+*   `drizzle-kit generate` で生成された SQL マイグレーションファイルをデータベースに適用します。
+*   コードベースファーストのアプローチで、SQL マイグレーションファイルをバージョン管理したい場合に適しています。
+*   適用されたマイグレーションの履歴はデータベースに記録されます。デフォルトでは `__drizzle_migrations` というテーブルに記録されますが、`drizzle.config.ts` で変更することができます。
+*   外部のマイグレーションツールと組み合わせて使用することもできます。例えば、Bytebase などのツールでマイグレーションを管理する場合に便利です。
+
+
+
+
+
+### 各コマンドの解説
+
+#### `drizzle-kit studio`
+
+*   **Drizzle Studio** は、データベースの構造とデータを視覚的に確認・操作できる GUI ツールです。
+*   ローカル環境での開発に最適化されています。
+*   PlanetScale, Cloudflare, Vercel Postgres のようなサーバーレスデータベースでは、各ベンダーの管理パネルで直接 Drizzle Studio を利用できます。
+
+#### `drizzle-kit generate`
+
+*   **SQL マイグレーションファイル**は、データベースのスキーマ（構造）を変更するための指示を記述したファイルです。
+*   `drizzle-kit generate` コマンドを実行すると、TypeScript の Drizzle スキーマに基づいて SQL マイグレーションファイルが生成されます。
+*   生成されたマイグレーションファイルは、`drizzle-kit migrate` コマンドでデータベースに適用したり、バージョン管理システムで管理したりすることができます。
+
+#### `drizzle-kit push`
+
+*   TypeScript の Drizzle スキーマを直接データベースに適用します。
+*   SQL マイグレーションファイルを作成する必要がなく、迅速にスキーマの変更をデータベースに反映させることができます。
+*   開発の初期段階で試行錯誤を繰り返す **ラピッドプロトタイピング** に適しています。
+*   ただし、適用されたマイグレーションの履歴は記録されません。
+
+#### `drizzle-kit migrate`
+
+*   `drizzle-kit generate` で生成された SQL マイグレーションファイルをデータベースに適用します。
+*   適用されたマイグレーションの履歴がデータベースに記録されるため、データベースのスキーマの変更履歴を管理することができます。
+
+#### `drizzle-kit pull`
+
+*   既存のデータベーススキーマを取得し、TypeScript の Drizzle スキーマファイルとして保存します。
+*   データベースのスキーマを TypeScript のコードベースに反映させたい場合に便利です。
+*   `drizzle-kit pull` を実行すると、データベースのスキーマが分析され、対応する TypeScript の Drizzle スキーマが生成されます。
+
+
+
 ----------------------------------------
 
 # 用語
@@ -41,11 +129,24 @@ DrizzleはローカルのSupabase DBを、TypeScriptのコードで管理しま�
 とくに重いクエリを頻繁に実行する場合に有効です。
 
 
+* DBのスキーマ
+
+一般的にはデータの構造や配置を示す重要な概念です。
+
+DBのスキーマとは、データベース内のデータの構造や配置を定義するものです。
+一般的には、テーブル、カラム、データ型、制約などの情報が含まれます。スキーマは、データベースの設計や管理において重要な役割を果たします。
+
+他のデータベース管理システムでは、スキーマはデータ型やその構造を指すこともあります。
+
+NoSQLデータベースでは、スキーマレスの特性があり、データの構造が事前に定義されていません。
+
+
 
 * PostgreSQLのスキーマ
 
 データベースオブジェクトを論理的にグループ化するための仕組みです。
 スキーマは名前空間のような役割を果たし、同じ名前のテーブルが異なるスキーマに存在することを可能にします。
+
 DrizzleORMでは、pgSchema関数を使用してスキーマを作成し、そのスキーマ内にテーブルを定義できます。
 
 `drizzle-orm/supabase` をインポートすると、Supabase で定義済みのスキーマ (auth、realtime など) やテーブル (authUsers、realtimeMessages など) を利用できます。
@@ -1508,7 +1609,9 @@ const db = drizzle({ client: pool });
 
 Drizzle Queries + CRUD
 
-Drizzleはデータベースへのクエリの方法をいくつか提供しており、次のプロジェクトでどれが必要になるかはあなた次第です。SQLのような構文か、リレーショナル構文です。確認してみましょう。
+Drizzleはデータベースへのクエリの方法をいくつか提供しており、次のプロジェクトでどれが必要になるかはあなた次第です。
+SQLのような構文か、リレーショナル構文です。
+確認してみましょう。
 
 ### Why SQL-like?
 
