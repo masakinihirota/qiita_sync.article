@@ -7,6 +7,15 @@ private: false
 DrizzleがRLSに対応したというので使ってみることにしました。
 
 ----------------------------------------
+# Drizzle ORM
+
+ORMとは、Object-Relational Mapping の略で、オブジェクト指向プログラミング言語とリレーショナルデータベースを結びつけるための技術です。
+
+DrizzleはそのORMの一つで、TypeScriptで書かれたORMです。
+
+Supabaseもマイグレーションファイルは生成できますが、TypeScriptでスキーマを書くことはできません。そこでDrizzleを使うことで、TypeScriptを使ってスキーマを書くことができます。
+
+
 
 # 前提条件
 
@@ -35,6 +44,26 @@ https://qiita.com/masakinihirota/items/be94b4c74a7850a4b79c
 
 Supabase の CLIはインストール済みとします。
 
+## フォルダ構成 (主にDBに関連する最小構成)
+
+```
+src
+├── app
+│   ├── layout.tsx
+│   └── page.tsx    # ページコンポーネント
+└── db
+    └── schema.ts   # Drizzleのスキーマファイル
+
+supabase
+├── migrations
+│   ├── meta
+│   │   └── 0000_snapshot.json    # Drizzleから生成されたスナップショットファイル
+│   └── 0000_tricky_paibok.sql    # Drizzleから生成されたマイグレーションファイル
+└── config.toml                  # Supabaseの設定ファイル
+
+```
+
+※Drizzle ORMはスキーマファイルからマイグレーションファイルを生成し、そのマイグレーションファイルをSupabase(データベース)に適用することで、Supabase(データベース)の構造を管理します。
 
 ## Supabaseのサーバーとローカル
 
@@ -134,19 +163,20 @@ touch .env.local
 # NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 # NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# Supabaseの環境変数
+# ローカルのSupabase環境変数
 NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="ey*****"
 
-# DrizzleのローカルのSupabaseへの接続用 環境変数
+# Drizzleの環境変数
+# ローカルのSupabaseへの接続用
 DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
 ```
 
 
-<details><summary>supaabse-js vs drizzle-orm</summary>
+<details><summary>supabase-js vs drizzle-orm</summary>
 
-supaabse-js vs drizzle-orm : r/Supabase
+supabase-js vs drizzle-orm : r/Supabase
 
 https://www.reddit.com/r/Supabase/comments/19biicz/supaabsejs_vs_drizzleorm/?rdt=52841
 
@@ -351,6 +381,21 @@ CREATE TABLE IF NOT EXISTS "users" (
 
 </details>
 
+* マイグレーションファイルのルール
+
+Drizzle 連番と自動生成された名前
+Supabase タイムスタンプ ユーザーが入力した名前
+
+* マイグレーションファイルを新しく作る方法
+
+```terminal
+# Drizzleの場合
+npx drizzle-kit generate
+
+# Supabaseの場合
+supabase migration new [Name]
+
+```
 
 ## マイグレーションファイルをDBに反映
 
@@ -373,9 +418,37 @@ Supabaseのダッシュボードの Table Editorで正常に反映されてい�
 それらは、Drizzle公式マニュアルをご覧ください。
 
 
+# drizzle-kit コマンド一覧
+
+`npx drizzle-kit` コマンドは、Drizzle ORM のためのツールキットです。以下は各コマンドの説明です。
+
+ヘルプコマンド
+
+`npx drizzle-kit -h`
+
+```terminal
+generate: マイグレーションファイルを生成します。
+migrate: マイグレーションを実行します。
+push: スキーマの変更を直接データベースに適用します。
+studio: Drizzle Studio を起動します。
+drop: 指定したマイグレーションファイルを削除して、連動しているスナップショットも更新します。
+
+
+check: マイグレーションの状態を確認します。
+
+introspect: データベースのスキーマを調査します。
+
+up: スナップショットを新しいバージョンにアップグレードするために使用されます。
+
+```
 
 # 終わりに
 
 DBに接続できて、
 テーブルが作成できたら、
 あとは、Next.js 15とSupabaseとDrizzle使って自由に開発が出来るようになります。
+
+
+Drizzle での CRUD 操作？
+(未定)
+
