@@ -3747,7 +3747,7 @@ CREATE TABLE IF NOT EXISTS "user_nulls_example" (
 
 ### Check
 
-CHECK制約は、カラムに配置できる値の範囲を制限するために使用されます。
+Check制約は、カラムに配置できる値の範囲を制限するために使用されます。
 
 列にCHECK制約を定義すると、その列の特定の値のみを許可します。
 

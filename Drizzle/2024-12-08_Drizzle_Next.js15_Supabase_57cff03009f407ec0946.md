@@ -449,6 +449,3 @@ DBに接続できて、
 あとは、Next.js 15とSupabaseとDrizzle使って自由に開発が出来るようになります。
 
 
-Drizzle での CRUD 操作？
-(未定)
-
