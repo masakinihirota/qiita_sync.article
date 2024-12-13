@@ -4,9 +4,24 @@ tags:    Drizzle,Next.js15,Supabase
 id:      57cff03009f407ec0946
 private: false
 -->
+
 DrizzleがRLSに対応したというので使ってみることにしました。
 
+# 事前に知っておくべきこと
+
+Drizzleは生成すると、カラム名はキャメルケースを使用しています。
+	firstName
+
+Supabaseはカラム名はスネークケースを使用しています。
+	first_name
+
+※PostgreSQLのカラム名は、スネークケースを使うのが一般的です。
+ですので Drizzle を利用する時に、テーブルを作成する時などは、スネークケースに変換する必要があります。
+
+
+
 ----------------------------------------
+
 # Drizzle ORM
 
 ORMとは、Object-Relational Mapping の略で、オブジェクト指向プログラミング言語とリレーショナルデータベースを結びつけるための技術です。
@@ -171,7 +186,15 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY="ey*****"
 # ローカルのSupabaseへの接続用
 DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
+# サーバーのSupabaseへの接続用
+# DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-SUPABASE].supabase.co:5432/postgres
+
 ```
+
+https://supabase.com/dashboard/project/_/settings/database
+
+サーバーのSupabaseの場合、👆️ここから、画面上部の Connectのリンクを開いて、URIが取得できます。
+
 
 
 <details><summary>supabase-js vs drizzle-orm</summary>
@@ -196,7 +219,7 @@ https://www.reddit.com/r/Supabase/comments/19biicz/supaabsejs_vs_drizzleorm/?rdt
 
 ## drizzle.config.ts
 
-これｈDrizzle専用設定ファイルです。
+これは Drizzle の設定ファイルです。
 
 Supabase用に合わせたのDrizzleの環境設定
 
@@ -205,6 +228,10 @@ touch drizzle.config.ts
 
 ```
 
+
+
+### スキーマファイルが1ファイルの場合の設定例
+
 ```drizzle.config.ts
 import { config } from "dotenv";
 import { defineConfig } from "drizzle-kit";
@@ -212,6 +239,7 @@ import { defineConfig } from "drizzle-kit";
 config({ path: ".env.local" });
 
 export default defineConfig({
+  // スキーマファイルのパス
   schema: "./src/db/schema.ts",
   // Supabase へのマイグレーションファイルを出力するディレクトリ
   out: "./supabase/migrations",
@@ -220,6 +248,43 @@ export default defineConfig({
     url: process.env.DATABASE_URL!,
   },
 });
+
+```
+
+
+
+### スキーマファイルを複数使用する場合の設定例
+
+```drizzle.config.ts
+import { config } from "dotenv";
+import { defineConfig } from "drizzle-kit";
+
+config({ path: ".env.local" });
+
+export default defineConfig({
+  // フォルダ内にあるスキーマファイルを読み込む
+  schema: "./src/db/schema",
+  // Supabase へのマイグレーションファイルを出力するディレクトリ
+  out: "./supabase/migrations",
+  dialect: "postgresql",
+  dbCredentials: {
+    url: process.env.DATABASE_URL!,
+  },
+});
+
+```
+
+* フォルダ構造
+
+schemaフォルダ内に複数のスキーマファイルを配置します。
+
+```
+src
+├── app
+└── db
+    └── schema
+        ├── products.ts
+        └── users.ts
 
 ```
 
@@ -234,6 +299,7 @@ export default defineConfig({
 Supabaseダッシュボードでの表示場所
 
 https://supabase.com/dashboard/project/znazduolmsxbqigecsiz/settings/database
+
 👇️
 
 <details><summary>どのプーリング・モードを使うべきか？(公式情報)</summary>
@@ -271,7 +337,7 @@ Project Settings > CONFIGURATION > Database
 
 右画面に移り
 
-Catabase Settings >  Connection strng > URIのタブを選択
+Database Settings >  Connection string > URIのタブを選択
 
 ```(サーバーの接続設定)
 postgresql://postgres.******:[YOUR-PASSWORD]@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres
@@ -318,11 +384,13 @@ export const users = pgTable('users', {
 ```terminal
 npx drizzle-kit generate
 npx drizzle-kit push
-
 npx drizzle-kit migrate
 npx drizzle-kit pull
 
 ```
+
+※`npx drizzle-kit pull` は `npx drizzle-kit introspect` のエイリアスです。
+
 
 
 ## 基本コマンドの解説
@@ -332,6 +400,7 @@ npx drizzle-kit pull
 
 2. **`npx drizzle-kit push`**
    生成したコードやマイグレーションをデータベースに適用するためのコマンドです。これを実行すると、データベースが最新の状態に更新されます。
+   カラムが削除されてしまう場合警告が出ます。
 
 3. **`npx drizzle-kit migrate`**
    データベースのマイグレーションを実行します。これにより、変更されたスキーマがデータベースに適用され、必要なテーブルやカラムが追加されます。
@@ -448,4 +517,211 @@ DBに接続できて、
 テーブルが作成できたら、
 あとは、Next.js 15とSupabaseとDrizzle使って自由に開発が出来るようになります。
 
+
+
+----------------------------------------
+
+# 続き(未完成)
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+以下、執筆中
+
+Drizzleクライアントの作成
+Drizzleクライアントを使ってのCRUD
+
+todo
+RLSの設定
+CRUD
+
+
+
+👇️ Supabaseのドキュメント側から見るDrizzleの利用方法
+
+# SupabaseのQuickStart
+
+Drizzle | Supabase ドキュメント
+
+https://supabase.com/docs/guides/database/drizzle
+
+## Install
+
+```terminal
+npm i drizzle-orm postgres
+npm i -D drizzle-kit
+
+```
+
+## Create your models
+
+```schema.ts
+import { pgTable, serial, text, varchar } from "drizzle-orm/pg-core";
+
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  fullName: text('full_name'),
+  phone: varchar('phone', { length: 256 }),
+});
+
+```
+
+## Connect
+
+接続プーラーを使用してデータベースに接続します。
+
+https://supabase.com/dashboard/project/_/settings/database
+
+サーバーのSupabaseの場合、👆️ここから、画面上部の Connectのリンクを開いて、URIが取得できます。
+
+データベース設定で、Use connection pooler がチェックされていることを確認し、URIをコピーしてDATABASE_URL環境変数として保存します。
+
+パスワード・プレースホルダを実際のデータベース・パスワードに置き換えることを忘れないでください。
+
+
+## Drizzleのクライアントの作成。
+
+クライアントを作成すると、そこからDrizzle経由でDBにアクセスできるようになります。
+
+```db.ts
+import 'dotenv/config'
+
+import { drizzle } from 'drizzle-orm/postgres-js'
+import postgres from 'postgres'
+
+const connectionString = process.env.DATABASE_URL!
+
+// 「トランザクション」プールモードではプリフェッチはサポートされていないため、プリフェッチを無効にします。
+export const client = postgres(connectionString, { prepare: false })
+
+export const db = drizzle(client);
+
+```
+
+
+
+### コードの各部分の説明
+
+1. 環境変数の読み込み:
+
+```javascript
+   import 'dotenv/config'
+
+```
+
+   - `dotenv`ライブラリを使って、環境変数を読み込みます。これにより、`.env`ファイルに定義された環境変数（例えば、`DATABASE_URL`）を使用できるようになります。
+
+
+
+2. Drizzle ORMのインポート:
+
+```javascript
+   import { drizzle } from 'drizzle-orm/postgres-js'
+   import postgres from 'postgres'
+
+```
+
+   - `drizzle`はDrizzle ORMのメインのエクスポートで、PostgreSQL用のクライアントをインポートします。
+
+
+
+3. 接続文字列の取得:
+
+```javascript
+   const connectionString = process.env.DATABASE_URL
+
+```
+
+   - 環境変数からデータベースの接続文字列を取得します。この文字列には、データベースの場所、ユーザー名、パスワードなどの情報が含まれています。
+
+
+
+4. データベースクライアントの作成:
+
+```javascript
+   export const client = postgres(connectionString, { prepare: false })
+
+```
+
+5. Drizzle ORMのインスタンス作成:
+
+```javascript
+   export const db = drizzle(client);
+
+```
+
+   - 作成したクライアントを使ってDrizzle ORMのインスタンスを作成します。この`db`を使用して、データベースに対する操作（クエリの実行など）を行います。
+
+
+
+### 使い方の例
+
+このコードを使ってデータベースに接続した後、以下のようにデータベース操作を行うことができます。
+
+#### 1. データの挿入
+
+```javascript
+import { users } from './schema'; // 定義したモデルをインポート
+
+async function addUser(fullName, phone) {
+    await db.insert(users).values({ fullName, phone });
+}
+
+```
+
+
+
+#### 2. データの取得
+
+```javascript
+async function getUsers() {
+    const allUsers = await db.select().from(users);
+    console.log(allUsers);
+}
+
+```
+
+
+
+#### 3. データの更新
+
+```javascript
+async function updateUser(userId, newFullName) {
+    await db.update(users).set({ fullName: newFullName }).where(users.id.equals(userId));
+}
+
+```
+
+
+
+#### 4. データの削除
+
+```javascript
+async function deleteUser(userId) {
+    await db.delete(users).where(users.id.equals(userId));
+}
+
+```
+
+- 非同期処理の管理: 上記の関数はすべて非同期関数であるため、呼び出す際は`await`を使用するか、`.then()`で処理する必要があります。
 
