@@ -4,7 +4,6 @@ tags:    Drizzle,Next.js15,Supabase
 id:      57cff03009f407ec0946
 private: false
 -->
-
 DrizzleがRLSに対応したというので使ってみることにしました。
 
 # 事前に知っておくべきこと
@@ -18,7 +17,24 @@ Supabaseはカラム名はスネークケースを使用しています。
 ※PostgreSQLのカラム名は、スネークケースを使うのが一般的です。
 ですので Drizzle を利用する時に、テーブルを作成する時などは、スネークケースに変換する必要があります。
 
+# Drizzleの肝
 
+👇️この図がDrizzleで一番重要な部分です、後はこれの関連でしかありません。
+
+* Drizzleのテーブル形式
+
+![table.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/182e7115-7705-882a-164a-070fe7c7f079.png)
+
+
+```
+export const [table name in typescript] = pgTable { [table name in database], {
+
+	[column name in typescript] : [database type] ( [db column name] )
+}
+
+```
+
+このコードの意味を理解することが、Drizzle理解の一番の早道だと思います。
 
 ----------------------------------------
 
@@ -724,4 +740,3 @@ async function deleteUser(userId) {
 ```
 
 - 非同期処理の管理: 上記の関数はすべて非同期関数であるため、呼び出す際は`await`を使用するか、`.then()`で処理する必要があります。
-
