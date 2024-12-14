@@ -1054,7 +1054,7 @@ Supabaseと postgres.newでDB設計。
 
 # 参考
 
-私の使用しているAI関連サイト 2024年 9月版 #GEMINI - Qiita
+私の使用しているAI関連サイト #GEMINI - Qiita
 
 https://qiita.com/masakinihirota/items/dc260e90f43a833d0e98
 

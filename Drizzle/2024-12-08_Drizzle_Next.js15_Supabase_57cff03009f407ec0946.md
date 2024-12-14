@@ -36,6 +36,8 @@ export const [table name in typescript] = pgTable { [table name in database], {
 
 このコードの意味を理解することが、Drizzle理解の一番の早道だと思います。
 
+
+
 ----------------------------------------
 
 # Drizzle ORM
@@ -740,3 +742,14 @@ async function deleteUser(userId) {
 ```
 
 - 非同期処理の管理: 上記の関数はすべて非同期関数であるため、呼び出す際は`await`を使用するか、`.then()`で処理する必要があります。
+
+
+
+# 参考
+
+公式ドキュメント
+
+Drizzle ORM - next gen TypeScript ORM.
+
+https://orm.drizzle.team/
+
