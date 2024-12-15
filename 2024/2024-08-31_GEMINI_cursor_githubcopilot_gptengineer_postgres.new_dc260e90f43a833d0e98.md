@@ -1,6 +1,6 @@
 <!--
 title:   私の使用しているAI関連サイト 2024年 12月版
-tags:    GEMINI,cursor,githubcopilot,gptengineer,postgres.new
+tags:    GEMINI,Perplexity,cursor,database.build,githubcopilot
 id:      dc260e90f43a833d0e98
 private: false
 -->
@@ -70,6 +70,23 @@ https://x.com/dshukertjrjp/status/1859615952717205855
 
 
 # ティア 1
+
+## Perplexity
+
+https://www.perplexity.ai/
+
+URLを渡してそのページの要約などに使っています。
+
+情報検索に特化した対話型AIアシスタントです。
+
+有料ユーザーには、マルチステップ推論 ＋ Web検索を使用するのが最適です。
+
+新しい機能として「推論」フォーカス（ベータ版）が追加されました。
+この機能は、最新のOpenAI o1-miniモデルを採用しており、パズル、数学、コーディング問題など、複雑な推論を伴うタスクに特化しています。
+
+
+
+
 
 
 ## wrtn
@@ -508,17 +525,6 @@ https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkf
 # ティア 3
 
 * 便利だけど上位互換のティア1,2にあるAIサイトが便利すぎてティア3評価になっているものたちです。
-
-## Perplexity
-
-https://www.perplexity.ai/
-
-情報検索に特化した対話型AIアシスタントです。
-
-有料ユーザーには、マルチステップ推論 ＋ Web検索を使用するのが最適です。
-
-新しい機能として「推論」フォーカス（ベータ版）が追加されました。
-この機能は、最新のOpenAI o1-miniモデルを採用しており、パズル、数学、コーディング問題など、複雑な推論を伴うタスクに特化しています。
 
 
 
