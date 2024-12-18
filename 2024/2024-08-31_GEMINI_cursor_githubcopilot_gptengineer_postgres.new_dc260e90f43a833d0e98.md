@@ -71,6 +71,71 @@ https://x.com/dshukertjrjp/status/1859615952717205855
 
 # ティア 1
 
+
+
+## gemini
+
+https://gemini.google.com/app
+
+geminiもよく利用しています。
+
+gemini 2.0になり、能力の数値的には2024年12月時点で他のAIと比べるサイトで3位になっていました。
+
+使う主な目的
+質問、解説等
+Youtube動画の主な要約
+動画の要約は他のAIサイトでは駄目でした。
+
+使い方は意味不明な単語の説明から、わからない文章を噛み砕いてもらう時に利用しています。
+
+使う理由は他のよりも最も早く質問できるから。
+他のサイトは過去の質問を読み込んでいるからか、立ち上がりが遅いのです。
+
+Google謹製 AIに質問したい時は良くここを使います。 無料
+
+また、Youtubeの要約も得意です。
+
+例えば、Youtubeで「*****で5つの発表」という動画があった時、その5つをまとめてくれます。
+動画を見なくても、その動画は何を言いたいのかがわかります。
+
+動画の要約の使い方はプロンプトに、
+
+```
+https://www.youtube.com/のURL ＜＜＜＜ 優しく日本語で簡単な解説をしてください。
+
+```
+
+と入力する方法で使っています。
+
+※動画の要約してくれない場合が多々あります。
+
+
+
+Google Geminiに画像生成AI「Imagen 3」実装 - PC Watch
+
+https://pc.watch.impress.co.jp/docs/news/1630845.html
+
+使ってみると、人物は有料の Gemini Advance モデルでないと出力してくれないようです。
+※将来実装予定
+
+「オアシスを書いて」とプロンプトを書くと、書いてくれました。
+
+![Gemini_Generated_Image_lfj89elfj89elfj8.jfif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/9c5dd13b-10d1-b54e-e6bf-d1d4e3f27c96.jpeg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Perplexity
 
 https://www.perplexity.ai/
@@ -218,52 +283,18 @@ https://githubnext.com/projects/copilot-workspace
 
 
 
-## gemini
-
-https://gemini.google.com/app
-
-geminiもよく利用しています。
-
-gemini 2.0になり、能力の数値的には2024年12月時点で他のAIと比べるサイトで3位になっていました。
-
-使う主な目的はYoutube動画の主な要約
-動画の要約は他のAIサイトでは駄目でした。
-
-使い方は意味不明な単語の説明から、わからない文章を噛み砕いてもらう時に利用しています。
-
-使う理由は他のよりも最も早く質問できるから。
-他のサイトは過去の質問を読み込んでいるからか、立ち上がりが遅いのです。
-
-Google謹製 AIに質問したい時は良くここを使います。 無料
-
-また、Youtubeの要約も得意です。
-
-例えば、Youtubeで「*****で5つの発表」という動画があった時、その5つをまとめてくれます。
-動画を見なくても、その動画は何を言いたいのかがわかります。
-
-動画の要約の使い方はプロンプトに、
-
-```
-https://www.youtube.com/のURL ＜＜＜＜ 優しく日本語で簡単な解説をしてください。
-
-```
-
-と入力する方法で使っています。
-
-※動画の要約してくれない場合が多々あります。
 
 
 
-Google Geminiに画像生成AI「Imagen 3」実装 - PC Watch
 
-https://pc.watch.impress.co.jp/docs/news/1630845.html
 
-使ってみると、人物は有料の Gemini Advance モデルでないと出力してくれないようです。
-※将来実装予定
 
-「オアシスを書いて」とプロンプトを書くと、書いてくれました。
 
-![Gemini_Generated_Image_lfj89elfj89elfj8.jfif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/9c5dd13b-10d1-b54e-e6bf-d1d4e3f27c96.jpeg)
+
+
+
+
+
 
 
 
