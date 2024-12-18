@@ -178,7 +178,7 @@ Reactアプリケーションのコードベースを整理するためのパタ
 
 Next.jsの
 App router
-Server Action(現在アルファ版)
+Server Action
 を利用して開発していきます。
 
 Sever ActionのかわりにtRPCを利用します。
