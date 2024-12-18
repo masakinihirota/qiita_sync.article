@@ -71,29 +71,21 @@ https://x.com/dshukertjrjp/status/1859615952717205855
 
 # ティア 1
 
-
+絶対相対評価です。
 
 ## gemini
 
 https://gemini.google.com/app
 
-geminiもよく利用しています。
-
 gemini 2.0になり、能力の数値的には2024年12月時点で他のAIと比べるサイトで3位になっていました。
 
 使う主な目的
+
 質問、解説等
+
 Youtube動画の主な要約
 動画の要約は他のAIサイトでは駄目でした。
 
-使い方は意味不明な単語の説明から、わからない文章を噛み砕いてもらう時に利用しています。
-
-使う理由は他のよりも最も早く質問できるから。
-他のサイトは過去の質問を読み込んでいるからか、立ち上がりが遅いのです。
-
-Google謹製 AIに質問したい時は良くここを使います。 無料
-
-また、Youtubeの要約も得意です。
 
 例えば、Youtubeで「*****で5つの発表」という動画があった時、その5つをまとめてくれます。
 動画を見なくても、その動画は何を言いたいのかがわかります。
@@ -136,18 +128,13 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 
 
 
+
+
+
+
 ## Perplexity
 
 https://www.perplexity.ai/
-
-URLを渡してそのページの要約などに使っています。
-
-情報検索に特化した対話型AIアシスタントです。
-
-有料ユーザーには、マルチステップ推論 ＋ Web検索を使用するのが最適です。
-
-新しい機能として「推論」フォーカス（ベータ版）が追加されました。
-この機能は、最新のOpenAI o1-miniモデルを採用しており、パズル、数学、コーディング問題など、複雑な推論を伴うタスクに特化しています。
 
 
 
@@ -203,7 +190,7 @@ shadcn/ui
 
 1日10回 リセット時間で回復。
 
-### リセット時間
+* リセット時間
 
 無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
 リセット時間が過ぎると試行回数が回復します。
@@ -228,6 +215,14 @@ https://qiita.com/masakinihirota/items/e7da2254d7d54a6fad04
 https://github.com/features/copilot
 
 プログラムを書く時に使います。(年契約で課金中 月10ドル)
+
+GitHub Copilot
+GitHub Copilot Chat
+GitHub Copilot CLI
+GitHub Copilot Edits
+
+👆️これらの機能があります。
+
 
 学生や、OSSの開発者は無料です。
 
@@ -259,6 +254,7 @@ o1-mini
 AIモデルが選択可能です。
 
 
+
 ### GitHub Copilot WorkSpace
 
 GitHub Copilot Workspaceは、AIの力を借りて、プログラミング作業を大幅に効率化する新しい開発環境です。
@@ -277,6 +273,48 @@ GitHub Next | Copilot Workspace
 
 https://githubnext.com/projects/copilot-workspace
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Genspark
+
+https://www.genspark.ai/
+
+ユーザーの検索クエリに基づいて、リアルタイムで情報を整理し、カスタムページを生成します。これにより、複数のウェブサイトを巡る必要がなく、一つのページで包括的な情報が見れます。
+
+* AIコパイロット機能
+
+各SparkpageにはAIコパイロットが組み込まれており、ユーザーの質問に対して動的に応答し、必要な情報を提供します。
+
+つまり、複数の各分野にチューニングされ特化したAIが内蔵されており、それぞれのAIが得意分野ごとに答えを出してくれます。
+
+* バイアスの排除と高品質な情報提供
+
+Gensparkは商業的なバイアスを排除し、信頼性の高い情報源からのデータを統合して提供します。これにより、ユーザーは広告や偏った情報に惑わされることなく、純粋なコンテンツにアクセスできます。
+
+* Gensparkの並行検索
+
+並行検索の仕方
+
+＊＊＊を様々な軸で並行検索でまとめてください。
+を様々な軸で並行検索でまとめてください。
+
+並行検索のプロンプトの使用例
+
+PlayStationを様々な軸で並行検索でまとめてください。
 
 
 
@@ -329,38 +367,27 @@ Q&A
 英語のリスニングが壊滅的な自分でも内容がわかるようになりました。
 
 
-### 自分がよく使う使い方
+* 自分がよく使う使い方
 
 電子書籍(PDF版等)を読み込ませて、理解したい部分をコピペして解説をしてもらいます。
 ※PDFが文章をコピーできる形式のものの場合。
 
 
-## Genspark
 
-https://www.genspark.ai/
 
-ユーザーの検索クエリに基づいて、リアルタイムで情報を整理し、カスタムページを生成します。これにより、複数のウェブサイトを巡る必要がなく、一つのページで包括的な情報が見れます。
 
-* AIコパイロット機能
 
-各SparkpageにはAIコパイロットが組み込まれており、ユーザーの質問に対して動的に応答し、必要な情報を提供します。
 
-つまり、複数の各分野にチューニングされ特化したAIが内蔵されており、それぞれのAIが得意分野ごとに答えを出してくれます。
 
-* バイアスの排除と高品質な情報提供
 
-Gensparkは商業的なバイアスを排除し、信頼性の高い情報源からのデータを統合して提供します。これにより、ユーザーは広告や偏った情報に惑わされることなく、純粋なコンテンツにアクセスできます。
 
-* Gensparkの並行検索
 
-並行検索の仕方
 
-＊＊＊を様々な軸で並行検索でまとめてください。
-を様々な軸で並行検索でまとめてください。
 
-並行検索のプロンプトの使用例
 
-PlayStationを様々な軸で並行検索でまとめてください。
+
+
+
 
 
 
@@ -371,23 +398,7 @@ PlayStationを様々な軸で並行検索でまとめてください。
 Postgres Sandbox
 https://database.build/
 
-
-:::note warn
-### 注意
-名前がpostgres.newからdatabase.buildに変更されました。
-URLも変更されました。
-
-旧
-https://postgres.new/
-
-名前変更に伴い、データを移行する必要があります。
-データの移行期限は2024年11月15日です。
-
-:::
-
-
-
-
+データベースのスキーマ関連を生成してくれるサービスです。
 
 PostgreSQL系DB付きの本格アプリを作るときにすごい便利なサイトです。
 
@@ -401,57 +412,37 @@ PostgreSQL系DB付きの本格アプリを作るときにすごい便利なサ�
 
 
 
-## Supabaeのドキュメント用AI
+
+
+
+
+
+## Supabaseのドキュメント用AI
 
 https://supabase.com/
 
-Supabaeに関する質問をAIが答えてくれます。
+Supabaseに関する質問をAIが答えてくれます。
 Postgres DB付きのアプリ開発者用です。
 
 
 
 
-## tailwindgenie
-
-https://tailwindgenie.com/
-
-Next.jsのアプリを作る時、TailwindCSSの装飾でパーツを作るツール
-
-無料
-
-
-
-## TinaMind
-
-https://chromewebstore.google.com/detail/tinamind-gpt-4%E6%90%AD%E8%BC%89%E3%81%AEai%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88/befflofjcniongenjmbkgkoljhgliihe
-
-YouTube Summary with ChatGPT & Claudeの上位互換
-
-Google Chromeの拡張機能です。
-
-たくさんの機能が色々ありますが、自分は主にYouTube動画の翻訳 要約に使用しています。
-
-Youtubeで英語の時、英文と翻訳文が上下2行に表示されて便利です。
-
-
-
-## Felo
-
-無料のAI検索エンジン
-
-https://felo.ai/search
-
-検索に加えて、マインドマップ、スライドデザインの作成が出来ます。
-
-PRO版(有料)になると、検索に他のAIモデルを使用できます、300回まで。
-
-無料版でもPRO版機能が1日5回まで使えます。
 
 
 
 
 
 
+## Google AI Studio
+
+https://aistudio.google.com/app/prompts/new_chat
+
+Googleが提供する生成AIアプリケーション開発のためのプラットフォームです。
+
+このサイトでは従来のAIとの会話に加えて
+* Webカメラ越しの対話
+* 画面共有しての対話
+が可能です。
 
 
 
@@ -517,12 +508,6 @@ https://app.napkin.ai/
 
 
 
-## AI Studio
-
-https://aistudio.google.com/app/prompts/new_chat
-
-Googleが提供する生成AIアプリケーション開発のためのプラットフォームです。
-
 
 
 ## YouTube Summary with ChatGPT & Claude
@@ -541,6 +526,50 @@ https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkf
 
 
 
+
+
+
+
+
+
+
+
+
+## tailwindgenie
+
+https://tailwindgenie.com/
+
+Next.jsのアプリを作る時、TailwindCSSの装飾でパーツを作るツール
+
+無料
+
+
+
+## TinaMind
+
+https://chromewebstore.google.com/detail/tinamind-gpt-4%E6%90%AD%E8%BC%89%E3%81%AEai%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88/befflofjcniongenjmbkgkoljhgliihe
+
+YouTube Summary with ChatGPT & Claudeの上位互換
+
+Google Chromeの拡張機能です。
+
+たくさんの機能が色々ありますが、自分は主にYouTube動画の翻訳 要約に使用しています。
+
+Youtubeで英語の時、英文と翻訳文が上下2行に表示されて便利です。
+
+
+
+## Felo
+
+無料のAI検索エンジン
+
+https://felo.ai/search
+
+検索に加えて、マインドマップ、スライドデザインの作成が出来ます。
+
+PRO版(有料)になると、検索に他のAIモデルを使用できます、300回まで。
+
+無料版でもPRO版機能が1日5回まで使えます。
 
 
 
@@ -635,9 +664,11 @@ Supabaseとの連携 簡単！
 
 ## Claude 3.5 Sonnet
 
-有料で力を発揮します。 これはCursorエディタでほんのちょっとだけ有料版が使えます。
-Cursorエディタとの相性は抜群に良かったです、お金持ちなら課金して使うとレジェンドクラスに便利なツールだと思います。
 自分は課金してないのでここに置きます。
+
+有料で力を発揮します。 
+これはCursorエディタでほんのちょっとだけ有料版が使えます。
+Cursorエディタとの相性は抜群に良かったです、お金持ちなら課金して使うとレジェンドクラスに便利なツールだと思います。
 
 
 
@@ -743,14 +774,26 @@ AIへの質問や提案などを指します。
 以上、現在私が使っているAIサイトでした。
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 # おまけ
 
-AIとは関係ないけど使用しているサイト
+AIとは関係ないけど使用しているサイト、サービス
 
 ## PC ChromeブラウザのGoogleレンズ
 
 使い方
-URL入力欄にフォーカスして、Googleレンズを選択すると範囲選択できるようになるので翻訳したい箇所を選択します。
+ChromeブラウザのURL入力欄にマウスカーソルをフォーカスして、Googleレンズを選択すると範囲選択できるようになるので翻訳したい箇所を選択します。
 
 * 検索が可能です。
 * 画像からでも翻訳が可能です。
