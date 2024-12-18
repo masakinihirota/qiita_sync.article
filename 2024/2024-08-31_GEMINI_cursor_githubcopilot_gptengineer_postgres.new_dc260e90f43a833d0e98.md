@@ -163,6 +163,8 @@ https://qiita.com/masakinihirota/items/4b55471205f7dd17482e
 
 とほぼ同じことが出来ます。
 
+👆Cursor の全体のルール設定と比べ、GitHub Copilotの方がチームでルールを共有しやすかったり、VSCodeの設定で組み込めたりほんの少し便利です。
+
 複数ファイルの編集機能も Cursor とほぼ同じことが出来ます。
 
 
