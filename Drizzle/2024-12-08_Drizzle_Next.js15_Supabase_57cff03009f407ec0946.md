@@ -42,6 +42,10 @@ export const [table name in typescript] = pgTable { [table name in database], {
 
 # Drizzle ORM
 
+Drizzle ORM - next gen TypeScript ORM.
+
+https://orm.drizzle.team/
+
 ORMとは、Object-Relational Mapping の略で、オブジェクト指向プログラミング言語とリレーショナルデータベースを結びつけるための技術です。
 
 DrizzleはそのORMの一つで、TypeScriptで書かれたORMです。
@@ -69,7 +73,7 @@ Supabaseの設定は👇️これを御覧ください。
 
 ## Supabaseの環境構築
 
-Supabase ローカル開発環境 ＋ サーバー運用 2023年9月 (with Next.js 13 App router) #Docker - Qiita
+Supabase ローカル開発環境 + サーバー運用 2023年9月 (with Next.js 13 App router) #Docker - Qiita
 
 https://qiita.com/masakinihirota/items/be94b4c74a7850a4b79c
 
@@ -107,7 +111,7 @@ supabase
 
 動作確認が取れたら ローカルの設定をサーバーのSupabaseに写し、サーバーで実運用を行います。
 
-ローカルのSupabaseからサーバーのSupabaseに設定を写す方法は、SupabaseのCLIを使って PUSHコマンドなどを利用します。 詳しくは👇️を御覧ください。
+ローカルのSupabaseからサーバーのSupabaseに設定を写す方法は、SupabaseのCLIを使って PUSHコマンドなどを利用します。 詳しくは👆️を御覧ください。
 
 
 
@@ -269,6 +273,9 @@ export default defineConfig({
 
 ```
 
+* スキーマファイルのルール
+
+`./src/db/schema.ts` にスキーマファイルを作成します。
 
 
 ### スキーマファイルを複数使用する場合の設定例
@@ -292,9 +299,9 @@ export default defineConfig({
 
 ```
 
-* フォルダ構造
+* 複数のスキーマファイルを使用する時のルール
 
-schemaフォルダ内に複数のスキーマファイルを配置します。
+`./src/db/schema` フォルダ内に複数のスキーマファイルを配置できます。
 
 ```
 src
