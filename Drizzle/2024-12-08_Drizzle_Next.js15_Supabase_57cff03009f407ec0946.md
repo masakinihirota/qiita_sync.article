@@ -187,16 +187,16 @@ backend = "postgres"
 
 
 
-## .env.local
+## .env
 
 ※KEYはSupabaseを立ち上げた時に表示されます。
 
 ```terminal
-touch .env.local
+touch .env
 
 ```
 
-```.env.local
+```.env
 # NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 # NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
@@ -258,7 +258,7 @@ touch drizzle.config.ts
 import { config } from "dotenv";
 import { defineConfig } from "drizzle-kit";
 
-config({ path: ".env.local" });
+config({ path: ".env" });
 
 export default defineConfig({
   // スキーマファイルのパス
@@ -284,7 +284,7 @@ export default defineConfig({
 import { config } from "dotenv";
 import { defineConfig } from "drizzle-kit";
 
-config({ path: ".env.local" });
+config({ path: ".env" });
 
 export default defineConfig({
   // フォルダ内にあるスキーマファイルを読み込む

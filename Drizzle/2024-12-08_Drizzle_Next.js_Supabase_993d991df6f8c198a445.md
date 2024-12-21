@@ -28,7 +28,7 @@ DrizzleはローカルのSupabase DBを、TypeScriptのコードで管理しま�
 ![table.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/182e7115-7705-882a-164a-070fe7c7f079.png)
 
 
-```
+```tsx
 export const [table name in typescript] = pgTable { [table name in database], {
 
 	[column name in typescript] : [database type] ( [db column name] )
@@ -528,7 +528,7 @@ SQLのようなクエリを使用して、データベーススキーマをTypeS
 
 ### 使い方の例
 
-```
+```tsx
 const result = await db.query.users.findMany({
 	with: {
 		posts: true
@@ -627,7 +627,7 @@ Drizzleでは、データベースプロバイダでRLSを行うための特定�
 #### RLS: RLSの有効化
 (抜粋)
 
-```
+```tsx
 import { integer, pgTable } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -646,7 +646,7 @@ idのカラム単位でRLSを有効にするという意味は含みません。
 
 #### RLS: 役割 Roles
 
-```
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 
 export const admin = pgRole('admin', { createRole: true, createDb: true, inherit: true });
@@ -659,11 +659,11 @@ export const admin = pgRole('admin', { createRole: true, createDb: true, inherit
 
 #### RLS: 役割 Roles の解説
 
-**役割（ロール）**は、データベースへのアクセス権限をグループ化するために使用されます。特定のロールに属するユーザーは、そのロールに割り当てられた権限に基づいてデータベース操作を実行できます。
+**役割(ロール)** は、データベースへのアクセス権限をグループ化するために使用されます。特定のロールに属するユーザーは、そのロールに割り当てられた権限に基づいてデータベース操作を実行できます。
 
 与えられたコードは、`admin`という名前の新しいロールを定義する方法を示しています。
 
-```
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 
 export const admin = pgRole('admin', { createRole: true, createDb: true, inherit: true });
@@ -687,7 +687,7 @@ export const admin = pgRole('admin', { createRole: true, createDb: true, inherit
 
 例：
 
-```
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 
 export const admin = pgRole('admin').existing();
@@ -705,7 +705,7 @@ drizzle-kit でデータベースを管理するとき、全部のロールを�
 
 #### RLS: ポリシー Policies
 
-```
+```tsx
 import { sql } from 'drizzle-orm';
 import { integer, pgPolicy, pgRole, pgTable } from 'drizzle-orm/pg-core';
 
@@ -753,7 +753,7 @@ export const users = pgTable('users', {
 
 この場合、.link()APIを使用します。
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { pgPolicy } from "drizzle-orm/pg-core";
 import { authenticatedRole, realtimeMessages } from "drizzle-orm/supabase";
@@ -880,7 +880,7 @@ provider: 'supabase' を指定することで、Drizzle Kit は Supabase が定�
 Drizzleでは、ビューにRLSポリシーを指定することもできます。
 そのためには、ビューのWITHオプションでsecurity_invokerを使用する必要があります。
 
-```
+```tsx
 ...
 
 export const roomsUsersProfiles = pgView("rooms_users_profiles")
@@ -903,7 +903,7 @@ export const roomsUsersProfiles = pgView("rooms_users_profiles")
 
 提供されたコードは、`roomsUsersProfiles` というビューに RLS ポリシーを適用する方法を示しています。
 
-```typescript
+```tsx
 export const roomsUsersProfiles = pgView("rooms_users_profiles")
   .with({
     securityInvoker: true,
@@ -917,6 +917,7 @@ export const roomsUsersProfiles = pgView("rooms_users_profiles")
       .from(roomsUsers)
       .innerJoin(profiles, eq(roomsUsers.userId, profiles.id))
   );
+
 ```
 
 **解説:**
@@ -948,7 +949,7 @@ Supabaseで使用する
 
 このインポートは、RLS と Supabase をより簡単に使用できるよう、今後のリリースで機能やヘルパーが拡張される予定です。
 
-```
+```tsx
 // drizzle-orm/supabase
 export const anonRole = pgRole('anon').existing();
 export const authenticatedRole = pgRole('authenticated').existing();
@@ -960,7 +961,7 @@ export const supabaseAuthAdminRole = pgRole('supabase_auth_admin').existing();
 
 たとえば、Supabase の定義済みロールを次のように使用できます。
 
-```
+```tsx
 import { sql } from 'drizzle-orm';
 import { serviceRole } from 'drizzle-orm/supabase';
 import { integer, pgPolicy, pgRole, pgTable } from 'drizzle-orm/pg-core';
@@ -981,7 +982,7 @@ export const users = pgTable('users', {
 
 /supabaseインポートには、アプリケーションで使用できる定義済みのテーブルや関数も含まれています。
 
-```
+```tsx
 // drizzle-orm/supabase
 
 const auth = pgSchema('auth');
@@ -1010,7 +1011,7 @@ export const realtimeTopic = sql`realtime.topic()`;
 
 
 
-```
+```tsx
 import { foreignKey, pgPolicy, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm/sql";
 import { authenticatedRole, authUsers } from "drizzle-orm/supabase";
@@ -1041,7 +1042,7 @@ export const profiles = pgTable(
 
 Supabaseに存在するテーブルにポリシーを追加する例を確認してみましょう。
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { pgPolicy } from "drizzle-orm/pg-core";
 import { authenticatedRole, realtimeMessages } from "drizzle-orm/supabase";
@@ -1229,7 +1230,9 @@ export const [table name in typescript] = pgTable { [table name in database], {
 
 👆️この形式を👇️に当てはまります。
 
-```PostgreSQL Table
+PostgreSQL Table
+
+```tsx
 import { pgTable, integer } from "drizzle-orm/pg-core"
 
 export const users = pgTable('users', {
@@ -1275,7 +1278,7 @@ await db.select().from(users);
 
 ```
 
-```
+```sql
 SELECT "id", "first_name" from users;
 
 ```
@@ -1297,7 +1300,7 @@ await db.select().from(users);
 
 ```
 
-```
+```sql
 SELECT "id", "first_name" from users;
 
 ```
@@ -1344,7 +1347,7 @@ await db.select().from(users);
 
 ```
 
-```
+```sql
 SELECT "id", "first_name" from users;
 
 ```
@@ -1447,7 +1450,7 @@ export const users = customSchema.table('users', {
 
 すべての例ではgenerate Unique Stringを使用します。 この実装は、すべてのスキーマ例で提供されます。
 
-```
+```tsx
 import { AnyPgColumn } from "drizzle-orm/pg-core";
 import { pgEnum, pgTable as table } from "drizzle-orm/pg-core";
 import * as t from "drizzle-orm/pg-core";
@@ -1522,7 +1525,7 @@ export const comments = table("comments", {
 
 最後に、ユニークな文字列を生成する関数の例です。
 
-```
+```tsx
 // 指定された長さのランダムな英数字文字列を生成します。
 function generateUniqueString(length: number = 12): string {
    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -1584,7 +1587,8 @@ export const users = pgTable("users", {
 Drizzleは内部的にnode-postgresドライバインスタンスを作成し、必要に応じてdb.$client経由でアクセスできます。
 
 
-```node-postgres
+```tsx
+// node-postgres
 import { drizzle } from "drizzle-orm/node-postgres"
 
 const db = drizzle(process.env.DATABASE_URL);
@@ -1594,7 +1598,8 @@ const pool = db.$client;
 
 
 
-```node-postgres
+```tsx
+// node-postgres
 // above is equivalent to
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
@@ -1629,7 +1634,7 @@ SQLのような構文
 リレーショナル構文
 
 
-```
+```tsx
 // Access your data
 await db
   .select()
@@ -1639,7 +1644,7 @@ await db
 
 ```
 
-```
+```sql
 SELECT *
 FROM posts
 LEFT JOIN comments ON posts.id = comments.post_id
@@ -1653,19 +1658,22 @@ select、insert、update、delete、エイリアス、WITH句、サブクエリ�
 
 例
 
-```insert
+```tsx
+// insert
 await db.insert(users).values({ email: 'user@gmail.com' })
 
 ```
 
 👇️
 
-```insert
+```sql
+-- insert
 INSERT INTO users (email) VALUES ('user@gmail.com')
 
 ```
 
-```update
+```tsx
+// update
 await db.update(users)
         .set({ email: 'user@gmail.com' })
         .where(eq(users.id, 1))
@@ -1674,21 +1682,24 @@ await db.update(users)
 
 👇️
 
-```update
+```sql
+-- update
 UPDATE users
 SET email = 'user@gmail.com'
 WHERE users.id = 1
 
 ```
 
-```delete
+```tsx
+// delete
 await db.delete(users).where(eq(users.id, 1))
 
 ```
 
 👇️
 
-```delete
+```sql
+-- delete
 DELETE FROM users WHERE users.id = 1
 
 ```
@@ -1708,7 +1719,7 @@ Drizzleは常に正確に1つのSQLクエリを出力します。
 サーバーレスデータベースで自由に使うことができ、パフォーマンスやラウンドトリップコストを心配する必要はありません！
 
 
-```
+```tsx
 const result = await db.query.users.findMany({
 	with: {
 		posts: true
@@ -1733,7 +1744,7 @@ Drizzleでは、クエリを自由に組み合わせ、分割できます。
 
 高度なフィルタリング：WHERE句の動的作成
 
-```
+```tsx
 async function getProductsBy({
   name,
   category,
@@ -1799,7 +1810,7 @@ async function getProductsBy({
 
 サブクエリを活用したクエリの実行
 
-```
+```tsx
 const subquery = db
 	.select()
 	.from(internalStaff)
@@ -1892,7 +1903,7 @@ Drizzleを直接使用するか、外部マイグレーションツールを使�
 
 drizzle-kit を使います。
 
-```
+```terminal
 drizzle-kit migrate
 drizzle-kit generate
 drizzle-kit push
@@ -1954,14 +1965,14 @@ Drizzleからデータベースからスキーマの現在の状態を取得し�
 既存のデータベース スキーマをプル
 データベース スキーマを信頼できる情報源として持ち、Drizzle ではコマンドを使用してデータベース スキーマを TypeScript に取り込むことができます。
 
-```
+```terminal
 drizzle-kit pull
 
 ```
 
 👇️
 
-```
+```tsx
 import * as p from "drizzle-orm/pg-core";
 
 export const users = p.pgTable("users", {
@@ -1983,7 +1994,8 @@ TypeScriptのDrizzleスキーマを真実のソースとし、Drizzleはdrizzle-
 
 これはラピッドプロトタイピングに最適なアプローチであり、私たちは何十ものチームや一人の開発者が、本番アプリケーションのプライマリ マイグレーション フローとしてこの方法をうまく使っているのを見てきました。
 
-```src/schema.ts
+```tsx
+// src/schema.ts
 import * as p from "drizzle-orm/pg-core";
 export const users = p.pgTable("users", {
   id: p.serial().primaryKey(),
@@ -2003,7 +2015,8 @@ export const users = p.pgTable("users", {
 
 TypeScriptで作成したDrizzleスキーマをソースとして、Drizzleはスキーマの変更に基づいたSQLマイグレーションファイルをdrizzle-kit generateで生成し、drizzle-kit migrateコマンドでデータベースに適用します。
 
-```src/schema.ts
+```tsx
+// src/schema.ts
 import * as p from "drizzle-orm/pg-core";
 export const users = p.pgTable("users", {
   id: p.serial().primaryKey(),
@@ -2026,7 +2039,8 @@ TypeScriptのDrizzleスキーマを真実のソースとし、Drizzleはdrizzle-
 
 これは、デプロイ処理中に一度だけカスタムリソースでマイグレーションを実行するサーバーレスデプロイメントでも使用される。
 
-```src/schema.ts
+```tsx
+// src/schema.ts
 import * as p from "drizzle-orm/pg-core";
 export const users = p.pgTable("users", {
   id: p.serial().primaryKey(),
@@ -2044,7 +2058,8 @@ export const users = p.pgTable("users", {
 
 これはコードベースファーストのアプローチです。TypeScriptで作成したDrizzleスキーマを真実のソースとし、Drizzleはdrizzle-kit generateでスキーマの変更に基づいたSQLマイグレーションファイルを生成します。
 
-```src/schema.ts
+```tsx
+// src/schema.ts
 import * as p from "drizzle-orm/pg-core";
 export const users = p.pgTable("users", {
   id: p.serial().primaryKey(),
@@ -2123,7 +2138,7 @@ Drizzle ORMを使用してPostgreSQLデータベースに接続し、クエリ�
 Step 1 - Install packages パッケージのインストール:
 postgres.jsを利用する場合
 
-```
+```terminal
 npm i drizzle-orm postgres
 npm i -D drizzle-kit
 
@@ -2132,7 +2147,7 @@ npm i -D drizzle-kit
 Step 2 - Initialize the driver and make a query
 index.ts ドライバーの初期化とクエリの実行
 
-```
+```tsx
 import { drizzle } from 'drizzle-orm/postgres-js'
 const db = drizzle(process.env.DATABASE_URL);
 const allUsers = await db.select().from(...);
@@ -2274,7 +2289,7 @@ Identity Columns
 
 #### integer
 
-```
+```tsx
 import { integer, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2289,7 +2304,7 @@ pgTable('table', { ... });
 int: integer()
 "int" という名前の整数型のカラムを定義しています。
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"int" integer
 );
@@ -2298,7 +2313,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 
 
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { integer, pgTable } from "drizzle-orm/pg-core";
 
@@ -2320,7 +2335,7 @@ sql 関数は、SQLの構文をそのまま使うことができるようにす�
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"int1" integer DEFAULT 10
 	"int2" integer DEFAULT '10'::int
@@ -2339,7 +2354,7 @@ PostgreSQLでは ::int を使って文字列をinteger型に変換すること�
 
 #### smallint
 
-```
+```tsx
 import { smallint, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2350,7 +2365,7 @@ export const table = pgTable('table', {
 
 smallint 型は、integer 型と比べて容量が小さく、-32768から32767までの整数を格納できます。
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"smallint" smallint
 );
@@ -2359,7 +2374,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 
 
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { smallint, pgTable } from "drizzle-orm/pg-core";
 
@@ -2370,7 +2385,7 @@ export const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"smallint1" smallint DEFAULT 10
 	"smallint2" smallint DEFAULT '10'::smallint
@@ -2382,7 +2397,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 
 符号付き8バイト整数
 
-```
+```tsx
 import { bigint, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2406,14 +2421,14 @@ JavaScriptの number 型では正確に表現できない大きな整数を扱�
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"bigint" bigint
 );
 
 ```
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { bigint, pgTable } from "drizzle-orm/pg-core";
 
@@ -2424,7 +2439,7 @@ export const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"bigint1" bigint DEFAULT 10
 	"bigint2" bigint DEFAULT '10'::bigint
@@ -2441,7 +2456,7 @@ PostgreSQL: Documentation: 17: 8.1. Numeric Types
 
 https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-SERIAL
 
-```
+```tsx
 import { serial, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2452,7 +2467,7 @@ export const table = pgTable('table', {
 
 serial 型は、主キーとしてよく使用されます。主キーは、テーブル内の各行を一意に識別するカラムです。
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"serial" serial NOT NULL,
 );
@@ -2470,7 +2485,7 @@ PostgreSQL: Documentation: 17: 8.1. Numeric Types
 
 https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-SERIAL
 
-```
+```tsx
 import { smallserial, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2479,7 +2494,7 @@ export const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"smallserial" smallserial NOT NULL,
 );
@@ -2496,7 +2511,7 @@ PostgreSQL: Documentation: 17: 8.1. Numeric Types
 
 https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-SERIAL
 
-```
+```tsx
 import { bigserial, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2516,7 +2531,7 @@ bigserial型のカラムは、デフォルトでNOTNULL制約が付与されま�
 これは、カラムにNULL値を格納できないことを意味します。
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"bigserial" bigserial NOT NULL,
 );
@@ -2533,17 +2548,16 @@ PostgreSQL: Documentation: 17: 8.6. Boolean Type
 
 https://www.postgresql.org/docs/current/datatype-boolean.html
 
-```
+```tsx
 import { boolean, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
 	boolean: boolean()
 });
 
-
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"boolean" boolean,
 );
@@ -2560,7 +2574,7 @@ PostgreSQL: Documentation: 17: 8.3. Character Types
 
 https://www.postgresql.org/docs/current/datatype-character.html
 
-```
+```tsx
 import { text, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2596,7 +2610,7 @@ enum オプションを使用するメリットは、以下のとおりです。
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"text" text,
 );
@@ -2613,7 +2627,7 @@ PostgreSQL: Documentation: 17: 8.3. Character Types
 
 https://www.postgresql.org/docs/current/datatype-character.html
 
-```
+```tsx
 import { varchar, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2626,7 +2640,7 @@ varchar: varchar({ enum: ["value1", "value2"] }),
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"varchar1" varchar,
 	"varchar2" varchar(256),
@@ -2646,7 +2660,7 @@ https://www.postgresql.org/docs/current/datatype-character.html
 
 
 
-```
+```tsx
 import { char, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2659,7 +2673,7 @@ char: char({ enum: ["value1", "value2"] }),
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"char1" char,
 	"char2" char(256),
@@ -2677,7 +2691,7 @@ PostgreSQL: Documentation: 17: 8.1. Numeric Types
 
 https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-NUMERIC-DECIMAL
 
-```
+```tsx
 import { numeric, pgTable } from "drizzle-orm/pg-core";
 
 export const table = pgTable('table', {
@@ -2708,7 +2722,7 @@ numeric 型のスケールは、小数点以下の最大桁数を指定します
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"numeric1" numeric,
 	"numeric2" numeric(100),
@@ -2733,7 +2747,7 @@ PostgreSQL: Documentation: 17: 8.1. Numeric Types
 
 https://www.postgresql.org/docs/current/datatype-numeric.html
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { real, pgTable } from "drizzle-orm/pg-core";
 
@@ -2745,7 +2759,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"real1" real,
 	"real2" real default 10.10,
@@ -2764,7 +2778,7 @@ PostgreSQL: Documentation: 17: 8.1. Numeric Types
 
 https://www.postgresql.org/docs/current/datatype-numeric.html
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { doublePrecision, pgTable } from "drizzle-orm/pg-core";
 
@@ -2776,7 +2790,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"double1" double precision,
 	"double2" double precision default 10.10,
@@ -2795,7 +2809,7 @@ PostgreSQL: Documentation: 17: 8.14. JSON Types
 
 https://www.postgresql.org/docs/current/datatype-json.html
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { json, pgTable } from "drizzle-orm/pg-core";
 
@@ -2827,7 +2841,7 @@ SQL式を使用する場合、 ::json を使って値を json 型にキャスト
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"json1" json,
 	"json2" json default '{"foo": "bar"}'::json,
@@ -2842,7 +2856,7 @@ json オブジェクトの推論に .$type<...>() を指定できますが、実
 
 
 
-```
+```tsx
 // will be inferred as { foo: string }
 json: json().$type<{ foo: string }>();
 
@@ -2877,7 +2891,7 @@ PostgreSQL: Documentation: 17: 8.14. JSON Types
 
 https://www.postgresql.org/docs/current/datatype-json.html
 
-```
+```tsx
 import { jsonb, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -2888,7 +2902,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"jsonb1" jsonb,
 	"jsonb2" jsonb default '{"foo": "bar"}'::jsonb,
@@ -2898,7 +2912,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 ```
 json オブジェクトの推論に .$type<...>() を指定すると、実行時の値はチェックされません。 デフォルト値、insert、selectスキーマのコンパイル時の保護を提供します。
 
-```
+```tsx
 // will be inferred as { foo: string }
 jsonb: jsonb().$type<{ foo: string }>();
 
@@ -2920,7 +2934,7 @@ PostgreSQL: Documentation: 17: 8.5. Date/Time Types
 
 https://www.postgresql.org/docs/current/datatype-datetime.html
 
-```
+```tsx
 import { time, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -2950,7 +2964,7 @@ time 型のカラム定義について
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"time1" time,
 	"time2" time with timezone,
@@ -2970,7 +2984,7 @@ PostgreSQL: Documentation: 17: 8.5. Date/Time Types
 
 https://www.postgresql.org/docs/current/datatype-datetime.html
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { timestamp, pgTable } from "drizzle-orm/pg-core";
 
@@ -3020,7 +3034,7 @@ timestamp 型のカラム定義とデフォルト値について
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"timestamp1" timestamp,
 	"timestamp2" timestamp (6) with time zone,
@@ -3032,7 +3046,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 
 日付または文字列のどちらの推論モードも指定できる：
 
-```
+```tsx
 // will infer as date
 timestamp: timestamp({ mode: "date" }),
 
@@ -3075,7 +3089,7 @@ PostgreSQL のドキュメントには次のように記載されています:
 
 👇️このSQLクエリを使用してタイムゾーンを確認できます。
 
-```
+```tsx
 show timezone;
 
 ```
@@ -3090,7 +3104,7 @@ PostgreSQL: Documentation: 17: 8.5. Date/Time Types
 
 https://www.postgresql.org/docs/current/datatype-datetime.html
 
-```
+```tsx
 import { date, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -3099,7 +3113,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"date" date,
 );
@@ -3108,7 +3122,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 
 日付または文字列のどちらの推論モードも指定できます。
 
-```
+```tsx
 // will infer as date
 date: date({ mode: "date" }),
 
@@ -3125,7 +3139,7 @@ PostgreSQL: Documentation: 17: 8.5. Date/Time Types
 
 https://www.postgresql.org/docs/current/datatype-datetime.html
 
-```
+```tsx
 import { interval, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -3181,7 +3195,7 @@ interval 型のカラム定義について
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"interval1" interval,
 	"interval2" interval day,
@@ -3206,7 +3220,7 @@ https://www.postgresql.org/docs/current/datatype-geometric.html#DATATYPE-GEOMETR
 
 *xy挿入に受け入れられ、選択時にx、y座標を持つオブジェクトにマップされます。したがって、データベースのPoint(1,2)は{ x: 1, y: 2 }drizzleで次のように型付けされます。
 
-```
+```tsx
 const items = pgTable('items', {
  point: point(),
  pointObj: point({ mode: 'xy' }),
@@ -3238,12 +3252,11 @@ point 型のカラム定義について
 * `point` 型は、PostgreSQL 固有の型です。
 他のデータベースでは、異なる型を使用する必要があります。
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "items" (
   "point" point,
   "pointObj" point,
 );
-
 
 ```
 
@@ -3265,7 +3278,7 @@ https://www.postgresql.org/docs/current/datatype-geometric.html#DATATYPE-LINE
 
 したがって、データベースの Line3 は{ a: 1, b: 2, c: 3 }drizzle のように型指定されます。
 
-```
+```tsx
 const items = pgTable('items', {
  line: line(),
  lineObj: point({ mode: 'abc' }),
@@ -3310,7 +3323,7 @@ const items = pgTable('items', {
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "items" (
 	"line" line,
 	"lineObj" line,
@@ -3332,7 +3345,7 @@ PostgreSQL: Documentation: 17: 8.7. Enumerated Types
 
 https://www.postgresql.org/docs/current/datatype-enum.html
 
-```
+```tsx
 import { pgEnum, pgTable } from "drizzle-orm/pg-core";
 
 export const moodEnum = pgEnum('mood', ['sad', 'ok', 'happy']);
@@ -3380,7 +3393,7 @@ Drizzle ORMを使用してPostgreSQLのテーブルを定義する方法を示�
 
 
 
-```SQL文
+```sql
 CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
 
 CREATE TABLE IF NOT EXISTS "table" (
@@ -3397,7 +3410,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 
 これは、たとえば、不明なタイプやブランド化されたタイプの場合に役立ちます。
 
-```
+```tsx
 type UserId = number & { __brand: 'user_id' };
 type Data = {
 	foo: string;
@@ -3451,7 +3464,7 @@ OVERRIDING SYSTEM VALUE 句を使用しない限り、この列への手動挿�
 
 ##### 使用例
 
-```
+```tsx
 import { pgTable, integer, text } from 'drizzle-orm/pg-core'
 
 export const ingredients = pgTable("ingredients", {
@@ -3478,7 +3491,7 @@ https://www.postgresql.org/docs/current/sql-createtable.html#SQL-CREATETABLE-PAR
 
 明示的なDEFAULT句では、デフォルト値がNULL、文字列定数、BLOB 定数、符号付き数値、または括弧で囲まれた任意の定数式であることを指定できます。
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { integer, pgTable, uuid } from "drizzle-orm/pg-core";
 
@@ -3491,7 +3504,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"integer1" integer DEFAULT 42,
 	"integer2" integer DEFAULT '42'::integer,
@@ -3505,7 +3518,7 @@ $default()またはを使用すると$defaultFn()、同じ関数の異なるエ�
 
 uuidこれらの関数はcuidなどのさまざまな実装を活用するのに役立ちます。
 
-```
+```tsx
 import { text, pgTable } from "drizzle-orm/pg-core";
 import { createId } from '@paralleldrive/cuid2';
 
@@ -3523,7 +3536,7 @@ $onUpdate()またはを使用すると$onUpdateFn()、同じ関数の異なる�
 
 デフォルト値 (または $defaultFn) が指定されていない場合は、行が挿入されるときにも関数が呼び出され、返された値が列値として使用されます。
 
-```
+```tsx
 import { integer, timestamp, text, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -3580,7 +3593,7 @@ SQL テーブル定義におけるカラムの更新動作について
 
 NOT NULL制約は、関連付けられた列にNULL値が含まれていないことを規定します。
 
-```
+```tsx
 import { integer, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -3589,7 +3602,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"integer" integer NOT NULL,
 );
@@ -3603,7 +3616,7 @@ CREATE TABLE IF NOT EXISTS "table" (
 主キー制約は、列または列のグループをテーブル内の行の一意の識別子として使用できることを示します。
 この場合、値は一意であり、null ではないことが必要です。
 
-```
+```tsx
 import { serial, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -3612,7 +3625,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
 	"id" serial PRIMARY KEY NOT NULL,
 );
@@ -3646,7 +3659,7 @@ DEFAULT句は、INSERT時にユーザから値が提供されなかった場合�
 
 
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { integer, uuid, pgTable } from "drizzle-orm/pg-core";
 
@@ -3659,7 +3672,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
   "integer1" integer DEFAULT 42,
   "integer2" integer DEFAULT '42'::integer,
@@ -3679,7 +3692,7 @@ NOT NULL制約は、カラムがNULL値を受け付けないように強制し�
 
 つまり、このフィールドに値を追加しない限り、新しいレコードを挿入したり、レコードを更新したりすることはできません。
 
-```
+```tsx
 import { integer, pgTable } from "drizzle-orm/pg-core";
 
 const table = pgTable('table', {
@@ -3688,7 +3701,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "table" (
   "integer" integer NOT NULL,
 );
@@ -3707,7 +3720,7 @@ PRIMARYKEY制約は自動的にUNIQUE制約を持ちます。
 
 1つのテーブルに多くのUNIQUE制約を持つことはできますが、PRIMARY KEY制約は1つだけです。
 
-```
+```tsx
 import { integer, text, unique, pgTable } from "drizzle-orm/pg-core";
 
 export const user = pgTable('user', {
@@ -3736,7 +3749,7 @@ export const userNulls = pgTable('user_nulls_example', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "composite_example" (
   "id" integer,
   "name" text,
@@ -3774,7 +3787,7 @@ Check制約は、カラムに配置できる値の範囲を制限するために
 
 
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { check, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 
@@ -3823,7 +3836,7 @@ SQL テーブル定義と制約について
 
 
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "users" (
     "id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
     "username" text NOT NULL,
@@ -3842,7 +3855,7 @@ PRIMARYKEY制約は、テーブル内の各レコードを一意に識別しま�
 
 テーブルには1つのプライマリ・キーのみを持つことができ、このプライマリ・キーは単一または複数のカラム（フィールド）で構成できます。
 
-```
+```tsx
 import { serial, text, pgTable } from "drizzle-orm/pg-core";
 
 const user = pgTable('user', {
@@ -3855,7 +3868,7 @@ const table = pgTable('table', {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE IF NOT EXISTS "user" (
   "id" serial PRIMARY KEY,
 );
@@ -3872,7 +3885,7 @@ PRIMARYKEYと同様に、複合プライマリキーも複数のフィールド�
 
 DrizzleORMはそのための独立したprimaryKey演算子を提供しています。
 
-```
+```tsx
 import { serial, text, integer, primaryKey, pgTable } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -3897,9 +3910,8 @@ export const booksToAuthors = pgTable("books_to_authors", {
 
 ```
 
-```
+```sql
 ...
-
 CREATE TABLE IF NOT EXISTS "books_to_authors" (
   "author_id" integer,
   "book_id" integer,
@@ -3926,7 +3938,7 @@ DrizzleORMには外部キーを宣言する方法がいくつかあります。
 
 カラム宣言文で宣言できます。
 
-```
+```tsx
 import { serial, text, integer, pgTable } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -3944,7 +3956,7 @@ export const book = pgTable("book", {
 
 自己参照を行いたい場合は、TypeScript の制限により、参照コールバックの戻り値の型を明示的に設定するか、単体の foreignKey 演算子を使用する必要があります。
 
-```
+```tsx
 import { serial, text, integer, foreignKey, pgTable, AnyPgColumn } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -3972,7 +3984,7 @@ export const user = pgTable("user", {
 
 複数列の外部キーを宣言するには、専用の foreignKey 演算子を使用できます。
 
-```
+```tsx
 import { serial, text, foreignKey, pgTable, AnyPgColumn } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -4006,7 +4018,7 @@ export const profile = pgTable("profile", {
 
 Drizzle ORMはインデックス宣言とユニークインデックス宣言の両方のAPIを提供します。
 
-```
+```tsx
 import { serial, text, index, uniqueIndex, pgTable } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -4022,7 +4034,7 @@ export const user = pgTable("user", {
 
 ```
 
-```SQL文
+```sql
 CREATE TABLE "user" (
   ...
 );
@@ -4032,7 +4044,7 @@ CREATE UNIQUE INDEX "email_idx" ON "user" ("email");
 
 ```
 
-```
+```tsx
 // First example, with `.on()`
 index('name')
   .on(table.column1.asc(), table.column2.nullsFirst(), ...) or .onOnly(table.column1.desc().nullsLast(), table.column2, ...)
@@ -4138,7 +4150,7 @@ CACHEオプションを使用すると、シーケンス値を事前に割り当
 
 
 
-```
+```tsx
 import { pgSchema, pgSequence } from "drizzle-orm/pg-core";
 
 // No params specified
@@ -4191,7 +4203,7 @@ Drizzle ORMにおけるシーケンスの定義方法
 
 1.  **パラメータなしのシーケンス**
 
-```javascript
+```tsx
 export const customSequence = pgSequence("name");
 
 ```
@@ -4200,7 +4212,7 @@ export const customSequence = pgSequence("name");
 
 2.  **パラメータありのシーケンス**
 
-```javascript
+```tsx
 export const customSequence = pgSequence("name", {
       startWith: 100,
       maxValue: 10000,
@@ -4221,7 +4233,7 @@ export const customSequence = pgSequence("name", {
 
 3.  **カスタムスキーマでのシーケンス**
 
-```javascript
+```tsx
 export const customSchema = pgSchema('custom_schema');
 export const customSequence = customSchema.sequence("name");
 
@@ -4275,7 +4287,7 @@ DrizzleORMのビュー機能は、データベース内のクエリ結果を仮�
 
 ビューは以下のように作成します。
 
-```SQL文
+```sql
 CREATE VIEW active_users AS
 SELECT id, username
 FROM users
@@ -4291,7 +4303,7 @@ WHERE is_active = true;
 
 ビューを使用する際は、通常のテーブルと同様にクエリを実行できます。
 
-```SQL文
+```sql
 SELECT FROM active_users;
 
 ```
@@ -4316,7 +4328,8 @@ SELECT FROM active_users;
 
 #### Declaring views
 
-```schema.ts
+```tsx
+// schema.ts
 import { pgTable, pgView, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -4371,7 +4384,7 @@ Drizzle ORM を使ったビュー定義について
 
 
 
-```SQL文
+```sql
 CREATE VIEW "user_view" AS SELECT * FROM "user";
 CREATE VIEW "customers_view" AS SELECT * FROM "user" WHERE "role" = 'customer';
 
@@ -4379,7 +4392,7 @@ CREATE VIEW "customers_view" AS SELECT * FROM "user" WHERE "role" = 'customer';
 
 カラムのサブセットが必要な場合は、クエリビルダーの.select({ ... })メソッドを使うことができます。
 
-```
+```tsx
 export const customersView = pgView("customers_view").as((qb) => {
   return qb
     .select({
@@ -4392,14 +4405,14 @@ export const customersView = pgView("customers_view").as((qb) => {
 
 ```
 
-```SQL文
+```sql
 CREATE VIEW "customers_view" AS SELECT "id", "name", "email" FROM "user" WHERE "role" = 'customer';
 
 ```
 
 スタンドアローンのクエリビルダを使用してビューを宣言することもできます。
 
-```
+```tsx
 import { pgTable, pgView, serial, text, timestamp, QueryBuilder} from "drizzle-orm/pg-core";
 
 const qb = new QueryBuilder();
@@ -4419,7 +4432,7 @@ export const customersView = pgView("customers_view").as(qb.select().from(user).
 
 ```
 
-```SQL文
+```sql
 CREATE VIEW "user_view" AS SELECT * FROM "user";
 CREATE VIEW "customers_view" AS SELECT * FROM "user" WHERE "role" = 'customer';
 
@@ -4431,7 +4444,7 @@ CREATE VIEW "customers_view" AS SELECT * FROM "user" WHERE "role" = 'customer';
 
 クエリビルダがサポートしていない構文を使用してビューを宣言する必要がある場合は、直接 sql 演算子を使用して明示的にビュー列スキーマを指定できます。
 
-```
+```tsx
 // regular view
 const newYorkers = pgView('new_yorkers', {
   id: serial('id').primaryKey(),
@@ -4454,7 +4467,7 @@ const newYorkers = pgMaterializedView('new_yorkers', {
 
 データベース内の既存のビューへの読み取り専用アクセスが提供されている場合は、.existing() ビュー設定を使用する必要があります。
 
-```
+```tsx
 export const user = pgTable("user", {
   id: serial(),
   name: text(),
@@ -4491,7 +4504,8 @@ PostgreSQLのマテリアライズドビューは、ビューと同様にルー�
 
 Drizzle ORMはPostgreSQLのマテリアライズドビューをネイティブでサポートしています。
 
-```schema.ts
+```tsx
+// schema.ts
 const newYorkers = pgMaterializedView('new_yorkers').as((qb) => qb.select().from(users).where(eq(users.cityId, 1)));
 
 ```
@@ -4535,8 +4549,9 @@ Drizzle ORM では、`refreshMaterializedView` 関数を使用してマテリア
 
 
 
-```javascript
+```tsx
 await db.refreshMaterializedView(newYorkers);
+
 ```
 
 
@@ -4549,14 +4564,14 @@ await db.refreshMaterializedView(newYorkers);
 
 
 
-```SQL文
+```sql
 CREATE MATERIALIZED VIEW "new_yorkers" AS SELECT * FROM "users";
 
 ```
 
 そうすれば、アプリケーションのランタイムでマテリアライズド・ビューをリフレッシュできます。
 
-```
+```tsx
 await db.refreshMaterializedView(newYorkers);
 
 await db.refreshMaterializedView(newYorkers).concurrently();
@@ -4617,7 +4632,7 @@ Drizzle ORM では、`refreshMaterializedView` 関数を使用してマテリア
 
 クエリー内のすべてのパラメーターは、$1、$2 などで置き換えられるのではなく、インライン化されます。
 
-```
+```tsx
 // regular view
 const newYorkers = pgView('new_yorkers')
   .with({
@@ -4748,7 +4763,7 @@ RLSを使用すると、ユーザーごとに異なるデータを表示した�
 
 Drizzle ORMでは、スキーマを以下のように定義します。
 
-```javascript
+```tsx
 import { schema } from 'drizzle-orm';
 
 const usersSchema = schema.createTable('users', {
@@ -4757,7 +4772,9 @@ const usersSchema = schema.createTable('users', {
   email: schema.string().unique(),
   createdAt: schema.dateTime().defaultNow(),
 });
+
 ```
+
 - **テーブル名**: `'users'`
 - **カラム**:
   - `id`: 整数型、主キー
@@ -4791,12 +4808,12 @@ Drizzle ORM のスキーマ機能を使うことで、データベースオブ�
 
 `スキーマ名.テーブル名`
 
-```SQL文
+```sql
 select * from "schema"."users"
 
 ```
 
-```
+```tsx
 import { serial, text, pgTable, pgSchema } from "drizzle-orm/pg-core";
 
 export const mySchema = pgSchema("my_schema");
@@ -4811,7 +4828,7 @@ export const mySchemaUsers = mySchema.table('users', {
 
 ```
 
-```SQL文
+```sql
 CREATE SCHEMA "my_schema";
 
 CREATE TYPE "my_schema"."colors" AS ENUM ('red', 'green', 'blue');
@@ -4852,7 +4869,7 @@ Drizzle ORMでRLSを設定する例を以下に示します。
 
 ### RLS: RLSを有効にする方法
 
-```javascript
+```tsx
 import { integer, pgTable } from 'drizzle-orm/pg-core';
 export const users = pgTable('users', {
 	id: integer(),
@@ -4892,7 +4909,7 @@ Drizzle ORMでは、データベースのロールをいくつかの方法で定
 
 例として、`admin` というロールを定義するコードを見てみましょう。
 
-```typescript
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 export const admin = pgRole('admin',{
     createRole: true,
@@ -4916,7 +4933,7 @@ export const admin = pgRole('admin',{
 
 例として、すでにデータベースに存在する `admin` ロールをマークするコードを見てみましょう:
 
-```typescript
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 export const admin = pgRole('admin').existing();
 ```
@@ -4933,7 +4950,7 @@ export const admin = pgRole('admin').existing();
 
 `drizzle.config.ts` ファイルの基本的な例を以下に示します。
 
-```typescript
+```tsx
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -4956,7 +4973,8 @@ export default defineConfig({
 
 例として、`admin` ロールを除外する設定を以下に示します。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -5006,7 +5024,7 @@ pgTable
 
 利用可能なすべてのプロパティを含む pgPolicy の例
 
-```
+```tsx
 import { sql } from 'drizzle-orm';
 import { integer, pgPolicy, pgRole, pgTable } from 'drizzle-orm/pg-core';
 
@@ -5104,7 +5122,7 @@ WITHCHECKで指定された条件を満たさない場合、INSERTやUPDATEが�
 外部のデータベースプロバイダー（NeonやSupabaseなど）では、既存のテーブルにポリシーを追加する必要があります。
 その場合は.link()メソッドを使います。
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { pgPolicy } from "drizzle-orm/pg-core";
 import { authenticatedRole, realtimeMessages } from "drizzle-orm/supabase";
@@ -5161,7 +5179,8 @@ Drizzle Kitを使ってデータベースのスキーマやロールを管理す
 
 * 基本
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   dialect: 'postgresql',
@@ -5186,7 +5205,8 @@ entities: { roles: true }を指定することで、Drizzleがロールを管理
 
 もし管理したくないロールがある場合は、次のように設定できます。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   ...
@@ -5209,7 +5229,8 @@ export default defineConfig({
 
 逆に、特定のロールを管理したい場合は、次のように設定します。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   ...
@@ -5230,7 +5251,7 @@ export default defineConfig({
 
 Supabaseを使っている場合は、特定のロールを除外するためにproviderオプションを使うこともできます。
 
-```
+```tsx
 // Supabaseの場合
 entities: {
   roles: {
@@ -5248,7 +5269,8 @@ entities: {
 
 もしデータベースプロバイダによって新しいロールが追加されていて、これを除外したい場合も設定できます。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   ...
@@ -5282,9 +5304,8 @@ Drizzleでは、ビューにRLSポリシーを指定することもできます�
 
 
 
-```
+```tsx
 ...
-
 export const roomsUsersProfiles = pgView("rooms_users_profiles")
   .with({
     securityInvoker: true,
@@ -5322,7 +5343,7 @@ postgresRole: PostgreSQL管理者の役割。
 supabaseAuthAdminRole: Supabase認証管理者の役割。
 これらの役割を使うことで、RLSポリシーを簡単に設定できます。
 
-```
+```tsx
 // drizzle-orm/supabase
 export const anonRole = pgRole('anon').existing();
 export const authenticatedRole = pgRole('authenticated').existing();
@@ -5338,7 +5359,7 @@ RLSポリシーの設定
 
 RLSを有効にする
 
-```SQL文
+```sql
 ALTER TABLE "table_name" ENABLE ROW LEVEL SECURITY;
 
 ```
@@ -5347,7 +5368,7 @@ ALTER TABLE "table_name" ENABLE ROW LEVEL SECURITY;
 
 ユーザーが自分のプロフィールだけを見られるようにするためには、次のようなポリシーを設定します。
 
-```SQL文
+```sql
 CREATE POLICY "User can see their own profile only"
 ON profiles FOR SELECT
 USING (auth.uid() = user_id);
@@ -5358,7 +5379,7 @@ USING (auth.uid() = user_id);
 
 たとえば、Supabase の定義済みロールを次のように使用できます。
 
-```
+```tsx
 import { sql } from 'drizzle-orm';
 import { serviceRole } from 'drizzle-orm/supabase';
 import { integer, pgPolicy, pgRole, pgTable } from 'drizzle-orm/pg-core';
@@ -5381,7 +5402,7 @@ export const users = pgTable('users', {
 
 /supabaseインポートには、アプリケーションで使用できる定義済みのテーブルや関数も含まれています。
 
-```
+```tsx
 // drizzle-orm/supabase
 const auth = pgSchema('auth');
 export const authUsers = auth.table('users', {
@@ -5407,7 +5428,7 @@ export const realtimeTopic = sql`realtime.topic()`;
 
 これにより、Drizzle Kitはそれらを既存のデータベースとして扱い、他のエンティティに接続するための情報としてのみ使用します。
 
-```
+```tsx
 import { foreignKey, pgPolicy, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm/sql";
 import { authenticatedRole, authUsers } from "drizzle-orm/supabase";
@@ -5439,7 +5460,7 @@ export const profiles = pgTable(
 
 Supabaseに存在するテーブルにポリシーを追加する例を確認しましょう
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { pgPolicy } from "drizzle-orm/pg-core";
 import { authenticatedRole, realtimeMessages } from "drizzle-orm/supabase";
@@ -5464,7 +5485,7 @@ DrizzleSupaSecureSlackリポジトリを確認してください。
 
 このリポジトリからの実装例を以下に示します。
 
-```
+```tsx
 type SupabaseToken = {
   iss?: string;
   sub?: string;
@@ -5536,6 +5557,7 @@ nbf: 使用開始時間（Not Before）
 iat: 発行時間（Issued At）
 jti: JWT ID - トークンの一意の識別子
 role: ユーザーの役割（Role） - 管理者や一般ユーザーなど
+
 ```
 
 
@@ -5559,7 +5581,7 @@ await transaction(tx): 設定した情報に基づいてデータベースのト
 
 最後に、設定をリセットしてトランザクション中のセキュリティ状態を元に戻します。
 
-```
+```tsx
 return await transaction(tx);
 
 ```
@@ -5579,7 +5601,7 @@ RLSの設定方法:
 
 テーブルを作成した後、以下のように RLS を有効にします。
 
-```SQL文
+```sql
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
 ```
@@ -5590,7 +5612,7 @@ ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
 ユーザーが自分自身のプロファイルのみを更新できるようにするポリシーを設定できます。
 
-```SQL文
+```sql
 CREATE POLICY "Users can update their own profile" ON profiles
 FOR UPDATE TO authenticated USING (auth.uid() = user_id);
 
@@ -5598,7 +5620,7 @@ FOR UPDATE TO authenticated USING (auth.uid() = user_id);
 
 
 
-```
+```tsx
 // https://github.com/orgs/supabase/discussions/23224
 // Should be secure because we use the access token that is signed, and not the data read directly from the storage
 export async function createDrizzleSupabaseClient() {
@@ -5625,7 +5647,7 @@ RLSを使うことで、ビジネスロジックに基づいた細かなデー�
 
 以下は、認証されたユーザーが自分のデータだけを更新できるようにした例です。
 
-```SQL文
+```sql
 CREATE POLICY "Users can update their profile"
 ON profiles FOR UPDATE
 USING (auth.uid() = user_id)
@@ -5642,7 +5664,7 @@ Drizzle ORMを使うと、Supabaseとの統合が非常に簡単になります�
 
 テーブルの定義
 
-```
+```tsx
 import { pgTable, text, uuid, sql } from "drizzle-orm/pg-core";
 import { authenticatedRole } from "drizzle-orm/supabase";
 
@@ -5664,7 +5686,7 @@ export const profiles = pgTable("profiles", {
 
 RLSをポリシーにリンクさせることで、管理が簡単になります。
 
-```
+```tsx
 import { pgPolicy } from "drizzle-orm/pg-core";
 export const policy = pgPolicy("authenticated insert policy", {
     for: "insert",
@@ -5696,7 +5718,7 @@ PostgreSQL のドキュメントに記載されているとおり、
 
 TRUNCATEやREFERENCESのようなテーブル全体に適用される操作は、行セキュリティの対象にはなりません。
 
-```
+```tsx
 import { integer, pgTable } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -5715,7 +5737,7 @@ export const users = pgTable('users', {
 
 より多くのオプションのサポートは将来のリリースで追加される予定です。
 
-```
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 
 export const admin = pgRole('admin', { createRole: true, createDb: true, inherit: true });
@@ -5724,7 +5746,7 @@ export const admin = pgRole('admin', { createRole: true, createDb: true, inherit
 
 ロールがすでにデータベースに存在し、drizzle-kitにそのロールを「参照」させたくない、またはマイグレーションに含めたくない場合、そのロールを既存ロールとしてマークできます。
 
-```
+```tsx
 import { pgRole } from 'drizzle-orm/pg-core';
 
 export const admin = pgRole('admin').existing();
@@ -5745,7 +5767,7 @@ PostgreSQLでは、ポリシーは既存のテーブルにリンクされなけ�
 
 #### Example of pgPolicy with all available properties
 
-```
+```tsx
 import { sql } from 'drizzle-orm';
 import { integer, pgPolicy, pgRole, pgTable } from 'drizzle-orm/pg-core';
 
@@ -5789,7 +5811,7 @@ export const users = pgTable('users', {
 
 
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { pgPolicy } from "drizzle-orm/pg-core";
 import { authenticatedRole, realtimeMessages } from "drizzle-orm/supabase";
@@ -5818,7 +5840,8 @@ export const policy = pgPolicy("authenticated role insert policy", {
 
 デフォルトでは、drizzle-kit はあなたのためにロールを管理しないので、drizzle.config.ts でこの機能を有効にする必要があります。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -5840,7 +5863,8 @@ export default defineConfig({
 
 * 管理ロールがあり、管理可能なロールのリストから除外したい場合
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -5856,7 +5880,8 @@ export default defineConfig({
 
 * 管理者ロールがあり、それを管理可能なロールのリストに含めたい。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -5872,7 +5897,8 @@ export default defineConfig({
 
 * Supabaseを使用していて、Supabaseで定義されたロールを除外したい場合は、プロバイダオプションの
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -5890,7 +5916,8 @@ export default defineConfig({
 
 そのような場合は、プロバイダオプションを使用して、追加のロールを除外できます：
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -5913,9 +5940,8 @@ Drizzleでは、ビューにRLSポリシーを指定することもできます�
 
 以下は例です。
 
-```
+```tsx
 ...
-
 export const roomsUsersProfiles = pgView("rooms_users_profiles")
   .with({
     securityInvoker: true,
@@ -5938,7 +5964,7 @@ export const roomsUsersProfiles = pgView("rooms_users_profiles")
 
 また、/supabase インポートには、既存のロールとしてマークされた定義済みのロールが用意されており、スキーマで使用できます。
 
-```
+```tsx
 // drizzle-orm/supabase
 export const anonRole = pgRole('anon').existing();
 export const authenticatedRole = pgRole('authenticated').existing();
@@ -5950,7 +5976,7 @@ export const supabaseAuthAdminRole = pgRole('supabase_auth_admin').existing();
 
 たとえば、Supabaseの定義済みロールを次のように使用できます。
 
-```
+```tsx
 import { sql } from 'drizzle-orm';
 import { serviceRole } from 'drizzle-orm/supabase';
 import { integer, pgPolicy, pgRole, pgTable } from 'drizzle-orm/pg-core';
@@ -5971,9 +5997,8 @@ export const users = pgTable('users', {
 
 /supabaseインポートには、アプリケーションで使用できる定義済みのテーブルや関数も含まれています。
 
-```
+```tsx
 // drizzle-orm/supabase
-
 const auth = pgSchema('auth');
 export const authUsers = auth.table('users', {
 	id: uuid().primaryKey().notNull(),
@@ -5998,7 +6023,7 @@ export const realtimeTopic = sql`realtime.topic()`;
 
 これにより、Drizzle Kitはそれらを既存のデータベースとして扱い、他のエンティティに接続するための情報としてのみ使用します。
 
-```
+```tsx
 import { foreignKey, pgPolicy, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm/sql";
 import { authenticatedRole, authUsers } from "drizzle-orm/supabase";
@@ -6029,7 +6054,7 @@ export const profiles = pgTable(
 
 Supabaseに存在するテーブルにポリシーを追加する例を確認してみましょう。
 
-```
+```tsx
 import { sql } from "drizzle-orm";
 import { pgPolicy } from "drizzle-orm/pg-core";
 import { authenticatedRole, realtimeMessages } from "drizzle-orm/supabase";
@@ -6057,7 +6082,7 @@ https://github.com/rphlmr/drizzle-supabase-rls
 
 このリポジトリからの実装例を以下に示します。
 
-```
+```tsx
 type SupabaseToken = {
   iss?: string;
   sub?: string;
@@ -6107,7 +6132,7 @@ export function createDrizzle(token: SupabaseToken, { admin, client }: { admin: 
 
 そして これは次のように使用できます。
 
-```
+```tsx
 // https://github.com/orgs/supabase/discussions/23224
 // Should be secure because we use the access token that is signed, and not the data read directly from the storage
 export async function createDrizzleSupabaseClient() {
@@ -6174,7 +6199,8 @@ Drizzleリレーション
 
 Drizzleリレーションの唯一の目的は、もっともシンプルで簡潔な方法でリレーショナルデータを検索できるようにすることです。
 
-```Relational queries
+```tsx
+// Relational queries
 import * as schema from './schema';
 import { drizzle } from 'drizzle-orm/…';
 
@@ -6188,7 +6214,7 @@ const result = db.query.users.findMany({
 
 ```
 
-```
+```tsx
 [{
   id: 10,
   name: "Dan",
@@ -6208,7 +6234,8 @@ const result = db.query.users.findMany({
 
 ```
 
-```Select with joins
+```tsx
+// Select with joins
 import { drizzle } from 'drizzle-orm/…';
 import { eq } from 'drizzle-orm';
 import { posts, users } from './schema';
@@ -6233,7 +6260,7 @@ DrizzleORMでは、リレーション演算子を使ってテーブル間の一�
 （この例では自己参照を使用しています）：
 
 
-```
+```tsx
 import { pgTable, serial, text, integer, boolean } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 export const users = pgTable('users', {
@@ -6260,7 +6287,7 @@ export const usersRelations = relations(users, ({ one }) => ({
 
 
 
-```
+```tsx
 import { pgTable, serial, text, integer, jsonb } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
@@ -6296,7 +6323,7 @@ Drizzle ORMでは、リレーション演算子を使ってテーブル間の一
 
 
 
-```
+```tsx
 import { pgTable, serial, text, integer } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
@@ -6328,9 +6355,8 @@ export const postsRelations = relations(posts, ({ one }) => ({
 
 次に、投稿にコメントを追加してみましょう。
 
-```
+```tsx
 ...
-
 export const posts = pgTable('posts', {
 	id: serial('id').primaryKey(),
 	content: text('content'),
@@ -6369,7 +6395,7 @@ DrizzleORMは、ジャンクションテーブルやジョインテーブルと�
 
 ユーザーとグループ間の多対多リレーションの例
 
-```
+```tsx
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, primaryKey, serial, text } from 'drizzle-orm/pg-core';
 
@@ -6447,7 +6473,8 @@ export const usersToGroupsRelations = relations(usersToGroups, ({ one }) => ({
 
 
 
-```schema1.ts
+```tsx
+// schema1.ts
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
 	name: text('name'),
@@ -6468,7 +6495,8 @@ export const profileInfo = pgTable('profile_info', {
 
 
 
-```schema2.ts
+```tsx
+// schema2.ts
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
 	name: text('name'),
@@ -6538,7 +6566,7 @@ drizzleでは、references()の第2引数を使用して外部キーアクショ
 
 #### type of the actions
 
-```
+```tsx
 export type UpdateDeleteAction = 'cascade' | 'restrict' | 'no action' | 'set null' | 'set default';
 
 // second argument of references interface
@@ -6553,7 +6581,7 @@ actions?: {
 
 次の例では、postsスキーマのauthorフィールドにonDelete: 'cascade'を追加することで、ユーザーを削除すると関連するPostレコードもすべて削除されることを意味します。
 
-```
+```tsx
 import { pgTable, serial, text, integer } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -6571,7 +6599,7 @@ export const posts = pgTable('posts', {
 
 foreignKey演算子で指定された制約では、外部キーアクションは構文で定義されます。
 
-```
+```tsx
 import { foreignKey, pgTable, serial, text, integer } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -6606,7 +6634,7 @@ Drizzleでは、同じ2つのテーブル間で複数のリレーションを定
 
 
 
-```
+```tsx
 import { pgTable, serial, text, integer } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
@@ -6652,7 +6680,7 @@ export const postsRelations = relations(posts, ({ one }) => ({
 
 Drizzle Kit は、Drizzle を使用して SQL データベースのマイグレーションを管理するための CLI ツールです。
 
-```
+```terminal
 npm i drizzle-kit
 
 ```
@@ -6661,7 +6689,7 @@ npm i drizzle-kit
 
 Drizzle Kitでは、スキーマに基づいて、SQLマイグレーションファイルの生成と実行、スキーマのデータベースへの直接プッシュ、データベースからのスキーマのプル、drizzle studioのスピンアップ、そしていくつかのユーティリティコマンドを実行できます。
 
-```
+```terminal
 npx drizzle-kit generate
 npx drizzle-kit migrate
 npx drizzle-kit push
@@ -6722,7 +6750,8 @@ Drizzle Kit がマイグレーションを生成するためには、少なく�
  └ 📜 tsconfig.json
 
 
-```simple config
+```tsx
+// simple config
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -6732,7 +6761,8 @@ export default defineConfig({
 
 ```
 
-```extended config
+```tsx
+// extended config
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -6771,7 +6801,7 @@ export default defineConfig({
 複数のデータベースがある場合
 CLI paramでDrizzle Kitの設定パスを指定できるので、複数のデータベースステージや複数のデータベース、または同じプロジェクト上に異なるデータベースがある場合に非常に便利です：
 
-```
+```terminal
 npx drizzle-kit push --config=drizzle-dev.drizzle.config
 npx drizzle-kit push --config=drizzle-prod.drizzle.config
 
@@ -6793,7 +6823,7 @@ npx drizzle-kit push --config=drizzle-prod.drizzle.config
 
 ### generate
 
-```
+```terminal
 drizzle-kit generate
 
 ```
@@ -6807,7 +6837,8 @@ Drizzleマイグレーションを管理するコードファーストのアプ�
 drizzle-kitgenerateコマンドは方言とスキーマパスのオプションを指定する必要があり、drizzle.config.ts設定ファイルまたはCLIオプションで設定できます。
 
 
-```With config file
+```tsx
+// With config file
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -6818,12 +6849,13 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit generate
 
 ```
 
-```As CLI options
+```terminal
+# As CLI options
 npx drizzle-kit generate --dialect=postgresql --schema=./src/schema.ts
 
 ```
@@ -6844,7 +6876,7 @@ Drizzle Kitでは、スキーマ設定オプションを使用して、スキー
 
 CLIオプションに--nameを指定すると、カスタムマイグレーションファイル名を設定できます。
 
-```
+```terminal
 npx drizzle-kit generate --name=init
 
 ```
@@ -6865,7 +6897,7 @@ npx drizzle-kit generate --name=init
 
 プロジェクト内に複数の設定ファイルを持つことができ、複数のデータベース・ステージや複数のデータベース、あるいは同じプロジェクト上に異なるデータベースがある場合に非常に便利です。
 
-```
+```terminal
 npx drizzle-kit generate --config=drizzle-dev.config.ts
 npx drizzle-kit generate --config=drizzle-prod.config.ts
 
@@ -6895,7 +6927,7 @@ Drizzle ORM - Custom migrations
 
 https://orm.drizzle.team/docs/kit-custom-migrations
 
-```
+```terminal
 drizzle-kit generate --custom --name=seed-users
 
 ```
@@ -6911,9 +6943,8 @@ drizzle-kit generate --custom --name=seed-users
 
 ```
 
-```
+```sql
 -- ./drizzle/0001_seed-users.sql
-
 INSERT INTO "users" ("name") VALUES('Dan');
 INSERT INTO "users" ("name") VALUES('Andrew');
 INSERT INTO "users" ("name") VALUES('Dandrew');
@@ -6930,7 +6961,7 @@ custom
 name
 カスタム名でマイグレーションを生成
 
-```
+```terminal
 npx drizzle-kit push --name=init
 npx drizzle-kit push --name=seed_users --custom
 
@@ -6969,7 +7000,8 @@ npx drizzle-kit push --name=seed_users --custom
 
 ```
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7000,13 +7032,11 @@ npx drizzle-kit generate --config=./configs/drizzle.config.ts --name=seed-users 
 
 ```
 
-```
+```sql
 -- ./drizzle/0001_seed-users.sql
-
 INSERT INTO "users" ("name") VALUES('Dan');
 INSERT INTO "users" ("name") VALUES('Andrew');
 INSERT INTO "users" ("name") VALUES('Dandrew');
-
 
 ```
 
@@ -7014,7 +7044,7 @@ INSERT INTO "users" ("name") VALUES('Dandrew');
 
 ### migrate
 
-```
+```terminal
 drizzle-kit migrate
 
 ```
@@ -7027,7 +7057,8 @@ drizzle-kit migrate を使うと、drizzle-kit generate で生成された SQL m
 
 drizzle-kitのmigrateコマンドでは、drizzle.config.ts設定ファイルまたはCLIオプションで、方言とデータベース接続の認証情報を指定する必要があります。
 
-```With config file
+```tsx
+// With config file
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -7041,12 +7072,13 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit migrate
 
 ```
 
-```As CLI options
+```terminal
+# As CLI options
 npx drizzle-kit migrate --dialect=postgresql --url=postgresql://user:password@host:port/dbname
 
 ```
@@ -7064,7 +7096,8 @@ npx drizzle-kit migrate --dialect=postgresql --url=postgresql://user:password@ho
 このテーブルとスキーマ(PostgreSQLのみ)はdrizzle設定ファイルを使ってカスタマイズできます：
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   schema: "./src/schema.ts",
@@ -7087,7 +7120,7 @@ export default defineConfig({
 
 プロジェクト内に複数の設定ファイルを持つことができ、複数のデータベースステージや同じプロジェクト上に複数のデータベースがある場合に非常に便利です。
 
-```
+```terminal
 npx drizzle-kit migrate --config=drizzle-dev.config.ts
 npx drizzle-kit migrate --config=drizzle-prod.config.ts
 
@@ -7120,7 +7153,8 @@ drizzle-kitのgenerateコマンドとdrizzle-kitのmigrateコマンドを使っ�
 
 ```
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7137,7 +7171,8 @@ export default defineConfig({
 
 ```
 
-```src/schema.ts
+```tsx
+// src/schema.ts
 import * as p from "drizzle-orm/pg-core";
 
 export const users = p.pgTable("users", {
@@ -7149,7 +7184,7 @@ export const users = p.pgTable("users", {
 
 コマンドを実行します。
 
-```
+```terminal
 npx drizzle-kit generate --name=init
 
 ``
@@ -7167,7 +7202,7 @@ npx drizzle-kit generate --name=init
 
 ```
 
-```
+```sql
 -- ./drizzle/0000_init.sql
 
 CREATE TABLE "users"(
@@ -7179,7 +7214,7 @@ CREATE TABLE "users"(
 
 コマンドを実行します。
 
-```
+```terminal
 npx drizzle-kit migrate
 
 ```
@@ -7200,7 +7235,8 @@ drizzle-kit push は、SQL ファイルを生成することなく、スキー�
  drizzle-kit push では、drizzle.config.ts設定ファイルまたはCLIオプションで、方言、スキーマファイルへのパス、データベース接続URLまたはuser:password@host:port/dbパラメータを指定する必要があります。
 
 
-```With config file
+```tsx
+// With config file
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -7214,14 +7250,15 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit push
 
 ```
 
 -
 
-```With CLI options
+```terminal
+# With CLI options
 npx drizzle-kit push --dialect=postgresql --schema=./src/schema.ts --url=postgresql://user:password@host:port/dbname
 
 ```
@@ -7266,7 +7303,8 @@ tablesFilters、schemaFilter、extensionFilters オプションでテーブル�
 drizzle-kitがpublicスキーマのすべてのテーブルのみを操作するように設定し、postgis拡張がインストールされていることをdrizzle-kitに知らせます。
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7282,7 +7320,7 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit push
 
 ```
@@ -7302,7 +7340,7 @@ drizzle-kit pushにはcliのみのオプションのリストがあります。
 | force   | データ損失を伴うすべての文を自動的に承認する。 |
 
 
-```
+```terminal
 npx drizzle-kit push --strict --verbose --force
 
 ```
@@ -7329,12 +7367,13 @@ npx drizzle-kit push --strict --verbose --force
 
 
 
-```
+```terminal
 npx drizzle-kit push dialect=postgresql schema=src/schema.ts url=postgresql://user:password@host:port/dbname
 
 npx drizzle-kit push dialect=postgresql schema=src/schema.ts driver=pglite url=database/
 
 npx drizzle-kit push dialect=postgresql schema=src/schema.ts --tablesFilter=‘user*’ --extensionsFilters=postgis url=postgresql://user:password@host:port/dbname
+
 ```
 
 #### Extended example
@@ -7351,7 +7390,8 @@ npx drizzle-kit push dialect=postgresql schema=src/schema.ts --tablesFilter=‘u
 
 ```
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7364,7 +7404,8 @@ export default defineConfig({
 
 ```
 
-```src/schema.ts
+```tsx
+// src/schema.ts
 import * as p from "drizzle-orm/pg-core";
 
 export const users = p.pgTable("users", {
@@ -7376,14 +7417,14 @@ export const users = p.pgTable("users", {
 
 コマンドを実行します。
 
-```
+```terminal
 npx drizzle-kit push
 
 ```
 
 データベースから既存の（空の）スキーマを取り出し、SQLマイグレーションを生成し、それをフードの下で適用します。
 
-```SQL文
+```sql
 CREATE TABLE "users"(
   id serial primary key,
   name text,
@@ -7406,7 +7447,8 @@ TypeScriptプロジェクトの外部でデータベーススキーマを管理�
 drizzle-kitのpullでは、dialectとデータベース接続URLまたはuser:password@host:port/dbパラメータを指定する必要があります：
 
 
-```With config file
+```tsx
+// With config file
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -7419,14 +7461,15 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit pull
 
 ```
 
 -
 
-```With CLI options
+```terminal
+// With CLI options
 npx drizzle-kit pull --dialect=postgresql --url=postgresql://user:password@host:port/dbname
 
 ```
@@ -7457,7 +7500,8 @@ tablesFilters、schemaFilter、extensionFilters オプションでテーブル�
 
 drizzle-kitがpublicスキーマのすべてのテーブルのみを操作するように設定し、postgis拡張がインストールされていることをdrizzle-kitに知らせます。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7473,7 +7517,7 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit push
 
 ```
@@ -7504,7 +7548,7 @@ npx drizzle-kit push
 | extensionsFilters| データベース拡張の内部フィルター  | |
 
 
-```
+```terminal
 npx drizzle-kit pull --dialect=postgresql --schema=src/schema.ts --url=postgresql://user:password@host:port/dbname
 npx drizzle-kit pull --dialect=postgresql --schema=src/schema.ts --driver=pglite url=database/
 npx drizzle-kit pull --dialect=postgresql --schema=src/schema.ts --tablesFilter=‘user*’ --extensionsFilters=postgis url=postgresql://user:password@host:port/dbname
@@ -7525,7 +7569,8 @@ drizzle-kit check コマンドを使用すると、生成された SQL マイグ
 
  drizzle-kit check コマンドを使用するには、drizzle.config.ts 設定ファイルまたは CLI オプションで、方言とデータベース接続の認証情報を指定する必要があります。
 
-```With config file
+```tsx
+// With config file
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -7535,14 +7580,15 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit check
 
 ```
 
 -
 
-```As CLI options
+```terminal
+# As CLI options
 npx drizzle-kit check --dialect=postgresql
 
 ```
@@ -7566,9 +7612,10 @@ npx drizzle-kit check --dialect=postgresql
 | out | マイグレーションフォルダ。 | `./drizzle` |
 | config | 設定ファイルのパス。 | `drizzle.config.ts` |
 
-```
+```terminal
 npx drizzle-kit check --dialect=postgresql
 npx drizzle-kit check --dialect=postgresql --our=./migrations-folder
+
 ```
 
 
@@ -7586,7 +7633,8 @@ drizzle-kit up コマンドを使うと、drizzle スキーマスナップショ
 drizzle-kit up コマンドは、drizzle.config.ts 設定ファイルまたは CLI オプションで指定できます。
 
 
-```With config file
+```tsx
+// With config file
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -7596,14 +7644,15 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit up
 
 ```
 
 -
 
-```As CLI options
+```terminal
+# As CLI options
 npx drizzle-kit up --dialect=postgresql
 
 ```
@@ -7638,7 +7687,8 @@ drizzle-kit studio コマンドは local.drizzle.studio にホストされてい
 
 デフォルトでは、127.0.0.1:4983 で Drizzle Studio サーバーを起動します。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7649,7 +7699,7 @@ export default defineConfig({
 
 ```
 
-```
+```terminal
 npx drizzle-kit migrate
 
 ```
@@ -7657,7 +7707,7 @@ npx drizzle-kit migrate
 
 #### Configuring host and port
 
-```
+```terminal
 npx drizzle-kit studio --port=3000
 npx drizzle-kit studio --host=0.0.0.0
 npx drizzle-kit studio --host=0.0.0.0 --port=3000
@@ -7670,7 +7720,7 @@ npx drizzle-kit studio --host=0.0.0.0 --port=3000
 
 verbose フラグを指定することで、すべての SQL 文のロギングを有効にできます。
 
-```
+```terminal
 npx drizzle-kit studio --verbose
 
 ```
@@ -7732,6 +7782,8 @@ Drizzle ORMとDrizzle Kitは完全にオープンソースですが、Studioは�
 
 
 
+---
+
 ## Custom migrations
 
 Migrations with Drizzle Kit
@@ -7739,7 +7791,7 @@ Migrations with Drizzle Kit
 Drizzleでは、Drizzle Kitやデータシーディングでは現在サポートされていないDDL代替のための独自のカスタムSQLマイグレーションを記述するために、空のマイグレーションファイルを生成できます。
 
 
-```
+```terminal
 drizzle-kit generate --custom --name=seed-users
 
 ```
@@ -7755,9 +7807,8 @@ drizzle-kit generate --custom --name=seed-users
 
 ```
 
-```
+```sql
 -- ./drizzle/0001_seed-users.sql
-
 INSERT INTO "users" ("name") VALUES('Dan');
 INSERT INTO "users" ("name") VALUES('Andrew');
 INSERT INTO "users" ("name") VALUES('Dandrew');
@@ -7777,14 +7828,6 @@ INSERT INTO "users" ("name") VALUES('Dandrew');
 このセクションは、マイグレーションフォルダー構造の次のバージョンのリリース直後に更新されます。
 
 詳細な GitHub ディスカッションを読んで、更新を購読できます。
-
----
-
-## Data seeding
-
-Drizzle Kit data seeding
-
-このセクションは、drizzle-seed パッケージのリリース直後に更新されます。
 
 ---
 
@@ -7814,7 +7857,8 @@ Drizzle Kitでは、TypeScriptまたはJavaScriptの設定ファイルで設定�
 
 ```
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7829,7 +7873,8 @@ export default defineConfig({
 
 拡張設定ファイルの例
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7881,7 +7926,7 @@ export default defineConfig({
 ローカル開発用
 サーバー本番用
 
-```
+```terminal
 npx drizzle-kit generate --config=drizzle-dev.config.ts
 npx drizzle-kit generate --config=drizzle-prod.config.ts
 
@@ -7923,7 +7968,8 @@ outパラメータはマイグレーション用のフォルダを定義する�
 
 ```
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7947,7 +7993,8 @@ export default defineConfig({
 | commands | 利用可能なコマンド。`generate`、`migrate`、`push`、`pull`、`check`、`up`が含まれる。 |
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -7985,7 +8032,8 @@ SQLマイグレーションファイル、スキーマのjsonスナップショ�
 | commands | 利用可能なコマンド。`generate`、`migrate`、`push`、`pull`、`check`、`up`が含まれる。 |
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -8017,7 +8065,8 @@ url, user:password@host:port/db params または例外ドライバ(aws-data-api 
 |commands|利用可能なコマンド。`migrate`、`push`、`pull`が含まれる。|
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
@@ -8029,7 +8078,8 @@ export default defineConfig({
 
 ```
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from 'drizzle-kit'
 
 // via connection params
@@ -8064,7 +8114,8 @@ string}`|
 |commands|利用可能なコマンドは`migrate`（マイグレーション）。|
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   schema: "./src/schema.ts",
@@ -8090,7 +8141,8 @@ casing
 "preserve": 元の大文字小文字をそのまま保持します。
 "camel": キャメルケース（例：firstName）に変換します。
 
-```camel
+```tsx
+// camel
 import * as p from "drizzle-orm/pg-core"
 
 export const users = p.pgTable("users", {
@@ -8103,7 +8155,8 @@ export const users = p.pgTable("users", {
 
 ```
 
-```preserve
+```tsx
+// preserve
 import * as p from "drizzle-orm/pg-core"
 
 export const users = p.pgTable("users", {
@@ -8116,14 +8169,14 @@ export const users = p.pgTable("users", {
 
 ```
 
-```
+```sql
 SELECT a.attname AS column_name, format_type(a.atttypid, a.atttypmod) as data_type FROM pg_catalog.pg_attribute a;
 
 ```
 
-```
 以下のように表にしました。
 
+```
 | column_name | data_type |
 |---|---|
 | id | serial |
@@ -8131,7 +8184,6 @@ SELECT a.attname AS column_name, format_type(a.atttypid, a.atttypmod) as data_ty
 | LastName | text |
 | email | text |
 | phone_number | text |
-
 
 ```
 
@@ -8166,7 +8218,8 @@ tablesFilter オプションでは、[「users」, 「user_info」] や 「user*
 | default | デフォルト値は設定されていない（—）。 |
 | commands | 利用可能なコマンドは`generate`、`push`、`pull`。 |
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -8199,7 +8252,8 @@ schemaFilter オプションでは、Drizzle Kit が管理するスキーマの�
 
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   schemaFilter: ["public", "schema1", "schema2"],
@@ -8223,7 +8277,8 @@ extensionsFilters オプションを使用すると、drizzle kit がスキー�
 | default | デフォルト値は`[]`（空の配列）。 |
 | commands | 利用可能なコマンドは`push`、`pull`。 |
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   extensionsFilters: ["postgis"],
@@ -8267,7 +8322,8 @@ Drizzle Kit を使用してスキーマと とくに定義されたロールを�
 
 👇️ デフォルトではdrizzle-kitはロールを管理しないので、drizzle.config.tsで有効にする必要があります。
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   extensionsFilters: entities: {
@@ -8279,7 +8335,7 @@ export default defineConfig({
 
 👇️ 管理者ロールがあり、管理可能なロールのリストから除外したい。
 
-```drizzle.config.ts
+```tsx
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -8296,7 +8352,7 @@ export default defineConfig({
 
 👇️ 管理者ロールがあり、管理可能なロールのリストに加えたい。
 
-```drizzle.config.ts
+```tsx
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -8313,7 +8369,7 @@ export default defineConfig({
 
 Supabaseを使用しており、Supabaseによって定義されたロールを除外したい場合は、プロバイダオプションを使用できます。
 
-```drizzle.config.ts
+```tsx
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -8334,7 +8390,7 @@ Drizzleがデータベースプロバイダによって指定された新しい�
 
 Drizzleでこれを簡単に行うことができます：
 
-```drizzle.config.ts
+```tsx
 // drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
@@ -8364,7 +8420,8 @@ drizzle-kit push コマンドの実行時に、印刷された SQL 文を実行�
 | default | デフォルト値は`false` |
 | commands | `push` |
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   breakpoints: false,
@@ -8397,7 +8454,8 @@ drizzle-kitのプッシュコマンド中にすべてのSQLステートメント
 
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   breakpoints: false,
@@ -8424,7 +8482,8 @@ breakpointsオプションフラグでオン/オフを切り替えることが�
 
 
 
-```drizzle.config.ts
+```tsx
+// drizzle.config.ts
 export default defineConfig({
   dialect: "postgresql",
   breakpoints: false,
@@ -8466,7 +8525,7 @@ Drizzle Kit configuration file
 
 より詳細な設定を行うこともできます。以下はその例です。
 
-```typescript
+```tsx
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -8499,8 +8558,6 @@ export default defineConfig({
   strict: true, // 厳密モード
   verbose: true, // 詳細モード
 });
-
-
 
 ```
 
@@ -8548,35 +8605,33 @@ Drizzle Seed
 
 ## Overview
 
-Drizzle Seedは、データベースにリアルな偽データを生成するためのTypeScriptライブラリよ。
+drizzle-orm@0.36.4以降
 
-#### 重要
-
-drizzle-seedはdrizzle-orm@0.36.4以降でのみ使用できます。このパッチは drizzle-orm@0.36.4 で導入されたため、これより低いバージョンでも実行時には動作しますが、型の問題やIDカラムの問題が発生する可能性があります。
-
-
+Drizzle Seedは、データベースにリアルな偽データを生成するためのTypeScriptライブラリです。
 
 drizzle-seedはTypeScriptライブラリで、決定論的でありながら現実的な偽データを生成してデータベースに投入できます。
 
-シード可能な擬似乱数生成器(pRNG)を利用することで、生成されるデータが一貫しており、異なる実行でも再現可能であることを保証します。
+シード可能な擬似乱数ジェネレーター(pRNG)を利用することで、生成されるデータが一貫しており、異なる実行でも再現可能であることを保証します。
 
-これはテスト、開発、デバッグの目的でとくに有用です。
+これはテスト、開発、デバッグの目的で特に役立ちます。
 
 
 
 #### What is Deterministic Data Generation?
 
-決定論的データ生成とは？
+決定論的データ生成とは何ですか？
 
-決定論的データ生成とは、同じ入力が常に同じ出力を生成することを意味します。drizzle-seedの文脈では、ライブラリを同じシード番号で初期化すると、毎回同じシーケンスの偽データが生成されます。これにより、予測可能で再現性のあるデータセットを得ることができます。
+決定論的データ生成とは、同じ入力が常に同じ出力を生成します。
+drizzle-seedの文脈では、ライブラリを同じシード番号で初期化すると、毎回同じシーケンスの偽データが生成されます。
+これにより、予測可能で再現性のあるデータセットが可能になります。
 
 
 
 #### Pseudorandom Number Generator (pRNG)
 
-擬似乱数生成器（pRNG）
+擬似乱数ジェネレーター（pRNG）
 
-擬似乱数生成器は、乱数の性質に近似した数列を生成するアルゴリズムです。
+擬似乱数ジェネレーターは、乱数の性質に近似した数列を生成するアルゴリズムです。
 
 これはシードと呼ばれる初期値に基づいているため、そのランダム性を制御できます。
 
@@ -8586,7 +8641,7 @@ drizzle-seedはTypeScriptライブラリで、決定論的でありながら現�
 
 #### Benefits of Using a pRNG:
 
-pRNGを使う利点
+擬似乱数ジェネレーター（pRNG）を使う利点
 
 * 一貫性： テストが毎回同じデータで実行されることを保証します。
 
@@ -8600,7 +8655,7 @@ drizzle-seedを使用することで、現実的な偽データを生成する�
 
 ### Installation
 
-```
+```terminal
 npm i drizzle-seed
 
 ```
@@ -8609,9 +8664,12 @@ npm i drizzle-seed
 
 ### Basic Usage
 
-この例では、ランダムな名前とIDで10人のユーザーを作成します。
+この例では、ランダムな名前とIDを持つ10人のユーザーを作成します。
 
-```
+seed.ts
+
+```tsx
+// seed.ts
 import { pgTable, integer, text } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { seed } from "drizzle-seed";
@@ -8630,9 +8688,16 @@ main();
 
 ```
 
+```json
+"drizzle:seed": "tsx ./src/db/seed.ts"
+
+```
+
 
 
 ### Options
+
+オプション
 
 #### count
 
@@ -8640,7 +8705,7 @@ main();
 
 しかし、テストにもっと多くのエンティティが必要な場合は、seed オプション・オブジェクトで指定できます。
 
-```
+```tsx
 await seed(db, schema, { count: 1000 });
 
 ```
@@ -8653,7 +8718,7 @@ await seed(db, schema, { count: 1000 });
 
 どのような新しい数値でも、一意な値の集合が生成されます
 
-```
+```tsx
 await seed(db, schema, { seed: 12345 });
 
 ```
@@ -8664,7 +8729,7 @@ await seed(db, schema, { seed: 12345 });
 
 drizzle-seedを使用すると、データベースを簡単にリセットし、テストスイートなどで新しい値をシードできます。
 
-```
+```tsx
 // path to a file with schema you want to reset
 import * as schema from "./schema.ts";
 import { reset } from "drizzle-seed";
@@ -8682,7 +8747,7 @@ main();
 
 PostgreSQLの場合、drizzle-seedパッケージはリセット関数を実行した後、すべてのテーブルが空になるようにCASCADEオプション付きのTRUNCATE文を生成します。
 
-```
+```sql
 TRUNCATE tableName1, tableName2, ... CASCADE;
 
 ```
@@ -8709,7 +8774,7 @@ https://orm.drizzle.team/docs/seed-overview#weighted-random
 
 #### API
 
-```
+```tsx
 await seed(db, schema).refine((f) => ({
   users: {
     columns: {},
@@ -8724,7 +8789,8 @@ await seed(db, schema).refine((f) => ({
 
 何が起こるかを説明するいくつかの例を見てみましょう。
 
-```schema.ts
+```tsx
+// schema.ts
 import { pgTable, integer, text } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
@@ -8742,7 +8808,8 @@ export const posts = pgTable("posts", {
 
 例 1: ユーザー テーブルのみに 20 個のエンティティをシードし、名前列のシード ロジックを改良する
 
-```index.ts
+```tsx
+// index.ts
 import { drizzle } from "drizzle-orm/node-postgres";
 import { seed } from "drizzle-seed";
 import * as schema from './schema.ts'
@@ -8766,7 +8833,8 @@ main();
 
 例 2: users テーブルに 20 エンティティをシードし、posts テーブルにシードして各ユーザに 10 件の投稿を追加し、posts から users への参照を作成する。
 
-```index.ts
+```tsx
+// index.ts
 import { drizzle } from "drizzle-orm/node-postgres";
 import { seed } from "drizzle-seed";
 import * as schema from './schema.ts'
@@ -8792,7 +8860,8 @@ main();
 
 usersのid生成を改良して、10000から20000までの任意のintを与え 一意性を保つようにし、postsを改良して自分で定義した配列から値を取得するようにします。
 
-```index.ts
+```tsx
+// index.ts
 import { drizzle } from "drizzle-orm/node-postgres";
 import { seed } from "drizzle-seed";
 import * as schema from './schema.ts'
@@ -8859,7 +8928,8 @@ Drizzle Seed パッケージには、weighted random を使用できる場所が
 
 両方の例を確認してみましょう：
 
-```schema.ts
+```tsx
+// schema.ts
 import { pgTable, integer, text, varchar, doublePrecision } from "drizzle-orm/pg-core";
 
 export const orders = pgTable(
@@ -8893,7 +8963,8 @@ export const details = pgTable(
 
 例 1： unitPrice生成ロジックを改良し、ランダムに5000個の価格を生成します。10-100の間の価格が生成される確率は30%、100-300の間の価格が生成される確率は70%です。
 
-```index.ts
+```tsx
+// index.ts
 import { drizzle } from "drizzle-orm/node-postgres";
 import { seed } from "drizzle-seed";
 import * as schema from './schema.ts'
@@ -8928,7 +8999,8 @@ main();
 
 例2： 各注文に対して、60％の確率で1～3の詳細を、30％の確率で5～7の詳細を、10％の確率で8～10の詳細を生成する。
 
-```index.ts
+```tsx
+// index.ts
 import { drizzle } from "drizzle-orm/node-postgres";
 import { seed } from "drizzle-seed";
 import * as schema from './schema.ts'
@@ -8958,7 +9030,8 @@ main();
 
 ### Complex example
 
-```main.ts
+```tsx
+// main.ts
 import { seed } from "drizzle-seed";
 import * as schema from "./schema.ts";
 
@@ -9087,7 +9160,8 @@ main();
 
 ```
 
-```schema.ts
+```tsx
+// schema.ts
 import type { AnyPgColumn } from "drizzle-orm/pg-core";
 import { integer, numeric, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
@@ -9220,7 +9294,7 @@ Drizzleテーブルにおける3番目のパラメータの型制限：
 |-----------|------------|---|
 | defaultValue | — | any |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9245,7 +9319,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 | values | — | `any[]` | `{ weight: number; values: any[] }[]` |
 | isUnique | データベースのカラムのユニーク性 | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9288,7 +9362,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 | minValue | -maxValue | number |
 
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9328,7 +9402,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 | minValue | -maxValue | number bigint |
 
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9358,7 +9432,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9385,7 +9459,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 いずれかのパラメータ（minDateまたはmaxDate）のみが指定された場合、指定されていないパラメータは、指定されたパラメータに8年を加算または減算して計算されます。
 
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9413,7 +9487,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9436,7 +9510,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9459,7 +9533,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9482,7 +9556,7 @@ YYYY 形式で年を生成します。
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9501,7 +9575,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 
 固定構造のJSONオブジェクトを生成します。
 
-```
+```tsx
 { email, name, isGraduated, hasJob, salary, startedWorking, visitedCountries}
 
 // or
@@ -9516,7 +9590,7 @@ JSON構造はランダムに選ばれます。
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9541,7 +9615,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique     | カラムのユニーク性        | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9567,7 +9641,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —                 | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9581,7 +9655,6 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
   },
 }));
 
-
 ```
 
 
@@ -9594,7 +9667,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9608,7 +9681,6 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
   },
 }));
 
-
 ```
 
 
@@ -9620,7 +9692,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9634,7 +9706,6 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
   },
 }));
 
-
 ```
 
 
@@ -9647,7 +9718,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9673,7 +9744,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9698,7 +9769,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 | prefixes | 使用するデータセットのプレフィックス | string[] |
 | generatedDigitsNumbers | `7`（プレフィックスが定義されている場合） | number number[] |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 //generate phone number using template property
@@ -9717,7 +9788,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 
 
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 //generate phone number using template property
@@ -9736,7 +9807,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 
 
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 //generate phone number using prefixes and generatedDigitsNumbers properties
@@ -9756,7 +9827,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 
 ```
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 // generate phone number using prefixes and generatedDigitsNumbers properties but with different generatedDigitsNumbers for prefixes
@@ -9778,7 +9849,6 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 
 
 
-
 ### country
 
 国名を生成します。
@@ -9787,7 +9857,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9813,7 +9883,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9839,7 +9909,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9865,7 +9935,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9888,7 +9958,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9914,7 +9984,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | —              | —                 | —  |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9937,7 +10007,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 |-----------|------------|---|
 | isUnique   | —          | boolean |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9966,7 +10036,7 @@ lorem ipsumは、
 |-----------|------------|---|
 | sentencesCount   | 1   | number |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -9996,7 +10066,7 @@ x 座標と y 座標の指定された範囲内で 2D ポイントを生成し�
 | maxYValue | `10 * 1000` （isUniqueがfalseの場合）<br>`10 * count` （isUniqueがtrueの場合） | number |
 | minYValue | -maxYValue | number |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -10030,7 +10100,7 @@ await seed(db, schema, { count: 1000 }).refine((funcs) => ({
 
 線のパラメータa,b,cを指定した範囲内で2次元直線を生成します。
 
-```
+```tsx
 line equation: a*x + b*y + c = 0
 
 ```
@@ -10045,7 +10115,7 @@ line equation: a*x + b*y + c = 0
 | maxCValue | `10 * 1000` （isUniqueがfalseの場合）<br>`10 * count` （isUniqueがtrueの場合） | number |
 | minCValue | -maxCValue | number |
 
-```
+```tsx
 import { seed } from "drizzle-seed";
 
 await seed(db, schema, { count: 1000 }).refine((funcs) => ({
@@ -10428,7 +10498,7 @@ https://github.com/drizzle-team/drizzle-orm/blob/main/drizzle-orm/src/sql/expres
 
 フィルタ演算子やSQL関数に提供される値はすべて、自動的にパラメータ化されます。たとえば、このクエリは
 
-```
+```tsx
 await db.select().from(users).where(eq(users.id, 42));
 
 👆️これは、👇️下のように翻訳されます
@@ -10822,12 +10892,14 @@ Drizzleはすべての方言で現在の構文をサポートしており、す�
 
 SQL Update
 
-```
+```tsx
 await db.update(users)
   .set({ name: 'Mr. Dan' })
   .where(eq(users.name, 'Dan'));
 
 ```
+
+
 
 更新に渡すオブジェクトは、データベーススキーマのカラム名と一致するキーを持つ必要があります。
 
@@ -10835,7 +10907,7 @@ await db.update(users)
 
 次のように、更新オブジェクトで使用する値として SQL を渡すことができます。
 
-```
+```tsx
 await db.update(users)
   .set({ updatedAt: sql`NOW()` })
   .where(eq(users.name, 'Dan'));
