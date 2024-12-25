@@ -128,6 +128,41 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 
 
 
+## Google AI Studio
+
+https://aistudio.google.com/prompts/new_chat
+
+Googleが提供する生成AIアプリケーション開発のためのプラットフォームです。
+中身はGemini 2.0です。
+
+Google AI Studioに大型アップデートが来てそれがすごかったです、より便利になりました。
+
+このサイトでは従来のAIとの会話に加えて
+* Webカメラ越しの対話
+* 画面共有しての対話
+が可能です。
+
+### Google AI Studio の Stream Realtime の使い方
+サイトの左サイドメニューからStream Realtimeを選択して、
+
+画面中央下部の
+Talk to Gemini (文字での対話 これまでのAIサイトと同じです。)
+Show Gemini (Webカメラ越しの対話)
+Share your screen (画面共有しての対話)
+を選択します。
+
+そして、「右」サイドのメニュー の 「Output format」 で Audio (音声)か Text (テキスト)を選択します。
+
+注意点
+音声での対話をすると、その後でテキストの出力に変更できません。
+コードをなどを聞きたいときは、最初に出力をテキストに変えておくと良いと思います。
+
+
+
+
+
+
+
 
 
 
@@ -433,25 +468,6 @@ Postgres DB付きのアプリ開発者用です。
 
 
 
-## Google AI Studio
-
-https://aistudio.google.com/app/prompts/new_chat
-
-Googleが提供する生成AIアプリケーション開発のためのプラットフォームです。
-
-このサイトでは従来のAIとの会話に加えて
-* Webカメラ越しの対話
-* 画面共有しての対話
-が可能です。
-
-
-
-
-
-
-
-
-
 
 
 # ティア 2
@@ -666,7 +682,7 @@ Supabaseとの連携 簡単！
 
 自分は課金してないのでここに置きます。
 
-有料で力を発揮します。 
+有料で力を発揮します。
 これはCursorエディタでほんのちょっとだけ有料版が使えます。
 Cursorエディタとの相性は抜群に良かったです、お金持ちなら課金して使うとレジェンドクラスに便利なツールだと思います。
 
