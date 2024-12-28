@@ -73,11 +73,19 @@ https://x.com/dshukertjrjp/status/1859615952717205855
 
 絶対相対評価です。
 
-## gemini
+## Gemini 2.0
 
 https://gemini.google.com/app
 
-gemini 2.0になり、能力の数値的には2024年12月時点で他のAIと比べるサイトで3位になっていました。
+Gemini 2.0になり、能力の数値的には2024年12月時点で他のAIと比べるサイトで3位になっていました。
+
+[参考]遂にChatGPT Plusを解約してGeminiに移行した話
+
+https://zenn.dev/zuzuzu/articles/gemini_vs_chatgpt
+
+リポジトリ全体コードレビュー: GitHubリポジトリ全体を読み込み、潜在的なバグや改善点を指摘
+
+マルチモーダル対応: テキストだけでなく、画像や音声や画面共有でも認識可能
 
 使う主な目的
 

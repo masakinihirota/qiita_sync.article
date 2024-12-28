@@ -4,6 +4,177 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+
+追記 2024年12月29日
+AIを使う時、毎回同じ定型のルールをAIにお願いしていませんか？
+それがシステムとして組み込める機能です。
+
+Cursor の Rules for AI 全体のルール設定 翻訳 #Next.js - Qiita
+https://qiita.com/masakinihirota/items/4b55471205f7dd17482e
+
+Cursorではプロンプトを書く時、いつも同じルールを決めておくことが出来ます。
+それが👆️この記事で、全体ルールと呼んでいるものです。
+
+※CursorとはVSCodeのフォーク版のエディタでAIを使うことに特化しています。
+
+それと同じことがGitHub Copilotでも出来るようになりました。
+
+Customize GitHub Copilot in VS Code
+
+https://code.visualstudio.com/docs/copilot/copilot-customization
+
+GitHub CopilotでTypeScriptの コード生成するワザップ - Speaker Deck
+
+https://speakerdeck.com/starfish719/github-copilotdetypescriptno-kodosheng-cheng-suruwazatupu?slide=3
+
+記事にしたいのですがちょっと時間がないので👇️軽くまとめておきます。
+
+<details><summary>まとめ(折りたたみ)</summary>
+
+VSCodeの setting.json (設定ファイル) に記入します。
+※色んなところで調べているので、かなりルールがずさんです。
+
+方法は二通り、Cursorの方法と ほとんど同じやりかたです。
+
+* VSCodeの 設定ファイル **setting.json** に書きエディタ単位で適用させるか。
+* **.github/copilot-instructions.md** ファイルをリポジトリ内に作り、リポジトリ単位でルールを決めてチーム単位で適用させるか。
+です。
+
+試行錯誤中なので日本語、英語が混じってまだ混沌としています。
+
+```setting.json
+  //
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "常に日本語でわかりやすい言葉を選び、丁寧な表現を心がけてください。"
+    },
+    {
+      "text": "初心者にも分かりやすく説明をお願いします。専門用語はできるだけ避け、どうしても必要な場合は、簡単な説明を加えてください。"
+    },
+    {
+      "text": "プログラミングの基本概念 変数、関数、ループなどの概念をわかりやすく説明してください。"
+    },
+    {
+      "text": "コードの例を示す際は、各行の目的を詳細なコメントで説明し、実行結果も示してください。"
+    },
+    {
+      "text": "良いコーディングの習慣やベストプラクティスがあるなら、折りに触れアドバイスを下さい。"
+    },
+    {
+      "text": "エラーメッセージは、エラーメッセージの意味を解説し、デバッグの手順を段階的に説明してください。"
+    },
+    {
+      "text": "複雑な問題は、小さなステップに分割し一つずつ丁寧に解説してください。"
+    },
+    {
+      "text": "質問の意図が理解できなかった場合はそのことを教えて下さい。"
+    },
+    {
+      "text": "常に励ましの言葉を添えてください、学習意欲が高まるよう工夫をお願いします。"
+    },
+    {
+      "text": "関数宣言はアロー関数を使うこと"
+    },
+    {
+      "text": "変数名はキャメルケースを使うこと"
+    },
+    {
+      "text": "JSDoc を記述すること"
+    },
+    {
+      "text": "すべてのメソッドには、そのメソッドの目的を説明するコメントを追加してください。 そのコメントには、メソッドの引数と返り値についての情報も含めてください。"
+    },
+    {
+      "text": "すべてのクラスには、そのクラスの目的を説明するコメントを追加してください。その コメントには、クラスのプロパティとメソッドについての情報も含めてください。"
+    }
+  ],
+  "github.copilot.chat.testGeneration.instructions": [
+    {
+      "text": "常にReactコンポーネントのテストにはvitestを使う。"
+    },
+    {
+      "text": "JavaScriptコードのテストにはJestを使う。"
+    },
+    {
+      "file": "code-style.md" // `code-style.md`から指示をインポート
+    },
+    {
+      "text": "vitestを使用してください"
+    },
+    {
+      "text": "Use underscore for field names."
+    },
+    {
+      "text": "Use 'assert' for assertions."
+    },
+    {
+      "text": "Use 'setUp' and 'tearDown' for setup and teardown."
+    },
+    {
+      "text": "Use 'setUpClass' and 'tearDownClass' for class setup and teardown."
+    },
+    {
+      "text": "Use 'skip' to skip tests."
+    },
+    {
+      "text": "Use 'skipIf' to skip tests conditionally."
+    },
+    {
+      "text": "Prefix test method names with 'test_'."
+    },
+    {
+      "text": "Use 'assertEqual' for equality checks."
+    },
+    {
+      "text": "Use 'assertNotEqual' for inequality checks."
+    },
+    {
+      "text": "Use 'assertTrue' for truth checks."
+    },
+    {
+      "text": "Use 'assertFalse' for falsehood checks."
+    },
+    {
+      "text": "Prefix test class names with 'Test'."
+    },
+    {
+      "text": "Use 'assertRaises' for exception checks."
+    },
+    {
+      "text": "Use 'unittest.mock' for mocking dependencies."
+    }
+  ],
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.reviewSelection.instructions": [
+    {
+      "text": "コードの可読性を重視してレビューすること。"
+    },
+    {
+      "text": "エラーハンドリングが適切か確認すること。"
+    },
+    {
+      "text": "テストケースがカバーされているか確認すること。"
+    }
+  ],
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "コミットメッセージは短く、要点を押さえたものにすること。"
+    },
+    {
+      "text": "関連するチケット番号を含めること。"
+    },
+    {
+      "text": "変更内容の概要を明確に書くこと。"
+    }
+  ],
+
+```
+
+</details>
+
+追記終了
+
+
 追記 2024年11月27日
 GitHub Copilotがうまく使えない方へ、思った通りの提案を出してくれない人へ。
 
