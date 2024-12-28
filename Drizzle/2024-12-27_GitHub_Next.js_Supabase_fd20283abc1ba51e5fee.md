@@ -120,7 +120,7 @@ touch .env
 
 ```.env
 # 環境変数
-# Next.js ローカル 15
+# Next.js 15
 # Supabase ローカルローカル環境
 GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callback"
 GITHUB_CLIENT_ID="Ox***"
@@ -334,6 +334,29 @@ export const supabase = createClient(
 );
 
 ```
+
+## src\app\auth\callback\route.ts
+
+```src\app\auth\callback\route.ts
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+
+export async function GET(request: Request) {
+  const requestUrl = new URL(request.url);
+  const code = requestUrl.searchParams.get('code');
+
+  if (code) {
+    const supabase = createRouteHandlerClient({ cookies });
+    await supabase.auth.exchangeCodeForSession(code);
+  }
+
+  return NextResponse.redirect(new URL('/', requestUrl.origin));
+}
+
+```
+
+
 
 以上でコードは終了です。
 
