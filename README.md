@@ -1,3 +1,4 @@
+2025年
 
 ![Qiita Sync](https://github.com/masakinihirota/qiita_sync.article/actions/workflows/qiita_sync_check.yml/badge.svg)
 
