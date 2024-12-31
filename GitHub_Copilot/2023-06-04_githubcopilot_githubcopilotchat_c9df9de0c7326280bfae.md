@@ -4,11 +4,17 @@ tags:    githubcopilot,githubcopilotchat
 id:      c9df9de0c7326280bfae
 private: false
 -->
+# GitHub Copilotシリーズ
+
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
 
 https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
 
 https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+https://qiita.com/masakinihirota/items/1694715063247574467d
+
+
 
 **Github Copilot chat** は**Github Copilot** で課金していれば、無料で利用できます。
 
