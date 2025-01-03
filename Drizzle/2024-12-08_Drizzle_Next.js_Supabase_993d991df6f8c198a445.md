@@ -19,6 +19,14 @@ Next.js Supabase Drizzleを利用します。
 Supabaseはローカルで開発とテストを、サーバーで運用をします。
 DrizzleはローカルのSupabase DBを、TypeScriptのコードで管理します。
 
+自分はこのページをNotebookLMに登録して使用しています。
+
+NotebookLM
+
+https://notebooklm.google.com/
+
+
+
 # Drizzleの肝
 
 👇️この図がDrizzleで一番重要な部分です、後はこれの関連でしかありません。
