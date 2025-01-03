@@ -119,16 +119,27 @@ touch .env
 `.env`ファイルに以下を記述します。
 
 ```.env
+# NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
 # 環境変数
 # Next.js 15
-# Supabase ローカルローカル環境
+# GITHUB ローカル環境
 GITHUB_REDIRECT_URI="http://127.0.0.1:54321/auth/v1/callback"
-GITHUB_CLIENT_ID="Ox***"
-GITHUB_SECRET="e3***"
+GITHUB_CLIENT_ID="Ox****"
+GITHUB_SECRET="e3*****"
 
+# ローカルのSupabase環境変数
 NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="ey***"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="ey*****"
+
+# Drizzleの環境変数
+# ローカルのSupabaseへの接続用
+DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+
+# サーバーのSupabaseへの接続用
+# DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-SUPABASE].supabase.co:5432/postgres
 
 ```
 
