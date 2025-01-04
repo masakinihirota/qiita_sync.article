@@ -378,19 +378,68 @@ expect(emailInput).toBeInTheDocument();
 
 ### ちょっとしたテクニック2
 
-VSCodeを使うと自動補完で
-.then()
-と、このように()が自動で補完されますが、
-GitHub Copilotの提案が出ないときがあります。
-提案としてはそれで完成していると判断しているからです。
+```page.tsx
+<a href="/">Home</a>
 
-なのでわざと
-.then(
-)
-とこのように改行させて
-.then(●
-)
-●の部分にカーソルを持ってくると、そのカッコ内の提案をしてくれます。
+```
+
+👆このコードに TailwindCSS で装飾を追加したいと思います。
+
+```page.tsx
+{/* 中央に配置 */}
+<a className='' href="/">Home</a>
+
+```
+
+👆TailwindCSS の装飾を追加するために、
+
+* コメントを追加しました。
+* `className=''` とTailwindCSSの設定をしました。
+
+しかし、カーソルを装飾部分に持っていっても、GitHub Copilot の提案は出てきません。
+これは、提案がすでに完了している、もしくは適切な場所ではないと判断されるためです。
+
+なのでわざと、改行を入れて提案をさせます。
+
+```page.tsx
+{/* 中央に配置 */}
+<a className='
+' href="/">Home</a>
+
+```
+
+このように改行を入れて、
+
+```page.tsx
+{/* 中央に配置 */}
+<a className='●
+' href="/">Home</a>
+
+```
+
+●の部分にカーソルを持ってくると、そのカッコ内の提案が表示されます。
+
+1回目の提案
+
+```page.tsx
+{/* 中央に配置 */}
+<a className='block text-center mt-4
+' href="/">Home</a>
+
+```
+
+2回目の提案
+
+```page.tsx
+{/* 中央に配置 */}
+<a className='block text-center mt-4 text-blue-500 underline
+' href="/">Home</a>
+
+```
+
+👆1回目の提案で中央の配置のコードが追加され、
+2回の提案で色を変えて、アンダーラインをひくコードが追加されました。
+このあと改行を元に戻すと完成になります。
 
 
 
