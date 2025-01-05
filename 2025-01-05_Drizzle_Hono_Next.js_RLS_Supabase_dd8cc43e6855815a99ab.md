@@ -995,9 +995,9 @@ Supabaseのダッシュボードで確認すると、ユーザーが登録され
 
 # Seeding(テーブルへのデータ投入)
 
-次はDrizzleの機能を用いて初期データを登録しておきます。
+次はDrizzleの機能を用いて初期データを登録します。
 
-rootsテーブルと、user_profilesテーブルに初期データを登録します。
+rootsテーブルと、user_profilesテーブルにseedデータを登録することを目標とします。
 
 drizzle-seed を利用します。
 
@@ -1008,12 +1008,16 @@ npm i drizzle-seed
 
 
 
-
 # 環境変数を読み込んでくれない
 
-環境変数をチェックすると読み込んでいなかった。
+環境変数をチェックすると読み込んでいませんでした。
 
-対応
+```
+"db:seeds": "tsx src/db/seeds.ts"
+
+```
+
+この tsx コマンドからでは環境変数を読み込んでくれないようなので、dotenvライブラリを使用します。
 
 ```terminal
 npm install dotenv
@@ -1030,18 +1034,21 @@ dotenv.config()
 
 👆️追加します。
 
+console.logを確認すると、.envファイルから環境変数を読んでくれるようになりました。
 
 
 
 ## Seedデータ
 
-### 公式ドキュメントのサンプル
+### Drizzle公式ドキュメントのサンプル
 
 Drizzle ORM - Overview
 
 https://orm.drizzle.team/docs/seed-overview
 
-公式ドキュメントのサンプルをNext.jsとSupabaseでも動くかどうか確認します。
+
+
+Drizzle公式ドキュメントのサンプルをNext.jsとSupabaseでも動くかどうか確認します。
 ※微妙に修正が必要でした。
 
 👇 スキーマをスキーマフォルダから読み込むように変更し、環境変数をライブラリで読み込ませています。
@@ -1109,9 +1116,9 @@ rootsテーブルはauth.usersテーブルとつながっているため
 外部からのアクセスは受け付けてないようです。
 スキーマを渡してもseed関数はエラーのままでした。
 
-なのでSupabaseのseedからダミーデータを挿入します。
+Supabaseにとってauthは特別なスキーマで、セキュリティが理由で外部からのアクセスを禁止しています、どうやらDrizzleツールからのseedデータの挿入も禁止されているようです。
 
-
+Supabase authスキーマに関わっているテーブルに挿入するデータはSQL文を作り直接挿入することにします。
 
 それぞれ10件づつ seedファイルを作成します。
 
@@ -1239,15 +1246,22 @@ values
 
 ```
 
+SupabaseのダッシュボードのSQL Editorに直接貼り付けます。
+
+
+
 ### データの削除したい場合
 
-auth.usersに関連するデータの削除、外部キーでつながっているテーブの全データの削除(テーブルは削除しません)。
+auth.usersに関連するデータの削除、外部キーでつながっているテーブの全データの削除(テーブルは削除しません)を行うSQL文です。
 
 ```sql
 -- auth.usersに関連するデータの削除
 TRUNCATE TABLE auth.users, roots, user_profiles CASCADE;
 
 ```
+
+CASCADE機能でつながっている関連データも全て削除します。
+
 
 
 ### seed.sqlを読み込まないトラブル
@@ -1256,10 +1270,10 @@ TRUNCATE TABLE auth.users, roots, user_profiles CASCADE;
 手動でseed.sql文の中身を SQL Editor で実行します。
 
 
-### seedファイルを複数用意、まとめて読み込み
+
+### seedファイルを複数用意、まとめて読み込ませる方法
 
 1関連テーブル郡(外部キーでつながっている)、1seedファイルを原則にしています。
-
 
 config.toml の[db.seed]を編集します。
 
@@ -1280,6 +1294,9 @@ auth.users.sql
 public.users.sql
 
 ```
+
+SQL文を実行することで、
+ローカルのSupabaseに設定した全てのテーブルにダミーデータの挿入が確認できたらこの章は完了です。
 
 
 
