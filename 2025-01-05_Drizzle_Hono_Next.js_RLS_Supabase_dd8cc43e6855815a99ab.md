@@ -1017,7 +1017,9 @@ npm i drizzle-seed
 
 ```
 
-この tsx コマンドからでは環境変数を読み込んでくれないようなので、dotenvライブラリを使用します。
+.envの環境変数はNext.js用のなのでpackage.jsonに書いた
+tsx コマンドからのコードには環境変数を読み込みません。
+読み込ませるように dotenvライブラリを使用します。
 
 ```terminal
 npm install dotenv
