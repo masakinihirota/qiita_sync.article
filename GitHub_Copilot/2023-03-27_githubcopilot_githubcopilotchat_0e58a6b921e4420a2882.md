@@ -4,6 +4,26 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記 2025年1月7日
+GitHub Copilot AI進化の大まかな段階
+
+1. 提案 GitHub Copilot
+
+2. 説明 GitHub Copilot、GitHub Copilot chat等
+
+3. 自然言語での構築 GitHub Copilot Edits、GitHub Spark(Wait list中)
+自然言語による複数のファイルに指示ができるようになります。
+GitHub Sparkの登場で近い将来主従逆転の時代が来るのではと思います。
+
+1と2はほぼ同時に登場しました。
+3.はここ最近AIの発達により出来るようになりました。
+
+GitHub Copilot はこの3つとも備わっています。
+しかし現状3はまだまだ発展途上です。スタートダッシュは得意ですし知識もほぼ必要ありませんが、ある程度作り込むとAIを操作する側の知識が強く要求されてきます。
+
+追記終了
+
+
 追記 2024年11月27日
 GitHub Copilotがうまく使えない方へ、思った通りの提案を出してくれない人へ。
 
