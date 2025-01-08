@@ -610,7 +610,7 @@ Supabaseダッシュボードの Authentication から削除できます。
 Supabaseのダッシュボードを開き、左サイドメニューのAuthenticationでUsersテーブルの情報が見れます。
 
 そして削除したいユーザーを選択すると、詳細な情報のウィンドウが開かれます。
-そのウィンドウの下に削除ボタンがあるので削除ます。
+そのウィンドウの下に削除ボタンがあるので削除します。
 
 ※auth.usersテーブルからユーザーを削除しても、ユーザーは自動的にサインアウトされません。気をつけてください。
 
@@ -1317,6 +1317,7 @@ DrizzleのクライアントにRLSの上位roleを割り当てられたら動く
 
 
 ----------------------------------------
+----------------------------------------
 
 # Seed値のrefine
 
@@ -1359,40 +1360,48 @@ point: 2D ポイントを生成します。
 line: 2次元直線を生成します。
 
 
+
 ----------------------------------------
 
 # DBへのアクセス方法
 
 現在、選択できるDBへのアクセス手段
 
+調べたところ👇以下の5つが候補です。
+
+Drizzle
+Hono
+Supabase クライアント
+Next.js Server actions
+Next.js route.ts
+
+※実際の開発ではこの中から1、2つ選べばいいでしょうか。
+
 ### Supabaseを利用する方法
 
-1. Supabaseクライアント 
-Supabaseが提供するJavaScriptライブラリを使用してSupabaseに接続します。
-小規模アプリケーション（テーブル数1～2個）に適しています。
-
-2. route.tsファイル 
-Next.jsのAPI Routesを使用してAPIエンドポイントを作成し、Supabaseにアクセスします。
-フロントエンドとバックエンドを分離したい場合に有効です。
-
-3. Honoを使用 
-Honoという軽量WebフレームワークでAPIエンドポイントを作成し、Supabaseにアクセスします。
-パフォーマンス重視の場合に有効です。
-
-4. Drizzleのクエリビルダー 
+1. Drizzleのクエリビルダー 
 Drizzle ORMのクエリビルダーを利用してSQLクエリを生成し、Supabaseからデータを取得します。
 複雑なクエリを実行したい中規模アプリケーション（テーブル数10～99個）に適しています。
 
-5. Next.js Server Actions 
+2. Honoを使用 
+Honoという軽量WebフレームワークでAPIエンドポイントを作成し、Supabaseにアクセスします。
+パフォーマンス重視の場合に有効です。
+開発時に型安全な開発が出来るようになります。
+
+3. Supabaseクライアント 
+Supabaseが提供するJavaScriptライブラリを使用してSupabaseに接続します。
+小規模アプリケーション（テーブル数1～2個）に適しています。
+Next.jsとSupabase直接繋げられます。
+コロケーションに適しています。
+
+4. Next.js Server Actions 
 Next.js 13のServer Actionsを使用してサーバーサイドでSupabaseにアクセスします。
 セキュリティ重視の場合に有効です。
+コロケーションに適しています。
 
-6. 直接SQL文を記述 
-SQL文を直接書いてデータにアクセスする方法。
-
-
-
-
+5. route.tsファイル 
+Next.jsのAPI Routesを使用してAPIエンドポイントを作成し、Supabaseにアクセスします。
+フロントエンドとバックエンドを分離したい場合に有効です。
 
 
 
@@ -1402,12 +1411,54 @@ SQL文を直接書いてデータにアクセスする方法。
 
 
 
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+
+Next.js
+Supabase
+Drizzle
+Hono
+これらのツールを使います。
+
+Honoを利用してSupabaseのpublic.usersテーブルから
+情報を取得して表示します。
+
+AIに聞く
+
+【最強】Honoフル活用事例2024年
+https://zenn.dev/oliver/articles/hono-advent-calendar-2024
+Hono + Drizzle + Zod が最強すぎる
+
+Drizzle + drizzle-zod + Hono + Zod Validatorの組み合わせ、書くことが最小限で型があたってすごい
+
+https://x.com/yusukebe/status/1779857722437238959
+https://x.com/yusukebe/status/1779857722437238959
 
 
 
 
 
 
+
+----------------------------------------
+
+今ホットなHonoを使ってNext.jsのRoute Handlersをハイジャックする
+https://zenn.dev/chot/articles/e109287414eb8c
+
+Hono の導入
+
+```terminal
+npm install hono drizzle-zod zod @hono/zod-validator
+
+```
+
+rute.tsファイルの作成
+
+app/api/[[...route]]/route.ts
 
 
 
@@ -1425,23 +1476,14 @@ Drizzle
 drizzle-zod
 Zod Validator
 
-
-
 # Honoの導入
-
-## Hono とは
-
-Honoは、 高速で軽量なTypeScript製の Web フレームワークです。
-シンプルで直感的な API を提供しており、ルーティング、ミドルウェア、リクエスト/レスポンス処理などの機能を備えています。 
-パフォーマンス に優れていることが特徴で、 小規模な API から大規模な Web アプリケーションまで 、幅広い用途に適しています。
 
 ## Supabase データを Hono で取得
 
 1. Hono のインストール 
 
 ```terminal
-npm install hono
-npm install hono drizzle-zod zod
+npm install hono drizzle-zod zod @hono/zod-validator
 
 ```
 
@@ -1470,7 +1512,8 @@ export default app
 
 ```
 
-3. **Supabase クライアントの初期化**: Supabase クライアントを初期化して、データベースに接続します。
+3. Supabase クライアントの初期化 
+Supabase クライアントを初期化して、データベースに接続します。
 
    ```typescript
    import { createClient } from '@supabase/supabase-js'
@@ -1481,7 +1524,8 @@ export default app
    )
    ```
 
-4. **データの取得**: Supabase クライアントを使って、必要なデータを取得します。
+4. データの取得 
+Supabase クライアントを使って、必要なデータを取得します。
 
    ```typescript
    const { data, error } = await supabase
@@ -1489,7 +1533,8 @@ export default app
      .select('*')
    ```
 
-5. **レスポンスの返却**: 取得したデータを JSON 形式でクライアントに返却します。
+5. レスポンスの返却 
+取得したデータを JSON 形式でクライアントに返却します。
 
    ```typescript
    return c.json(data)
@@ -1497,7 +1542,27 @@ export default app
 
 これらの手順により、Hono を使って Supabase からデータを取得し、ブラウザに表示することができます。 
 
-**注意**: ソースには Hono の具体的な使用方法に関する情報は記載されていません。 上記のコードは一般的な Hono の使用方法に基づいて記述したものであり、実際のコードはプロジェクトの構成や要件によって異なる場合があります。 
+注意 
+ソースには Hono の具体的な使用方法に関する情報は記載されていません。 上記のコードは一般的な Hono の使用方法に基づいて記述したものであり、実際のコードはプロジェクトの構成や要件によって異なる場合があります。 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1506,6 +1571,11 @@ export default app
 
 # データの表示
 Next.js側からデータを表示します。
+
+
+
+
+
 
 ## データの取得
 

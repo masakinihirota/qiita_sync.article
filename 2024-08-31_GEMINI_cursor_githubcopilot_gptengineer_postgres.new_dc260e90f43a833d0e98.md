@@ -1,9 +1,32 @@
 <!--
-title:   私の使用しているAI関連サイト 2024年 12月版
+title:   私の使用しているAI関連サイト UPDATE 2025年1月
 tags:    GEMINI,Perplexity,cursor,database.build,githubcopilot
 id:      dc260e90f43a833d0e98
 private: false
 -->
+# 現在のAIサイトの使い方 2025年1月
+
+現在はGemini 1.5 を最初に使い、その時2.0で聞きたいときはGemini 2.0を使います。
+その次は
+genspark 確かな情報源
+wrtn 速さ
+
+さらに聞きたい時
+Perplexity
+
+コードを書くのは
+GitHub Copilot
+
+固定のAIは
+notebookLMで、ある項目に特化した必要なデータにまとめています。
+
+コンポーネント生成AI
+v0
+
+
+
+
+
 # 評価方法： 絶対相対評価
 
 まず一番よく使う、もしくは好きなAIサイトをトップにおいて固定し(「絶対評価」)、2番目からは1番のサイトと比較して同じぐらい便利か？もしくは一段落ちるか？という感じで「相対評価」していきます。
@@ -18,9 +41,18 @@ private: false
 
 
 
-# 追記: 2024年10月30日
 
-未来: 👇️これからリリース予定の期待しているサービス
+
+
+
+
+
+
+
+
+
+
+# 未来: 👇️これからリリース予定の期待しているサービス
 
 ## GitHub Spark (Wait List中)
 
@@ -46,34 +78,22 @@ https://githubnext.com/projects/github-spark
 
 ## お試し中
 
-AIによる自動デバッグも可能なバグレポートを1クリックで生成する「Jam」を使ってみた！ - paiza times
-
-https://paiza.hatenablog.com/entry/2023/06/07/150000
+無し
 
 ## 良いと噂を聞いたもの
 
-Lovable
-
-https://x.com/dshukertjrjp/status/1859615952717205855
-
->LovableのSupabase連携めっちゃいいですね！
-データベースマイグレーションや設定変更も勝手に行ってくれて、Lovableの画面を出ることなくどんどんアプリが作れてめっちゃ便利です！
-もしまだ触ったことがない人がいたらぜひ触ってみてください！
-
-ただしある人によると、一番最低のランクで課金したが2日でリミットになったそうだ。
-
-
-
 無し
 
-追記終了
 
 
 # ティア 1
 
 絶対相対評価です。
 
-## Gemini 2.0
+## Gemini 1.5、2.0
+
+使用頻度No.1
+2.0の違いがを余り感じない。(そもそも比較してみたことがない、気持ち程度)
 
 https://gemini.google.com/app
 
@@ -131,128 +151,6 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 
 
 
-
-
-
-
-
-## Google AI Studio
-
-https://aistudio.google.com/prompts/new_chat
-
-Googleが提供する生成AIアプリケーション開発のためのプラットフォームです。
-中身はGemini 2.0です。
-
-Google AI Studioに大型アップデートが来てそれがすごかったです、より便利になりました。
-
-このサイトでは従来のAIとの会話に加えて
-* Webカメラ越しの対話
-* 画面共有しての対話
-が可能です。
-
-### Google AI Studio の Stream Realtime の使い方
-サイトの左サイドメニューからStream Realtimeを選択して、
-
-画面中央下部の
-Talk to Gemini (文字での対話 これまでのAIサイトと同じです。)
-Show Gemini (Webカメラ越しの対話)
-Share your screen (画面共有しての対話)
-を選択します。
-
-そして、「右」サイドのメニュー の 「Output format」 で Audio (音声)か Text (テキスト)を選択します。
-
-注意点
-音声での対話をすると、その後でテキストの出力に変更できません。
-コードをなどを聞きたいときは、最初に出力をテキストに変えておくと良いと思います。
-
-
-
-
-
-
-
-
-
-
-
-## Perplexity
-
-https://www.perplexity.ai/
-
-
-
-
-
-
-## wrtn
-
-https://wrtn.jp/
-
-読めません・・・リートンと読むようです。
-
-今は無料で有料AIサービスを仕えると言うので最もよく使うChromeブックマークのブックマークバーの位置においています。
-
-シンプルに早い、ただそれだけです。
-
-他の人格サービスは使っていません。それで十分です。
-
-
-
-それぞれの分野に特化したキャラクターが答えてくれます。
-日本製？でもAIモデルは海外のを利用しています。
-
-有料生成AIを無料・無制限で利用できる「リートン」が大規模リニューアル - 窓の杜
-
-https://forest.watch.impress.co.jp/docs/news/1630839.html
-
-「リートン」は複数の生成AIを日本語対応にしたAIプラットフォーム。「ChatGPT」「Claude」「Stable Diffusion 3」などの最新AIモデルを無料・無制限で利用することが可能。
-
-👆️これらのモデルは使えますが、バージョンの指定はできず、現在どのバージョンを使っているかは不明です。
-
-有料生成AIを無料・無制限で利用できるためか、反応が早い。
-早いのは正義。
-
-外部データを読み込むのに弱い。
-X(Twitter)とかのデータは読み込んでくれなかった。
-
-
-
-## v0
-
-https://v0.dev/chat
-
-テキストプロンプトからUIデザインコンポーネントを自動生成するサービスです。
-
-現在プロジェクト単位で生成可能、Supabase、Vercel連携もできるそうです。
-
-TailwindCSS
-shadcn/ui
-を利用しています。
-
-無料の利用可能 (2024年10月19日 現在)
-
-1日10回 リセット時間で回復。
-
-* リセット時間
-
-無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
-リセット時間が過ぎると試行回数が回復します。
-
-世界標準時0時 = 日本標準時午前9時
-
-UIコンポーネントの生成サービス v0 (+ shadcn/ui TailwindCSS Next.js Supabase) #tailwindcss - Qiita
-https://qiita.com/masakinihirota/items/e7da2254d7d54a6fad04
-
-
-
-
-
-
-
-
-
-
-
 ## GitHub Copilot
 
 https://github.com/features/copilot
@@ -296,17 +194,18 @@ o1-preview
 o1-mini
 AIモデルが選択可能です。
 
-
-
-### GitHub Copilot WorkSpace
+* GitHub Copilot WorkSpace
 
 GitHub Copilot Workspaceは、AIの力を借りて、プログラミング作業を大幅に効率化する新しい開発環境です。
 
-* **自然言語で指示** プログラミング言語ではなく、普段使っている言葉でAIに指示を出すことができます。
+自然言語で指示
+プログラミング言語ではなく、普段使っている言葉でAIに指示を出すことができます。
 
-* **AIが自動でコード生成** あなたの指示に基づいて、AIが自動的にコードを生成したり、修正したりしてくれます。
+AIが自動でコード生成
+あなたの指示に基づいて、AIが自動的にコードを生成したり、修正したりしてくれます。
 
-* **一連の作業を自動化** コードの作成だけでなく、テストやデバッグなど、プログラミングに関わる様々な作業を自動化できます。
+一連の作業を自動化
+コードの作成だけでなく、テストやデバッグなど、プログラミングに関わる様々な作業を自動化できます。
 
 
 
@@ -315,6 +214,91 @@ GitHub Copilot Workspaceは、AIの力を借りて、プログラミング作業
 GitHub Next | Copilot Workspace
 
 https://githubnext.com/projects/copilot-workspace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## notebookLM
+
+https://notebooklm.google.com/
+
+読み込んだ資料で **「のみ」** 答えを出してくれるAIサイトです。
+
+例えば数百ページのPDFファイルでも読み込ませることも可能で、
+質問すると、解説をしてくれて、引用した箇所もきちんと教えてくれます。
+
+Googleの自分専用AI作成サービス「NotebookLM」で学習データにYouTubeの動画を指定可能に - GIGAZINE
+
+https://gigazine.net/news/20240927-google-notebooklm-video-sources/
+
+notebookLMがYoutubeの動画に対応しました。
+
+Youtube動画を読み込ませて (英語の技術動画とか)
+文字起こし
+要約
+Q&A
+日本語に翻訳
+理解度チェッククイズ
+等を作ってもらいます。
+
+英語のリスニングが壊滅的な自分でも内容がわかるようになりました。
+
+
+* 自分がよく使う使い方
+
+電子書籍(PDF版等)を読み込ませて、理解したい部分をコピペして解説をしてもらいます。
+※PDFが文章をコピーできる形式のものの場合。
+
+
+
+
+
+
+
+
+
+
+
+
+
+## wrtn
+
+https://wrtn.jp/
+
+読めません・・・リートンと読むようです。
+
+このサイトは、最新情報を扱っていない場合に使っています。
+反応がシンプルに早い、それで十分です。
+
+
+有料生成AIを無料・無制限で利用できる「リートン」が大規模リニューアル - 窓の杜
+
+https://forest.watch.impress.co.jp/docs/news/1630839.html
+
+「リートン」は複数の生成AIを日本語対応にしたAIプラットフォーム。「ChatGPT」「Claude」「Stable Diffusion 3」などの最新AIモデルを無料・無制限で利用することが可能。
+
+👆️これらのモデルは使えますが、バージョンの指定はできず、現在どのバージョンを使っているかは不明です。
+
+有料生成AIを無料・無制限で利用できるためか、反応が早い。
+早いのは正義。
+
+外部データを読み込むのに弱い。
+X(Twitter)とかのデータは読み込んでくれなかった。
+
+
+
+
+
 
 
 
@@ -373,6 +357,31 @@ PlayStationを様々な軸で並行検索でまとめてください。
 
 
 
+## v0
+
+https://v0.dev/chat
+
+テキストプロンプトからUIデザインコンポーネントを自動生成するサービスです。
+
+現在プロジェクト単位で生成可能、Supabase、Vercel連携もできるそうです。
+
+TailwindCSS
+shadcn/ui
+を利用しています。
+
+無料の利用可能 (2024年10月19日 現在)
+
+1日10回 リセット時間で回復。
+
+* リセット時間
+
+無料だと1日に10回チャットが出来ます、それ以上はリセット時間を過ぎるまで待つ必要があります。
+リセット時間が過ぎると試行回数が回復します。
+
+世界標準時0時 = 日本標準時午前9時
+
+UIコンポーネントの生成サービス v0 (+ shadcn/ui TailwindCSS Next.js Supabase) #tailwindcss - Qiita
+https://qiita.com/masakinihirota/items/e7da2254d7d54a6fad04
 
 
 
@@ -384,36 +393,54 @@ PlayStationを様々な軸で並行検索でまとめてください。
 
 
 
-## notebookLM
-
-https://notebooklm.google.com/
-
-読み込んだ資料で **「のみ」** 答えを出してくれるAIサイトです。
-
-例えば数百ページのPDFファイルでも読み込ませることも可能で、
-質問すると、解説をしてくれて、引用した箇所もきちんと教えてくれます。
-
-Googleの自分専用AI作成サービス「NotebookLM」で学習データにYouTubeの動画を指定可能に - GIGAZINE
-
-https://gigazine.net/news/20240927-google-notebooklm-video-sources/
-
-notebookLMがYoutubeの動画に対応しました。
-
-Youtube動画を読み込ませて (英語の技術動画とか)
-文字起こし
-要約
-Q&A
-日本語に翻訳
-理解度チェッククイズ
-等を作ってもらいます。
-
-英語のリスニングが壊滅的な自分でも内容がわかるようになりました。
 
 
-* 自分がよく使う使い方
+## Supabaseのドキュメント用AI
 
-電子書籍(PDF版等)を読み込ませて、理解したい部分をコピペして解説をしてもらいます。
-※PDFが文章をコピーできる形式のものの場合。
+https://supabase.com/
+
+Supabaseに関する質問をAIが答えてくれます。
+Postgres DB付きのアプリ開発者用です。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Perplexity
+
+https://www.perplexity.ai/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -460,25 +487,58 @@ PostgreSQL系DB付きの本格アプリを作るときにすごい便利なサ�
 
 
 
-## Supabaseのドキュメント用AI
 
-https://supabase.com/
-
-Supabaseに関する質問をAIが答えてくれます。
-Postgres DB付きのアプリ開発者用です。
-
-
-
-
-
-
-
-
-
-
+----------------------------------------
 
 
 # ティア 2
+
+
+## Google AI Studio
+
+https://aistudio.google.com/prompts/new_chat
+
+便利だけど使いこなせていません。
+
+Googleが提供する生成AIアプリケーション開発のためのプラットフォームです。
+中身はGemini 2.0です。
+
+Google AI Studioに大型アップデートが来てそれがすごかったです、より便利になりました。
+
+このサイトでは従来のAIとの会話に加えて
+* Webカメラ越しの対話
+* 画面共有しての対話
+が可能です。
+
+### Google AI Studio の Stream Realtime の使い方
+サイトの左サイドメニューからStream Realtimeを選択して、
+
+画面中央下部の
+Talk to Gemini (文字での対話 これまでのAIサイトと同じです。)
+Show Gemini (Webカメラ越しの対話)
+Share your screen (画面共有しての対話)
+を選択します。
+
+そして、「右」サイドのメニュー の 「Output format」 で Audio (音声)か Text (テキスト)を選択します。
+
+注意点
+音声での対話をすると、その後でテキストの出力に変更できません。
+コードをなどを聞きたいときは、最初に出力をテキストに変えておくと良いと思います。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Cursorエディタ
 
@@ -507,12 +567,10 @@ AIモデルは無料Geminiを使う予定です。
 
 
 
-## Chat Hub
 
-https://chromewebstore.google.com/detail/chathub-gpt-4%E3%80%81gemini%E3%80%81clau/iaakpnchhognanibcahlpcplchdfmgma
 
-これはChromeの拡張機能です。
-有料は6つ、無料は2つまで同時に複数のAIチャットサイトにプロンプトを送れます。
+
+
 
 
 
@@ -569,44 +627,11 @@ Next.jsのアプリを作る時、TailwindCSSの装飾でパーツを作るツ�
 
 
 
-## TinaMind
-
-https://chromewebstore.google.com/detail/tinamind-gpt-4%E6%90%AD%E8%BC%89%E3%81%AEai%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88/befflofjcniongenjmbkgkoljhgliihe
-
-YouTube Summary with ChatGPT & Claudeの上位互換
-
-Google Chromeの拡張機能です。
-
-たくさんの機能が色々ありますが、自分は主にYouTube動画の翻訳 要約に使用しています。
-
-Youtubeで英語の時、英文と翻訳文が上下2行に表示されて便利です。
-
-
-
-## Felo
-
-無料のAI検索エンジン
-
-https://felo.ai/search
-
-検索に加えて、マインドマップ、スライドデザインの作成が出来ます。
-
-PRO版(有料)になると、検索に他のAIモデルを使用できます、300回まで。
-
-無料版でもPRO版機能が1日5回まで使えます。
 
 
 
 
-
-
-
-
-
-
-
-
-
+----------------------------------------
 
 # ティア 3
 
@@ -641,6 +666,46 @@ https://copilot.microsoft.com/
 
 
 # 普通 or 自分には合わなかった
+
+
+## TinaMind
+
+https://chromewebstore.google.com/detail/tinamind-gpt-4%E6%90%AD%E8%BC%89%E3%81%AEai%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88/befflofjcniongenjmbkgkoljhgliihe
+
+YouTube Summary with ChatGPT & Claudeの上位互換
+
+Google Chromeの拡張機能です。
+
+たくさんの機能が色々ありますが、自分は主にYouTube動画の翻訳 要約に使用しています。
+
+Youtubeで英語の時、英文と翻訳文が上下2行に表示されて便利です。
+
+
+
+
+
+
+
+
+
+## Felo
+
+無料のAI検索エンジン
+
+https://felo.ai/search
+
+検索に加えて、マインドマップ、スライドデザインの作成が出来ます。
+
+PRO版(有料)になると、検索に他のAIモデルを使用できます、300回まで。
+
+無料版でもPRO版機能が1日5回まで使えます。
+
+
+
+
+
+
+
 
 
 ## GPT Engineer
@@ -757,6 +822,48 @@ GPT Enginner
 
 Figma Sidesがすごい！特徴や使用感を紹介します | 株式会社LIG(リグ)｜DX支援・システム開発・Web制作
 https://liginc.co.jp/651908
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Chat Hub
+
+最近は1つのAIで済ませて、それで物足りなかったら2つ目を使いに行くという感じで、同時並行の必要はないです。
+
+https://chromewebstore.google.com/detail/chathub-gpt-4%E3%80%81gemini%E3%80%81clau/iaakpnchhognanibcahlpcplchdfmgma
+
+これはChromeの拡張機能です。
+有料は6つ、無料は2つまで同時に複数のAIチャットサイトにプロンプトを送れます。
+
+
+
+
+
+
+## Lovable
+
+https://x.com/dshukertjrjp/status/1859615952717205855
+
+Lovableはいまいち触ってみる気になれない、気に入っても課金が大変そうだから。
+
+
+
+
+
+
+
+
 
 
 
