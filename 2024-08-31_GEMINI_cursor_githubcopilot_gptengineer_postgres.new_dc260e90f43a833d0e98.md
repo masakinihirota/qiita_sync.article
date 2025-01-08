@@ -7,8 +7,9 @@ private: false
 # 現在のAIサイトの使い方 2025年1月
 
 現在はGemini 1.5 を最初に使い、その時2.0で聞きたいときはGemini 2.0を使います。
+
 その次は
-genspark 確かな情報源
+genspark 確かな情報源が必要な時
 wrtn 速さ
 
 さらに聞きたい時

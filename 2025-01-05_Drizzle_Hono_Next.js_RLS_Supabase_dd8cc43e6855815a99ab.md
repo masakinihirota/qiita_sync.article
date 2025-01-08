@@ -1436,11 +1436,14 @@ Hono + Drizzle + Zod が最強すぎる
 Drizzle + drizzle-zod + Hono + Zod Validatorの組み合わせ、書くことが最小限で型があたってすごい
 
 https://x.com/yusukebe/status/1779857722437238959
-https://x.com/yusukebe/status/1779857722437238959
 
 
+zod
+一般的なバリデーターライブラリです。
 
-
+zod-validator
+これはhonoが提供しているzodのバリデーターライブラリです。
+(honoはzodを使用している、zodから派生したライブラリではない。)
 
 
 
