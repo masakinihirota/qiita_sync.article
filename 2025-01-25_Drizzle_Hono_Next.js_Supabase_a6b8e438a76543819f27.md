@@ -4,11 +4,7 @@ tags:    Drizzle,Hono,Next.js,Supabase
 id:      a6b8e438a76543819f27
 private: false
 -->
-公式ドキュメントからわからいことをAIで聞きつつ書いたメモ
-
-
-
-
+公式ドキュメントからわからないことをAIで聞きつつ書いたメモ
 
 # Next.jsとHonoとは何か？
 
