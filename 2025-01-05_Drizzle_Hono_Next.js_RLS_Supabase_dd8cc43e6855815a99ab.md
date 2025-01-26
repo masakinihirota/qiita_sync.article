@@ -7,6 +7,9 @@ private: true
 ----------------------------------------
 ----------------------------------------
 
+2025年1月26日
+現在: 限定記事
+
 タイトル
 
 Next.js、Supabase、Drizzle(メイン)で認証とRLSの基礎的なWebアプリ ( App router、Serve Actions、コロケーション、テスト)
@@ -14,25 +17,34 @@ Next.js、Supabase、Drizzle(メイン)で認証とRLSの基礎的なWebアプ�
 目的
 Drizzleを中心にBlog記事を書いています。
 
-Next.jsとSupabaseの基本認証して、Drizzleを使ってテーブルを作り、RLSを有効化して、アクセスの確認、Next.jsのアーキテクチャ コロケーション そしてテストのそれぞれの動作とつながりの確認。
+Next.jsとSupabaseの基本認証して、Drizzleを使ってテーブルを作り、RLSを有効化して、RLSのpolicyを設定、アクセスの確認、DBに入力したデータの確認、投稿の保存の確認、Next.jsのアーキテクチャ コロケーション そしてテストのそれぞれの動作とつながりの確認。
+GraphQLでのアクセス。
 
-Honoに拘る理由はエディターの補完機能と
+Honoに拘る理由はRPCによるエディターの補完機能と
 AIによる推論しやすくなるよう情報量を増やすことにある。
 Next.jsのバックエンドが弱いからではない。
 小さなアプリの場合は十分に役に立つ。
+
+
 
 ----------------------------------------
 
 # todo すること
 
 Next.js
+Hono
 Supabase
 Drizzle
+GraphQL
+Zod
 
 基礎的な認証 ソーシャルログイン (GitHub)
 Drizzleのテーブル設計
 DrizzleのRLS
 DrizzleのPolicy
+Hono REST API
+Supabase
+GraphQL
 App router
 Serve Actions
 DBのCRUD
@@ -67,18 +79,25 @@ Drizzleにおけるスキーマは、TypeScriptで記述されたデータベー
 
 
 * zod
+
 TypeScript でスキーマ宣言とバリデーションを行うための汎用的なライブラリです。
 
 
 
 * zod-validator
+
 zod-validator は、Hono フレームワークで使用するための Zod のバリデーションライブラリです。
 
 
 
 * drizzle-zod
+
 Drizzle ORM のプラグインで、Drizzle ORM のスキーマから Zod スキーマを生成することができます。
 これにより、データベースのスキーマとアプリケーションのバリデーションスキーマの変更に追従して同期させることができ、手動で変更する手間が省けます。
+
+* GraphQL
+
+
 
 
 
@@ -1001,7 +1020,6 @@ npm run db:push
 Supabaseのサーバー(実運用環境)に反映させるまでは(＝ほぼ完成ぐらいまで)
 pushですませて、それまではマイグレーションファイルを作りません。
 
-
 Supabaseに反映後
 GitHubの認証を設定済みなので
 Next.jsアプリを起動後ログインボタンを押します。
@@ -1029,7 +1047,7 @@ npm i drizzle-seed
 
 # 環境変数を読み込んでくれない
 
-👇環境変数をチェックすると読み込んでいませんでした。
+ターミナルからスクリプトを実行して👇環境変数をチェックすると読み込んでいませんでした。
 
 ```
 "db:seeds": "tsx src/db/seeds.ts"
@@ -1037,8 +1055,8 @@ npm i drizzle-seed
 ```
 
 .envの環境変数はNext.js用のなのでpackage.jsonに書いた
-tsx コマンドからのコードには環境変数を読み込みません。
-読み込ませるように dotenvライブラリを使用します。
+スクリプトである tsx コマンドからのコードには環境変数を読み込みません。
+それらを読み込ませるように dotenvライブラリを使用します。
 
 ```terminal
 npm install dotenv
@@ -1055,7 +1073,7 @@ dotenv.config()
 
 👆️追加します。
 
-console.logを確認すると、.envファイルから環境変数を読んでくれるようになりました。
+console.logを確認すると、.envファイルから環境変数を読んでくれるようになります。
 
 
 
@@ -1137,13 +1155,14 @@ rootsテーブルはauth.usersテーブルとつながっているため
 外部からのアクセスは受け付けてないようです。
 スキーマを渡してもseed関数はエラーのままでした。
 
-Supabaseにとってauthは特別なスキーマで、セキュリティが理由で外部からのアクセスを禁止しています、どうやらDrizzleツールからのseedデータの挿入も禁止されているようです。
+Supabaseにとってauthは特別なスキーマで、セキュリティが理由で外部からのアクセスを禁止しています。
+Drizzle等のツールからのseedデータの挿入でも入力ができないようになっています。
 
-Supabase authスキーマに関わっているテーブルに挿入するデータはSQL文を作り直接挿入することにします。
+Supabase authスキーマに関わっているテーブルに挿入するデータは、直接実行するSQL文を作り挿入することにします。
 
-それぞれ10件づつ seedファイルを作成します。
+👇それぞれ10件づつ seedファイルを作成します。
 
-
+<details><summary>ダミーデータ用のSQL文</summary>
 
 supabase/seed.sql
 
@@ -1271,6 +1290,8 @@ values
 
 SupabaseのダッシュボードのSQL Editorに直接貼り付けます。
 
+</details>
+
 
 
 ### データの削除したい場合
@@ -1285,8 +1306,6 @@ TRUNCATE TABLE auth.users, roots, user_profiles CASCADE;
 
 CASCADE機能でつながっている関連データも全て削除します。
 
-
-
 ### seed.sqlを読み込まないトラブル
 
 ※もし起動時にseed.sql文を読み込まず、テーブルにデータが挿入されなかったら、
@@ -1298,7 +1317,7 @@ CASCADE機能でつながっている関連データも全て削除します。
 
 1関連テーブル郡(外部キーでつながっている)、1seedファイルを原則にしています。
 
-config.toml の[db.seed]を編集します。
+config.toml の[db.seed]項目を編集します。
 
 ```config.toml
 [db.seed]
@@ -1327,11 +1346,13 @@ GitHub認証時に認証されたユーザーのデータがpublicスキーマ�
 ※Supabaseのauthスキーマで外部参照がカラムとやはりdrizzle-seedがうまく動きません。推測はあたっているようです。
 そのテーブルの値は手動でSQL文を実行してください。
 
-DrizzleのクライアントにRLSの上位roleを割り当てられたら動くかもですが、見つかりませんでした。
+DrizzleのクライアントにRLSの上位roleを割り当てられたら動くかもですが、そのツールはなさそうです。
 
 
 
 ----------------------------------------
+
+参考 drizzle-seedの使い方
 
 # Seed値のrefine
 
@@ -1425,7 +1446,7 @@ Supabase テーブルデータ
 
 
 ※実際に開発者が使う場合は好みになりますが、型の安全性が高くなったNext.js +Hono +Drizzle +Graphql +Supabase が良さそうです。
-この組み合わせだと、型安全による開発体験が良くなり、型が異なるとBuildが通らなくなります。
+この組み合わせだと、型安全による開発体験が良くなり、HonoのRPC機能により 型が異なるとBuildが通らなくなります。
 フォーム関連にはServer actionsを使うなど使い分けをします。
 
 ### Supabaseを利用する方法
@@ -1583,83 +1604,7 @@ fetch関数が取り扱うオブジェクト
 
 
 
-
-
-
-
-
-
-
-----------------------------------------
-
-# SupabaseのGraphQLを利用したアクセス方法
-
-GraphQLを使ってデータベースにアクセスする方法は、`pg_graphql`というPostgreSQLの拡張機能を利用することです。
-
-この拡張機能は、既存のSQLスキーマからGraphQLスキーマを生成し、SQL関数`graphql.resolve(...)`を通じて公開します。
-
-これにより、PostgreSQLに接続できるあらゆるプログラミング言語から、追加のサーバー、プロセス、ライブラリなしでGraphQL経由でデータベースをクエリできます。
-
-`pg_graphql` を利用したアクセスの手順は以下の通りです。
-
-
-
-## 拡張機能の有効化 
-
-Supabaseダッシュボードのデータベースページから、拡張機能メニューで`pg_graphql`を検索して有効にします。
-
-
-
-## GraphQLクエリの実行 
-
-`graphql.resolve`関数を使ってGraphQLクエリを実行します。
-
-例えば、`Blog`テーブルのデータを取得するクエリは以下のようになります。
-
-```sql
-select
-    graphql.resolve($$
-        {
-            blogCollection(first: 1) {
-                edges {
-                    node {
-                        id,
-                        name
-                    }
-                }
-            }
-        }
-    $$);
-
-```
-
-このクエリは、JSON形式でデータが返されます。
-
-
-
-スキーマの再構築
-
-SQLスキーマを変更した場合は、GraphQLスキーマを再構築する必要があります。
-
-これは、`selectgraphql.rebuild_schema();`というSQL文を実行することで行います。
-
-
-
-`pg_graphql` は、スキーマイントロスペクションを完全にサポートしているため、GraphQL IDEやスキーマ検査ツールを使って、APIで利用可能なフィールドや引数の全セットを確認できます。
-
-また、`pg_graphql` の `resolve` メソッドは、Supabase APIの基盤となるPostgRESTと連携するように設計されており、`graphql.resolve` 関数をRPC経由で呼び出すことで、GraphQL APIをHTTP/S経由で安全かつ効率的に公開できます。
-
-GraphQL APIを使用する際には、以下の点に注意してください。
-* **認証**: GraphQL APIを使用する際には、認証が必要になります。`anon key`または`service_role key`を使用します。`anon key`は`Bearer [anon key]`として認証ヘッダーに含めます。
-* **エンドポイント**: GraphQLのエンドポイントは、ローカル開発環境では`http://localhost:54321/graphql/v1`です。
-
-また、`pg_graphql` の詳細は、公式ドキュメントを参照してください。
-
-さらに、Supabaseのローカル環境でGraphQLを利用する場合は、次の手順を踏む必要があります。
-* ローカル環境でSupabaseを起動し、`supabase status` コマンドでAPI URLを確認します。
-* pgAdminやDBeaverなどのDBクライアントツールを使って、ローカルのSupabaseに接続し、`graphql.resolve()`を実行することもできます。
-
-これらの情報源を総合的に見ると、GraphQLはSupabaseでデータを取得・操作するための強力なツールであり、特に複雑なクエリや、複数のテーブルを結合したデータを取得する際に役立ちます。
+Honoの基本的な使い方を理解しました。
 
 
 
@@ -1671,11 +1616,13 @@ GraphQL APIを使用する際には、以下の点に注意してください。
 # ここまで
 
 Next.js
-Supabase
+SupabaseのDB機能
+Supabaseの認証機能
+SupabaseのGraphql機能
 DrizzleのDBスキーマとそのテーブルのデータの入力
 Honoの基礎的な使い方まで勉強しました。
 
-次は、DB Supabaseのデータにアクセスします。
+次は、Supabaseへのデータにアクセスします。
 
 
 
@@ -1844,296 +1791,120 @@ http://localhost:3000/users
 
 
 
-
-
-
-
-
-
-
-----------------------------------------
-----------------------------------------
-----------------------------------------
-
-テーブル結合
-
-SupabaseはPostgresなので
-テーブルの結合は外部キー制約の設定が必要です。
-
-これはPostgresの仕様です。
-
-※純粋なSQLの言語ではこのような外部キー制約がなくても
-結合のSQL文を書くことが可能です。
-
-
-
-
-結合するには外部キー制約を設定しておく必要があります。
-SQL では外部キー制約なしで結合できるのに PostgREST での結合では必須なのはちょっと不便ですね。
-でも使う利点はあるので良しとしましょう。
-
-
-Postgres
-PostgreSQL
-PostgREST
-の違いは？
-
-Postgres / PostgreSQL: これらは同じものを指します。PostgreSQL は、オブジェクト関係データベース管理システム (ORDBMS) の一つであり、オープンソースで広く利用されています。「Postgres」はその略称として使われています。データの保存、管理、検索を行うための基盤となるソフトウェアです。
-
-PostgREST: PostgreSQL データベースを RESTful API として公開するためのツールです。PostgreSQL データベースの上に構築され、データベースの構造（特に外部キー制約）を利用して自動的に API エンドポイントを生成します。つまり、PostgreSQL で構築したデータベースを、Web アプリケーションなどから簡単にアクセスできるようにする役割を果たします。
-
-
-
-
-外部キー制約で結合するのと
-ビューでテーブルを作るのではどちらがいいのか？
-
-外部キーの方が良い 整合性が保てる
-ビューは複雑なクエリの場合に使用すると楽になる
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+これで、Supabaseクライアントを使ってデータを取得、表示する方法を学びました。
 
 
 
 ----------------------------------------
-----------------------------------------
-----------------------------------------
 
-# HonoでNext.jsのAPIを使用する。
+SupabaseでのGraphQLの使い方は？
+GraphQLは2022/03/29 に対応
 
-HonoとSupabaseの基本的な使い方は理解できました。
+# SupabaseのGraphQLを利用したアクセス方法
 
-つぎはこの2つを組み合わせます。
+SupabaseのGraphQL機能を使ってNext.jsで簡単なアプリを作ってみる #PostgreSQL - Qiita
+https://qiita.com/dshukertjr/items/be036d38f77b1359f4be
 
-👇️Honoの章でroute.tsを設定しました。
+GraphQL | Supabase Docs
+https://supabase.com/docs/guides/graphql
 
-```route.ts
-import { Hono } from 'hono'
-import { handle } from 'hono/vercel'
+Supabaseのローカル メニューから Integrationsを選択
+Graphqlを選び
+右側の画面でGraphqlを選びます。
+GraphqlコードのブラウザIDE
+http://localhost:54323/project/default/integrations/graphiql/graphiql
+Graphqlのコードを試せます。
 
-// Vercelに一番近い場所で実行するよう指定します。
-export const runtime = 'edge'
 
-const app = new Hono().basePath('/api')
+SupabaseでGraphQLを使いたい理由
+必要なデータのみを取得: REST APIのように過剰なデータを取得することなく、必要なデータだけを取得できるため、効率的でパフォーマンスが向上します。
+ベンダーロックインの回避: GraphQLは標準規格であるため、特定のベンダーに依存することを避けられます。
+型安全性: GraphQLスキーマによって型が定義されるため、クライアント側で型安全性を確保できます。
+ドキュメントの自動生成: GraphQLスキーマからドキュメントを自動生成できるため、APIドキュメントの作成と保守が容易になります。
 
-app.get('/hello', (c) => {
-  return c.json({
-    message: 'Hello from Hono!'
-  })
-})
+Supabaseクライアントでアクセスをするとロックインで他のDBに切り替えられない・・・となりますが、
+ミニアプリの場合、他の構成で開発する場合は一から作り直すと思います。
 
-export const GET = handle(app)
 
-```
+# アクセスするツール
 
+Supabaseはpg_graphqlというPostgreSQLの拡張機能でアクセスします。
+Supabaseが提供しているGraphQLエンドポイントはSupabaseのRLSも使えて、セキュアなアプリが簡単に作れます。
 
+Supabase - データベースと認証認可機能
+pg_graphql - PostgresのGraphQL用拡張機能
+Next.js - フロントエンドフレームワーク
+Tailwind CSS - スタイリング
+Apollo Client - GraphQLクライアント
 
+# 下準備
 
-helloにアクセスしたら messageを返すAPIです。
+テーブルを作る、データを入れる(以前作った、usesテーブルを再利用)
 
-👇️この間にSupabaseから取得したデータを返すようにします。
+GraphQL周りの型生成
 
-```route.ts
-import { Hono } from 'hono'
-import { handle } from 'hono/vercel'
+TypeScript with Apollo Client - Apollo GraphQL Docs
+https://www.apollographql.com/docs/react/development-testing/static-typing
 
-// Supabaseのクライアントを作ります。
-
-// Vercelに一番近い場所で実行するよう指定します。
-export const runtime = 'edge'
-
-const app = new Hono().basePath('/api')
-
-app.get('/hello', (c) => {
-  // Supabaseクライアントを使ってデータを取得します。
-  return c.json("取得したデータを返す。")
-})
-
-export const GET = handle(app)
-
-```
-
-考え方はわかりました、
-実際のコードはどうなるかを見てみましょう。
-
-
-
-
-
-```route.ts
-
-
-
-
-
-
-
-import { Hono } from 'hono'
-import { handle } from 'hono/vercel'
-
-// Supabaseのクライアントを作ります。
-// libフォルダからimportします。
-import { supabase } from '@/lib/supabase'
-
-// Vercelに一番近い場所で実行するよう指定します。
-export const runtime = 'edge'
-
-const app = new Hono().basePath('/api')
-
-app.get('/hello', (c) => {
-  // Supabaseクライアントを使ってデータを取得します。
-  const { data, error } = await supabase
-    .from('users') // 'users' テーブルから
-    .select('*') // 全てのカラムを選択
-
-  // エラーチェック
-  if (error) {
-    console.error('データの取得に失敗しました:', error.message)
-    throw new Error('データの取得に失敗しました')
-  }
-
-  // 取得したデータを返します。
-  return c.json(data)
-})
-
-export const GET = handle(app)
-
-```
-
-
-
-取得する側が出来たので
-今度は受け取った側で表示するコードを書きます。
-基本はSupabaseの賞と同じです。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-今ホットなHonoを使ってNext.jsのRoute Handlersをハイジャックする
-
-https://zenn.dev/chot/articles/e109287414eb8c
-
-
-
-テーブルはそのまま利用し、データを操作した後の為のリセット用に準備します。
-
-```sql
--- usersに関連するデータの削除
-TRUNCATE TABLE users;
-TRUNCATE TABLE countries;
-
-```
+GraphQLクライアントとしてApollo Client
 
 ```terminal
-npm run db:seeds
+npm i @apollo/client graphql
+
+npm i -D typescript graphql @graphql-codegen/cli @graphql-codegen/client-preset @graphql-typed-document-node/core
 
 ```
 
-これでDBの準備が整いました。
 
 
 
 
 
+最後にpackage.jsonのscriptsにgraphql-codegenを追加しましょう。
+これで `npm run compile` でTypescript用の型が生成されるようになります。
 
 
+```package.json
+...
+  "scripts": {
+    "compile": "graphql-codegen",
+    "watch": "graphql-codegen -w"
+  }
+
+```
 
 
-
-
-
-----------------------------------------
-
-HonoでAPIでブラウザにアクセス出来ました。
-SupabaseでDBにアクセス出来ました。
-
-次は、この2つを組み合わせて、
-HonoでSupabaseにアクセスします。
-
-# SupabaseのデータにHonoでアクセス
-
-
-
-
-
-## 
-
-const app = New Hono()
-app.route
-
-を利用することで別ファイルにAPIを書ける
-
-handlerを利用することで
-GETなどを別ファイルから呼べる？
+Blog
+   "compile": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local"
+  },
 
 
 
 ## 
 
+import { CodegenConfig } from '@graphql-codegen/cli';
 
+const config: CodegenConfig = {
+  schema: '<URL_OF_YOUR_GRAPHQL_API>',
+  // this assumes that all your source files are in a top-level `src/` directory - you might need to adjust this to your file structure
+  documents: ['src/**/*.{ts,tsx}'],
+  generates: {
+    './src/__generated__/': {
+      preset: 'client',
+      plugins: [],
+      presetConfig: {
+        gqlTagName: 'gql',
+      }
+    }
+  },
+  ignoreNoDocuments: true,
+};
 
-
-
-----------------------------------------
-
-# 
-
-
+export default config;
 
 
 
 ## 
-
-
-
-
-
-## 
-
-
-
-
-
-----------------------------------------
-
-# 
 
 
 
@@ -2272,53 +2043,67 @@ GETなどを別ファイルから呼べる？
 
 
 ----------------------------------------
+
+# 
+
+
+
+
+
+## 
+
+
+
+
+
+## 
+
+
+
+
+
 ----------------------------------------
 
-
-
-
-# 参考
-
-今ホットなHonoを使ってNext.jsのRoute Handlersをハイジャックする
-
-https://zenn.dev/chot/articles/e109287414eb8c
-
-Honoの捉え方、またはNext.jsとの組み合わせ方 | stin's Blog
-
-https://blog.stin.ink/articles/hono-nextjs-and-web-standard
-
-【最強】Honoフル活用事例2024年
-https://zenn.dev/oliver/articles/hono-advent-calendar-2024
-
-Drizzle + drizzle-zod + Hono + Zod Validatorの組み合わせ、書くことが最小限で型があたってすごい
-
-https://x.com/yusukebe/status/1779857722437238959
-
-コンポーネントコロケーションパターン #React - Qiita
-
-https://qiita.com/masakinihirota/items/27f961dfa6871aad0550
-
-【Hono入門】Next.js+HonoでTodoアプリを作成してみよう🔥
-
-https://zenn.dev/prog_daiki/books/8f186445cc080e
+# 
 
 
 
 
 
+## 
 
 
 
 
 
+## 
 
 
 
 
 
+----------------------------------------
+
+# 
 
 
 
+
+
+## 
+
+
+
+
+
+## 
+
+
+
+
+
+----------------------------------------
+----------------------------------------
 
 
 
