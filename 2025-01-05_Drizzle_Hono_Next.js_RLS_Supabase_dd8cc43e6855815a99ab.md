@@ -1802,6 +1802,34 @@ GraphQLは2022/03/29 に対応
 
 # SupabaseのGraphQLを利用したアクセス方法
 
+ローカルのSupabaseにはGraphqlのAPIが最初から設定されています。
+Graphqlサーバーの代わりも担っているわけです。
+Graphqlのクライアントを用意してアクセスします。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SupabaseのGraphQL機能を使ってNext.jsで簡単なアプリを作ってみる #PostgreSQL - Qiita
 https://qiita.com/dshukertjr/items/be036d38f77b1359f4be
 
@@ -1856,6 +1884,41 @@ npm i -D typescript graphql @graphql-codegen/cli @graphql-codegen/client-preset 
 ```
 
 
+
+
+
+
+
+
+
+GraphQLクエリの作成:
+
+GraphQLでは、データを取得するためのクエリを作成します。
+例えば、特定のテーブルからデータを取得するクエリは以下のようになります。
+
+クエリの基本形
+query {
+  your_table_name {
+    id
+    column1
+    column2
+  }
+}
+
+クエリの実行場所
+Supabaseダッシュボードから
+左メニューのIntegration(一番下)を開き、
+右画面のタブ GraphQLを選びます。
+
+
+
+query {
+  users {
+    id
+    name
+    created_at
+  }
+}
 
 
 
