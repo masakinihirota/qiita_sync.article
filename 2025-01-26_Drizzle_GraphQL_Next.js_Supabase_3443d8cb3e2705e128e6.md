@@ -239,6 +239,7 @@ type Account {
 ```
 
 そして、リレー形式のキーセットのページネーション、フィルター、順序付け、（オプションの）名前の屈折を完備した、QueryとMutationタイプでの一括CRUD操作を公開する。
+
 ```GraphQL
 type Query {
   accountCollection(
