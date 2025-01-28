@@ -1,8 +1,8 @@
 <!--
-title:   SupabaseをGraphQLで使う Next.js Drizzle
-tags:    Drizzle,GraphQL,Next.js,Supabase
+title:   pg_graphql (Supabase の GraphQL)
+tags:    GraphQL,Supabase
 id:      3443d8cb3e2705e128e6
-private: true
+private: false
 -->
 現在のバージョン
 Supabase GraphQL (pg_graphql) 1.5.9
@@ -13,10 +13,8 @@ https://github.com/supabase/pg_graphql
 使用ツール(現在使用しているツール)
 Next.js
 Supabase
-Drizzle
-Hono
 
-# GraphQLが使えるようになった時
+# SupabaseでGraphQLが使えるようだ
 
 ```terminal
 Started supabase local development setup.
@@ -36,17 +34,8 @@ service_role key: eyJ*****
 
 ```
 
-👆️いつだったか、ローカルでSupabaseを立ち上げ使っている時に
-
 `GraphQL URL: http://127.0.0.1:54321/graphql/v1`
-
-が追加されてました、
-その時はGraphQLを使う予定はなかったのでスルーしてましたが、
-そろそろ使ってみようと思いSupabaseではどうやってGraphQLを使ったらいいのか調べてみます。
-
-Next.jsとSupabaseの組み合わせです。
-
-
+というのは？調べてみた。
 
 ----------------------------------------
 
@@ -1865,5 +1854,3 @@ Apollo での接続
 以前書いた記事の中で言及
 
 https://qiita.com/masakinihirota/items/f12d16c31e6775f26b84
-
-
