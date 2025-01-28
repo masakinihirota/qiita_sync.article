@@ -1854,3 +1854,14 @@ Apollo での接続
 以前書いた記事の中で言及
 
 https://qiita.com/masakinihirota/items/f12d16c31e6775f26b84
+
+
+
+GraphQLクライアントの選び方と特徴 - Genspark
+https://www.genspark.ai/spark?id=f50fc01a-d2d4-4dfe-bfea-bf5c152d90e5
+
+> 使用するフレームワーク: Reactを使用する場合、Apollo ClientやRelayが推奨されます。
+
+> Apollo Client: Apollo Clientは、GraphQL APIとの通信を簡単にするためのGraphQLクライアントです。
+Apollo Clientは、React、Angular、Vueなどのフレームワークと統合されており、データの取得、更新、キャッシュ、エラーハンドリングなどの機能を提供します。
+Apollo Clientは、GraphQLのクエリとミューテーションを実行し、データを取得してコンポーネントに提供するための簡単な方法を提供します。
