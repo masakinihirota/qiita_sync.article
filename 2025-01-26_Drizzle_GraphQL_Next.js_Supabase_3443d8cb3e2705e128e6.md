@@ -4,8 +4,6 @@ tags:    Drizzle,GraphQL,Next.js,Supabase
 id:      3443d8cb3e2705e128e6
 private: true
 -->
-SupabaseでのGraphQLってなに？
-
 現在のバージョン
 Supabase GraphQL (pg_graphql) 1.5.9
 
@@ -18,9 +16,7 @@ Supabase
 Drizzle
 Hono
 
-👆これらにGraphQLはどう絡めばいいのか？
-
-# 昔々
+# GraphQLが使えるようになった時
 
 ```terminal
 Started supabase local development setup.
@@ -50,28 +46,6 @@ service_role key: eyJ*****
 
 Next.jsとSupabaseの組み合わせです。
 
-## 疑問
-
-* http://127.0.0.1:54321/graphql/v1
-このURLにアクセスしてもGraphQL IDEのようなことは出来ません。
-では、実際のDBテーブルへのアクセス方法は？
-
-* SupabaseはGraphQLのサーバーを兼ねているのか？
-それとも開発者は別にGraphQLサーバーを用意するのか？
-
-* GraphQLのクライアントは？
-今でもApollo？それとも新しいツールが？
-
-* Next.jsでのデータ取得方法、query mutationのやり方は？
-Server actionといっしょに使える？
-
-他のツール
-Next.js
-Drizzle
-Hono
-RESTAPI
-との組み合わせ合わせ方はどれがベスト？
-などの疑問を調べていきます。
 
 
 ----------------------------------------
@@ -142,8 +116,7 @@ GraphQL APIのスキーマ情報を取得する機能のことです。
 
 DBのテーブル設計などを指します。
 
-
-## Resolves 
+## Resolves
 
 GraphQLでは、クライアントからのクエリに応じてデータを取得し、返す役割を担うのがResolverです。スキーマで定義された各フィールドに対して、対応するResolver関数が紐付けられており、クエリの実行時に適切なResolverが呼び出されることで、必要なデータが取得されます。
 
@@ -153,67 +126,9 @@ GraphQLでは、クライアントからのクエリに応じてデータを取�
 
 クライアントからのリクエストがサーバーに送信され、サーバーが処理を完了してクライアントに応答を返すまでの一連の処理です。
 
-
-
-
-
-
-
-
-
-
-
 ----------------------------------------
 
-Supabase  GraphQL  Next.js Drizzle
-
-Next.js、Supabase、Drizzle(メイン)で認証とRLSの基礎的なWebアプリ ( App router、Serve Actions、コロケーション、テスト)
-
-目的
-Drizzleを中心にBlog記事を書いています。
-
-Next.jsとSupabaseの基本認証して、Drizzleを使ってテーブルを作り、RLSを有効化して、RLSのpolicyを設定、アクセスの確認、DBに入力したデータの確認、投稿の保存の確認、Next.jsのアーキテクチャ コロケーション そしてテストのそれぞれの動作とつながりの確認。
-GraphQLでのアクセス。
-
-Honoに拘る理由はRPCによるエディターの補完機能と
-AIによる推論しやすくなるよう情報量を増やすことにある。
-Next.jsのバックエンドが弱いからではない。
-小さなアプリの場合は十分に役に立つ。
-
-
-
-----------------------------------------
-
-# todo すること
-
-Next.js
-Hono
-Supabase
-Drizzle
-GraphQL
-Zod
-
-基礎的な認証 ソーシャルログイン (GitHub)
-Drizzleのテーブル設計
-DrizzleのRLS
-DrizzleのPolicy
-Hono REST API
-Supabase
-GraphQL
-App router
-Serve Actions
-DBのCRUD
-バリデーション
-コロケーション
-テスト
-
-
-
-
-----------------------------------------
-----------------------------------------
-
-# SupabaseをGraphqlで使う
+# 前提知識
 
 Next.js、Supabaseの前提知識がある人向け
 アカウント作成済み
@@ -221,31 +136,12 @@ Next.js、Supabaseの前提知識がある人向け
 Supabase CLI インストール済み
 SupabaseでDocker立ち上げたことがある。
 Supabaseのテーブルを作ったりCRUDを触ったことがある。
-RLSは完璧！
-な人向け。
-
-
-
-## 
-
-マニュアルをサラッと見ただけでは動かなかったので
-よく調べてみます。
-
-何もせず使えるようなものではないようです。
-
-
-
-
-## 
-
-
-
 
 
 ----------------------------------------
 
 このBlog記事で発表
-2025年1月27日現在では、情報は少し古いです。
+2025年1月27日現在では情報は少し古いです。
 
 # SupabaseでGraphqlの提供開始 29 Mar 2022
 
@@ -260,10 +156,10 @@ Supabaseは、開発者がデータベースと効率的にやり取りできる
 
 ## 利用開始
 
-- 利用可能性 
+- 利用可能性
 GraphQL（ベータ版）は2022年3月28日以降に作成されたSupabaseプロジェクト専用です。
 
-- GraphQLの有効化 
+- GraphQLの有効化
 Supabaseダッシュボードから`pg_graphql`拡張を有効にするか、以下のSQLコマンドを実行します：
 
 ```sql
@@ -271,9 +167,9 @@ create extension pg_graphql;
 
 ```
 
-- エンドポイント 
+- エンドポイント
 
-GraphQLは`https://<project_ref>.supabase.co/graphql/v1`でアクセスできます。
+GraphQLは `https://<project_ref>.supabase.co/graphql/v1` でアクセスできます。
 
 
 
@@ -294,7 +190,7 @@ GraphQLは`https://<project_ref>.supabase.co/graphql/v1`でアクセスできま
 
 ## 実例アプリケーション
 
-- HackerNewsクローン 
+- HackerNewsクローン
 `pg_graphql`の機能を示すデモには以下が含まれます：
 - GraphQLを利用したCRUD操作。
 - GraphQLカーソル接続仕様に合わせたカーソルベースのページネーション。
@@ -380,17 +276,17 @@ Query（クエリ）
 `accountCollection` というクエリが定義されているよ。このクエリは、アカウントのコレクションを取得するためのものなんだ。
 
 - 引数 :
-- `first` 
+- `first`
 最初の何件を取得するかを指定する整数。
-- `last` 
+- `last`
 最後の何件を取得するかを指定する整数。
-- `before` 
+- `before`
 特定のカーソルの前のデータを取得するための引数。
-- `after` 
+- `after`
 特定のカーソルの後のデータを取得するための引数。
-- `filter` 
+- `filter`
 取得したいアカウントの条件を指定するためのフィルター。
-- `orderBy` 
+- `orderBy`
 どのようにデータを並べるかを指定するための引数のリスト。
 
 このクエリを使うことで、アカウントの情報を必要な分だけ効率的に取得できます。
@@ -436,7 +332,7 @@ https://supabase.com/blog/pg-graphql-postgres-functions
 pg_graphql: GraphQL for PostgreSQL | Supabase Docs
 https://supabase.com/docs/guides/database/extensions/pg_graphql
 
-## 
+##
 
 pg_graphqlは、SQLの代わりにGraphQLを使用してデータベースとやり取りするためのPostgreSQL拡張です。
 
@@ -638,7 +534,7 @@ create table blog_post(
 
 このSQL文がGraphQLスキーマに変換されます。
 
-各テーブルは、外部キーによって定義されたリレーションシップを持つページング可能なコレクションでトップレベルのQueryタイプでエントリポイントを受け取ります。 
+各テーブルは、外部キーによって定義されたリレーションシップを持つページング可能なコレクションでトップレベルのQueryタイプでエントリポイントを受け取ります。
 テーブルも同様に、挿入、更新、削除の一括操作を可能にする Mutation 型のエントリポイントを受け取ります。
 
 
@@ -1260,12 +1156,12 @@ pg_graphql によって関数を公開して、カスタム クエリまたは�
 以下の機能はまだサポートされていません。
 これらの機能を使用する関数はAPIで公開されません。
 
-- テーブルのタプル型を受け付ける関数 
-- オーバーロードされた関数 
-- 名前のない引数を持つ関数 
-- voidを返す関数 
-- 変数型関数 
-- 複合型の配列を受け付ける、または返す関数 
+- テーブルのタプル型を受け付ける関数
+- オーバーロードされた関数
+- 名前のない引数を持つ関数
+- voidを返す関数
+- 変数型関数
+- 複合型の配列を受け付ける、または返す関数
 - 列挙型または列挙型の配列を受け付ける、または返す関数
 
 ---
@@ -1660,7 +1556,7 @@ https://relay.dev/docs/getting-started/installation-and-setup/
 
 ## Installation
 
-まず、cargo install --locked cargo-pgrx@versionを実行してpgrxをインストールする、 
+まず、cargo install --locked cargo-pgrx@versionを実行してpgrxをインストールする、
 ここで、バージョンはpg_graphqlが使用するpgrxのバージョンと互換性がなければなりません。
 
 ---
@@ -1743,14 +1639,14 @@ Supabase GraphQL APIにアクセスするためのクライアントについて
 これは、Supabaseに組み込まれているGraphiQL IDEを使う方法で、手軽にGraphQLの操作を学べます。
 もしあなたがGraphQLやSupabaseの使用に慣れている、またはアプリケーションを本格的に運用する準備ができているなら、以下の方法でAPIにアクセスできます:
 
-supabase-js 
+supabase-js
 これはJavaScriptのライブラリで、様々なGraphQLフレームワークと連携できます。
 
-GraphiQL 
+GraphiQL
 これは外部のIDEで、Supabase GraphQL APIに接続してクエリを実行できます。
 Supabase Studioにも組み込まれていますが、ローカル環境でも利用可能です。
 
-HTTPクライアント 
+HTTPクライアント
 `cURL`などのHTTPクライアントを使って、直接APIにリクエストを送信できます。`cURL`を使った例は以下です:
 
 ```bash
@@ -1833,7 +1729,7 @@ https://supabase.com/docs/guides/graphql/with-relay
 
 ### GraphiQL
 
-GraphiQLのような外部IDEを使ってSupabase GraphQLに接続したい場合は、以下のHTMLスニペットをsupabase_graphiql.htmlとして保存し、ブラウザで開いてください。 
+GraphiQLのような外部IDEを使ってSupabase GraphQLに接続したい場合は、以下のHTMLスニペットをsupabase_graphiql.htmlとして保存し、ブラウザで開いてください。
 
 EDIT BELOWのコメントの下に、PROJECT_REFとAPI_KEYを必ず代入してください。
 
@@ -1930,9 +1826,8 @@ service_role key: ...
 
 ## Term Reference
 
-### Project Reference (PROJECT_REF)
-
-### API Key (API_KEY)
+Project Reference (PROJECT_REF)
+API Key (API_KEY)
 
 
 
@@ -1950,10 +1845,5 @@ Apollo での接続
 以前書いた記事の中で言及
 
 https://qiita.com/masakinihirota/items/f12d16c31e6775f26b84
-
-
-
-----------------------------------------
-----------------------------------------
 
 
