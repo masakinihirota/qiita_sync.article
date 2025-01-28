@@ -396,7 +396,7 @@ GraphQLスキーマは、次のようにクエリを実行できます。
 
 👇 sql文をコピペします。
 
-``sql
+```sql
 select
   graphql.resolve($$
     {
@@ -1435,10 +1435,13 @@ pg_graphqlは、Postgresの `search_path` と権限システムを使用して�
 
 *   **APIからテーブルを削除する:**
     *   GraphQL APIからテーブルを削除するには、関連するロールからそのテーブルに対する権限を取り消します。
-    *   例えば、匿名ユーザーからテーブル`foo`を削除するには、次のコマンドを実行します：
-        ```sql
-        revoke all on table public.foo from anon;
-        ```
+    *   例えば、匿名ユーザーからテーブル`foo`を削除するには、次のコマンドを実行します。
+
+```sql
+revoke all on table public.foo from anon;
+
+```
+
     *   `insert`、`update`、`delete`、`truncate`などのより詳細な権限を取り消すことで、GraphQL APIの個々のエントリポイントを削除することもできます。
         *   例えば、`update`権限を取り消すと、APIの`Mutation`タイプから`updateFooCollection`エントリポイントが削除されます。
 *   **APIにスキーマを追加する:**
