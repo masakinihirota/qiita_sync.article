@@ -1350,24 +1350,37 @@ GraphiQL に戻り、GraphQL API のクエリとミューテーション タイ�
 
 GraphQLは、APIを構築するためのクエリ言語であり、GraphiQLは、GraphQL APIを操作するためのIDE（統合開発環境）です。
 
-**GraphQL**
+GraphQL
 
-*   **クエリ言語:** GraphQLは、APIからデータを効率的に取得するためのクエリ言語です。クライアントが必要とするデータを正確に指定し、過剰なデータ転送を避けることができます.
-*   **スキーマ:** GraphQL APIは、データ型とリレーションシップを記述するスキーマに基づいて構築されます.
-*   **単一ラウンドトリップ:** SupabaseのGraphQL APIは、すべてのリクエストを単一のラウンドトリップで処理し、高速な応答時間と高いスループットを実現します.
-*   **柔軟性:** クライアントは、必要なデータのみを要求できるため、柔軟なデータ取得が可能です.
-*   **多様な操作:** GraphQLは、基本的なCRUD操作（Create/Read/Update/Delete）をサポートし、テーブル、ビュー、マテリアライズドビュー、外部テーブルなど、さまざまなデータソースに対応できます.
-*   **認証:** ユーザー認証には、`Authorization`ヘッダーを使用し、JWT（JSON Web Token）を渡します.
-*   **セキュリティ:** Postgresのセキュリティモデル（Row Level Security、Roles、Grantsなど）をサポートしています.
+クエリ言語
+GraphQLは、APIからデータを効率的に取得するためのクエリ言語です。クライアントが必要とするデータを正確に指定し、過剰なデータ転送を避けることができます.
+スキーマ
+GraphQL APIは、データ型とリレーションシップを記述するスキーマに基づいて構築されます.
+単一ラウンドトリップ
+SupabaseのGraphQL APIは、すべてのリクエストを単一のラウンドトリップで処理し、高速な応答時間と高いスループットを実現します.
+柔軟性
+クライアントは、必要なデータのみを要求できるため、柔軟なデータ取得が可能です.
+多様な操作
+GraphQLは、基本的なCRUD操作（Create/Read/Update/Delete）をサポートし、テーブル、ビュー、マテリアライズドビュー、外部テーブルなど、さまざまなデータソースに対応できます.
+認証
+ユーザー認証には、`Authorization`ヘッダーを使用し、JWT（JSON Web Token）を渡します.
+セキュリティ
+Postgresのセキュリティモデル（Row Level Security、Roles、Grantsなど）をサポートしています.
 
-**GraphiQL**
+GraphiQL
 
-*   **GraphQL IDE:** GraphiQLは、GraphQL APIを探索し、クエリを実行するためのインタラクティブなIDEです.
-*   **Supabase Studio:** Supabaseでは、GraphiQLがSupabase Studioに組み込まれており、簡単に利用できます.
-*   **クエリエディタ:** GraphiQLには、クエリを入力する中央のクエリエディタがあり、実行結果は右側の出力ディスプレイに表示されます.
-*   **ドキュメント探索:** APIを視覚的に探索するためのドキュメントアイコンも提供され、各型の接続関係を確認できます.
-*   **HTTPリクエスト:** GraphiQLは、HTTPリクエストを送信してGraphQL APIにアクセスすることもできます.
-*  **外部IDE:**  外部のIDEからSupabase GraphQLに接続するためのHTMLスニペットも提供されており、`PROJECT_REF`と`API_KEY`を適切に設定することで、外部のGraphiQL環境を利用できます.
+GraphQL IDE
+GraphiQLは、GraphQL APIを探索し、クエリを実行するためのインタラクティブなIDEです.
+Supabase Studio
+Supabaseでは、GraphiQLがSupabase Studioに組み込まれており、簡単に利用できます.
+クエリエディタ
+GraphiQLには、クエリを入力する中央のクエリエディタがあり、実行結果は右側の出力ディスプレイに表示されます.
+ドキュメント探索
+APIを視覚的に探索するためのドキュメントアイコンも提供され、各型の接続関係を確認できます.
+HTTPリクエスト
+GraphiQLは、HTTPリクエストを送信してGraphQL APIにアクセスすることもできます.
+外部IDE
+外部のIDEからSupabase GraphQLに接続するためのHTMLスニペットも提供されており、`PROJECT_REF`と`API_KEY`を適切に設定することで、外部のGraphiQL環境を利用できます.
 
 | 特徴 | GraphQL | GraphiQL |
 | ---- | -------- | -------- |
@@ -1384,17 +1397,20 @@ GraphQLは、APIを構築するためのクエリ言語であり、GraphiQLは�
 *   **HTTPリクエスト（cURL）:**
     *   cURLを使用してGraphQL APIにアクセスするには、GraphQL APIのURLにPOSTリクエストを送信します。
     *   プロジェクトのAPIキーを `apiKey` ヘッダーとして渡します。
-        *   例：
-        ```bash
-        curl -X POST https://<PROJECT_REF>.supabase.co/graphql/v1 \
-        -H 'apiKey: <API_KEY>' \
-        -H 'Content-Type: application/json' \
-        --data-raw '{"query": "{ accountCollection(first: 1) { edges { node { id } } } }", "variables": {}}'
-        ```
-*   **supabase-js:**
-    *   supabase-jsは、GraphQLツールに依存せず、すべてのフレームワークと統合できます。
-*   **外部GraphiQL IDE:**
-    *   外部のGraphiQL IDEを使用する場合は、次のHTMLスニペットを`supabase_graphiql.html`として保存し、ブラウザで開いてください。`<PROJECT_REF>`と`<API_KEY>`を適切な値に置き換えます。
+
+```bash
+curl -X POST https://<PROJECT_REF>.supabase.co/graphql/v1 \
+-H 'apiKey: <API_KEY>' \
+-H 'Content-Type: application/json' \
+--data-raw '{"query": "{ accountCollection(first: 1) { edges { node { id } } } }", "variables": {}}'
+
+```
+
+supabase-js
+supabase-jsは、GraphQLツールに依存せず、すべてのフレームワークと統合できます。
+
+外部GraphiQL IDE
+外部のGraphiQL IDEを使用する場合は、次のHTMLスニペットを`supabase_graphiql.html`として保存し、ブラウザで開いてください。`<PROJECT_REF>`と`<API_KEY>`を適切な値に置き換えます。
 
 ```html
 <html>
