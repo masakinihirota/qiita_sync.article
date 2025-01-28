@@ -7,6 +7,12 @@ private: true
 ----------------------------------------
 ----------------------------------------
 
+Drizzle ORM - PostgreSQL
+https://orm.drizzle.team/docs/get-started/supabase-existing
+既存のプロジェクトでDrizzleとSupabaseを使い始める
+Get Started with Drizzle and Supabase in existing project
+
+
 2025年1月26日
 現在: 限定記事
 
