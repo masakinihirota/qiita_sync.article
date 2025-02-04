@@ -4,6 +4,14 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記 2025年2月4日
+OpenAIの最新推論モデル「o3-mini」が「GitHub Copilot」などで利用可能に - 窓の杜
+
+https://forest.watch.impress.co.jp/docs/news/1659601.html
+
+追記終了
+
+
 追記 2025年1月7日
 GitHub Copilot AI進化の大まかな段階
 
