@@ -128,6 +128,10 @@ export default defineConfig({
 
 マイグレーション関連のファイルは、全てSupabaseのフォルダに移動します。
 
+### AUTH_SECRETに関して
+
+👇️スクリプトファイルを新しく作ります。
+
 ```generateAuthSecret.js
 import crypto from 'node:crypto';
 
@@ -141,15 +145,15 @@ generateAuthSecret();
 
 ```
 
-AUTH_SECRETに関しては、👆️のコードで出力されたコードをコピペします。
-
-```.env
-AUTH_SECRET="*****"
+```terminal
+ts-node generateAuthSecret.js
 
 ```
 
-```terminal
-ts-node te.js
+AUTH_SECRETに関しては、👆️のコードで出力されたコードを👇️AUTH_SECRETにコピペします。
+
+```.env
+AUTH_SECRET="*****"
 
 ```
 
@@ -177,6 +181,7 @@ Stripeを今使わないのなら用意しなくてもデモ画面は動きま�
 
 # read.mdの日本語訳
 
+※ここから下は単なる翻訳です。
 ※このread.meはこのスターターの実行手順が書かれています。
 
 ### Next.js SaaS スターター
@@ -287,3 +292,18 @@ Vercelプロジェクトの設定（またはデプロイ中）で、必要な�
 3. `STRIPE_WEBHOOK_SECRET`: ステップ1で作成した本番Webhookのシークレットを使用します。
 4. `POSTGRES_URL`: 本番データベースのURLを設定します。
 5. `AUTH_SECRET`: ランダムな文字列を設定します。`openssl rand -base64 32` で生成できます。
+
+
+
+
+
+
+
+
+# 作成したリポジトリ
+
+masakinihirota/masakinihirota-saas-sync: Get started quickly with Next.js, Postgres, Stripe, and shadcn/ui.
+
+https://github.com/masakinihirota/masakinihirota-saas-sync
+
+上記記事に加えて、Shadcn/uiでダークモードスイッチを加えています。
