@@ -282,9 +282,10 @@ Q&A
 電子書籍(PDF版等)を読み込ませて、理解したい部分をコピペして解説をしてもらいます。
 ※PDFが文章をコピーできる形式のものの場合。
 
+Chrome拡張
+[NotebookLM Web Importer](https://chromewebstore.google.com/detail/notebooklm-web-importer/ijdefdijdmghafocfmmdojfghnpelnfn?pli=1)
 
-
-
+ワンボタンで取り込み
 
 
 
