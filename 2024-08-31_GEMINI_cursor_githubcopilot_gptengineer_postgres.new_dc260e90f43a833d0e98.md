@@ -4,6 +4,19 @@ tags:    Gemini,Perplexity,cursor,database.build,githubcopilot
 id:      dc260e90f43a833d0e98
 private: false
 -->
+# 結論
+
+AIとは自分自身を映す鏡、自分の能力に左右される道具。
+
+そしてドラえもん
+
+フミコ・フミオさんはTwitterを使っています: 「ほぼ全員がご高齢者の会社上層部からの「対話型AI とは何かその功罪について簡潔に分かりやすく出来たら一言で説明しろ」という難題にヤケクソで「ドラえもんです」と答えたら「便利だけど取扱注意ということだな」とほぼ正解な認識をしてくれたので藤子・F・不二雄先生は偉大すぎる。」 / Twitter
+
+https://twitter.com/Delete_All/status/1648519994580533255
+
+
+
+
 # 現在のAIサイトの使い方 2025年2月
 
 現在はGemini 2.0を最初に使います。
