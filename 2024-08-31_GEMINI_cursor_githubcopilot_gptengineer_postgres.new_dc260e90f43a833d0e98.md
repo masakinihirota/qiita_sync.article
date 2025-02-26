@@ -49,7 +49,7 @@ v0
 まず一番よく使う、もしくは好きなAIサイトをトップにおいて固定し(「絶対評価」)、2番目からは1番のサイトと比較して同じぐらい便利か？もしくは一段落ちるか？という感じで「相対評価」していきます。
 同じぐらいに評価したものは同じティアに入ります。
 
-評価方法
+評価形式
 * ティア 1
 * ティア 2
 * ティア 3
@@ -1066,3 +1066,6 @@ Figmaで下書きを書いて画像に撮って「v0」に渡すと、コンポ�
 https://no-coders-japan.org/nocode-ai-industry-landscape-map
 
 https://drive.google.com/file/d/1v24GbGYB8zZwutJvZAnh4ULxbq5TF2Qv/view
+
+CLINEに全部賭けろ
+https://zenn.dev/mizchi/articles/all-in-on-cline
