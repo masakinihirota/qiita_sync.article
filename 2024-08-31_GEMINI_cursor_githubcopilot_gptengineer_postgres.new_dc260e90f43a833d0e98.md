@@ -17,18 +17,18 @@ https://twitter.com/Delete_All/status/1648519994580533255
 
 
 
-# 現在のAIサイトの使い方 2025年2月
+# 現在のAIサイトの使い方、優先順 2025年2月
 
-現在はGemini 2.0を最初に使います。
+Gemini 2.0 を最初に使います。
 
 その次は
-genspark 確かな情報源が必要な時
-
-wrtn 速さ
-Gemini2.0がソース元を読み込まなかったときなど
-
-さらに聞きたい時 (まず使わない)
 Perplexity
+
+さらに聞きたい時
+genspark
+
+wrtn
+Gemini2.0がソース元を読み込まなかったときなど
 
 コードを書くのは
 GitHub Copilot
@@ -81,7 +81,8 @@ https://steve-yegge.medium.com/the-death-of-the-stubborn-developer-b5e8f78d326b
 The End of Programming as We Know It – O’Reilly
 https://www.oreilly.com/radar/the-end-of-programming-as-we-know-it/
 
-
+CLINEに全部賭けろ
+https://zenn.dev/mizchi/articles/all-in-on-cline
 
 
 
@@ -157,12 +158,20 @@ Onlookの主な機能には、ユーザーが指示を出すことでAIチャッ
 
 ## 良いと噂を聞いたもの
 
-Cline
+* Cline
+
+ClineはAIエージェントです。
+
+AIエージェントとは、AIがコードを書き、人間が監督するという形になります。
+これまではAIをコパイロット(副操縦士)を担当していましたが、これからはエージェント(代理人)になってもらえるということになります。
+
+自分の仕事のお手伝いから、自分の代わりに働いてもらえる時代に入ったということですね、ただしAIの監督が必須です。それに、完全にAIに仕事を任せる時代はまだ先です。
 
 
+AIがコードを書くことで、プログラマーはより戦略的な課題に集中することができるようになります。
 
-
-
+AIの問題解決能力は現在のところ50%ぐらいです。
+SWEベンチマークより
 
 # ティア 1
 
@@ -292,6 +301,20 @@ GitHub Next | Copilot Workspace
 
 https://githubnext.com/projects/copilot-workspace
 
+
+
+
+
+
+
+
+
+
+## Perplexity
+
+https://www.perplexity.ai/
+
+早く便利になってきている。
 
 
 
@@ -487,19 +510,6 @@ Postgres DB付きのアプリ開発者用です。
 
 
 
-
-
-
-
-
-
-
-
-
-
-## Perplexity
-
-https://www.perplexity.ai/
 
 
 
@@ -1066,6 +1076,13 @@ Figmaで下書きを書いて画像に撮って「v0」に渡すと、コンポ�
 https://no-coders-japan.org/nocode-ai-industry-landscape-map
 
 https://drive.google.com/file/d/1v24GbGYB8zZwutJvZAnh4ULxbq5TF2Qv/view
+
+
+The Death of the Stubborn Developer | by Steve Yegge | Medium
+https://steve-yegge.medium.com/the-death-of-the-stubborn-developer-b5e8f78d326b
+
+The End of Programming as We Know It – O’Reilly
+https://www.oreilly.com/radar/the-end-of-programming-as-we-know-it/
 
 CLINEに全部賭けろ
 https://zenn.dev/mizchi/articles/all-in-on-cline
