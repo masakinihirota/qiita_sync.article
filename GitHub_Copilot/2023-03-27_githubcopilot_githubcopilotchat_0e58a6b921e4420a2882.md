@@ -15,19 +15,61 @@ https://forest.watch.impress.co.jp/docs/news/1659601.html
 追記 2025年1月7日
 GitHub Copilot AI進化の大まかな段階
 
-1. 提案 GitHub Copilot
+1. 提案
 
-2. 説明 GitHub Copilot、GitHub Copilot chat等
+GitHub Copilot
 
-3. 自然言語での構築 GitHub Copilot Edits、GitHub Spark(Wait list中)
+2. 説明
+
+GitHub Copilot、GitHub Copilot chat等
+
+3. 自然言語での構築
+
+Copilot Workspace、GitHub Copilot Edits、GitHub Spark(Wait list中)
+
 自然言語による複数のファイルに指示ができるようになります。
-GitHub Sparkの登場で近い将来主従逆転の時代が来るのではと思います。
 
-1と2はほぼ同時に登場しました。
-3.はここ最近AIの発達により出来るようになりました。
+
+4. AIエージェント(不完全自立型AI)
+
+GitHub Copilot Agent Mode
+
+👆 これはVSCodeのInsider版で動かせます。
+
+
+Documentation for Visual Studio Code
+https://code.visualstudio.com/docs/?dv=win&build=insiders
+
+
+
+GitHub Copilot Agent Modeが登場。タスクを与えると自律的にプログラミング、テストコードも修正、テストが失敗すればデバッグも － Publickey
+https://www.publickey1.jp/blog/25/github_copilot_agent_mode.html
+
+
+
+AIがコパイロット(副操縦士)からエージェント(代理人)になりました。
+この 3.までは人間がメインにコードを書きサポートをAIがしていましたが、4.からは人間が指示を出しAIがコードを書きます。主従逆転が起きています。
+
+
+
+主なAIエージェント
+Devin、Cline、Roo Code、OpenHands等
+👆 これらのうち VSCode(Cursor)の拡張機能から使えるものがいくつかあります。
+GitHub Copilotの有償契約を結んでいるとGitHub CopilotのAIモデルが利用できます。 **(実質定額)**
+
+
+
+1 と 2 はほぼ同時に登場しました。
+その後、3 もAIの発達により出来るようになりました。
+
+GitHub Sparkの登場でGitHub CopilotもAIエージェントになるかもしれません。
 
 GitHub Copilot はこの3つとも備わっています。
 しかし現状3はまだまだ発展途上です。スタートダッシュは得意ですし知識もほぼ必要ありませんが、ある程度作り込むとAIを操作する側の知識が強く要求されてきます。
+
+AIの問題解決能力はまだ高くありませんが、ある程度まではAIに任せる時代がきたようです。
+
+しかしこれらの機能によってIT職種の仕事が奪われるということは無いでしょう、より高い技術を持つ必要になりましたが。
 
 追記終了
 
