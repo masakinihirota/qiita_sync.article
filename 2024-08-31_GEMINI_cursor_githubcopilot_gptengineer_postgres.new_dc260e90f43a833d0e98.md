@@ -368,21 +368,27 @@ Chrome拡張
 
 ## uithub
 
-AIを利用したサイトではありませんが、NotebookLMを使う際に便利なサイトです。
-
 uithub は GitHubのリポジトリを読み込んで、1枚のテキスト化してくれるサービスです。
 
 このサービスを利用することで、 notebookLMなど1ページだけしか読んでくれないサービスが利用しやすくなります。
 
 利用方法は簡単で、GitHub のリポジトリを開いたら、ブラウザのURL欄のgithubの箇所をuithubに変えるだけです。
 
+```
 https://github.com/masakinihirota/[リポジトリ名]
-👇️
+👇        ~
 https://uithub.com/masakinihirota/[リポジトリ名]
+           ~
 
-実質1文字変えるだけでOKです。
+```
+
+👆️実質1文字変えるだけでOKです。
 これで、リポジトリの全てのファイルを読み込んで1枚のテキスト化してくれます。
 
+### 参考記事
+
+【効率10倍UPテク】utihubとNotebookLMを組み合わせると、Githubのソースコードの学習が超捗る話
+https://zenn.dev/aimasaou/articles/77fa305c0e4c93
 
 ### 他の利用方法
 
@@ -395,6 +401,28 @@ https://uithub.com/masakinihirota/[リポジトリ名]
 
 思いつきで作ったAIツールが5000スターを獲得した話
 https://zenn.dev/yamadashy/articles/ai-tool-repomix-5000-star
+
+
+
+### site2pdf
+
+ウェブサイトをPDFに変換してダウンロードするコマンドラインツールです。
+NotebookLM に読み込ませる際に使っています。
+
+使い方は👇️を参考にしてください。
+
+最近作ってる地味LLMコマンドラインツールたち: site2pdf, askrepo - laiso
+https://laiso.hatenablog.com/entry/2024/11/04/113928
+
+
+
+
+
+
+
+
+
+
 
 
 ## Genspark

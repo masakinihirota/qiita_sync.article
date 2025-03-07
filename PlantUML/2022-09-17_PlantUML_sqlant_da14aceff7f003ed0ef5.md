@@ -2122,6 +2122,7 @@ anime_tag_mappings |o-u-o{ anime_tags
 ```
 
 
+
 # 参考
 
 Class図での例だが具体例が沢山ある。
@@ -2148,3 +2149,4 @@ ER図とは？書き方やテクニックをわかりやすく解説
 https://products.sint.co.jp/ober/blog/create-er-diagram
 
 ※大変参考になりました、ありがとうございました。
+
