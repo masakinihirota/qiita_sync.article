@@ -183,7 +183,7 @@ index.mdファイルなどを編集して、GitHubへ変更をデプロイしま
 
 ### GitHub リポジトリの actionsタブ
 
-actionsタブを選択肢ます。
+actionsタブを選択します。
 
 ![vitepress Gtihub actions.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/87c52ee8-7e6e-427a-b265-06155663e02a.png)
 
