@@ -14,7 +14,7 @@ https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
 
 https://qiita.com/masakinihirota/items/1694715063247574467d
 
-
+https://qiita.com/masakinihirota/private/247bee4bd66ace86e1da
 
 **Github Copilot chat** は**Github Copilot** で課金していれば、無料で利用できます。
 
