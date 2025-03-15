@@ -4,9 +4,8 @@ tags:    githubcopilot
 id:      247bee4bd66ace86e1da
 private: true
 -->
-
-# title
-
+注意:
+この記事はGitHub Copilotの指示書の自分なりの使い方です。
 
 GitHub Copilot指示書は3種類あり
 1. VSCodeの指示書
@@ -14,12 +13,6 @@ GitHub Copilot指示書は3種類あり
 3. 動的な指示書
 と番号を振ってあります。
 
-注意:
-この記事はGitHub Copilotの指示書の自分なりの使い方です。
-
-
-本編は👇こちらです。
-Link 具体的な指示書の作成
 
 
 ----------------------------------------
@@ -34,7 +27,7 @@ https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
 
 https://qiita.com/masakinihirota/items/1694715063247574467d
 
-https://qiita.com/masakinihirota/private/247bee4bd66ace86e1da
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
 
 
 
