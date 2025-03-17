@@ -229,9 +229,12 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 ![Gemini_Generated_Image_lfj89elfj89elfj8.jfif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/9c5dd13b-10d1-b54e-e6bf-d1d4e3f27c96.jpeg)
 
 
+### Gemini 2.0 Deep Research
 
+AIは質問から答えを出すことができますが、その答えが正しいかどうかはAIがどれだけ正確に情報を理解しているかにかかっています。
+Deep Research機能は、AIが答えを出す際にどのような情報を参照しているかを確認することができます。
 
-
+その分すこし時間がかかります。
 
 
 
