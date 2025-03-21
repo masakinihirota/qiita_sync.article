@@ -28,6 +28,10 @@ Perplexity
 wrtn
 の順
 
+## 市場調査 その他深い調査
+
+GeminiのDeep Researchを使います。
+
 ## コードを書くのは
 
 GitHub Copilot
@@ -179,9 +183,21 @@ Onlookの主な機能には、ユーザーが指示を出すことでAIチャッ
 
 使用頻度No.1
 
+### チャット
 Gemini 2.0 Flash
 Gemini 2.0 Flash Thinking
-Gemini Deep Research
+
+### 深い調査
+Gemini Deep Research 機能
+
+### 対話
+Gemini Canvas 機能
+画面を分割して、Geminiとの対話しながら、文書の作成・修正やコーディング作業を進めます。
+例えば、文章の下書きを作成しGeminiのフィードバック機能を使って書き換えの提案を受けながら、文章を完成させていきます。
+
+v0のような使い方が出来ます。
+HTMLコードからそのプレビューと切り替えながらGeminiに提案を受けられます。
+
 
 https://gemini.google.com/app
 
@@ -213,6 +229,7 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 
 ### Gemini 2.0 Deep Research
 
+市場調査などを行う際に使います。
 AIは質問から答えを出すことができますが、その答えが正しいかどうかはAIがどれだけ正確に情報を理解しているかにかかっています。
 Deep Research機能は、AIが答えを出す際にどのような情報を参照しているかを確認することができます。
 
