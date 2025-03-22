@@ -14,11 +14,68 @@ GitHub Copilotに新しい機能が追加されたので、その機能と自分
 どのような形だろうとGitHub Copilotには伝わります。
 この記事は、
 GitHub Copilotに正確な情報を伝えつつ、
+人間とAIとのギャップを埋めるための指示書を、
 人間が管理しやすい形を目指します。
 
 
 
-# 前提
+追記 2025年3月23日
+
+追記の前提
+今のAIはを大雑把に分けると
+Chat 会話モード
+Edits 編集モード
+Agent mode 代理人モード
+の3種類があります。
+
+AIは1,2年前から進化を続けていて、AIとの会話、1ファイルの編集、複数ファイルの編集、一部、もしくは全体をAIにコードを提案してもらう代理人モードができるようになりました。
+
+今回の追記は、これまではそれぞれ独自にAIを利用する方法を探っていたのが、VScode共通の操作の決定でどのAIも同じような操作で使えることになるという共通の操作が実装されることになります・・・かもしれない。
+
+VScodeのAgent modeの拡張機能
+Cline
+Roo Code
+Gemini Code Assist
+等群雄割拠の時代に突入していました、今回のVSCodeのアップデートで、操作の共通化がされるのではないでしょうか？
+
+
+
+## VScode Agent mode
+
+GitHub Copilot Agent mode
+とは別に
+VScodeでAgent modeが利用できるようになります。
+※VScode Insidersで試験的に実装中
+
+つまりこれからはそれぞれのAIモデルの実装や独自の拡張機能に依存せず、「VScode共通の操作」で各AIのエージェントモード (それ以外のモードも)が使えるようになります・・・かもしれない。
+
+Use agent mode (preview)
+https://code.visualstudio.com/docs/copilot/copilot-edits#_use-agent-mode-preview
+
+VScodeのエージェントモードはファイルをいちいち指定する必要がなくなるそうです。
+
+## 会話の共有
+
+これまでは、GitHub Copilotでは
+GitHub Copilot chat
+GitHub Copilot Agent mode
+ではそれぞれ会話の共有はされていませんでしたが
+VScode Copilot Chat
+VScode Copilot Edits
+これらを利用することで、これからは会話の共有がされるようになります・・・かもしれない。
+
+Copilot Chatでアイデアを練り、
+Copilot Editsでコードを生成することができるようになります・・・かもしれない。
+
+Copilot Edits
+Send a chat request to Copilot Edits
+https://code.visualstudio.com/docs/copilot/copilot-edits#_send-a-chat-request-to-copilot-edits
+
+追記終了
+
+
+
+# 前提(独自)
 
 GitHub Copilot指示書は3種類あり
 1. VSCodeの指示書

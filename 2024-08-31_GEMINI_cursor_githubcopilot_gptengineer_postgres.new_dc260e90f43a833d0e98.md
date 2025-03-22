@@ -809,6 +809,7 @@ https://copilot.microsoft.com/
 
 
 
+----------------------------------------
 
 # 普通 or 自分には合わなかった
 
@@ -1041,6 +1042,14 @@ https://www.octocomics.com/home
 
 
 
+----------------------------------------
+
+# その他
+
+OpenAI.fm
+https://www.openai.fm/
+
+テキストからスピーチ
 
 
 
