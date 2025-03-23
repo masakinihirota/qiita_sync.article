@@ -21,7 +21,7 @@ GitHub Copilotに正確な情報を伝えつつ、
 
 # 追記 2025年3月23日
 
-<details><summary>エージェントモード？</summary>
+<details><summary>VSCodeのエージェントモード？</summary>
 
 GitHub Copilot in VS Code
 https://code.visualstudio.com/docs/copilot/overview
