@@ -19,7 +19,15 @@ GitHub Copilotに正確な情報を伝えつつ、
 
 
 
-追記 2025年3月23日
+# 追記 2025年3月23日
+
+<details><summary>エージェントモード？</summary>
+
+GitHub Copilot in VS Code
+https://code.visualstudio.com/docs/copilot/overview
+
+公式ドキュメント
+
 
 追記の前提
 今のAIはを大雑把に分けると
@@ -28,15 +36,32 @@ Edits 編集モード
 Agent mode 代理人モード
 の3種類があります。
 
-AIは1,2年前から進化を続けていて、AIとの会話、1ファイルの編集、複数ファイルの編集、一部、もしくは全体をAIにコードを提案してもらう代理人モードができるようになりました。
+GitHub Copilotの種類
+GitHub Copilot
+GitHub Copilot Chat
+GitHub Copilot CLI
+GitHub Copilot Edits
+GitHub Copilot Agent mode
 
-今回の追記は、これまではそれぞれ独自にAIを利用する方法を探っていたのが、VScode共通の操作の決定でどのAIも同じような操作で使えることになるという共通の操作が実装されることになります・・・かもしれない。
+VSCode のAI(土台だけ、操作の共通化？)
+VScode Copilot Chat
+VScode Copilot Edits エージェントモードに対応
+※複数の同時編集セッションは未対応(並列にEditsは使えない)
+`#codebase` はクエリに関連するコンテキストを見つけてくれます。
 
-VScodeのAgent modeの拡張機能
-Cline
-Roo Code
-Gemini Code Assist
-等群雄割拠の時代に突入していました、今回のVSCodeのアップデートで、操作の共通化がされるのではないでしょうか？
+AIは1,2年前から進化を続けていて、AIとの会話、1ファイルの編集、複数ファイルの編集、一部、もしくは全体をAIにコードを提案してもらう代理人モードができるようになり、段々と便利になってきました。
+
+今回の追記は、これまでは色んな人がそれぞれ独自にAIを利用する方法を探っていたのが、「VScode共通の操作」の実装でどのAIも同じに使えるようになります・・・かもしれない。
+それぞれ独自の指示書の設定やチャット枠、履歴がありました。
+
+たとえばVScodeのAI、Agent modeの拡張機能は
+* Cline
+* Roo Code
+* Gemini Code Assist
+* その他
+等群雄割拠の時代に突入していました、今回のVSCodeのアップデートで、操作や設定の共通化がされるのではないでしょうか？
+MCPの利用など、独自設定は残るかもしれません。
+これら独自の拡張機能開発者が、VSCodeのAgent modeでの操作を利用しない可能性もあります。
 
 
 
@@ -70,6 +95,8 @@ Copilot Editsでコードを生成することができるようになります�
 Copilot Edits
 Send a chat request to Copilot Edits
 https://code.visualstudio.com/docs/copilot/copilot-edits#_send-a-chat-request-to-copilot-edits
+
+</details>
 
 追記終了
 
