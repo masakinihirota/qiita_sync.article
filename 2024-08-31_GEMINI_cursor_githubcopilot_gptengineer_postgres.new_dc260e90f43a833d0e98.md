@@ -51,7 +51,8 @@ notebookLMを利用して、ソースを登録します。
 
 v0
 
-
+Same
+https://same.new/
 
 
 
@@ -145,11 +146,20 @@ https://githubnext.com/projects/github-spark
 
 ## お試し中
 
+### Same
+
+https://same.new/
+
+v0の代替
+
+### MCP
+
 MCP(Model context protocol)
 
 AIと色々なデータやツールを安全に繋ぐための共通言語
 、プロトコルです。
 
+### Onlook
 
 Onlook – Cursor for Designers
 https://onlook.com/ja/
