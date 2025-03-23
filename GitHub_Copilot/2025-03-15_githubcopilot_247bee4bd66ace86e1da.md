@@ -30,7 +30,7 @@ https://code.visualstudio.com/docs/copilot/overview
 
 
 追記の前提
-今のAIはを大雑把に分けると
+今のAIは大雑把に分けると
 Chat 会話モード
 Edits 編集モード
 Agent mode 代理人モード
