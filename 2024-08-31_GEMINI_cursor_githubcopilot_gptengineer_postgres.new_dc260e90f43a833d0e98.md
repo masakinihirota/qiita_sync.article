@@ -146,6 +146,14 @@ https://githubnext.com/projects/github-spark
 
 ## お試し中
 
+### Felo
+
+Felo（フェロー）- 無料のAI検索エンジン
+https://felo.ai/ja/search
+
+AIによる検索サービス
+
+
 ### Same
 
 https://same.new/

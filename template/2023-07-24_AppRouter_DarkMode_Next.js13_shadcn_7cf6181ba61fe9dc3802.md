@@ -793,36 +793,7 @@ https://ui.shadcn.com/docs/components/typography
 
 https://www.figma.com/community/file/1203061493325953101
 
-### 変更履歴
 
-Changelog - shadcn/ui
-
-https://ui.shadcn.com/docs/changelog
-
-例
-ベースカラー
-gray
-neutral
-slate
-stone
-zinc
-
-# shadcn/ui の読み方は？
-
-作者本人のツィート
-
-https://twitter.com/shadcn/status/1647397488742080512
-
-> @shadcn how do i properly pronounce your handle when i'm introducing your projects to others 😅 been saying "shad-see-enn" but idk if that's correct
-
-@shadcn 他の人にあなたのプロジェクトを紹介するとき、あなたのハンドルネームをどう発音すればいいのでしょうか？
-
-> shad as in shadow
-
-シャドウ
-
-シャドウ ユーアイ
-シャドウ ユーザーインターフェース
 
 # 参考
 
@@ -839,3 +810,4 @@ https://zenn.dev/hiro4hiro4/articles/e90778a816df84
 Tailwind CSS を使った ダークモード実装の効率的なアプローチ
 
 https://zenn.dev/deer/articles/d3b104ac97711d
+

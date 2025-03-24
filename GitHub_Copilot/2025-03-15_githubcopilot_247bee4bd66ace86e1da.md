@@ -135,7 +135,7 @@ AIは優先順位をつけることが苦手です。
 ## AIに痛みはない
 
 人間は限界以上の動作には痛みがでて自然に止まります。
-AIには自分の限界を知るのが苦手です。
+AIは自分の限界を知るのが苦手です。
 限界を認識させるために明示的な指示が必要です。
 AIが実行できることのみを実装するように依頼することが重要です。
 
@@ -259,7 +259,7 @@ https://code.visualstudio.com/docs/copilot/copilot-edits#_send-a-chat-request-to
 
 # 前提(独自)
 
-GitHub Copilot指示書は3種類あり
+GitHub Copilotの指示書は3種類あり
 1. VSCodeの指示書
 2. 静的な指示書
 3. 動的な指示書
