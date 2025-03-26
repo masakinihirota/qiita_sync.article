@@ -111,6 +111,8 @@ Supabaseで公式に使えるエディタ
 Database | Supabase
 https://supabase.com/dashboard/project/_/settings/database?showConnect=true
 
+👆Connect to your project 画面が開きます。
+
 Session pooler(画面の下の方にある)
 
 ```

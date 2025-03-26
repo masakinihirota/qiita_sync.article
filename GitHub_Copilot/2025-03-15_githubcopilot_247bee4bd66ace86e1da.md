@@ -565,8 +565,10 @@ VSCodeの設定
 	"github.copilot.chat.edits.temporalContext.enabled": true,
 	"github.copilot.chat.newWorkspaceCreation.enabled": true,
 	"github.copilot.chat.search.semanticTextResults": true
-
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true
 ```
+
+
 
 👆を追加します。
 ※実験的な機能の設定が含まれています。
@@ -795,7 +797,17 @@ Step 6: Writing environment variables to .env
 
 VSCodeの設定を開きます。
 
+copilot-instructions.mdの指示書を有効化するために
+
+```settings.json
+"github.copilot.chat.codeGeneration.useInstructionFiles": true,
+
+```
+
+を設定します。
+
 ### copilot-instructions.md
+
 
 リポジトリのルート直下
 

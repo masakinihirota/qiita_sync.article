@@ -220,9 +220,14 @@ Onlookの主な機能には、ユーザーが指示を出すことでAIチャッ
 
 絶対相対評価です。
 
-## Gemini 2.0
+## Gemini 2.5
 
 使用頻度No.1
+
+Google、思考するAI「Gemini 2.5」発表──推論能力とコーディング能力が大幅向上 - ITmedia AI＋
+https://www.itmedia.co.jp/aiplus/articles/2503/26/news121.html
+
+
 
 ### チャット
 Gemini 2.0 Flash
@@ -242,14 +247,6 @@ HTMLコードからそのプレビューと切り替えながらGeminiに提案�
 
 https://gemini.google.com/app
 
-Gemini 2.0になり、能力の数値的には2024年12月時点で他のAIと比べるサイトで3位になっていました。
-
-[参考]遂にChatGPT Plusを解約してGeminiに移行した話
-
-https://zenn.dev/zuzuzu/articles/gemini_vs_chatgpt
-
-リポジトリ全体コードレビュー: GitHubリポジトリ全体を読み込み、潜在的なバグや改善点を指摘
-
 マルチモーダル対応: テキストだけでなく、画像や音声や画面共有でも認識可能
 
 使う主な目的
@@ -268,7 +265,7 @@ https://pc.watch.impress.co.jp/docs/news/1630845.html
 ![Gemini_Generated_Image_lfj89elfj89elfj8.jfif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/9c5dd13b-10d1-b54e-e6bf-d1d4e3f27c96.jpeg)
 
 
-### Gemini 2.0 Deep Research
+### Gemini Deep Research
 
 市場調査などを行う際に使います。
 AIは質問から答えを出すことができますが、その答えが正しいかどうかはAIがどれだけ正確に情報を理解しているかにかかっています。
