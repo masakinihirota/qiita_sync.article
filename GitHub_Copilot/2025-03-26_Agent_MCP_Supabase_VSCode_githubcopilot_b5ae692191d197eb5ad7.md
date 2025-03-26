@@ -8,6 +8,29 @@ private: false
 
 * VSCode(ネイティブ)とは拡張機能を経ずに本体に設定することです。
 
+# 要約
+
+設定の方法は、VSCodeのリポジトリ直下(.vscode/)に👇設定ファイル(mcp.json)を置くだけです。
+
+## Supabase(ローカル)の場合の設定ファイル
+
+```.vscode/mcp.json
+{
+    "servers": {
+        "supabase": {
+          "command": "cmd",
+          "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://postgres:postgres@127.0.0.1:54322/postgres"]
+        }
+    }
+}
+
+```
+
+後は、GitHub Copilot Agent modeとのチャットでSupabaseを操作できます。
+DB内のデータの読み込みやSupabase用のコードの提案はできますが、数値の書き換え等の直接の操作は出来ません。
+
+
+
 # 追記 2025年3月26日
 
 サンプル MCPの設定リポジトリ
