@@ -15,7 +15,19 @@ VSCodeのMCP対応は、現在VSCode Insiders v1.99以上でのみ対応中
 現在(2025年3月26日)のVSCodeは v1.98
 順調にいけば2週間後に反映予定
 
+# GitHub Copilotシリーズ
 
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+https://qiita.com/masakinihirota/items/1694715063247574467d
+
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
+
+https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
 # 疑問と調査
 
@@ -209,6 +221,7 @@ SupabaseのPublicのテーブル名を教えて。
 ## GitHub Copilotからの返答1
 
 テーブルの数と名前が正確だったら接続できています。
+Supabaseからテーブルデータを正確に読み取ってくれました。
 
 
 
@@ -238,6 +251,8 @@ export async function updateUserNameToMasakinihirota() {
 }
 
 ```
+
+👆VSCodeから直接DBの数値操作は出来ませんでした。
 
 
 
