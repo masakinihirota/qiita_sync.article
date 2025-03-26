@@ -11,7 +11,7 @@ private: false
 
 # 現状
 
-VSCodeのMCP対応は、現在VSCode Insiders v1.99以上でのみ対応中
+VSCodeのMCPは、現在VSCode Insiders v1.99以上でのみ対応中
 現在(2025年3月26日)のVSCodeは v1.98
 順調にいけば2週間後に反映予定
 
@@ -33,8 +33,9 @@ https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
 MCPがスゴイ、VSCodeでもネイティブに使えないかな？
 
-調べると、MCP対応は？1.99から対応(予定)
-VSCode insider 1.99ですでにMCPが使えるように機能が組み込まれているらしい。
+調べると、MCPは 1.99から対応(予定)
+VSCode insider 1.99ではすでにMCPが使えるように組み込まれていました。
+
 
 
 <details><summary>VSCodeの拡張機能でつかうMCP</summary>
