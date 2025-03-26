@@ -8,6 +8,15 @@ private: false
 
 * VSCode(ネイティブ)とは拡張機能を経ずに本体に設定することです。
 
+# 追記 2025年3月26日
+
+サンプル MCPの設定リポジトリ
+
+https://github.com/masakinihirota/github-copilot-custom-instructions
+
+追記終了
+
+
 
 # 現状
 
