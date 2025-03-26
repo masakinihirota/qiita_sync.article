@@ -160,6 +160,8 @@ DB URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
 ## VSCode Insidersに設定する。
 
+* 基本形
+
 ```.vscode/mcp.json
 {
   "servers": {
@@ -174,14 +176,27 @@ DB URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
 👆 <connection-string>を先程取得した文字列に置き換えます。
 
-※ `npx`が実行できる環境であること
+※`npx`が実行できる環境であること
 
 `.vscode/mcp.json`ファイルの"supabase"の上に表示されるRunボタンを押します。
 Runningを確認。
 
+
 ## サーバーの場合の設定
 
-(パス)接続文字列以外ローカルと同じ
+```.vscode/mcp.json
+{
+  "servers": {
+    "supabase": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-postgres", "<connection-string>"]
+    }
+  }
+}
+
+```
+
+👆<connection-string>を先程取得したサーバーの接続文字列に置き換えます。
 
 
 
@@ -199,10 +214,10 @@ Runningを確認。
 
 ```
 
-👆 <connection-string>を先程取得した文字列に置き換える。
-※ローカル値なので置き換え済みです。(ローカルは隠すような環境変数も使用していないので丸ごとコピペでOK)
+👆<connection-string>を先程取得したローカルの接続文字列に置き換えます。
+※ローカルは環境変数が同じなので丸ごとコピペでOKです。(置き換え済み)
 
-※ `npx`が実行できる環境であること
+※`npx`が実行できる環境であること
 
 `.vscode/mcp.json`ファイルの"supabase"の上に表示されるRunボタンを押します。
 Runningを確認。
@@ -253,9 +268,7 @@ export async function updateUserNameToMasakinihirota() {
 
 ```
 
-👆VSCodeから直接DBの数値操作は出来ませんでした。
-
-
+👆VSCodeから直接Supabaseの数値操作は出来ませんでした。
 
 以上で設定＆確認終了です。
 お疲れさまでした。
