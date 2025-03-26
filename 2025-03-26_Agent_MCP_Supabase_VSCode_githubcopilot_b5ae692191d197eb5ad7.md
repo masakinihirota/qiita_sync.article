@@ -22,7 +22,7 @@ VSCodeのMCP対応は、現在VSCode Insiders v1.99以上でのみ対応中
 MCPがスゴイ、VSCodeでもネイティブに使えないかな？
 
 調べると、MCP対応は？1.99から対応(予定)
-VSCode insider 1.99ですでにMCPが組み込まれているらしい。
+VSCode insider 1.99ですでにMCPが使えるように機能が組み込まれているらしい。
 
 
 <details><summary>VSCodeの拡張機能でつかうMCP</summary>
@@ -73,7 +73,7 @@ touch .vscode/mcp.json
 ## 事前準備
 
 VSCode Insidersを用意します。
-GitHub CopilotをVSCode Insidersでも動くようにしておきます。。
+GitHub CopilotをVSCode Insidersでも動くようにしておきます。
 Next.js アプリを起動(Supabaseが動くフレームワークなら何でも)
 Supabaseをサーバーでプロジェクトを作成しておきます。
 Supabaseをローカルにインストールします。

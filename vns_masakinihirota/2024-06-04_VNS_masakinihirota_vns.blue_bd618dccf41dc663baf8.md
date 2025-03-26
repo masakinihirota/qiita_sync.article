@@ -5845,7 +5845,7 @@ Supabase ダッシュボードで Google プロバイダーを構成する。
 
 ## 設定開始
 
-Enable Sign in with Google をオンにします。。
+Enable Sign in with Google をオンにします。
 
 Client ID (for OAuth)
 *****

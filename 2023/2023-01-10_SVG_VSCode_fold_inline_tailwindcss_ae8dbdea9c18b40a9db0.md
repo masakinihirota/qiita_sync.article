@@ -38,7 +38,7 @@ https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold
 これが
 
 ```html
-<p className="。。。">
+<p className="... ">
 ```
 
 と短くなります。
@@ -55,7 +55,7 @@ https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold
 
 ```html
 <a href="https://nextjs.org/learn"
-   className="。。。"
+   className="..."
 >
 ```
 
@@ -64,8 +64,8 @@ https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold
 href属性も設定すると
 
 ```html
-<a href="。。。"
-   className="。。。"
+<a href="... "
+   className="... "
 >
 ```
 
