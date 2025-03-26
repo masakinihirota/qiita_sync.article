@@ -336,7 +336,7 @@ src
 
 Supabaseダッシュボードでの表示場所
 
-https://supabase.com/dashboard/project/znazduolmsxbqigecsiz/settings/database
+https://supabase.com/dashboard/project/_/settings/database
 
 👇
 
@@ -452,6 +452,21 @@ npx drizzle-kit pull
 
 
 
+npx drizzle-kit generate
+で、スキーマファイル(*****.ts)ファイルからマイグレーションファイル(SQL文)を作ります。
+
+記録が残らない
+npx drizzle-kit push
+記録が残る
+npx drizzle-kit migrate
+のどちらかでSupabaseに反映させます。
+
+開発中は何度も気軽に変更できるpush
+本番運用中は変更記録を保存するmigrate
+と使い分けます。
+
+
+
 ここまでが下準備です。
 
 ----------------------------------------
@@ -484,7 +499,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 
 ```
 
-※純粋なSQL文が出力されました。
+※純正なSQL文が出力されました。
 
 </details>
 
@@ -534,6 +549,9 @@ Supabaseのダッシュボードの Table Editorで正常に反映されてい�
 `npx drizzle-kit -h`
 
 ```terminal
+drizzle-kit [command]
+
+#👇commandリスト
 generate: マイグレーションファイルを生成します。
 migrate: マイグレーションを実行します。
 push: スキーマの変更を直接データベースに適用します。

@@ -1,5 +1,5 @@
 <!--
-title:   SAASスターター Next.js 15 shadcn/ui Postgres Drizzle Stripe テンプレート 👈️Supabaseに変更
+title:   SAASスターター Next.js 15 shadcn/ui Postgres Drizzle Stripe テンプレート 👈Supabaseに変更
 tags:    Drizzle,Next.js,Supabase,shadcn,stripe
 id:      f3a8251dd86c10ecbe75
 private: false
@@ -9,7 +9,7 @@ nextjs/saas-starter: Get started quickly with Next.js, Postgres, Stripe, and sha
 
 https://github.com/nextjs/saas-starter
 
-# SAASスターターの紹介(👆️と同じもの Vercelでの紹介)
+# SAASスターターの紹介(👆と同じもの Vercelでの紹介)
 Next.js SaaS Starter Template
 
 https://vercel.com/templates/next.js/next-js-saas-starter
@@ -32,7 +32,7 @@ supabase init
 
 ```
 
-👆️このコマンドを実行してSupabaseをインストールしておいてください。
+👆このコマンドを実行してSupabaseをインストールしておいてください。
 
 ローカルのSupabaseは立ち上げておきます。
 
@@ -130,7 +130,7 @@ export default defineConfig({
 
 ### AUTH_SECRETに関して
 
-👇️スクリプトファイルを新しく作ります。
+👇スクリプトファイルを新しく作ります。
 
 ```generateAuthSecret.js
 import crypto from 'node:crypto';
@@ -150,7 +150,7 @@ ts-node generateAuthSecret.js
 
 ```
 
-AUTH_SECRETに関しては、👆️のコードで出力されたコードを👇️AUTH_SECRETにコピペします。
+AUTH_SECRETに関しては、👆のコードで出力されたコードを👇AUTH_SECRETにコピペします。
 
 ```.env
 AUTH_SECRET="*****"
@@ -170,7 +170,7 @@ pnpm db:setup
 
 ```
 
-👆️このコマンドはDocker Postgres用の環境変数ファイル.envを作るためのものなので実行しません。
+👆このコマンドはDocker Postgres用の環境変数ファイル.envを作るためのものなので実行しません。
 
 Stripeの環境変数は用意しておく必要があります。
 Stripeを今使わないのなら用意しなくてもデモ画面は動きます。

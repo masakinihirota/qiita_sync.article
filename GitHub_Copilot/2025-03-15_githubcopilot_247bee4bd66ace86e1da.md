@@ -17,6 +17,20 @@ GitHub Copilotに正確な情報を伝えつつ、
 人間とAIとのギャップを埋めるための指示書を、
 人間が管理しやすい形を目指します。
 
+# 追記 2025年3月26日
+
+指示書のリポジトリ
+
+masakinihirota/github-copilot-custom-instructions: GitHub Copilot 指示書
+
+https://github.com/masakinihirota/github-copilot-custom-instructions
+
+※ルールは各自で練り直してください。
+
+追記終了
+
+
+
 # 追記 2025年3月24日
 
 <details><summary>指示書を書く心構え</summary>
@@ -171,6 +185,8 @@ AIは学習データやファインチューニング、コンテキストウィ
 
 </details>
 
+追記終了
+
 
 
 # 追記 2025年3月23日
@@ -299,6 +315,26 @@ GitHub Copilotの指示書は3種類あり
 設計書が大きく、指示書に書いてない部分はGitHub Copilotが自由にコードを生成してくる場合があります。
 これは人間側の指示する内容が抜け落ちている場合が多いです。
 
+# 設定のまとめ
+
+それぞれの設定場所
+
+```
+# VSCode 本体の設定
+settings.json
+
+# リポジトリの直下
+# GitHub Copilot 静的指示書
+.github/copilot-instructions.md
+.github/.copilot-codeGeneration-instructions.md
+.github/.copilot-test-instructions.md
+.github/.copilot-review-instructions.md
+.github/.copilot-commit-message-instructions.md
+
+# GitHub Copilot 動的指示書
+.github/prompts/*.prompt.md
+
+```
 
 ----------------------------------------
 
@@ -564,8 +600,9 @@ VSCodeの設定
 	"github.copilot.chat.codesearch.enabled": true,
 	"github.copilot.chat.edits.temporalContext.enabled": true,
 	"github.copilot.chat.newWorkspaceCreation.enabled": true,
-	"github.copilot.chat.search.semanticTextResults": true
+	"github.copilot.chat.search.semanticTextResults": true,
   "github.copilot.chat.codeGeneration.useInstructionFiles": true
+
 ```
 
 
