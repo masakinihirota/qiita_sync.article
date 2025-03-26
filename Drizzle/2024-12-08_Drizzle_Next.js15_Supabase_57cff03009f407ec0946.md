@@ -9,10 +9,10 @@ DrizzleがRLSに対応したというので使ってみることにしました�
 # 事前に知っておくべきこと
 
 * Drizzleは生成すると、カラム名はキャメルケースを使用しています。
-	firstName (👈️キャメルケース)
+	firstName (👈キャメルケース)
 
 * Supabaseはカラム名はスネークケースを使用しています。
-	first_name (👈️スネークケース)
+	first_name (👈スネークケース)
 
 ※TypeScriptだとキャメルケースを使用するのが一般的です。
 ※PostgreSQLのカラム名はスネークケースを使用するのが一般的です。
@@ -33,7 +33,7 @@ PostgreSQLはデフォルトで識別子を小文字に変換するため、キ�
 
 # Drizzleの肝
 
-👇️この図がDrizzleで一番重要な部分です、後はこれの関連でしかありません。
+👇この図がDrizzleで一番重要な部分です、後はこれの関連でしかありません。
 
 * Drizzleのテーブル形式
 
@@ -64,7 +64,8 @@ ORMとは、Object-Relational Mapping の略で、オブジェクト指向プロ
 
 DrizzleはそのORMの一つで、TypeScriptで書かれたORMです。
 
-Supabaseもマイグレーションファイルは生成できますが、TypeScriptでスキーマを書くことはできません。そこでDrizzleを使うことで、TypeScriptを使ってスキーマを書くことができます。
+Supabaseもマイグレーションファイルは生成できますが、TypeScriptでスキーマを書くことはできません。
+Drizzleを使うことで、TypeScriptを使ってスキーマを書くことができます。
 
 
 
@@ -83,7 +84,7 @@ masakinihirota/drizzle_Nextjs_Supabase_app
 
 https://github.com/masakinihirota/drizzle_Nextjs_Supabase_app
 
-Supabaseの設定は👇️これを御覧ください。
+Supabaseの設定は👇これを御覧ください。
 
 ## Supabaseの環境構築
 
@@ -125,7 +126,7 @@ supabase
 
 動作確認が取れたら ローカルの設定をサーバーのSupabaseに写し、サーバーで実運用を行います。
 
-ローカルのSupabaseからサーバーのSupabaseに設定を写す方法は、SupabaseのCLIを使って PUSHコマンドなどを利用します。 詳しくは👆️を御覧ください。
+ローカルのSupabaseからサーバーのSupabaseに設定を写す方法は、SupabaseのCLIを使って PUSHコマンドなどを利用します。 詳しくは👆を御覧ください。
 
 
 
@@ -159,8 +160,8 @@ Drizzle ORM - PostgreSQL
 https://orm.drizzle.team/docs/get-started/supabase-new
 
 ```terminal
-npm i drizzle-orm postgres dotenv
-npm i -D drizzle-kit tsx
+pnpm add drizzle-orm postgres dotenv
+pnpm add -D drizzle-kit tsx
 
 ```
 
@@ -172,9 +173,7 @@ npm i -D drizzle-kit tsx
 
 ```terminal
 supabase init
-
 supabase start
-
 supabase status
 
 ```
@@ -229,7 +228,7 @@ DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
 https://supabase.com/dashboard/project/_/settings/database
 
-サーバーのSupabaseの場合、👆️ここから、画面上部の Connectのリンクを開いて、URIが取得できます。
+サーバーのSupabaseの場合、👆ここから、画面上部の Connectのリンクを開いて、URIが取得できます。
 
 
 
@@ -339,7 +338,7 @@ Supabaseダッシュボードでの表示場所
 
 https://supabase.com/dashboard/project/znazduolmsxbqigecsiz/settings/database
 
-👇️
+👇
 
 <details><summary>どのプーリング・モードを使うべきか？(公式情報)</summary>
 
@@ -574,7 +573,7 @@ CRUD
 RLSの実装と有効化、ポリシーのCRUDの調査
 
 
-👇️ Supabaseのドキュメント側から見るDrizzleの利用方法
+👇 Supabaseのドキュメント側から見るDrizzleの利用方法
 
 # SupabaseのQuickStart
 
@@ -609,7 +608,7 @@ export const users = pgTable('users', {
 
 https://supabase.com/dashboard/project/_/settings/database
 
-サーバーのSupabaseの場合、👆️ここから、画面上部の Connectのリンクを開いて、URIが取得できます。
+サーバーのSupabaseの場合、👆ここから、画面上部の Connectのリンクを開いて、URIが取得できます。
 
 データベース設定で、Use connection pooler がチェックされていることを確認し、URIをコピーしてDATABASE_URL環境変数として保存します。
 
