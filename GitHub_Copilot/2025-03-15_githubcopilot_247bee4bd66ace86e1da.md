@@ -9,31 +9,632 @@ private: true
 GitHub Copilotに新しい機能が追加されたので、その機能と自分なりの使い方がメインとなります。
 翻訳部分は、第一版に相当するSCode の Rules for AI 全体のルール設定 翻訳 GitHub Copilotを御覧ください。
 
-まとめて１ファイル
-複数ファイルに分割
-どのような形だろうとGitHub Copilotには伝わります。
-この記事は、
-GitHub Copilotに正確な情報を伝えつつ、
-人間とAIとのギャップを埋めるための指示書を、
-人間が管理しやすい形を目指します。
 
-# 追記 2025年3月26日
-
-指示書のリポジトリ
+# 指示書のリポジトリ
 
 masakinihirota/github-copilot-custom-instructions: GitHub Copilot 指示書
 
 https://github.com/masakinihirota/github-copilot-custom-instructions
 
-※ルールは各自で練り直してください。
+# GitHub Copilotシリーズ
 
-追記終了
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+https://qiita.com/masakinihirota/items/1694715063247574467d
+
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
+
+※第一版に相当する VSCodeのRules for AI 全体のルール設定 翻訳 GitHub Copilotも合わせてご覧ください。
+
+https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
 
 
-# 追記 2025年3月24日
+----------------------------------------
 
-<details><summary>指示書を書く心構え</summary>
+# GitHub Copilotに伝われば、形式はどのような形でもよいです。
+これは、指示書の作成例です。
+
+# Webアプリ開発で設計書、指示書、MCP
+
+指示書には
+矛盾がないか？
+シンプルに書かれているか？
+重複がないか？
+
+
+
+# 用語
+
+* 全体の指示書
+
+英語では custom instructions file (公式Doc) と呼ばれます。
+ルールが重複すると管理が煩雑になるため、目的別に指示書を使い分けます。
+この記事では、GitHub Copilot に設定するファイルを「指示書」とします。
+GitHub Copilot には3種類の指示書を設定でき、ルールの重複を避けて管理を効率化するため、目的別に使い分けます。
+
+
+
+* タスクリストファイル
+
+設計書に基づいて分割された、実装すべき目的や、機能単位のリスト。各タスクは、コード実装を優先して定義されます。
+
+
+
+* タスク分解
+
+設計書から、機能などを1機能1タスクを目安に分解してもらいます。
+タスクリストの各項目を、より小さな実装単位に分割したものです。
+1タスクの大きさが十分に小さかったらタスク分解の必要はありません。
+タスク分解したものをプロンプトファイルにします。
+
+
+
+* プロンプトファイル
+
+GitHub Copilot に具体的なタスクを指示するための詳細なドキュメントです。
+
+設計書をタスクリスト化して(タスクが大きい場合はタスク分解)、GitHub Copilotに指示しやすい大きさにしたものです。
+問題を小さく分けることで、AI にすべての情報を与え、希望する提案を得やすくなります。
+
+タスクリストの各項目を実装するために、AIに与える詳細な指示を記述したドキュメントです。
+
+１つのプロンプトファイルで１つの仕事の単位で書きます。
+
+AIと会話して設計書からプロンプトファイルを書きます。
+会話をしていく中で、詳細な部分まで決めていきます。
+
+
+
+* 設計書
+
+Webアプリケーションの構想、概要、要件定義、画面設計、データベース設計、API設計、テスト計画などをまとめたドキュメントです。
+/design フォルダ内に置いています。
+
+
+
+* リポジトリ
+
+Webアプリケーションのソースコードや関連ファイルを管理するための保管場所です。
+Gitバージョン管理システムを用いて、変更履歴の追跡や共同開発を容易にします。
+
+
+
+## べからず集 してはいけないこと
+
+* 1回で複数の問題を解決しようとする。
+1回のプロンプトファイルで1つの問題を解決することに集中する。
+GitHub Copilotが可能な手段で考える必要がある。
+まだ一度の指示ですべての問題を解決出来るほどGitHub Copilotはそれほど賢くない。
+
+* 指示書に詰め込む。
+指示が長過ぎると指示が反映されなくなります。
+Gemini系など受け付ける容量が大きいとこの問題は小さくなります。
+
+* 曖昧な指示をする。
+「それっぽい感じで」「なんとなく」といった曖昧な表現は、GitHub Copilotが混乱します。
+具体的な要件や期待する動作を明確にします。
+
+* 複雑な指示をする
+指示は出来る限りシンプルにしたほうが良いでしょう。
+
+* 小さな違和感の放置
+技術的負債が入り込みやすくなります。
+徹底的に技術的負債と向き合います。
+
+* 技術的負債を後回しにする。
+技術的負債を後回しにすればするほど大きく、修正困難になっていきます。
+技術的負債は小さいうちにどんどん片付けておきましょう。
+
+* 余計な情報を与える。
+GitHub Copilotは書かれてある指示通りに最後まで突き進もうとします。
+余分な指示やコードはできるだけ排除します。
+
+* GitHub Copilotは何でも出来るので何でも命令する。
+GitHub Copilotはあくまでコーディングエージェント、アシストツールであり、完全な自動化ツールではありません。
+複雑なロジックや高度な設計判断は、分解して問題を小さくするか、人間の手で行う必要があります。
+
+* 自動生成だからテストを書かなくていい。
+テストコードは重要です。
+GitHub Copilotも気づかずに他の機能に関与したコードを書き換える可能性があります。
+テストはレグレッションテスト(退行テスト)も兼ねています。
+GitHub Copilotが生成したコードに対して、適切なテストコードを作成し動作確認を行います。
+テストコードは、コードの品質を保証します。
+
+* 盲目的にGitHub Copilotを信用する。
+GitHub Copilotを信用してはいけません。
+生成されたコードは、あくまで提案でしかありません。
+
+* 失敗してもコードを残す。
+失敗したコードは破棄しましょう。
+サンクコストです、料金を払って提案されたコードといえどもプロジェクトに沿わないコードを残していけば、たちまち雪だるま式に負債が溜まっていきます。
+
+
+## フォルダ・ファイルの種類
+
+設計書
+全体の指示書: プロジェクト全体で共通する指示
+個別の指示書: 全体の指示書ではかけなかった個別の指示
+プロンプトファイル: タスクの実装詳細情報
+
+タスクリストファイル: タスク一覧
+メモリーファイル: 実行履歴
+
+* settings.json
+
+VSCode用の設定ファイルです。
+VSCodeの **設定** で呼び出して登録します。
+自然言語で登録できます。
+ファイルで登録できます。
+
+開発者のための指示を書きます。
+
+* 設計書のフォルダ
+
+design/
+
+design/design.md (設計書)
+
+Webアプリの設計を書きます。
+
+* GitHub Copilotへの 指示書・プロンプトファイル
+
+プロジェクトのための指示を書きます。
+
+.github/
+├── copilot-instructions.md (全体の指示書)
+├── memory.md (メモリーファイル)
+├── .copilot-commit-message-instructions.md (以下、個別の指示書)
+├── .copilot-review-instructions.md
+├── .copilot-test-instructions.md
+├── .copilot-codeGeneration-instructions.md
+└── prompts/ (プロンプトファイル用のフォルダ)
+     ├── task-list.prompt.md (タスクリストファイル)
+     ├── completes/ (実装が終わったプロンプトファイルを入れるフォルダ)
+     ├── 20250401-001-code-style-doc.prompt.md (以下、プロンプトファイル)
+     ├── 20250401-003-comment-rule-doc.prompt.md
+     ├── 20250401-004-component-style-doc.prompt.md
+     ├── 20250401-005-sample-doc.prompt.md
+     ├── 20250401-002-test-rule-doc.prompt.md
+     └── 20250401-006-user-authentication-feat.prompt.md
+
+* MCP (VSCode Insider)
+
+.vscode
+└── mcp.json
+
+
+
+## 全体の指示書
+
+* GitHub Copilot に最初 `copilot-instructions.md` ファイルを参照してもらいます。
+* プロジェクト全体、もしくはプロジェクト単位のルールを記述してあります。
+* 概要、構造、アーキテクチャ、制約、技術スタック、ツールを記述してあります。
+* プロンプトファイルを実装する時に毎回、プロジェクトのアーキテクチャ、目標、スタイル、制約を理解するために、新しい会話を始めるときは常に `copilot-instructions.md` を参照してください。
+* タスクリストが出来たら優先度を付けましょう。設計書の段階でどの機能を優先してつけるかを決めてもいいです。
+
+## メモリーファイル
+
+`.github/memory.md`
+
+コード生成や、チャットで決めてきた仕様を記録するファイルです。
+メモリーファイルを利用することで、途中から再開することが容易くなります。
+
+## 個別の指示書
+
+全体の指示書以外に個別に決めた指示です。
+全体の指示書よりも、個別の指示書を優先してもらいます。
+
+* コード生成の指示書
+`.github/.copilot-codeGeneration-instructions.md`
+
+* コミットメッセージの指示書
+`.github/.copilot-commit-message-instructions.md`
+
+* レビューの指示書
+`.github/.copilot-review-instructions.md`
+
+* テストの指示書
+`.github/.copilot-test-instructions.md`
+
+
+
+
+
+
+
+
+
+
+
+## タスク
+
+原則として、1タスク1機能で作ります。
+
+* タスクリストファイル
+`.github/prompts/task-list.prompt.md`
+設計書をタスクに分解を登録したリストです。
+
+
+## プロンプトファイル
+
+* 1タスクの詳細を書いてあるファイルです。
+* プロンプトファイルは、具体的な実装を書いたファイルです、このプロンプトファイルに従ってGitHub Copilotにコードを生成してもらいます。実際にコードを生成する前にGitHub Copilotを話し合って内容をしっかり詰めておきましょう。
+* 原則として1タスク1機能で、1つのプロンプトファイルを作成します。
+* プロンプトファイルには実際にコードを生成する情報が書かれています。
+* GitHub Copilotはこのプロンプトファイルの指示に従ってコードを生成してください。
+
+
+
+### プロンプトファイルのフォーマット
+`.github/prompts/[YYYYMMDD]-[タスクid]-[タスク名]-[タスクの種類].prompt.md`
+
+例: 20250401-123-loginFeature-feat.prompt.md
+
+feat: 機能開発（新しい機能の追加）
+fix: バグ修正
+test: テスト関連
+doc: ドキュメント関連
+refactor: リファクタリング
+style: スタイル調整
+
+
+プロンプトファイルの例
+
+```
+.github/prompts/20250401-001-code-style-doc.prompt.md
+.github/prompts/20250401-002-test-rule-doc.prompt.md
+.github/prompts/20250401-003-comment-rule-doc.prompt.md
+.github/prompts/20250401-004-component-style-doc.prompt.md
+.github/prompts/20250401-005-sample-doc.prompt.md
+.github/prompts/20250401-006-user-authentication-feat.prompt.md
+
+```
+
+## completesフォルダ
+
+`.github/prompts/completes/`
+
+```
+.github/prompts/completes/20250401-007-user-profile.prompt.md
+
+```
+
+* 実装が終わったプロンプトファイルを入れる場所です。
+
+
+
+
+
+## MCP設定ファイル
+
+.vscode
+└── mcp.json
+
+
+
+
+# GitHub Copilot への指示書
+
+## 指示書より前の準備
+
+* 設計書を作成しておきます。
+* 設計書は開発しながら一緒に成長させます。
+* 設計書から、まず人間がプロジェクトの大枠、ドメインの範囲を設定します。
+* 例えば、テンプレート、スターター等を用意します。
+* その枠内を一つ一つ確実に積んでいくというイメージで作ります。
+* 環境変数を開発者の手で設定しておきます。
+* メモリーファイルをリセットしておきます。
+
+## 指示書の書き方
+
+* コードを作成する前に、開発者と GitHub Copilot で十分に話し合ってください。
+* プロジェクト開始時に、スコープとタスクを明確に定義してください。
+* コンテキストは詳細であればあるほど、より適切なコード生成に繋がります。
+* 具体的なサンプルコードは、GitHub Copilot の理解を助けます。
+* コードとドキュメントは同時に記述することを推奨します。
+* 環境変数の実装は、開発者が責任を持って行ってください。
+
+第二版 VSCode の Rules for AI 全体のルール設定 翻訳 GitHub Copilot #githubcopilot - Qiita
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
+
+VSCode(ネイティブ)にMCPを設定して、GitHub Copilot Agent modeでSupabaseを操作する。 #githubcopilot - Qiita
+https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
+
+
+
+
+
+
+# 指示書
+
+## VSCodeの設定ファイル内に記入
+
+settings.json
+
+
+
+
+
+
+
+## 
+
+
+
+
+
+## 
+
+
+
+
+
+----------------------------------------
+
+# copilot-instructions.md
+
+```copilot-instructions.md
+# Webアプリ開発プロジェクトのための全体の手順
+
+最初に設計書をもとにタスク分解を行います。
+タスク分解をしたものをタスクリストファイルに登録します。
+タスク分解で分けたものを1タスクとします。
+1タスクはGitHub Copilotに読み込ませるのに適切な大きさです。
+
+[繰り返し]
+1タスクを元に詳細な情報を載せたプロンプトファイルを作成します。
+開発者は、プロンプトファイルに詳細な実装のための情報を補強します。
+開発者とGitHub Copilotの双方が確認したプロンプトファイルを利用して機能を追加していきます。
+GitHub Copilotはコードを生成します。
+生成されたコードに技術的負債がないかを確認します。
+実装後、ユニットテスト、結合テスト、E2Eテスト等を行います。
+問題があれば、リファクタリングを行います。
+ソースコードだけを見てもらってコードの批判と分析をしてもらいます。
+レビューをします。
+
+設計書の最後まで、これを繰り返します。
+
+
+
+# Webアプリ開発のための設計書＆指示書・プロンプトファイル
+
+最初にWebアプリの**設計書**を作っておきます。
+設計書から**タスクリストファイル**やGitHub Copilotへの**指示書・プロンプトファイル**を作成します。
+
+## 指示書の優先順位
+
+メモリーファイル＞プロンプトファイル＞個別の指示書＞全体の指示書
+
+## フォルダ・ファイルの種類
+
+設計書(複数)
+タスクリストファイル: タスク一覧
+指示書 全体の指示書(1ファイル): プロジェクト全体で共通する指示
+指示書 個別の指示書(複数): 全体の指示書ではかけなかった個別の指示
+指示書 プロンプトファイル(複数): タスクの実装詳細情報
+指示書 メモリーファイル(1ファイル): 実行履歴
+
+## 振る舞い
+
+GitHub Copilot に、以下の技術スタックに精通したエキスパートとして振る舞ってください。
+
+* TypeScript、Node.js、Next.js (App Router)、React
+* Shadcn/UI、Radix UI、Tailwind CSS
+* Zustand
+* Supabase、Drizzle ORM
+* Zod
+* Stripe
+* Vitest、React Testing Library
+* Storybook
+
+## タスク管理
+
+### タスクリストファイルの作成と更新
+
+1.  **設計書の確認とタスク分解**:
+    * 最初に設計書を確認します。
+    * 設計書の場所は **design/** にあります。
+    * 設計書を元に、1機能単位にタスク分解を行います。
+    * タスク分解したものをタスクリストファイルに登録します。
+
+2.  **タスクリストファイルの管理**:
+    * `task-list.prompt.md` ファイルを作成、編集、更新します。
+    * それぞれのタスクにタスクIDを割り当てます。
+    * 現在のタスク、これから行うタスクを記録します。
+    * 完了したタスクは、終了後すぐに `task-list.prompt.md` にチェックマークを付けます。
+    * 開発中に発見された新しいタスクや TODO は、`task-list.prompt.md` の「作業中に発見」セクションに追加します。
+
+### プロンプトファイルの作成と実行
+
+1.  **プロンプトファイルの作成**:
+    * タスクリストファイルから、1タスク1機能ごとにプロンプトファイルを作成します。
+    * 1プロンプトファイルは1機能1タスクを守ります。
+    * タスクリストファイルから1タスクを取り出した時、以下の命名規則でプロンプトファイルを作成します。
+    * プロンプトファイルの命名規則
+
+プロンプトファイルのフォーマット
+`.github/prompts/[YYYYMMDD]-[タスクid]-[タスク名]-[タスクの種類].prompt.md`
+
+例: 20240426-123-loginFeature-feat.prompt.md
+
+feat: 機能開発（新しい機能の追加）
+fix: バグ修正
+test: テスト関連
+doc: ドキュメント関連
+refactor: リファクタリング
+style: スタイル調整
+
+2.  **プロンプトファイルの実行**:
+    * 指示されたプロンプトファイルに基づいてファイル内に書いてある指示を実行します。
+    * プロンプトファイルの実行前に `task-list.prompt.md` を確認します。
+    * プロンプトファイルの実行時に `copilot-instructions.md` に記述されているルールに従います。
+    * プロンプトファイルの実行後、「プロンプトファイル完了後の処理」の指示に従います。
+
+### プロンプトファイル完了後の処理
+
+1.  **タスクリストファイルの更新**:
+    * 完了したタスクは、終了後すぐに `task-list.prompt.md` にマークします。
+    * GitHub Copilot は `task-list.prompt.md` を更新します。
+        * 例: 「`task-list.prompt.md` の〇〇が完了したのでチェックし、△△を新しいタスクとして追加してください。」
+
+2.  **コードレビューと改善**:
+    * プロジェクトの背景情報を一切見ずに、ソースコードだけを読み、ソースコードや設計を批判します。
+    * すべてのdeprecatedのコードを削除します。
+    * 新しい仕組みへの中間状態を作らないようにします。
+    * 技術的負債を徹底的に無くします。
+
+### 技術的負債の定義と解消
+
+* **技術的負債の定義**:
+    * コードの重複
+    * 複雑すぎるコード
+    * テストがないコード
+    * ドキュメントがないコード
+    * パフォーマンスが悪いコード
+    * セキュリティ上の問題があるコード
+
+* **技術的負債の解消方法**:
+    * リファクタリング
+    * テストの追加
+    * ドキュメントの作成
+    * パフォーマンス改善
+    * セキュリティ修正
+
+## GitHub Copilot の動作ルール
+
+* コンテキストが不明な場合は、質問してください。
+* 存在しないライブラリや関数は使用せず、既知の、検証されたライブラリのみを使用してください。
+* コードやテストで参照する前に、ファイルパスやモジュール名が存在することを確認してください。
+* 明示的に指示されていない限り、または `task-list.prompt.md` のタスクに含まれていない限り、既存のコードを削除または上書きしないでください。
+* プロジェクトの修正や変更を行う際は、一度に 1 つのタスクに集中してください。
+* 変更、修正があった場合メモリーファイル `memory.md` を更新してください。
+* コード変更後は、タスクリストファイル `task-list.prompt.md` を更新してください。
+
+
+### メモリーファイル
+
+メモリーファイル `memory.md` には、
+
+* 開発環境、使用技術
+* システムの構成、技術的判断、設計パターン
+* プロジェクトの目的、解決する問題、期待される挙動
+* 現在作業中の内容、最近の変更点、次のステップ
+* 完成済みの機能、進捗状況、残りの作業
+を書いてください。
+
+例
+
+	```memory.md
+	[開発環境、使用技術]
+
+	[システムの構成、技術的判断、設計パターン]
+
+	[プロジェクトの目的、解決する問題、期待される挙動]
+
+	[現在作業中の内容、最近の変更点、次のステップ]
+
+	[完成済みの機能、進捗状況、残りの作業]
+
+	```
+
+
+
+## 使用技術スタック
+
+### 基本事項
+
+* 言語: TypeScript、Node.js
+* フレームワーク: Next.js (App Router)、React
+* UI ライブラリ: Shadcn/UI、Radix UI、Tailwind CSS
+* 状態管理: Zustand
+* ORM: Drizzle ORM
+* バックエンド: Supabase
+* スキーマ検証: Zod
+* 決済: Stripe
+* テスト: Vitest、React Testing Library
+* UI コンポーネント管理: Storybook
+
+### 環境変数
+
+* 環境変数は `.env` ファイルおよび `.env.local` ファイルで管理し、Next.js の仕組みに従って安全に利用してください。
+
+## コーディング規約
+
+* 性能よりもシンプルさを優先してください。
+* 関数型および宣言型のプログラミングパターンを推奨し、クラスの使用は極力避けてください。
+* コンポーネントの配置パターンには、コンポーネントのコロケーションを考慮してください。
+* コロケーションを利用したコンポーネントは、同じフォルダにビューコンポーネント、ビジネスロジックコンポーネント、フェッチコンポーネント、テストファイル、およびストーリファイルを配置してください。
+* anyを使用しないでください。
+* 型安全を設定してください。
+* 1 ファイルあたりの行数は 500 行以内にしてください。ファイルがこの制限に近づいたら、モジュールやヘルパーファイルに分割してリファクタリングしてください。
+* 機能または責任ごとに、明確に分離されたモジュールにコードを整理してください。
+* 指示は具体的に記述し、曖昧な部分があれば指摘してください。
+* 互換性は残さないでください、全て消してください。
+
+
+
+### コードのコメント
+
+* コメント形式: JSDocを使った明確なコンテキストを書いてください。
+* コードを修正したらコメントも適切なものにしてください。
+* 不要なコメントは削除してください。
+* 食い違いのあるコメントは修正してください。
+
+
+## テストに関する指示
+
+* 関数はユニットテストを書いてください。
+* 全ての新しい機能にユニットテストを記述してください。
+* Vitest を使用してユニットテストを記述してください。
+* React Testing Library を使用してコンポーネントのテストを記述してください。
+* テストは `describe` でグループ化し、`it` でテストケースを記述してください。
+* テストケースは日本語で記述してください。
+* ロジックを変更した場合は、既存のユニットテストを更新する必要があるか確認し、必要に応じて更新してください。
+* テストは、コンポーネントと同じフォルダ内に配置してください (コロケーション)。
+* テストには、少なくとも次のものを含めてください。
+    * 予想される使用に対するテスト
+    * 1 つのエッジケースのテスト
+    * 1 つの失敗ケースのテスト
+
+## UI に関する指示
+
+* UI はシンプルで直感的なデザインを心がけてください。
+* モバイルフレンドリーなレスポンシブデザインを考慮してください。
+
+## セキュリティ
+
+* `.env*` ファイルは git で管理しないでください。
+
+## ドキュメント
+
+* `README.md` には、使い方や説明などを記述してください。
+* 変更内容は `README.md` に反映させてください。
+
+
+### テストのベストプラクティス
+
+* テストは、コンポーネントと同じフォルダ内に作成してください (コロケーション)。
+* DB や GitHub Copilot のようなサービスへの呼び出しは、常に「モック」を使用してください。
+* 各関数について、少なくとも 1 つの成功シナリオ、1 つの意図的な失敗 (適切なエラー処理を保証するため)、および 1 つのエッジケースをテストしてください。
+
+## MCP (Model Context Protocol) の設定
+
+* MCP の設定は `.vscode\mcp.json` にあります。
+* 現在の MCP の設定: Supabase
+
+
+```
+
+
+
+----------------------------------------
+
+# 指示書を書く心構え
 
 ## 指示書とは
 
@@ -183,245 +784,22 @@ AIは学習データやファインチューニング、コンテキストウィ
 
 
 
-</details>
-
-追記終了
-
-
-
-# 追記 2025年3月23日
-
-<details><summary>VSCodeのエージェントモード？</summary>
-
-GitHub Copilot in VS Code
-https://code.visualstudio.com/docs/copilot/overview
-
-公式ドキュメント
-
-
-追記の前提
-今のAIは大雑把に分けると
-Chat 会話モード
-Edits 編集モード
-Agent mode 代理人モード
-の3種類があります。
-
-GitHub Copilotの種類
-GitHub Copilot
-GitHub Copilot Chat
-GitHub Copilot CLI
-GitHub Copilot Edits
-GitHub Copilot Agent mode
-
-VSCode のAI(土台だけ、操作の共通化？)
-VScode Copilot Chat
-VScode Copilot Edits エージェントモードに対応
-※複数の同時編集セッションは未対応(並列にEditsは使えない)
-`#codebase` はクエリに関連するコンテキストを見つけてくれます。
-
-AIは1,2年前から進化を続けていて、AIとの会話、1ファイルの編集、複数ファイルの編集、一部、もしくは全体をAIにコードを提案してもらう代理人モードができるようになり、段々と便利になってきました。
-
-今回の追記は、これまでは色んな会社がそれぞれ独自にAIを利用する方法を探っていたのが、「VScode共通の操作」の実装でどのAIも同じに使えるようになります・・・かもしれない。
-
-それぞれ独自の指示書の設定やチャット枠、履歴がありました。
-
-たとえばVScodeのAI、Agent modeの拡張機能は
-* Cline
-* Roo Code
-* Gemini Code Assist
-* その他
-等群雄割拠の時代に突入していました、今回のVSCodeのアップデートで、操作や設定の共通化がされるのではないでしょうか？
-MCPの利用など、独自設定は残るかもしれません。
-これら独自の拡張機能開発者が、VSCodeのAgent modeでの操作を利用しない可能性もあります。
-
-
-
-## VScode Agent mode
-
-GitHub Copilot Agent mode
-とは別に
-VScodeでAgent modeが利用できるようになります。
-※VScode Insidersで試験的に実装中
-
-つまりこれからはそれぞれのAIモデルの実装や独自の拡張機能に依存せず、「VScode共通の操作」で各AIのエージェントモード (それ以外のモードも)が使えるようになります・・・かもしれない。
-
-Use agent mode (preview)
-https://code.visualstudio.com/docs/copilot/copilot-edits#_use-agent-mode-preview
-
-VScodeのエージェントモードはファイルをいちいち指定する必要がなくなるそうです。
-
-## 会話の共有
-
-これまでは、GitHub Copilotでは
-GitHub Copilot chat
-GitHub Copilot Agent mode
-ではそれぞれ会話の共有はされていませんでしたが
-VScode Copilot Chat
-VScode Copilot Edits
-これらを利用することで、これからは会話の共有がされるようになります・・・かもしれない。
-
-Copilot Chatでアイデアを練り、
-Copilot Editsでコードを生成することができるようになります・・・かもしれない。
-
-Copilot Edits
-Send a chat request to Copilot Edits
-https://code.visualstudio.com/docs/copilot/copilot-edits#_send-a-chat-request-to-copilot-edits
-
-</details>
-
-追記終了
-
-
-
-# 前提(独自)
-
-GitHub Copilotの指示書は3種類あり
-1. VSCodeの指示書
-2. 静的な指示書
-3. 動的な指示書
-と番号を振ってあります。
-
-👆記事内では1番目、2番目、3番目とします。
-
-
-
-## 複数の指示書に分ける目的
-
-中型以上のWebアプリを作りたいから
-※小型のアプリならば1ファイルでOK、何ならチャットやコメントで済ませてしまえるので指示書さえいりません。
-
-指示書のアップデートをしやすくする。
-
-人間が理解しやすくなる。
-
-指示の抜け落ちなどが見つけやすくなる。
-
-目的別に管理しやすくする。
-
-固定のルールを再利用しやすくする。
-
-一度きりのルールを作りやすくする。
-
-チームで管理しやすくなる。
-
-履歴を残しやすくする。
-
-1ファイルのほうが管理しやすいが
-これからの指示書はどんどん長くなる傾向があるので今のうちから分けておく。
-※AIの進化具合によっては不要になるかもしれませんが、いまはまだ指示書は重要です。
-
-指示書は、GitHub Copilotと人間との認識の差を埋めるためのルール。
-
-設計書が大きく、指示書に書いてない部分はGitHub Copilotが自由にコードを生成してくる場合があります。
-これは人間側の指示する内容が抜け落ちている場合が多いです。
-
-# 設定のまとめ
-
-それぞれの設定場所
-
-```
-# VSCode 本体の設定
-settings.json
-
-# リポジトリの直下
-# GitHub Copilot 静的指示書
-.github/copilot-instructions.md
-.github/.copilot-codeGeneration-instructions.md
-.github/.copilot-test-instructions.md
-.github/.copilot-review-instructions.md
-.github/.copilot-commit-message-instructions.md
-
-# GitHub Copilot 動的指示書
-.github/prompts/*.prompt.md
-
-```
-
 ----------------------------------------
 
-# GitHub Copilotシリーズ
+# 複数の指示書に分ける目的
 
-https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+* 指示書のアップデートをしやすくする。
+* 人間が理解しやすくなる。
+* 指示の抜け落ちなどが見つけやすくなる。
+* 目的別に管理しやすくする。
+* 固定のルールを再利用しやすくする。
+* 一度きりのルールを作りやすくする。
+* チームで管理しやすくなる。
+* 履歴を残しやすくする。
 
-https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
 
-https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
-
-https://qiita.com/masakinihirota/items/1694715063247574467d
-
-https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
-
-※第一版に相当する VSCodeのRules for AI 全体のルール設定 翻訳 GitHub Copilotも合わせてご覧ください。
-
-https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
 ----------------------------------------
-
-# 用語
-
-* 指示書(独自)
-
-英語では custom instructions file (公式Doc) と呼ばれます。
-
-GitHub Copilotには3種類の方法での指示書が設定できます。
-ルールが重複すると管理が煩雑になるため、目的別に指示書を使い分けます。
-
-この記事では、GitHub Copilot に設定するファイルを「指示書」と定義します。
-GitHub Copilot には3種類の指示書を設定でき、ルールの重複を避けて管理を効率化するため、目的別に使い分けます。
-
-
-
-* プロンプトファイル
-
-目的や、機能ごとにGitHub Copilotに読み込ませる指示書です。
-
-この記事では3番目の指示書にあたり、動的な指示書と位置づけています。
-
-以前はすべての指示書をプロンプトファイルと呼んでいましたが、
-今回のアップデートから目的別に指示を出す動的な指示書をプロンプトファイルと呼んでいます。
-
-
-
-* 設計書
-
-Webアプリケーションの構想、概要、要件定義、画面設計、データベース設計、API設計、テスト計画などをまとめたドキュメントです。
-
-
-
-* リポジトリ
-
-Webアプリケーションのソースコードや関連ファイルを管理するための保管場所です。
-Gitバージョン管理システムを用いて、変更履歴の追跡や共同開発を容易にします。
-
-
-
-* タスクリスト
-
-設計書に基づいて分割された、実装すべき目的や、機能単位のリスト。各タスクは、コード実装を優先して定義されます。
-
-
-
-* タスクリスト分解
-
-タスクリストの各項目を、より小さな実装単位に分割したものです。
-1タスクの大きさが十分に小さかったらタスク分解の必要はありません。
-
-
-
-* 実装書 (独自)
-
-英語では Implementation document
-
-GitHub Copilot に具体的なタスクを指示するための詳細なドキュメントです。
-
-設計書をタスクリスト化して(タスクが大きい場合はタスク分解)、GitHub Copilotに指示しやすい大きさにしたものです。
-問題を小さく分けることで、AI にすべての情報を与え、希望する提案を得やすくなります。
-
-タスクリストの各項目を実装するために、AIに与える詳細な指示を記述したドキュメントです。
-
-１つの実装書で１つの仕事の単位で書きます。
-
-AIと会話して設計書から実装書を書きます。
-会話をしていく中で、詳細な部分まで決めていきます。
 
 ## 考慮する項目
 
@@ -429,12 +807,11 @@ AIと会話して設計書から実装書を書きます。
 
 機能、具体的な処理内容
 限界値、条件、入力値の範囲、処理するデータ量
-エラー対策、例外処理、エラーメッセージ、ログ出力方式
-ストーリー、ユーザーシナリオ、ユースケース
+エラー対策、例外処理、エラーメッセージ、ログ出力方式、ユースケース
 
 ### テスト
 
-使用するテストフレームワーク、ユニットテスト、E2Eテスト、統合テスト、Playwright MCP
+使用するテストフレームワーク、ストーリー、ユーザーシナリオ、単体テスト、結合テスト、E2Eテスト、Playwright MCP
 
 ### 関数、コンポーネント、ページ
 
@@ -447,22 +824,19 @@ AIと会話して設計書から実装書を書きます。
 入力内容
 出力内容
 
-などを決めていき実装書を完成させていきます。
+などを決めていきプロンプトファイルを完成させていきます。
 GitHub Copilot の提案精度の向上を行います。
 
-実装書を完成させたら、GitHub Copilot Agent mode等でコードを書いてもらいます。
+プロンプトファイルを完成させたら、GitHub Copilot Agent mode等でコードを書いてもらいます。
 
 
 
-## 指示書と実装書の違い
+## 指示書とプロンプトファイルの違い
 
 指示書はGitHub Copilotに設定する指示です。
-実装書は設計書をタスクリスト(＆タスク分解)から、特定の目的や機能を詳細に書いたものです。
-実装書の内容を基に、動的な指示書（プロンプトファイル）を作成し、GitHub Copilot に具体的なコード生成やテストなどのタスクを実行させる、という流れが考えられます。実装書は、AI との会話を通じて詳細を詰めていく過程で進化していくドキュメントと言えるでしょう。
-実装書を作成する際には、GitHub Copilot がより良い提案をするために、以下の点を考慮すると良いでしょう:
-
-
-
+プロンプトファイルは設計書をタスクリスト(＆タスク分解)から、特定の目的や機能を詳細に書いたものです。
+プロンプトファイルの内容を基に、動的な指示書（プロンプトファイル）を作成し、GitHub Copilot に具体的なコード生成やテストなどのタスクを実行させる、という流れが考えられます。プロンプトファイルは、AI との会話を通じて詳細を詰めていく過程で進化していくドキュメントと言えるでしょう。
+プロンプトファイルを作成する際には、GitHub Copilot がより良い提案をするために、以下の点を考慮すると良いでしょう:
 
 
 ----------------------------------------
@@ -511,9 +885,6 @@ GitHub Copilotの公式で定めた場合のファイルは別ですが、
 
 ### それぞれの使用目的
 
-3種類あります。
-
-3種類を使い分けるとしたら
 1. VSCode固定のルールをVSCode本体(settings.json)に書きます。
 2. リポジトリ全体のルールをcopilot-instructions.mdに書きます。
 3. 個別の機能や目的のルールはプロンプトファイルに書きます。
@@ -551,23 +922,6 @@ settings.json
 
 ### GitHub Copilot側の設定
 
-```
-copilot-instructions.md
-.copilot-codeGeneration-instructions.md
-.copilot-test-instructions.md
-.copilot-review-instructions.md
-.copilot-commit-message-instructions.md
-
-```
-
-※デフォルト設定名
-
-それぞれ
-コード生成用の指示書
-テスト用の指示書
-レビュー用の指示書
-コミットメッセージ用の指示書
-
 * 2 copilot-instructions.md このファイルはリポジトリのルート直下の.github内に置くよう定められています。
 
 リポジトリ全体に影響を与えるルールを書きます
@@ -588,13 +942,12 @@ Honoを使います。
 # 指示書の使い分け
 
 1. 固定ルールを `settings.json`
-2. 全体静的ルールを `copilot-instructions.md`
-3. 個別動的ルールを プロンプトファイル
+2. 全体の指示書 `copilot-instructions.md`
+3. 個別のプロンプトファイル
 
 固定ルールにはVSCodeの基本的なルールを書きます。
-全体ルールにはリポジトリ単位のルールを書きます。
-個別動的ルールは目的、機能単位にルールを書きます。
-👆このように使い分けます。
+全体の指示書にはリポジトリ単位のルールを書きます。
+個別のプロンプトファイルは目的、機能単位にルールを書きます。
 
 
 
@@ -610,8 +963,6 @@ Honoを使います。
 
 GitHub Copilot Agent modeは
 VSCode Insidersでのみ使用できます。
-(VSCodeの先行試験バージョン)
-現在:2025年3月14日時点
 
 Download Visual Studio Code Insiders
 https://code.visualstudio.com/insiders/
@@ -629,29 +980,6 @@ https://qiita.com/kei1-dev/items/e6b0ead5f24de35e30ed
 
 GitHub Copilot のリポジトリ カスタム命令を追加する - GitHub Docs
 https://docs.github.com/ja/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot
-
-VSCodeの設定
-
-例: 一部抜粋
-
-```settings.json
-	"chat.promptFiles": true,
-	"chat.renderRelatedFiles": true,
-	"chat.agent.maxRequests": 20,
-	"chat.mcp.discovery.enabled": true,
-	"github.copilot.chat.codesearch.enabled": true,
-	"github.copilot.chat.edits.temporalContext.enabled": true,
-	"github.copilot.chat.newWorkspaceCreation.enabled": true,
-	"github.copilot.chat.search.semanticTextResults": true,
-  "github.copilot.chat.codeGeneration.useInstructionFiles": true
-
-```
-
-
-
-👆を追加します。
-※実験的な機能の設定が含まれています。
-有効化する場合は必要かどうか調べてから行ってください。
 
 "chat.promptFiles": true
 * プロンプトファイルの有効化。
@@ -688,185 +1016,7 @@ VSCodeの設定
 
 
 
-
-
-## 開発用のリポジトリの作成
-
-開発するためにgitのリポジトリを作ります。
-
-👇今回はスターターを使います。
-
-nextjs/saas-starter: Get started quickly with Next.js, Postgres, Stripe, and shadcn/ui.
-https://github.com/nextjs/saas-starter
-
-### スターターのインストール
-
-```terminal
-git clone https://github.com/nextjs/saas-starter
-cd saas-starter
-pnpm install
-
-```
-
-👆このスターターで使っている技術を洗い出します。
-
-uithub というサービスでAIに聞くと便利です。
-uithub はリポジトリを1ファイルにするWebサービスです。
-
-Easily Ask Your LLM Coding Questions
-https://uithub.com/
-
-※似たようなサービスはかなりあります。
-
-このURLをNotebookLMに読み込ませることで、そのリポジトリの解説が出来るようになります。
-
-URLで登録しておくことで、NotebookLMの情報をいちいち手動で更新する必要がなくなります。
-
-
-## 技術選定
-
-次に技術選定をしておきます。
-スターターで使用している技術
-スターターに追加したい技術
-を選んでおきます。
-
-### 使用ツール、ライブラリ
-
-例
-Next.js
-Supabase
-Drizzle ORM
-Hono API
-Shadcn/UI
-TailwindCSS
-
-### テストツール
-
-例
-vitest
-Storybook
-テストケースは日本語で書く
-
-### アカウント作成
-Supabase(一部無料、有料)
-Stripe(一部無料、有料)
-
-※小さいアプリやテストだけなら無料で使えます。
-
-
-
-## 開発用のリポジトリにツールの追加(スキップ可)
-
-自分の使いたいツールやライブラリを追加
-
-例
-Honoなど
-
-<details><summary>(省略)ローカルの開発環境設定</summary>
-
-※👇基本的の素のスタータでも指示書の書き方は同じです。
-自分独自の追加ツールを組み合わせてください。
-
-ここからの環境設定は各自違うので、自分の場合を大まかに書いておきます。
-詳細は私のQiita記事を御覧ください。
-
-これをわざわざ書く目的は、
-自分が十二分に使い倒しているツールや
-技術などは
-AIに指示するよりも
-手動でインストールしたほうが早いからです。
-
-そして手動でインストールして
-基本的な使い方、
-自分の使い方を
-AIに教えるためでもあります。
-
-例
-DBはSupabaseを使う。
-Drizzle ORMを使う。
-APIはHonoを使う。
-
-ツールを導入して、
-いつも使っているコードの書き方も同時に書いておくと、AIも同コードを書いたほうがいいか理解してもらえます。
-
-サンプルにもなります。
-
-アーキテクチャ、フォルダ構造のサンプルにもなります。
-
-例
-コロケーション(一箇所にまとめておく考え方)を利用して、
-1機能のコンポーネントのファイルは一箇所にまとめて置く。
-	ビューコンポーネント(表示)
-	ビジネスロジックコンポーネント(計算、アルゴリズム)
-	フェッチコンポーネント(データの取得)
-	テストファイル(ユニットテストvitest)
-	ストーリファイル(Storybook)
-をGitHub Copilotに教えます。
-
-
-ローカルで開発するので、ローカルの開発環境を準備します。
-
-URL
-
-# ローカルの環境設定
-
-スターターの\lib\db\setup.tsを参考にします。
-
-## Stripeの設定
-
-Step 1: Checking if Stripe CLI is installed and authenticated...
-Step 3: Getting Stripe Secret Key
-Step 4: Creating Stripe webhook...
-今は行わない
-
-# DBをSupabaseに変更
-
-Step 2: Setting up Postgres
-
-```terminal
-stripe --version
-stripe config --list
-
-```
-
-## ローカルのSupabase Dockerの立ち上げ
-
-```terminal
-supabase init
-supabase start
-supabase status
-
-```
-
-## 環境変数の設定
-
-Step 5: Generating AUTH_SECRET...
-Step 6: Writing environment variables to .env
-
-```.env
-？？？？？
-
-```
-
-アクセスの確認
-
-ローカルのSupabaseの立ち上げ確認
-
-</details>
-
-
-
-
-
-
-省略するのは、スターターをカスタマイズして自分の慣れ親しんだツールを使い、それを指示書に教えるために必要ですが、ここをスキップしてもやることは同じだからです。
-
-これでGitHub Copilotに与えるリポジトリの準備ができました。
-
-
 ----------------------------------------
-
-ここからがメイン
 
 # 具体的な指示書の作成
 
@@ -886,7 +1036,6 @@ copilot-instructions.mdの指示書を有効化するために
 を設定します。
 
 ### copilot-instructions.md
-
 
 リポジトリのルート直下
 
@@ -928,41 +1077,6 @@ touch .github/prompts/test-rule.prompt.md
 コメントルール
 テストルールは
 静的な指示書に書いたほうがいいと思います。
-
-----------------------------------------
-
-# 指示書の全体の配置
-
-## 1. VSCode
-
-settings.json
-
-settings.json内に直接書くか、
-指定したファイルを読み込みます。
-
-## リポジトリ内
-
-### 1. VSCodeに読み込ませる指示書
-
-リポジトリ直下 or .github/直下
-.copilot-codeGeneration-instructions.md
-.copilot-test-instructions.md
-.copilot-review-instructions.md
-.copilot-commit-message-instructions.md
-
-
-
-### 2. リポジトリ全体の指示書
-
-.github/copilot-instructions.md
-
-
-
-### 3. プロンプトファイル
-
-.github/prompts/code-style.prompt.md
-.github/prompts/comment-rule.prompt.md
-.github/prompts/test-rule.prompt.md
 
 
 
@@ -1214,82 +1328,6 @@ DBの指示書(Supabase、Drizzle)
 
 `.github/copilot-instructions.md` ファイル
 
-## 2. 静的ルール (`.github/copilot-instructions.md`)
-
-これらはリポジトリ全体に適用されるルールであり、プロジェクトの技術スタックやコーディング規約などを定義します。
-
-```.github/copilot-instructions.md
-# GitHub Copilot 全体の指示書
-
-このリポジトリでは、Next.js SaaS スターターテンプレート ([https://github.com/nextjs/saas-starter](https://github.com/nextjs/saas-starter)) をベースに開発を行います。
-
-## 振る舞い
-
-* TypeScript、Node.js、Next.js (App Router)、React、Shadcn/UI、Radix UI、Tailwind CSS、Zustand、Supabase、Zod、Stripe、Vitest、 React Testing Library、Storybookのエキスパートとして振る舞います。
-
-
-
-## 使用技術スタック
-
-### 基本事項
-
-* 言語: TypeScript、Node.js
-* フレームワーク: Next.js (App Router)、React
-* UIライブラリ: Shadcn/UI、 Radix UI、 Tailwind CSS
-* 状態管理: Zustand
-* バックエンド: Supabase、 Drizzle ORM
-* スキーマ検証: Zod
-* 決済: Stripe
-* テスト: Vitest、 React Testing Library
-* UIコンポーネントの管理: Storybook (ストーリファイル)
-
-
-
-## コーディング規約
-
-* 関数型および宣言型のプログラミングパターンを推奨し、クラスの使用はしないでください。
-* 環境変数は `.env` ファイル `.env.local` ファイルで管理し、Next.js の仕組みに従って安全に利用してください。
-* コンポーネントの配置パターンには、コンポーネントのコロケーション を考慮してください。
-* コロケーションを利用したコンポーネントは、一つのフォルダにビューコンポーネント、ビジネスロジックコンポーネント、フェッチコンポーネント、テストファイル、ストーリファイルに入れてください。
-
-
-
-## GitHub Copilot への追加指示
-
-* 常に最新の Next.js (App Router) のベストプラクティス に従ったコードを生成してください。
-* Supabase の認証、データベース操作、ストレージ利用に関するコード生成を支援してください。
-* Stripe を利用した支払い処理、サブスクリプション管理に関するコード生成を支援してください。
-* Shadcn/UI のコンポーネントを利用した、アクセシビリティの高いUIの実装を支援してください。
-* Tailwind CSS を用いた、保守性の高いスタイリングの実装を支援してください。
-
-## テストに関する指示
-
-* vitest を使用したユニットテストの記述をしてください。
-* React Testing Library を使用したコンポーネントのテストを記述してください。
-* テストはdescribeでグループ化し、itでテストケースを記述してください。
-* テストケースは日本語で記述してください。
-
-## UIに関する指示
-
-* UIはシンプルで直感的なデザインを心がけてください。
-* モバイルフレンドリーなレスポンシブデザインを考慮してください。
-
-## セキュリティ
-
-* .env*ファイルはgitでコミットしません、必ずステージにあげないでください。
-
-## ドキュメント
-
-* README.md には使い方や説明等を記入してください。
-* 設計書に関することは/docsフォルダ直下の設計書ファイル郡に反映させてください。
-* 変更はそれぞれ /docsフォルダ や README.md に反映させてください。
-
-```
-
-
-
-----------------------------------------
-
 # 3．目的、機能単位の指示書
 
 GitHub Copilotではプロンプトファイルと呼びます。
@@ -1299,7 +1337,7 @@ GitHub Copilotではプロンプトファイルと呼びます。
 
 
 
-## 動的な指示書
+## プロンプトファイル
 
 特定の目的や、単体の機能を作る時用のルールを書きます。
 機能を具体的に明確化してGitHub Copilotに説明するために必要です。
@@ -1326,7 +1364,7 @@ AIとチャットで会話して、会話が終了するまでの間だけ覚え
 
 
 
-## 3. 動的ルール（プロンプトファイル `*.prompt.md`）
+## 3. プロンプトファイル `*****.prompt.md`
 
 これらは特定の機能やタスクを開発する際に、必要に応じて利用する指示書です。
 例えば、特定のReactコンポーネントを作成する場合の指示書は以下のようになります。
@@ -1695,7 +1733,7 @@ GitHub Copilotでゼロから作るのもいいですが、
 
 ---
 
-# 設計書と実装書
+# 設計書とプロンプトファイル
 
 指示書をうまく使うために
 
@@ -1703,9 +1741,9 @@ GitHub Copilotでゼロから作るのもいいですが、
 
 設計書と指示書を作成します。
 
-設計書からタスクリストを作成し、そのタスクが大きければ処理しやすい大きさにタスク分解し実装書として管理します。
+設計書からタスクリストを作成し、そのタスクが大きければ処理しやすい大きさにタスク分解しプロンプトファイルとして管理します。
 
-実装書の通りにタスク単位でGitHub Copilotにコードを書いてもらい、テストと検証を行います。このサイクルを繰り返します。
+プロンプトファイルの通りにタスク単位でGitHub Copilotにコードを書いてもらい、テストと検証を行います。このサイクルを繰り返します。
 
 
 
@@ -1714,7 +1752,7 @@ GitHub Copilotでゼロから作るのもいいですが、
 複雑な機能を持つWebアプリ開発において、GitHub Copilotを活用し、効率的かつ高品質な開発を実現する。
 
 ある程度の規模の設計書をGitHub Copilotに直接読み込ませると、開発者が制御不能におちいります。
-そのため、設計書から機能単位で分割したタスクリストを作成し、各タスクに対応する詳細な指示をまとめた「実装書」を作成します。
+そのため、設計書から機能単位で分割したタスクリストを作成し、各タスクに対応する詳細な指示をまとめた「プロンプトファイル」を作成します。
 👆プロンプトファイルに相当します。
 
 ## ワークフロー
@@ -1730,17 +1768,17 @@ Webアプリの設計書を作成します。
 ディレクトリ構成、基本的なコンポーネント、共通関数など、Webアプリの土台となるテンプレートを作成します。
 テンプレートに基本的な最小限の動作を実装し、ユニットテストなどのテストコードを作成します。
 
-3. タスク分解と実装書作成
+3. タスク分解とプロンプトファイル作成
 
 設計書から機能を分割し、タスクリストを作成します。
 タスクリストの各項目が大きすぎる場合は、さらにタスクを分割し、GitHub Copilotで扱いやすい粒度に調整します。
 各タスクの詳細な仕様、バージョン情報など、GitHub Copilotへの指示を記述します。
-これらの情報を「実装書」にまとめます。
-実装書はタスクリストの各項目に対応する1機能単位で分けてGitHub Copilotに読み込ませます。
+これらの情報を「プロンプトファイル」にまとめます。
+プロンプトファイルはタスクリストの各項目に対応する1機能単位で分けてGitHub Copilotに読み込ませます。
 
 4. AIによる実装
 
-作成したテンプレートと実装書をAIに読み込ませ、機能の実装をGitHub Copilotに行わせます。
+作成したテンプレートとプロンプトファイルをAIに読み込ませ、機能の実装をGitHub Copilotに行わせます。
 実装したものをドキュメントとして出力します。
 
 5. テストと検証 人間による理解
@@ -1752,20 +1790,20 @@ Webアプリの設計書を作成します。
 
 6. 反復
 
-実装書に基づく実装、テスト、検証のサイクルを繰り返し、Webアプリ全体を構築していきます。
+プロンプトファイルに基づく実装、テスト、検証のサイクルを繰り返し、Webアプリ全体を構築していきます。
 
-## 実装書の役割
+## プロンプトファイルの役割
 
 設計書と実際のコーディングの中間段階として、GitHub Copilotに対する詳細な指示書となります。
 機能単位で分割されたタスクと、その実装に必要な情報をまとめます。
 GitHub Copilotによる実装結果を検証するための基準となります。
 GitHub Copilotとの円滑な連携を可能にするための重要な架け橋となります。
 
-## 実装書のポイント
+## プロンプトファイルのポイント
 
 人間の手による制御のため、人間とGitHub Copilotとのバランスを考えます。
 開発者は設計とタスク管理に集中し、AIは実装に特化させることで、効率的な開発を実現します。
-詳細な実装書を作成することで、GitHub Copilotによる実装の精度と効率を高めます。
+詳細なプロンプトファイルを作成することで、GitHub Copilotによる実装の精度と効率を高めます。
 テストを重視し、品質の高いWebアプリを構築します。
 
 
@@ -1775,7 +1813,7 @@ GitHub Copilotとの円滑な連携を可能にするための重要な架け橋
 
 ※注意 似ているけど全く違うものという話です。
 
-GitHub Copilotに与える指示書、実装書に沿って開発してく手法をAI駆動開発とします。
+GitHub Copilotに与える指示書、プロンプトファイルに沿って開発してく手法をAI駆動開発とします。
 
 再考 テスト駆動開発 #TDD - Qiita
 https://qiita.com/masakinihirota/items/0a714d729d14da5cc7f4
@@ -1871,4 +1909,152 @@ GitHub Copilotに動的な指示書でコードを生成させた後、人間が
 https://qiita.com/hukuryo/items/97797a91d7e2ee0bcabc
 
 👆設計書を作る参考。
+
+
+
+# 第二版 VSCode の Rules for AI 全体のルール設定 翻訳 GitHub Copilot
+
+この記事は、GitHub Copilotの最新機能と指示書の活用方法について解説します。
+
+## 最新情報
+
+### GitHub Copilotの指示書の種類
+
+GitHub Copilotでは、以下の3種類の指示書を利用できます。
+
+1. **VSCodeの設定 (settings.json)**
+   - VSCode全体で適用される固定ルールを記述します。
+   - 例: 日本語での説明、初心者向けの表現など。
+
+2. **リポジトリ全体の指示書 (.github/copilot-instructions.md)**
+   - プロジェクト全体で共有するルールを記述します。
+   - 例: 使用する技術スタック、コーディング規約、テスト方針など。
+
+3. **プロンプトファイル (.github/prompts/*.prompt.md)**
+   - 特定のタスクや機能に関する動的な指示を記述します。
+   - 例: 特定のコンポーネントの作成、API連携の実装など。
+
+### プロンプトファイルの活用
+
+プロンプトファイルは、タスクごとに詳細な指示を記述するためのファイルです。以下のような命名規則を使用します。
+
+```
+.github/prompts/[YYYYMMDD]-[タスクID]-[タスク名]-[タスクの種類].prompt.md
+```
+
+例:
+- `20250401-001-user-authentication-feat.prompt.md`
+- `20250401-002-api-integration-test.prompt.md`
+
+### MCP (Model Context Protocol) の利用
+
+MCPを活用することで、GitHub Copilotが外部情報（ドキュメント、API仕様など）にアクセスし、より正確な提案を行えるようになります。
+
+- **MCPの設定ファイル**: `.vscode/mcp.json`
+- **利用例**: SupabaseやStripeのドキュメントを参照しながらコードを生成。
+
+### 最新のAIモデル
+
+2025年4月現在、以下のAIモデルが利用可能です。
+
+- Claude 3.7 Sonnet
+- Gemini 2.0 Flash
+- GPT-4o
+
+これらのモデルは、プロンプトの長さや処理能力が向上しており、大規模なプロジェクトにも対応可能です。
+
+## 指示書作成のベストプラクティス
+
+1. **具体性を重視**: 抽象的な表現を避け、具体的な要件を記述します。
+2. **優先順位を明確化**: 複数の指示がある場合は、優先順位を明確にします。
+3. **継続的な改善**: 指示書の効果を定期的に評価し、改善を繰り返します。
+
+## 参考リンク
+
+- [GitHub Copilot Documentation](https://docs.github.com/ja/copilot/)
+- [Next.js SaaS Starter](https://github.com/nextjs/saas-starter)
+
+---
+
+この記事は、GitHub Copilotの最新機能を活用し、効率的かつ高品質な開発を実現するためのガイドです。
+
+
+
+<details><summary>VSCodeのエージェントモード？</summary>
+
+GitHub Copilot in VS Code
+https://code.visualstudio.com/docs/copilot/overview
+
+公式ドキュメント
+
+
+追記の前提
+今のAIは大雑把に分けると
+Chat 会話モード
+Edits 編集モード
+Agent mode 代理人モード
+の3種類があります。
+
+GitHub Copilotの種類
+GitHub Copilot
+GitHub Copilot Chat
+GitHub Copilot CLI
+GitHub Copilot Edits
+GitHub Copilot Agent mode
+
+VSCode のAI(土台だけ、操作の共通化？)
+VScode Copilot Chat
+VScode Copilot Edits エージェントモードに対応
+※複数の同時編集セッションは未対応(並列にEditsは使えない)
+`#codebase` はクエリに関連するコンテキストを見つけてくれます。
+
+AIは1,2年前から進化を続けていて、AIとの会話、1ファイルの編集、複数ファイルの編集、一部、もしくは全体をAIにコードを提案してもらう代理人モードができるようになり、段々と便利になってきました。
+
+今回の追記は、これまでは色んな会社がそれぞれ独自にAIを利用する方法を探っていたのが、「VScode共通の操作」の実装でどのAIも同じに使えるようになります・・・かもしれない。
+
+それぞれ独自の指示書の設定やチャット枠、履歴がありました。
+
+たとえばVScodeのAI、Agent modeの拡張機能は
+* Cline
+* Roo Code
+* Gemini Code Assist
+* その他
+等群雄割拠の時代に突入していました、今回のVSCodeのアップデートで、操作や設定の共通化がされるのではないでしょうか？
+MCPの利用など、独自設定は残るかもしれません。
+これら独自の拡張機能開発者が、VSCodeのAgent modeでの操作を利用しない可能性もあります。
+
+
+
+## VScode Agent mode
+
+GitHub Copilot Agent mode
+とは別に
+VScodeでAgent modeが利用できるようになります。
+※VScode Insidersで試験的に実装中
+
+つまりこれからはそれぞれのAIモデルの実装や独自の拡張機能に依存せず、「VScode共通の操作」で各AIのエージェントモード (それ以外のモードも)が使えるようになります・・・かもしれない。
+
+Use agent mode (preview)
+https://code.visualstudio.com/docs/copilot/copilot-edits#_use-agent-mode-preview
+
+VScodeのエージェントモードはファイルをいちいち指定する必要がなくなるそうです。
+
+## 会話の共有
+
+これまでは、GitHub Copilotでは
+GitHub Copilot chat
+GitHub Copilot Agent mode
+ではそれぞれ会話の共有はされていませんでしたが
+VScode Copilot Chat
+VScode Copilot Edits
+これらを利用することで、これからは会話の共有がされるようになります・・・かもしれない。
+
+Copilot Chatでアイデアを練り、
+Copilot Editsでコードを生成することができるようになります・・・かもしれない。
+
+Copilot Edits
+Send a chat request to Copilot Edits
+https://code.visualstudio.com/docs/copilot/copilot-edits#_send-a-chat-request-to-copilot-edits
+
+</details>
 
