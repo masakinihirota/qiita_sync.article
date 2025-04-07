@@ -4,6 +4,31 @@ tags:    Agent,MCP,Supabase,VSCode,githubcopilot
 id:      b5ae692191d197eb5ad7
 private: false
 -->
+
+追記 2025年4月8日
+
+VSCodeで動くようになりましたが動作が不安定です。
+
+例えば
+GitHub Copilot エージェントモードを選び
+
+(前回の命令で取ってきてある)
+最新のテーブル名を取ってきてください
+X 古い情報のままだった
+
+👇️具体的に指示した
+ローカルのSupabaseにアクセスしてPublicの情報を教えて下さい、queryを実行してください
+queryの実行を許可する。
+◯最新のテーブルの情報を取ってきた
+
+* 動作が不安定です。
+* MCPサーバーを介してデータを取ってきたのかよくわからない。
+* コマンド実行ごとに許可ボタンを押す必要があります。
+
+追記終了
+
+
+
 追記 2025年4月7日
 
 VSCodeでGitHub Copilot Agent modeが使えるようになりました。

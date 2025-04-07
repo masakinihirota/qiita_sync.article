@@ -29,22 +29,22 @@ mcpのサンプルが表示されます。
 このサンプルはGitHub Copilotが日時を取得するためのサンプルです。
 
 ```settings.json
-	"mcp": {
-		"inputs": [],
-		"servers": {
-			"mcp-server-time": {
-				"command": "[PythonのPath]",
-				"args": [
-					"-m",
-					"mcp_server_time",
-          "--local-timezone=Asia/Tokyo"
-				],
-				"env": {
-					"PATH": "${env:PATH}"
-				}
+"mcp": {
+	"inputs": [],
+	"servers": {
+		"mcp-server-time": {
+			"command": "[PythonのPath]",
+			"args": [
+				"-m",
+				"mcp_server_time",
+     "--local-timezone=Asia/Tokyo"
+			],
+			"env": {
+				"PATH": "${env:PATH}"
 			}
 		}
 	}
+}
 
 ```
 
@@ -111,35 +111,14 @@ npm install -g c7-mcp-server
 
 ```settings.json
 ...
-      "context7": {
-        "command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
-        "args": [] // デフォルトでは引数は不要（stdioトランスポート用）
-        // "env": {} // 必要に応じて環境変数を追加
-      }
+"context7": {
+  "command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
+  "args": [] // デフォルトでは引数は不要（stdioトランスポート用）
+  // "env": {} // 必要に応じて環境変数を追加
+}
 
 ```
 
-* 動作確認
-
-MCP サーバーとの接続や、サーバーが提供する機能の確認を行う
-
-```terminal
-npx @modelcontextprotocol/inspector c7-mcp-server
-
-```
-
-inspectorはMCP (Model Context Protocol) サーバーをテストするツールです。
-
-成功すると
-
-```terminal
-Starting MCP inspector...
-⚙️ Proxy server listening on port 6277
-🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀
-
-```
-
-と表示されます。
 
 
 ## Supabase
@@ -179,18 +158,16 @@ VSCodeのリポジトリ ルート直下に
 
 
 ```mcp.json
-{
-	"servers": {
-		"supabase": {
-			"command": "cmd",
-			"args": [
-				"/c",
-				"npx",
-				"-y",
-				"@modelcontextprotocol/server-postgres",
-				"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-			]
-		}
+"servers": {
+	"supabase": {
+		"command": "cmd",
+		"args": [
+			"/c",
+			"npx",
+			"-y",
+			"@modelcontextprotocol/server-postgres",
+			"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+		]
 	}
 }
 
@@ -204,32 +181,32 @@ MCPを複数設定することができます。settings.jsonの適当な場所�
 
 ```settings.json
 ...
-	"mcp": {
-		"inputs": [],
-		"servers": {
-			"mcp-server-time": {
-				"command": "[pythonのPath]",
-				"args": [
-					"-m",
-					"mcp_server_time",
-          "--local-timezone=Asia/Tokyo"
-				],
-				"env": {
-					"PATH": "${env:PATH}"
-				}
-			},
-      "supabase": {
-        "command": "cmd",
-        "args": [
-          "/c",
-          "npx",
-          "-y",
-          "@modelcontextprotocol/server-postgres",
-          "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-        ]
-      }
-		}
+"mcp": {
+	"inputs": [],
+	"servers": {
+		"mcp-server-time": {
+			"command": "[pythonのPath]",
+			"args": [
+				"-m",
+				"mcp_server_time",
+     "--local-timezone=Asia/Tokyo"
+			],
+			"env": {
+				"PATH": "${env:PATH}"
+			}
+		},
+ "supabase": {
+   "command": "cmd",
+   "args": [
+     "/c",
+     "npx",
+     "-y",
+     "@modelcontextprotocol/server-postgres",
+     "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+   ]
+ }
 	}
+}
 
 ```
 
