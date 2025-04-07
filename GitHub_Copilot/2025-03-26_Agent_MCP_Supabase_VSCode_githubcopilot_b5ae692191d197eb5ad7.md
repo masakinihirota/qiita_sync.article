@@ -9,10 +9,19 @@ private: false
 VSCodeでGitHub Copilot Agent modeが使えるようになりました。
 MCPも使えるようになりました。
 
+* 特定のリポジトリに設定
+ワークスペースの `settings.json`
+
+* 全てのリポジトリに設定
+VSCodeの `settings.json`
+
+
+
 settings.jsonに以下の設定を追加することで、VSCodeでもMCPが使えるようになります。
-※起動させる必要があります？
+※起動ボタンが表示されるので、これを起動させる必要があります。
 
 ```settings.json
+...
   "mcp": {
     "inputs": [],
     "servers": {
@@ -30,10 +39,23 @@ settings.jsonに以下の設定を追加することで、VSCodeでもMCPが使�
 
 ```
 
+※正式公開前のおためし版VSCode Insiders では `.vscode/mcp.json` に設定をしていました。
+
 
 GitHub Copilotでバイブコーディング：エージェントモードとMCPサポートがVS Codeユーザーに提供開始 - GitHubブログ
 https://github.blog/jp/2025-04-07-github-copilot-agent-mode-activated/
 
+Use MCP servers in VS Code (Preview)
+
+https://code.visualstudio.com/docs/copilot/chat/mcp-servers
+
+github/github-mcp-server: GitHub's official MCP Server
+
+https://github.com/github/github-mcp-server
+
+punkpeye/awesome-mcp-servers: A collection of MCP servers.
+
+https://github.com/punkpeye/awesome-mcp-servers
 
 追記終了
 
