@@ -11,7 +11,7 @@ MCPも使えるようになりました。
 
 * 特定のリポジトリに設定
 ワークスペースの `settings.json`
-リポジトリ直下に.vscode/settings.json
+リポジトリ直下に `.vscode/settings.json`
 
 ワークスペース設定ファイルに直接書く
 [ワークスペース名].code-workspace
@@ -40,27 +40,6 @@ VSCodeの `settings.json`
 
 
 
-settings.jsonに以下の設定を追加することで、VSCodeでもMCPが使えるようになります。
-※起動ボタンが表示されるので、これを起動させる必要があります。
-
-```settings.json
-...
-  "mcp": {
-    "inputs": [],
-    "servers": {
-      "mcp-server-time": {
-        "command": "python",
-        "args": [
-          "-m",
-          "mcp_server_time",
-          "--local-timezone=America/Los_Angeles"
-        ],
-        "env": {}
-      }
-    }
-  }
-
-```
 
 ※正式公開前のおためし版VSCode Insiders では `.vscode/mcp.json` に設定をしていました。
 
