@@ -62,6 +62,11 @@ Context7 MCP Server
 
 https://mcp.so/server/c7-mcp-server/quiint
 
+upstash/context7: Instant LLM Context for Agents and Developers
+
+https://github.com/upstash/context7
+
+
 GitHub Copilotを使っていると、時々 古い情報のコードが提案されることがあります。
 これは、カットオフ（＝ある特定期間までの情報）されているので最新情報に追いついていないからです。
 
@@ -90,11 +95,51 @@ Context7を設定すれば、必要なドキュメントへのアクセスが自
 ### 主な特徴
 
 * 最新のバージョン固有ドキュメントを自動で提供
-* ソースコードから実際に動作するコード例を取得
+* ソースコードから実際に動作するコード例
 * 無駄な情報がなく、関連性の高い情報を提供
 * VSCodeやCursor、ClaudeなどのAIツールへの簡単な統合
 * MCP (Model Context Protocol) サーバーとの連携
+* 個人利用は1日あたり最大 50 クエリまで無料
 
+
+### インストール
+
+```terminal
+npm install -g c7-mcp-server
+
+```
+
+```settings.json
+...
+      "context7": {
+        "command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
+        "args": [] // デフォルトでは引数は不要（stdioトランスポート用）
+        // "env": {} // 必要に応じて環境変数を追加
+      }
+
+```
+
+* 動作確認
+
+MCP サーバーとの接続や、サーバーが提供する機能の確認を行う
+
+```terminal
+npx @modelcontextprotocol/inspector c7-mcp-server
+
+```
+
+inspectorはMCP (Model Context Protocol) サーバーをテストするツールです。
+
+成功すると
+
+```terminal
+Starting MCP inspector...
+⚙️ Proxy server listening on port 6277
+🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀
+
+```
+
+と表示されます。
 
 
 ## Supabase
