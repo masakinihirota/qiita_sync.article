@@ -11,6 +11,29 @@ MCPも使えるようになりました。
 
 * 特定のリポジトリに設定
 ワークスペースの `settings.json`
+リポジトリ直下に.vscode/settings.json
+
+ワークスペース設定ファイルに直接書く
+[ワークスペース名].code-workspace
+
+```[ワークスペース名].code-workspace
+{
+	"folders": [
+		{
+			"path": "リポジトリ名1"
+		},
+		{
+			"path": "リポジトリ名2"
+		}
+	],
+	"settings": {
+		// ワークスペース専用の設定をここに書く
+	}
+}
+
+```
+
+
 
 * 全てのリポジトリに設定
 VSCodeの `settings.json`
