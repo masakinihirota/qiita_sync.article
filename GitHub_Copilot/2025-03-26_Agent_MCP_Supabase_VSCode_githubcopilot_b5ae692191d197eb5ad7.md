@@ -4,6 +4,41 @@ tags:    Agent,MCP,Supabase,VSCode,githubcopilot
 id:      b5ae692191d197eb5ad7
 private: false
 -->
+追記 2025年4月7日
+
+VSCodeでGitHub Copilot Agent modeが使えるようになりました。
+MCPも使えるようになりました。
+
+settings.jsonに以下の設定を追加することで、VSCodeでもMCPが使えるようになります。
+※起動させる必要があります？
+
+```settings.json
+  "mcp": {
+    "inputs": [],
+    "servers": {
+      "mcp-server-time": {
+        "command": "python",
+        "args": [
+          "-m",
+          "mcp_server_time",
+          "--local-timezone=America/Los_Angeles"
+        ],
+        "env": {}
+      }
+    }
+  }
+
+```
+
+
+GitHub Copilotでバイブコーディング：エージェントモードとMCPサポートがVS Codeユーザーに提供開始 - GitHubブログ
+https://github.blog/jp/2025-04-07-github-copilot-agent-mode-activated/
+
+
+追記終了
+
+
+
 * VSCode InsidersはVSCodeの先行試験バージョンです。
 
 * VSCode(ネイティブ)とは拡張機能を経ずに本体に設定することです。
