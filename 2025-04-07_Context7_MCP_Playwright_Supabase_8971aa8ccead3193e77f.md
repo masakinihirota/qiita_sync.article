@@ -26,6 +26,7 @@ VSCode設定の優先順位は ワークスペース＞ユーザー＞デフォ�
 👆(ワークスペースの場合)設定ファイルが作成されます。
 
 mcpのサンプルが表示されます。
+このサンプルはGitHub Copilotが日時を取得するためのサンプルです。
 
 ```settings.json
 	"mcp": {
@@ -149,6 +150,47 @@ VSCodeのリポジトリ ルート直下に
 }
 
 ```
+
+
+### 複数設定
+
+MCPを複数設定することができます。settings.jsonの適当な場所に挿入してください。
+設定後 起動させてください。
+
+```settings.json
+...
+	"mcp": {
+		"inputs": [],
+		"servers": {
+			"mcp-server-time": {
+				"command": "[pythonのPath]",
+				"args": [
+					"-m",
+					"mcp_server_time",
+          "--local-timezone=Asia/Tokyo"
+				],
+				"env": {
+					"PATH": "${env:PATH}"
+				}
+			},
+      "supabase": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-postgres",
+          "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+        ]
+      }
+		}
+	}
+
+```
+
+※👆️このローカルのSupabaseはDocker Desktop等で立ち上げておいてください。
+
+SupabaseのMCPをローカルで動かすための設定ファイルを作成します。
 
 supabase-community/supabase-mcp: Connect Supabase to your AI assistants
 
