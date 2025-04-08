@@ -55,7 +55,7 @@ mcpのサンプルが表示されます。
 
 ※このmcp-server-timeのMCPはPythonをインストールしておく必要があります。
 
-👇️VSCodeでMCPを有効にするための設定を行います。
+👇VSCodeでMCPを有効にするための設定を行います。
 
 ```settings.json
 ...
@@ -193,6 +193,49 @@ SupabaseのMCPをローカルのSupabaseで動かすための設定ファイル�
 MCPを複数設定することができます。settings.jsonの適当な場所に挿入してください。
 設定後 起動させてください。
 
+
+
+```settings.json
+...
+  //////////////////////////////////////////////////////////
+	// MCP
+	//////////////////////////////////////////////////////////
+  "mcp": {
+		"inputs": [],
+		"servers": {
+      "supabase": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-postgres",
+          "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+        ]
+      },
+			"mcp-server-time": {
+				"command": "[pythonのPath]",
+				"args": [
+					"-m",
+					"mcp_server_time",
+          "--local-timezone=Asia/Tokyo"
+				],
+				"env": {
+					"PATH": "${env:PATH}"
+				}
+			},
+      "context7": {
+        "command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
+        "args": [] // デフォルトでは引数は不要（stdioトランスポート用）
+        // "env": {} // 必要に応じて環境変数を追加
+      }
+		}
+	},
+
+```
+
+
+
 ```settings.json
 ...
 "mcp": {
@@ -209,22 +252,22 @@ MCPを複数設定することができます。settings.jsonの適当な場所�
 				"PATH": "${env:PATH}"
 			}
 		},
- "supabase": {
-   "command": "cmd",
-   "args": [
-     "/c",
-     "npx",
-     "-y",
-     "@modelcontextprotocol/server-postgres",
-     "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-   ]
- }
+    "supabase": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+      ]
+    }
 	}
 }
 
 ```
 
-※👆️このローカルのSupabaseはDocker Desktop等で立ち上げておいてください。
+※👆このローカルのSupabaseはDocker Desktop等で立ち上げておいてください。
 
 SupabaseのMCPをローカルで動かすための設定ファイルを作成します。
 
@@ -298,7 +341,7 @@ Create a GitHub Personal Access Token.
 
 https://github.com/settings/personal-access-tokens/new
 
-👆️認証必須
+👆認証必須
 
 GitHub - MCP Server | Cursor Directory
 
