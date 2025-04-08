@@ -54,6 +54,17 @@ mcpのサンプルが表示されます。
 
 # 便利なMCP紹介
 
+VSCode settings.jsonに以下の設定を追加します。
+VSCodeでMCPを有効にするための設定を行います。
+
+```settings.json
+...
+"chat.mcp.enabled": true
+
+```
+
+
+
 ## Context7
 
 https://context7.com/
@@ -143,14 +154,6 @@ Supabaseへのアクセスが便利になるMCP
 ### ローカル用のSupabase MCPの設定
 
 Docker Desktopをインストールして、ローカルのSupabaseを立ち上げます。
-
-VSCode settings.jsonに以下の設定を追加します。
-VSCodeでMCPを有効にするための設定を行います。
-
-```settings.json
-"chat.mcp.enabled": true
-
-```
 
 SupabaseのMCPをローカルのSupabaseで動かすための設定ファイルを作成します。
 VSCodeのリポジトリ ルート直下に
