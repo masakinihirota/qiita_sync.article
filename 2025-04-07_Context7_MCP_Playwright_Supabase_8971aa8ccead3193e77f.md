@@ -13,6 +13,11 @@ VSCodeの左下の歯車アイコンから「設定」を開きます。
 
 ユーザーもしくはワークスペースを選択します。
 
+次でも変更されています(ワークスペース)
+モデル コンテキスト プロトコル サーバー構成
+settings.jsonで編集
+
+
 * ユーザーだとVSCode本体のsettings.jsonが開きます。
 * ワークスペースだとワークスペースのルートに `.vscode` フォルダが作成され、そこに `settings.json` が作成されます。
 ※ワークスペースはワークスペースファイル内([ワークスペース名].code-workspace)でも設定できます。
@@ -48,20 +53,19 @@ mcpのサンプルが表示されます。
 
 ```
 
-※Pythonをインストールしておく必要があります。
+※このmcp-server-timeのMCPはPythonをインストールしておく必要があります。
 
-
-
-# 便利なMCP紹介
-
-VSCode settings.jsonに以下の設定を追加します。
-VSCodeでMCPを有効にするための設定を行います。
+👇️VSCodeでMCPを有効にするための設定を行います。
 
 ```settings.json
 ...
 "chat.mcp.enabled": true
 
 ```
+
+
+
+# 便利なMCP紹介
 
 
 
@@ -156,11 +160,8 @@ Supabaseへのアクセスが便利になるMCP
 Docker Desktopをインストールして、ローカルのSupabaseを立ち上げます。
 
 SupabaseのMCPをローカルのSupabaseで動かすための設定ファイルを作成します。
-VSCodeのリポジトリ ルート直下に
-`.vscode/mcp.json` ファイルを作成します。
 
-
-```mcp.json
+```json
 "servers": {
 	"supabase": {
 		"command": "cmd",
