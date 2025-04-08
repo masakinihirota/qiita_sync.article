@@ -143,6 +143,15 @@ Model context protocol (MCP) | Supabase Docs
 
 https://supabase.com/docs/guides/getting-started/mcp
 
+MCPはつなげるだけの役割で、実際に動かすのはGitHub Copilotです。
+GitHub Copilotに指示してDBの情報を取得できないときがありますが、
+それは人間の指示が悪い場合が多いと思います。
+
+ダイレクトにQueryを発行してデータを取ってきてくれと指示を出すと。
+GitHub Copilotはその通りに動いてくれます。
+
+曖昧な指示、「データを取ってきて」とか曖昧だと素直に動かないと思います。
+
 
 
 Supabaseへのアクセスが便利になるMCP
