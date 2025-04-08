@@ -1,5 +1,5 @@
 <!--
-title:   第三版 VSCode の Rules for AI 全体のルール設定 
+title:   第三版 VSCode の Rules for AI 全体のルール設定
 tags:    githubcopilot
 id:      fa7854f30e6c657d0cda
 private: false
@@ -21,6 +21,7 @@ https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
 
 https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
+https://qiita.com/masakinihirota/items/fa7854f30e6c657d0cda
 
 Gitリポジトリを
 第一版は1種類 指示書を1枚すべてに集約する
