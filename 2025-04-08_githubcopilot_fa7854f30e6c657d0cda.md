@@ -99,6 +99,9 @@ GitHub Copilot プロンプト用ルール
 フォルダ内の個別のタスク指示書
  (`[YYYYMMDD]-[タスクid]-[タスク名]-[タスクの種類].prompt.md`) -
 
+タスクのイメージとして、Webアプリの1機能もしくは、1ページに相当すると考えています。
+そして1タスクを複数のステップに分けて、一つづつ実装していきます。
+
 * メモリーバンク: `_memory-bank/_memory-bank-instructions.md` (過去の会話や作業内容の記録。会話開始時に読み込む)
 
 セッションを継続するために開発の記録を自動的にしてもらっています。
@@ -112,8 +115,14 @@ GitHub Copilot プロンプト用ルール
 ## 4. [アプリ名]-design-task-list
 
 タスクリストです。
-設計書をタスク分解をして、
-開発の進捗状況を管理しています。
+設計書をタスク分解をして、タスクリストにします。
+そして、タスクリストをつかって開発の進捗状況を管理しています。
+
+それぞれのタスクに
+[ ] 実装予定
+[~] 実装中
+[X] 実装済み
+とチェックしていきます。
 
 設計書で書いたものをGitHub Copilotに渡しやすい大きさに分割しています。
 
@@ -134,8 +143,9 @@ Honoがvitepressを採用していたので試してみることにしました�
 
 
 
-
 ### 指示書のフォルダ・ファイル構成
+
+2の [アプリ名]-custom-instructions リポジトリ
 
 ```
 .
@@ -143,15 +153,15 @@ Honoがvitepressを採用していたので試してみることにしました�
 │   └── _memory-bank-instructions.md          # メモリーバンク指示
 ├── .github
 │   ├── prompts        (プロンプトファイル)
-│   │   ├── completes # (使用目的不明瞭)
-│   │   └── [YYYYMMDD]-[タスクid]-[タスク名]-[タスクの種類].prompt.md
+│   │   ├── completes # (実装済み プロンプトファイル)
+│   │   └── [YYYYMMDD]-[タスクid]-[タスク名]-[タスクの種類].prompt.md # (実装予定のプロンプトファイル)
 │   ├── .copilot-codeGeneration-instructions.md # コード生成指示 (個別の指示書)
 │   ├── .copilot-commit-message-instructions.md # コミットメッセージ指示 (個別の指示書)
 │   ├── .copilot-review-instructions.md       # レビュー指示 (個別の指示書)
 │   ├── .copilot-task-instructions.md         # タスク指示 (個別の指示書)
 │   ├── .copilot-test-instructions.md         # テスト指示 (個別の指示書)
 │   ├── .supabase-instructions.md             # Supabase連携指示 (個別の指示書)
-│   └── copilot-instructions.md               # このファイル (全体指示)
+│   └── copilot-instructions.md               # このファイル (全体指示書)
 └── README-copilot-instructions.md            # (この指示書に関する説明)
 
 ```

@@ -106,6 +106,7 @@ Context7を設定すれば、必要なドキュメントへのアクセスが自
 * Clerk
 * MongoDB
 * FastAPI
+その他
 
 ### 主な特徴
 
