@@ -191,11 +191,35 @@ Context7 - Up-to-date documentation for LLMs and AI code editors
 
 https://context7.com/vercel/next.js
 
+#### TypeScript
+
+Context7 - Up-to-date documentation for LLMs and AI code editors
+
+https://context7.com/microsoft/TypeScript-Website
+
+#### TailwindCSS
+
+Context7 - Up-to-date documentation for LLMs and AI code editors
+
+https://context7.com/tailwindlabs/tailwindcss
+
 #### Hono
 
 Context7 - Up-to-date documentation for LLMs and AI code editors
 
 https://context7.com/honojs/hono
+
+#### Drizzle
+
+Context7 - Up-to-date documentation for LLMs and AI code editors
+
+https://context7.com/drizzle-team/drizzle-orm
+
+#### Zod
+
+Context7 - Up-to-date documentation for LLMs and AI code editors
+
+https://context7.com/colinhacks/zod
 
 
 ## Supabase
@@ -695,6 +719,31 @@ https://github.com/microsoft/vscode/labels/chat-mcp
 Introduction - Model Context Protocol
 
 https://modelcontextprotocol.io/introduction
+
+
+---
+
+# Gemini API キー
+
+VSCode のGitHub CopilotでGemini系を使うのに登録が必要になりました。
+
+無料で簡単に取得できます。
+
+Geminiを使用するには、GeminiのAPIキーが必要です。
+キーは Google AI Studio で数回のクリックで作成できます。
+
+Gemini API キーを取得する  |  Google AI for Developers
+
+https://ai.google.dev/gemini-api/docs/api-key
+
+Get API key | Google AI Studio
+
+https://aistudio.google.com/app/apikey?hl=ja
+
+2025年4月10日現在
+gemini 2.5 pro exp 3-25
+gemini 2.0 flash
+などが使えます。
 
 
 
