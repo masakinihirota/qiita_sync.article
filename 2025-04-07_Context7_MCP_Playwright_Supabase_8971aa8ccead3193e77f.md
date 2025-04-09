@@ -251,6 +251,10 @@ Model context protocol (MCP) | Supabase Docs
 
 https://supabase.com/docs/guides/getting-started/mcp
 
+alexander-zuev/supabase-mcp-server
+
+https://github.com/alexander-zuev/supabase-mcp-server
+
 MCPはつなげるだけの役割で、実際に動かすのはGitHub Copilotです。
 GitHub Copilotに指示してDBの情報を取得できないときがありますが、
 それは人間の指示が悪い場合が多いと思います。
@@ -295,16 +299,88 @@ SupabaseのMCPをローカルのSupabaseで動かすための設定ファイル�
 
 ```
 
+※デフォルト値はローカルのSupabase用に設定されています。
+サーバーのSupabaseプロジェクトでは、SUPABASE_PROJECT_REFとSUPABASE_DB_PASSWORDに値を指定する必要があります。
+
+### 環境変数の設定
+
+優先順位
+
+1. 環境変数: 環境内で直接設定される値
+2. ローカル.envファイル:.env現在の作業ディレクトリ内のファイル (ソースから実行している場合にのみ機能します)
+3. グローバル設定ファイル:
+ウィンドウズ:%APPDATA%\supabase-mcp\.env
+macOS/Linux:~/.config/supabase-mcp/.env
+4. デフォルト設定: ローカル開発のデフォルト (他の設定が見つからない場合) 👈今回の設定
 
 
-### 複数設定
+#### サーバーのSupabase MCPの設定 (未設定)
 
-MCPを複数設定することができます。`settings.json`の適当な場所に挿入してください。
+サーバーのSupabaseプロジェクトでは次の形式を使用します。
+
+`postgresql://postgres.[project_ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres`
+
+[region]
+`ap-northeast-1 北東アジア（東京）`
+
+```env
+# Create config directory
+# On macOS/Linux
+mkdir -p ~/.config/supabase-mcp
+# On Windows (PowerShell)
+mkdir -Force "$env:APPDATA\supabase-mcp"
+
+# Create and edit .env file
+# On macOS/Linux
+nano ~/.config/supabase-mcp/.env
+# On Windows (PowerShell)
+notepad "$env:APPDATA\supabase-mcp\.env"
+
+QUERY_API_KEY=your-api-key
+SUPABASE_PROJECT_REF=your-project-ref
+SUPABASE_DB_PASSWORD=your-db-password
+SUPABASE_REGION=us-east-1
+SUPABASE_ACCESS_TOKEN=your-access-token
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+```
+
+```terminal
+pipx install supabase-mcp-server
+
+```
+
+👇️動作未確認 (開発、分析はローカルで行うため)
+
+```
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "/full/path/to/supabase-mcp-server",  // Replace with the actual path from step 1
+      "env": {
+        "QUERY_API_KEY": "your-api-key",  // Required - get your API key at thequery.dev
+        "SUPABASE_PROJECT_REF": "your-project-ref",
+        "SUPABASE_DB_PASSWORD": "your-db-password",
+        "SUPABASE_REGION": "us-east-1",  // optional, defaults to us-east-1
+        "SUPABASE_ACCESS_TOKEN": "your-access-token",  // optional, for management API
+        "SUPABASE_SERVICE_ROLE_KEY": "your-service-role-key"  // optional, for Auth Admin SDK
+      }
+    }
+  }
+}
+
+```
+
+
+
+※詳細はドキュメントを見てください。
+
+### MCPを複数設定
+
+jsonの構造を利用して複数のMCPを設定することができます。
+`settings.json`の適当な場所に挿入してください。
+
 設定後 起動させてください。
-
-
-
-
 
 ```settings.json
 ...
