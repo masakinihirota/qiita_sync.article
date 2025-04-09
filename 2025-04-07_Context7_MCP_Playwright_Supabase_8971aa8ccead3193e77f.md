@@ -323,7 +323,7 @@ npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
 
 👆️これで開発が出来ます。
 
-AIデザイン生成ツールはv0などもあります。
+AIデザイン生成ツールは **v0** などもあります。
 
 ### Readdyとは
 
