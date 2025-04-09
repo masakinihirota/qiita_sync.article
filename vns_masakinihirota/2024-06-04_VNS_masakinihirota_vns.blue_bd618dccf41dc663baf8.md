@@ -370,7 +370,7 @@ stripe fixtures fixtures/stripe-fixtures.json
 # GitHub認証の確認
 
 Supabaseの左サイドバーのAuthenticationを開きます。
-👇️Usersを開きます。
+👇Usersを開きます。
 
 http://localhost:54323/project/default/auth/users
 
@@ -539,7 +539,7 @@ SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET=""
 
 ```
 
-※👆️適当な値を入れてください。
+※👆適当な値を入れてください。
 
 
 
@@ -628,7 +628,7 @@ Next.js の ESLintとPrettier、turborepo、husky Next.js公式のドキュメ�
 
 https://qiita.com/masakinihirota/items/f1a4796ad3a535f27664
 
-👆️開発ツールを個別に調査した時の記事
+👆開発ツールを個別に調査した時の記事
 
 
 
@@ -932,7 +932,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
 ```
 
-👆️<Navbar />コンポーネントと<Footer />コンポーネント をコメントアウト
+👆<Navbar />コンポーネントと<Footer />コンポーネント をコメントアウト
 
 
 
@@ -2481,7 +2481,7 @@ src\components\layout\LngFooter
 
 
 src\app\[lng]\components
-👆️元のこのフォルダは削除しておきます。
+👆元のこのフォルダは削除しておきます。
 
 
 
@@ -3019,7 +3019,7 @@ src\components\button.tsx
 そもそもコマンドでインストールするとかぶるので
 Button - shadcn/ui
 https://ui.shadcn.com/docs/components/button
-👆️shadcnのHPからコピーしてファイルを自由な場所においてもOKです。
+👆shadcnのHPからコピーしてファイルを自由な場所においてもOKです。
 
 
 
@@ -4589,7 +4589,7 @@ export const supabase = createClient(
 
 ```
 
-👆️クライアントを作る
+👆クライアントを作る
 
 関数を作る
 
@@ -5440,7 +5440,7 @@ pnpm add zod
 ## 簡単な確認
 
 適当な場所にフォルダを作って
-そこに、👇️Page.tsxを作って、その場所を開きます。
+そこに、👇Page.tsxを作って、その場所を開きます。
 
 ```Page.tsx
 import { z } from 'zod';

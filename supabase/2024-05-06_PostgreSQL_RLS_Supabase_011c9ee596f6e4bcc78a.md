@@ -875,22 +875,22 @@ SupabaseのRLSを特定のユーザに適用する
 
 https://zenn.dev/n_o_n_a_m_e/articles/44c40043c658c3
 
-👆️勤怠管理アプリのユーザを 正社員, アルバイト, 業務委託, 事務員 に分け, 各社員個人と事務員のみに勤務時間データの取得を, 事務員のみに勤務時間データの更新を許可する
+👆勤怠管理アプリのユーザを 正社員, アルバイト, 業務委託, 事務員 に分け, 各社員個人と事務員のみに勤務時間データの取得を, 事務員のみに勤務時間データの更新を許可する
 
 ユーザーのサインアップと行レベルのセキュリティ - Supabase データベースのチュートリアル |サンドロ・マリオーネ
 
 https://www.sandromaglione.com/articles/supabase-database-user-sign-up-and-row-level-security
 
-👆️GUI操作でRLS
+👆GUI操作でRLS
 
 Supabase で行レベル セキュリティ (RLS) を使用して認証を実装する (ステップ バイ ステップ ガイド) - YouTube
 
 https://www.youtube.com/watch?v=Ow_Uzedfohk
 
-👆️Supabase 公式 動画
+👆Supabase 公式 動画
 
 Row Level Security | Supabase Docs
 
 https://supabase.com/docs/guides/auth/row-level-security
 
-👆️Supabase 公式 ドキュメント
+👆Supabase 公式 ドキュメント

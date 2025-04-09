@@ -5,18 +5,28 @@ id:      8971aa8ccead3193e77f
 private: false
 -->
 
+※立ち上げるごとにMCPの起動が必要。
+settings.jsonなどで、起動ボタンを押します。
+
+有料や回数制限があるMCPがあるから仕方がないか。
+
+
+
 # VSCodeでのMCP設定
 
 VSCodeの左下の歯車アイコンから「設定」を開きます。
 
 設定の検索から 「mcp」 で検索します。
 
+👇MCP関連の設定画面が表示されます。
 ユーザーもしくはワークスペースを選択します。
 
+```
 次でも変更されています(ワークスペース)
 モデル コンテキスト プロトコル サーバー構成
 settings.jsonで編集
 
+```
 
 * ユーザーだとVSCode本体のsettings.jsonが開きます。
 * ワークスペースだとワークスペースのルートに `.vscode` フォルダが作成され、そこに `settings.json` が作成されます。
@@ -91,8 +101,8 @@ Context7を使用することで、常に最新バージョンのドキュメン
 
 このスニペットとは、最新バージョンに対応しているコードでの動作確認がされているミニコードです。
 
-Cursorの`@Doc`機能と似ていますが、`@Doc`はユーザーがドキュメントの場所を指定する必要があります。
-Context7を設定すれば、必要なドキュメントへのアクセスが自動化され、常に最新の情報が得られます。
+Cursorの`@Doc`機能と似ていますが、`@Doc`はユーザーがドキュメントの場所を毎回指定する必要があります。
+Context7を設定すれば、必要なドキュメントへのアクセスが自動化され、常に最新の情報と動作確認済みのスニペットが得られます。
 
 2025年4月現在、Context7は446のサイトに対応しています。
 
@@ -532,4 +542,179 @@ AIには、弱いAIと強いAIという分類があります。
 * 強いAI 自律的に行動し、自分で情報を収集や判断できるAI
 
 もし強いAIが現れれば、技術的特異点（シンギュラリティ）が起こったと言えるかもしれません。
+
+
+
+---
+
+# 記事を書いたあとで使ってみたMCP
+
+---
+
+## Brave Search
+
+GitHub Copilotがネット検索をしてくれます
+
+modelcontextprotocol/servers: Model Context Protocol Servers
+
+https://github.com/modelcontextprotocol/servers/tree/main
+
+👆このReference Serversに登録されているので比較的安全だと思われるサイトです。
+
+
+
+### 前提条件
+
+一応無料
+
+Stripe経由でカード情報と住所が必要
+サブスクライブ0$でのカード支払い登録が必要
+
+
+
+### 出来ること
+
+サブスクライブ0$で出来ること
+* 画像検索
+* ビデオ検索
+* ニュース検索
+* 提案
+* スペルチェック
+他
+
+
+
+### 導入
+
+https://brave.com/ja/
+
+アカウント作成します。
+サブスクライブに入会します。
+Stripe経由でカードの情報を登録します
+👆自己責任で！
+メールでやり取りをしてアカウントを作成します。
+
+サイトからAPIキーを生成します。
+適当な場所に保存しておきます。
+
+```settings.json
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "[BRAVE_API_KEY]"
+      }
+    },
+
+```
+
+### インストール
+
+```terminal
+npx -y @modelcontextprotocol/server-brave-search
+
+Error: BRAVE_API_KEY environment variable is required
+is required
+
+```
+
+👆と出てきますが、このErrorは無視してよいようです。
+起動ボタンを押して起動を確認します。
+起動できれば、実行中と出ます。
+
+
+
+### 使用例
+
+* 設定ファイル(settings.json)で、Brave-searchを起動させます。
+* GitHub Copilotをエージェントモードにします。
+
+※GitHub Copilotの「質問する」、「編集」 モードでは検索しません。
+
+エージェントモードに切り替えて指示をします。
+
+例
+
+```
+Brave Searchで Brave Search について検索し、その概要を `Brave Search-summary.md` というファイル名で保存してください。
+
+```
+
+👆明確に指示することが大切です。
+例えば、「Brave Searchで 検索してください。」
+とはっきり書いてください。
+
+「・・*****について教えて・・」と指示が曖昧ではGitHub Copilotは使ったり使わなかったりします。
+GitHub Copilotは空気を読みません、行間を読みません。
+前後の文脈から連想して回答しているだけです。
+
+青い「続行」ボタンが表示されるので、押します。
+
+続行ボタンのドロップダウンメニューで「常に許可」を選ぶと、毎回確認しなくなります。
+
+実行の許可が求められるので
+自分の責任で良いと思えれば
+実行してもらいます。
+
+青い「保持」ボタンを押します。
+
+出力されたファイルを確認して、検索データが取れていればOKです。
+
+使い終わったら有料、回数制限があるので、settings.jsonで停止させておきます。
+
+
+
+---
+
+## filesystem
+
+指定した範囲のローカルファイルにアクセスが出来るようになります。
+
+modelcontextprotocol/servers: Model Context Protocol Servers
+
+https://github.com/modelcontextprotocol/servers/tree/main
+
+### インストール
+
+```terminal
+npm install -g @modelcontextprotocol/server-filesystem
+
+```
+
+
+
+### 設定例
+
+```settings.json
+...
+"file-system": {
+	"command": "npx",
+	"args": [
+		"-y",
+		"@modelcontextprotocol/server-filesystem",
+		"[アクセスしたいローカルファイルのパス]"
+	]
+},
+
+```
+
+```
+[アクセスしたいローカルファイルのパス]
+
+	👇このように置き換えます。
+
+"C:\\2025_src"
+
+```
+
+複数のプロジェクトのパスが設定できます。
+
+### 起動
+
+起動ボタンを押して、エラーが出なければ成功です。
+
+
 

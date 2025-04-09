@@ -9,7 +9,7 @@ private: false
 設定ファイルの場所 Windows
 c:\Users\{ユーザーネーム}\AppData\Roaming\Code\User\settings.json
 
-👇️この設定をsettings.jsonファイルに追記します。
+👇この設定をsettings.jsonファイルに追記します。
 
 ```settings.json
   "editor.accessibilitySupport": "off",

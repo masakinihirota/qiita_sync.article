@@ -1,5 +1,5 @@
 <!--
-title:   VSCodeの新機能 タブの表示名をカスタムする。Next.js Routing Files 専用 
+title:   VSCodeの新機能 タブの表示名をカスタムする。Next.js Routing Files 専用
 tags:    AppRouter,Next.js,VSCode
 id:      c2e037686afef626dcee
 private: false
@@ -16,7 +16,7 @@ Visual Studio Code March 2024
 
 https://code.visualstudio.com/updates/v1_88#_extensions-update-improvements
 
-👆️を参考に
+👆を参考に
 VSCodeのsettings.jsonに追記します。
 
 <details><summary>VSCodeのバージョン</summary>

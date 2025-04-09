@@ -15,7 +15,7 @@ todo
 ----------------------------------------
 ----------------------------------------
 
-今回は👇️このスターターを利用します。
+今回は👇このスターターを利用します。
 
 SAASスターター
 nextjs/saas-starter: Get started quickly with Next.js, Postgres, , and shadcn/ui.
@@ -27,7 +27,7 @@ Next.js SaaS Starter Template
 
 https://vercel.com/templates/next.js/next-js-saas-starter
 
-👆️スターターのデモ
+👆スターターのデモ
 Next.js SaaS Starter
 
 https://next-saas-start.vercel.app/
@@ -35,7 +35,7 @@ https://next-saas-start.vercel.app/
 
 
 ※このスターターはNext.jsのsrcディレクトリを使用していません。
-srcディレクトリを使用したい場合は、👇️を参考にしてください。
+srcディレクトリを使用したい場合は、👇を参考にしてください。
 
 ただし、スターターの最新アップデートを置いたい場合は、スターターをフォークします。その時srcディレクトリに移動させてしまうと毎回調整する羽目になるので使わないほうがいいです。
 
@@ -2644,7 +2644,7 @@ pnpm add zod
 ## 簡単な確認
 
 適当な場所にフォルダを作って
-そこに、👇️Page.tsxを作って、その場所を開きます。
+そこに、👇Page.tsxを作って、その場所を開きます。
 
 ```Page.tsx
 import { z } from 'zod';

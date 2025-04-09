@@ -58,7 +58,7 @@ https://pglite.dev/
 
 https://github.com/supabase-community/pg-gateway
 
-ローンチウィーク12では他にも👆️このような発表がありました。
+ローンチウィーク12では他にも👆このような発表がありました。
 
 
 
@@ -66,7 +66,7 @@ https://github.com/supabase-community/pg-gateway
 
 https://supabase.com/blog/github-copilot-extension-for-vs-code
 
-👆️Supabase公式のVSCode拡張機能がでました。これはGitHub Copilotが必要です。
+👆Supabase公式のVSCode拡張機能がでました。これはGitHub Copilotが必要です。
 
 ## 拡張機能のURL
 

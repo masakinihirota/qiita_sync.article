@@ -15,6 +15,11 @@ AI開発が最盛期の今、一人開発者でも中型のWebアプリを開発
 
 **これは、中型のWebアプリを一人で開発する場合のVSCodeワークスペースになります。**
 
+これは Vibe coding とは真逆の考え方です。
+GitHub Copilotを使いつつ、人間のコントロール下に完全に置くやり方です。
+
+Vibe codingは人間の指示をGitHub Copilotに完全に任せるやり方ですが、
+この第三版のルールは、人間の指示や開発の進捗をを可視化しつつ、管理下に置くやり方です。
 
 
 # GitHub Copilotシリーズ
@@ -187,3 +192,17 @@ Roo code
 
 それぞれのリポジトリの内容は
 第二版のを再利用しています。
+
+# ブランチ戦略
+
+main
+
+dev
+
+design
+design-task-list
+
+roo (Roo Code)
+
+Cline
+

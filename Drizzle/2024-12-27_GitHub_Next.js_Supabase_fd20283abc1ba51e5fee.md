@@ -99,7 +99,7 @@ service_role key: ey*****U
 
 ## Next.js、GitHub認証の環境変数
 
-GitHubの環境変数 GITHUB_CLIENT_ID と GITHUB_SECRET の取得方法は👇️を御覧ください。
+GitHubの環境変数 GITHUB_CLIENT_ID と GITHUB_SECRET の取得方法は👇を御覧ください。
 
 Next.js + Supabase アプリでサーバーやローカル開発環境で、認証に必要な Client ID と Client secrets の取得。(Slack、Google、GitHub) #OAuth - Qiita
 
@@ -184,7 +184,7 @@ backend = "postgres"
 
 ```
 
-👆️設定ファイルの一部 [analytics] を無効化します。
+👆設定ファイルの一部 [analytics] を無効化します。
 
 
 

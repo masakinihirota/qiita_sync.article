@@ -27,7 +27,7 @@ Cursor の右上の歯車アイコンから、
 Cursor Settings > General > Rules for AI
 の中に記入します。
 
-ルールは自由に入力できますが、どのようなルールを使っているかを、有志の人たちが 👇️Cursor Directory という場所で公開しています。
+ルールは自由に入力できますが、どのようなルールを使っているかを、有志の人たちが 👇Cursor Directory という場所で公開しています。
 
 https://cursor.directory/
 
@@ -1656,7 +1656,7 @@ Output Expectations
 ## 2 Brandon Fernandez  (＝Next.jsの8番)
 ## 3 Davide Del Gatto  (＝Next.jsの9番)
 
-👆️Supabaseの項目は3つありましたが、Next.jsの設定と同じでした。
+👆Supabaseの項目は3つありましたが、Next.jsの設定と同じでした。
 
 
 

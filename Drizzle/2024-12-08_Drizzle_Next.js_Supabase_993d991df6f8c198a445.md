@@ -29,7 +29,7 @@ https://notebooklm.google.com/
 
 # Drizzleの肝
 
-👇️この図がDrizzleで一番重要な部分です、後はこれの関連でしかありません。
+👇この図がDrizzleで一番重要な部分です、後はこれの関連でしかありません。
 
 * Drizzleのテーブル形式
 
@@ -439,7 +439,7 @@ export const users = pgTable('users', {
 
 ```
 
-※👆️非常にシンプルなテーブルのコードです。
+※👆非常にシンプルなテーブルのコードです。
 
 
 
@@ -497,7 +497,7 @@ npx drizzle-kit migrate
 
 ```
 
-👆️Drizzleで、 .tsコードからSupabaseのDBに設定を反映させる一番基本的な方法です。
+👆Drizzleで、 .tsコードからSupabaseのDBに設定を反映させる一番基本的な方法です。
 
 
 
@@ -644,7 +644,7 @@ export const users = pgTable('users', {
 
 ```
 
-👆️このコードは、usersテーブルでRLSを有効化しています。
+👆このコードは、usersテーブルでRLSを有効化しています。
 
 idのカラム単位でRLSを有効にするという意味は含みません。
 
@@ -661,7 +661,7 @@ export const admin = pgRole('admin', { createRole: true, createDb: true, inherit
 
 ```
 
-👆️adminという名前の新しいロールを定義する方法です。
+👆adminという名前の新しいロールを定義する方法です。
 
 
 
@@ -733,7 +733,7 @@ export const users = pgTable('users', {
 
 ```
 
-👆️このコードは、`users` テーブルに対するアクセス制御を細かく設定する RLS ポリシーを定義しています。
+👆このコードは、`users` テーブルに対するアクセス制御を細かく設定する RLS ポリシーを定義しています。
 
 **解説:**
 
@@ -774,7 +774,7 @@ export const policy = pgPolicy("authenticated role insert policy", {
 
 ```
 
-👆️`realtimeMessages` という既存のテーブルに、新たに定義したポリシーをリンクする方法です。
+👆`realtimeMessages` という既存のテーブルに、新たに定義したポリシーをリンクする方法です。
 
 **解説:**
 
@@ -1164,7 +1164,7 @@ Drizzle kitがそれらをインポートしてマイグレーションで使用
 
 ```
 
-👆️schemaフォルダ内の複数のファイルに分割できます、ファイル名も自由につけられます。
+👆schemaフォルダ内の複数のファイルに分割できます、ファイル名も自由につけられます。
 
 drizzle.config.tsファイルでスキーマフォルダへのパスを指定する必要があります。
 
@@ -1184,7 +1184,7 @@ export default defineConfig({
 
 ```
 
-👆️schemaがフォルダ指定になっています。
+👆schemaがフォルダ指定になっています。
 
 
 
@@ -1199,7 +1199,7 @@ export default defineConfig({
 
 ```
 
-👆️shhemaフォルダでグループ化しています。
+👆shhemaフォルダでグループ化しています。
 
 
 
@@ -1207,7 +1207,7 @@ export default defineConfig({
 
 Drizzleのスキーマは、使用しているデータベースからいくつかのモデルタイプで構成されています。
 
-👇️ drizzleで指定できること
+👇 drizzleで指定できること
 	Tables with columns, constraints, etc. カラム、制約などを持つテーブル
 	Schemas(PostgreSQL only) スキーマ
 	Enums 列挙子
@@ -1236,7 +1236,7 @@ export const [table name in typescript] = pgTable { [table name in database], {
 
 ```
 
-👆️この形式を👇️に当てはまります。
+👆この形式を👇に当てはまります。
 
 PostgreSQL Table
 
@@ -1251,11 +1251,11 @@ export const users = pgTable('users', {
 
 
 
-デフォルトでは、DrizzleはデータベースクエリのカラムにTypeScriptのキー名を使用します。 そのため、👆️例のスキーマとクエリはSQLクエリを生成します。
+デフォルトでは、DrizzleはデータベースクエリのカラムにTypeScriptのキー名を使用します。 そのため、👆例のスキーマとクエリはSQLクエリを生成します。
 
 この例ではdbオブジェクトを使用していますが、その初期化についてはこのドキュメントでは説明しません。
 
-データベースへの接続方法については、👇️ Connections Docs を参照してください。
+データベースへの接続方法については、👇 Connections Docs を参照してください。
 
 Drizzle ORM - PostgreSQL
 
@@ -1360,7 +1360,7 @@ SELECT "id", "first_name" from users;
 
 ```
 
-この👆️変換後に firstNameがfirst_nameになっています。
+この👆変換後に firstNameがfirst_nameになっています。
 
 
 
@@ -1412,7 +1412,7 @@ export const posts = pgTable('posts', {
 
 ```
 
-👆️SQL 1と2に 共通の timestampsを設定しています。
+👆SQL 1と2に 共通の timestampsを設定しています。
 
 
 
@@ -1507,7 +1507,7 @@ export const comments = table("comments", {
 
 ```
 
-👆️各要素の意味
+👆各要素の意味
 
 * pgEnum: PostgreSQL の enum 型を定義する。rolesEnum は、guest, user, admin という3つの値を持つ列を定義するためのものです。
 
@@ -1672,7 +1672,7 @@ await db.insert(users).values({ email: 'user@gmail.com' })
 
 ```
 
-👇️
+👇
 
 ```sql
 -- insert
@@ -1688,7 +1688,7 @@ await db.update(users)
 
 ```
 
-👇️
+👇
 
 ```sql
 -- update
@@ -1704,7 +1704,7 @@ await db.delete(users).where(eq(users.id, 1))
 
 ```
 
-👇️
+👇
 
 ```sql
 -- delete
@@ -1776,7 +1776,7 @@ async function getProductsBy({
 
 ```
 
-👆️ filtersは、空の配列から始めて、あとで条件がある場合には filters.push(...) を使って、必要な条件を追加します。
+👆 filtersは、空の配列から始めて、あとで条件がある場合には filters.push(...) を使って、必要な条件を追加します。
 
 この関数は、`filters` という配列を使ってWHERE句を動的に作成することで、柔軟な検索機能を実現しています。
 
@@ -1832,7 +1832,7 @@ const mainQuery = await db
 
 ```
 
-👆️エイリアスの使用: .as('internal_staff') でエイリアスを付けています。
+👆エイリアスの使用: .as('internal_staff') でエイリアスを付けています。
 
 `internalStaff` テーブルと `customUser` テーブルを結合したサブクエリを作成し、そのサブクエリを `ticket` テーブルに結合するメインクエリを実行する方法を示しています。
 
@@ -1978,7 +1978,7 @@ drizzle-kit pull
 
 ```
 
-👇️
+👇
 
 ```tsx
 import * as p from "drizzle-orm/pg-core";
@@ -2190,7 +2190,7 @@ Supabaseなどの環境で接続プールを使用する際は、準備済みス
 
 また、casingパラメータを使用して、Drizzleのマッピング戦略を定義することもできます。
 
-それについては、👇️こちらをご覧ください。
+それについては、👇こちらをご覧ください。
 
 Drizzle ORM - Schema
 
@@ -2878,7 +2878,7 @@ json: json().$type<string[]>().default({});
 
 json 型のカラムの型推論とデフォルト値について
 
-👆️このコードは、**Drizzle ORM** を使ってPostgreSQLのテーブルを定義する際に、`json` 型のカラムにどのように型推論を指定し、デフォルト値を設定するかを示す例です。
+👆このコードは、**Drizzle ORM** を使ってPostgreSQLのテーブルを定義する際に、`json` 型のカラムにどのように型推論を指定し、デフォルト値を設定するかを示す例です。
 
 *   **`json().$type<{ foo: string }>()`**
 この例では、 `json()` 関数を使って **json** 型のカラムを定義し、 `$type<{ foo: string }>()` を使って、このカラムの値が `{ foo: string }` 型であることをTypeScriptに伝えています。
@@ -3095,7 +3095,7 @@ PostgreSQL のドキュメントには次のように記載されています:
 
 そのため、timestamp with timezoneでは、Postgresインスタンスで設定されたタイムゾーンに変換された文字列が返されます。
 
-👇️このSQLクエリを使用してタイムゾーンを確認できます。
+👇このSQLクエリを使用してタイムゾーンを確認できます。
 
 ```tsx
 show timezone;
@@ -4687,7 +4687,7 @@ const newYorkers2 = pgMaterializedView('new_yorkers')
 
 標準ビューとマテリアライズドビューの比較
 
-👆️このコードは、Drizzle ORM を使用して、`newYorkers` という名前の **標準ビュー** と **マテリアライズドビュー** を定義しています。
+👆このコードは、Drizzle ORM を使用して、`newYorkers` という名前の **標準ビュー** と **マテリアライズドビュー** を定義しています。
 
 どちらも同じクエリを使用して、`cityId` が 1 である 18 歳以上のユーザーのデータを取得しますが、いくつかの重要な違いがあります。
 
@@ -5143,7 +5143,7 @@ export const policy = pgPolicy("authenticated role insert policy", {
 
 ```
 
-👆️解説
+👆解説
 
 認証されたロールがデータを挿入できるようにするためのポリシーを作っています。
 pgPolicy関数を使ってポリシーを作成しています。
@@ -6929,7 +6929,7 @@ npx drizzle-kit generate --config=drizzle-prod.config.ts
 
 空のマイグレーションファイルを生成して、DrizzleKitやデータシーディングでは現在サポートされていないDDL代替用のカスタムSQLマイグレーションを作成できます
 
-カスタムマイグレーションに関する拡張ドキュメント-👇️こちらを参照してください。
+カスタムマイグレーションに関する拡張ドキュメント-👇こちらを参照してください。
 
 Drizzle ORM - Custom migrations
 
@@ -7020,7 +7020,7 @@ export default defineConfig({
 
 ```
 
-👇️コマンドを実行します。
+👇コマンドを実行します。
 
 ```terminal
 npx drizzle-kit generate --config=./configs/drizzle.config.ts --name=seed-users --custom
@@ -8201,7 +8201,7 @@ SELECT a.attname AS column_name, format_type(a.atttypid, a.atttypmod) as data_ty
 
 ### tablesFilter
 
-1つのデータベースで複数のプロジェクトを実行したい場合は、👇️こちらのガイドをご覧ください。
+1つのデータベースで複数のプロジェクトを実行したい場合は、👇こちらのガイドをご覧ください。
 
 Drizzle ORM - Goodies
 https://orm.drizzle.team/docs/goodies#multi-project-schema
@@ -8241,7 +8241,7 @@ export default defineConfig({
 
 ### schemaFilter
 
-1 つのデータベースで複数のプロジェクトを実行する場合は、👇️ガイドをご覧ください。
+1 つのデータベースで複数のプロジェクトを実行する場合は、👇ガイドをご覧ください。
 
 Drizzle ORM - Goodies
 https://orm.drizzle.team/docs/goodies#multi-project-schema
@@ -8328,7 +8328,7 @@ Drizzle Kit を使用してスキーマと とくに定義されたロールを�
 | default | デフォルト値は`false` |
 | commands | `push`、`pull`、`generate` |
 
-👇️ デフォルトではdrizzle-kitはロールを管理しないので、drizzle.config.tsで有効にする必要があります。
+👇 デフォルトではdrizzle-kitはロールを管理しないので、drizzle.config.tsで有効にする必要があります。
 
 ```tsx
 // drizzle.config.ts
@@ -8341,7 +8341,7 @@ export default defineConfig({
 
 ```
 
-👇️ 管理者ロールがあり、管理可能なロールのリストから除外したい。
+👇 管理者ロールがあり、管理可能なロールのリストから除外したい。
 
 ```tsx
 // drizzle.config.ts
@@ -8358,7 +8358,7 @@ export default defineConfig({
 
 ```
 
-👇️ 管理者ロールがあり、管理可能なロールのリストに加えたい。
+👇 管理者ロールがあり、管理可能なロールのリストに加えたい。
 
 ```tsx
 // drizzle.config.ts
@@ -10205,7 +10205,7 @@ Drizzleリレーショナルクエリはサブクエリの横結合を使用し�
 
 ### Querying
 
-リレーショナルクエリはDrizzleオリジナルの👇️クエリビルダの拡張機能です。
+リレーショナルクエリはDrizzleオリジナルの👇クエリビルダの拡張機能です。
 
 Drizzle ORM - Select
 https://orm.drizzle.team/docs/select
@@ -10371,7 +10371,7 @@ Drizzleリレーショナルクエリビルダを使って以下のクエリを�
 
 プリペアドステートメントはクエリのパフォーマンスを大幅に向上させるように設計されています。
 
-👇️ここを見てください
+👇ここを見てください
 
 Drizzle ORM - Queries
 
@@ -10509,7 +10509,7 @@ https://github.com/drizzle-team/drizzle-orm/blob/main/drizzle-orm/src/sql/expres
 ```tsx
 await db.select().from(users).where(eq(users.id, 42));
 
-👆️これは、👇️下のように翻訳されます
+👆これは、👇下のように翻訳されます
 
 select "id", "name", "age" from "users" where "id" = $1; -- params: [42]
 
@@ -10535,7 +10535,7 @@ TypeScriptと組み合わせることで、Drizzle APIはクエリにフィル�
 
 条件付きフィルタリングのプレビュー、
 
-より詳細な使用例については、👇️専用ガイドをご覧ください。
+より詳細な使用例については、👇専用ガイドをご覧ください。
 
 Drizzle ORM - Conditional filters in query
 
@@ -10564,7 +10564,7 @@ https://orm.drizzle.team/docs/guides/conditional-filters-in-query
 
 TypeScriptを採用したDrizzle APIでは、あらゆるSQLのページネーションやソートアプローチを実装できます。
 
-詳細な使用例については、limit offset paginationとcursor paginationの👇️ガイドをご覧ください。
+詳細な使用例については、limit offset paginationとcursor paginationの👇ガイドをご覧ください。
 
 Drizzle ORM - SQL Limit/Offset pagination
 https://orm.drizzle.team/docs/guides/limit-offset-pagination
@@ -11495,7 +11495,7 @@ SQLテンプレートから生成されたクエリ文字列と対応するパ�
 
 部分セレクトクエリでもSQLの機能を使うことができます。部分セレクトクエリを使用すると、テーブルから特定のフィールドやカラムを取得できます。
 
-部分 select クエリの詳細については、👇️Core API ドキュメント を参照ください。
+部分 select クエリの詳細については、👇Core API ドキュメント を参照ください。
 
 Drizzle ORM - Select
 

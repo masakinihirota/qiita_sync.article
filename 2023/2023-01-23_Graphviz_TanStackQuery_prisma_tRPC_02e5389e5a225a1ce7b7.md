@@ -23,7 +23,7 @@ https://trpc.io/
 
 ### github
 
-trpc/trpc: 🧙‍♀️ Move Fast and Break Nothing. End-to-end typesafe APIs made easy.
+trpc/trpc: 🧙‍♀ Move Fast and Break Nothing. End-to-end typesafe APIs made easy.
 https://github.com/trpc/trpc
 
 ### Github での Star History

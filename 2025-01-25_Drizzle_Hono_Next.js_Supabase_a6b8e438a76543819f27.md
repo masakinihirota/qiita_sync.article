@@ -761,7 +761,7 @@ strict modeは次のpathを区別します。
 app.get('/hello')
 app.get('/hello/')
 
-👆️同じではありません。
+👆同じではありません。
 
 const app = new Hono({ strict: false })
 
@@ -2496,7 +2496,7 @@ app.post('/posts', (c) => c.text('Created!', 201))
 
 ```
 
-👆️ レスポンスを返すとそこで処理が停止されます。これ以降のコードは実行されません。
+👆 レスポンスを返すとそこで処理が停止されます。これ以降のコードは実行されません。
 実質return文がそこにあるのと同じです。
 
 👇 この場合、ディスパッチする前に 4 つのミドルウェアは次のように処理されます。
@@ -3805,7 +3805,7 @@ export const routes = new Hono().get(
     const post: Post | undefined = await getPost(id)
 
     if (post === undefined) {
-      return c.notFound() // ❌️
+      return c.notFound() // ❌
     }
 
     return c.json({ post })
