@@ -70,44 +70,67 @@ mcpのサンプルが表示されます。
 ```
 
 
-# 次世代のWebアプリ開発が可能
+
+# MCPを最大限に活用した次世代のWebアプリ開発
 
 * Next.js、Honoは **Context7 MCP** 最新のコードやスニペット
 * デザインを v0やReaddy(=AIデザイン生成Webサービス)で作成。
 * フロントエンドを **Figma MCP** 画面デザイン等
 * バックエンドを **Supabase MCP** DB操作等
-* Stripeでサブスクライブの実装 **Stripe MCP**
-* **GitHub MCP** でGitHubの自動操作
-* **Playwright MCP** でテストコードの自動生成
-* **Raygun MCP** でエラーの自動追跡
-* GitHub Copilot Agent mode、Claude Sonnet 3.5 3.7、GPT-4oでコード生成
-* Cline、Roo codeでAIの自動化
-* VSCode、Cursor、Windsurf でAIエディタ
+* 資料を **filesystem MCP** 指定したフォルダに資料や1ファイル化したファイルの読み込み
+* テストを**Playwright MCP** 自然言語でのテストコードの自動生成
+* Git管理を **GitHub MCP** GitHubの自動操作等
+* 保守運用を **Raygun MCP** でエラーの自動追跡
+* サブスクライブを **Stripe MCP** Stripeでの実装 
+* 多様なAIモデルを GitHub Copilot Agent mode、Claude Sonnet 3.5 3.7、GPT-4oでコード生成 追加が可能
+* AI搭載エディタを VSCode、Cursor、Windsurf 他で利用できます。
+* AI搭載エディタのエージェント化を AIの自律サポートを Cline、Roo codeで行います。
 
 👆これで開発が出来ます。
 
+<details><summary>詳細: MCPを最大限に活用した次世代のWebアプリ開発</summary>
+
+Next.js、Honoなどのフレームワークと、様々なツールやサービスを組み合わせることで、開発効率を飛躍的に向上します。
+
+## MCP (Model Context Protocol) とは
+
+MCPは、AIモデルが外部の情報源（ドキュメント、コードなど）にアクセスし、それらを活用するための標準化されたプロトコルです。これにより、AIはより正確で最新の情報に基づいてコード生成や提案を行うことが可能になります。
+
+## 開発環境
+
+以下は、記事で紹介されている開発環境の概要です。
+
+
+## エージェント化とは
+
+AIの進化は、大きく以下の段階に分けられます。
+
+* **AIによるコード生成、会話**: 開発者の指示に基づいてコードを生成したり、会話を行う段階。Copilot（副操縦士）がこの段階に相当し、開発者をサポートします。
+* **エージェント化**: AIが開発者の代理として、より自律的にタスクを実行する段階。
+* **自律型AI**: AI自身が考え、判断し、行動する段階。
+
+エージェント化により、AIは開発者の指示を待つだけでなく、自ら必要な情報を収集し、タスクを遂行できるようになります。
+
+## 各ツールの詳細
+
+* **Next.js**: Reactベースのフレームワークで、サーバーサイドレンダリングや静的サイト生成など、Webアプリケーション開発に必要な機能を提供します。
+* **Hono**: 軽量で高速なWebフレームワークで、API開発などに適しています。
+* **v0**: AIを活用したデザイン生成Webサービスで、Next.js、Tailwind CSS、Supabaseなどの技術を組み合わせて、コンポーネントを自動生成します。
+* **Readdy**: AIとのチャットを通じて画面デザインを生成するWebサービスです。ドラッグ&ドロップ操作は不要で、AIとの対話によってWebサイトの見た目を構築できます。HTML、Vue、Reactなどの形式でエクスポート可能です。
+* **Figma**: Webベースのデザインツールで、UIデザインやプロトタイピングに広く利用されています。
+* **Supabase**: オープンソースのFirebase代替となるプラットフォームで、データベース、認証、ストレージなどの機能を提供します。
+* **filesystem MCP**: 指定したフォルダ内のドキュメントやファイルを読み込み、AIが利用できるようにするMCPです。
+* **Playwright MCP**: Playwrightは、E2Eテストを自動化するためのフレームワークです。Playwright MCPを使うことで、自然言語による指示からテストコードを自動生成できます。
+* **GitHub MCP**: GitHubとの連携を自動化するMCPです。
+* **Raygun MCP**: Raygunは、アプリケーションのエラーやパフォーマンスを監視するツールです。Raygun MCPを使うことで、エラーの自動追跡などが可能になります。
+* **Stripe MCP**: Stripeは、オンライン決済プラットフォームです。Stripe MCPを使うことで、Stripeの機能をWebアプリケーションに組み込むことができます。
+* **GitHub Copilot Agent mode、Claude Sonnet 3.5 3.7、GPT-4o**: コード生成に利用できる様々なAIモデルです。これらのモデルを組み合わせることで、より高度なコード生成が可能になります。
+* **VSCode、Cursor、Windsurf**: AI機能を搭載したコードエディタです。
+* **Cline、Roo code**: AIエディタをエージェント化するためのツールです。AIがより自律的に開発をサポートできるようになります。
 
 
 
-## Readdyとは
-
-AIデザイン生成Webサービスです。
-AIとのチャットで画面デザインを考えてくれます。
-画面デザイン生成AIなので見た目だけ作ってくれます。
-
-* キャッチコピー
-Websites that Stand Out
-Built and Published in Minutes
-ドラッグ&ドロップ不要で、AIと対話しながら夢のウェブサイトを構築 即座に公開、またはコードやFigmaとしてエクスポートします。
-
-Google認証でアカウントが作成できます。
-無料でいくつ作れるかは不明です。
-
-HTML
-Vue
-React
-を選べます。
-
+</details>
 
 
 ---
