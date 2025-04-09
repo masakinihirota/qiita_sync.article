@@ -85,8 +85,6 @@ mcpのサンプルが表示されます。
 
 👆これで開発が出来ます。
 
-TODO
-あとで追加 Hono
 
 
 
@@ -637,15 +635,6 @@ npm install -g @modelcontextprotocol/server-filesystem
 
 
 
-
-
-## Hono
-
-MCP Server transport for Hono applications MCP Server
-
-https://mcp.so/server/hono-mcp-server-sse-transport/NikaBuligini?tab=content
-
-pnpm add -D hono-mcp-server-sse-transport
 
 
 
