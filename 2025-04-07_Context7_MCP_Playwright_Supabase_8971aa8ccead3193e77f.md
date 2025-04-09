@@ -4,7 +4,6 @@ tags:    Context7,MCP,Playwright,Supabase
 id:      8971aa8ccead3193e77f
 private: false
 -->
-
 ※立ち上げるごとにMCPの起動が必要。
 `settings.json`などで、起動ボタンを押します。
 有料や回数制限があるMCPがあるから仕方がないか。
@@ -323,7 +322,7 @@ npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
 
 👆️これで開発が出来ます。
 
-AIデザイン生成ツールは **v0** などもあります。
+AIデザイン生成ツールはv0などもあります。
 
 ### Readdyとは
 
@@ -750,6 +749,3 @@ npm install -g @modelcontextprotocol/server-filesystem
 ### 起動
 
 起動ボタンを押して、エラーが出なければ成功です。
-
-
-
