@@ -305,6 +305,31 @@ Figmaの図をダイレクトにコード化
 ### 主な特徴
 ？
 
+次世代のWebアプリ開発が可能。
+
+* デザインを Readdy で作成。
+ AIデザイン生成ツール
+* フロントエンドをFigma MCP
+* バックエンドをSupabase MCP
+
+👆️これで開発が出来ます。
+
+AIデザイン生成ツールはv0などもあります。
+
+### Readdyとは
+
+キャッチコピー
+Websites that Stand Out
+Built and Published in Minutes
+ドラッグ&ドロップ不要で、AIと対話しながら夢のウェブサイトを構築 即座に公開、またはコードやFigmaとしてエクスポートします。
+
+Google認証でアカウントが作成できます。
+無料でいくつ作れるかは不明。
+
+HTML
+Vue
+React
+を選べます。
 
 
 ## Stripe
@@ -551,7 +576,7 @@ modelcontextprotocol/servers: Model Context Protocol Servers
 
 https://github.com/modelcontextprotocol/servers/tree/main
 
-👆このReference Serversに登録されているので比較的安全だと思われるサイトです。
+👆この🌟 Reference Serversに登録されているので比較的安全だと思われるサイトです。
 
 
 
