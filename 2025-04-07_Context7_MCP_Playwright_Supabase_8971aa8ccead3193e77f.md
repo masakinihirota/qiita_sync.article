@@ -265,12 +265,21 @@ AIと連携することで、高品質なテストコードの生成をサポー
 
 ## Figma
 
+Figmaの図をダイレクトにコード化等してくれます。
+
 GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor
 
 https://github.com/GLips/Figma-Context-MCP
 
+Figmaのアクセストークンが必要です。
 
-Figmaの図をダイレクトにコード化
+無料ユーザーでもアクセストークンは作れます。
+Figmaのサイトで、
+左上の自分のアイコンから
+設定＞セキュリティのタブ＞個人アクセストークン
+で「新規トークンを作成」ボタンを押します。
+許可の項目を自分で選び、(期限は無期限、わからなかったら全部下)FigmaのAPIキーを生成します。
+1回だけ表示されるので適当な場所にメモしておきます。
 
 ### 主な特徴
 
@@ -297,12 +306,11 @@ Figmaの図をダイレクトにコード化
 	}
 }
 
-
 ```
 
 ### 動作確認
 
-MCP起動後、👇のコマンドを実行します。
+MCP起動後、手動確認、👇のコマンドを実行します。
 
 ```terminal
 npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
