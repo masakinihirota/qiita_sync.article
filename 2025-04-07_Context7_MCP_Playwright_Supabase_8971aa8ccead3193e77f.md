@@ -4,9 +4,12 @@ tags:    Context7,MCP,Playwright,Supabase
 id:      8971aa8ccead3193e77f
 private: false
 -->
-※立ち上げるごとにMCPの起動が必要。
+※立ち上げるごとにMCPの起動が必要です。
 `settings.json`などで、起動ボタンを押します。
+
 有料や回数制限があるMCPがあるから仕方がないか。
+
+
 
 # VSCodeでのMCP設定
 
@@ -67,6 +70,48 @@ mcpのサンプルが表示されます。
 ```
 
 
+# 次世代のWebアプリ開発が可能。
+
+* Next.jsは Context7 MCP 最新のコード等
+* デザインを v0やReaddy(=AIデザイン生成Webサービス)で作成。
+* フロントエンドをFigma MCP 画面デザイン等
+* バックエンドをSupabase MCP DB操作等
+* Stripeでサブスクライブの実装
+* GitHub MCPでGitHubの自動操作
+* Playwright MCPでテストコードの自動生成
+* Raygun MCPでエラーの自動追跡
+* GitHub Copilotでコード生成
+* VSCode でAIエディタ
+
+👆これで開発が出来ます。
+
+TODO
+あとで追加 Hono
+
+
+
+## Readdyとは
+
+AIデザイン生成Webサービスです。
+AIとのチャットで画面デザインを考えてくれます。
+画面デザイン生成AIなので見た目だけ作ってくれます。
+
+* キャッチコピー
+Websites that Stand Out
+Built and Published in Minutes
+ドラッグ&ドロップ不要で、AIと対話しながら夢のウェブサイトを構築 即座に公開、またはコードやFigmaとしてエクスポートします。
+
+Google認証でアカウントが作成できます。
+無料でいくつ作れるかは不明です。
+
+HTML
+Vue
+React
+を選べます。
+
+
+
+---
 
 # 便利なMCP紹介
 
@@ -309,7 +354,9 @@ Figmaのサイトで、
 
 ### 動作確認
 
-MCP起動後、手動確認、👇のコマンドを実行します。
+デザイン系のMCPなので動作確認が分かりづらいです。
+ですので、MCP起動後、手動確認をしてみました。
+👇のコマンドを実行します。
 
 ```terminal
 npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
@@ -320,36 +367,7 @@ npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
 👆接続に成功したら、このようなメッセージが出ました。
 準備が出来ているようです。
 
-
-
-### 次世代のWebアプリ開発が可能。
-
-* デザインを Readdy(AIデザイン生成ツール)で作成。
-* フロントエンドをFigma MCP
-* バックエンドをSupabase MCP
-
-👆️これで開発が出来ます。
-
-AIデザイン生成ツールはv0などもあります。
-
-### Readdyとは
-
-AIデザイン生成ツールです。
-AIとのチャットで画面デザインを考えてくれます。
-画面デザイン生成AIなので見た目だけ作ってくれます。
-
-* キャッチコピー
-Websites that Stand Out
-Built and Published in Minutes
-ドラッグ&ドロップ不要で、AIと対話しながら夢のウェブサイトを構築 即座に公開、またはコードやFigmaとしてエクスポートします。
-
-Google認証でアカウントが作成できます。
-無料でいくつ作れるかは不明。
-
-HTML
-Vue
-React
-を選べます。
+GitHub Copilot Agent mode(エージェントに切り替えます)で使えるようになりました。
 
 
 
@@ -363,7 +381,6 @@ https://cursor.directory/mcp/stripe
 CursorでStripe MCPを使ってサブスクリプションの実装をやらせてみる
 
 https://wp-kyoto.net/generate-code-with-cursor-and-stripe-mcp/
-
 
 ## GitHub
 
@@ -424,8 +441,6 @@ https://cursor.directory/mcp/github
 
 ```
 
-
-
 ## Raygun
 
 ### 主な特徴
@@ -453,6 +468,186 @@ https://github.com/MindscapeHQ/mcp-server-raygun
 	}
 
 ```
+
+
+
+## Brave Search
+
+GitHub Copilotがネット検索をしてくれます
+
+modelcontextprotocol/servers: Model Context Protocol Servers
+
+https://github.com/modelcontextprotocol/servers/tree/main
+
+👆この🌟 Reference Servers に登録されているので比較的安全だと思われるサイトです。
+
+🌟 Reference Servers
+Anthropic自身が実装したMCPサーバー
+
+Anthropic はMCPを開発した会社であり、MCPの開発に関与しています。
+
+### 前提条件
+
+* 一応無料
+* Stripe経由でカード情報と住所が必要
+* サブスクライブ0$でのカード支払い登録が必要
+
+
+
+### 出来ること
+
+サブスクライブ0$で出来ること
+* 画像検索
+* ビデオ検索
+* ニュース検索
+* 提案
+* スペルチェック
+他
+
+
+
+### 導入
+
+https://brave.com/ja/
+
+アカウント作成します。
+サブスクライブに入会します。
+Stripe経由でカードの情報を登録します
+👆自己責任で！
+メールでやり取りをしてアカウントを作成します。
+
+サイトからAPIキーを生成します。
+適当な場所に保存しておきます。
+
+```settings.json
+...
+	"brave-search": {
+		"command": "npx",
+		"args": ["-y", "@modelcontextprotocol/server-brave-search"],
+		"env": {
+			"BRAVE_API_KEY": "[BRAVE_API_KEY]"
+		}
+	}
+
+```
+
+### インストール
+
+```terminal
+npx -y @modelcontextprotocol/server-brave-search
+
+Error: BRAVE_API_KEY environment variable is required
+is required
+
+```
+
+👆と出てきますが、このErrorは無視してよいようです。
+起動ボタンを押して起動を確認します。
+起動できれば、実行中と出ます。
+
+
+
+### 使用例
+
+* 設定ファイル(`settings.json`)で、Brave-searchを起動させます。
+* GitHub Copilotをエージェントモードにします。
+
+※GitHub Copilotの「質問する」、「編集」 モードでは検索しません。
+
+エージェントモードに切り替えて指示をします。
+
+例
+
+```
+Brave Searchで Brave Search について検索し、その概要を `Brave Search-summary.md` というファイル名で保存してください。
+
+```
+
+このように👆具体的に指示することが大切です。
+使用するMCPと目的と、出力先等の詳細な情報をはっきり書いてください。
+
+「*****について教えてください」と指示が曖昧ではGitHub Copilotは使ったり使わなかったりします。
+GitHub Copilotは空気を読みません、行間を読みません。
+前後の文脈から連想して回答しているだけです。
+
+青い「続行」ボタンが表示されるので、押します。
+
+続行ボタンのドロップダウンメニューで「常に許可」を選ぶと、毎回確認しなくなります。
+
+実行の許可が求められるので
+自分の責任で良いと思えれば
+実行してもらいます。
+
+青い「保持」ボタンを押します。
+
+出力されたファイルを確認して、検索データが取れていればOKです。
+
+使い終わったら有料、回数制限があるので、`settings.json`で停止させておきます。
+
+
+
+
+## filesystem
+
+指定した範囲のローカルファイルにアクセスが出来るようになります。
+
+modelcontextprotocol/servers: Model Context Protocol Servers
+
+https://github.com/modelcontextprotocol/servers/tree/main
+
+### インストール
+
+```terminal
+npm install -g @modelcontextprotocol/server-filesystem
+
+```
+
+
+
+### 設定例
+
+```settings.json
+...
+	"file-system": {
+		"command": "npx",
+		"args": [
+			"-y",
+			"@modelcontextprotocol/server-filesystem",
+			"[アクセスしたいローカルファイルのフォルダ、パス]"
+		]
+	}
+
+```
+
+```
+[アクセスしたいローカルファイルのフォルダ、パス]
+
+	👇このように置き換えます。
+
+"C:\\2025_src"
+
+```
+
+必要な資料を入れたフォルダを指定したりします。
+複数のプロジェクトのパスが設定できます。
+
+### 起動
+
+起動ボタンを押して、エラーが出なければ成功です。
+
+
+
+
+
+## Hono
+
+MCP Server transport for Hono applications MCP Server
+
+https://mcp.so/server/hono-mcp-server-sse-transport/NikaBuligini?tab=content
+
+pnpm add -D hono-mcp-server-sse-transport
+
+
 
 
 
@@ -589,171 +784,5 @@ AIには、弱いAIと強いAIという分類があります。
 
 
 
----
 
-# 記事を書いたあとで使ってみたMCP
 
-## Brave Search
-
-GitHub Copilotがネット検索をしてくれます
-
-modelcontextprotocol/servers: Model Context Protocol Servers
-
-https://github.com/modelcontextprotocol/servers/tree/main
-
-👆この🌟 Reference Servers に登録されているので比較的安全だと思われるサイトです。
-
-🌟 Reference Servers
-Anthropic自身が実装したMCPサーバー
-
-Anthropic はMCPを開発した会社であり、MCPの開発に関与しています。
-
-### 前提条件
-
-* 一応無料
-* Stripe経由でカード情報と住所が必要
-* サブスクライブ0$でのカード支払い登録が必要
-
-
-
-### 出来ること
-
-サブスクライブ0$で出来ること
-* 画像検索
-* ビデオ検索
-* ニュース検索
-* 提案
-* スペルチェック
-他
-
-
-
-### 導入
-
-https://brave.com/ja/
-
-アカウント作成します。
-サブスクライブに入会します。
-Stripe経由でカードの情報を登録します
-👆自己責任で！
-メールでやり取りをしてアカウントを作成します。
-
-サイトからAPIキーを生成します。
-適当な場所に保存しておきます。
-
-```settings.json
-...
-	"brave-search": {
-		"command": "npx",
-		"args": ["-y", "@modelcontextprotocol/server-brave-search"],
-		"env": {
-			"BRAVE_API_KEY": "[BRAVE_API_KEY]"
-		}
-	}
-
-```
-
-### インストール
-
-```terminal
-npx -y @modelcontextprotocol/server-brave-search
-
-Error: BRAVE_API_KEY environment variable is required
-is required
-
-```
-
-👆と出てきますが、このErrorは無視してよいようです。
-起動ボタンを押して起動を確認します。
-起動できれば、実行中と出ます。
-
-
-
-### 使用例
-
-* 設定ファイル(`settings.json`)で、Brave-searchを起動させます。
-* GitHub Copilotをエージェントモードにします。
-
-※GitHub Copilotの「質問する」、「編集」 モードでは検索しません。
-
-エージェントモードに切り替えて指示をします。
-
-例
-
-```
-Brave Searchで Brave Search について検索し、その概要を `Brave Search-summary.md` というファイル名で保存してください。
-
-```
-
-このように👆具体的に指示することが大切です。
-使用するMCPと目的と、出力先等の詳細な情報をはっきり書いてください。
-
-「*****について教えてください」と指示が曖昧ではGitHub Copilotは使ったり使わなかったりします。
-GitHub Copilotは空気を読みません、行間を読みません。
-前後の文脈から連想して回答しているだけです。
-
-青い「続行」ボタンが表示されるので、押します。
-
-続行ボタンのドロップダウンメニューで「常に許可」を選ぶと、毎回確認しなくなります。
-
-実行の許可が求められるので
-自分の責任で良いと思えれば
-実行してもらいます。
-
-青い「保持」ボタンを押します。
-
-出力されたファイルを確認して、検索データが取れていればOKです。
-
-使い終わったら有料、回数制限があるので、`settings.json`で停止させておきます。
-
-
-
----
-
-## filesystem
-
-指定した範囲のローカルファイルにアクセスが出来るようになります。
-
-modelcontextprotocol/servers: Model Context Protocol Servers
-
-https://github.com/modelcontextprotocol/servers/tree/main
-
-### インストール
-
-```terminal
-npm install -g @modelcontextprotocol/server-filesystem
-
-```
-
-
-
-### 設定例
-
-```settings.json
-...
-	"file-system": {
-		"command": "npx",
-		"args": [
-			"-y",
-			"@modelcontextprotocol/server-filesystem",
-			"[アクセスしたいローカルファイルのフォルダ、パス]"
-		]
-	}
-
-```
-
-```
-[アクセスしたいローカルファイルのフォルダ、パス]
-
-	👇このように置き換えます。
-
-"C:\\2025_src"
-
-```
-
-必要な資料を入れたフォルダを指定したりします。
-複数のプロジェクトのパスが設定できます。
-
-### 起動
-
-起動ボタンを押して、エラーが出なければ成功です。
