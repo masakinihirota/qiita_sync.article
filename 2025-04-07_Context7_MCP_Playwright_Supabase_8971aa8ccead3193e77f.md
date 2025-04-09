@@ -86,7 +86,7 @@ mcpのサンプルが表示されます。
 * AI搭載エディタを VSCode、Cursor、Windsurf 他で利用できます。
 * AI搭載エディタのエージェント化を AIの自律サポートを Cline、Roo codeで行います。
 
-👆これで開発が出来ます。
+👆これで開発が出来ます。開発に役立つMCPは他にも数多く公表されています。
 
 <details><summary>詳細: MCPを最大限に活用した次世代のWebアプリ開発</summary>
 
@@ -105,9 +105,9 @@ MCPは、AIモデルが外部の情報源（ドキュメント、コードなど
 
 AIの進化は、大きく以下の段階に分けられます。
 
-* **AIによるコード生成、会話**: 開発者の指示に基づいてコードを生成したり、会話を行う段階。Copilot（副操縦士）がこの段階に相当し、開発者をサポートします。
-* **エージェント化**: AIが開発者の代理として、より自律的にタスクを実行する段階。
-* **自律型AI**: AI自身が考え、判断し、行動する段階。
+1. **AIによるコード生成、会話**: 開発者の指示に基づいてコードを生成したり、会話を行う段階。Copilot（副操縦士）がこの段階に相当し、開発者をサポートします。
+2. **エージェント化**: 👈️今ココ AIが開発者の代理として、より自律的にタスクを実行する段階。
+3. **自律型AI**: AI自身が考え、判断し、行動する段階。
 
 エージェント化により、AIは開発者の指示を待つだけでなく、自ら必要な情報を収集し、タスクを遂行できるようになります。
 
@@ -316,6 +316,10 @@ macOS/Linux:~/.config/supabase-mcp/.env
 
 #### サーバーのSupabase MCPの設定 (未設定)
 
+This Supabase MCP Server Will 10X Your Productivity
+
+https://www.youtube.com/watch?v=STxjOwVX-4U
+
 サーバーのSupabaseプロジェクトでは次の形式を使用します。
 
 `postgresql://postgres.[project_ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres`
@@ -323,7 +327,12 @@ macOS/Linux:~/.config/supabase-mcp/.env
 [region]
 `ap-northeast-1 北東アジア（東京）`
 
-```env
+`$env:APPDATA\supabase-mcp`
+Supabase MCPフォルダを作成します。
+
+```terminal
+echo $env:APPDATA
+
 # Create config directory
 # On macOS/Linux
 mkdir -p ~/.config/supabase-mcp
