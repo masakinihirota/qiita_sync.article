@@ -41,22 +41,19 @@ mcpのサンプルが表示されます。
 このサンプルはGitHub Copilotが日時を取得するためのサンプルです。
 
 ```settings.json
-"mcp": {
-	"inputs": [],
-	"servers": {
-		"mcp-server-time": {
-			"command": "[PythonのPath]",
-			"args": [
-				"-m",
-				"mcp_server_time",
-				"--local-timezone=Asia/Tokyo"
-			],
-			"env": {
-				"PATH": "${env:PATH}"
+...
+	"mcp": {
+		"inputs": [],
+		"servers": {
+			"mcp-server-time": {
+				"command": "[PythonのPath]",
+				"args": ["-m", "mcp_server_time", "--local-timezone=Asia/Tokyo"],
+				"env": {
+					"PATH": "${env:PATH}"
+				}
 			}
 		}
 	}
-}
 
 ```
 
@@ -81,6 +78,8 @@ https://context7.com/
 Context7 MCP Server
 
 https://mcp.so/server/c7-mcp-server/quiint
+
+https://mcp.so/server/c7-mcp-server/quiint?tab=content
 
 upstash/context7: Instant LLM Context for Agents and Developers
 
@@ -132,11 +131,11 @@ npm install -g c7-mcp-server
 
 ```settings.json
 ...
-"context7": {
-  "command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
-  "args": [] // デフォルトでは引数は不要（stdioトランスポート用）
-  // "env": {} // 必要に応じて環境変数を追加
-}
+	"context7": {
+		"command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
+		"args": [] // デフォルトでは引数は不要（stdioトランスポート用）
+		// "env": {} // 必要に応じて環境変数を追加
+	}
 
 ```
 
@@ -177,7 +176,7 @@ Docker Desktopをインストールして、ローカルのSupabaseを立ち上�
 SupabaseのMCPをローカルのSupabaseで動かすための設定ファイルを作成します。
 
 ```json
-"servers": {
+"mcpServers": {
 	"supabase": {
 		"command": "cmd",
 		"args": [
@@ -193,6 +192,7 @@ SupabaseのMCPをローカルのSupabaseで動かすための設定ファイル�
 ```
 
 
+
 ### 複数設定
 
 MCPを複数設定することができます。`settings.json`の適当な場所に挿入してください。
@@ -200,75 +200,40 @@ MCPを複数設定することができます。`settings.json`の適当な場�
 
 
 
+
+
 ```settings.json
 ...
-//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
 	// MCP
-//////////////////////////////////////////////////////////
-  "mcp": {
+	//////////////////////////////////////////////////////////
+	"mcp": {
 		"inputs": [],
 		"servers": {
-      "supabase": {
-        "command": "cmd",
-        "args": [
-          "/c",
-          "npx",
-          "-y",
-          "@modelcontextprotocol/server-postgres",
-          "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-        ]
-      },
+			"supabase": {
+				"command": "cmd",
+				"args": [
+					"/c",
+					"npx",
+					"-y",
+					"@modelcontextprotocol/server-postgres",
+					"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+				]
+			},
 			"mcp-server-time": {
 				"command": "[pythonのPath]",
-				"args": [
-					"-m",
-					"mcp_server_time",
- 					"--local-timezone=Asia/Tokyo"
-				],
+				"args": ["-m", "mcp_server_time", "--local-timezone=Asia/Tokyo"],
 				"env": {
 					"PATH": "${env:PATH}"
 				}
 			},
-      "context7": {
-        "command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
-        "args": [] // デフォルトでは引数は不要（stdioトランスポート用）
-        // "env": {} // 必要に応じて環境変数を追加
-      }
+			"context7": {
+				"command": "c7-mcp-server", // インストールまたはリンクされたコマンド名
+				"args": [] // デフォルトでは引数は不要（stdioトランスポート用）
+				// "env": {} // 必要に応じて環境変数を追加
+			}
 		}
 	}
-
-```
-
-
-
-```settings.json
-...
-"mcp": {
-	"inputs": [],
-	"servers": {
-		"mcp-server-time": {
-			"command": "[pythonのPath]",
-			"args": [
-				"-m",
-				"mcp_server_time",
-     "--local-timezone=Asia/Tokyo"
-			],
-			"env": {
-				"PATH": "${env:PATH}"
-			}
-		},
-    "supabase": {
-      "command": "cmd",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-postgres",
-        "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-      ]
-    }
-	}
-}
 
 ```
 
@@ -300,15 +265,59 @@ AIと連携することで、高品質なテストコードの生成をサポー
 
 ## Figma
 
+GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor
+
+https://github.com/GLips/Figma-Context-MCP
+
+
 Figmaの図をダイレクトにコード化
 
 ### 主な特徴
-？
 
-次世代のWebアプリ開発が可能。
+* Figmaデザイン情報の提供
+* Figmaコメント操作
+* React等のコードを自動生成
+* デザインに関する質疑応答
 
-* デザインを Readdy で作成。
- AIデザイン生成ツール
+```json
+...
+{
+	"mcpServers": {
+		"Framelink Figma MCP": {
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npx",
+				"-y",
+				"figma-developer-mcp",
+				"--figma-api-key=FIGMA-API-KEY(figd_XXXXX)",
+				"--stdio"
+			]
+		}
+	}
+}
+
+
+```
+
+### 動作確認
+
+MCP起動後、👇のコマンドを実行します。
+
+```terminal
+npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
+{"method":"notifications/message","params":{"level":"info","data":["Server connected and ready to process requests"]},"jsonrpc":"2.0"}
+
+```
+
+👆接続に成功したら、このようなメッセージが出ました。
+準備が出来ているようです。
+
+
+
+### 次世代のWebアプリ開発が可能。
+
+* デザインを Readdy(AIデザイン生成ツール)で作成。
 * フロントエンドをFigma MCP
 * バックエンドをSupabase MCP
 
@@ -318,7 +327,11 @@ AIデザイン生成ツールはv0などもあります。
 
 ### Readdyとは
 
-キャッチコピー
+AIデザイン生成ツールです。
+AIとのチャットで画面デザインを考えてくれます。
+画面デザイン生成AIなので見た目だけ作ってくれます。
+
+* キャッチコピー
 Websites that Stand Out
 Built and Published in Minutes
 ドラッグ&ドロップ不要で、AIと対話しながら夢のウェブサイトを構築 即座に公開、またはコードやFigmaとしてエクスポートします。
@@ -330,6 +343,7 @@ HTML
 Vue
 React
 を選べます。
+
 
 
 ## Stripe
@@ -378,32 +392,28 @@ GitHub - MCP Server | Cursor Directory
 https://cursor.directory/mcp/github
 
 ```mcp.json
-"mcp": {
-    "inputs": [],
-    "servers": {
-        "mcp-server-time": {
-            "command": "python",
-            "args": [
-                "-m",
-                "mcp_server_time",
-                "--local-timezone=America/Los_Angeles"
-            ],
-            "env": {}
-        },
-        "github": {
-            "command": "cmd",
-            "args": [
-                "/c",
-                "npx",
-                "-y",
-                "@modelcontextprotocol/server-github"
-            ],
-            "env": {
-                "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
-            }
-        }
-    }
-}
+...
+	"mcp": {
+		"inputs": [],
+		"servers": {
+			"mcp-server-time": {
+				"command": "python",
+				"args": [
+					"-m",
+					"mcp_server_time",
+					"--local-timezone=America/Los_Angeles"
+				],
+				"env": {}
+			},
+			"github": {
+				"command": "cmd",
+				"args": ["/c", "npx", "-y", "@modelcontextprotocol/server-github"],
+				"env": {
+					"GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
+				}
+			}
+		}
+	}
 
 ```
 
@@ -424,17 +434,16 @@ MindscapeHQ/mcp-server-raygun
 https://github.com/MindscapeHQ/mcp-server-raygun
 
 ```mcp.json
-{
-  "mcpServers": {
-    "raygun": {
-      "command": "npx",
-      "args": ["-y", "@raygun.io/mcp-server-raygun"],
-      "env": {
-        "RAYGUN_PAT_TOKEN": "your-pat-token-here"
-      }
-    }
-  }
-}
+...
+	"mcpServers": {
+		"raygun": {
+			"command": "npx",
+			"args": ["-y", "@raygun.io/mcp-server-raygun"],
+			"env": {
+				"RAYGUN_PAT_TOKEN": "your-pat-token-here"
+			}
+		}
+	}
 
 ```
 
@@ -626,16 +635,14 @@ Stripe経由でカードの情報を登録します
 適当な場所に保存しておきます。
 
 ```settings.json
-    "brave-search": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-brave-search"
-      ],
-      "env": {
-        "BRAVE_API_KEY": "[BRAVE_API_KEY]"
-      }
-    },
+...
+	"brave-search": {
+		"command": "npx",
+		"args": ["-y", "@modelcontextprotocol/server-brave-search"],
+		"env": {
+			"BRAVE_API_KEY": "[BRAVE_API_KEY]"
+		}
+	}
 
 ```
 
@@ -717,14 +724,14 @@ npm install -g @modelcontextprotocol/server-filesystem
 
 ```settings.json
 ...
-"file-system": {
-	"command": "npx",
-	"args": [
-		"-y",
-		"@modelcontextprotocol/server-filesystem",
-		"[アクセスしたいローカルファイルのフォルダ、パス]"
-	]
-},
+	"file-system": {
+		"command": "npx",
+		"args": [
+			"-y",
+			"@modelcontextprotocol/server-filesystem",
+			"[アクセスしたいローカルファイルのフォルダ、パス]"
+		]
+	}
 
 ```
 
