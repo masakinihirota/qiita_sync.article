@@ -81,7 +81,7 @@ mcpのサンプルが表示されます。
 * テストを**Playwright MCP** 自然言語でのテストコードの自動生成
 * Git管理を **GitHub MCP** GitHubの自動操作等
 * 保守運用を **Raygun MCP** でエラーの自動追跡
-* サブスクライブを **Stripe MCP** Stripeでの実装 
+* サブスクライブを **Stripe MCP** Stripeでの実装
 * 多様なAIモデルを GitHub Copilot Agent mode、Claude Sonnet 3.5 3.7、GPT-4oでコード生成 追加が可能
 * AI搭載エディタを VSCode、Cursor、Windsurf 他で利用できます。
 * AI搭載エディタのエージェント化を AIの自律サポートを Cline、Roo codeで行います。
@@ -392,6 +392,34 @@ Figmaのサイトで、
 * React等のコードを自動生成
 * デザインに関する質疑応答
 
+
+
+### Figma MCPで出来ること
+
+デザイン情報とAIの連携を円滑にし、開発効率を向上させます。
+Figmaのデザイン情報を構造化してAIに提供します。
+活用例はコード自動生成、デザインに関する質問応答、コメント操作等。
+デザインと開発者間のギャップを埋め、より効率的で精度の高い開発を行います。
+
+
+* Figmaデザイン情報のAI提供
+
+レイアウト情報: 要素の位置、サイズ、親子関係などをAIに構造的に提供。
+スタイル情報: 色、フォント、ボーダー、シャドウなどのデザイン属性をAIに提供。
+テキスト情報: 要素内のテキストコンテンツをAIに提供。
+
+* AIによるデザインの理解と活用
+
+コード生成: 提供されたデザイン情報を基に、HTML/CSS、Reactなどのコードを自動生成。
+質問応答: Figmaデザインに関する質問（例：「このボタンの色は？」）に対して、正確な情報を基に回答。
+デザイン分析: （将来的に）AIがデザインの構造やスタイルを分析し、改善提案などを行う可能性。
+
+* Figmaとのインタラクション
+
+コメント操作: Figma上のコメントを読み取ったり、AIがコメントを書き込んだりすることが可能です。
+
+
+
 ```json
 ...
 {
@@ -414,12 +442,16 @@ Figmaのサイトで、
 
 ### 動作確認
 
-デザイン系のMCPなので動作確認が分かりづらいです。
+デザイン系のMCPなので気軽な動作確認がしづらいです。
 ですので、MCP起動後、手動確認をしてみました。
 👇のコマンドを実行します。
 
 ```terminal
 npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
+
+```
+
+```terminal
 {"method":"notifications/message","params":{"level":"info","data":["Server connected and ready to process requests"]},"jsonrpc":"2.0"}
 
 ```
