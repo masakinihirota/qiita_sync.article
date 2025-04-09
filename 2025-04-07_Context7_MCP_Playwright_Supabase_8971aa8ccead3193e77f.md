@@ -70,18 +70,19 @@ mcpのサンプルが表示されます。
 ```
 
 
-# 次世代のWebアプリ開発が可能。
+# 次世代のWebアプリ開発が可能
 
-* Next.jsは Context7 MCP 最新のコード等
+* Next.js、Honoは **Context7 MCP** 最新のコードやスニペット
 * デザインを v0やReaddy(=AIデザイン生成Webサービス)で作成。
-* フロントエンドをFigma MCP 画面デザイン等
-* バックエンドをSupabase MCP DB操作等
-* Stripeでサブスクライブの実装
-* GitHub MCPでGitHubの自動操作
-* Playwright MCPでテストコードの自動生成
-* Raygun MCPでエラーの自動追跡
-* GitHub Copilotでコード生成
-* VSCode でAIエディタ
+* フロントエンドを **Figma MCP** 画面デザイン等
+* バックエンドを **Supabase MCP** DB操作等
+* Stripeでサブスクライブの実装 **Stripe MCP**
+* **GitHub MCP** でGitHubの自動操作
+* **Playwright MCP** でテストコードの自動生成
+* **Raygun MCP** でエラーの自動追跡
+* GitHub Copilot Agent mode、Claude Sonnet 3.5 3.7、GPT-4oでコード生成
+* Cline、Roo codeでAIの自動化
+* VSCode、Cursor、Windsurf でAIエディタ
 
 👆これで開発が出来ます。
 
@@ -181,6 +182,20 @@ npm install -g c7-mcp-server
 
 ```
 
+
+### 最新コード
+
+#### Next.js
+
+Context7 - Up-to-date documentation for LLMs and AI code editors
+
+https://context7.com/vercel/next.js
+
+#### Hono
+
+Context7 - Up-to-date documentation for LLMs and AI code editors
+
+https://context7.com/honojs/hono
 
 
 ## Supabase
