@@ -18,6 +18,8 @@ https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
 
 https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
+https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
+
 
 
 ![VNS画面GitHubCopilot文字付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/74ce79e7-8fba-bc76-cbe6-a9e89ea15925.png)

@@ -1,6 +1,6 @@
 <!--
 title:   便利なMCP 2025年4月版 (もう古いコードの提案はしなくなるMCP他)
-tags:    Context7,MCP,Playwright,Supabase
+tags:    Context7,MCP,Playwright,Supabase,githubcopilot
 id:      8971aa8ccead3193e77f
 private: false
 -->
@@ -8,6 +8,22 @@ private: false
 `settings.json`などで、起動ボタンを押します。
 
 有料や回数制限があるMCPがあるから仕方がないか。
+
+# GitHub Copilotシリーズ
+
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+https://qiita.com/masakinihirota/items/1694715063247574467d
+
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
+
+https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
+
+https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
 
 
