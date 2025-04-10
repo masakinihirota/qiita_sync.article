@@ -463,9 +463,9 @@ pipx install supabase-mcp-server
 
 ```
 
-
-
 ※詳細はドキュメントを見てください。
+
+
 
 ### MCPを複数設定
 
@@ -897,10 +897,7 @@ npm install -g @modelcontextprotocol/server-filesystem
 
 
 
-
-
-
-
+---
 
 # MCP 関連URL
 
@@ -955,7 +952,7 @@ VSCode のGitHub CopilotでGemini系を使うのに登録が必要になりま�
 Geminiを使用するには、GeminiのAPIキーが必要です。
 キーは Google AI Studio で数回のクリックで作成できます。
 
-Gemini API キーを取得する  |  Google AI for Developers
+Gemini API キーを取得する | Google AI for Developers
 
 https://ai.google.dev/gemini-api/docs/api-key
 
