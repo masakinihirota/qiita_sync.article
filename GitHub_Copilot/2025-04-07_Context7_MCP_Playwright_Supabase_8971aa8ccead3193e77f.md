@@ -104,6 +104,15 @@ mcpのサンプルが表示されます。
 
 👆これで開発が出来ます。開発に役立つMCPは他にも数多く公表されています。
 
+
+readdy
+
+https://readdy.ai/
+
+v0
+
+https://v0.dev/
+
 <details><summary>詳細: MCPを最大限に活用した次世代のWebアプリ開発</summary>
 
 Next.js、Honoなどのフレームワークと、様々なツールやサービスを組み合わせることで、開発効率を飛躍的に向上します。
@@ -659,6 +668,10 @@ CursorでStripe MCPを使ってサブスクリプションの実装をやらせ�
 https://wp-kyoto.net/generate-code-with-cursor-and-stripe-mcp/
 
 ## GitHub
+
+GitHubが発表した新技術「github-mcp-server」がなぜ便利なのか、従来との比較と使い方を徹底解説｜D × MirAI
+
+https://note.com/life_to_ai/n/n090809f86237
 
 ### 主な特徴
 
