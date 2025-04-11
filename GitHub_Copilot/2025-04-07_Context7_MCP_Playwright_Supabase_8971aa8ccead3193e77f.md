@@ -90,7 +90,7 @@ mcpのサンプルが表示されます。
 # MCPを最大限に活用した次世代のWebアプリ開発
 
 * Next.js、Honoは **Context7 MCP** 最新のコードやスニペット
-* デザインを v0やReaddy(=AIデザイン生成Webサービス)で作成。
+* デザインを v0やReaddy、same.new(=AIデザイン生成Webサービス)で作成。
 * フロントエンドを **Figma MCP** 画面デザイン等
 * バックエンドを **Supabase MCP** DB操作等
 * 資料を **filesystem MCP** 指定したフォルダに資料や1ファイル化したファイルの読み込み
@@ -108,6 +108,10 @@ mcpのサンプルが表示されます。
 readdy
 
 https://readdy.ai/
+
+same.new
+
+https://same.new/
 
 v0
 
