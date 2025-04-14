@@ -641,8 +641,27 @@ Figmaの図をダイレクトにコード化等してくれます。
 
 GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor
 
+GitHubサイト
 https://github.com/GLips/Figma-Context-MCP
 
+日本語ドキュメント
+https://github.com/GLips/Figma-Context-MCP/blob/main/README.ja.md
+
+公式動画 Creating a UI with Figma to Cursor MCP Server - YouTube
+
+https://www.youtube.com/watch?v=6G9yb-LrEqg
+
+
+```terminal
+# Figma-Context-MCPのインストール
+git clone https://github.com/GLips/Figma-Context-MCP.git
+
+cd Figma-Context-MCP
+
+# 依存関係のインストール
+pnpm install
+
+```
 Figmaのアクセストークンが必要です。
 
 無料ユーザーでもアクセストークンは作れます。
