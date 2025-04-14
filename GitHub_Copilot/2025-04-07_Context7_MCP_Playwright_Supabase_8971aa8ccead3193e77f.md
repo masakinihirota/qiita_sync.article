@@ -47,13 +47,7 @@ https://www.firecrawl.dev/
 これはA2Aとかになるのか？？？よくわからない。
 
 * 永続的メモリ:
-永続的メモリとは、AIエージェントが異なるセッションや実行にわたって情報を保持します。
-
-"memory systems and memory extensions for agents"
-で検索すると、MCPの記憶システムやエクステンションが見つかる。
-
-https://smithery.ai/?q=memory+systems+and+memory+extensions+for+agents&page=1
-
+永続的メモリとは、AIエージェントが異なるセッションや実行にわたって情報を保持します。これは開発時の作業履歴などを終わりまで保存します。
 
 追記終了
 
