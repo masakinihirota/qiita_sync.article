@@ -43,11 +43,32 @@ https://www.firecrawl.dev/
 
 * Vercel MCP
 
-* MCPを管理するMCP
-これはA2Aとかになるのか？？？よくわからない。
-
 * 永続的メモリ:
 永続的メモリとは、AIエージェントが異なるセッションや実行にわたって情報を保持します。これは開発時の作業履歴などを終わりまで保存します。
+
+* Mastra
+AIエージェント
+
+<details><summary>AIの登場時系列順(AI調べ)</summary>
+
+GitHub Copilot
+GPT-3.5/ChatGPT
+GPT-4
+Cursor AI
+Google AI Studio
+Gemini 1.5
+GPT-4o
+Claude 3.5 Sonnet
+Gemini 2.0
+Claude 3.7
+Cline
+Windsurf
+Roo Code
+Gemini 2.5
+GitHub Copilot Agent mode
+Firebase Studio
+
+</details>
 
 追記終了
 
@@ -613,6 +634,7 @@ AIと連携することで、高品質なテストコードの生成をサポー
 * 高速なパフォーマンスのためのRedisキャッシュ
 
 
+
 ## Figma
 
 Figmaの図をダイレクトにコード化等してくれます。
@@ -706,6 +728,38 @@ npx -y figma-developer-mcp --figma-api-key="FIGMA-API-KEY" --stdio
 準備が出来ているようです。
 
 GitHub Copilot Agent mode(エージェントに切り替えます)で使えるようになりました。
+
+Figmaのディスクトップ用アプリをダウンロードして、そのアプリでデザインをして、そのデザインをGitHub Copilotに読み込ませるようにしました。
+簡単に動きますね。
+
+Figmaダウンロード | デスクトップ、モバイル向けWebデザインアプリ
+
+https://www.figma.com/ja-jp/downloads/
+
+### 簡単な使い方
+
+* Figmaのディスクトップ用アプリでの作業
+
+Figmaのディスクトップ用アプリでデザインします。
+デザインをグループ化します。
+右クリックから
+コピー/貼り付けオプション＞＞選択範囲へのリンクをコピー
+これをGitHub Copilotに渡します。
+
+* GitHub Copilotでの作業
+
+(settings.jsonから)MCPを起動します。
+GitHub Copilotをエージェントモードに変更します。
+リンクを貼り付けます。
+GitHub Copilotと適当な会話をします。
+
+```Chat会話
+https://www.figma.com/design/***** ＜＜＜このデザインを取り込めますか？コンポーネントとしてcomponentsフォルダを作ってそこにおいてください。
+
+```
+
+色々と適切な許可を出します。
+コードを生成してくれました。
 
 
 
