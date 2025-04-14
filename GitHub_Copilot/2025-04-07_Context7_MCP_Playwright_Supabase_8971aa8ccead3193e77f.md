@@ -41,13 +41,13 @@ https://www.firecrawl.dev/
 
 ---
 
-Vercel MCP
+* Vercel MCP
 
-MCPを管理するMCP
+* MCPを管理するMCP
 これはA2Aとかになるのか？？？よくわからない。
 
-MCPで開発していても、まだ足りないもの
-* 記憶: 開発記録を構造的に保存してAIに過去生成したコードと同じ方向性で生成を行いたい。
+* 永続的メモリ:
+永続的メモリとは、AIエージェントが異なるセッションや実行にわたって情報を保持します。
 
 "memory systems and memory extensions for agents"
 で検索すると、MCPの記憶システムやエクステンションが見つかる。
