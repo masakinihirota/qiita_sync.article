@@ -21,6 +21,9 @@ https://www.firecrawl.dev/
 * ディープリサーチ: 複数の情報源を組み合わせた詳細な調査
 * サブページもクロール可能
 
+これで最新のドキュメントを常に用意できます。
+ファイアクロール MCPは、Cursorの `@Doc` 機能より遥かに強力で広範囲なウェブデータ収集が可能ですが、設定や利用にはより多くの手順とコストが必要です。
+
 ```json
 {
   "mcpServers": {
@@ -36,7 +39,6 @@ https://www.firecrawl.dev/
 
 ```
 
-ファイアクロール MCPはCursorの `@Doc` 機能より遥かに強力で広範囲なウェブデータ収集が可能ですが、設定や利用にはより多くの手順とコストが必要です。
 
 
 ---
@@ -751,9 +753,11 @@ GitHub Copilot Agent mode(エージェントに切り替えます)で使える�
 Figmaのディスクトップ用アプリをダウンロードして、そのアプリでデザインをして、そのデザインをGitHub Copilotに読み込ませるようにしました。
 簡単に動きますね。
 
-Figmaダウンロード | デスクトップ、モバイル向けWebデザインアプリ
+Figmaのディスクトップ用アプリ ダウンロード
 
 https://www.figma.com/ja-jp/downloads/
+
+
 
 ### 簡単な使い方
 
@@ -767,7 +771,7 @@ Figmaのディスクトップ用アプリでデザインします。
 
 * GitHub Copilotでの作業
 
-(settings.jsonから)MCPを起動します。
+(VSCodeはsettings.jsonから)MCPを起動します。
 GitHub Copilotをエージェントモードに変更します。
 リンクを貼り付けます。
 GitHub Copilotと適当な会話をします。
