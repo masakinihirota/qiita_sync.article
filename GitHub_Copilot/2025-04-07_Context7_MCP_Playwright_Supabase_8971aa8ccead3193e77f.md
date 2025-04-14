@@ -4,6 +4,60 @@ tags:    Context7,MCP,Playwright,Supabase,githubcopilot
 id:      8971aa8ccead3193e77f
 private: false
 -->
+追記 2025年4月14日
+追加したいMCP
+
+ファイアクロール MCP(有料、500クレジット分無料)
+https://www.firecrawl.dev/
+
+ファイアクロール MCPは、AI（大規模言語モデル）がウェブサイトを効率的にクロールし、データを抽出するための強力なツールです。MCP（Model Context Protocol）サーバーを通じて、AIアシスタントがウェブから情報を収集・分析する能力を大幅に強化します。
+
+主な機能
+* スクレイピング: JavaScriptレンダリングによる高度なウェブスクレイピング
+* クロール: 指定サイトを起点に複数ページを自動探索
+* 検索: ウェブ上の情報をキーワードで検索
+* 情報抽出: 特定の要素やパターンに基づく構造化データの抽出
+* バッチ処理: 複数URLの同時処理
+* ディープリサーチ: 複数の情報源を組み合わせた詳細な調査
+* サブページもクロール可能
+
+```json
+{
+  "mcpServers": {
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+
+```
+
+ファイアクロール MCPはCursorの `@Doc` 機能より遥かに強力で広範囲なウェブデータ収集が可能ですが、設定や利用にはより多くの手順とコストが必要です。
+
+
+---
+
+Vercel MCP
+
+
+
+MCPで開発していても、まだ足りないもの
+* 記憶: 開発記録を構造的に保存してAIに過去生成したコードと同じ方向性で生成を行いたい。
+
+"memory systems and memory extensions for agents"
+で検索すると、MCPの記憶システムやエクステンションが見つかる。
+
+https://smithery.ai/?q=memory+systems+and+memory+extensions+for+agents&page=1
+
+
+追記終了
+
+
+
 ※立ち上げるごとにMCPの起動が必要です。
 `settings.json`などで、起動ボタンを押します。
 
