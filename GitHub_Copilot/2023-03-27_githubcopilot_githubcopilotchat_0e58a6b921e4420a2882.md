@@ -4,6 +4,21 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記 2025年4月15日
+
+GitHub Copilot Agent mode に自動実行モードが追加されました。
+実験機能・非推奨です。よくわからないならば絶対に有効化しないでください。
+
+```settings.json
+  // GitHub Copilot Agent Mode 有効化
+  "chat.agent.enabled": true,
+	// 自動実行モード (YOLO モード)
+	"chat.tools.autoApprove": true,
+
+```
+
+追記終了
+
 追記 2025年2月4日
 OpenAIの最新推論モデル「o3-mini」が「GitHub Copilot」などで利用可能に - 窓の杜
 
