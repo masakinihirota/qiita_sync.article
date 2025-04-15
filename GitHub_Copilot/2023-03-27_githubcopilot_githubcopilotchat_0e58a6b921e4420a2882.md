@@ -19,12 +19,15 @@ GitHub Copilot Agent mode に自動実行モードが追加されました。
 
 追記終了
 
+
+
 追記 2025年2月4日
 OpenAIの最新推論モデル「o3-mini」が「GitHub Copilot」などで利用可能に - 窓の杜
 
 https://forest.watch.impress.co.jp/docs/news/1659601.html
 
 追記終了
+
 
 
 追記 2025年1月7日
@@ -49,30 +52,19 @@ Copilot Workspace、GitHub Copilot Edits、GitHub Spark(Wait list中)
 
 GitHub Copilot Agent Mode
 
-👆 これはVSCodeのInsider版で動かせます。
-
-
 Documentation for Visual Studio Code
 https://code.visualstudio.com/docs/?dv=win&build=insiders
-
-
 
 GitHub Copilot Agent Modeが登場。タスクを与えると自律的にプログラミング、テストコードも修正、テストが失敗すればデバッグも － Publickey
 https://www.publickey1.jp/blog/25/github_copilot_agent_mode.html
 
-
-
 AIがコパイロット(副操縦士)からエージェント(代理人)になりました。
 この 3.までは人間がメインにコードを書きサポートをAIがしていましたが、4.からは人間が指示を出しAIがコードを書きます。主従逆転が起きています。
-
-
 
 主なAIエージェント
 Devin、Cline、Roo Code、OpenHands等
 👆 これらのうち VSCode(Cursor)の拡張機能から使えるものがいくつかあります。
 GitHub Copilotの有償契約を結んでいるとGitHub CopilotのAIモデルが利用できます。 **(実質定額)**
-
-
 
 1 と 2 はほぼ同時に登場しました。
 その後、3 もAIの発達により出来るようになりました。
@@ -87,6 +79,7 @@ AIの問題解決能力はまだ高くありませんが、ある程度までは
 しかしこれらの機能によってIT職種の仕事が奪われるということは無いでしょう、より高い技術を持つ必要になりましたが。
 
 追記終了
+
 
 
 追記 2024年11月27日
