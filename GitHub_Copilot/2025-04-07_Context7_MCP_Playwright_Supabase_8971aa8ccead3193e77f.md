@@ -331,10 +331,9 @@ https://mcp.so/server/c7-mcp-server/quiint
 
 https://mcp.so/server/c7-mcp-server/quiint?tab=content
 
-upstash/context7: Instant LLM Context for Agents and Developers
+upstash/context7-mcp: Context7 MCP Server
 
-https://github.com/upstash/context7
-
+https://github.com/upstash/context7-mcp
 
 GitHub Copilotを使っていると、時々 古い情報のコードが提案されることがあります。
 これは、カットオフ（＝ある特定期間までの情報）されているので最新情報に追いついていないからです。
@@ -371,6 +370,14 @@ Context7を設定すれば、必要なドキュメントへのアクセスが自
 * MCP (Model Context Protocol) サーバーとの連携
 * 個人利用は1日あたり最大 50 クエリまで無料
 
+### 簡単な使い方
+
+* VSCodeのsettings.json にある起動ボタンを押します。
+(c7-mcp-serverコマンドを実行)
+* GitHub Copilot Agent modeに自然言語で尋ねる。
+* 自然言語の指示の後に `use context7`をつけます。
+
+
 
 ### インストール
 
@@ -389,6 +396,12 @@ npm install -g c7-mcp-server
 
 ```
 
+### 動作テスト
+
+```terminal
+npx -y @modelcontextprotocol/inspector npx @upstash/context7-mcp@latest
+
+```
 
 ### 最新コード
 
