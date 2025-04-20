@@ -480,18 +480,25 @@ Docker Desktopをインストールして、ローカルのSupabaseを立ち上�
 
 SupabaseのMCPをローカルのSupabaseで動かすための設定ファイルを作成します。
 
+SupabaseのMCP用のアクセストークンを取得します。
+
+アクセストークン
+Supabase | Supabase
+https://app.supabase.com/account/tokens
+
 ```json
-"mcpServers": {
-	"supabase": {
-		"command": "cmd",
-		"args": [
-			"/c",
-			"npx",
-			"-y",
-			"@modelcontextprotocol/server-postgres",
-			"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-		]
-	}
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "<personal-access-token>"
+      ]
+    }
+  }
 }
 
 ```
@@ -596,16 +603,6 @@ jsonの構造を利用して複数のMCPを設定することができます。
 	"mcp": {
 		"inputs": [],
 		"servers": {
-			"supabase": {
-				"command": "cmd",
-				"args": [
-					"/c",
-					"npx",
-					"-y",
-					"@modelcontextprotocol/server-postgres",
-					"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-				]
-			},
 			"mcp-server-time": {
 				"command": "[pythonのPath]",
 				"args": ["-m", "mcp_server_time", "--local-timezone=Asia/Tokyo"],
@@ -631,7 +628,23 @@ supabase-community/supabase-mcp: Connect Supabase to your AI assistants
 
 https://github.com/supabase-community/supabase-mcp
 
+## Postgres (LOCALのSupabase用)
 
+ローカルのSupabaseに接続用の設定です。
+
+```json
+			"Postgres(LOCAL-supabase)": {
+				"command": "cmd",
+				"args": [
+					"/c",
+					"npx",
+					"-y",
+					"@modelcontextprotocol/server-postgres",
+					"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+				]
+			}
+
+```
 
 ## Playwright
 
