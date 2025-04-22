@@ -103,7 +103,7 @@ https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
 VSCodeの左下の歯車アイコンから「設定」を開きます。
 
-設定の検索から `mcp` で検索します。
+設定の検索窓から `mcp` で検索します。
 
 👇MCP関連の設定画面が表示されます。
 ユーザーもしくはワークスペースを選択します。
@@ -177,17 +177,25 @@ mcpのサンプルが表示されます。
 👆これで開発が出来ます。開発に役立つMCPは他にも数多く公表されています。
 
 
-readdy
+
+## AIデザイン生成Webサービス
+
+自然言語でフロントエンドのデザインを生成するWebサービスです。
+
+### Readdy
 
 https://readdy.ai/
 
-same.new
+### same.new
 
 https://same.new/
 
-v0
+### v0
 
 https://v0.dev/
+
+
+
 
 <details><summary>詳細: MCPを最大限に活用した次世代のWebアプリ開発</summary>
 
@@ -376,7 +384,16 @@ Context7を設定すれば、必要なドキュメントへのアクセスが自
 (c7-mcp-serverコマンドを実行)
 * GitHub Copilot Agent modeに自然言語で尋ねる。
 * 自然言語の指示の後に `use context7`をつけます。
+* 👇️GitHub Copilotの指示書(settings.json等)に設定しておくと自動で使うようになります。
 
+```settings.json
+...
+	"github.copilot.chat.codeGeneration.instructions": [
+		{
+			"text": "MCPの context7 を使用できるのなら。指示にかならず `use context7` を追加してください。"
+		},
+
+```
 
 
 ### インストール
@@ -448,9 +465,13 @@ Model context protocol (MCP) | Supabase Docs
 
 https://supabase.com/docs/guides/getting-started/mcp
 
-alexander-zuev/supabase-mcp-server
+supabase-community/supabase-mcp: Connect Supabase to your AI assistants
 
-https://github.com/alexander-zuev/supabase-mcp-server
+https://github.com/supabase-community/supabase-mcp/tree/main?tab=readme-ov-file
+
+supabase-community/supabase-mcp: Connect Supabase to your AI assistants
+
+https://github.com/supabase-community/supabase-mcp
 
 MCPはつなげるだけの役割で、実際に動かすのはGitHub Copilotです。
 GitHub Copilotに指示してDBの情報を取得できないときがありますが、
@@ -473,12 +494,56 @@ Supabaseへのアクセスが便利になるMCP
 * 複雑なSQLクエリを簡単な言葉で実行
 * レポート作成や洞察の抽出が容易
 
+### tools
 
-### ローカル用のSupabase MCPの設定
+SupabaseのMCPは24個のツールが用意されています。
 
-Docker Desktopをインストールして、ローカルのSupabaseを立ち上げます。
+これにより、開発者はSupabaseを使用してリアルタイムアプリケーションや認証機能を迅速に構築できます。
 
-SupabaseのMCPをローカルのSupabaseで動かすための設定ファイルを作成します。
+**プロジェクト管理**
+
+* `list_projects`: ユーザーのすべての Supabase プロジェクトを一覧表示します。
+* `get_project`: プロジェクトの詳細を取得します。
+* `create_project`: 新しい Supabase プロジェクトを作成します。
+* `pause_project`: プロジェクトを一時停止します。
+* `restore_project`: プロジェクトを復元します。
+* `list_organizations`: ユーザーが所属するすべての組織を一覧表示します。
+* `get_organization`: 組織の詳細を取得します。
+
+**データベース操作**
+
+* `list_tables`: 指定されたスキーマ内のすべてのテーブルを一覧表示します。
+* `list_extensions`: データベース内のすべての拡張機能を一覧表示します。
+* `list_migrations`: データベース内のすべての移行を一覧表示します。
+* `apply_migration`: データベースにSQLマイグレーションを適用します。このツールに渡されたSQLはデータベース内で追跡されるため、LLMはDDL操作（スキーマ変更）にこれを使用する必要があります。
+* `execute_sql`: データベース内で生のSQLを実行します。LLMは、スキーマを変更しない通常のクエリにこれを使用する必要があります。
+* `get_logs`: Supabaseプロジェクトのログをサービスタイプ（API、Postgres、エッジ関数、認証、ストレージ、リアルタイム）別に取得します。LLMはこれを使用して、サービスパフォーマンスのデバッグと監視に役立てることができます。
+
+**プロジェクト構成**
+
+* `get_project_url`: プロジェクトの API URL を取得します。
+* `get_anon_key`: プロジェクトの匿名 API キーを取得します。
+
+**ブランチング（実験的、有料プランが必要）**
+
+* `create_branch`: 本番ブランチからの移行を含む開発ブランチを作成します。
+* `list_branches`: すべての開発ブランチを一覧表示します。
+* `delete_branch`: 開発ブランチを削除します。
+* `merge_branch`: 開発ブランチから本番環境への移行とエッジ機能をマージします。
+* `reset_branch`: 開発ブランチの移行を以前のバージョンにリセットします。
+* `rebase_branch`: 移行のドリフトを処理するために開発ブランチを本番環境にリベースします。
+
+**開発ツール**
+
+* `generate_typescript_types`: データベーススキーマに基づいて TypeScript 型を生成します。LLM はこれをファイルに保存し、コード内で使用できます。
+
+**費用確認**
+
+* `get_cost`: 組織の新しいプロジェクトまたはブランチのコストを取得します。
+* `confirm_cost`: ユーザーが新しいプロジェクトまたはブランチのコストを理解していることを確認します。これは、新しいプロジェクトまたはブランチを作成するために必要です。
+
+
+### Supabase MCPの設定
 
 SupabaseのMCP用のアクセストークンを取得します。
 
@@ -501,6 +566,22 @@ https://app.supabase.com/account/tokens
   }
 }
 
+```
+
+👇️Windows用の設定
+
+```json
+			"supabase": {
+				"command": "cmd",
+				"args": [
+					"/c",
+					"npx",
+					"-y",
+					"@supabase/mcp-server-supabase@latest",
+					"--access-token",
+					"sbp_ad5345d770ade0e8691e62da099fa976453f5b5c"
+				]
+			},
 ```
 
 ※デフォルト値はローカルのSupabase用に設定されています。
@@ -588,6 +669,33 @@ pipx install supabase-mcp-server
 
 
 
+## Postgres (LOCALのSupabase用)
+
+Docker Desktopをインストールして、ローカルのSupabaseを立ち上げます。
+
+SupabaseのMCPをローカルのSupabaseで動かすための設定ファイルを作成します。
+
+alexander-zuev/supabase-mcp-server
+
+https://github.com/alexander-zuev/supabase-mcp-server
+
+👇️Dockerで動くローカルのSupabaseに接続するための設定です。
+
+```json
+			"Postgres(LOCAL-supabase)": {
+				"command": "cmd",
+				"args": [
+					"/c",
+					"npx",
+					"-y",
+					"@modelcontextprotocol/server-postgres",
+					"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+				]
+			}
+
+```
+
+
 ### MCPを複数設定
 
 jsonの構造を利用して複数のMCPを設定することができます。
@@ -624,27 +732,7 @@ jsonの構造を利用して複数のMCPを設定することができます。
 
 SupabaseのMCPをローカルで動かすための設定ファイルを作成します。
 
-supabase-community/supabase-mcp: Connect Supabase to your AI assistants
 
-https://github.com/supabase-community/supabase-mcp
-
-## Postgres (LOCALのSupabase用)
-
-ローカルのSupabaseに接続用の設定です。
-
-```json
-			"Postgres(LOCAL-supabase)": {
-				"command": "cmd",
-				"args": [
-					"/c",
-					"npx",
-					"-y",
-					"@modelcontextprotocol/server-postgres",
-					"postgresql://postgres:postgres@127.0.0.1:54322/postgres"
-				]
-			}
-
-```
 
 ## Playwright
 
