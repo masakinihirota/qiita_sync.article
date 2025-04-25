@@ -4,15 +4,62 @@ tags:    Context7,MCP,Playwright,Supabase,githubcopilot
 id:      8971aa8ccead3193e77f
 private: false
 -->
+追記 2025年4月24日
+追加したいMCP
+
+# Sequential Thinking
+
+複雑な問題をシンプルに
+
+https://mcp.so/ja/server/sequentialthinking/modelcontextprotocol
+
+オープンソースで誰でも無料で使えます。
+
+## 主な機能
+
+段階的な思考: 複雑な問題を小さなステップに分解して解決します。
+思考の進化: 理解が深まるにつれて、前の思考を修正したり、新たな視点を取り入れたりできます。
+思考の分岐: 複数の解決策の可能性を探り、比較検討できます。
+柔軟な調整: 思考のステップ数を動的に変更可能です。
+仮説検証: 解決策のアイデアを生み出し、検証するのに役立ちます。
+
+## こんな時に便利
+
+頭の中がゴチャゴチャしている問題を整理したい時
+何度も修正が必要な計画やデザインに取り組む時
+最初は何がなんだかわからない問題に立ち向かう時
+雑然としたアイデアから設計書を書く時
+
+```settings.json
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    }
+  }
+}
+
+```
+
+追記終了
+
+
+
 追記 2025年4月14日
 追加したいMCP
+
+# Firecrawl
 
 ファイアクロール MCP(有料、500クレジット分無料)
 https://www.firecrawl.dev/
 
 ファイアクロール MCPは、AI（大規模言語モデル）がウェブサイトを効率的にクロールし、データを抽出するための強力なツールです。MCP（Model Context Protocol）サーバーを通じて、AIアシスタントがウェブから情報を収集・分析する能力を大幅に強化します。
 
-主な機能
+## 主な機能
 * スクレイピング: JavaScriptレンダリングによる高度なウェブスクレイピング
 * クロール: 指定サイトを起点に複数ページを自動探索
 * 検索: ウェブ上の情報をキーワードで検索
@@ -80,6 +127,10 @@ Firebase Studio
 `settings.json`などで、起動ボタンを押します。
 
 有料や回数制限があるMCPがあるから仕方がないか。
+
+GitHub Copilot Agent modeで 許可を求めてきた時許可を出すと、自動でsettings.jsonでの方も起動ボタンが動作することがありました。
+
+
 
 # GitHub Copilotシリーズ
 
@@ -170,6 +221,8 @@ mcpのサンプルが表示されます。
 * Git管理を **GitHub MCP** GitHubの自動操作等
 * 保守運用を **Raygun MCP** でエラーの自動追跡
 * サブスクライブを **Stripe MCP** Stripeでの実装
+* 検索を **Brave Search MCP** 検索エンジンの実装
+* 設計書を **sequential-thinking** アイデアをステップに分けた段階的な思考
 * 多様なAIモデルを GitHub Copilot Agent mode、Claude Sonnet 3.5 3.7、GPT-4oでコード生成 追加が可能
 * AI搭載エディタを VSCode、Cursor、Windsurf 他で利用できます。
 * AI搭載エディタのエージェント化を AIの自律サポートを Cline、Roo codeで行います。
@@ -395,6 +448,9 @@ Context7を設定すれば、必要なドキュメントへのアクセスが自
 
 ```
 
+※👆️この設定をするとMCPを使い分けたい時は不便です。
+設定をしておかないと毎回指示する必要が出てきますが。
+
 
 ### インストール
 
@@ -567,6 +623,29 @@ https://app.supabase.com/account/tokens
 }
 
 ```
+
+読み取り専用モードも可能
+`"--read-only"` をつけるだけ
+
+```json
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "<personal-access-token>",
+				"--read-only"
+      ]
+    }
+  }
+}
+
+```
+
+
 
 👇️Windows用の設定
 
