@@ -146,6 +146,38 @@ https://githubnext.com/projects/github-spark
 
 ## お試し中
 
+### DeepWiki
+
+GitHubリポジトリからWikiを自動生成してくれます。
+構成図も自動的に生成されます
+ディープリサーチ機能も搭載されており、質問にも答えてくれます。
+
+#### 使い方
+
+GitHubリポジトリのURL部分をDeepWikiに変えるだけです。
+
+```
+https://github.com/masakinihirota/vns-masakinihirota
+
+👇️
+
+https://deepwiki.com/masakinihirota/vns-masakinihirota
+
+```
+
+これまでは、uithubで1ファイル化してたのをNoteBookLMに入れていました。
+それが、このDeepWikiだけで完結するようになりました。
+
+
+#### uithub とは
+
+GitHubリポジトリを1ファイル化してくれます。
+
+#### NoteBookLM
+
+提示したソースに限定した情報に答えてくれます。
+
+
 ### Felo
 
 Felo（フェロー）- 無料のAI検索エンジン
@@ -230,8 +262,7 @@ https://www.itmedia.co.jp/aiplus/articles/2503/26/news121.html
 
 
 ### チャット
-Gemini 2.0 Flash
-Gemini 2.0 Flash Thinking
+Gemini 2.5 Pro
 
 ### 深い調査
 Gemini Deep Research 機能
