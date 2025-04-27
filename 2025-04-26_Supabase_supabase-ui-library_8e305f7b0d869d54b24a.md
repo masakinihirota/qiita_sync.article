@@ -12,6 +12,10 @@ OAuth認証用のキーは各自で取得してください。
 Supabaseのサーバーの設定は各自で設定をしてください。
 匿名認証はOAuth認証を参考にGitHub Copilotで実装しています。
 
+![uploading...0](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/c263fdf7-a457-4bc9-ad05-8033700382f2.png)
+
+
+
 # この記事のリポジトリ
 
 masakinihirota/Supabase-UI-Library
