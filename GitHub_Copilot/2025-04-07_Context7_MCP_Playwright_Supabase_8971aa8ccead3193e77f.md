@@ -990,11 +990,9 @@ CursorでStripe MCPを使ってサブスクリプションの実装をやらせ�
 
 https://wp-kyoto.net/generate-code-with-cursor-and-stripe-mcp/
 
+
+
 ## GitHub
-
-GitHubが発表した新技術「github-mcp-server」がなぜ便利なのか、従来との比較と使い方を徹底解説｜D × MirAI
-
-https://note.com/life_to_ai/n/n090809f86237
 
 ### 主な特徴
 
@@ -1023,35 +1021,72 @@ https://github.com/settings/personal-access-tokens/new
 
 👆認証必須
 
+
+### GitHub MCP 1個目 (公式)
+
+Dockerを利用できる場合
+
+github/github-mcp-server: GitHub's official MCP Server
+
+https://github.com/github/github-mcp-server
+
+GitHubのアクセストークンが必要
+
+```mcp.json
+...
+"github": {
+	"command": "docker",
+	"args": [
+		"run",
+		"-i",
+		"--rm",
+		"-e",
+		"GITHUB_PERSONAL_ACCESS_TOKEN",
+		"ghcr.io/github/github-mcp-server"
+	],
+	"env": {
+		"GITHUB_PERSONAL_ACCESS_TOKEN": "<github_token>"
+	}
+},
+
+```
+
+👆️<github_token>に取得したアクセストークンを設定します。
+
+
+
+### GitHub MCP 2個目
+
+Dockerを使わない場合
+
+GitHubが発表した新技術「github-mcp-server」がなぜ便利なのか、従来との比較と使い方を徹底解説｜D × MirAI
+
+https://note.com/life_to_ai/n/n090809f86237
+
 GitHub - MCP Server | Cursor Directory
 
 https://cursor.directory/mcp/github
 
-```mcp.json
-...
-	"mcp": {
-		"inputs": [],
-		"servers": {
-			"mcp-server-time": {
-				"command": "python",
-				"args": [
-					"-m",
-					"mcp_server_time",
-					"--local-timezone=America/Los_Angeles"
-				],
-				"env": {}
-			},
-			"github": {
-				"command": "cmd",
-				"args": ["/c", "npx", "-y", "@modelcontextprotocol/server-github"],
-				"env": {
-					"GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
-				}
-			}
-		}
-	}
+GitHubのアクセストークンが必要
 
 ```
+"github": {
+	"command": "npx",
+	"args": [
+		"-y",
+		"@modelcontextprotocol/server-github"
+	],
+	"env": {
+		"GITHUB_PERSONAL_ACCESS_TOKEN": "<github_token>"
+	}
+},
+
+
+```
+
+👆️<github_token>に取得したアクセストークンを設定します。
+
+
 
 ## Raygun
 
