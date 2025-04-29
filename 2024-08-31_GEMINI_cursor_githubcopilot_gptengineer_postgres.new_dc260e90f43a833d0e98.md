@@ -17,14 +17,15 @@ https://twitter.com/Delete_All/status/1648519994580533255
 
 
 
-# 現在のAIサイトの使い方、優先順 2025年3月
+# 現在のAIサイトの使い方
 
-## 質問
-Gemini 2.0 を最初に使います。
+## 質問に使用する
+
+Gemini 2.5 を最初に使います。
 
 その次は
-genspark
 Perplexity
+genspark
 wrtn
 の順
 
@@ -36,7 +37,7 @@ GeminiのDeep Researchを使います。
 
 GitHub Copilot
 
-GitHub Copilot Agent modeが追加されました。
+GitHub Copilot Agent mode
 
 VSCodeとCline(拡張機能)+MCP
 ClineはGitHub Copilotにつなげて定額でのAI活用。
