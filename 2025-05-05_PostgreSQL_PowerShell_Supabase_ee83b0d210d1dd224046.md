@@ -144,6 +144,7 @@ supabase
 │   └── table.sql
 ├── config.toml
 └── seed.sql
+
 ```
 
 3.  Supabaseの差分を取る（`supabase db diff -f [スキーマファイル名]`）
@@ -598,6 +599,7 @@ http://localhost:54323/project/default/editor
 supabase login
 
 # リモートプロジェクトをlinkする。
+# 開発が一定ラインに進むまでlinkはしないほうが良い
 supabase link
 
 # リモートプロジェクトに変更をpushする。
@@ -740,6 +742,7 @@ http://localhost:54323/project/default/editor
 
 👇このコマンドで、サーバーのスキーマをローカルファイルにプルダウンできます。
 ※サーバーのSupabaseと Linkさせておいてください。
+開発が一定ラインに進むまでlinkはしないほうが良い
 
 `supabase db dump > supabase/schemas/prod.sql`
 
@@ -926,6 +929,35 @@ schema_paths = [
 ```
 
 👆テーブルや、機能単位でSQL文を利用する時に便利です。
+
+
+
+```
+supabase
+├── migrations
+│   └── 20250505063458_root.sql
+├── schemas
+│   ├── production
+│   │   ├── 1-table.sql
+│   │   ├── 2-rls.sql
+│   │   └── 3-function.sql
+│   ├── root_account
+│   │   ├── 1-root_account.sql
+│   │   ├── 2-rls.sql
+│   │   └── 3-function.sql
+│   ├── user
+│   │   ├── 1-table.sql
+│   │   ├── 2-rls.sql
+│   │   └── 3-function.sql
+│   └── common.sql
+├── .gitignore
+├── config.toml
+└── seed.sql
+
+```
+
+👆️テーブル単位、機能単位などでテーブル構造の優先順位を直感的に決められます。
+
 
 ## ワイルドカードによる重複読み込み
 
@@ -1405,3 +1437,14 @@ function re
 この点においては、Drizzleの方がスムーズに設定変更できるので、Supabaseよりも一歩リードしていると言えますね。
 
 Prizma？知りません
+
+---
+
+# DrizzleとSupabaseの宣言型データベーススキーマの共存？
+
+型情報が欲しい時
+
+軽くお試しでテーブルなどを編集したい時
+
+マイグレーションファイルに記録しておく必要がない時
+
