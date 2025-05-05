@@ -556,7 +556,13 @@ SupabaseのMCPは24個のツールが用意されています。
 
 これにより、開発者はSupabaseを使用してリアルタイムアプリケーションや認証機能を迅速に構築できます。
 
+supabase-community/supabase-mcp: SupabaseをAIアシスタントに接続します
+
+https://github.com/supabase-community/supabase-mcp#tools
+
 **プロジェクト管理**
+
+**注意:** サーバーのスコープがプロジェクトに設定されている場合、プロジェクト管理のツールは使用できません。
 
 * `list_projects`: ユーザーのすべての Supabase プロジェクトを一覧表示します。
 * `get_project`: プロジェクトの詳細を取得します。
@@ -574,6 +580,11 @@ SupabaseのMCPは24個のツールが用意されています。
 * `apply_migration`: データベースにSQLマイグレーションを適用します。このツールに渡されたSQLはデータベース内で追跡されるため、LLMはDDL操作（スキーマ変更）にこれを使用する必要があります。
 * `execute_sql`: データベース内で生のSQLを実行します。LLMは、スキーマを変更しない通常のクエリにこれを使用する必要があります。
 * `get_logs`: Supabaseプロジェクトのログをサービスタイプ（API、Postgres、エッジ関数、認証、ストレージ、リアルタイム）別に取得します。LLMはこれを使用して、サービスパフォーマンスのデバッグと監視に役立てることができます。
+
+## エッジ機能管理
+
+* `list_edge_functions`: Supabase プロジェクト内のすべての Edge 関数を一覧表示します。
+* `deploy_edge_function`: Supabase プロジェクトに新しい Edge Function をデプロイします。LLM はこれを使用して、新しい関数をデプロイしたり、既存の関数を更新したりできます。
 
 **プロジェクト構成**
 
