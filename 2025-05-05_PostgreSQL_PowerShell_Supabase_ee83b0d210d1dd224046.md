@@ -14,10 +14,17 @@ private: false
 Drizzleなら開発時はマイグレーションファイルすら作らず直接DB操作できるのでこっちの方が良い。
 マイグレーションファイルを生成することも可能。
 
-----------------------------------------
 
 Drizzleなどは命令形で、マイグレーションが中心です。
 宣言型の使いやすさに感動です。
+
+---
+
+Supabase-UI-Library OAuth認証 (Google、GitHub)＋匿名認証 #supabase-ui-library - Qiita
+
+https://qiita.com/masakinihirota/items/8e305f7b0d869d54b24a
+
+👆️の続き。(みたいなもの)
 
 TODO
 
@@ -27,21 +34,12 @@ TODO
 
 # Supabase 宣言型スキーマによるデータベース管理
 
+Supabase が宣言型スキーマでデータベース管理を簡素化する方法
+
+https://www.youtube.com/watch?v=EALkUlOKvAs
+
 ## はじめに
-
-* Supabaseのサーバーリセット方法
-
-最初に、Supabaseのサーバーのリセット
-初期状態にする方法です。
-
-publicスキーマを全削除して、新しくpublicスキーマを作成するだけです。
-
-```SQL Editor
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-
-```
-
+Supabaseの宣言型スキーマを利用して、データベースの管理を行う方法について説明します。
 * マイグレーションファイルの取り扱いに関する教訓
 
 Supabaseで宣言型スキーマを利用している場合、
