@@ -4,6 +4,50 @@ tags:    PostgreSQL,PowerShell,Supabase
 id:      ee83b0d210d1dd224046
 private: false
 -->
+
+追記 2025年5月20日
+
+Supabaseのauthスキーマは特別で通常の手段ではアクセスできないようになっています。
+
+authスキーマへのtrigger設定はダッシュボードのGUIからも、宣言型データベーススキーマからも設定できません。
+(この記事で書いていたseed.sql文の迂回方法は再現できませんでした。)
+(上記の方法で出来る人がいたら教えて下さい。)
+
+設定できるのは
+ダッシュボードのSQL EDITORから直接👇️SQL文を実行すると登録できました。
+
+```sql
+
+-- トリガー関数の作成
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS trigger
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+BEGIN
+  INSERT INTO public.root_account (id, aud, role, email, email_confirmed_at, last_sign_in_at, created_at, updated_at, raw_app_meta_data, raw_user_meta_data)
+  VALUES (NEW.id, NEW.aud, NEW.role, NEW.email, NEW.email_confirmed_at, NEW.last_sign_in_at, NEW.created_at, NEW.updated_at, NEW.raw_app_meta_data, NEW.raw_user_meta_data);
+  RETURN NEW;
+END;
+$$;
+
+-- Supabaseで利用するときはダッシュボードのSQL EDITORから実行すること
+-- トリガーの作成
+CREATE TRIGGER on_auth_user_created
+AFTER INSERT ON auth.users
+FOR EACH ROW
+EXECUTE FUNCTION public.handle_new_user();
+
+
+```
+
+
+
+追記終了
+
+
+
 # 欠点
 
 欠点を最初に書く
