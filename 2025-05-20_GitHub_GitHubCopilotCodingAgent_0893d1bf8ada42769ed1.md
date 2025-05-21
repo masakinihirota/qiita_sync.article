@@ -1,6 +1,6 @@
 <!--
 title:   ［紹介］ GitHub Copilot Coding Agent [ポッドキャストタイプ]
-tags:    GitHub,GitHubCopilotCodingAgent
+tags:    GitHub,GitHubCopilotCodingAgent,githubcopilot
 id:      0893d1bf8ada42769ed1
 private: false
 -->
@@ -17,6 +17,17 @@ GitHub Actionsで実行され、開発ワークフローに深く統合。
 利用には有料のプラス/エンタープライズプランが必要です。
 
 
+## 違い
+
+GitHub Copilot Agent
+と
+GitHub Copilot Coding Agent
+の違い
+
+GitHub Copilot Agent はGitHub Copilotが開発者の代理になるように頑張る機能。
+GitHub Copilot Coding Agent はGitHub のissueを利用した issue単位で動かすGitHub Copilot機能。
+チーム開発しやすくなるとおもいます。
+個人開発ならコンテキストを小さくして正確に書くようにする開発者の技量が必要です。
 
 ---
 
@@ -36,6 +47,8 @@ https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
 
 https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
+https://qiita.com/masakinihirota/items/0893d1bf8ada42769ed1
+
 ---
 
 ## ［紹介］ GitHub Copilot Coding Agent [ポッドキャストタイプ] - YouTube
@@ -46,7 +59,7 @@ https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
 ---
 
-## GitHub Copilot Coding Agent - AIによるソフトウェア開発の転換点
+## GitHub Copilot Coding Agent AIによるソフトウェア開発の転換点
 
 **登場人物:**
 *   **蒼井 タクト** (52歳 男性アナウンサー)
@@ -183,3 +196,14 @@ https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 **森野 ハルカ:** こちらこそ、ありがとうございました！
 
 ---
+
+
+## 参考URL
+GitHub Copilot: Meet the new coding agent - The GitHub Blog
+https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/?ocid=FY25_soc_omc_br_x_GitHubBlog
+
+Enabling Copilot coding agent - GitHub Enterprise Cloud Docs
+https://docs.github.com/en/enterprise-cloud@latest/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks/enabling-copilot-coding-agent
+
+Managing Copilot policies as an individual subscriber - GitHub Enterprise Cloud Docs
+https://docs.github.com/en/enterprise-cloud@latest/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-plan/managing-copilot-policies-as-an-individual-subscriber#enabling-or-disabling-copilot-coding-agent
