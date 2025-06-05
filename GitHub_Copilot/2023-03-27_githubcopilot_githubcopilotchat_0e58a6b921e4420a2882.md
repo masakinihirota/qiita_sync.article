@@ -4,6 +4,19 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記 2025年5月21日
+
+ポッドキャストの作成 紹介
+
+［紹介］GitHub Copilot導入後、初めて使う時。(豊富な使用例付き) [ポッドキャストタイプ] - YouTube
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MoLeb-Et3XI?si=rpFl1t6zg1XwShol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+追記終了
+
+
+
 追記 2025年4月26日
 Copilot Chat の会話共有: Copilot Chat でのやり取りをリンクで共有できるようになったため、個人的な開発の質問や問題解決について、他の開発者と情報を共有しやすくなりました。
 
