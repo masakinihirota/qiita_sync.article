@@ -49,6 +49,10 @@ https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
 https://qiita.com/masakinihirota/items/0893d1bf8ada42769ed1
 
+https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
+
+
+
 ---
 
 ## ［紹介］ GitHub Copilot Coding Agent [ポッドキャストタイプ] - YouTube

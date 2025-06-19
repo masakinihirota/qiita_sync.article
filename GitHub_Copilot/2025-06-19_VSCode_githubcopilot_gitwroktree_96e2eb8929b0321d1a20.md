@@ -25,6 +25,24 @@ mainブランチにマージし
 
 ![git worktree2.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/b147f480-bee6-4a4f-8ce7-b9729994abd8.png)
 
+# GitHub Copilotシリーズ
+
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+https://qiita.com/masakinihirota/items/1694715063247574467d
+
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
+
+https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
+
+https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
+
+https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
+
 
 
 ## ブランチ数、ワーキングツリー(作業フォルダ)数の決め方
