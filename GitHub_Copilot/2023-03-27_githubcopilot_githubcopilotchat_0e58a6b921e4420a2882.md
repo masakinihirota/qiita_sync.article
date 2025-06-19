@@ -4,6 +4,48 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記 2025年6月19日
+
+GitHub Copilot
+
+乗数0だと無料
+ただし、繁忙期？では有料になる可能性も
+
+| プラン名 | 利用制限 |
+| :------ | :------- |
+| Free | 50/月       |
+| Pro | 300/月       |
+| Pro+ | 1,500/月    |
+| Business | 1ユーザーあたり300/月 |
+| Enterprise | 1ユーザーあたり1,000/月 |
+
+※一日ごとにリセット
+
+上限超えた場合の追加 1リクエストあたり 0.04USD
+
+Copilot Proの場合(安い順)
+
+| モデル名            | 乗数 | 使用可能 |
+| :--------------- | :--- | :--- |
+| GPT-4.1              | 0    | ◯ |
+| GPT-4o              | 0    | ◯ |
+| Gemini 2.0 Flash    | 0.25 | ◯ |
+| o3-mini                | 0.33 | ◯ |
+| o4-mini                | 0.33 | ◯ |
+| Claude Sonnet 3.5   | 1    | ◯ |
+| Claude Sonnet 3.7   | 1    | ◯ |
+| Claude Sonnet 4     | 1    | ◯ |
+| Gemini 2.5 Pro      | 1    | ◯ |
+| o1                       | 1    | ◯ |
+| o3                       | 1    | X |
+| Claude Sonnet 3.7 Thinking | 1.25 | ◯ |
+| Claude Opus 4       | 10   | X | ◯ |
+| GPT-4.5               | 50    | X | ◯ |
+
+追記終了
+
+
+
 追記 2025年5月21日
 
 ポッドキャストの作成 紹介
