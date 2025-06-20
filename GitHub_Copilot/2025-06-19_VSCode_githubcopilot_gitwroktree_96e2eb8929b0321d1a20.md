@@ -45,6 +45,20 @@ https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
 
 
 
+## スライド
+
+git worktreeの使い方を中心に解説したスライドです。
+
+https://rsayfhny.gensparkspace.com/
+
+### スライドの作り方
+
+gensparkのAIスライドで 「git worktreeの使い方を教えて」 と頼みます。
+
+以上です。
+
+
+
 ## ブランチ数、ワーキングツリー(作業フォルダ)数の決め方
 
 自分のPCのウィンドウ、ウィンドウコントロールツールで決める。
