@@ -4,6 +4,56 @@ tags:    Agent,MCP,Supabase,VSCode,githubcopilot
 id:      b5ae692191d197eb5ad7
 private: false
 -->
+追記 2025年7月16日
+
+## VSCode本体のMCPの設定
+
+VSCodeのアップデートにより
+VSCodeの設定ファイルの `settings.json` に書いた設定は👇️に移動しました。
+
+移動先は (Windows11)
+`C:\Users\[ユーザー名]\AppData\Roaming\Code\User\mcp.json`
+です。
+
+ここは、VSCodeの
+`settings.json`
+`keybindings.json`
+が置いてあるのと同じ場所です。
+
+
+
+## リポジトリ単位のMCP
+
+MCPの設定を行うには
+プロジェクトのルートに
+`.vscode\mcp.json`
+のファイルを置きます。
+
+例 DockerのSupabase用MCP (ローカルPostgres MCP)
+
+```.vscode\mcp.json
+{
+    "servers": {
+        "supabase": {
+          "command": "cmd",
+          "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://postgres:postgres@127.0.0.1:54322/postgres"]
+        }
+    }
+}
+
+```
+
+## VSCodeの MCP Servers
+
+👇️ MCP Servers のインストールはこのページから行います。
+
+Discover and install MCP Servers in VS Code
+
+https://code.visualstudio.com/mcp
+
+
+
+追記終了
 
 追記 2025年4月7日
 

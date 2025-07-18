@@ -4,6 +4,16 @@ tags:    PostgreSQL,PowerShell,Supabase
 id:      ee83b0d210d1dd224046
 private: false
 -->
+ドキュメント
+Declarative database schemas | Supabase Docs
+
+https://supabase.com/docs/guides/local-development/declarative-database-schemas
+
+動画
+Supabase が宣言型スキーマでデータベース管理を簡素化する方法 - YouTube
+
+https://www.youtube.com/watch?v=EALkUlOKvAs
+
 
 追記 2025年5月20日
 
@@ -1489,4 +1499,3 @@ Prizma？知りません
 軽くお試しでテーブルなどを編集したい時
 
 マイグレーションファイルに記録しておく必要がない時
-
