@@ -1,5 +1,5 @@
 <!--
-title:   GitHub Copilot ビーストモード for VSCode
+title:   GitHub Copilot ビーストモード for VSCode でのモードの自作が可能に (公式)
 tags:    VSCode,githubcopilot
 id:      10a9fb85bd04d885d0b5
 private: false
@@ -34,6 +34,10 @@ https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
 VSCode1.102のリリースノート（日本語訳） – もふもふのブログ
 
 https://mome-n.com/posts/vscode-1.102-release/
+
+June 2025 (version 1.102)
+
+https://code.visualstudio.com/updates/v1_102
 
 👆️に記載
 
@@ -119,5 +123,11 @@ testと入力すると、このようにファイルが作成されます。
 
 
 ## その他
+
+他のサンプルはコチラをご覧ください。
+
+github/awesome-copilot: Community-contributed instructions, prompts, and configurations to help you make the most of GitHub Copilot.
+
+https://github.com/github/awesome-copilot
 
 Xで、モードのファイル内容を **Gemini CLI** に渡して実行させてみるなどの報告もありました。
