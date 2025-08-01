@@ -147,6 +147,8 @@ https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
 https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
 
+https://qiita.com/masakinihirota/items/a2c0ef5e6f9a0aa868d1
+
 
 
 # VSCodeでのMCP設定
