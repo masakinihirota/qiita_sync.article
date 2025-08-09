@@ -28,6 +28,7 @@ https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
 
 https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
 
+https://qiita.com/masakinihirota/items/10a9fb85bd04d885d0b5
 
 ## ソース
 
@@ -305,9 +306,12 @@ tools: ['changes', 'codebase', 'editFiles', 'extensions', 'fetch', 'findTestFile
 - [ ] ステップ1: 最初のステップの説明
 - [ ] ステップ2: 2番目のステップの説明
 - [ ] ステップ3: 3番目のステップの説明
-````
 
-HTMLタグやその他の書式設定をToDoリストに使用しないでください。正しくレンダリングされません。常に上記のMarkdown形式を使用してください。ToDoリストは、正しくフォーマットされ、チャットから簡単にコピーできるように、常にトリプルバッククォートで囲んでください。
+```
+
+HTMLタグやその他の書式設定をToDoリストに使用しないでください。正しくレンダリングされません。常にMarkdown形式を使用してください。
+
+ToDoリストは、正しくフォーマットされ、チャットから簡単にコピーできるように、常にトリプルバッククォート (**`**) で囲んでください。
 
 常に完了したToDoリストをメッセージの最後の項目としてユーザーに表示し、すべてのステップに対処したことをユーザーが確認できるようにしてください。
 
