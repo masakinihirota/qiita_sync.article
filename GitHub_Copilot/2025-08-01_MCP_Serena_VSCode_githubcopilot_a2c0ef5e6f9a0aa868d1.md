@@ -291,7 +291,7 @@ Serena は、そのセマンティック解析能力、実用的なインデッ�
 Windowsの場合
 
 ```
-C:\Users\[ユーザーネーム]\.serena\serena_config.yml
+C:\Users\[ユーザー]\.serena\serena_config.yml
 
 ```
 
