@@ -4,6 +4,18 @@ tags:    MCP,Serena,VSCode,githubcopilot
 id:      a2c0ef5e6f9a0aa868d1
 private: false
 -->
+# 追記 2025年8月16日
+
+なぜSerena MCPを使うのかの理由を知りたい人は必読！
+
+話題のSerenaMCPの仕組みを解説！ - izanami
+
+https://izanami.dev/post/725d69ba-890d-4d0d-a06b-c81b77ccbc72
+
+追記終了
+
+
+
 # GitHub Copilotシリーズ
 
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
@@ -286,16 +298,16 @@ Serena は、そのセマンティック解析能力、実用的なインデッ�
 
 ## 追記 2025年8月9日
 
-### グルーバルの設定ファイルの場所
+### グローバルの設定ファイルの場所
 
 Windowsの場合
 
 ```
-C:\Users\[ユーザー]\.serena\serena_config.yml
+C:\Users\[ユーザー名]\.serena\serena_config.yml
 
 ```
 
-### グルーバルの設定ファイルの翻訳
+### グローバルの設定ファイルの翻訳
 
 例えば、設定ファイルの👇この箇所
 
@@ -305,11 +317,20 @@ web_dashboard: true
 # 現在のセッションログを表示します - すべてのプラットフォームでサポートされている
 # GUIログウィンドウの代替手段です
 
+...
+
+web_dashboard_open_on_launch: false
+# Serenaの起動時にWebダッシュボードでブラウザウィンドウを開くかどうか（web_dashboard
+# が有効な場合）。Falseに設定した場合でも、Webブラウザで手動で
+# http://localhost:24282/dashboard/ にアクセスしてダッシュボードを開くことができます
+# （24282 = 0x5EDA、SErena DAshboard）。
+# 複数のインスタンスが実行されている場合は、より高いポートが使用されます。ポート24283、24284などを試してください。
+
 ```
 
-👆この箇所の `web_dashboard: false` に設定すると、ブラウザでダッシュボードが開かなくなります。
+👆この箇所の `web_dashboard: true`  `web_dashboard_open_on_launch: false` に設定すると、ブラウザでダッシュボードが開かなくなります。
 
-👇Serena グルーバルの設定ファイルの全訳
+👇Serena グローバルの設定ファイルの全訳
 
 ```
 gui_log_window: false
@@ -391,5 +412,3 @@ projects:
 ```
 
 追記終了
-
-
