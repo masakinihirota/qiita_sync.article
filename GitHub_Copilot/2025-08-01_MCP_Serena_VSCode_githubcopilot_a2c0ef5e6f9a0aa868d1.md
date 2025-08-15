@@ -4,6 +4,18 @@ tags:    MCP,Serena,VSCode,githubcopilot
 id:      a2c0ef5e6f9a0aa868d1
 private: false
 -->
+# 追記 2025年8月16日
+
+なぜSerena MCPを使うのかの理由を知りたい人は必読！
+
+話題のSerenaMCPの仕組みを解説！ - izanami
+
+https://izanami.dev/post/725d69ba-890d-4d0d-a06b-c81b77ccbc72
+
+追記終了
+
+
+
 # GitHub Copilotシリーズ
 
 https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
