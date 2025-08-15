@@ -234,7 +234,7 @@ https://qiita.com/masakinihirota/items/a2c0ef5e6f9a0aa868d1
 Windows10
 GitHub Copilot (導入 1年契約 or 1月契約)
 VSCode
-VSCode Insider (VSCodeの開発版 GitHub Copilot chatを使用するために必要)
+VSCode Insider (VSCodeの開発版 先行機能を試している場所)
 
 
 # GitHub Copilot の種類
