@@ -32,7 +32,7 @@ src/
 ├── app/
 │   ├── page.tsx             # ルートページ
 │   ├── route1/
-│   │   ├── page.tsx         # ルート1のページ
+│   │   └── page.tsx         # ルート1のページ
 │   └── route2/
 │       └── page.tsx         # ルート2のページ
 ├── components/
