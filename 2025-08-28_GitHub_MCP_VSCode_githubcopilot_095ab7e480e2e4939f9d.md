@@ -4,6 +4,339 @@ tags:    GitHub,MCP,VSCode,githubcopilot
 id:      095ab7e480e2e4939f9d
 private: false
 -->
+AIの答えをそのまま貼り付けて、自分で選択しようとした所表が間違っていることが判明したので、
+スクリーンショットを取って、それから解析して調べ直しました。
+
+## MCPサーバー:GitHub Tools 91個の機能一覧
+
+```
+- `add_comment_to_pending_review`: 保留中レビューにコメントを追加
+- `add_issue_comment`: 特定のissueにコメントを追加
+- `add_sub_issue`: 親issueにサブissueを追加
+- `assign_copilot_to_issue`: 特定のissueにCopilotをアサイン
+- `cancel_workflow_run`: ワークフロー実行をキャンセル
+- `create_and_submit_pull_request_review`: プルリクエストのレビューを作成・提出
+- `create_branch`: 新しいブランチを作成
+- `create_gist`: 新しいgistを作成
+- `create_issue`: GitHubリポジトリに新しいissueを作成
+- `create_or_update_file`: GitHubリポジトリ内の単一ファイルを作成または更新
+- `create_pending_pull_request_review`: プルリクエストの保留中レビューを作成
+- `create_pull_request_with_copilot`: GitHub Copilot AIエージェントにタスクを委任してプルリクエストを作成
+- `create_pull_request`: 新しいプルリクエストを作成
+- `create_repository`: 新しいGitHubリポジトリをアカウント内に作成
+- `delete_file`: GitHubリポジトリからファイルを削除
+- `delete_pending_pull_request_review`: 保留中レビューを削除
+- `delete_workflow_run_logs`: ワークフロー実行のログを削除
+- `dismiss_notification`: 通知を既読またはアーカイブに変更
+- `download_workflow_run_artifact`: ワークフローアーティファクトのダウンロードURLを取得
+- `fork_repository`: GitHubリポジトリを自分のアカウントや指定した組織にフォーク
+- `get_code_scanning_alert`: 特定のコードスキャニングアラートの詳細を取得
+- `get_commit`: 特定のコミットの詳細を取得
+- `get_dependabot_alert`: 特定のDependabotアラートの詳細を取得
+- `get_discussion_comments`: ディスカッションのコメントを取得
+- `get_discussion`: 特定のディスカッションの詳細を取得
+- `get_file_contents`: GitHubリポジトリからファイルまたはディレクトリの内容を取得
+- `get_global_security_advisory`: グローバルセキュリティアドバイザリの詳細を取得
+- `get_issue_comments`: 特定のissueのコメントを取得
+- `get_issue`: 特定のissueの詳細情報を取得
+- `get_job_logs`: 特定のワークフロージョブのログをダウンロード
+- `get_latest_release`: 最新のリリース情報を取得
+- `get_me`: 認証済みGitHubユーザーの詳細を取得
+- `get_notification_details`: 特定の通知の詳細情報を取得
+- `get_pull_request_comments`: プルリクエストのコメントを取得
+- `get_pull_request_diff`: プルリクエストの差分を取得
+- `get_pull_request_files`: プルリクエストで変更されたファイルを取得
+- `get_pull_request_reviews`: プルリクエストのレビュー一覧を取得
+- `get_pull_request_status`: プルリクエストのステータスを取得
+- `get_pull_request`: 特定のプルリクエストの詳細を取得
+- `get_release_by_tag`: タグ名による特定リリースの取得
+- `get_secret_scanning_alert`: 特定のシークレットスキャニングアラートの詳細を取得
+- `get_tag`: 特定のgitタグの詳細を取得
+- `get_teams`: ユーザーが所属するチームの詳細を取得
+- `get_team_members`: 特定チームのメンバーユーザー名を取得
+- `get_workflow_run_logs`: ワークフロー実行のログをダウンロード
+- `get_workflow_run_usage`: ワークフロー実行の使用メトリクスを取得
+- `get_workflow_run`: 特定のワークフロー実行の詳細を取得
+- `list_branches`: リポジトリ内のブランチ一覧を取得
+- `list_code_scanning_alerts`: コードスキャニングアラート一覧を取得
+- `list_commits`: ブランチ内のコミット一覧を取得
+- `list_dependabot_alerts`: Dependabotアラート一覧を取得
+- `list_discussions`: リポジトリや組織のディスカッション一覧を取得
+- `list_discussion_categories`: ディスカッションカテゴリ一覧を取得
+- `list_gists`: ユーザーのgist一覧を取得
+- `list_global_security_advisories`: グローバルセキュリティアドバイザリ一覧を取得
+- `list_issues`: リポジトリ内のissue一覧を取得
+- `list_issue_types`: リポジトリオーナー（組織）がサポートするissueタイプ一覧を取得
+- `list_notifications`: 認証済みユーザーの通知一覧を取得
+- `list_org_repository_security_advisories`: 組織のリポジトリセキュリティアドバイザリ一覧を取得
+- `list_pull_requests`: リポジトリ内のプルリクエスト一覧を取得
+- `list_releases`: リポジトリ内のリリース一覧を取得
+- `list_repository_security_advisories`: リポジトリのセキュリティアドバイザリ一覧を取得
+- `list_secret_scanning_alerts`: シークレットスキャニングアラート一覧を取得
+- `list_sub_issues`: 特定のissueのサブissue一覧を取得
+- `list_tags`: リポジトリ内のgitタグ一覧を取得
+- `list_workflows`: リポジトリ内のワークフロー一覧を取得
+- `list_workflow_jobs`: ワークフロー実行のジョブ一覧を取得
+- `list_workflow_runs`: 特定のワークフローの実行履歴を取得
+- `list_workflow_run_artifacts`: ワークフロー実行のアーティファクト一覧を取得
+- `manage_notification_subscription`: 通知サブスクリプションの管理
+- `manage_repository_notification_subscription`: リポジトリ通知サブスクリプションの管理
+- `mark_all_notifications_read`: すべての通知を既読に変更
+- `merge_pull_request`: プルリクエストをマージ
+- `push_files`: 単一コミットで複数のファイルをGitHubリポジトリにプッシュ
+- `remove_sub_issue`: 親issueからサブissueを削除
+- `reprioritize_sub_issue`: サブissueの優先順位を変更
+- `request_copilot_review`: GitHub Copilotによるコードレビューを要求
+- `rerun_failed_jobs`: 失敗したジョブのみを再実行
+- `rerun_workflow_run`: ワークフロー実行を再実行
+- `run_workflow`: Actions ワークフローを実行
+- `search_code`: 全GitHubリポジトリでの高精度コード検索
+- `search_issues`: Issues検索
+- `search_orgs`: 組織検索
+- `search_pull_requests`: プルリクエスト検索
+- `search_repositories`: リポジトリの検索
+- `search_users`: ユーザー検索
+- `submit_pending_pull_request_review`: 保留中レビューを提出
+- `update_gist`: 既存のgistを更新
+- `update_issue`: 既存のissueを更新
+- `update_pull_request_branch`: プルリクエストのブランチを最新の変更で更新
+- `update_pull_request`: 既存のプルリクエストを更新
+
+
+```
+
+
+# 個人開発 厳選版 GitHub Tools
+
+個人開発で使用するGitHub Toolsを、**このプロジェクト（VNS Web アプリケーション開発）に必要な機能に絞って** 厳選します。
+
+| 分類 | ツール名 | 説明 | 必要度 |
+|------|----------|------|--------|
+| **リポジトリ管理** | `create_repository` | 新しいGitHubリポジトリを作成 | ⭐⭐⭐ |
+| **ファイル操作** | `create_or_update_file` | リポジトリ内のファイルを作成または更新 | ⭐⭐⭐ |
+| | `get_file_contents` | ファイルまたはディレクトリの内容を取得 | ⭐⭐⭐ |
+| | `push_files` | 複数ファイルを単一コミットでプッシュ | ⭐⭐⭐ |
+| **ブランチ操作** | `create_branch` | 新しいブランチを作成 | ⭐⭐⭐ |
+| | `list_branches` | ブランチ一覧を取得 | ⭐⭐ |
+| **Issue管理** | `create_issue` | 新しいissueを作成 | ⭐⭐⭐ |
+| | `get_issue` | 特定のissueの詳細情報を取得 | ⭐⭐⭐ |
+| | `list_issues` | リポジトリ内のissue一覧を取得 | ⭐⭐⭐ |
+| | `update_issue` | 既存のissueを更新 | ⭐⭐ |
+| | `add_issue_comment` | issueにコメントを追加 | ⭐⭐ |
+| **プルリクエスト** | `create_pull_request` | 新しいプルリクエストを作成 | ⭐⭐⭐ |
+| | `get_pull_request` | プルリクエストの詳細を取得 | ⭐⭐⭐ |
+| | `merge_pull_request` | プルリクエストをマージ | ⭐⭐⭐ |
+| | `get_pull_request_diff` | プルリクエストの差分を取得 | ⭐⭐ |
+| | `get_pull_request_files` | 変更されたファイルを取得 | ⭐⭐ |
+| **GitHub Actions** | `list_workflows` | ワークフロー一覧を取得 | ⭐⭐⭐ |
+| | `run_workflow` | Actionsワークフローを実行 | ⭐⭐ |
+| | `list_workflow_runs` | ワークフローの実行履歴を取得 | ⭐⭐ |
+| | `get_workflow_run` | ワークフロー実行の詳細を取得 | ⭐⭐ |
+| | `cancel_workflow_run` | ワークフロー実行をキャンセル | ⭐ |
+| **セキュリティ** | `list_dependabot_alerts` | Dependabotアラート一覧を取得 | ⭐⭐ |
+| | `get_dependabot_alert` | Dependabotアラートの詳細を取得 | ⭐⭐ |
+| **検索** | `search_code` | 全GitHubでのコード検索 | ⭐⭐ |
+| **通知管理** | `list_notifications` | 通知一覧を取得 | ⭐ |
+| | `mark_all_notifications_read` | すべての通知を既読に変更 | ⭐ |
+
+## プロジェクト特化の推奨ワークフロー
+
+### 1. 開発フェーズ別の使い分け
+
+**Phase 1-2（要件定義・設計）**
+- `create_issue`：要件やタスクをIssueとして管理
+- `get_file_contents`：設計書リポジトリの参照
+
+**Phase 3（タスクリスト作成・実装準備）**
+- `create_branch`：機能ブランチ作成
+- `create_or_update_file`：プロンプトファイル作成
+
+**Phase 4（実装）**
+- `push_files`：複数ファイルの一括コミット
+- `create_pull_request`：機能完成時のPR作成
+- `merge_pull_request`：レビュー後のマージ
+
+### 2. 継続的な品質管理
+- `list_workflows`：CI/CDパイプラインの監視
+- `list_dependabot_alerts`：セキュリティアップデートの確認
+- `search_code`：実装パターンの調査
+
+
+
+# 機能で分ける
+
+
+GitHub MCP サーバーで利用可能な機能の一覧をまとめました。以下のような機能が提供されています：
+
+## リポジトリ管理
+
+### 作成・削除系
+- `create_repository`: 新しいGitHubリポジトリをアカウント内に作成
+- `delete_file`: GitHubリポジトリからファイルを削除
+- `fork_repository`: GitHubリポジトリを自分のアカウントや指定した組織にフォーク
+
+### ファイル操作系
+- `get_file_contents`: GitHubリポジトリからファイルまたはディレクトリの内容を取得
+- `create_or_update_file`: GitHubリポジトリ内の単一ファイルを作成または更新
+- `push_files`: 単一コミットで複数のファイルをGitHubリポジトリにプッシュ
+
+## Issues・Pull Requests管理
+
+### Issues関連
+- `create_issue`: GitHubリポジトリに新しいissueを作成
+- `get_issue`: 特定のissueの詳細情報を取得
+- `update_issue`: 既存のissueを更新
+- `list_issues`: リポジトリ内のissue一覧を取得
+- `add_issue_comment`: 特定のissueにコメントを追加
+- `get_issue_comments`: 特定のissueのコメントを取得
+
+### Sub-Issues関連
+- `add_sub_issue`: 親issueにサブissueを追加
+- `list_sub_issues`: 特定のissueのサブissue一覧を取得
+- `remove_sub_issue`: 親issueからサブissueを削除
+- `reprioritize_sub_issue`: サブissueの優先順位を変更
+
+### Pull Requests関連
+- `create_pull_request`: 新しいプルリクエストを作成
+- `get_pull_request`: 特定のプルリクエストの詳細を取得
+- `update_pull_request`: 既存のプルリクエストを更新
+- `list_pull_requests`: リポジトリ内のプルリクエスト一覧を取得
+- `merge_pull_request`: プルリクエストをマージ
+- `get_pull_request_diff`: プルリクエストの差分を取得
+- `get_pull_request_files`: プルリクエストで変更されたファイルを取得
+- `get_pull_request_comments`: プルリクエストのコメントを取得
+- `get_pull_request_status`: プルリクエストのステータスを取得
+- `update_pull_request_branch`: プルリクエストのブランチを最新の変更で更新
+
+## レビュー機能
+
+### レビュー作成・管理
+- `create_and_submit_pull_request_review`: プルリクエストのレビューを作成・提出
+- `create_pending_pull_request_review`: プルリクエストの保留中レビューを作成
+- `add_comment_to_pending_review`: 保留中レビューにコメントを追加
+- `submit_pending_pull_request_review`: 保留中レビューを提出
+- `delete_pending_pull_request_review`: 保留中レビューを削除
+- `get_pull_request_reviews`: プルリクエストのレビュー一覧を取得
+- `request_copilot_review`: GitHub Copilotによるコードレビューを要求
+
+## GitHub Actions・ワークフロー
+
+### ワークフロー管理
+- `list_workflows`: リポジトリ内のワークフロー一覧を取得
+- `run_workflow`: Actions ワークフローを実行
+- `list_workflow_runs`: 特定のワークフローの実行履歴を取得
+- `get_workflow_run`: 特定のワークフロー実行の詳細を取得
+- `cancel_workflow_run`: ワークフロー実行をキャンセル
+- `rerun_workflow_run`: ワークフロー実行を再実行
+- `rerun_failed_jobs`: 失敗したジョブのみを再実行
+
+### ジョブ・アーティファクト管理
+- `list_workflow_jobs`: ワークフロー実行のジョブ一覧を取得
+- `get_job_logs`: 特定のワークフロージョブのログをダウンロード
+- `list_workflow_run_artifacts`: ワークフロー実行のアーティファクト一覧を取得
+- `download_workflow_run_artifact`: ワークフローアーティファクトのダウンロードURLを取得
+- `delete_workflow_run_logs`: ワークフロー実行のログを削除
+- `get_workflow_run_usage`: ワークフロー実行の使用メトリクスを取得
+- `get_workflow_run_logs`: ワークフロー実行のログをダウンロード
+
+## セキュリティ・アラート
+
+### セキュリティアラート
+- `list_code_scanning_alerts`: コードスキャニングアラート一覧を取得
+- `get_code_scanning_alert`: 特定のコードスキャニングアラートの詳細を取得
+- `list_secret_scanning_alerts`: シークレットスキャニングアラート一覧を取得
+- `get_secret_scanning_alert`: 特定のシークレットスキャニングアラートの詳細を取得
+- `list_dependabot_alerts`: Dependabotアラート一覧を取得
+- `get_dependabot_alert`: 特定のDependabotアラートの詳細を取得
+- `list_global_security_advisories`: グローバルセキュリティアドバイザリ一覧を取得
+- `get_global_security_advisory`: グローバルセキュリティアドバイザリの詳細を取得
+- `list_repository_security_advisories`: リポジトリのセキュリティアドバイザリ一覧を取得
+- `list_org_repository_security_advisories`: 組織のリポジトリセキュリティアドバイザリ一覧を取得
+
+## その他の機能
+
+### ブランチ・タグ管理
+- `create_branch`: 新しいブランチを作成
+- `list_branches`: リポジトリ内のブランチ一覧を取得
+- `list_tags`: リポジトリ内のgitタグ一覧を取得
+- `get_tag`: 特定のgitタグの詳細を取得
+- `list_commits`: ブランチ内のコミット一覧を取得
+- `get_commit`: 特定のコミットの詳細を取得
+
+### リリース管理
+- `list_releases`: リポジトリ内のリリース一覧を取得
+- `get_latest_release`: 最新のリリース情報を取得
+- `get_release_by_tag`: タグ名による特定リリースの取得
+
+### Gist管理
+- `create_gist`: 新しいgistを作成
+- `list_gists`: ユーザーのgist一覧を取得
+- `update_gist`: 既存のgistを更新
+
+### Discussions・通知
+- `list_discussions`: リポジトリや組織のディスカッション一覧を取得
+- `get_discussion`: 特定のディスカッションの詳細を取得
+- `get_discussion_comments`: ディスカッションのコメントを取得
+- `list_discussion_categories`: ディスカッションカテゴリ一覧を取得
+- `list_notifications`: 認証済みユーザーの通知一覧を取得
+- `get_notification_details`: 特定の通知の詳細情報を取得
+- `dismiss_notification`: 通知を既読またはアーカイブに変更
+- `mark_all_notifications_read`: すべての通知を既読に変更
+
+### ユーザー・組織・検索
+- `get_me`: 認証済みGitHubユーザーの詳細を取得
+- `search_repositories`: リポジトリの検索
+- `search_code`: 全GitHubリポジトリでの高精度コード検索
+- `search_issues`: Issues検索
+- `search_pull_requests`: プルリクエスト検索
+- `search_users`: ユーザー検索
+- `search_orgs`: 組織検索
+- `get_teams`: ユーザーが所属するチームの詳細を取得
+- `get_team_members`: 特定チームのメンバーユーザー名を取得
+
+### 通知・サブスクリプション管理
+- `manage_notification_subscription`: 通知サブスクリプションの管理
+- `manage_repository_notification_subscription`: リポジトリ通知サブスクリプションの管理
+
+### Copilot統合
+- `assign_copilot_to_issue`: 特定のissueにCopilotをアサイン
+- `create_pull_request_with_copilot`: GitHub Copilot AIエージェントにタスクを委任してプルリクエストを作成
+
+### issue_types関連
+- `list_issue_types`: リポジトリオーナー（組織）がサポートするissueタイプ一覧を取得
+
+これらの機能により、GitHub上での開発ワークフロー全体を効率的に管理・自動化することが可能です。
+
+## Tips とアドバイス
+
+GitHub MCPを効果的に活用するために：
+
+1. **ワークフロー自動化**: `run_workflow` や `create_pull_request_with_copilot` を活用して、定期的なタスクを自動化できます
+2. **セキュリティ管理**: セキュリティアラート関連の機能を定期的にチェックして、プロジェクトの安全性を保ちましょう
+3. **レビュープロセスの効率化**: Copilotによるコードレビュー機能を活用して、コードの品質向上と開発速度の両立が可能です
+4. **通知管理**: 通知関連の機能を使って、重要な情報を見逃さないようにしつつ、ノイズを減らすことができます
+
+
+
+
+
+
+
+
+---
+
+# ここより下は間違っている記事
+
+AI出力が間違っていました、
+~~めんどう・・~~
+スクリーンショットなど残しておきたい部分もあるので残しておきます。
+
+MCP の github には
+ get-repository
+などはありませんでした。
+
+--- old
+
 さて2025年8月の月末ですGitHub Copilotをつかっていてもまだポイントが余りまくっているので贅沢に Sonnet4で聞いてみることにします。
 
 ![スクリーンショット 2025-08-29 073307.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/546aed6b-4ef0-48dd-a8b4-eb0fe1123c00.png)
