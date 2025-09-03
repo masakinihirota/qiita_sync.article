@@ -4,6 +4,23 @@ tags:    GitHub,MCP,VSCode,githubcopilot
 id:      095ab7e480e2e4939f9d
 private: false
 -->
+追加 2025年8月31日
+
+現状のtools 128個
+
+```*****.chatmode.md
+---
+description: '＊＊＊＊＊'
+tools: ['extensions', 'codebase', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'terminalSelection', 'terminalLastCommand', 'openSimpleBrowser', 'fetch', 'findTestFiles', 'searchResults', 'githubRepo', 'todos', 'runTests', 'runCommands', 'editFiles', 'runNotebooks', 'search', 'new', 'runTasks', 'add_issue_comment', 'cancel_workflow_run', 'create_branch', 'create_issue', 'create_or_update_file', 'create_pull_request', 'create_pull_request_with_copilot', 'create_repository', 'delete_file', 'get_dependabot_alert', 'get_file_contents', 'get_issue', 'get_pull_request', 'get_pull_request_diff', 'get_pull_request_files', 'get_workflow_run', 'list_branches', 'list_dependabot_alerts', 'list_issues', 'list_notifications', 'list_workflow_runs', 'list_workflows', 'mark_all_notifications_read', 'merge_pull_request', 'push_files', 'search_code', 'update_issue', 'sequentialthinking', 'Postgres(LOCAL-supabase)', 'shadcn-ui', 'context7', 'vscode', 'Framelink Figma MCP', 'playwright', 'git', 'serena']
+---
+
+(GitHub Copilotへの指示)
+
+```
+
+追加終了
+
+
 AIの答えをそのまま貼り付けて、自分で選択しようとした所表が間違っていることが判明したので、
 スクリーンショットを取って、それから解析して調べ直しました。
 
