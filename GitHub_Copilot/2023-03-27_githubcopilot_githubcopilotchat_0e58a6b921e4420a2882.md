@@ -4,6 +4,22 @@ tags:    githubcopilot,githubcopilotchat
 id:      0e58a6b921e4420a2882
 private: false
 -->
+追記 2025年8月23日
+
+github/awesome-copilot: Community-contributed instructions, prompts, and configurations to help you make the most of GitHub Copilot.
+https://github.com/github/awesome-copilot
+
+GitHub Copilotの指示書のサンプル
+
+chmodes, instructions, prompts の3種類
+
+uithubで1ソースにして、
+NotebookLMに登録して、
+自分が現在使っているプロジェクトに適したサンプルを教えてもらう。
+
+追記終了
+
+
 追記 2025年6月19日
 
 GitHub Copilot
