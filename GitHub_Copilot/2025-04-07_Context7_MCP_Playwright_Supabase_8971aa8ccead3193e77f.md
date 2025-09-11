@@ -677,7 +677,7 @@ https://app.supabase.com/account/tokens
 					"-y",
 					"@supabase/mcp-server-supabase@latest",
 					"--access-token",
-					"sbp_ad5345d770ade0e8691e62da099fa976453f5b5c"
+					"sbp_ad5*****"
 				]
 			},
 ```
@@ -1463,7 +1463,3 @@ AIには、弱いAIと強いAIという分類があります。
 
 もし強いAIが現れれば、6. 自律調査ができる。が可能になれば、技術的特異点（シンギュラリティ）が起こったと言えるかもしれません。
 擬似的に自律的に動いているように見せることは出来ます。
-
-
-
-
