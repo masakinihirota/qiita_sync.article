@@ -36,6 +36,10 @@ https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
 
 https://qiita.com/masakinihirota/items/a2c0ef5e6f9a0aa868d1
 
+https://qiita.com/masakinihirota/items/a925a2b68ab8374c7fd0
+
+
+
 # はじめに
 
 最近 Claude Code やKiro などプロジェクト全体を監視して、コードを書いたり、要件定義や設計やタスクリストを自動で作成したりと進化が激しいです。

@@ -9,6 +9,30 @@ private: false
 
 これからは、ユーザーがGitHub CopilotやGemini CLIをより効果的に活用するために、指示スキルを鍛える必要になるでしょう。
 
+# GitHub Copilotシリーズ
+
+https://qiita.com/masakinihirota/items/0e58a6b921e4420a2882
+
+https://qiita.com/masakinihirota/items/c9df9de0c7326280bfae
+
+https://qiita.com/masakinihirota/items/61f8a26546f4139c353c
+
+https://qiita.com/masakinihirota/items/1694715063247574467d
+
+https://qiita.com/masakinihirota/items/247bee4bd66ace86e1da
+
+https://qiita.com/masakinihirota/items/b5ae692191d197eb5ad7
+
+https://qiita.com/masakinihirota/items/8971aa8ccead3193e77f
+
+https://qiita.com/masakinihirota/items/96e2eb8929b0321d1a20
+
+https://qiita.com/masakinihirota/items/a2c0ef5e6f9a0aa868d1
+
+https://qiita.com/masakinihirota/items/a925a2b68ab8374c7fd0
+
+
+
 ## 環境
 
 Windows11
