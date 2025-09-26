@@ -1,6 +1,6 @@
 <!--
-title:   公式 Chrome DevTools MCP ： Chromeブラウザ用のMCPが登場 これは、Web開発者にとって必須級
-tags:    Chrome,ChromeDevTool,DevTools,MCP
+title:   公式 Chrome DevTools MCP ： Chromeブラウザ用のMCPが登場 これは、Web開発者にとって必須
+tags:    Chrome,ChromeDevTool,DevTools,MCP,githubcopilot
 id:      a925a2b68ab8374c7fd0
 private: false
 -->
@@ -8,6 +8,9 @@ private: false
 つまりVSCodeとGitHub CopilotとブラウザのChromeと直接対話が出来るようになりました。
 
 これからは、ユーザーがGitHub CopilotやGemini CLIをより効果的に活用するために、指示スキルを鍛える必要になるでしょう。
+
+ブラウザからの情報量が増えるため、制限がないGitHub Copilotのx0のAIモデルや、現在無料中(2025年9月現在)のGemini CLIなどを利用しましょう。
+
 
 # GitHub Copilotシリーズ
 
@@ -140,10 +143,13 @@ DevToolsを自動操作して実用的なレポートが出力される
 
 その他多数
 
+
+
 ## しなくて良くなること
 
-スクリーンショットを見せる必要がなくなった
-ブラウザのログをコピペして見せる必要がなくなった
+ブラウザのスクリーンショット取って、フォルダを開いて、スクリーンショットのファイルをドラッグアンドドロップしてVSCodeに渡してGitHub Copilotに見せる手間がなくなった、直接指示可能
+
+ブラウザのエラーやログをコピペして見せる必要がなくなった、直接指示可能
 
 その他多数
 これからは指示で十分です。
@@ -151,6 +157,8 @@ DevToolsを自動操作して実用的なレポートが出力される
 
 
 ## インストール
+
+### VSCodeへのインストール (GitHub Copilot利用時)
 
 VSCodeの `ctrl + shift + p`でコマンドパレットを開きます。
 
@@ -160,7 +168,9 @@ VSCodeの `ctrl + shift + p`でコマンドパレットを開きます。
 
 mcp.jsonが開いたら👇️のように設定します。
 
-![スクリーンショット 2025-09-24 234917.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/c8fb1b55-3905-44e8-a6ef-c541a8ea7f56.png)
+![スクリーンショット2 2025-09-24 234917.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/8f57e596-d3a7-4309-a147-071f2b38e2d4.png)
+
+
 
 ```mcp.json
 {
@@ -175,3 +185,56 @@ mcp.jsonが開いたら👇️のように設定します。
 ```
 
 実行ボタンを押して実行中になれば成功です。
+
+
+
+### Gemini CLIへのインストール
+
+```germinal
+# gemini CLIの立ち上げ
+gemini
+
+```
+
+```gemini CLI
+settings
+
+```
+
+設定を立ち上げ
+
+![スクリーンショット 2025-09-25 063504.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/d03c0999-c141-4a1d-b66c-0ff2addbd0ef.png)
+
+👆️`settings.json.orig`は、同名ファイルや以前の設定があったときに上書きせず別のファイルとして保存されたファイルです。
+
+設定を `settings.json` ファイルに書きます。
+
+![スクリーンショット 2025-09-25 063600.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/1aa23373-ff5d-4f31-8bb4-cd2367c8899e.png)
+
+```settings.json
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+...
+
+```
+
+
+
+## その他：おまけ
+
+stagewise という 拡張機能 ＜＜ ブラウザの特定箇所を指定してAIに渡せる
+
+毎日10件まで無料
+毎日100件まで €20 ユーロ/月
+
+stagewise | The frontend coding agent for production codebases
+https://stagewise.io/
+
+stagewiseとCursorでフロントエンド開発が最高すぎる件
+https://zenn.dev/the_exile/articles/stagewise-witth-cursor
