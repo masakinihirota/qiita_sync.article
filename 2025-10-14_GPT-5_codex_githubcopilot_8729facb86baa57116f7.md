@@ -121,10 +121,7 @@ GitHub Copilotのチャット欄で
 コマンドを実行すると、現状のチャットの保存と、tools等を設定した新規promptファイルが作成できます。
 
 ![スクリーンショット 2025-10-14 192815.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/cacac896-cec0-426a-a6ba-dc9b269e33e5.png)
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c38b334f325ddbc71bfa6cf88b223c8becc77c4
 ![スクリーンショット 2025-10-14 192938.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/dc3637ea-54d6-48e0-a2b9-cb73dcf0a9ea.png)
 
 ※👆️`new.prompt.md` のファイル名は後から変更します。
