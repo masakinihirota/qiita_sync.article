@@ -1,6 +1,6 @@
 <!--
-title:   GitHub CopilotでGPT5-Codexワークフローを実行
-tags:    GPT-5,codex,githubcopilot
+title:   OpenAI DevDay [2025] で発表されていた plants.md を使った開発手法を、GitHub Copilotの GPT-5-Codex (Preview)で再現してみた。
+tags:    GPT-5,codex,githubcopilot,plants.md
 id:      8729facb86baa57116f7
 private: false
 -->
@@ -109,6 +109,21 @@ GitHub Copilot のモデル選択でGPT5-Codexを選んでください。
 ----------------------------------------
 
 # GitHub Copilot でプロンプトファイルの作成方法
+
+## 1. /saveコマンドのプロンプトファイルの新規作成方法
+GitHub Copilotのチャット欄で
+`/save`
+コマンドを実行すると、現状のチャットの保存と、tools等を設定した新規promptファイルが作成できます。
+
+![スクリーンショット 2025-10-14 192815.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/cacac896-cec0-426a-a6ba-dc9b269e33e5.png)
+
+![スクリーンショット 2025-10-14 192938.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/dc3637ea-54d6-48e0-a2b9-cb73dcf0a9ea.png)
+
+※👆️`new.prompt.md` のファイル名は後から変更します。
+保存先は `*.prompt.md`ファイルを保存する場所に設定されています。
+
+## 2. 基本のプロンプトファイルの新規作成方法
+👇️MCP出現以前の一世代前の通常のプロンプトファイルの作り方。
 
 VSCodeでCtrl+Shift+pでコマンド入力欄を開く
 
@@ -368,17 +383,34 @@ npm test -- --watch
 
 ## 6. レビュー用のプロンプトファイルの作成
 
-### レビュー指示書の作成
+※Codex CLI には /review コマンドが用意されていますが、GitHub Copilot にはありませんので自作する必要があります。
+
+GitHub Copilot のプロンプトファイルを使ってレビューのプロンプトファイルを作ります。
+プロンプトファイルの作り方は、最初の方にある /save コマンドなどを使って作成します。
+GitHub Copilot でプロンプトファイルの作成方法・・・を御覧ください。
+
+
+
+### レビュープロンプトファイルの作成
 
 ```review.prompt.md
+---
+description: New prompt created from chat session
+mode: agent
+tools: []
+model: GPT-5-Codex (Preview)
+---
 # modelを指定します。
 # GPT5-Codexでレビューします。
-[GPT5-Codexでレビューの指示書を書いてもらいます]
-
+[レビューをする指示をGPT5-Codexに書いてもらいます]
 
 ```
 
-## 7. レビュー GPT5-Codexはレビューが得意
+👆️このレビュープロンプトファイルを作成して `/review` コマンドを実行できるようにします。
+
+
+
+## 7. レビュー GPT5-Codexはレビューが得意(Codex CLIの場合)
 
 実装終了後にGPT5-Codexでレビューします。
 
@@ -405,7 +437,7 @@ GitHub Copilot のスラッシュコマンドで、
 ## 3. 修正後、再度レビュー
 /review
 
-## 4. 問題がなくなるまで繰り返す
+## 4. このように、問題がなくなるまで繰り返します。
 
 ## 5. 最終確認
 git add .
@@ -672,6 +704,9 @@ codex
 	複雑な機能実装時は plans.md を使用してください。
 
 ```
+
+
+
 
 
 
