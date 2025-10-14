@@ -1,11 +1,6 @@
 <!--
-<<<<<<< HEAD
-title:   GitHub CopilotでGPT-5-Codexワークフローを実行
-tags:    GPT-5,codex,githubcopilot
-=======
 title:   OpenAI DevDay [2025] で発表されていた plants.md を使った開発手法を、GitHub Copilotの GPT-5-Codex (Preview)で再現してみた。
 tags:    GPT-5,codex,githubcopilot,plants.md
->>>>>>> 1c38b334f325ddbc71bfa6cf88b223c8becc77c4
 id:      8729facb86baa57116f7
 private: false
 -->
