@@ -401,21 +401,13 @@ npm test -- --watch
 ## 6. レビュー用のプロンプトファイルの作成
 
 ※Codex CLI には /review コマンドが用意されていますが、GitHub Copilot にはありませんので自作する必要があります。
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c38b334f325ddbc71bfa6cf88b223c8becc77c4
 GitHub Copilot のプロンプトファイルを使ってレビューのプロンプトファイルを作ります。
 プロンプトファイルの作り方は、最初の方にある /save コマンドなどを使って作成します。
 GitHub Copilot でプロンプトファイルの作成方法・・・を御覧ください。
 
-<<<<<<< HEAD
-### レビュー指示書の作成
-=======
 
 
 ### レビュープロンプトファイルの作成
->>>>>>> 1c38b334f325ddbc71bfa6cf88b223c8becc77c4
 
 ```review.prompt.md
 ---
@@ -425,27 +417,17 @@ tools: []
 model: GPT-5-Codex (Preview)
 ---
 # modelを指定します。
-<<<<<<< HEAD
 # GPT-5-Codexでレビューします。
 [GPT-5-Codexでレビューの指示書を書いてもらいます]
 
-=======
-# GPT5-Codexでレビューします。
-[レビューをする指示をGPT5-Codexに書いてもらいます]
->>>>>>> 1c38b334f325ddbc71bfa6cf88b223c8becc77c4
 
 ```
 
 👆️このレビュープロンプトファイルを作成して `/review` コマンドを実行できるようにします。
-<<<<<<< HEAD
-=======
 
 
 
 ## 7. レビュー GPT5-Codexはレビューが得意(Codex CLIの場合)
->>>>>>> 1c38b334f325ddbc71bfa6cf88b223c8becc77c4
-
-## 7. レビュー GPT-5-Codexはレビューが得意
 
 実装終了後にGPT-5-Codexでレビューします。
 
