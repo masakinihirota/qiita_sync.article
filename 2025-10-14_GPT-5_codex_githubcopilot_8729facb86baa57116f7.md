@@ -4,6 +4,7 @@ tags:    GPT-5,codex,githubcopilot,plants.md
 id:      8729facb86baa57116f7
 private: false
 -->
+※編集中
 # ソース
 
 Shipping with Codex - YouTube
@@ -18,7 +19,6 @@ https://www.youtube.com/watch?v=Gr41tYOzE20
 4. レビュー
 
 
-
 ----------------------------------------
 
 ## 環境
@@ -27,6 +27,18 @@ Windows11
 VSCode
 GitHub Copilot (PRO)
 使用モデル: GPT-5-Codex
+
+## 主なファイルの場所
+
+plans.mdの場所
+`.agent/plans.md`
+
+copilot-instructions.mdの場所
+`.github/copilot-instructions.md`
+
+agents.md は使用せず、copilot-instructions.mdを代わりに使います。
+
+
 
 ## この記事の目的
 
@@ -95,20 +107,29 @@ GitHub Copilot のモデル選択でGPT-5-Codexを選んでください。
 
 ---
 
-### プロセスまとめ
-| ステップ | 担当AIの役割 | 主な成果物 |
-| :--- | :--- | :--- |
-| **構想・要件定義** | 仕様策定、ゴール設定 | 要件定義書、全体の指示書 |
-| **設計・タスク分割** | 構造設計、タスクの分解 | 設計書、個別プロンプトファイル、**`plans.md`** |
-| **実装・管理** | コード生成、進捗記録、自己監視 | コードベース、**`plans.md`の継続的な更新** |
-| **検証・レビュー** | 品質保証、問題発見 | レビュー用プロンプト、レビュー結果、修正計画 |
-| **成果確定** | 成果の統合、記録、報告 | Gitコミット、最終報告書 |
+### よくある疑問
+
+実行計画が間違っていた場合は？
+その部分は人間が良く見ておく必要があります。
+AIをペアプログラマーの相方として扱ってください。
+
+実装の途中で間違った方向に行ってしまったかどうかを知るには？
+テスト駆動開発で開発を行い、そのテストを監視するなど工夫をします。
+毎回レビューでチェックを行います。
 
 
 
 ----------------------------------------
 
 # GitHub Copilot でプロンプトファイルの作成方法
+
+初めてのプロンプト ファイル - GitHub Docs
+https://docs.github.com/ja/copilot/tutorials/customization-library/prompt-files/your-first-prompt-file
+
+初めてのカスタム指示 - GitHub Docs
+https://docs.github.com/ja/copilot/tutorials/customization-library/custom-instructions/your-first-custom-instructions
+
+
 
 ## 1. /saveコマンドのプロンプトファイルの新規作成方法
 GitHub Copilotのチャット欄で
@@ -169,6 +190,17 @@ GitHub Copilot のチャット欄で
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------
 
 # 再現方法
@@ -185,47 +217,65 @@ Spec（仕様書を提示）
 
 
 
-## 1. copilot-instructions.md GitHub Copilotのアプリ全体の指示書
-
-```copilot-instructions.md
-# プロジェクト情報
-
-このプロジェクトは XXX を目的としたアプリケーションです。
-
-## コーディング規約
-
-- TypeScript strict モードを使用
-- ESLint の警告は必ず解決
-- すべての関数にJSDocコメントを追加
-- テストカバレッジは80%以上を維持
-
-## テストについて
-
-実装後は必ず以下を実行してください：
-
-	```bash
-	npm test
-	npm run lint
-	```
-
-## plans.md
-
-コードを書く際は必ず plans.md をチェックしてください。
 
 
+
+
+
+
+
+## 1. copilot-instructions.md GitHub Copilotのリポジトリ全体の指示
+
+今回は、AGENTS.md の代わりに
+GitHub Copilot のcopilot-instructions.md に指示を書きます。
+
+copilot-instructions.md はリポジトリのルート（通常.github/フォルダ内）に置く標準的なカスタム指示ファイルです。
+基本的なリポジトリ全体の指示に適しています。
+
+### ExecPlan
+
+copilot-instructions.md にExecPlanを使用する際のシンプルなルールを記述します。
+* ユーザーがショートハンドとして使用できる用語
+* 計画文書を使用する際のシンプルなルール
+を記述します。
+ここでは、それを "ExecPlan" と呼びます。
+
+#### ExecPlanの定義
+
+```
+# ExecPlans
+複雑な機能や重要なリファクタリングを書く際は、設計から実装まで ExecPlan（.agent/PLANS.md で説明されているもの）を使用してください。
 
 ```
 
-👆この内容は、今までの自分自身のアプリやツールの全体の指示書に、plans.mdのことを追加で記入しているだけです。
+👇copilot-instructions.mdに ExecPlans を追記します。
 
-copilot-instructions.md が大きくなっている時は別ファイルに指示書を書き、
-その指示書を指定するリンクを書いておきます。
+```copilot-instructions.md
+
+(既存の指示)
+
+---
+
+# ExecPlans
+複雑な機能や重要なリファクタリングを書く際は、設計から実装まで ExecPlan（.agent/PLANS.md で説明されているもの）を使用してください。
+
+```
+
+※👆既存の指示の後にExecPlansセクションを追加しています。
 
 
 
-## 2. plans.prompt.md 個別プロンプトファイル 指示書の作成
 
-GitHub Copilot のplans.prompt.mdは、AGENT.mdの代替です。
+
+
+
+
+
+
+
+
+## 2. plans.prompt.md プロンプトファイル 指示書の作成
+
 
 AIの長期的な振る舞いやコンテキストを定義する指示書です。
 
@@ -239,11 +289,6 @@ GitHub Copilot のチャット欄からスラッシュコマンドで実行し�
 
 `/plans`で実行できます。
 
-
-
-
-
-
 駆動仕様開発
 ゴール設定、
 情報収集
@@ -256,7 +301,6 @@ GitHub Copilot のチャット欄からスラッシュコマンドで実行し�
 ### 実際の内容
 
 ```.github\prompts\plans.prompt.md
-
 `[パス]\plans.md` に基づいて実装してください。
 TDD（テスト駆動開発）で実装してください。
 
@@ -276,11 +320,398 @@ TDD（テスト駆動開発）で実装してください。
 
 
 
-## 3. Plan（AIが計画を策定）の作成
+
+
+
+
+
+
+
+
+
+
+
+
+## 3. PLANS.md の作成
 
 用意した設計書から plans.mdを作成
 
 `[パス]\plans.md`に作成します。
+
+### PLANS.md (英語)
+
+openai-cookbook/articles/codex_exec_plans.md メイン · openai/openai-cookbook
+https://github.com/openai/openai-cookbook/blob/main/articles/codex_exec_plans.md
+
+※これにユーザー自身で編集したり、必要なセクションを追加したり、削除したりするよう勧められています。
+
+👆の plans.md を👇コピペします。
+
+※このコピペは現時点(2025年10月15日)のものです。(ちょうど数時間前に更新されたばかり)
+
+
+
+```
+# Codex Execution Plans (ExecPlans):
+
+This document describes the requirements for an execution plan ("ExecPlan"), a design document that a coding agent can follow to deliver a working feature or system change. Treat the reader as a complete beginner to this repository: they have only the current working tree and the single ExecPlan file you provide. There is no memory of prior plans and no external context.
+
+## How to use ExecPlans and PLANS.md
+
+When authoring an executable specification (ExecPlan), follow PLANS.md _to the letter_. If it is not in your context, refresh your memory by reading the entire PLANS.md file. Be thorough in reading (and re-reading) source material to produce an accurate specification. When creating a spec, start from the skeleton and flesh it out as you do your research.
+
+When implementing an executable specification (ExecPlan), do not prompt the user for "next steps"; simply proceed to the next milestone. Keep all sections up to date, add or split entries in the list at every stopping point to affirmatively state the progress made and next steps. Resolve ambiguities autonomously, and commit frequently.
+
+When discussing an executable specification (ExecPlan), record decisions in a log in the spec for posterity; it should be unambiguously clear why any change to the specification was made. ExecPlans are living documents, and it should always be possible to restart from _only_ the ExecPlan and no other work.
+
+When researching a design with challenging requirements or significant unknowns, use milestones to implement proof of concepts, "toy implementations", etc., that allow validating whether the user's proposal is feasible. Read the source code of libraries by finding or acquiring them, research deeply, and include prototypes to guide a fuller implementation.
+
+## Requirements
+
+NON-NEGOTIABLE REQUIREMENTS:
+
+* Every ExecPlan must be fully self-contained. Self-contained means that in its current form it contains all knowledge and instructions needed for a novice to succeed.
+* Every ExecPlan is a living document. Contributors are required to revise it as progress is made, as discoveries occur, and as design decisions are finalized. Each revision must remain fully self-contained.
+* Every ExecPlan must enable a complete novice to implement the feature end-to-end without prior knowledge of this repo.
+* Every ExecPlan must produce a demonstrably working behavior, not merely code changes to "meet a definition".
+* Every ExecPlan must define every term of art in plain language or do not use it.
+
+Purpose and intent come first. Begin by explaining, in a few sentences, why the work matters from a user's perspective: what someone can do after this change that they could not do before, and how to see it working. Then guide the reader through the exact steps to achieve that outcome, including what to edit, what to run, and what they should observe.
+
+The agent executing your plan can list files, read files, search, run the project, and run tests. It does not know any prior context and cannot infer what you meant from earlier milestones. Repeat any assumption you rely on. Do not point to external blogs or docs; if knowledge is required, embed it in the plan itself in your own words. If an ExecPlan builds upon a prior ExecPlan and that file is checked in, incorporate it by reference. If it is not, you must include all relevant context from that plan.
+
+## Formatting
+
+Format and envelope are simple and strict. Each ExecPlan must be one single fenced code block labeled as `md` that begins and ends with triple backticks. Do not nest additional triple-backtick code fences inside; when you need to show commands, transcripts, diffs, or code, present them as indented blocks within that single fence. Use indentation for clarity rather than code fences inside an ExecPlan to avoid prematurely closing the ExecPlan's code fence. Use two newlines after every heading, use # and ## and so on, and correct syntax for ordered and unordered lists.
+
+When writing an ExecPlan to a Markdown (.md) file where the content of the file *is only* the single ExecPlan, you should omit the triple backticks.
+
+Write in plain prose. Prefer sentences over lists. Avoid checklists, tables, and long enumerations unless brevity would obscure meaning. Checklists are permitted only in the `Progress` section, where they are mandatory. Narrative sections must remain prose-first.
+
+## Guidelines
+
+Self-containment and plain language are paramount. If you introduce a phrase that is not ordinary English ("daemon", "middleware", "RPC gateway", "filter graph"), define it immediately and remind the reader how it manifests in this repository (for example, by naming the files or commands where it appears). Do not say "as defined previously" or "according to the architecture doc." Include the needed explanation here, even if you repeat yourself.
+
+Avoid common failure modes. Do not rely on undefined jargon. Do not describe "the letter of a feature" so narrowly that the resulting code compiles but does nothing meaningful. Do not outsource key decisions to the reader. When ambiguity exists, resolve it in the plan itself and explain why you chose that path. Err on the side of over-explaining user-visible effects and under-specifying incidental implementation details.
+
+Anchor the plan with observable outcomes. State what the user can do after implementation, the commands to run, and the outputs they should see. Acceptance should be phrased as behavior a human can verify ("after starting the server, navigating to [http://localhost:8080/health](http://localhost:8080/health) returns HTTP 200 with body OK") rather than internal attributes ("added a HealthCheck struct"). If a change is internal, explain how its impact can still be demonstrated (for example, by running tests that fail before and pass after, and by showing a scenario that uses the new behavior).
+
+Specify repository context explicitly. Name files with full repository-relative paths, name functions and modules precisely, and describe where new files should be created. If touching multiple areas, include a short orientation paragraph that explains how those parts fit together so a novice can navigate confidently. When running commands, show the working directory and exact command line. When outcomes depend on environment, state the assumptions and provide alternatives when reasonable.
+
+Be idempotent and safe. Write the steps so they can be run multiple times without causing damage or drift. If a step can fail halfway, include how to retry or adapt. If a migration or destructive operation is necessary, spell out backups or safe fallbacks. Prefer additive, testable changes that can be validated as you go.
+
+Validation is not optional. Include instructions to run tests, to start the system if applicable, and to observe it doing something useful. Describe comprehensive testing for any new features or capabilities. Include expected outputs and error messages so a novice can tell success from failure. Where possible, show how to prove that the change is effective beyond compilation (for example, through a small end-to-end scenario, a CLI invocation, or an HTTP request/response transcript). State the exact test commands appropriate to the project’s toolchain and how to interpret their results.
+
+Capture evidence. When your steps produce terminal output, short diffs, or logs, include them inside the single fenced block as indented examples. Keep them concise and focused on what proves success. If you need to include a patch, prefer file-scoped diffs or small excerpts that a reader can recreate by following your instructions rather than pasting large blobs.
+
+## Milestones
+
+Milestones are narrative, not bureaucracy. If you break the work into milestones, introduce each with a brief paragraph that describes the scope, what will exist at the end of the milestone that did not exist before, the commands to run, and the acceptance you expect to observe. Keep it readable as a story: goal, work, result, proof. Progress and milestones are distinct: milestones tell the story, progress tracks granular work. Both must exist. Never abbreviate a milestone merely for the sake of brevity, do not leave out details that could be crucial to a future implementation.
+
+Each milestone must be independently verifiable and incrementally implement the overall goal of the execution plan.
+
+## Living plans and design decisions
+
+* ExecPlans are living documents. As you make key design decisions, update the plan to record both the decision and the thinking behind it. Record all decisions in the `Decision Log` section.
+* ExecPlans must contain and maintain a `Progress` section, a `Surprises & Discoveries` section, a `Decision Log`, and an `Outcomes & Retrospective` section. These are not optional.
+* When you discover optimizer behavior, performance tradeoffs, unexpected bugs, or inverse/unapply semantics that shaped your approach, capture those observations in the `Surprises & Discoveries` section with short evidence snippets (test output is ideal).
+* If you change course mid-implementation, document why in the `Decision Log` and reflect the implications in `Progress`. Plans are guides for the next contributor as much as checklists for you.
+* At completion of a major task or the full plan, write an `Outcomes & Retrospective` entry summarizing what was achieved, what remains, and lessons learned.
+
+# Prototyping milestones and parallel implementations
+
+It is acceptable—-and often encouraged—-to include explicit prototyping milestones when they de-risk a larger change. Examples: adding a low-level operator to a dependency to validate feasibility, or exploring two composition orders while measuring optimizer effects. Keep prototypes additive and testable. Clearly label the scope as “prototyping”; describe how to run and observe results; and state the criteria for promoting or discarding the prototype.
+
+Prefer additive code changes followed by subtractions that keep tests passing. Parallel implementations (e.g., keeping an adapter alongside an older path during migration) are fine when they reduce risk or enable tests to continue passing during a large migration. Describe how to validate both paths and how to retire one safely with tests. When working with multiple new libraries or feature areas, consider creating spikes that evaluate the feasibility of these features _independently_ of one another, proving that the external library performs as expected and implements the features we need in isolation.
+
+## Skeleton of a Good ExecPlan
+
+```md
+# <Short, action-oriented description>
+
+This ExecPlan is a living document. The sections `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` must be kept up to date as work proceeds.
+
+If PLANS.md file is checked into the repo, reference the path to that file here from the repository root and note that this document must be maintained in accordance with PLANS.md.
+
+## Purpose / Big Picture
+
+Explain in a few sentences what someone gains after this change and how they can see it working. State the user-visible behavior you will enable.
+
+## Progress
+
+Use a list with checkboxes to summarize granular steps. Every stopping point must be documented here, even if it requires splitting a partially completed task into two (“done” vs. “remaining”). This section must always reflect the actual current state of the work.
+
+- [x] (2025-10-01 13:00Z) Example completed step.
+- [ ] Example incomplete step.
+- [ ] Example partially completed step (completed: X; remaining: Y).
+
+Use timestamps to measure rates of progress.
+
+## Surprises & Discoveries
+
+Document unexpected behaviors, bugs, optimizations, or insights discovered during implementation. Provide concise evidence.
+
+- Observation: …
+  Evidence: …
+
+## Decision Log
+
+Record every decision made while working on the plan in the format:
+
+- Decision: …
+  Rationale: …
+  Date/Author: …
+
+## Outcomes & Retrospective
+
+Summarize outcomes, gaps, and lessons learned at major milestones or at completion. Compare the result against the original purpose.
+
+## Context and Orientation
+
+Describe the current state relevant to this task as if the reader knows nothing. Name the key files and modules by full path. Define any non-obvious term you will use. Do not refer to prior plans.
+
+## Plan of Work
+
+Describe, in prose, the sequence of edits and additions. For each edit, name the file and location (function, module) and what to insert or change. Keep it concrete and minimal.
+
+## Concrete Steps
+
+State the exact commands to run and where to run them (working directory). When a command generates output, show a short expected transcript so the reader can compare. This section must be updated as work proceeds.
+
+## Validation and Acceptance
+
+Describe how to start or exercise the system and what to observe. Phrase acceptance as behavior, with specific inputs and outputs. If tests are involved, say "run <project’s test command> and expect <N> passed; the new test <name> fails before the change and passes after>".
+
+## Idempotence and Recovery
+
+If steps can be repeated safely, say so. If a step is risky, provide a safe retry or rollback path. Keep the environment clean after completion.
+
+## Artifacts and Notes
+
+Include the most important transcripts, diffs, or snippets as indented examples. Keep them concise and focused on what proves success.
+
+## Interfaces and Dependencies
+
+Be prescriptive. Name the libraries, modules, and services to use and why. Specify the types, traits/interfaces, and function signatures that must exist at the end of the milestone. Prefer stable names and paths such as `crate::module::function` or `package.submodule.Interface`. E.g.:
+
+In crates/foo/planner.rs, define:
+
+    pub trait Planner {
+        fn plan(&self, observed: &Observed) -> Vec<Action>;
+    }
+```
+
+If you follow the guidance above, a single, stateless agent -- or a human novice -- can read your ExecPlan from top to bottom and produce a working, observable result. That is the bar: SELF-CONTAINED, SELF-SUFFICIENT, NOVICE-GUIDING, OUTCOME-FOCUSED.
+
+When you revise a plan, you must ensure your changes are comprehensively reflected across all sections, including the living document sections, and you must write a note at the bottom of the plan describing the change and the reason why. ExecPlans must describe not just the what but the why for almost everything.
+
+```
+
+
+
+
+
+
+
+
+### PLANS.md (日本語訳)
+
+以下は文書の全体です。この文書のプロンプティングは、ユーザーに重要なフィードバックを提供し、モデルが計画で指定されたものを正確に実装するように導くために慎重に選択されました。ユーザーは、自分のニーズに合わせてファイルをカスタマイズしたり、必要なセクションを追加・削除したりすることで利益を得られるかもしれません。
+
+````plans.md
+# Codex Execution Plans (ExecPlans):
+
+この文書は、実行計画 ("ExecPlan") の要件を説明します。これは、コーディングエージェントが機能する機能やシステム変更を提供するために従う設計文書です。読者をこのリポジトリの完全な初心者として扱ってください：彼らは現在の作業ツリーとあなたが提供する単一の ExecPlan ファイルしか持っていません。以前の計画の記憶や外部コンテキストはありません。
+
+## ExecPlans と PLANS.md の使用方法
+
+実行可能な仕様 (ExecPlan) を著述する際は、PLANS.md を _文字通り_ 従ってください。あなたのコンテキストにない場合は、PLANS.md ファイル全体を読んで記憶を更新してください。ソース資料を徹底的に読み（そして再読）して正確な仕様を作成してください。仕様を作成する際は、スケルトンから始め、あなたの研究とともに肉付けしてください。
+
+実行可能な仕様 (ExecPlan) を実装する際は、「次のステップ」をユーザーにプロンプトしないでください；単に次のマイルストーンに進んでください。すべてのセクションを最新に保ち、停止するたびにリストにエントリを追加または分割して、進捗と次のステップを肯定的に述べます。曖昧さを自律的に解決し、頻繁にコミットしてください。
+
+実行可能な仕様 (ExecPlan) を議論する際は、仕様にログを記録して将来のために保存してください；仕様が変更された理由が明確にわかるようにしてください。ExecPlans は生きている文書であり、常に ExecPlan と他の作業なしで再開できるようにしてください。
+
+挑戦的な要件や重要な未知数を持つ設計を研究する際は、マイルストーンを使用して概念実証、「おもちゃの実装」などを実装し、ユーザーの提案が実現可能かどうかを検証できるようにしてください。ライブラリのソースコードを読み、深く研究し、より完全な実装をガイドするプロトタイプを含めてください。
+
+## 要件
+
+交渉不可能な要件：
+
+* すべての ExecPlan は完全に自己完結している必要があります。自己完結とは、現在の形式で初心者が成功するために必要なすべての知識と指示を含んでいることを意味します。
+* すべての ExecPlan は生きている文書です。貢献者は、進捗が進むにつれて、発見が発生し、設計決定が最終化されるにつれて、それを改訂する必要があります。各改訂は完全に自己完結したままにしてください。
+* すべての ExecPlan は、初心者がこのリポジトリの事前知識なしに機能をエンドツーエンドで実装できるようにする必要があります。
+* すべての ExecPlan は、単に「定義を満たす」コード変更ではなく、明らかに動作する動作を生成する必要があります。
+* すべての ExecPlan は、すべての専門用語を平易な言語で定義するか、使用しないようにしてください。
+
+目的と意図が最初に来ます。数文で、この変更がユーザーの視点からなぜ重要かを説明してください：この変更後に行えることと以前に行えなかったこと、そしてそれを動作しているのを見る方法。次に、その結果を達成するための正確なステップをガイドしてください。何を編集するか、何を実行するか、何を観察するかを包括的に。
+
+計画を実行するエージェントは、ファイルをリストし、読み、検索し、プロジェクトを実行し、テストを実行できます。それは以前のコンテキストを知らず、以前のマイルストーンからあなたが何を意味したかを推測できません。あなたが依存するあらゆる仮定を繰り返してください。外部のブログやドキュメントを指さないでください；知識が必要な場合は、あなた自身の言葉で計画自体に埋め込んでください。ExecPlan が以前の ExecPlan に基づき、そのファイルがチェックインされている場合は、参照で組み込んでください。されていない場合は、その計画からすべての関連コンテキストを含める必要があります。
+
+## フォーマット
+
+フォーマットとエンベロープはシンプルで厳格です。各 ExecPlan は、 `md` とラベル付けされた単一のフェンスされたコードブロックでなければならず、三重バックティックで始まり終わります。内部に追加の三重バックティックコードフェンスをネストしないでください；コマンド、トランスクリプト、diff、またはコードを表示する必要がある場合は、単一のフェンス内でインデントされたブロックとして提示してください。ExecPlan のコードフェンスを早期に閉じないように、ExecPlan 内でコードフェンスを使用するのではなく、明確にするためにインデントを使用してください。すべての見出しの後に 2 つの改行を使用し、# と ## などを正しい構文で使用し、順序付きと順序なしリストを正しく使用してください。
+
+ExecPlan を Markdown (.md) ファイルに書き込む場合、ファイルの内容が *のみ* 単一の ExecPlan である場合は、三重バックティックを省略してください。
+
+平易な散文で書いてください。リストよりも文を優先してください。意味を曖昧にしない限り、チェックリスト、テーブル、長大な列挙を避けてください。チェックリストは `Progress` セクションでのみ許可され、そこでは必須です。ナラティブセクションは散文優先のままにしてください。
+
+## ガイドライン
+
+自己完結と平易な言語が最も重要です。普通の英語ではないフレーズ ("daemon", "middleware", "RPC gateway", "filter graph") を導入する場合、それをすぐに定義し、このリポジトリでどのように現れるかを思い出させてください（たとえば、それが現れるファイルやコマンドを命名することで）。「以前に定義されたように」または「アーキテクチャドキュメントによると」と言わないでください。ここで必要な説明を含めてください、繰り返しでも。
+
+一般的な失敗モードを避けてください。未定義の専門用語に依存しないでください。結果のコードがコンパイルするが意味のあることを何もしないほど狭く機能の「文字」を記述しないでください。重要な決定をリーダーに委託しないでください。曖昧さがある場合、計画自体でそれを解決し、なぜその道を選んだかを説明してください。ユーザーに見える効果を過度に説明し、付随的な実装詳細を過少指定するようにしてください。
+
+観測可能な結果で計画を固定してください。実装後にユーザーが何ができるか、実行するコマンド、表示される出力について述べてください。受け入れは、人間が検証できる動作としてフレーズしてください（「サーバーを開始した後、[http://localhost:8080/health](http://localhost:8080/health) にナビゲートすると HTTP 200 とボディ OK が返される」）ではなく、内部属性（「HealthCheck 構造体を追加」）。変更が内部的な場合、その影響がどのように示されるかを説明してください（たとえば、変更前後に失敗し成功するテストを実行し、新しい動作を使用するシナリオを示すことで）。
+
+リポジトリコンテキストを明示的に指定してください。リポジトリ相対パスでファイルを命名し、関数とモジュールを正確に命名し、新しいファイルを作成する場所を記述してください。複数の領域に触れる場合、初心者が自信を持ってナビゲートできるように、それらの部分がどのように適合するかを説明する短いオリエンテーション段落を含めてください。コマンドを実行する際は、作業ディレクトリと正確なコマンドラインを表示してください。結果が環境に依存する場合、仮定を述べ、合理的な場合に代替を提供してください。
+
+べき等で安全にしてください。ステップを複数回実行しても損傷やドリフトを引き起こさないように書いてください。ステップが途中で失敗する場合、再試行または適応する方法を含めてください。移行や破壊的な操作が必要な場合、バックアップや安全なフォールバックを詳述してください。テスト可能な変更を優先し、進むにつれて検証できるようにしてください。
+
+検証はオプションではありません。テストを実行し、適用可能な場合はシステムを開始し、何か有用なことを観察する指示を含めてください。新しい機能や機能の包括的なテストを記述してください。初心者が成功と失敗を区別できるように、期待される出力とエラーメッセージを含めてください。可能であれば、コンパイルを超えて変更が効果的であることを証明する方法を示してください（たとえば、小さなエンドツーエンドシナリオ、CLI 呼び出し、または HTTP リクエスト/レスポンストランスクリプトを通じて）。プロジェクトのツールチェーンに適した正確なテストコマンドを述べ、その結果をどのように解釈するかを述べてください。
+
+証拠をキャプチャしてください。あなたのステップがターミナル出力、短い diff、またはログを生成する場合、単一のフェンスされたブロック内でインデントされた例としてそれらを含めてください。それらを簡潔に保ち、成功を証明するものに焦点を当ててください。パッチを含める必要がある場合、あなたの指示に従ってリーダーが再作成できるファイルスコープの diff または小さな抜粋を優先してください、大規模な blob を貼り付けるのではなく。
+
+## マイルストーン
+
+マイルストーンは官僚主義ではなくナラティブです。作業をマイルストーンに分ける場合、各マイルストーンを短い段落で導入し、スコープ、何が存在しなかったものがマイルストーンの終わりまでに存在するもの、実行するコマンド、観察することを期待する受け入れを記述してください。読みやすいストーリーとして保ってください：目標、作業、結果、証明。進捗とマイルストーンは別です：マイルストーンはストーリーを伝え、進捗は細かい作業を追跡します。両方が存在する必要があります。将来の実装にとって重要である可能性のある詳細を省略しないでください、簡潔さのためにマイルストーンを省略しないでください。
+
+各マイルストーンは独立して検証可能で、実行計画の全体的な目標を段階的に実装する必要があります。
+
+## 生きている計画と設計決定
+
+* ExecPlans は生きている文書です。主要な設計決定を行う際は、決定とその背後にある思考の両方を記録するために計画を更新してください。すべての決定を `Decision Log` セクションに記録してください。
+* ExecPlans は `Progress` セクション、`Surprises & Discoveries` セクション、`Decision Log`、および `Outcomes & Retrospective` セクションを含み、維持する必要があります。これらはオプションではありません。
+* オプティマイザの動作、パフォーマンスのトレードオフ、予期しないバグ、またはあなたのアプローチを形成した逆/適用解除のセマンティクスを発見した場合、`Surprises & Discoveries` セクションに短い証拠スニペット（テスト出力が理想的）でそれらの観察をキャプチャしてください。
+* 実装中にコースを変更する場合、`Decision Log` で理由を文書化し、`Progress` に影響を反映してください。計画はあなたのためのチェックリストと同じくらい次の貢献者へのガイドです。
+* 主要なタスクまたは完全な計画の完了時に、`Outcomes & Retrospective` エントリを書いて、何が達成されたか、何が残っているか、学んだ教訓を要約してください。
+
+# プロトタイピングマイルストーンと並行実装
+
+より大きな変更をデリスクする際に、明示的なプロトタイピングマイルストーンを含めることは受け入れ可能であり、しばしば奨励されます。例：依存関係に低レベルのオペレーターを追加して実現可能性を検証する、またはオプティマイザの効果を測定しながら 2 つの構成順序を探索する。プロトタイプを追加的でテスト可能に保ってください。スコープを「プロトタイピング」として明確にラベル付けしてください；実行と結果の観察を記述してください；プロトタイプを昇格または廃棄する基準を述べてください。
+
+テストがパスしたままになる追加的なコード変更を優先してください。並行実装（例：移行中に古いパスとともにアダプターを保持する）は、リスクを減らし、テストが継続してパスすることを可能にする場合に問題ありません。両方のパスを検証する方法を記述し、テストで安全に一方を退役させる方法を記述してください。複数の新しいライブラリや機能領域で作業する場合、これらの機能を互いに独立して評価するスパイクを作成することを検討してください、外部ライブラリが期待通りに動作し、私たちが必要とする機能を分離して実装することを証明します。
+
+## 良い ExecPlan のスケルトン
+
+```md
+# <短く、行動指向の説明>
+
+この ExecPlan は生きている文書です。作業が進むにつれて、`Progress`、`Surprises & Discoveries`、`Decision Log`、および `Outcomes & Retrospective` セクションを最新に保つ必要があります。
+
+PLANS.md ファイルがリポジトリにチェックインされている場合、ここからリポジトリルートへのパスを参照し、この文書が PLANS.md に従って維持される必要があることに注意してください。
+
+## 目的 / 大きな絵
+
+数文で、この変更後に誰かが得るものを説明し、それが動作しているのを見る方法。あなたが有効にするユーザーに見える動作を述べてください。
+
+## 進捗
+
+細かいステップを要約するためにチェックボックス付きリストを使用してください。部分的に完了したタスクを 2 つに分割する必要がある場合でも、すべての停止ポイントをここに文書化してください。このセクションは常に作業の実際の現在の状態を反映する必要があります。
+
+- [x] (2025-10-01 13:00Z) 完了したステップの例。
+- [ ] 未完了のステップの例。
+- [ ] 部分的に完了したステップの例（完了: X; 残り: Y）。
+
+進捗のレートを測定するためにタイムスタンプを使用してください。
+
+## 驚きと発見
+
+実装中に発見された予期しない動作、バグ、最適化、または洞察を文書化してください。簡潔な証拠を提供してください。
+
+- 観察: …
+  証拠: …
+
+## 決定ログ
+
+計画で作られたすべての決定を以下のフォーマットで記録してください：
+
+- 決定: …
+  根拠: …
+  日付/著者: …
+
+## 成果と振り返り
+
+主要なマイルストーンまたは完了時に成果、ギャップ、学んだ教訓を要約してください。元の目的に対して結果を比較してください。
+
+## コンテキストとオリエンテーション
+
+読者が何も知らないかのように、このタスクに関連する現在の状態を記述してください。フルパスで主要なファイルとモジュールを命名してください。使用する非自明な用語を定義してください。以前の計画を参照しないでください。
+
+## 作業計画
+
+散文で、編集と追加のシーケンスを記述してください。各編集について、ファイルと場所（関数、モジュール）を命名し、何を挿入または変更するかを述べてください。具体的に最小限に保ってください。
+
+## 具体的なステップ
+
+実行する正確なコマンドと場所（作業ディレクトリ）を述べてください。コマンドが出力を生成する場合、比較できるように短い期待されるトランスクリプトを表示してください。このセクションは作業が進むにつれて更新する必要があります。
+
+## 検証と受け入れ
+
+システムを開始または実行する方法と何を観察するかを記述してください。受け入れを動作としてフレーズしてください、特定の入力と出力で。テストが関わる場合、「<プロジェクトのテストコマンド> を実行し、<N> がパスすることを期待；新しいテスト <name> は変更前後に失敗し成功する」。
+
+## べき等性と回復
+
+ステップを安全に繰り返せる場合、そう述べてください。ステップがリスクがある場合、安全な再試行またはロールバックパスを提供してください。完了後に環境をクリーンに保ってください。
+
+## アーティファクトとノート
+
+最も重要なトランスクリプト、diff、またはスニペットをインデントされた例として含めてください。それらを簡潔に保ち、成功を証明するものに焦点を当ててください。
+
+## インターフェースと依存関係
+
+規範的にしてください。使用するライブラリ、モジュール、サービスを命名し、なぜかを述べてください。マイルストーンの終わりまでに存在する必要がある型、トレイト/インターフェース、関数シグネチャを指定してください。`crate::module::function` や `package.submodule.Interface` のような安定した名前とパスを優先してください。例：
+
+crates/foo/planner.rs で定義：
+
+    pub trait Planner {
+        fn plan(&self, observed: &Observed) -> Vec<Action>;
+    }
+```
+
+上記のガイドラインに従う場合、単一のステートレスエージェント -- または人間の初心者 -- は ExecPlan を上から下に読み、動作する観測可能な結果を生成できます。それがバーです：自己完結、自己充足、初心者ガイド、結果指向。
+
+計画を改訂する場合、すべてのセクション、生きている文書セクションを含む変更が包括的に反映されていることを確認し、計画の下部に変更と理由を説明するノートを書いてください。ExecPlans は何だけでなくなぜも説明する必要があります。
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### 定型フォーマット
 
@@ -514,7 +945,7 @@ Fel氏のコメント：
 # UI開発のコツ
 
 ```
-	## agents.md への追加
+	## AAAAAAAAAAAAAAAAAAA への追加
 
 	UIを実装したら、必ずスクリーンショットを生成して
 	視覚的に検証してください。
@@ -550,7 +981,7 @@ generate-snapshots:
 ```
 
 
-### agents.mdに指示を追加
+### AAAAAAAAAAagents.mdに指示を追加
 
 ```
 	## UI検証について
@@ -660,8 +1091,6 @@ npm install -g @openai/codex
 # 起動
 codex
 
-
-
 ## 基本的なプロンプト例
 
 ### シンプルな依頼：
@@ -674,52 +1103,6 @@ codex
 
 ```
 
-### 詳細な依頼：
-
-```
-	以下の仕様に基づいてAPIを実装してください：
-
-	1. エンドポイント: POST /api/users
-	2. 認証: Bearer トークン必須
-	3. バリデーション: emailは必須、パスワードは8文字以上
-	4. レスポンス: 201 Created または 400 Bad Request
-
-	実装後、テストを書いて実行してください。
-
-	```
-
-	## agents.mdのテンプレート
-
-	```agents.md
-	# プロジェクト情報
-
-	このプロジェクトは XXX を目的としたアプリケーションです。
-
-	## コーディング規約
-
-	- TypeScript strict モードを使用
-	- ESLint の警告は必ず解決
-	- すべての関数にJSDocコメントを追加
-	- テストカバレッジは80%以上を維持
-
-	## テストについて
-
-	実装後は必ず以下を実行してください：
-
-	```bash
-	npm test
-	npm run lint
-	```
-
-	## Exec Planについて
-
-	複雑な機能実装時は plans.md を使用してください。
-
-```
-
-
-
-
 
 
 ----------------------------------------
@@ -731,3 +1114,16 @@ https://www.youtube.com/watch?v=Gr41tYOzE20
 
 【保存版】OpenAIのエンジニアが語る開発を１０倍速にするCodeXの使い方大全：バイブコーディングで設計→実装→レビューまで自動化｜チャエン | 重要AIニュースを毎日発信⚡️
 https://note.com/chaen_channel/n/n68e6ae9df467
+
+コードレビューから大規模リファクタリングまで：OpenAIエンジニアが明かすCodex活用技法｜Zenk
+https://note.com/honest_murre2984/n/na079bc306227
+
+
+## オリジナルソース
+
+### codex_exec_plans.md
+
+https://github.com/openai/openai-cookbook/blob/main/articles/codex_exec_plans.md
+
+
+
