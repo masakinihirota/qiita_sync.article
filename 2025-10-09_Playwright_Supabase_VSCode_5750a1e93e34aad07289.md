@@ -4,6 +4,14 @@ tags:    Playwright,Supabase,VSCode
 id:      5750a1e93e34aad07289
 private: true
 -->
+
+## 環境
+Playwright Agents
+VSCode v1.105 Insiders (VSCode実験版 2025年10月9日現在の最新版)
+Next.js 15
+Supabase
+Supabase CLI
+
 # 🚀 Playwright Agentで実現する Next.js + ローカルSupabase アプリの超効率的なE2Eテスト開発
 
 ## 序章：AI駆動型テスト開発の新しいパラダイム
@@ -32,23 +40,37 @@ Supabaseの認証とデータベース操作を含むTodoリストのような�
 
 1.  **プロジェクトの初期化**
 
-    `bash
-    # Next.jsプロジェクトをSupabase連携テンプレートで作成
-    npx create-next-app -e with-supabase my-e2e-app
-    cd my-e2e-app
-    # Supabase CLIの初期化
-    supabase init
-    `
+```terminal
+# Next.jsプロジェクトをSupabase連携テンプレートで作成
+npx create-next-app -e with-supabase playwright-ai
+cd playwright-ai
+
+# Supabase CLIの初期化
+supabase init
+
+```
 
 2.  **ローカルSupabaseの起動**
-    ローカルDBの入出力テストを行うため、Supabaseをローカル環境で起動します。
+ローカルDBの入出力テストを行うため、Supabaseをローカル環境で起動します。
 
-    `bash
-    # ローカルのSupabaseコンテナを起動
-    supabase start
-    `
+```terminal
+# ローカルのSupabaseコンテナを起動
+supabase start
 
-    *（Note：このとき表示される`anon`キーや`URL`をNext.js側で環境変数として設定します。）*
+# ステータス表示(環境変数など)
+supabase status
+
+```
+
+*（Note：このとき表示される`anon`キーや`URL`をNext.js側で環境変数として設定します。）*
+
+```.env.local
+NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJ*****"
+
+```
+
+
 
 ### 2\. Playwrightのインストールとエージェント定義の初期化
 
@@ -56,21 +78,23 @@ Playwrightをインストールし、AIエージェントを使用するため�
 
 1.  **Playwrightのインストール**
 
-    `bash
-    npm install -D playwright
-    npx playwright install
-    `
+```terminal
+npm install -D playwright
+npx playwright install
+
+```
 
 2.  **Playwright Agentsの初期化**
-    今回は**VS Code**でのエージェント体験を前提とします。
+今回は**VS Code**でのエージェント体験を前提とします。
 
-    `bash
-    # VS Code向けのエージェント定義ファイルを生成
-    npx playwright init-agents --loop=vscode
-    `
+```terminal
+# VS Code向けのエージェント定義ファイルを生成
+npx playwright init-agents --loop=vscode
 
-    *（Note：エージェント機能の利用には、**VS Code v1.105 Insiders**またはそれ以降の安定版が必要です。）*
-    これにより、`.github/`ディレクトリにエージェント定義が、`playwright.config.ts`にはエージェント関連の設定が追加されます。
+```
+
+*（Note：エージェント機能の利用には、**VS Code v1.105 Insiders**またはそれ以降の安定版が必要です。）*
+これにより、`.github/`ディレクトリにエージェント定義が、`playwright.config.ts`にはエージェント関連の設定が追加されます。
 
 -----
 
@@ -99,6 +123,7 @@ test('setup environment and login', async ({ page }) => {
   // 3. ログイン後の確認
   await expect(page).toHaveURL('http://localhost:3000/dashboard');
 });
+
 ```
 
 ### 2\. 🎭 Plannerの実行とテスト計画の生成
@@ -107,29 +132,31 @@ Plannerエージェントに、**ログイン後にDBにデータを追加・検
 
 1.  **Plannerへのリクエスト**
 
-    `bash
-    # ログイン済みの状態から、新規Todoを作成し、リストに表示されることを検証する計画を依頼
-    npx playwright planner "Generate a plan for creating a new todo item and verifying its presence in the list. Start from the logged-in state defined in seed.spec.ts, as this confirms DB input and output via the browser."
-    `
+```terminal
+# ログイン済みの状態から、新規Todoを作成し、リストに表示されることを検証する計画を依頼
+npx playwright planner "Generate a plan for creating a new todo item and verifying its presence in the list. Start from the logged-in state defined in seed.spec.ts, as this confirms DB input and output via the browser."
+
+```
 
 2.  **出力の確認**
-    Plannerは、以下のような**Markdownテスト計画**を`specs/`ディレクトリ（例：`specs/create-todo.md`）に出力します。
+Plannerは、以下のような**Markdownテスト計画**を`specs/`ディレクトリ（例：`specs/create-todo.md`）に出力します。
 
-    `markdown
-    # specs/create-todo.md (出力例)
+```markdown
+# specs/create-todo.md (出力例)
 
-    ## Scenario: Add a valid todo item and verify DB persistence
+## Scenario: Add a valid todo item and verify DB persistence
 
-    ### Steps:
-    1. Navigate to the Todo list page on the dashboard.
-    2. Click the 'Add New Todo' button.
-    3. Fill the text field with the todo title "Playwright Agent Masterclass".
-    4. Click the 'Save' button.
+### Steps:
+1. Navigate to the Todo list page on the dashboard.
+2. Click the 'Add New Todo' button.
+3. Fill the text field with the todo title "Playwright Agent Masterclass".
+4. Click the 'Save' button.
 
-    ### Expected Outcome:
-    - The new todo item with the title "Playwright Agent Masterclass" is visible in the list on the browser.
-    - A success notification is displayed confirming DB insertion.
-    `
+### Expected Outcome:
+- The new todo item with the title "Playwright Agent Masterclass" is visible in the list on the browser.
+- A success notification is displayed confirming DB insertion.
+
+```
 
 -----
 
@@ -141,34 +168,36 @@ Plannerが作成したMarkdown計画を基に、Generatorが実行可能なPlayw
 
 1.  **Generatorへのリクエスト**
 
-    `bash
-    # 生成されたMarkdownファイル名を指定して、テストコードの生成を依頼
-    npx playwright generator specs/create-todo.md
-    `
+```terminal
+# 生成されたMarkdownファイル名を指定して、テストコードの生成を依頼
+npx playwright generator specs/create-todo.md
+
+```
 
 2.  **出力の確認**
-    Generatorは、`tests/`ディレクトリ（例：`tests/create/add-valid-todo.spec.ts`）に**Playwrightテストファイル**を生成します。このコードは、Markdownのステップを具体的なロケーターとアサーションに変換しています。
+Generatorは、`tests/`ディレクトリ（例：`tests/create/add-valid-todo.spec.ts`）に**Playwrightテストファイル**を生成します。このコードは、Markdownのステップを具体的なロケーターとアサーションに変換しています。
 
-    *（Note：生成されたテストコードは、ブラウザを介してSupabaseのDBにデータが書き込まれ、その後読み込まれて画面に表示されるという**E2Eのデータフロー全体**を検証します。）*
+*（Note：生成されたテストコードは、ブラウザを介してSupabaseのDBにデータが書き込まれ、その後読み込まれて画面に表示されるという**E2Eのデータフロー全体**を検証します。）*
 
 ### 2\. 🎭 Healerによるテストの実行と自動修復
 
 生成されたテストを実行します。もしUIに変更があった場合、**Healer**が自動でテストを修復します。
 
 1.  **テストの意図的な失敗（シミュレーション）**
-    意図的にアプリケーションのUIを変更します。（例：Todo作成フォームの「Save」ボタンのテキストを「登録」に変更するなど）
+意図的にアプリケーションのUIを変更します。（例：Todo作成フォームの「Save」ボタンのテキストを「登録」に変更するなど）
 
 2.  **テストの実行とHealerの起動**
-    テストを実行すると、Healerが失敗を検知し、自動でパッチ適用を試みます。
+テストを実行すると、Healerが失敗を検知し、自動でパッチ適用を試みます。
 
-    `bash
-    # テストを実行
-    npx playwright test tests/create/add-valid-todo.spec.ts
-    # 失敗するとHealerが自動介入し、新しいロケーター（例：Submit）を探して修正します。
-    `
+```terminal
+# テストを実行
+npx playwright test tests/create/add-valid-todo.spec.ts
+# 失敗するとHealerが自動介入し、新しいロケーター（例：Submit）を探して修正します。
+
+```
 
 3.  **出力の確認**
-    Healerは失敗したテストを再実行し、\*\*テストコードを自動で修正（パッチ）\*\*します。修正後のテストファイルを確認すると、古いロケーターが新しいものに更新されていることが確認できます。
+Healerは失敗したテストを再実行し、\*\*テストコードを自動で修正（パッチ）\*\*します。修正後のテストファイルを確認すると、古いロケーターが新しいものに更新されていることが確認できます。
 
 -----
 
@@ -185,3 +214,19 @@ Playwright Agentsは、Next.js + Supabaseのような最新の技術スタック
 この強力なエージェントの連携により、開発者は安心してUI/UXの改善や新機能開発に集中できるようになります。あなたのプロジェクトでも、この**エージェント駆動型テスト開発**をぜひ体験してみてください！
 
 -----
+
+
+
+
+
+
+
+
+## 参考
+
+Agents | Playwright
+https://playwright.dev/docs/test-agents
+
+
+
+
