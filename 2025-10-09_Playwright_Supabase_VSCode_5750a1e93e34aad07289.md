@@ -1,8 +1,8 @@
 <!--
-title:   Playwright の Agents 発表 実験的機能であり VSCode Insiders 動作します
+title:   Playwright の Agents 駆動型テスト開発 (実験的機能で VSCode Insiders 動作)
 tags:    Playwright,Supabase,VSCode
 id:      5750a1e93e34aad07289
-private: true
+private: false
 -->
 
 ## 環境
@@ -12,9 +12,9 @@ Next.js 15
 Supabase
 Supabase CLI
 
-# 🚀 Playwright Agentで実現する Next.js + ローカルSupabase アプリの超効率的なE2Eテスト開発
+# 🚀 Playwright Agentで実現する Next.js + ローカルSupabase アプリの効率的なE2Eテスト開発
 
-## 序章：AI駆動型テスト開発の新しいパラダイム
+## Playwright の Agents 駆動型テスト開発
 
 アジャイル開発において、エンドツーエンド（E2E）テストは品質保証の要ですが、UI変更やデータ構造の変更に伴う**テストコードのメンテナンス**は大きな負担となります。
 
@@ -34,7 +34,7 @@ Playwright Agentsは、テストプロセス全体を自動化するために連
 
 ## Part 1: 環境構築とエージェントの初期設定
 
-### 1\. Next.js + Supabaseプロジェクトの準備
+### 1. Next.js + Supabaseプロジェクトの準備
 
 Supabaseの認証とデータベース操作を含むTodoリストのようなアプリケーションを想定します。ローカル環境でSupabaseを起動することが重要です。
 
@@ -201,7 +201,7 @@ Healerは失敗したテストを再実行し、\*\*テストコードを自動�
 
 -----
 
-## 結び：エージェント駆動型テスト開発の未来
+## 終わりに：エージェント駆動型テスト開発の未来
 
 Playwright Agentsは、Next.js + Supabaseのような最新の技術スタックを用いたアプリケーションにおいて、**テスト計画・コード生成・メンテナンス**という従来のE2Eテストのボトルネックを解消します。
 
