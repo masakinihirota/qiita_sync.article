@@ -733,7 +733,7 @@ crates/foo/planner.rs で定義：
 上記のガイドラインに従う場合、単一のステートレスエージェント -- または人間の初心者 -- は ExecPlan を上から下に読み、動作する観測可能な結果を生成できます。それがバーです：自己完結、自己充足、初心者ガイド、結果指向。
 
 計画を改訂する場合、すべてのセクション、生きている文書セクションを含む変更が包括的に反映されていることを確認し、計画の下部に変更と理由を説明するノートを書いてください。ExecPlans は何だけでなくなぜも説明する必要があります。
-````
+
 
 
 
@@ -1186,6 +1186,3 @@ https://note.com/honest_murre2984/n/na079bc306227
 ### codex_exec_plans.md
 
 https://github.com/openai/openai-cookbook/blob/main/articles/codex_exec_plans.md
-
-
-
