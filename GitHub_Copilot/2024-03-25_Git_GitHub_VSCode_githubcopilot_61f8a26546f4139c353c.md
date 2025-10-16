@@ -28,6 +28,8 @@ https://qiita.com/masakinihirota/items/a925a2b68ab8374c7fd0
 
 https://qiita.com/masakinihirota/items/3a983f01cffc941ac101
 
+https://qiita.com/masakinihirota/items/62367ca7ab1766cbd012
+
 
 
 ![VNS画面GitHubCopilot文字付き.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/74ce79e7-8fba-bc76-cbe6-a9e89ea15925.png)
