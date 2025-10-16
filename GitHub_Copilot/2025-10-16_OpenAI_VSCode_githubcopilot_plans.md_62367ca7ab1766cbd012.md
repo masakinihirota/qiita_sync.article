@@ -193,7 +193,7 @@ ExecPlanは厳格な構造を持っています。特に、Progress、Surprises 
 
 ## 良い点
 指示書が少なくなる
-2つのコマンド(plans.prompt、review.prompt)とテストだけで良くなる
+2つのコマンド(plans.prompt、review.prompt)だけで良くなる
 要件定義書、設計書はAIに書いてもらう
 まかっせきりだからスマホでも開発が可能
 
