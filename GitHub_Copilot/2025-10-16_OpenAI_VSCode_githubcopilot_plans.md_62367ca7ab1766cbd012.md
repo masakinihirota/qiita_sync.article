@@ -20,7 +20,7 @@ private: false
 なぜ、どのように、どうやって動いて、どのようにコードが生成されているのかを理解できます。
 100%理解できることから初めて、徐々に未知の部分を増やしていきましょう。
 
-
+https://www.youtube.com/watch?v=v8UNxEqKTCI
 
 # GitHub Copilotシリーズ
 

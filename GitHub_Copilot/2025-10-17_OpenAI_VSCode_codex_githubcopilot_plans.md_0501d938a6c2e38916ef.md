@@ -10,7 +10,7 @@ private: false
 👆️この記事は色々試行錯誤しつつ書いたまま校正していないので非常に読みづらくなっていました。
 それをNotebookLMにURLを登録して内容を再構成してもらいました。
 
-
+https://www.youtube.com/watch?v=v8UNxEqKTCI
 
 https://x.com/masakinihirota/status/1979138376814203180
 
