@@ -1,11 +1,11 @@
 <!--
-title:   OpenAI の 「Plans.md (唯一の生きた文書) 戦略」 をVSCode GitHub Copilot で実行する方法
-tags:    OpenAI,VSCode,githubcopilot,plans.md
+title:   OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」 をVSCode GitHub Copilot で実行する方法
+tags:    OpenAI,VSCode,codex,githubcopilot,plans.md
 id:      62367ca7ab1766cbd012
 private: false
 -->
 ## 最初に
-指示書を新規に作成、もしくは既存の指示書を破棄します。
+指示書を新規に作成、もしくは既存の指示書を全て破棄します。
 なぜなら OpenAI の Plans.md 戦略は 「plans.mdファイル を唯一の指示書」とするからです。
 そして OpenAI の Codex CLI GPT-5-Codex には スラッシュコマンド(/plans /reviewなど)が揃っています。
 なので、GitHub Copilot側で スラッシュコマンドを用意する必要があります。
@@ -40,6 +40,8 @@ https://qiita.com/masakinihirota/items/3a983f01cffc941ac101
 https://qiita.com/masakinihirota/items/62367ca7ab1766cbd012
 
 
+
+https://x.com/masakinihirota/status/1979138376814203180
 
 ## 使用する CLI,IDEの料金プラン
 * ChatGPT 月20ドル
@@ -164,8 +166,8 @@ plans.md という指示書があります。この指示書で考えるのは�
 指示として明記されていれば、エージェントは「内部思考（英語）」と「出力（日本語）」を切り分けるよう努めますが、思考言語を完全に制御することは難しく、実質的な効果は「出力を日本語に統一させやすくする」程度です。
 Tips: ドキュメント側でも出力言語を統一しておくと、レビュープロセスでの混乱を減らせます。
 
-AGENTS.md(この記事ではcopilot-instructions.md)の役割は？
-plans.mdを使用するタイミング（複雑な機能の作成や大規模なリファクタリング時）と、計画の定義を示す用語（例：「ExecPlan」）を記述することで、これらの文書を使用するように指示します。
+AGENTS.md の役割は？
+plans.mdを使用するタイミング（複雑な機能の作成や大規模なリファクタリング時）と、計画の定義を示す用語（例：「ExecPlan」）を記述することで、これらの文書を使用するように指示します。Codex
 
 ## 計画の骨格
 ExecPlanは厳格な構造を持っています。特に、Progress、Surprises & Discoveries、Decision Log、Outcomes & Retrospectiveのセクションは必須であり、作業の進行に合わせて更新し続ける必要があります。
@@ -391,19 +393,21 @@ In crates/foo/planner.rs, define:
     pub trait Planner {
         fn plan(&self, observed: &Observed) -> Vec<Action>;
     }
-\```
+```
 
 If you follow the guidance above, a single, stateless agent -- or a human novice -- can read your ExecPlan from top to bottom and produce a working, observable result. That is the bar: SELF-CONTAINED, SELF-SUFFICIENT, NOVICE-GUIDING, OUTCOME-FOCUSED.
 
 When you revise a plan, you must ensure your changes are comprehensively reflected across all sections, including the living document sections, and you must write a note at the bottom of the plan describing the change and the reason why. ExecPlans must describe not just the what but the why for almost everything.
 
-```
+
 
 </details>
 
-👆️ソースかこれをコピペしてください。
+👆️ソースかこれをコピペして使ってください。
 
 <details><summary>plans.md 日本語訳</summary>
+
+`plans.bak` これは拡張子を bak に変えただけで、`中身はplans.md` です。
 
 
 
@@ -680,23 +684,24 @@ GitHub Copilot chat欄で
 ユーザーの課題解決やアイデアを具体化します。
 
 壁打ちして完成度を上げます。
-主要機能、ターゲットユーザー、満たすべき制約**を整理させ要件定義書として具体化します。
+主要機能、ターゲットユーザー、満たすべき制約を整理させ要件定義書として具体化します。
 これで全体の要件定義書が出来上がります。
 
 要件定義書に基づき、システム構成図、データモデル（ER図）、主要コンポーネントの設計、API仕様などを含む設計書をAIに作成させます。
 
-全体を一気に作るような設計書は作りません。
-各個別の機能ごとの設計書を作るように指示をします。
+アプリ全体を、コードを一気に作るような設計書は作りません。
+各個別の機能ごとの設計書を絞って作るように指示をします。
+
 一気に作ろうとしても、よほどうまく調整しない限りCodexを数時間も連続で動かすことは出来ません。
 AIの特性、設計の複雑度等を諸々考慮できる人はやってみてください。
 
 * 最初は1機能ごとの設計書を作るようにしましょう。
 
 AIを使うコツは出来る限り範囲を狭めることです。
-設計をはっきりしっかり書くことです、ふわふわの指示ではAIは戸惑ってしまいます。
+設計をはっきりと しっかりと書くことです、ふわふわの指示ではAIは戸惑ってしまいます。
 
 1機能のコードの実装が終わっても、次の新しい設計書をつくり`plans.prompt.md`に書き換えて使います。
-そして`plans.md`はそのまま使い続けます。
+そして`plans.md`はそのまま使い続けます。 ←「Plans.md (唯一の生きた文書) 戦略」
 
 ## copilot-instructions.md の作成
 
@@ -736,6 +741,14 @@ GitHub Copilot の返信の最後に、なにか Tips と関連するアドバ�
 ```
 
 ※AGENTS.mdと重なっている部分が多くあります。(試行錯誤中なので各自改良してください)
+
+・・・複数のCLIを使っているそれぞれのCLIで共有されるのでこうなります。
+AGENTS.mdを共有で使えるCLI,IDE
+GitHub Copilot CLI
+Gemini CLI
+Codex CLI
+Cursor
+等
 
 ## AGENTS.md の作成
 
@@ -829,6 +842,20 @@ TDDを徹底します。
 
 ```
 
+:::note warn
+AIと壁打ちして作った設計書👆️`アクセス権限設計書.md` をここに置いています。
+
+/plasn スラッシュコマンドで実装が始まります。
+終わったら /review レビュースラッシュコマンドでチェックをします。
+人間が致命的、重大インシデント等を対処し問題がなければ繰り返します。
+
+そして、設計書の分の実装が完了したら、次の要件定義書、設計書を書いて同じことを繰り返します。
+
+そしてこれらをアプリ完成まで繰り返します。
+
+:::
+
+
 ## プラン開始 `/plans` スラッシュコマンドの実行
 
 GitHub Copilotのチャット欄から `/plans` スラッシュコマンドを実行します。
@@ -840,12 +867,12 @@ plans.mdが更新されていきます。
 **進捗と記録の永続化**: AIは実装タスクを完了するたびに、**`plans.md`**に**実行内容、完了日時、発生した課題（あれば）、次のステップ**などを記録し、**進捗を継続的に更新**します。これは、AIの**自己管理と記録の永続化**の核となります。
 
 テストも同時並行で実装されているはずです。
-カバレッジなどのチェックも行っています。
+カバレッジなどのチェックも行っています。(指示の仕方で変わります)
 
 **実行中のベストプラクティス（監視）**:
-   - AIは実装中、コーディング規約の遵守、セキュリティ上の懸念点、パフォーマンスなどの**ベストプラクティス**を常に**自己監視**します。不備があれば即座に修正を試みます。
-   -
-途中でループなどのバグが怒らなければ最後までいき、コミットなどの後処理をさせます。
+AIは実装中、コーディング規約の遵守、セキュリティ上の懸念点、パフォーマンスなどの**ベストプラクティス**を常に**自己監視**します。不備があれば即座に修正を試みます。
+
+途中でループなどのバグが起こらなければ最後までいき、コミット、プッシュなどの後処理をします。
 
 
 
@@ -1082,11 +1109,14 @@ GPT-5-Codexは、コードレビューの実施と重大な欠陥の発見に特
 - plans.prompt.md #トリガー スラッシュコマンド用
 - review.prompt.md #トリガー スラッシュコマンド用
 
-※promptsフォルダ内においてるのはまとめて置いておいたほうが編集しやすいから。
+※promptsフォルダ内に置いてあるのはまとめて置いておいたほうが便利だし、編集しやすいから。
+それ以外の意味は特にありません。
+AGENTS.mdはどこにおいても結構見つけてくれます。
+
+
 
 ### その他
 - plans.bak # plans.mdのバックアップファイル
-
 
 ## 具体的なplans.mdの使用手順
 
@@ -1127,7 +1157,7 @@ PRを作成します。
 # Tips
 
 * 要件定義書、設計書の段階で機能を絞り、シンプルに作ります。
-全体を一気に実装しようとしても失敗しやすいです。
+ある程度の大きさのアプリ全体を一気に実装しようとしても失敗しやすいです。
 
 ---
 
@@ -1233,3 +1263,10 @@ GPT-5-Codex が高性能でコードの実装能力やレビューに特化し�
 ネットから最新の情報を直接取得したほうが良い場合があります。
 なので、Webアプリ特有の指示以外はネットから情報を取得してもらうことで、
 指示書をできるだけシンプルに保つことが出来るようになりました。
+
+
+
+Notebookによる校正
+OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」をVSCode GitHub Copilot で実行する方法 (Notebookによる校正) #githubcopilot - Qiita
+
+https://qiita.com/masakinihirota/items/0501d938a6c2e38916ef
