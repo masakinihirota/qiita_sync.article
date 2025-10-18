@@ -11,6 +11,8 @@ https://qiita.com/masakinihirota/items/62367ca7ab1766cbd012
 👆️この記事は色々試行錯誤しつつ書いたまま整理整頓をしていないので非常に長く順番も前後して読みづらくなっていました。
 なのでNotebookLMで内容を要約してもらいました。
 
+※あちこち継ぎ足していった結果、まるで消防法違反の温泉宿のごとく、異形な増築建造物になってしまっている。
+
 ## 動画紹介
 
 https://www.youtube.com/watch?v=v8UNxEqKTCI
