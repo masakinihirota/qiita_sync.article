@@ -1,14 +1,17 @@
 <!--
-title:   OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」をVSCode GitHub Copilot で実行する方法 (Notebookによる校正)
+title:   OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」をVSCode GitHub Copilot で実行する方法 のNotebookによる要約
 tags:    OpenAI,VSCode,codex,githubcopilot,plans.md
 id:      0501d938a6c2e38916ef
 private: false
 -->
-「OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」 をVSCode GitHub Copilot で実行する方法」を編集 - Qiita
+「OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」 をVSCode GitHub Copilot で実行する方法」 - Qiita
 
+https://qiita.com/masakinihirota/items/62367ca7ab1766cbd012
 
-👆️この記事は色々試行錯誤しつつ書いたまま校正していないので非常に読みづらくなっていました。
-それをNotebookLMにURLを登録して内容を再構成してもらいました。
+👆️この記事は色々試行錯誤しつつ書いたまま整理整頓をしていないので非常に長く順番も前後して読みづらくなっていました。
+なのでNotebookLMで内容を要約してもらいました。
+
+## 動画紹介
 
 https://www.youtube.com/watch?v=v8UNxEqKTCI
 
