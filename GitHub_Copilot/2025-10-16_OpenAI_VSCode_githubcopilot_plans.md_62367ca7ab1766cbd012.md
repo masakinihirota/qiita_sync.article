@@ -4,6 +4,16 @@ tags:    OpenAI,VSCode,codex,githubcopilot,plans.md
 id:      62367ca7ab1766cbd012
 private: false
 -->
+追記 2025年10月18日
+長くなりすぎたので要約版を作ってみました。
+
+この記事の要約
+OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」をVSCode GitHub Copilot で実行する方法 のNotebookによる要約 #githubcopilot - Qiita
+
+https://qiita.com/masakinihirota/items/0501d938a6c2e38916ef
+
+追記終了
+
 ## 最初に
 指示書を新規に作成、もしくは既存の指示書を全て破棄します。
 なぜなら OpenAI の Plans.md 戦略は 「plans.mdファイル を唯一の指示書」とするからです。
