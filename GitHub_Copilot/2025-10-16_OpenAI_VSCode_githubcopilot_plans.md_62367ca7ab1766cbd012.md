@@ -12,6 +12,12 @@ OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」をVSCode GitHub
 
 https://qiita.com/masakinihirota/items/0501d938a6c2e38916ef
 
+動画で解説👇️OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」 をVSCode GitHub Copilot で実行する方法
+
+https://www.youtube.com/watch?v=v8UNxEqKTCI
+
+https://x.com/masakinihirota/status/1979138376814203180
+
 追記終了
 
 ## 最初に

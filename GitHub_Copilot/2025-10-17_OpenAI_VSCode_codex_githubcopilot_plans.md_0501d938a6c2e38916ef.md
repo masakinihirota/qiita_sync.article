@@ -15,6 +15,8 @@ https://qiita.com/masakinihirota/items/62367ca7ab1766cbd012
 
 ## 動画紹介
 
+OpenAI の Codex「Plans.md (唯一の生きた文書) 戦略」 をVSCode GitHub Copilot で実行する方法
+
 https://www.youtube.com/watch?v=v8UNxEqKTCI
 
 https://x.com/masakinihirota/status/1979138376814203180
