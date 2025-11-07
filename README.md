@@ -98,4 +98,3 @@ README内のバッジを以下のように更新してください（`<Your-ID>`
 - [Qiita-Sync 公式リポジトリ（English）](https://github.com/ryokat3/qiita-sync)
 - [GitHub連携でQiita記事を素敵な執筆環境で！（Japanese）](https://qiita.com/ryokat3/items/d054b95f68810f70b136)
 - [このリポジトリの詳細説明](./REPOSITORY_EXPLANATION.md)
-
