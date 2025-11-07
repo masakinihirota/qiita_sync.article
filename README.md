@@ -1,78 +1,101 @@
-2025年
+# masakinihirota の Qiita 記事管理リポジトリ
 
 ![Qiita Sync](https://github.com/masakinihirota/qiita_sync.article/actions/workflows/qiita_sync_check.yml/badge.svg)
 
-Markdown記法 チートシート - Qiita
-https://qiita.com/Qiita/items/c686397e4a0f4f11683d
+## このリポジトリについて
 
-※重要メモ
-Web での Qiita 上で編集した時は下記手順を実行する。
+このリポジトリは、[Qiita](https://qiita.com/)に投稿している技術記事をGitHubで管理するためのものです。約233記事を収録しており、GitHub CopilotやSupabase、Next.jsなどのモダンな開発ツールに関する記事が中心です。
 
-- 自分の記事が保存してある `GitHub repository` を開く
-- 画面上側にあるタブの"Actions"から"Qiita Sync" を開く
-- "Run workflow" をクリックするを実行する。
+**📖 詳しい説明は [REPOSITORY_EXPLANATION.md](./REPOSITORY_EXPLANATION.md) をご覧ください。**
+
+## 記事の主なトピック
+
+- **GitHub Copilot** - AI支援コーディングツールの活用方法
+- **Supabase** - Firebase代替のバックエンドサービス
+- **Next.js** - Reactフレームワーク
+- **Drizzle ORM** - TypeScript用のORMライブラリ
+- **TypeScript** - 型安全なJavaScript
+- **VSCode** - 開発環境とツール
 
 ---
 
-# ファイル名のルール
-ファイル名は取得した時点のQiitaコード付きのファイル名を変更できる。
-ファイル名にスペースを入れてはいけない。
-ファイル名に日本語が使える。
+## クイックリファレンス
 
+### Markdown記法
 
+Qiitaのマークダウン記法は[公式チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)を参照してください。
 
-# 新規に投稿するときのテンプレート
+### ⚠️ 重要：Qiita Web上で編集した場合
 
-```ファイル名.md
+Qiita Web上で記事を編集した後は、以下の手順でGitHubに変更を同期してください：
+
+1. このGitHubリポジトリを開く
+2. "Actions"タブをクリック
+3. "Qiita Sync"を選択
+4. "Run workflow"をクリック
+
+---
+
+## 記事の作成・編集
+
+### ファイル名のルール
+
+- ファイル名にスペースを入れない
+- 日本語のファイル名が使える
+- 推奨フォーマット：`YYYY-MM-DD_トピック_サブトピック_ID.md`
+
+### 新規投稿テンプレート
+
+```markdown
 <!--
-title:   ＜タイトル＞
-tags:    ＜タグ＞
+title:   記事タイトル
+tags:    タグ1,タグ2,タグ3
 private: false
 -->
 
-＜記事本文＞
-
-
+記事の本文をここに書きます...
 ```
 
-# Qiita-Sync Template
+### 記事の校正
 
-Template repository to synchronize markdown files with [Qiita](https://qiita.com/) site.
+```bash
+# 記事の文法チェック
+npm run lint
 
-Create your own repository based on this template and push your markdown files, then those files are automatically published in Qiita site.
-
-## Preparation
-
-1. Click "Use this template" button at top-right corner of this page, and create your GitHub repository.
-2. Generate "Qiita Access Token" of at your Qiita site, and copy the generated Qiita Access Token.
-3. Open "Settings" >> "Secrets" >> "Actions" >> "New repository secret" at your GitHub repository.
-4. Input `QIITA_ACCESS_TOKEN` to "Name", and paste the generated Qiita Access Token to "Value", and click "Add secret"
-5. Open "Actions" >> "Qiita Sync" >> "Run workflow" pulldown menu, and click "Run workflow" button
-6. Your Qiita articles will be downloaded to your GitHub repository.
-7. Rewrite this README for your own with the badge below (Replace `<Your-ID>` and `<Your-Repository>`)
-
+# 自動修正
+npm run fix
 ```
+
+---
+
+## Qiita-Sync について
+
+このリポジトリは[Qiita-Sync](https://github.com/ryokat3/qiita-sync)を使用して、GitHubとQiitaを自動同期しています。
+
+### テンプレートとして使用する場合
+
+このリポジトリをテンプレートとして、自分のQiita記事管理リポジトリを作成できます。
+
+### 準備手順
+
+1. このページの右上の"Use this template"ボタンをクリックして、新しいGitHubリポジトリを作成
+2. [Qiita](https://qiita.com/)で"Personal Access Token"を生成してコピー
+3. GitHubリポジトリで、Settings > Secrets > Actions > "New repository secret"を開く
+4. "Name"に`QIITA_ACCESS_TOKEN`と入力し、"Value"にトークンを貼り付けて"Add secret"をクリック
+5. Actions > "Qiita Sync" > "Run workflow"を実行
+6. Qiita記事がGitHubリポジトリにダウンロードされます
+
+### バッジの更新
+
+README内のバッジを以下のように更新してください（`<Your-ID>`と`<Your-Repository>`を置き換え）：
+
+```markdown
 ![Qiita Sync](https://github.com/<Your-ID>/<Your-Repository>/actions/workflows/qiita_sync_check.yml/badge.svg)
 ```
 
-## 準備
+## 参考リンク
 
-1. このページの右上にある "Use this template" ボタンをクリックして、GitHub リポジトリを作成します。
-2. Qiita サイトで "Qiita Access Token" を作成し、生成された token をコピーします。
-3. GitHub リポジトリで、"Settings" >> "Secrets" >> "Actions" >> "New repository secret" を開きます。
-4. "Name" に `QIITA_ACCESS_TOKEN` と入力し、"Value" には生成された Qiita Access Token を貼り付けます。そして "Add secret" をクリックします。
-5. "Actions" >> "Qiita Sync" >> "Run workflow" のプルダウンメニューを開き、"Run workflow" ボタンをクリックします。
-6. GitHub リポジトリに Qiita 記事がダウンロードされます。
-7. README を書き換え、以下のバッジを挿入します(`<Your-ID>` と `<Your-Repository>` は置き換えてください)
+- [Qiita-Sync 公式リポジトリ（English）](https://github.com/ryokat3/qiita-sync)
+- [GitHub連携でQiita記事を素敵な執筆環境で！（Japanese）](https://qiita.com/ryokat3/items/d054b95f68810f70b136)
+- [このリポジトリの詳細説明](./REPOSITORY_EXPLANATION.md)
 
-```
-![Qiita Sync](https://github.com/<Your-ID>/<Your-Repository>/actions/workflows/qiita_sync_check.yml/badge.svg)
-```
-
-Find more details in:
-
-- English: [Qiita-Sync README](https://github.com/ryokat3/qiita-sync)
-- Japanese: [GitHub 連携で Qiita 記事を素敵な執筆環境で！](https://qiita.com/ryokat3/items/d054b95f68810f70b136)
-
-
-## Qiita-Sync Template
