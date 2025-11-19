@@ -283,7 +283,7 @@ TDDは小さな一歩を繰り返す手法であるため、次に何をすべ�
 
 ### ✅ タスクリスト作成のコツ (AI活用)
 
-まず、開発したい機能全体の要件をAIに与え、**「この要件を達成するために必要な、可能な限り小さなテスト項目（タスク）に分解してください」**と指示します。
+まず、開発したい機能全体の要件をAIに与え、**「この要件を達成するために必要な、可能な限り小さなテスト項目（タスク）に分解してください」** と指示します。
 
 | No. | 機能の概要 | テスト対象 | 期待される動作（TDDの1サイクル） |
 | :-- | :--- | :--- | :--- |
@@ -326,10 +326,14 @@ Refactorフェーズで、「コードの重複はないか？」「命名は適
 レッド・グリーンリ・リファクタリングの各フェーズを別々のエージェントに担当させ、ハンドオフでバトンリレーすることで、TDDのサイクルを効率的に回すことができます。
 
 
-このレッド・グリーン・リファクタリングは、「GitHub Copilot公式のプロンプト集である github/awesome-copilot リポジトリ」 を元に作られています。
+このレッド・グリーン・リファクタリングは、「GitHub Copilotコミュニティのプロンプト集である github/awesome-copilot リポジトリ」 を元に作られています。
 
-※ tdd-red.chatmode.md というファイル名はアップデートで tdd-red.agent.md に変更になりましたが、このリポジトリではまだ反映されてません。
+※ tdd-red.chatmode.md というファイル名はアップデートで tdd-red.agent.md に変更になりましたが、このリポジトリではまだ反映されてません。 (2025年11月現在)
 `「*.chatmode.md → *.agent.md」`
+
+https://github.com/github/awesome-copilot/
+
+>コミュニティによって作成されたカスタム エージェント、プロンプト、および手順のコレクションにより、さまざまなドメイン、言語、およびユース ケースにわたって GitHub Copilot エクスペリエンスが強化されます。
 
 awesome-copilot/chatmodes/tdd-red.chatmode.md at main · github/awesome-copilot
 
@@ -343,7 +347,7 @@ https://github.com/github/awesome-copilot/blob/main/chatmodes/tdd-refactor.chatm
 
 :::note warn
 ※👇️私のプロジェクトで利用しているサンプルのハンドオフ機能を組み込んだTDD用エージェントファイル
-上記のGitHub Copilot公式awesomeリポジトリのTDD用エージェントファイルにハンドオフ機能を強引に組み込んでみました、もし使用する場合は、あなたの開発環境に合わせて変更をしてください。
+上記のGitHub Copilot コミュニティ awesomeリポジトリのTDD用エージェントファイルにハンドオフ機能を強引に組み込んでみました、もし使用する場合は、あなたの開発環境に合わせて変更をしてください。
 
 :::
 
@@ -353,7 +357,6 @@ https://github.com/github/awesome-copilot/blob/main/chatmodes/tdd-refactor.chatm
 ```markdown
 ---
 name: TDD-red
----
 description: 合意された仕様や機能に対して TDD サイクルを開始するための失敗（Red）テストを生成します。受け入れ基準を明示的にコード化した失敗テストを出力します。
 target: vscode
 tools: [ 'search', 'fetch' ]
@@ -982,7 +985,7 @@ model: GPT-5
 
 ### 承太郎からのアドバイス（デバッグ時）
 
-> 「てめーのコードに何が起きているか知りたければ、**問題点（#problems）**と**コードベース（#codebase）**をさっさと出しな。無駄な時間を使うんじゃあねぇ。」
+> 「てめーのコードに何が起きているか知りたければ、**問題点（#problems）** と**コードベース（#codebase）** をさっさと出しな。無駄な時間を使うんじゃあねぇ。」
 
 ### エージェントの動作
 
