@@ -325,9 +325,30 @@ Refactorフェーズで、「コードの重複はないか？」「命名は適
 
 レッド・グリーンリ・リファクタリングの各フェーズを別々のエージェントに担当させ、ハンドオフでバトンリレーすることで、TDDのサイクルを効率的に回すことができます。
 
-※👇️私のプロジェクトで利用しているサンプルのエージェントファイル
 
-## redエージェントファイル
+このレッド・グリーン・リファクタリングは、「GitHub Copilot公式のプロンプト集である github/awesome-copilot リポジトリ」 を元に作られています。
+
+※ tdd-red.chatmode.md というファイル名はアップデートで tdd-red.agent.md に変更になりましたが、このリポジトリではまだ反映されてません。
+`「*.chatmode.md → *.agent.md」`
+
+awesome-copilot/chatmodes/tdd-red.chatmode.md at main · github/awesome-copilot
+
+https://github.com/github/awesome-copilot/blob/main/chatmodes/tdd-red.chatmode.md
+
+https://github.com/github/awesome-copilot/blob/main/chatmodes/tdd-green.chatmode.md
+
+https://github.com/github/awesome-copilot/blob/main/chatmodes/tdd-refactor.chatmode.md
+
+を参考に作られています。
+
+:::note warn
+※👇️私のプロジェクトで利用しているサンプルのハンドオフ機能を組み込んだTDD用エージェントファイル
+上記のGitHub Copilot公式awesomeリポジトリのTDD用エージェントファイルにハンドオフ機能を強引に組み込んでみました、もし使用する場合は、あなたの開発環境に合わせて変更をしてください。
+
+:::
+
+
+## redエージェントファイル(＋ハンドオフ機能)
 
 ```markdown
 ---
@@ -429,7 +450,7 @@ handoffs:
 
 ```
 
-## greenエージェントファイル
+## greenエージェントファイル(＋ハンドオフ機能)
 
 ```markdown
 ---
@@ -558,7 +579,7 @@ pnpm test
 
 ```
 
-## refactorエージェントファイル
+## refactorエージェントファイル(＋ハンドオフ機能)
 
 ```markdown
 ---
