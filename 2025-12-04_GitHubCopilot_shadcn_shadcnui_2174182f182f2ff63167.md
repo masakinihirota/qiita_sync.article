@@ -16,8 +16,9 @@ UI/UX には デザイン標準などの営業用の言葉と 実際にエンジ
 GitHub Copilotに指示します。
 `.github/instructions/dads-ui-instruction.md` を読んで現在利用している全てのUIに適用させてください。
 
-ビーストモードを使うと１回のコマンドで最後までやってくれます。(やってくれるはず)
-ビーストモードについては検索してください
+ビーストモードを使うと１回のコマンドで、現在実装済みの全てのUIを見つけて最後まで適用してくれるはず。
+
+https://qiita.com/masakinihirota/items/10a9fb85bd04d885d0b5
 
 ## 使用しているAIエディタ
 GitHub Copilot
