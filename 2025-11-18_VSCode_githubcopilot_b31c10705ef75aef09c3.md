@@ -1,6 +1,6 @@
 <!--
 title:   螺旋階段開発 ハンドオフ機能でバトンリレー GitHub Copilot VSCode v1.106
-tags:    VSCode,githubcopilot
+tags:    GitHubCopilot,VSCode
 id:      b31c10705ef75aef09c3
 private: false
 -->

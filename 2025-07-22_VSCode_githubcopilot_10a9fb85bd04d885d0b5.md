@@ -1,9 +1,47 @@
 <!--
 title:   GitHub Copilot ビーストモード for VSCode でのモードの自作が可能に (公式)
-tags:    VSCode,githubcopilot
+tags:    GitHubCopilot,VSCode
 id:      10a9fb85bd04d885d0b5
 private: false
 -->
+追記 2025年12月2日
+
+今のバージョンは Beast Mode v3.1
+
+Beast Mode
+https://gist.github.com/burkeholland/88af0249c4b6aff3820bf37898c8bacf
+
+使い道は単純作業が大量にある時に便利。
+AIが間違えやすい問題を処理させるときには使わない。
+
+yoloモードを使うことで1回のプロンプトの指示でかなりの量(3桁を超えることも)処理が可能。
+
+
+![スクリーンショット 2025-12-02 013822.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/44761/521707e3-bae6-48e9-aa4f-dbfe7d4991c2.png)
+
+
+yoloモードとは？
+
+GitHub Copilot Agent mode には YOLOモードがあります。
+ユーザーに確認されることがなくなり(少なくなり)ます。
+※使い方を間違えると大変危険です。
+
+VSCode settings.json
+
+```settings.json
+// GitHub Copilot Agent Mode 有効化
+"chat.agent.enabled": true,
+// 自動実行モード (YOLO モード)
+"chat.tools.autoApprove": true,
+
+```
+
+
+
+追記終了
+
+
+
 今回、VSCode1.102のリリースでAIモデルへの指示を独自にできるようになりました。
 edit、ask、agent に続く第4のモードを自作できるようになりました。
 これはその使用例の一つです。
