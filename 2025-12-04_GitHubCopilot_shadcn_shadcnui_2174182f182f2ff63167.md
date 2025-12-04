@@ -13,12 +13,30 @@ UI/UX には デザイン標準などの営業用の言葉と 実際にエンジ
 現在の設定
  指示書は`.github/instructions` の下に置きます。
 
-GitHub Copilotに指示します。
-`.github/instructions/dads-ui-instruction.md` を読んで現在利用している全てのUIに適用させてください。
-
-ビーストモードを使うと１回のコマンドで、現在実装済みの全てのUIを見つけて最後まで適用してくれるはず。
+ビーストモードを使うと１回のチャットで、現在実装済みの全てのUIを見つけて最後まで適用してくれるはず。
 
 https://qiita.com/masakinihirota/items/10a9fb85bd04d885d0b5
+
+### GitHub Copilotのチャット欄での使用例
+
+GitHub Copilotに指示します。
+
+チャット1
+`チャット
+ログインフォームを作成してください。
+デジタル庁デザインシステムの指示書（.github/instructions/dads-ui-instruction.md）と
+参照コンポーネント（src/components/dads-reference/）を参考にしてください。
+
+```
+
+チャット2
+```チャット
+`.github/instructions/dads-ui-instruction.md` を読んで現在利用している全てのUIに適用させてください。
+
+```
+
+※ビーストモード用 ある程度UIがあると一つづつ適用させる指示は大変ですので、ビーストモードを採用しVSCodeのYOLOモードを設定すると、 1回の指示ですべてのUIに適用してくれます。
+「全てのUI」と指定するところがポイントです。
 
 ## 使用しているAIエディタ
 GitHub Copilot
