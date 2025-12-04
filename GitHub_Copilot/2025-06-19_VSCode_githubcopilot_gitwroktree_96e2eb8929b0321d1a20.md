@@ -1,6 +1,6 @@
 <!--
 title:   手動AI並列開発： Git Wroktree と GitHub Copilot と VSCode を用いた開発
-tags:    VSCode,githubcopilot,gitwroktree
+tags:    GitHubCopilot,VSCode,gitwroktree
 id:      96e2eb8929b0321d1a20
 private: false
 -->
