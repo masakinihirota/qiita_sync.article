@@ -1,6 +1,6 @@
 <!--
 title:   公式 Chrome DevTools MCP ： Chromeブラウザ用のMCPが登場 これは、Web開発者にとって必須
-tags:    Chrome,ChromeDevTool,DevTools,MCP,githubcopilot
+tags:    Chrome,ChromeDevTool,DevTools,GitHubCopilot,MCP
 id:      a925a2b68ab8374c7fd0
 private: false
 -->

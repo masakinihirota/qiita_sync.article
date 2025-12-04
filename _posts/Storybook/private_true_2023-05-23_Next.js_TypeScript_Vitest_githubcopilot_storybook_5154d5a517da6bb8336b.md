@@ -1,6 +1,6 @@
 <!--
 title:   Storybook 超入門 Ver7 SFC3 TailwindCSS vitest GitHubCopilot
-tags:    Next.js,TypeScript,Vitest,githubcopilot,storybook
+tags:    GitHubCopilot,Next.js,TypeScript,Vitest,storybook
 id:      5154d5a517da6bb8336b
 private: true
 -->
