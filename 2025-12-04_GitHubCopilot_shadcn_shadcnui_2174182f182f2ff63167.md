@@ -30,6 +30,7 @@ GitHub Copilotに指示します。
 ```
 
 チャット2
+
 ```チャット
 `.github/instructions/dads-ui-instruction.md` を読んで現在利用している全てのUIに適用させてください。
 
