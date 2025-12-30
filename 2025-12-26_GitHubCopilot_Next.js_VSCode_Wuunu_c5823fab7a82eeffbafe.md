@@ -4,7 +4,7 @@ tags:    GitHubCopilot,Next.js,VSCode,Wuunu
 id:      c5823fab7a82eeffbafe
 private: false
 -->
-一言感想 まるで、CursorやFigmaのGUI編集のようだ、IDEとブラウザだけで完結する時代に突入か？
+一言感想 まるでVSCodeが、CursorやFigmaでのGUI編集をしているようだ、IDEとブラウザだけで完結する時代に突入か？
 
 ## はじめに
 
@@ -130,13 +130,11 @@ npm run dev
 
 ```
 
-👆️devモードで立ち上げ反映されているかを確認します。
+👆️通常開発時に使っているNext.jsのDevモードで立ち上げ反映されているかを確認します。
 
 http://localhost:3000/
 
-👆️をDevモードを開く
-
-ちゃんと反映されていますね。
+画面を確認すると、変更がちゃんと反映されていますね。
 
 👇️localhost:3000を開く時に、「Wuunu」の方は閉じてしまったので、右上に警告が出ています。これは
 
@@ -145,12 +143,17 @@ http://localhost:3000/
 👆️右上の赤い文字は 「Wuunu」を閉じて停止してしばらくすると出てきます。
 
 ```text
-Did not receive any chat update for a while, this may simply be an Internet connectivity issue or your agent has stopped working... We recommend waiting a bit and if nothing happens, cancelling and retrying if nothing happens.
+Did not receive any chat update for a while,
+this may simply be an Internet connectivity issue or your agent has stopped working...
+We recommend waiting a bit and if nothing happens,
+cancelling and retrying if nothing happens.
 
 ```
 
 ```text
-しばらくチャットの更新が届きません。これは単純にインターネット接続の問題か、エージェントが動作を停止している可能性があります...しばらくお待ちいただき、何も変化がない場合はキャンセルして再試行することをお勧めします。
+しばらくチャットの更新が届きません。
+これは単純にインターネット接続の問題か、エージェントが動作を停止している可能性があります...
+しばらくお待ちいただき、何も変化がない場合はキャンセルして再試行することをお勧めします。
 
 ```
 
@@ -163,11 +166,11 @@ Did not receive any chat update for a while, this may simply be an Internet conn
 
 
 
-NotebookLM解説
+NotebookLM解説Blog
 
 ## Wuunu AI App Builder 拡張機能 とは？
 
-Wuunuは、VS Code用の**「無料のローカルホストAIアプリビルダー」**です。
+Wuunuは、VS Code用の **「無料のローカルホストAIアプリビルダー」** です。
 
 最大の特徴は、ブラウザ上で直接AIを使ってアプリを構築できる点です。開発者のWesley氏によると、これは**「開発者にとって欠けているGUI / ビジュアルエディタ」**として作られました。
 
