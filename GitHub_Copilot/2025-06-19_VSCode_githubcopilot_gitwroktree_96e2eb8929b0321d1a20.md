@@ -1,12 +1,12 @@
 <!--
-title:   手動AI並列開発： Git Wroktree と GitHub Copilot と VSCode を用いた開発
-tags:    GitHubCopilot,VSCode,gitwroktree
+title:   手動AI並列開発： Git Worktree と GitHub Copilot と VSCode を用いた開発
+tags:    GitHubCopilot,GitWorktree,VSCode
 id:      96e2eb8929b0321d1a20
 private: false
 -->
 # 追記 2025年8月10日
 
-VSCodeがGit Wroktreeのサポートをしました。
+VSCodeがGit Worktreeのサポートをしました。
 
 2025年7月（バージョン1.103）
 
