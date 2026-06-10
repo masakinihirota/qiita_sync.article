@@ -4,6 +4,55 @@ tags:    AIエージェント,GitHubCopilot,model
 id:      c3d71cabfa8ad3f09433
 private: false
 -->
+追記 2026年6月5日
+
+👇️ベンチマークから調査をし直した。
+
+Next.js AIエージェントWeb開発: SWE-bench Verified での GitHub Copilotのモデル選定ガイド 性能とコストと #GitHubCopilot - Qiita
+https://qiita.com/masakinihirota/items/264285814c671aa97f13
+
+追記終了
+
+
+# BYOK
+
+XユーザーのYUKEN| Culminate開発さん: 「BYOK(Bring Your Own Key): - ユーザがAPIを用意する - ユーザがトークン原価で利用でき、料金上乗せがない - サブスクと違って使わなければ請求されない - ユーザは複数サービスにサブスクしなくても 　複数のAIツールをAPIKEYで利用できる 複数サブスクするよりは安くなる可能性がある -」 / X
+https://x.com/s5qnY18XGq23601/status/2054898813429842414
+
+BYOK(Bring Your Own Key):
+- ユーザがAPIを用意する
+- ユーザがトークン原価で利用でき、料金上乗せがない
+- サブスクと違って使わなければ請求されない
+- ユーザは複数サービスにサブスクしなくても
+　複数のAIツールをAPIKEYで利用できる
+    複数サブスクするよりは安くなる可能性がある
+- トークン単価はサブスクより高いのが
+   大きなデメリット
+- サービス開発者はトークン管理が不要
+- 日本ではAPIKey利用は普及してない
+- トークン単価は指数関数的に下がってきたから
+　今後も性能に対するコストは安くなる可能性がある
+
+
+
+ 各社AIモデル提供会社が発行しているAIモデルの API KEYを
+ GitHub Copilotに設定すると
+ そのモデルと従量使用しながらGitHub CopilotのVSCodeを使える。
+
+
+ VSCode 内にGitHub CopilotのAI使用できるツールが組み込まれており
+ GitHub Copilot は各社AIモデル提供会社からGitHub Copilot経由でAIモデルを提供しているが、
+
+ 自前でAIモデルのAPI KEYを用意すれば中間手数料を取らない分少し安くなるかもしれないという理屈だ。
+
+
+ ## BYOK（Bring Your Own Key）って何だろう？
+「BYOK」は、日本語で「自分の鍵を持ち込む」という意味です。通常、GitHub Copilotを使う時はGitHubに月額料金を払って「AIクレジット」という単位でAIを利用しますが、BYOKでは、OpenAIやAnthropicといったAI提供会社から直接発行してもらった自分専用のAPIキーを、VSCodeなどのGitHub Copilotの設定に登録して使う方法のことを指します
+。
+まるで、図書館の自習室に図書館の本を借りて勉強するのではなく、自分で買った本を直接持ち込んで勉強するようなものですね。
+
+---
+
 GitHub Copilotの利用環境は、モデルの多様化と「AIクレジット」による従量課金的な仕組みの導入により、以前よりも複雑な選択が求められるようになっています。現在の課金体系と、用途に応じたモデル選びの基準について、公式ドキュメントのデータに基づき整理しました。
 
 ### やり方は2通り
@@ -115,3 +164,6 @@ https://docs.github.com/ja/copilot/reference/copilot-billing/request-based-billi
 
 各モデル比較グラフ群
 https://artificialanalysis.ai/
+
+コスパ最強 Gemini 3.1 Pro
+SWE-benchスコア（80.6%）
